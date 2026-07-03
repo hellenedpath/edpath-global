@@ -113,7 +113,7 @@ export const pt = {
     beliefs: {
       title: "No que acreditamos",
       items: [
-        "Somos uma empresa canadense registrada. Operamos com responsabilidade sobre a informação que fornecemos.",
+        "Operamos com responsabilidade sobre a informação que fornecemos, com foco em precisão e transparência.",
         "Não recebemos comissão de instituições. Nenhum college ou universidade nos paga para enviar estudantes — nossa orientação serve o estudante.",
         "Informamos, não prometemos. Baseamos tudo em fontes oficiais. Não prometemos vistos, empregos ou residência permanente.",
       ],
