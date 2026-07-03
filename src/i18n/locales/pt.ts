@@ -121,7 +121,7 @@ export const pt = {
     experience: {
       title: "Fundada sobre experiência real no setor",
       content:
-        "A EdPath Global foi fundada por uma profissional com anos de experiência em educação internacional, adquirida dentro de instituições e organizações do setor. Esse conhecimento de dentro sustenta o compromisso da EdPath com padrões elevados de precisão, transparência e responsabilidade. Cada informação é fundamentada em fontes oficiais, e cada limite do nosso papel é declarado com clareza.",
+        "A EdPath Global nasceu da experiência real no setor de educação internacional, construída dentro de instituições e organizações da área. Esse conhecimento de dentro do setor sustenta nosso compromisso com padrões elevados de precisão, transparência e responsabilidade. Cada informação que oferecemos é fundamentada em fontes oficiais, e cada limite do nosso papel é declarado com clareza — porque acreditamos que confiança se constrói com honestidade, não com promessas.",
     },
     comparison: {
       title: "Como somos diferentes",
