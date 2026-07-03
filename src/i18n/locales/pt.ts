@@ -255,6 +255,6 @@ export const pt = {
     tagline: "AI Powered Global Student Navigator",
     expansion: "Canadá disponível agora. Mais países em breve.",
     disclaimer:
-      "A EdPath Global é uma empresa canadense registrada. Fornecemos informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados. Não recebemos comissão de instituições de ensino.",
+      "A EdPath Global fornece informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados. Não recebemos comissão de instituições de ensino.",
   },
 };
