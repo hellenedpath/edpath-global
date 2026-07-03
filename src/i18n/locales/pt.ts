@@ -104,7 +104,6 @@ export const pt = {
 
   about: {
     hero: {
-      badge: "Empresa canadense registrada",
       title: "Criada para ajudar estudantes com informação correta",
       subtitle:
         "Fundada sobre anos de experiência em educação internacional, a EdPath Global oferece a estudantes e famílias um recurso confiável para planejar seus estudos ao redor do mundo — com informação verificada, transparência e independência.",
@@ -114,7 +113,7 @@ export const pt = {
     beliefs: {
       title: "No que acreditamos",
       items: [
-        "Somos uma empresa canadense registrada. Operamos com responsabilidade sobre a informação que fornecemos.",
+        "Operamos com responsabilidade sobre a informação que fornecemos, com foco em precisão e transparência.",
         "Não recebemos comissão de instituições. Nenhum college ou universidade nos paga para enviar estudantes — nossa orientação serve o estudante.",
         "Informamos, não prometemos. Baseamos tudo em fontes oficiais. Não prometemos vistos, empregos ou residência permanente.",
       ],
@@ -256,6 +255,6 @@ export const pt = {
     tagline: "AI Powered Global Student Navigator",
     expansion: "Canadá disponível agora. Mais países em breve.",
     disclaimer:
-      "A EdPath Global é uma empresa canadense registrada. Fornecemos informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados. Não recebemos comissão de instituições de ensino.",
+      "A EdPath Global fornece informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados. Não recebemos comissão de instituições de ensino.",
   },
 };
