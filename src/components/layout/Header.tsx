@@ -27,7 +27,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-navy text-primary-foreground border-b border-white/10">
-      <div className="container flex items-center justify-between h-18 gap-6">
+      <div className="container flex items-center justify-between h-16 gap-6">
         <Link to="/" className="flex items-center gap-2 font-display text-xl font-semibold tracking-tight">
           <span className="inline-block w-2 h-2 rounded-full bg-crimson" />
           EdPath Global
@@ -40,7 +40,7 @@ export function Header() {
               to={item.to}
               className={({ isActive }) =>
                 cn(
-                  "px-3 py-2 text-sm rounded-md transition-colors hover:bg-white/10 text-primary-foreground/90",
+                  "px-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 text-primary-foreground/90",
                   isActive && "bg-white/10 text-primary-foreground",
                 )
               }
@@ -49,6 +49,7 @@ export function Header() {
             </NavLink>
           ))}
         </nav>
+
 
 
         <div className="flex items-center gap-2">
