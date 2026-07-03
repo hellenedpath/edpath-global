@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import SiteLayout from "./components/layout/SiteLayout";
 import PagePlaceholder from "./pages/PagePlaceholder";
+import Before from "./pages/Before";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +22,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/sobre" element={<PagePlaceholder tKey="about" />} />
             <Route path="/programas" element={<PagePlaceholder tKey="programs" />} />
-            <Route path="/antes-de-comecar" element={<PagePlaceholder tKey="before" />} />
+            <Route path="/antes-de-comecar" element={<Before />} />
             <Route path="/custos" element={<PagePlaceholder tKey="costs" />} />
             <Route path="/familia" element={<PagePlaceholder tKey="family" />} />
             <Route path="/trabalho-moradia" element={<PagePlaceholder tKey="work" />} />
