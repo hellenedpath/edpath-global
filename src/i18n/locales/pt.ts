@@ -16,9 +16,10 @@ export const pt = {
     soon: "em breve",
   },
   home: {
-    title: "Seu mapa honesto para estudar no Canadá",
+    title: "Seu mapa honesto para estudar no exterior",
     subtitle:
-      "Informação clara, sem comissões e feita para você entender de verdade seu caminho educacional no Canadá.",
+      "Informação clara, verificada e sem comissões para você planejar seus estudos ao redor do mundo — começando pelo Canadá.",
+    expansion: "Canadá disponível agora. Mais países em breve.",
     ctaPrograms: "Explorar Programas",
     ctaBefore: "Antes de Começar",
   },
@@ -107,8 +108,8 @@ export const pt = {
       title: "Criada para ajudar estudantes com informação correta",
       subtitle:
         "Fundada sobre anos de experiência em educação internacional, a EdPath Global oferece a estudantes e famílias um recurso confiável para planejar os estudos no Canadá — com informação verificada, transparência e independência.",
-      location: "Ottawa, Ontario, Canadá",
       transparency: "Informação verificada e transparente",
+      expansion: "Canadá disponível agora. Mais países em breve.",
     },
     beliefs: {
       title: "No que acreditamos",
@@ -253,6 +254,7 @@ export const pt = {
 
   footer: {
     tagline: "AI Powered Global Student Navigator",
+    expansion: "Canadá disponível agora. Mais países em breve.",
     disclaimer:
       "A EdPath Global é uma empresa canadense registrada. Fornecemos informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados. Não recebemos comissão de instituições de ensino.",
   },

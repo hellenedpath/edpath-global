@@ -14,8 +14,9 @@ export function Footer() {
         </p>
       </div>
       <div className="border-t border-white/10">
-        <div className="container py-5 text-xs text-primary-foreground/60">
-          © {new Date().getFullYear()} EdPath Global · Ottawa, Ontario, Canada
+        <div className="container py-5 flex flex-wrap items-center justify-between gap-2 text-xs text-primary-foreground/60">
+          <span>© {new Date().getFullYear()} EdPath Global</span>
+          <span>{t("footer.expansion")}</span>
         </div>
       </div>
     </footer>

@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, MapPin, Shield } from "lucide-react";
+import { Check, X, Shield, BadgeCheck } from "lucide-react";
 
 export default function About() {
   const { t } = useTranslation();
@@ -26,9 +26,9 @@ export default function About() {
         <div className="container py-20 md:py-28 max-w-5xl">
           <Badge
             variant="outline"
-            className="mb-6 px-3 py-1 text-xs font-medium border-navy/20 text-navy bg-white"
+            className="mb-6 px-3 py-1 text-xs font-medium border-navy/20 text-navy bg-white inline-flex items-center gap-1.5"
           >
-            <span className="mr-1.5" aria-hidden>🍁</span>
+            <BadgeCheck className="w-3.5 h-3.5 text-azul" />
             {t("about.hero.badge")}
           </Badge>
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight text-navy">
@@ -40,12 +40,12 @@ export default function About() {
 
           <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-azul" />
-              <span>{t("about.hero.location")}</span>
-            </div>
-            <div className="flex items-center gap-2">
               <Shield className="w-4 h-4 text-azul" />
               <span>{t("about.hero.transparency")}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <BadgeCheck className="w-4 h-4 text-azul" />
+              <span>{t("about.hero.expansion")}</span>
             </div>
           </div>
         </div>
