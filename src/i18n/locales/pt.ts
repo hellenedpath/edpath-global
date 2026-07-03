@@ -36,8 +36,8 @@ export const pt = {
 
   before: {
     hero: {
-      title: "Antes de começar sua jornada no Canadá",
-      subtitle: "O que todo estudante e família precisa saber para escolher com segurança.",
+      title: "Antes de começar sua jornada no exterior",
+      subtitle: "O que todo estudante e família precisa saber para escolher com segurança. Conteúdo atual focado no Canadá.",
     },
     checks: {
       title: "As 5 verificações essenciais",
@@ -107,7 +107,7 @@ export const pt = {
       badge: "Empresa canadense registrada",
       title: "Criada para ajudar estudantes com informação correta",
       subtitle:
-        "Fundada sobre anos de experiência em educação internacional, a EdPath Global oferece a estudantes e famílias um recurso confiável para planejar os estudos no Canadá — com informação verificada, transparência e independência.",
+        "Fundada sobre anos de experiência em educação internacional, a EdPath Global oferece a estudantes e famílias um recurso confiável para planejar seus estudos ao redor do mundo — com informação verificada, transparência e independência.",
       transparency: "Informação verificada e transparente",
       expansion: "Canadá disponível agora. Mais países em breve.",
     },
@@ -154,8 +154,8 @@ export const pt = {
 
   costs: {
     hero: {
-      title: "Quanto custa estudar no Canadá",
-      subtitle: "Os dois números que todo estudante precisa entender antes de decidir.",
+      title: "Quanto custa estudar no exterior",
+      subtitle: "Os dois números que todo estudante precisa entender antes de decidir. Conteúdo atual focado no Canadá.",
     },
     twoNumbers: {
       title: "Os dois números",
