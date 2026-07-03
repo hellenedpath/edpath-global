@@ -8,38 +8,38 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* EdPath Global palette */
+    /* EdPath Global palette — extracted from official logo */
     --background: 210 20% 98%; /* #F7F8FA */
-    --foreground: 220 46% 20%; /* navy-ish text */
+    --foreground: 228 49% 18%; /* #051556 */
 
     --card: 0 0% 100%;
-    --card-foreground: 220 46% 20%;
+    --card-foreground: 228 49% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 46% 20%;
+    --popover-foreground: 228 49% 18%;
 
-    --navy: 220 46% 20%;      /* #1B2A4A */
-    --azul: 217 71% 52%;      /* #2E6FDB */
-    --crimson: 356 74% 56%;   /* #E23A45 */
+    --navy: 228 49% 18%;      /* #051556 */
+    --azul: 221 67% 53%;      /* #396CD8 */
+    --crimson: 350 72% 57%;   /* #E0405B */
 
-    --primary: 220 46% 20%;
+    --primary: 228 49% 18%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 71% 52%;
+    --secondary: 221 67% 53%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 20% 94%;
     --muted-foreground: 220 15% 40%;
 
-    --accent: 356 74% 56%;
+    --accent: 350 72% 57%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 356 74% 56%;
+    --destructive: 350 72% 57%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 220 15% 88%;
     --input: 220 15% 88%;
-    --ring: 217 71% 52%;
+    --ring: 221 67% 53%;
 
     --radius: 0.5rem;
 
