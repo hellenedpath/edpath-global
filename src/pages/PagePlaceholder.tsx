@@ -21,8 +21,9 @@ export default function PagePlaceholder({ tKey }: { tKey: PageKey }) {
           <Construction className="h-6 w-6 text-azul" />
         </div>
         <p className="mt-4 text-sm text-muted-foreground">
-          Em breve você encontrará aqui conteúdo completo e atualizado sobre este tema.
+          {t("pages.comingSoon")}
         </p>
+
       </div>
     </section>
   );
