@@ -19,27 +19,27 @@ All colors MUST be HSL.
     --popover-foreground: 220 46% 20%;
 
     --navy: 220 46% 20%;      /* #1B2A4A */
-    --azul: 213 63% 47%;      /* #2C6FC4 */
-    --crimson: 350 74% 45%;   /* #C81E3A */
+    --azul: 217 71% 52%;      /* #2E6FDB */
+    --crimson: 356 74% 56%;   /* #E23A45 */
 
     --primary: 220 46% 20%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 213 63% 47%;
+    --secondary: 217 71% 52%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 20% 94%;
     --muted-foreground: 220 15% 40%;
 
-    --accent: 350 74% 45%;
+    --accent: 356 74% 56%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 350 74% 45%;
+    --destructive: 356 74% 56%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 220 15% 88%;
     --input: 220 15% 88%;
-    --ring: 213 63% 47%;
+    --ring: 217 71% 52%;
 
     --radius: 0.5rem;
 
