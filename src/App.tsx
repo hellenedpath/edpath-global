@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound.tsx";
 import SiteLayout from "./components/layout/SiteLayout";
 import PagePlaceholder from "./pages/PagePlaceholder";
 import About from "./pages/About";
+import Before from "./pages/Before";
 
 const queryClient = new QueryClient();
 
