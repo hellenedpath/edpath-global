@@ -251,6 +251,137 @@ export const pt = {
     },
   },
 
+  family: {
+    hero: {
+      title: "Vir com a família",
+      subtitle:
+        "O que estudantes com cônjuge e filhos precisam saber sobre saúde e escola.",
+    },
+    provinces: {
+      title: "Seguro de saúde por província",
+      subtitle:
+        "A cobertura de saúde para dependentes varia muito conforme a província. Cada cônjuge e filho precisa da própria inscrição no plano de saúde local, e as regras de espera e custos diferem de um lugar para outro.",
+      note:
+        "Os detalhes mudam com o tempo. Confirme sempre os requisitos, prazos e documentos exigidos nas fontes oficiais da província onde vai morar.",
+      items: [
+        {
+          name: "Ontário",
+          content:
+            "Em Ontario, o acesso ao OHIP para dependentes de estudantes internacionais depende de regras específicas e pode exigir um período de espera. Muitas famílias optam por um seguro-saúde privado temporário para cobrir esse intervalo. Verifique os critérios atuais e a documentação necessária no site oficial do governo de Ontario.",
+        },
+        {
+          name: "Colúmbia Britânica",
+          content:
+            "O MSP da Colúmbia Britânica cobre cônjuge e filhos dependentes, mas geralmente há um período de espera. Durante esse tempo, um seguro privado é recomendado. A inscrição deve ser feita assim que a família chegar, pois o processo pode levar semanas.",
+        },
+        {
+          name: "Alberta",
+          content:
+            "O AHCIP de Alberta costuma cobrir dependentes elegíveis. O estudante deve se inscrever primeiro e depois adicionar cônjuge e filhos. É importante confirmar se a instituição de ensino exige seguro-saúde privado obrigatório enquanto a inscrição provincial é processada.",
+        },
+        {
+          name: "Quebec",
+          content:
+            "Quebec tem regras próprias para estudantes internacionais e dependentes. A cobertura pública pode estar disponível, mas muitas instituições exigem seguro-saúde privado em grupo. Confirme com a escola e com o RAMQ quais são os passos para registrar a família.",
+        },
+        {
+          name: "Manitoba",
+          content:
+            "Manitoba oferece cobertura de saúde pública para dependentes elegíveis, com possível período de espera. A inscrição deve ser feita na Manitoba Health logo após a chegada. Enquanto isso, seguro privado é a saída mais segura para não ficar desprotegido.",
+        },
+        {
+          name: "Nova Escócia",
+          content:
+            "A MSI de Nova Escócia pode cobrir dependentes, mas as regras de elegibilidade e espera variam. A inscrição costuma exigir comprovação de residência na província. Verifique os prazos e documentos no site oficial antes de viajar.",
+        },
+      ],
+    },
+    careLevels: {
+      title: "Como funciona a saúde no dia a dia",
+      subtitle:
+        "No Canadá, a atenção à saúde funciona em níveis. Saber por onde começar economiza tempo, dinheiro e ansiedade.",
+      items: [
+        {
+          title: "Family doctor",
+          description:
+            "Médico de família para cuidado contínuo e acompanhamento. Pode levar tempo para conseguir um, então comece a busca assim que chegar.",
+        },
+        {
+          title: "Walk-in clinic",
+          description:
+            "Para problemas leves e urgentes que não são emergências. Não precisa agendar: basta chegar, mas pode haver espera.",
+        },
+        {
+          title: "Linha 811",
+          description:
+            "Telefone 24 horas com enfermeira que orienta se você deve ir a uma clínica, ao hospital ou cuidar do caso em casa.",
+        },
+        {
+          title: "Emergency room / 911",
+          description:
+            "Reserve para emergências graves e risco de vida. O atendimento é prioritário, e casos menos graves podem esperar muitas horas.",
+        },
+      ],
+    },
+    doctorSteps: {
+      title: "Como conseguir um family doctor",
+      subtitle:
+        "A falta de médicos de família é uma realidade em várias regiões. Estes passos ajudam a aumentar suas chances.",
+      items: [
+        {
+          title: "Registre a família no plano de saúde da província",
+          description:
+            "Sem a inscrição provincial ativa, fica mais difícil encontrar um médico de família que aceite novos pacientes.",
+        },
+        {
+          title: "Ligue para a linha 811",
+          description:
+            "A enfermeira pode indicar clínicas e programas de emparelhamento com médicos de família disponíveis na sua região.",
+        },
+        {
+          title: "Use ferramentas de busca de clínicas",
+          description:
+            "Várias províncias mantêm sites ou listas de clínicas com médicos aceitando novos pacientes. Atualize a busca com frequência.",
+        },
+        {
+          title: "Pergunte no serviço de saúde da instituição",
+          description:
+            "Universidades e colleges frequentemente têm um centro de saúde no campus ou podem orientar onde procurar atendimento.",
+        },
+        {
+          title: "Peça indicações na comunidade",
+          description:
+            "Grupos de estudantes, igrejas, associações e vizinhos podem saber quais clínicas estão aceitando novos pacientes no momento.",
+        },
+        {
+          title: "Use walk-in clinic enquanto espera",
+          description:
+            "Enquanto não consegue um médico de família, clínicas de atendimento sem agendamento são a alternativa para problemas de saúde pontuais.",
+        },
+      ],
+    },
+    school: {
+      title: "Escola para os filhos",
+      content:
+        "Filhos de estudantes internacionais com study permit válido geralmente têm direito à educação pública gratuita do jardim de infância até o ensino médio, dependendo da província e do distrito escolar. O processo de matrícula exige documentação como comprovante de residência, study permit do responsável e histórico escolar do aluno.",
+      public: {
+        title: "Ensino público",
+        content:
+          "Geralmente gratuito para filhos de estudantes com study permit. Verifique o distrito escolar da cidade onde vai morar e os prazos de matrícula.",
+      },
+      daycare: {
+        title: "Creche e daycare",
+        content:
+          "Creche e daycare são serviços pagos, com filas de espera em algumas cidades. Planeje com antecedência, principalmente para crianças pequenas.",
+      },
+    },
+    disclaimer: {
+      title: "Aviso importante",
+      content:
+        "Informação educacional geral; regras de saúde e escola variam por província e mudam ao longo do tempo. Confirme sempre nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados.",
+    },
+  },
+
   footer: {
     tagline: "AI Powered Global Student Navigator",
     expansion: "Canadá disponível agora. Mais países em breve.",
