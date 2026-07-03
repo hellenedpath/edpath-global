@@ -18,7 +18,7 @@ export const pt = {
   home: {
     title: "Seu mapa honesto para estudar no exterior",
     subtitle:
-      "Informação clara, verificada e sem comissões para você planejar seus estudos ao redor do mundo — começando pelo Canadá.",
+      "Informação independente, verificada e clara para você planejar seus estudos ao redor do mundo — começando pelo Canadá.",
     expansion: "Canadá disponível agora. Mais países em breve.",
     ctaPrograms: "Explorar Programas",
     ctaBefore: "Antes de Começar",
@@ -71,15 +71,15 @@ export const pt = {
     },
     scams: {
       title: "Alertas de golpe",
-      subtitle: "Proteja-se de promessas falsas e práticas irregulares.",
+      subtitle: "Proteja-se de promessas falsas e práticas fraudulentas.",
       alert: {
         title: "Fique atento",
         description:
-          "Agentes educacionais podem ajudar na escolha de programa, mas não podem garantir visto ou aprovação de imigração. Desconfie de promessas muito fáceis.",
+          "Ninguém pode garantir visto ou aprovação de imigração. Desconfie de promessas muito fáceis, venham de onde vierem.",
       },
       items: [
         "Promessa de 'visto garantido' ou 100% de aprovação.",
-        "Desconto de mensalidade pago diretamente ao agente, e não à instituição.",
+        "Pagamentos de mensalidade solicitados a terceiros, e não diretamente à instituição.",
         "Cartas de aceitação suspeitas, sem assinatura ou com dados errados.",
         "Pedido de pagamento por 'bolsa de estudos' para liberar documentos.",
         "Pressão para assinar contratos rápido, sem ler os termos.",
@@ -114,8 +114,9 @@ export const pt = {
       title: "No que acreditamos",
       items: [
         "Operamos com responsabilidade sobre a informação que fornecemos, com foco em precisão e transparência.",
-        "Não recebemos comissão de instituições. Nenhum college ou universidade nos paga para enviar estudantes — nossa orientação serve o estudante.",
+        "Oferecemos informação independente e verificada, para que a orientação sirva primeiro ao projeto do estudante.",
         "Informamos, não prometemos. Baseamos tudo em fontes oficiais. Não prometemos vistos, empregos ou residência permanente.",
+        "Colaboramos com agências e profissionais confiáveis, funcionando como uma camada de informação e intermediação a serviço do estudante.",
       ],
     },
     experience: {
@@ -123,32 +124,35 @@ export const pt = {
       content:
         "A EdPath Global nasceu da experiência real no setor de educação internacional, construída dentro de instituições e organizações da área. Esse conhecimento de dentro do setor sustenta nosso compromisso com padrões elevados de precisão, transparência e responsabilidade. Cada informação que oferecemos é fundamentada em fontes oficiais, e cada limite do nosso papel é declarado com clareza — porque acreditamos que confiança se constrói com honestidade, não com promessas.",
     },
-    comparison: {
-      title: "Como somos diferentes",
-      subtitle: "Compare a abordagem comum do mercado com o compromisso da EdPath Global.",
-      intermediariesHeader: "Intermediários comissionados",
-      edpathHeader: "A EdPath Global",
-      rows: [
+    services: {
+      title: "O que a EdPath faz por você",
+      subtitle:
+        "Uma camada de informação clara e verificada para você decidir com segurança — e se conectar às pessoas certas.",
+      items: [
         {
-          intermediaries: "Recebem comissão das instituições.",
-          edpath: "Não recebemos comissão de instituições.",
+          title: "Informação verificada",
+          content:
+            "Reunimos dados de fontes oficiais sobre programas, custos, carreira e elegibilidade.",
         },
         {
-          intermediaries: "Otimizam a aceitação no programa.",
-          edpath: "Informamos o que constrói carreira e elegibilidade.",
+          title: "Economia de tempo e dinheiro",
+          content:
+            "Ajudamos você a evitar escolhas caras e caminhos que não levam aonde você quer.",
         },
         {
-          intermediaries: "Podem esconder que um programa não dá PGWP.",
-          edpath: "Mostramos o status oficial de PGWP com a fonte.",
+          title: "Transparência sobre requisitos",
+          content:
+            "Mostramos o status oficial de elegibilidade de cada programa, com a fonte.",
         },
         {
-          intermediaries: "Às vezes prometem resultados 'garantidos'.",
-          edpath: "Nunca prometemos resultados de visto ou imigração.",
+          title: "Conexão com parceiros confiáveis",
+          content:
+            "Conectamos você a agências e profissionais verificados, com segurança.",
         },
       ],
     },
     disclaimer:
-      "A EdPath Global fornece informação educacional e navegação, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados pelo CICC. Não recebemos comissão de instituições de ensino.",
+      "A EdPath Global fornece informação educacional e navegação, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados pelo CICC. Trabalhamos de forma independente e podemos conectar você a agências e profissionais confiáveis quando fizer sentido.",
   },
 
   costs: {
@@ -599,6 +603,6 @@ export const pt = {
     tagline: "AI Powered Global Student Navigator",
     expansion: "Canadá disponível agora. Mais países em breve.",
     disclaimer:
-      "A EdPath Global fornece informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados. Não recebemos comissão de instituições de ensino.",
+      "A EdPath Global fornece informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados. Trabalhamos como camada de informação independente e podemos conectar estudantes a agências e profissionais confiáveis.",
   },
 };
