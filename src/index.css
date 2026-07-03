@@ -110,7 +110,7 @@ All colors MUST be HSL.
   }
 
   h1, h2, h3, h4, .font-display {
-    font-family: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-optical-sizing: auto;
   }
 }
