@@ -30,7 +30,9 @@ export const pt = {
     family: "Família",
     work: "Trabalho e Moradia",
     empty: "Conteúdo em construção.",
+    comingSoon: "Em breve você encontrará aqui conteúdo completo e atualizado sobre este tema.",
   },
+
   footer: {
     tagline: "AI Powered Global Student Navigator",
     disclaimer:

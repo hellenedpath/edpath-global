@@ -40,8 +40,8 @@ export function Header() {
               to={item.to}
               className={({ isActive }) =>
                 cn(
-                  "px-3 py-2 text-sm rounded-md transition-colors hover:bg-white/10",
-                  isActive && "bg-white/10",
+                  "px-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 text-primary-foreground/90",
+                  isActive && "bg-white/10 text-primary-foreground",
                 )
               }
             >
@@ -49,6 +49,8 @@ export function Header() {
             </NavLink>
           ))}
         </nav>
+
+
 
         <div className="flex items-center gap-2">
           <div className="relative">
