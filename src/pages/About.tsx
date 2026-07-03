@@ -24,13 +24,6 @@ export default function About() {
       {/* Hero */}
       <section className="relative bg-background overflow-hidden">
         <div className="container py-20 md:py-28 max-w-5xl">
-          <Badge
-            variant="outline"
-            className="mb-6 px-3 py-1 text-xs font-medium border-navy/20 text-navy bg-white inline-flex items-center gap-1.5"
-          >
-            <BadgeCheck className="w-3.5 h-3.5 text-azul" />
-            {t("about.hero.badge")}
-          </Badge>
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight text-navy">
             {t("about.hero.title")}
           </h1>
