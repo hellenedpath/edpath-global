@@ -20,7 +20,7 @@ All colors MUST be HSL.
 
     --navy: 220 46% 20%;      /* #1B2A4A */
     --azul: 213 63% 47%;      /* #2C6FC4 */
-    --crimson: 6 68% 46%;     /* #C0392B */
+    --crimson: 350 74% 45%;   /* #C81E3A */
 
     --primary: 220 46% 20%;
     --primary-foreground: 0 0% 100%;
@@ -31,7 +31,7 @@ All colors MUST be HSL.
     --muted: 210 20% 94%;
     --muted-foreground: 220 15% 40%;
 
-    --accent: 6 68% 46%;
+    --accent: 350 74% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 6 68% 46%;
