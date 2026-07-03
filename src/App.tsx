@@ -9,6 +9,7 @@ import SiteLayout from "./components/layout/SiteLayout";
 import PagePlaceholder from "./pages/PagePlaceholder";
 import About from "./pages/About";
 import Before from "./pages/Before";
+import Costs from "./pages/Costs";
 
 const queryClient = new QueryClient();
 
@@ -24,7 +25,7 @@ const App = () => (
             <Route path="/sobre" element={<About />} />
             <Route path="/programas" element={<PagePlaceholder tKey="programs" />} />
             <Route path="/antes-de-comecar" element={<Before />} />
-            <Route path="/custos" element={<PagePlaceholder tKey="costs" />} />
+            <Route path="/custos" element={<Costs />} />
             <Route path="/familia" element={<PagePlaceholder tKey="family" />} />
             <Route path="/trabalho-moradia" element={<PagePlaceholder tKey="work" />} />
           </Route>
