@@ -1,22 +1,15 @@
 import { useTranslation } from "react-i18next";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Check, X, Shield, BadgeCheck } from "lucide-react";
+import { Check, Shield, BadgeCheck, FileCheck, Clock, Eye, Handshake } from "lucide-react";
 
 export default function About() {
   const { t } = useTranslation();
 
   const beliefs = t("about.beliefs.items", { returnObjects: true }) as unknown as string[];
-  const comparisonRows = t("about.comparison.rows", { returnObjects: true }) as unknown as Array<{
-    intermediaries: string;
-    edpath: string;
+  const services = t("about.services.items", { returnObjects: true }) as unknown as Array<{
+    title: string;
+    content: string;
   }>;
+  const serviceIcons = [FileCheck, Clock, Eye, Handshake];
 
   return (
     <>
@@ -81,52 +74,39 @@ export default function About() {
         </div>
       </section>
 
-      {/* Comparison table */}
+      {/* Services */}
       <section className="bg-muted/30">
         <div className="container py-16 md:py-24">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-display text-3xl md:text-4xl font-semibold text-navy text-center">
-              {t("about.comparison.title")}
-            </h2>
-            <p className="mt-4 text-center text-muted-foreground">
-              {t("about.comparison.subtitle")}
-            </p>
+          <div className="max-w-5xl mx-auto">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="font-display text-3xl md:text-4xl font-semibold text-navy">
+                {t("about.services.title")}
+              </h2>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                {t("about.services.subtitle")}
+              </p>
+            </div>
 
-            <div className="mt-12 rounded-xl border border-border bg-card shadow-sm overflow-hidden">
-              <Table>
-                <TableHeader>
-                  <TableRow className="bg-muted/50 hover:bg-muted/50">
-                    <TableHead className="w-1/2 text-navy font-display text-base">
-                      {t("about.comparison.intermediariesHeader")}
-                    </TableHead>
-                    <TableHead className="w-1/2 text-navy font-display text-base">
-                      {t("about.comparison.edpathHeader")}
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {comparisonRows.map((row, index) => (
-                    <TableRow key={index}>
-                      <TableCell>
-                        <div className="flex items-start gap-3">
-                          <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-crimson/10 text-crimson shrink-0 mt-0.5">
-                            <X className="w-3 h-3" />
-                          </span>
-                          <span className="text-foreground leading-relaxed">{row.intermediaries}</span>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex items-start gap-3">
-                          <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-600 shrink-0 mt-0.5">
-                            <Check className="w-3 h-3" />
-                          </span>
-                          <span className="text-foreground leading-relaxed">{row.edpath}</span>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2">
+              {services.map((item, i) => {
+                const Icon = serviceIcons[i] ?? FileCheck;
+                return (
+                  <div
+                    key={item.title}
+                    className="rounded-xl border border-border bg-card p-6 md:p-8 shadow-sm"
+                  >
+                    <span className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-azul/10 text-azul mb-4">
+                      <Icon className="w-5 h-5" />
+                    </span>
+                    <h3 className="font-display text-xl font-semibold text-navy">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-muted-foreground leading-relaxed">
+                      {item.content}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
