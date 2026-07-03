@@ -28,7 +28,7 @@ export default function About() {
             variant="outline"
             className="mb-6 px-3 py-1 text-xs font-medium border-navy/20 text-navy bg-white"
           >
-            <Leaf className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />
+            <span className="mr-1.5" aria-hidden>🍁</span>
             {t("about.hero.badge")}
           </Badge>
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight text-navy">
