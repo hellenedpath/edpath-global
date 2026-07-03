@@ -382,6 +382,219 @@ export const pt = {
     },
   },
 
+  work: {
+    hero: {
+      title: "Trabalho e Moradia",
+      subtitle:
+        "Como encontrar emprego, montar um currículo canadense, escolher onde morar e se conectar com profissionais verificados.",
+    },
+    tabs: {
+      job: "Encontrar trabalho",
+      cv: "Currículo canadense",
+      housing: "Moradia",
+      professionals: "Conectar com profissionais",
+    },
+    job: {
+      title: "Encontrar trabalho",
+      subtitle:
+        "A busca por emprego no Canadá começa antes mesmo da primeira aula. Quanto mais cedo e melhor preparado, maiores as chances.",
+      resources: [
+        {
+          title: "Recursos da instituição",
+          description:
+            "Use o Career Services, o coordenador de co-op/estágio, o International Student Office e converse com professores — eles têm contatos na indústria e conhecem oportunidades.",
+        },
+        {
+          title: "Projetos acadêmicos",
+          description:
+            "Capstone, applied research e práticas são portas de entrada para empregadores. Empresas usam esses projetos para conhecer estudantes antes de contratar.",
+        },
+        {
+          title: "Mercado oculto",
+          description:
+            "A maioria das vagas não é anunciada. Networking e indicação são fundamentais: mantenha o LinkedIn atualizado, conecte-se com ex-alunos e profissionais da área.",
+        },
+        {
+          title: "Aplicação com follow-up",
+          description:
+            "Vá a feiras de carreira, candidate-se com consistência e envie uma mensagem educada ao recrutador depois de aplicar para uma vaga.",
+        },
+      ],
+      tips: [
+        {
+          title: "Cuidado com o survival job",
+          description:
+            "Só ocupações qualificadas contam como experiência relevante para a via de residência permanente. Trabalhos de sobrevivência pagam contas, mas não constroem a mesma trajetória.",
+        },
+        {
+          title: "Comece cedo e seja consistente",
+          description:
+            "Ajuste o currículo para cada vaga, acompanhe as candidaturas e continue se conectando. O resultado vem da persistência, não de uma única aplicação.",
+        },
+      ],
+    },
+    cv: {
+      title: "Currículo canadense",
+      subtitle:
+        "O formato canadense é objetivo, escaneável e compatível com sistemas ATS. Menos é mais.",
+      doTitle: "Faça",
+      dontTitle: "Evite",
+      sections: [
+        {
+          title: "Faça",
+          items: [
+            "Máximo de 1 a 2 páginas.",
+            "Colocar nome, contato e LinkedIn no corpo do texto.",
+            "Incluir uma linha de autorização de trabalho no Canadá.",
+            "Usar resumo profissional focado no cargo alvo.",
+            "Começar frases com verbos de ação e incluir números quando possível.",
+            "Repetir palavras-chave da descrição da vaga.",
+            "Incluir trabalho voluntário e projetos relevantes.",
+          ],
+        },
+        {
+          title: "Evite",
+          items: [
+            "Foto, idade, estado civil ou outros dados pessoais.",
+            "Tabelas, colunas, gráficos ou elementos que confundam o ATS.",
+            "Currículos com mais de 2 páginas.",
+            "Dizer 'sou estudante, não tenho experiência'.",
+            "Enviar o mesmo currículo para todas as vagas.",
+          ],
+        },
+      ],
+    },
+    housing: {
+      title: "Moradia",
+      subtitle:
+        "Escolher onde morar afeta o orçamento, o trajeto e a experiência no Canadá. Conheça as opções antes de decidir.",
+      typesTitle: "Formas de morar",
+      types: [
+        {
+          type: "Residência estudantil",
+          cost: "$$",
+          description:
+            "Conveniente para quem quer viver no campus ou perto da escola. Costuma incluir mobília e internet, mas pode ser mais cara e ter regras.",
+        },
+        {
+          type: "Homestay",
+          cost: "$$",
+          description:
+            "Morar com uma família local. Pode incluir refeições e é uma boa porta de entrada para quem chega sozinho ou com pouca experiência no país.",
+        },
+        {
+          type: "Quarto compartilhado",
+          cost: "$",
+          description:
+            "Opção mais econômica. Divide-se a casa ou apartamento com outros estudantes ou trabalhadores. Cuidado com a qualidade e segurança do local.",
+        },
+        {
+          type: "Co-op housing",
+          cost: "$$",
+          description:
+            "Habitação cooperativa com valores mais baixos, mas exige participação e pode ter fila de espera. Menos comum para recém-chegados.",
+        },
+        {
+          type: "Alojamento temporário",
+          cost: "$$$",
+          description:
+            "Airbnb, hotel ou hostel na chegada. Permite ver imóveis pessoalmente antes de assinar um contrato de longo prazo.",
+        },
+      ],
+      rentalTitle: "Tipos de imóvel para alugar",
+      rentalTypes: [
+        {
+          type: "Quarto",
+          cost: "$",
+          description:
+            "Alugar apenas um quarto em uma casa ou apartamento compartilhado. É a forma mais barata de ter um endereço fixo.",
+        },
+        {
+          type: "Basement",
+          cost: "$$",
+          description:
+            "Casa térrea ou subsolo de uma casa. Costuma ter preço mais acessível, mas atenção à luz natural, ventilação e acesso independente.",
+        },
+        {
+          type: "Studio",
+          cost: "$$$",
+          description:
+            "Apartamento de um cômodo com cozinha e banheiro. Boa opção para quem quer morar sozinho em áreas urbanas.",
+        },
+        {
+          type: "Apartamento 1 quarto",
+          cost: "$$$",
+          description:
+            "Apartamento com quarto separado da sala. Ideal para casais. Preço varia muito conforme a cidade e a proximidade do centro.",
+        },
+        {
+          type: "Apartamento 2 quartos",
+          cost: "$$$$",
+          description:
+            "Para quem vai com família ou divide com um colega. É a opção mais cara, mas oferece mais espaço e privacidade.",
+        },
+        {
+          type: "Casa",
+          cost: "$$$$",
+          description:
+            "Alugar uma casa completa. Geralmente indicada para famílias maiores ou grupos. Exige mais responsabilidade e custos.",
+        },
+      ],
+      scamTips: {
+        title: "Como evitar golpes de aluguel",
+        items: [
+          "Nunca pague antes de ver o imóvel pessoalmente.",
+          "Nunca assine um contrato do exterior sem visitar o lugar ou ter alguém de confiança.",
+          "Use pagamentos rastreáveis e evite transferências por Western Union ou gift cards.",
+          "Peça prova de propriedade ou autorização do locador para alugar.",
+          "Cuidado com o golpe do 'locador no exterior' que pede depósito antes de entregar as chaves.",
+        ],
+      },
+    },
+    professionals: {
+      title: "Conectar com profissionais",
+      subtitle:
+        "A EdPath está construindo uma rede de profissionais verificados por área para apoiar estudantes em momentos-chave da jornada.",
+      list: [
+        {
+          title: "Mentores de carreira",
+          description:
+            "Profissionais da área que ajudam a entender o mercado canadense, caminhos de crescimento e como posicionar sua experiência.",
+        },
+        {
+          title: "Especialistas em currículo",
+          description:
+            "Revisam e adaptam seu currículo para o formato canadense, otimizando para ATS e aumentando a chance de entrevistas.",
+        },
+        {
+          title: "Serviços de moradia",
+          description:
+            "Auxiliam na busca por imóveis, revisão de contratos e orientação sobre bairros, custos e transporte.",
+        },
+        {
+          title: "Consultores financeiros",
+          description:
+            "Ajudam a planejar o orçamento, entender prova de fundos, crédito no Canadá e custos de vida reais.",
+        },
+        {
+          title: "Consultores de imigração RCIC",
+          description:
+            "Apenas consultores licenciados pelo CICC podem oferecer aconselhamento de imigração. A EdPath conecta você a esses profissionais quando necessário.",
+        },
+      ],
+      safety: {
+        title: "Sua segurança primeiro",
+        content:
+          "A EdPath faz a ponte entre você e profissionais independentes verificados, mas não substitui sua diligência. Nunca faça pagamentos grandes sem contrato. Para imigração, confirme a licença do consultor no CICC. Promessas de 'resultados garantidos' são sinal de alerta.",
+      },
+    },
+    disclaimer: {
+      title: "Aviso importante",
+      content:
+        "Informação educacional geral; práticas e custos variam e mudam. A EdPath Global faz a ponte entre estudantes e profissionais independentes verificados, mas não garante seus serviços. Aconselhamento de imigração é oferecido apenas por consultores RCIC licenciados pelo CICC.",
+    },
+  },
+
   footer: {
     tagline: "AI Powered Global Student Navigator",
     expansion: "Canadá disponível agora. Mais países em breve.",

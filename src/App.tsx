@@ -11,6 +11,7 @@ import About from "./pages/About";
 import Before from "./pages/Before";
 import Costs from "./pages/Costs";
 import Family from "./pages/Family";
+import Work from "./pages/Work";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +29,7 @@ const App = () => (
             <Route path="/antes-de-comecar" element={<Before />} />
             <Route path="/custos" element={<Costs />} />
             <Route path="/familia" element={<Family />} />
-            <Route path="/trabalho-moradia" element={<PagePlaceholder tKey="work" />} />
+            <Route path="/trabalho-moradia" element={<Work />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
