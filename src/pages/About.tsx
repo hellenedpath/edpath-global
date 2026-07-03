@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, Leaf, MapPin, Shield } from "lucide-react";
+import { Check, X, MapPin, Shield } from "lucide-react";
 
 export default function About() {
   const { t } = useTranslation();
