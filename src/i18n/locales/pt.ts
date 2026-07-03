@@ -151,6 +151,106 @@ export const pt = {
       "A EdPath Global fornece informação educacional e navegação, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados pelo CICC. Não recebemos comissão de instituições de ensino.",
   },
 
+  costs: {
+    hero: {
+      title: "Quanto custa estudar no Canadá",
+      subtitle: "Os dois números que todo estudante precisa entender antes de decidir.",
+    },
+    twoNumbers: {
+      title: "Os dois números",
+      subtitle:
+        "Muitos estudantes confundem estes dois valores. Eles servem para coisas diferentes e quase nunca são iguais.",
+      proof: {
+        tag: "Número 1",
+        title: "Prova de fundos para o visto",
+        content:
+          "É o valor mínimo que o governo canadense exige que você comprove ter disponível para obter o permisso de estudo. Serve para mostrar ao IRCC que você consegue se manter no primeiro ano — não é o custo real de viver no país. Esse valor é atualizado periodicamente pelo governo e vale para todos, independentemente da cidade.",
+      },
+      real: {
+        tag: "Número 2",
+        title: "Custo de vida real",
+        content:
+          "É quanto você realmente vai gastar por mês para morar, comer, se locomover e estudar. Depende fortemente da cidade, do tipo de moradia e do seu estilo de vida. Costuma ser diferente da prova de fundos — em muitas cidades grandes, é significativamente mais alto.",
+      },
+      note: "Planeje o orçamento pelo custo real, não pela prova de fundos.",
+    },
+    cities: {
+      title: "Custo por cidade",
+      subtitle:
+        "O custo de vida varia muito conforme a cidade. Use estes níveis relativos como referência inicial — os valores exatos mudam e devem ser confirmados nas fontes oficiais e nas próprias instituições.",
+      legend: "$ mais econômico · $$$$ mais caro",
+      tiers: [
+        {
+          level: "$$$$",
+          label: "Grandes centros",
+          examples: "Toronto, Vancouver",
+          description:
+            "Cidades com mercado de trabalho amplo, mas moradia e transporte bem mais caros. Espere gastar significativamente mais com aluguel.",
+        },
+        {
+          level: "$$$",
+          label: "Cidades médias",
+          examples: "Ottawa, Montreal, Calgary",
+          description:
+            "Bom equilíbrio entre oportunidades e custo. Moradia mais acessível que nos grandes centros e boa oferta de programas.",
+        },
+        {
+          level: "$$",
+          label: "Cidades menores",
+          examples: "Halifax, Winnipeg, cidades do interior",
+          description:
+            "Custo de vida mais baixo, moradia mais acessível. Menor oferta de programas e mercado de trabalho mais restrito.",
+        },
+      ],
+      disclaimer:
+        "Estes níveis são relativos e servem apenas para orientar a comparação. Confirme os valores atuais em fontes oficiais e diretamente com a instituição.",
+    },
+    components: {
+      title: "O que compõe o custo total",
+      subtitle:
+        "O custo real de estudar no Canadá é a soma destes componentes ao longo de toda a duração do curso — não apenas a mensalidade do primeiro semestre.",
+      items: [
+        {
+          title: "Mensalidade",
+          content:
+            "Varia por instituição, tipo de credencial e programa. Multiplique pelo número total de semestres do curso, não apenas pelo primeiro.",
+        },
+        {
+          title: "Moradia",
+          content:
+            "Aluguel, contas de luz, água, internet e depósito inicial. Costuma ser o maior gasto mensal, principalmente nas grandes cidades.",
+        },
+        {
+          title: "Alimentação",
+          content:
+            "Supermercado, refeições fora e itens do dia a dia. Cozinhar em casa reduz o custo, mas o valor total ainda é significativo.",
+        },
+        {
+          title: "Transporte",
+          content:
+            "Passe de transporte público, deslocamentos e viagens ocasionais. Algumas instituições incluem o passe na mensalidade — confirme antes.",
+        },
+        {
+          title: "Seguro de saúde",
+          content:
+            "Obrigatório para estudantes internacionais. Pode ser provincial, privado ou incluído pela instituição. Confirme cobertura e valores.",
+        },
+        {
+          title: "Custos de chegada",
+          content:
+            "Passagem, primeiro aluguel e depósito, mobília básica, roupa de inverno, celular e documentos. Costuma ser um gasto único mas alto no início.",
+        },
+      ],
+      total:
+        "Custo total = (mensalidade + custo de vida mensal × meses de curso) + custos de chegada.",
+    },
+    disclaimer: {
+      title: "Aviso importante",
+      content:
+        "Valores são aproximados e mudam ao longo do tempo. Confirme sempre os custos atuais nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento financeiro.",
+    },
+  },
+
   footer: {
     tagline: "AI Powered Global Student Navigator",
     disclaimer:
