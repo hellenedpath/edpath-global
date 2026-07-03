@@ -10,6 +10,7 @@ import PagePlaceholder from "./pages/PagePlaceholder";
 import About from "./pages/About";
 import Before from "./pages/Before";
 import Costs from "./pages/Costs";
+import Family from "./pages/Family";
 
 const queryClient = new QueryClient();
 
