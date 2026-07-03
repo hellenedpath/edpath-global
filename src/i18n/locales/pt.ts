@@ -101,6 +101,56 @@ export const pt = {
     },
   },
 
+  about: {
+    hero: {
+      badge: "Empresa canadense registrada",
+      title: "Criada para ajudar estudantes com informação correta",
+      subtitle:
+        "Fundada sobre anos de experiência em educação internacional, a EdPath Global oferece a estudantes e famílias um recurso confiável para planejar os estudos no Canadá — com informação verificada, transparência e independência.",
+      location: "Ottawa, Ontario, Canadá",
+      transparency: "Informação verificada e transparente",
+    },
+    beliefs: {
+      title: "No que acreditamos",
+      items: [
+        "Somos uma empresa canadense registrada. Operamos com responsabilidade sobre a informação que fornecemos.",
+        "Não recebemos comissão de instituições. Nenhum college ou universidade nos paga para enviar estudantes — nossa orientação serve o estudante.",
+        "Informamos, não prometemos. Baseamos tudo em fontes oficiais. Não prometemos vistos, empregos ou residência permanente.",
+      ],
+    },
+    experience: {
+      title: "Fundada sobre experiência real no setor",
+      content:
+        "A EdPath Global foi fundada por uma profissional com anos de experiência em educação internacional, adquirida dentro de instituições e organizações do setor. Esse conhecimento de dentro sustenta o compromisso da EdPath com padrões elevados de precisão, transparência e responsabilidade. Cada informação é fundamentada em fontes oficiais, e cada limite do nosso papel é declarado com clareza.",
+    },
+    comparison: {
+      title: "Como somos diferentes",
+      subtitle: "Compare a abordagem comum do mercado com o compromisso da EdPath Global.",
+      intermediariesHeader: "Intermediários comissionados",
+      edpathHeader: "A EdPath Global",
+      rows: [
+        {
+          intermediaries: "Recebem comissão das instituições.",
+          edpath: "Não recebemos comissão de instituições.",
+        },
+        {
+          intermediaries: "Otimizam a aceitação no programa.",
+          edpath: "Informamos o que constrói carreira e elegibilidade.",
+        },
+        {
+          intermediaries: "Podem esconder que um programa não dá PGWP.",
+          edpath: "Mostramos o status oficial de PGWP com a fonte.",
+        },
+        {
+          intermediaries: "Às vezes prometem resultados 'garantidos'.",
+          edpath: "Nunca prometemos resultados de visto ou imigração.",
+        },
+      ],
+    },
+    disclaimer:
+      "A EdPath Global fornece informação educacional e navegação, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados pelo CICC. Não recebemos comissão de instituições de ensino.",
+  },
+
   footer: {
     tagline: "AI Powered Global Student Navigator",
     disclaimer:
