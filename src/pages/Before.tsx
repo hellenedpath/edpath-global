@@ -157,15 +157,17 @@ export default function Before() {
               </Alert>
 
               <div className="mt-8 grid gap-4">
-                {t("before.scams.items", { returnObjects: true }).map((item: string, index: number) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
-                  >
-                    <AlertTriangle className="w-5 h-5 text-crimson shrink-0 mt-0.5" />
-                    <p className="text-sm md:text-base text-foreground leading-relaxed">{item}</p>
-                  </div>
-                ))}
+                {(t("before.scams.items", { returnObjects: true }) as unknown as string[]).map(
+                  (item: string, index: number) => (
+                    <div
+                      key={index}
+                      className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+                    >
+                      <AlertTriangle className="w-5 h-5 text-crimson shrink-0 mt-0.5" />
+                      <p className="text-sm md:text-base text-foreground leading-relaxed">{item}</p>
+                    </div>
+                  )
+                )}
               </div>
 
               <Card className="mt-10 border-emerald-200 bg-emerald-50/50">
@@ -177,12 +179,14 @@ export default function Before() {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    {t("before.scams.action.items", { returnObjects: true }).map((item: string, index: number) => (
+                  {(t("before.scams.action.items", { returnObjects: true }) as unknown as string[]).map(
+                    (item: string, index: number) => (
                       <li key={index} className="flex items-start gap-2 text-emerald-800 text-sm md:text-base leading-relaxed">
                         <CheckCircle className="w-4 h-4 mt-1 shrink-0" />
                         <span>{item}</span>
                       </li>
-                    ))}
+                    )
+                  )}
                   </ul>
                 </CardContent>
               </Card>
