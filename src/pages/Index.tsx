@@ -2,14 +2,30 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
+import heroGlobal from "@/assets/hero-global.jpg";
 
 export default function Index() {
   const { t } = useTranslation();
   return (
     <>
       <section className="relative bg-navy text-primary-foreground overflow-hidden">
+        <img
+          src={heroGlobal}
+          alt=""
+          aria-hidden="true"
+          width={1920}
+          height={1280}
+          className="absolute inset-0 h-full w-full object-cover opacity-60 pointer-events-none select-none"
+        />
         <div
-          className="absolute inset-0 opacity-[0.08] pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, hsl(var(--navy) / 0.92) 0%, hsl(var(--navy) / 0.75) 55%, hsl(var(--navy) / 0.55) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.10] pointer-events-none"
           style={{
             backgroundImage:
               "radial-gradient(circle at 20% 20%, hsl(var(--azul)) 0, transparent 45%), radial-gradient(circle at 85% 70%, hsl(var(--crimson)) 0, transparent 40%)",
