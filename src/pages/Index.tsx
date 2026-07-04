@@ -42,9 +42,6 @@ export default function Index() {
           <p className="mt-6 text-lg md:text-xl text-primary-foreground/85 max-w-2xl leading-relaxed">
             {t("home.subtitle")}
           </p>
-          <p className="mt-4 text-sm text-primary-foreground/60">
-            {t("home.expansion")}
-          </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               to="/programas"

@@ -20,8 +20,7 @@ export const pt = {
   home: {
     title: "Sua jornada segura para estudar no exterior",
     subtitle:
-      "Informação independente, verificada e clara para você planejar seus estudos ao redor do mundo, começando pelo Canadá.",
-    expansion: "Canadá disponível agora. Mais países em breve.",
+      "Informação independente, verificada e clara para você planejar seus estudos ao redor do mundo.",
     ctaPrograms: "Explorar Programas",
     ctaBefore: "Antes de Começar",
   },
