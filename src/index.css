@@ -110,10 +110,7 @@ All colors MUST be HSL.
   }
 
   h1, h2, h3, h4, .font-display {
-    font-family: 'Fraunces Variable', 'Fraunces', Georgia, serif;
-    font-optical-sizing: auto;
-    font-variation-settings: 'opsz' 14, 'SOFT' 100, 'WONK' 0;
-    font-feature-settings: "liga" 0, "dlig" 0, "swsh" 0, "salt" 0, "calt" 0;
-    font-variant-ligatures: none;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
   }
 }
