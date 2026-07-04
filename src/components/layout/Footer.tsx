@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import logoAsset from "@/assets/edpath-logo.png.asset.json";
+import logoUrl from "@/assets/edpath-logo.png";
 
 export function Footer() {
   const { t } = useTranslation();
@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container py-14 md:py-16 grid gap-10 md:grid-cols-[1fr_2fr] items-start">
         <div>
           <img
-            src={logoAsset.url}
+            src={logoUrl}
             alt="EdPath Global"
             className="h-10 md:h-12 w-auto object-contain"
           />
