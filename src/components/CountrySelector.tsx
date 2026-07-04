@@ -38,7 +38,7 @@ export function CountrySelector() {
                   "group relative h-full rounded-2xl p-10 md:p-12 flex flex-col items-center text-center transition-all duration-500",
                   c.available
                     ? "bg-white shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] border-t-4 border-crimson hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-2 cursor-pointer"
-                    : "bg-white/60 border-t border-border opacity-70 hover:opacity-100 hover:-translate-y-1 cursor-default",
+                    : "bg-white/60 border-t border-border opacity-95 hover:opacity-100 hover:-translate-y-1 cursor-default",
                 )}
               >
                 <span
@@ -54,8 +54,9 @@ export function CountrySelector() {
                 <h3
                   className={cn(
                     "font-display font-medium leading-tight mb-2",
-                    c.available ? "text-4xl md:text-5xl text-foreground" : "text-3xl md:text-4xl text-foreground/80",
+                    c.available ? "text-4xl md:text-5xl" : "text-3xl md:text-4xl",
                   )}
+                  style={{ color: c.available ? "#1B2A4A" : "#5A6478" }}
                 >
                   {t(c.nameKey)}
                 </h3>
