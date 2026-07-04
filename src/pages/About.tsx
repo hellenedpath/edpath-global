@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Check, Shield, BadgeCheck, FileCheck, Clock, Eye, Handshake } from "lucide-react";
+import { Check, ShieldCheck, FileCheck, Clock, Eye, Handshake, Scale } from "lucide-react";
+
 
 export default function About() {
   const { t } = useTranslation();
