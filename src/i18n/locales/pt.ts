@@ -16,9 +16,9 @@ export const pt = {
     soon: "em breve",
   },
   home: {
-    title: "Seu mapa honesto para estudar no exterior",
+    title: "Sua jornada segura para estudar no exterior",
     subtitle:
-      "Informação independente, verificada e clara para você planejar seus estudos ao redor do mundo — começando pelo Canadá.",
+      "Informação independente, verificada e clara para você planejar seus estudos ao redor do mundo, começando pelo Canadá.",
     expansion: "Canadá disponível agora. Mais países em breve.",
     ctaPrograms: "Explorar Programas",
     ctaBefore: "Antes de Começar",
@@ -56,7 +56,7 @@ export const pt = {
       credential: {
         title: "Entenda o tipo de credencial",
         content:
-          "Certificado, diploma, bacharelado, mestrado ou doutorado — o nome importa. O tipo de credencial influencia a elegibilidade para PGWP, pontos no Express Entry e expectativa salarial no mercado de trabalho.",
+          "Certificado, diploma, bacharelado, mestrado ou doutorado: o nome importa. O tipo de credencial influencia a elegibilidade para PGWP, pontos no Express Entry e expectativa salarial no mercado de trabalho.",
       },
       duration: {
         title: "Confirme a duração e o custo real",
@@ -106,7 +106,7 @@ export const pt = {
     hero: {
       title: "Ajudamos você a estudar no exterior com segurança",
       subtitle:
-        "Fundada sobre anos de experiência em educação internacional, a EdPath Global oferece a estudantes e famílias um recurso confiável para planejar seus estudos ao redor do mundo — com informação verificada, transparência e independência.",
+        "Fundada sobre anos de experiência em educação internacional, a EdPath Global oferece a estudantes e famílias um recurso confiável para planejar seus estudos ao redor do mundo, com informação verificada, transparência e independência.",
       badges: [
         "Empresa canadense registrada",
         "Informação de fontes oficiais",
@@ -126,12 +126,12 @@ export const pt = {
     experience: {
       title: "Fundada sobre experiência real no setor",
       content:
-        "A EdPath Global nasceu da experiência real no setor de educação internacional, construída dentro de instituições e organizações da área. Esse conhecimento de dentro do setor sustenta nosso compromisso com padrões elevados de precisão, transparência e responsabilidade. Cada informação que oferecemos é fundamentada em fontes oficiais, e cada limite do nosso papel é declarado com clareza — porque acreditamos que confiança se constrói com honestidade, não com promessas.",
+        "A EdPath Global nasceu da experiência real no setor de educação internacional, construída dentro de instituições e organizações da área. Esse conhecimento de dentro do setor sustenta nosso compromisso com padrões elevados de precisão, transparência e responsabilidade. Cada informação que oferecemos é fundamentada em fontes oficiais, e cada limite do nosso papel é declarado com clareza, porque acreditamos que confiança se constrói com honestidade, não com promessas.",
     },
     services: {
       title: "O que a EdPath faz por você",
       subtitle:
-        "Uma camada de informação clara e verificada para você decidir com segurança — e se conectar às pessoas certas.",
+        "Uma camada de informação clara e verificada para você decidir com segurança e se conectar às pessoas certas.",
       items: [
         {
           title: "Informação verificada",
@@ -156,7 +156,7 @@ export const pt = {
       ],
     },
     disclaimer:
-      "A EdPath Global fornece informação educacional e navegação, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados pelo CICC. Trabalhamos de forma independente e podemos conectar você a agências e profissionais confiáveis quando fizer sentido.",
+      "A EdPath Global fornece informação educacional e navegação, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados pelo CICC. Trabalhamos de forma independente e podemos conectar você a agências e profissionais confiáveis quando fizer sentido.",
   },
 
   costs: {
@@ -172,20 +172,20 @@ export const pt = {
         tag: "Número 1",
         title: "Prova de fundos para o visto",
         content:
-          "É o valor mínimo que o governo canadense exige que você comprove ter disponível para obter o permisso de estudo. Serve para mostrar ao IRCC que você consegue se manter no primeiro ano — não é o custo real de viver no país. Esse valor é atualizado periodicamente pelo governo e vale para todos, independentemente da cidade.",
+          "É o valor mínimo que o governo canadense exige que você comprove ter disponível para obter o permisso de estudo. Serve para mostrar ao IRCC que você consegue se manter no primeiro ano, mas não é o custo real de viver no país. Esse valor é atualizado periodicamente pelo governo e vale para todos, independentemente da cidade.",
       },
       real: {
         tag: "Número 2",
         title: "Custo de vida real",
         content:
-          "É quanto você realmente vai gastar por mês para morar, comer, se locomover e estudar. Depende fortemente da cidade, do tipo de moradia e do seu estilo de vida. Costuma ser diferente da prova de fundos — em muitas cidades grandes, é significativamente mais alto.",
+          "É quanto você realmente vai gastar por mês para morar, comer, se locomover e estudar. Depende fortemente da cidade, do tipo de moradia e do seu estilo de vida. Costuma ser diferente da prova de fundos e, em muitas cidades grandes, é significativamente mais alto.",
       },
       note: "Planeje o orçamento pelo custo real, não pela prova de fundos.",
     },
     cities: {
       title: "Custo por cidade",
       subtitle:
-        "O custo de vida varia muito conforme a cidade. Use estes níveis relativos como referência inicial — os valores exatos mudam e devem ser confirmados nas fontes oficiais e nas próprias instituições.",
+        "O custo de vida varia muito conforme a cidade. Use estes níveis relativos como referência inicial. Os valores exatos mudam e devem ser confirmados nas fontes oficiais e nas próprias instituições.",
       legend: "$ mais econômico · $$$$ mais caro",
       tiers: [
         {
@@ -216,7 +216,7 @@ export const pt = {
     components: {
       title: "O que compõe o custo total",
       subtitle:
-        "O custo real de estudar no Canadá é a soma destes componentes ao longo de toda a duração do curso — não apenas a mensalidade do primeiro semestre.",
+        "O custo real de estudar no Canadá é a soma destes componentes ao longo de toda a duração do curso, não apenas a mensalidade do primeiro semestre.",
       items: [
         {
           title: "Mensalidade",
@@ -236,7 +236,7 @@ export const pt = {
         {
           title: "Transporte",
           content:
-            "Passe de transporte público, deslocamentos e viagens ocasionais. Algumas instituições incluem o passe na mensalidade — confirme antes.",
+            "Passe de transporte público, deslocamentos e viagens ocasionais. Algumas instituições incluem o passe na mensalidade; confirme antes.",
         },
         {
           title: "Seguro de saúde",
@@ -386,7 +386,7 @@ export const pt = {
     disclaimer: {
       title: "Aviso importante",
       content:
-        "Informação educacional geral; regras de saúde e escola variam por província e mudam ao longo do tempo. Confirme sempre nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados. Quando fizer sentido, podemos conectar você a agências e profissionais confiáveis.",
+        "Informação educacional geral; regras de saúde e escola variam por província e mudam ao longo do tempo. Confirme sempre nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados. Quando fizer sentido, podemos conectar você a agências e profissionais confiáveis.",
     },
   },
 
@@ -410,7 +410,7 @@ export const pt = {
         {
           title: "Recursos da instituição",
           description:
-            "Use o Career Services, o coordenador de co-op/estágio, o International Student Office e converse com professores — eles têm contatos na indústria e conhecem oportunidades.",
+            "Use o Career Services, o coordenador de co-op/estágio, o International Student Office e converse com professores, pois eles têm contatos na indústria e conhecem oportunidades.",
         },
         {
           title: "Projetos acadêmicos",
@@ -607,6 +607,6 @@ export const pt = {
     tagline: "AI Powered Global Student Navigator",
     expansion: "Canadá disponível agora. Mais países em breve.",
     disclaimer:
-      "A EdPath Global fornece informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados. Trabalhamos como camada de informação independente e podemos conectar estudantes a agências e profissionais confiáveis.",
+      "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados. Trabalhamos como camada de informação independente e podemos conectar estudantes a agências e profissionais confiáveis.",
   },
 };
