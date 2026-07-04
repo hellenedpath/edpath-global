@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { Globe, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import logoUrl from "@/assets/edpath-logo.png";
+import { Logo } from "@/components/Logo";
 
 const navItems = [
   { key: "about", to: "/sobre", type: "link" as const },
@@ -45,12 +45,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-navy text-primary-foreground border-b border-white/10">
       <div className="container flex items-center justify-between h-16 gap-6">
-        <Link to="/" className="flex items-center py-1" aria-label="EdPath Global">
-          <img
-            src={logoUrl}
-            alt="EdPath Global"
-            className="h-10 md:h-12 w-auto object-contain"
-          />
+        <Link to="/" aria-label="EdPath Global">
+          <Logo />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
