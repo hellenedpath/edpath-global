@@ -23,45 +23,45 @@ export function CountrySelector() {
   const { t } = useTranslation();
 
   return (
-    <section className="bg-background py-20 md:py-28">
-      <div className="container max-w-6xl">
-        <div className="max-w-2xl mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+    <section className="bg-background py-24 md:py-32">
+      <div className="container max-w-7xl">
+        <div className="max-w-2xl mx-auto text-center mb-14 md:mb-18">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
             {t("countries.title")}
           </h2>
-          <p className="mt-3 text-muted-foreground text-lg">{t("countries.subtitle")}</p>
+          <p className="mt-4 text-muted-foreground text-lg md:text-xl">{t("countries.subtitle")}</p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 md:gap-6 lg:gap-8">
           {countries.map((c) => {
             const inner = (
               <div
                 className={cn(
-                  "group relative h-full rounded-xl border p-6 flex flex-col items-start gap-3 transition-all",
+                  "group relative h-full rounded-2xl border p-7 md:p-9 lg:p-10 flex flex-col items-center text-center gap-4 md:gap-5 transition-all",
                   c.available
-                    ? "border-border bg-card hover:border-crimson hover:shadow-md cursor-pointer"
-                    : "border-dashed border-border bg-muted/40 cursor-not-allowed",
+                    ? "border-crimson bg-crimson/[0.04] shadow-sm hover:shadow-lg hover:-translate-y-1 cursor-pointer"
+                    : "border-dashed border-border/70 bg-muted/30 opacity-90 hover:opacity-100 cursor-not-allowed",
                 )}
               >
-                <div className="text-4xl leading-none">{c.flag}</div>
-                <div className="flex-1">
-                  <div className="font-semibold text-foreground">{t(c.nameKey)}</div>
+                <div className="text-5xl md:text-6xl lg:text-7xl leading-none">{c.flag}</div>
+                <div className="flex-1 flex flex-col items-center gap-2">
+                  <div className="font-semibold text-foreground text-lg md:text-xl">{t(c.nameKey)}</div>
                   <div
                     className={cn(
-                      "mt-1 inline-flex items-center gap-1 text-xs font-medium rounded-full px-2 py-0.5",
+                      "inline-flex items-center gap-1.5 text-sm font-medium rounded-full px-3 py-1",
                       c.available
                         ? "bg-crimson/10 text-crimson"
                         : "bg-muted text-muted-foreground",
                     )}
                   >
-                    {c.available ? null : <Lock className="w-3 h-3" />}
+                    {c.available ? null : <Lock className="w-3.5 h-3.5" />}
                     {c.available ? t("countries.available") : t("countries.soon")}
                   </div>
                 </div>
                 {c.available && (
-                  <div className="inline-flex items-center gap-1 text-sm font-medium text-foreground/80 group-hover:text-crimson transition-colors">
+                  <div className="inline-flex items-center gap-1.5 text-sm md:text-base font-medium text-foreground/80 group-hover:text-crimson transition-colors">
                     {t("countries.exploreCta")}
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                    <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1" />
                   </div>
                 )}
               </div>
