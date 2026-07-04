@@ -12,7 +12,7 @@ type Country = {
 };
 
 const countries: Country[] = [
-  { code: "canada", flag: "🇨🇦", nameKey: "countries.list.canada", available: true, to: "/programas" },
+  { code: "canada", flag: "🇨🇦", nameKey: "countries.list.canada", available: true, to: "/canada" },
   { code: "usa", flag: "🇺🇸", nameKey: "countries.list.usa", available: false },
   { code: "uk", flag: "🇬🇧", nameKey: "countries.list.uk", available: false },
   { code: "australia", flag: "🇦🇺", nameKey: "countries.list.australia", available: false },
