@@ -261,7 +261,7 @@ export const pt = {
 
   family: {
     hero: {
-      title: "Vir com a família",
+      title: "Sua família na jornada",
       subtitle:
         "O que estudantes com cônjuge e filhos precisam saber sobre saúde e escola.",
     },
