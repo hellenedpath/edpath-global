@@ -386,7 +386,7 @@ export const pt = {
     disclaimer: {
       title: "Aviso importante",
       content:
-        "Informação educacional geral; regras de saúde e escola variam por província e mudam ao longo do tempo. Confirme sempre nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados.",
+        "Informação educacional geral; regras de saúde e escola variam por província e mudam ao longo do tempo. Confirme sempre nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados. Quando fizer sentido, podemos conectar você a agências e profissionais confiáveis.",
     },
   },
 
