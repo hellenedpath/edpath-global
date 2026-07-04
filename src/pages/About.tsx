@@ -24,16 +24,29 @@ export default function About() {
             {t("about.hero.subtitle")}
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4 text-azul" />
-              <span>{t("about.hero.transparency")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <BadgeCheck className="w-4 h-4 text-azul" />
-              <span>{t("about.hero.expansion")}</span>
-            </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {[
+              { icon: ShieldCheck, label: t("about.hero.badges.0") },
+              { icon: FileCheck, label: t("about.hero.badges.1") },
+              { icon: Scale, label: t("about.hero.badges.2") },
+            ].map(({ icon: Icon, label }) => (
+              <div
+                key={label}
+                className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 shadow-sm"
+              >
+                <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-azul/10 text-azul shrink-0">
+                  <Icon className="w-5 h-5" />
+                </span>
+                <span className="text-sm font-medium text-navy leading-tight">
+                  {label}
+                </span>
+              </div>
+            ))}
           </div>
+
+          <p className="mt-4 text-sm text-muted-foreground">
+            {t("about.hero.expansionNote")}
+          </p>
         </div>
       </section>
 
