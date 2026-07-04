@@ -97,7 +97,7 @@ export const pt = {
     disclaimer: {
       title: "Aviso importante",
       content:
-        "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Decisões de imigração devem ser tomadas com um consultor RCIC licenciado pelo CICC. Confirme sempre as regras nas fontes oficiais do IRCC.",
+        "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Decisões de imigração devem ser tomadas com um consultor RCIC licenciado pelo CICC. Confirme sempre as regras nas fontes oficiais do IRCC. Quando fizer sentido, podemos conectar você a agências e profissionais confiáveis.",
       cta: "Explorar Programas",
     },
   },
