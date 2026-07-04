@@ -1,9 +1,11 @@
 export const pt = {
   nav: {
     about: "Sobre",
+    destinations: "Destinos",
     programs: "Explorar Programas",
     before: "Antes de Começar",
     costs: "Custos",
+    health: "Saúde",
     family: "Família",
     work: "Trabalho e Moradia",
   },
@@ -30,6 +32,9 @@ export const pt = {
     soon: "Em breve",
     exploreCta: "Explorar conteúdo",
     currentLabel: "Você está vendo conteúdo sobre",
+    canadaMenuLabel: "Menu do Canadá",
+    portalTitle: "Canadá",
+    portalSubtitle: "Explore todos os temas do seu destino em um só lugar.",
     list: {
       canada: "Canadá",
       usa: "Estados Unidos",
@@ -40,9 +45,11 @@ export const pt = {
   },
   pages: {
     about: "Sobre",
+    canada: "Canadá",
     programs: "Explorar Programas",
     before: "Antes de Começar",
     costs: "Custos",
+    health: "Saúde",
     family: "Família",
     work: "Trabalho e Moradia",
     empty: "Conteúdo em construção.",

@@ -12,7 +12,7 @@ type Country = {
 };
 
 const countries: Country[] = [
-  { code: "canada", flag: "🇨🇦", nameKey: "countries.list.canada", available: true, to: "/programas" },
+  { code: "canada", flag: "🇨🇦", nameKey: "countries.list.canada", available: true, to: "/canada" },
   { code: "usa", flag: "🇺🇸", nameKey: "countries.list.usa", available: false },
   { code: "uk", flag: "🇬🇧", nameKey: "countries.list.uk", available: false },
   { code: "australia", flag: "🇦🇺", nameKey: "countries.list.australia", available: false },
@@ -23,7 +23,7 @@ export function CountrySelector() {
   const { t } = useTranslation();
 
   return (
-    <section className="bg-background py-24 md:py-32">
+    <section id="destinos" className="bg-background py-24 md:py-32 scroll-mt-20">
       <div className="container max-w-7xl">
         <div className="max-w-2xl mx-auto text-center mb-14 md:mb-18">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">

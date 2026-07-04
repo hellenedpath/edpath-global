@@ -12,6 +12,7 @@ import Before from "./pages/Before";
 import Costs from "./pages/Costs";
 import Family from "./pages/Family";
 import Work from "./pages/Work";
+import Canada from "./pages/Canada";
 
 const queryClient = new QueryClient();
 
@@ -25,9 +26,11 @@ const App = () => (
           <Route element={<SiteLayout />}>
             <Route path="/" element={<Index />} />
             <Route path="/sobre" element={<About />} />
+            <Route path="/canada" element={<Canada />} />
             <Route path="/programas" element={<PagePlaceholder tKey="programs" />} />
             <Route path="/antes-de-comecar" element={<Before />} />
             <Route path="/custos" element={<Costs />} />
+            <Route path="/saude" element={<PagePlaceholder tKey="health" />} />
             <Route path="/familia" element={<Family />} />
             <Route path="/trabalho-moradia" element={<Work />} />
           </Route>
