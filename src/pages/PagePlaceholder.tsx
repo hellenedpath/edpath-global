@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Construction } from "lucide-react";
 
-type PageKey = "about" | "programs" | "before" | "costs" | "family" | "work";
+type PageKey = "about" | "programs" | "before" | "costs" | "health" | "family" | "work" | "canada";
 
 export default function PagePlaceholder({ tKey }: { tKey: PageKey }) {
   const { t } = useTranslation();
