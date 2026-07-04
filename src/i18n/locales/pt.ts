@@ -107,8 +107,12 @@ export const pt = {
       title: "Criada para ajudar estudantes com informação correta",
       subtitle:
         "Fundada sobre anos de experiência em educação internacional, a EdPath Global oferece a estudantes e famílias um recurso confiável para planejar seus estudos ao redor do mundo — com informação verificada, transparência e independência.",
-      transparency: "Informação verificada e transparente",
-      expansion: "Canadá disponível agora. Mais países em breve.",
+      badges: [
+        "Empresa canadense registrada",
+        "Informação de fontes oficiais",
+        "Independente e imparcial",
+      ],
+      expansionNote: "Canadá disponível agora. Mais países em breve.",
     },
     beliefs: {
       title: "No que acreditamos",
