@@ -97,7 +97,7 @@ export const pt = {
     disclaimer: {
       title: "Aviso importante",
       content:
-        "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Decisões de imigração devem ser tomadas com um consultor RCIC licenciado pelo CICC. Confirme sempre as regras nas fontes oficiais do IRCC.",
+        "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Decisões de imigração devem ser tomadas com um consultor RCIC licenciado pelo CICC. Confirme sempre as regras nas fontes oficiais do IRCC. Quando fizer sentido, podemos conectar você a agências e profissionais confiáveis.",
       cta: "Explorar Programas",
     },
   },
@@ -255,7 +255,7 @@ export const pt = {
     disclaimer: {
       title: "Aviso importante",
       content:
-        "Valores são aproximados e mudam ao longo do tempo. Confirme sempre os custos atuais nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento financeiro.",
+        "Valores são aproximados e mudam ao longo do tempo. Confirme sempre os custos atuais nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento financeiro. Quando fizer sentido, podemos conectar você a agências e profissionais confiáveis.",
     },
   },
 
@@ -386,7 +386,7 @@ export const pt = {
     disclaimer: {
       title: "Aviso importante",
       content:
-        "Informação educacional geral; regras de saúde e escola variam por província e mudam ao longo do tempo. Confirme sempre nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados.",
+        "Informação educacional geral; regras de saúde e escola variam por província e mudam ao longo do tempo. Confirme sempre nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento de imigração — isso é feito apenas por consultores RCIC licenciados. Quando fizer sentido, podemos conectar você a agências e profissionais confiáveis.",
     },
   },
 
