@@ -113,5 +113,7 @@ All colors MUST be HSL.
     font-family: 'Fraunces Variable', 'Fraunces', Georgia, serif;
     font-optical-sizing: auto;
     font-variation-settings: 'SOFT' 0, 'WONK' 0;
+    font-feature-settings: "liga" 0, "dlig" 0, "swsh" 0, "salt" 0, "calt" 0;
+    font-variant-ligatures: none;
   }
 }
