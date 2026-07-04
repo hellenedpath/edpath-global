@@ -255,7 +255,7 @@ export const pt = {
     disclaimer: {
       title: "Aviso importante",
       content:
-        "Valores são aproximados e mudam ao longo do tempo. Confirme sempre os custos atuais nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento financeiro.",
+        "Valores são aproximados e mudam ao longo do tempo. Confirme sempre os custos atuais nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento financeiro. Quando fizer sentido, podemos conectar você a agências e profissionais confiáveis.",
     },
   },
 
