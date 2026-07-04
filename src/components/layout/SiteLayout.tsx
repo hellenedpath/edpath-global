@@ -1,11 +1,27 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
 export default function SiteLayout() {
+  const location = useLocation();
+  const { t } = useTranslation();
+  const isHome = location.pathname === "/";
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
+      {!isHome && (
+        <div className="border-b border-border bg-muted/30">
+          <div className="container py-2 flex items-center gap-2 text-xs text-muted-foreground">
+            <span className="text-base leading-none">🇨🇦</span>
+            <span>
+              {t("countries.currentLabel")}{" "}
+              <span className="font-medium text-foreground">{t("countries.list.canada")}</span>
+            </span>
+          </div>
+        </div>
+      )}
       <main className="flex-1">
         <Outlet />
       </main>
