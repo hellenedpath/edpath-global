@@ -378,9 +378,9 @@ export const pt = {
           "Geralmente gratuito para filhos de estudantes com study permit. Verifique o distrito escolar da cidade onde vai morar e os prazos de matrícula.",
       },
       daycare: {
-        title: "Creche e daycare",
+        title: "Creche",
         content:
-          "Creche e daycare são serviços pagos, com filas de espera em algumas cidades. Planeje com antecedência, principalmente para crianças pequenas.",
+          "Creches são serviços pagos, com filas de espera em algumas cidades. Planeje com antecedência, principalmente para crianças pequenas.",
       },
     },
     disclaimer: {
@@ -420,7 +420,7 @@ export const pt = {
         {
           title: "Mercado oculto",
           description:
-            "A maioria das vagas não é anunciada. Networking e indicação são fundamentais: mantenha o LinkedIn atualizado, conecte-se com ex-alunos e profissionais da área.",
+            "A maioria das vagas não é anunciada. Rede de contatos e indicações são fundamentais: mantenha o LinkedIn atualizado e conecte-se com ex-alunos e profissionais da área.",
         },
         {
           title: "Candidature-se e faça o acompanhamento",
@@ -430,7 +430,7 @@ export const pt = {
       ],
       tips: [
         {
-          title: "Cuidado com o survival job",
+          title: "Cuidado com o emprego de sobrevivência",
           description:
             "Só ocupações qualificadas contam como experiência relevante para a via de residência permanente. Trabalhos de sobrevivência pagam contas, mas não constroem a mesma trajetória.",
         },
