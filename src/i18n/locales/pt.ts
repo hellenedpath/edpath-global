@@ -23,6 +23,21 @@ export const pt = {
     ctaPrograms: "Explorar Programas",
     ctaBefore: "Antes de Começar",
   },
+  countries: {
+    title: "Escolha seu destino",
+    subtitle: "Comece pelo Canadá. Mais países chegando em breve.",
+    available: "Disponível",
+    soon: "Em breve",
+    exploreCta: "Explorar conteúdo",
+    currentLabel: "Você está vendo conteúdo sobre",
+    list: {
+      canada: "Canadá",
+      usa: "Estados Unidos",
+      uk: "Reino Unido",
+      australia: "Austrália",
+      ireland: "Irlanda",
+    },
+  },
   pages: {
     about: "Sobre",
     programs: "Explorar Programas",

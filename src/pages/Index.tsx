@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
+import { CountrySelector } from "@/components/CountrySelector";
 
 export default function Index() {
   const { t } = useTranslation();
@@ -45,6 +46,7 @@ export default function Index() {
           </div>
         </div>
       </section>
+      <CountrySelector />
     </>
   );
 }
