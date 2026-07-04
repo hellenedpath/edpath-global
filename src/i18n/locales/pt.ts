@@ -104,7 +104,7 @@ export const pt = {
 
   about: {
     hero: {
-      title: "Criada para ajudar estudantes com informação correta",
+      title: "Ajudamos você a estudar no exterior com segurança",
       subtitle:
         "Fundada sobre anos de experiência em educação internacional, a EdPath Global oferece a estudantes e famílias um recurso confiável para planejar seus estudos ao redor do mundo — com informação verificada, transparência e independência.",
       badges: [
