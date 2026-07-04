@@ -10,7 +10,7 @@ export function Footer() {
           <img
             src={logoUrl}
             alt="EdPath Global"
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-12 md:h-14 w-auto object-contain"
           />
           <p className="mt-2 text-sm text-primary-foreground/80">{t("footer.tagline")}</p>
         </div>
