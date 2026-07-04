@@ -423,9 +423,9 @@ export const pt = {
             "A maioria das vagas não é anunciada. Networking e indicação são fundamentais: mantenha o LinkedIn atualizado, conecte-se com ex-alunos e profissionais da área.",
         },
         {
-          title: "Aplicação com follow-up",
+          title: "Candidature-se e faça o acompanhamento",
           description:
-            "Vá a feiras de carreira, candidate-se com consistência e envie uma mensagem educada ao recrutador depois de aplicar para uma vaga.",
+            "Participe de feiras de carreira, candidate-se com consistência e, após enviar sua candidatura, mande uma mensagem cordial ao recrutador demonstrando interesse.",
         },
       ],
       tips: [
@@ -437,7 +437,7 @@ export const pt = {
         {
           title: "Comece cedo e seja consistente",
           description:
-            "Ajuste o currículo para cada vaga, acompanhe as candidaturas e continue se conectando. O resultado vem da persistência, não de uma única aplicação.",
+            "Ajuste o currículo para cada vaga, acompanhe as candidaturas e continue se conectando. O resultado vem da persistência, não de uma única candidatura.",
         },
       ],
     },
@@ -604,7 +604,7 @@ export const pt = {
   },
 
   footer: {
-    tagline: "AI Powered Global Student Navigator",
+    tagline: "Sua bússola inteligente para estudar no exterior",
     expansion: "Canadá disponível agora. Mais países em breve.",
     disclaimer:
       "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados. Trabalhamos como camada de informação independente e podemos conectar estudantes a agências e profissionais confiáveis.",
