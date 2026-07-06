@@ -13,6 +13,7 @@ import Costs from "./pages/Costs";
 import Family from "./pages/Family";
 import Work from "./pages/Work";
 import Canada from "./pages/Canada";
+import PgwpChecker from "./pages/PgwpChecker";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/sobre" element={<About />} />
             <Route path="/canada" element={<Canada />} />
+            <Route path="/canada/pgwp" element={<PgwpChecker />} />
+            <Route path="/verificador-pgwp" element={<PgwpChecker />} />
             <Route path="/programas" element={<PagePlaceholder tKey="programs" />} />
             <Route path="/antes-de-comecar" element={<Before />} />
             <Route path="/custos" element={<Costs />} />
