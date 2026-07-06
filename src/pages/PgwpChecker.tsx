@@ -155,6 +155,28 @@ export default function PgwpChecker() {
           </div>
         </div>
 
+        {/* Coverage note */}
+        <div className="mt-5 rounded-xl border border-border bg-muted/30 p-4 flex items-start gap-3 text-sm">
+          <Info className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+          <p className="text-foreground/90 leading-relaxed">
+            <span className="font-medium text-foreground">Cobertura atual dos dados:</span>{" "}
+            esta ferramenta cobre atualmente as áreas de{" "}
+            <span className="font-medium">STEM, Trades e Transporte</span>. Estamos adicionando
+            outras categorias, como Saúde, Educação e Agricultura. Se você não
+            encontrar sua área, ela pode ainda não ter sido incluída —{" "}
+            <span className="font-medium">isso não significa que ela não seja elegível</span>.
+            Confirme sempre na{" "}
+            <a
+              href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/eligibility.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-primary"
+            >
+              lista oficial do IRCC
+            </a>.
+          </p>
+        </div>
+
         {/* Results */}
         <div className="mt-6">
           {isLoading && (
