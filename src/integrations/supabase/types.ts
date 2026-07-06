@@ -14,7 +14,104 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cip_codes: {
+        Row: {
+          category: string | null
+          code: string
+          created_at: string
+          description: string | null
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          code: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          code?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      programs: {
+        Row: {
+          cip_code: string | null
+          city: string | null
+          country: string
+          created_at: string
+          duration_months: number | null
+          field_of_study: string | null
+          id: string
+          institution: string
+          intake_dates: string[] | null
+          is_pgwp_eligible: boolean
+          language: string | null
+          level: string
+          name: string
+          requirements: string | null
+          tuition_cad: number | null
+          updated_at: string
+          url: string | null
+        }
+        Insert: {
+          cip_code?: string | null
+          city?: string | null
+          country: string
+          created_at?: string
+          duration_months?: number | null
+          field_of_study?: string | null
+          id?: string
+          institution: string
+          intake_dates?: string[] | null
+          is_pgwp_eligible?: boolean
+          language?: string | null
+          level: string
+          name: string
+          requirements?: string | null
+          tuition_cad?: number | null
+          updated_at?: string
+          url?: string | null
+        }
+        Update: {
+          cip_code?: string | null
+          city?: string | null
+          country?: string
+          created_at?: string
+          duration_months?: number | null
+          field_of_study?: string | null
+          id?: string
+          institution?: string
+          intake_dates?: string[] | null
+          is_pgwp_eligible?: boolean
+          language?: string | null
+          level?: string
+          name?: string
+          requirements?: string | null
+          tuition_cad?: number | null
+          updated_at?: string
+          url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "programs_cip_code_fkey"
+            columns: ["cip_code"]
+            isOneToOne: false
+            referencedRelation: "cip_codes"
+            referencedColumns: ["code"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
