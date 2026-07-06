@@ -38,6 +38,16 @@ function eligibilityFromDescription(desc: string | null) {
   return "unknown" as const;
 }
 
+function normalize(str: string | null | undefined) {
+  return (str ?? "")
+    .toString()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
 export default function PgwpChecker() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("all");
@@ -48,6 +58,7 @@ export default function PgwpChecker() {
       const { data, error } = await supabase
         .from("cip_codes")
         .select("id, code, title, description, category")
+        .range(0, 999)
         .order("title", { ascending: true });
       if (error) throw error;
       return data as CipCode[];
@@ -61,14 +72,20 @@ export default function PgwpChecker() {
   }, [data]);
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = normalize(query);
+    const tokens = q.split(" ").filter(Boolean);
     return (data ?? []).filter((r) => {
       if (category !== "all" && r.category !== category) return false;
-      if (!q) return true;
-      return (
-        r.title.toLowerCase().includes(q) ||
-        r.code.toLowerCase().includes(q)
-      );
+      if (tokens.length === 0) return true;
+      const haystack =
+        normalize(r.title) +
+        " " +
+        normalize(r.code) +
+        " " +
+        normalize(r.description) +
+        " " +
+        normalize(r.category);
+      return tokens.every((t) => haystack.includes(t));
     });
   }, [data, query, category]);
 
