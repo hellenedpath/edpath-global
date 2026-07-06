@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 const items = [
   { key: "programs", to: "/programas" },
+  { key: "pgwp", to: "/canada/pgwp", label: "Verificador PGWP" },
   { key: "before", to: "/antes-de-comecar" },
   { key: "costs", to: "/custos" },
   { key: "health", to: "/saude" },
@@ -32,7 +33,7 @@ export function CanadaNav() {
                 )
               }
             >
-              {t(`nav.${it.key}`)}
+              {it.label ?? t(`nav.${it.key}`)}
             </NavLink>
           ))}
         </nav>
