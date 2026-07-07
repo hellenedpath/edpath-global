@@ -131,6 +131,14 @@ export function Header() {
       {mobileOpen && (
         <nav className="lg:hidden border-t border-white/10 bg-navy">
           <div className="container flex flex-col py-2">
+            <NavLink
+              to="/meu-caminho"
+              onClick={() => setMobileOpen(false)}
+              className="px-3 py-3 text-sm rounded-md bg-crimson hover:bg-crimson/90 text-white font-semibold inline-flex items-center gap-2"
+            >
+              <Compass className="w-4 h-4" />
+              Meu Caminho
+            </NavLink>
             {navItems.map((item) =>
               item.type === "anchor" ? (
                 <a
