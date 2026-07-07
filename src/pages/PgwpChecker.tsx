@@ -189,6 +189,19 @@ export default function PgwpChecker() {
               mestrado, doutorado e equivalentes.
             </p>
           </div>
+
+          <div className="mt-3 flex items-start gap-2 text-sm text-muted-foreground">
+            <Info className="h-4 w-4 mt-0.5 shrink-0" />
+            <p>
+              As áreas aparecem com o nome técnico oficial usado pelo governo
+              canadense, muitas vezes em inglês. Se você não reconhecer um termo,
+              ele pode ser o nome técnico da sua área.{" "}
+              <span className="font-medium text-foreground">Dica:</span> tente
+              buscar em português (ex.:{" "}
+              <span className="font-medium text-foreground">"física", "engenharia"</span>)
+              ou confirme o nome do seu programa com a instituição.
+            </p>
+          </div>
         </div>
 
         {/* Coverage note */}
