@@ -15,6 +15,7 @@ import Work from "./pages/Work";
 import Canada from "./pages/Canada";
 import PgwpChecker from "./pages/PgwpChecker";
 import PathQuiz from "./pages/PathQuiz";
+import Programs from "./pages/Programs";
 
 const queryClient = new QueryClient();
 
@@ -34,7 +35,7 @@ const App = () => (
           <Route path="/meu-caminho" element={<PathQuiz />} />
             <Route path="/canada/meu-caminho" element={<PathQuiz />} />
             <Route path="/diagnostico" element={<PathQuiz />} />
-            <Route path="/programas" element={<PagePlaceholder tKey="programs" />} />
+            <Route path="/programas" element={<Programs />} />
             <Route path="/antes-de-comecar" element={<Before />} />
             <Route path="/custos" element={<Costs />} />
             <Route path="/saude" element={<PagePlaceholder tKey="health" />} />
