@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
 const items = [
-  { key: "path", to: "/canada/meu-caminho", label: "Meu Caminho" },
+  { key: "path", to: "/meu-caminho", label: "Meu Caminho" },
   { key: "programs", to: "/programas" },
   { key: "pgwp", to: "/canada/pgwp", label: "Verificador PGWP" },
   { key: "before", to: "/antes-de-comecar" },
