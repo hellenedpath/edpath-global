@@ -187,6 +187,16 @@ export default function PathQuiz() {
   const [step, setStep] = useState(0); // 0..QUESTIONS.length-1
   const [answers, setAnswers] = useState<Answers>({});
   const [finished, setFinished] = useState(false);
+  const [destination, setDestination] = useState<string | null>(null);
+  const [notifyEmail, setNotifyEmail] = useState("");
+  const [notifySubmitted, setNotifySubmitted] = useState(false);
+
+  const destObj = DESTINATIONS.find((d) => d.key === destination) ?? null;
+  const destAvailable = destObj?.available ?? false;
+  const showSoonScreen = started && destination !== null && !destAvailable && !answers[-1];
+  // answers[-1] === "continue_canada" means user chose to continue via Canada roadmap
+  const effectiveDestination =
+    destAvailable ? destination : answers[-1] === "continue_canada" ? "canada" : destination;
 
   const total = QUESTIONS.length;
   const q = QUESTIONS[step];
@@ -222,6 +232,9 @@ export default function PathQuiz() {
     setStep(0);
     setAnswers({});
     setFinished(false);
+    setDestination(null);
+    setNotifyEmail("");
+    setNotifySubmitted(false);
   }
 
   // ---------- Landing ----------
@@ -233,26 +246,23 @@ export default function PathQuiz() {
           Diagnóstico personalizado
         </div>
         <h1 className="font-display text-4xl md:text-5xl font-semibold text-navy tracking-tight leading-tight">
-          Descubra seu caminho para estudar no Canadá
+          Descubra seu caminho para estudar no exterior
         </h1>
         <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-          Responda 6 perguntas rápidas e receba um roteiro personalizado, com o seu próximo passo.
+          Escolha seu destino e responda algumas perguntas rápidas. Você recebe um roteiro personalizado, com o seu próximo passo.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button size="lg" className="bg-crimson hover:bg-crimson/90 text-white" onClick={() => setStarted(true)}>
             Começar
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
-          <Button size="lg" variant="outline" asChild>
-            <Link to="/canada">Voltar ao portal Canadá</Link>
-          </Button>
         </div>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-3">
           {[
-            { title: "6 perguntas", desc: "Rápido: menos de 2 minutos." },
+            { title: "Escolha o destino", desc: "Canadá disponível; outros países em breve." },
+            { title: "6 perguntas de perfil", desc: "Menos de 2 minutos." },
             { title: "Roteiro em 8 etapas", desc: "Trilha completa da sua jornada." },
-            { title: "Próximo passo claro", desc: "Saiba exatamente por onde começar." },
           ].map((c) => (
             <div key={c.title} className="rounded-lg border border-border bg-card p-5">
               <div className="text-sm font-semibold text-navy">{c.title}</div>
