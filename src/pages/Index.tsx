@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Compass } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
 import heroGlobal from "@/assets/hero-global.jpg";
 
@@ -44,19 +44,23 @@ export default function Index() {
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              to="/programas"
-              className="group inline-flex items-center gap-2 rounded-md bg-crimson px-6 py-3 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-crimson/90 transition-colors"
+              to="/meu-caminho"
+              className="group inline-flex items-center gap-2 rounded-md bg-crimson px-7 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-crimson/20 hover:bg-crimson/90 transition-colors"
             >
-              {t("home.ctaPrograms")}
+              <Compass className="w-5 h-5" />
+              Descubra seu caminho em 2 minutos
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
-              to="/antes-de-comecar"
-              className="inline-flex items-center gap-2 rounded-md bg-azul px-6 py-3 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-azul/90 transition-colors"
+              to="/#destinos"
+              className="inline-flex items-center gap-2 rounded-md border border-white/25 bg-white/5 px-6 py-4 text-sm font-medium text-primary-foreground/90 hover:bg-white/10 transition-colors"
             >
-              {t("home.ctaBefore")}
+              Explorar por destino
             </Link>
           </div>
+          <p className="mt-4 text-sm text-primary-foreground/70">
+            6 perguntas rápidas · roteiro personalizado em 8 etapas
+          </p>
         </div>
       </section>
       <CountrySelector />
