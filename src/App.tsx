@@ -15,6 +15,7 @@ import Work from "./pages/Work";
 import Canada from "./pages/Canada";
 import PgwpChecker from "./pages/PgwpChecker";
 import PathQuiz from "./pages/PathQuiz";
+import Programs from "./pages/Programs";
 
 const queryClient = new QueryClient();
 
