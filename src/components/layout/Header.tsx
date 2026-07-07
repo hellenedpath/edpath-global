@@ -1,7 +1,7 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import { Globe, Menu, X } from "lucide-react";
+import { Compass, Globe, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
 
@@ -80,6 +80,13 @@ export function Header() {
 
 
         <div className="flex items-center gap-2">
+          <Link
+            to="/meu-caminho"
+            className="hidden md:inline-flex items-center gap-1.5 rounded-md bg-crimson px-3.5 py-2 text-sm font-semibold text-white hover:bg-crimson/90 transition-colors"
+          >
+            <Compass className="w-4 h-4" />
+            Meu Caminho
+          </Link>
           <div className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
