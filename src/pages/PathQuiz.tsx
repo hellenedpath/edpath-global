@@ -291,7 +291,7 @@ export default function PathQuiz() {
         <div className="mt-14 grid gap-4 sm:grid-cols-3">
           {[
             { title: "Escolha o destino", desc: "Canadá disponível; outros países em breve." },
-            { title: "6 perguntas de perfil", desc: "Menos de 2 minutos." },
+            { title: "7 perguntas de perfil", desc: "Menos de 2 minutos." },
             { title: "Roteiro em 8 etapas", desc: "Trilha completa da sua jornada." },
           ].map((c) => (
             <div key={c.title} className="rounded-lg border border-border bg-card p-5">
