@@ -274,6 +274,129 @@ export default function PathQuiz() {
     );
   }
 
+  // ---------- Destination selection ----------
+  if (destination === null) {
+    return (
+      <section className="container py-14 md:py-20 max-w-2xl">
+        <div className="flex items-center justify-between text-xs uppercase tracking-widest text-muted-foreground">
+          <span className="inline-flex items-center gap-2">
+            <Globe className="w-4 h-4 text-crimson" />
+            Destino
+          </span>
+          <button
+            onClick={reset}
+            className="text-muted-foreground hover:text-crimson transition-colors normal-case tracking-normal"
+          >
+            Recomeçar
+          </button>
+        </div>
+        <Progress value={0} className="mt-3 h-2" />
+
+        <h1 className="mt-8 font-display text-2xl md:text-3xl font-semibold text-navy leading-tight">
+          Para qual país você quer ir?
+        </h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Escolha seu destino. Por enquanto, o roteiro completo está disponível para o Canadá — outros países estão sendo preparados.
+        </p>
+
+        <div className="mt-8 grid gap-3">
+          {DESTINATIONS.map((d) => (
+            <button
+              key={d.key}
+              onClick={() => setDestination(d.key)}
+              className={[
+                "group w-full text-left rounded-xl border p-4 md:p-5 transition-all",
+                "hover:border-crimson hover:shadow-md hover:-translate-y-0.5",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-azul",
+                "border-border bg-card",
+              ].join(" ")}
+            >
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-base md:text-lg font-medium text-navy">{d.label}</span>
+                {d.available ? (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-azul/10 text-azul text-xs font-semibold px-2.5 py-0.5">
+                    Disponível
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-muted text-muted-foreground text-xs font-medium px-2.5 py-0.5">
+                    Em breve
+                  </span>
+                )}
+              </div>
+            </button>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  // ---------- Country "coming soon" screen ----------
+  if (showSoonScreen) {
+    return (
+      <section className="container py-14 md:py-20 max-w-2xl">
+        <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground mb-5">
+          <Globe className="w-4 h-4 text-crimson" />
+          {destObj?.label}
+        </div>
+        <h1 className="font-display text-2xl md:text-3xl font-semibold text-navy leading-tight">
+          Esse destino ainda está sendo preparado
+        </h1>
+        <p className="mt-4 text-muted-foreground leading-relaxed">
+          Por enquanto, temos o roteiro completo do Canadá. Quer ver como funciona ou ser avisado quando {destObj?.label} estiver disponível?
+        </p>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Button
+            className="bg-crimson hover:bg-crimson/90 text-white"
+            onClick={() => setAnswers({ ...answers, [-1]: "continue_canada" })}
+          >
+            Continuar pelo Canadá
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+          <Button variant="outline" onClick={() => setDestination(null)}>
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Escolher outro país
+          </Button>
+        </div>
+
+        <div className="mt-10 rounded-xl border border-border bg-card p-5 md:p-6">
+          <div className="flex items-center gap-2 text-sm font-semibold text-navy">
+            <Mail className="h-4 w-4 text-azul" />
+            Avise-me quando {destObj?.label} estiver disponível
+          </div>
+          {notifySubmitted ? (
+            <p className="mt-3 text-sm text-muted-foreground">
+              Obrigado! Vamos avisar você em <span className="font-medium text-navy">{notifyEmail}</span> assim que o roteiro estiver pronto.
+            </p>
+          ) : (
+            <form
+              className="mt-3 flex flex-col sm:flex-row gap-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (notifyEmail.trim()) setNotifySubmitted(true);
+              }}
+            >
+              <Input
+                type="email"
+                required
+                placeholder="seu@email.com"
+                value={notifyEmail}
+                onChange={(e) => setNotifyEmail(e.target.value)}
+                className="flex-1"
+              />
+              <Button type="submit" variant="outline">
+                Quero ser avisado
+              </Button>
+            </form>
+          )}
+          <p className="mt-3 text-xs text-muted-foreground">
+            Usamos seu email apenas para avisar sobre este destino. Sem spam.
+          </p>
+        </div>
+      </section>
+    );
+  }
+
   // ---------- Result ----------
   if (finished) {
     return (
