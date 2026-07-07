@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   ArrowLeft,
@@ -19,6 +20,8 @@ import {
   MapPin,
   Sparkles,
   RotateCcw,
+  Globe,
+  Mail,
 } from "lucide-react";
 
 type AnswerKey = string;
