@@ -31,6 +31,7 @@ const App = () => (
             <Route path="/canada" element={<Canada />} />
             <Route path="/canada/pgwp" element={<PgwpChecker />} />
             <Route path="/verificador-pgwp" element={<PgwpChecker />} />
+          <Route path="/meu-caminho" element={<PathQuiz />} />
             <Route path="/canada/meu-caminho" element={<PathQuiz />} />
             <Route path="/diagnostico" element={<PathQuiz />} />
             <Route path="/programas" element={<PagePlaceholder tKey="programs" />} />
