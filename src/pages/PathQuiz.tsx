@@ -33,6 +33,24 @@ type Question = {
   options: { key: AnswerKey; label: string }[];
 };
 
+type Destination = {
+  key: string;
+  label: string;
+  available: boolean;
+};
+
+const DESTINATIONS: Destination[] = [
+  { key: "canada", label: "Canadá", available: true },
+  { key: "usa", label: "Estados Unidos", available: false },
+  { key: "uk", label: "Reino Unido", available: false },
+  { key: "australia", label: "Austrália", available: false },
+  { key: "ireland", label: "Irlanda", available: false },
+];
+
+function destinationLabel(key: string): string {
+  return DESTINATIONS.find((d) => d.key === key)?.label ?? key;
+}
+
 const QUESTIONS: Question[] = [
   {
     id: 1,
