@@ -14,6 +14,7 @@ import Family from "./pages/Family";
 import Work from "./pages/Work";
 import Canada from "./pages/Canada";
 import PgwpChecker from "./pages/PgwpChecker";
+import PathQuiz from "./pages/PathQuiz";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,8 @@ const App = () => (
             <Route path="/canada" element={<Canada />} />
             <Route path="/canada/pgwp" element={<PgwpChecker />} />
             <Route path="/verificador-pgwp" element={<PgwpChecker />} />
+            <Route path="/canada/meu-caminho" element={<PathQuiz />} />
+            <Route path="/diagnostico" element={<PathQuiz />} />
             <Route path="/programas" element={<PagePlaceholder tKey="programs" />} />
             <Route path="/antes-de-comecar" element={<Before />} />
             <Route path="/custos" element={<Costs />} />
