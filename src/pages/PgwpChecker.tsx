@@ -48,6 +48,39 @@ function normalize(str: string | null | undefined) {
     .toLowerCase();
 }
 
+// Dicionário português → inglês para busca nos títulos oficiais dos CIP codes.
+// Fácil de expandir: basta adicionar novas entradas (chave em português normalizado,
+// valor = array de termos em inglês a serem procurados também).
+const PT_EN_SYNONYMS: Record<string, string[]> = {
+  fisica: ["physics"],
+  quimica: ["chemistry"],
+  matematica: ["mathematics", "math"],
+  engenharia: ["engineering"],
+  computacao: ["computer", "computing", "information technology"],
+  ti: ["information technology", "computer"],
+  tecnologia: ["technology"],
+  enfermagem: ["nursing"],
+  saude: ["health"],
+  negocios: ["business", "management"],
+  administracao: ["business", "management", "administration"],
+  educacao: ["education"],
+  biologia: ["biology", "biological"],
+  som: ["acoustics", "sound"],
+  acustica: ["acoustics"],
+  ambiental: ["environmental"],
+  agricultura: ["agriculture", "agricultural"],
+  eletricidade: ["electrical"],
+  eletrica: ["electrical"],
+  mecanica: ["mechanical", "mechanics"],
+  construcao: ["construction"],
+  transporte: ["transport", "transportation"],
+};
+
+function expandToken(token: string): string[] {
+  const extras = PT_EN_SYNONYMS[token];
+  return extras && extras.length ? [token, ...extras.map(normalize)] : [token];
+}
+
 export default function PgwpChecker() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("all");
@@ -85,7 +118,10 @@ export default function PgwpChecker() {
         normalize(r.description) +
         " " +
         normalize(r.category);
-      return tokens.every((t) => haystack.includes(t));
+      // Cada token deve bater (ele mesmo OU qualquer sinônimo em inglês)
+      return tokens.every((t) =>
+        expandToken(t).some((variant) => haystack.includes(variant))
+      );
     });
   }, [data, query, category]);
 
