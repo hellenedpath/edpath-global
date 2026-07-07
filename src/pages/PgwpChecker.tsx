@@ -48,6 +48,39 @@ function normalize(str: string | null | undefined) {
     .toLowerCase();
 }
 
+// Dicionário português → inglês para busca nos títulos oficiais dos CIP codes.
+// Fácil de expandir: basta adicionar novas entradas (chave em português normalizado,
+// valor = array de termos em inglês a serem procurados também).
+const PT_EN_SYNONYMS: Record<string, string[]> = {
+  fisica: ["physics"],
+  quimica: ["chemistry"],
+  matematica: ["mathematics", "math"],
+  engenharia: ["engineering"],
+  computacao: ["computer", "computing", "information technology"],
+  ti: ["information technology", "computer"],
+  tecnologia: ["technology"],
+  enfermagem: ["nursing"],
+  saude: ["health"],
+  negocios: ["business", "management"],
+  administracao: ["business", "management", "administration"],
+  educacao: ["education"],
+  biologia: ["biology", "biological"],
+  som: ["acoustics", "sound"],
+  acustica: ["acoustics"],
+  ambiental: ["environmental"],
+  agricultura: ["agriculture", "agricultural"],
+  eletricidade: ["electrical"],
+  eletrica: ["electrical"],
+  mecanica: ["mechanical", "mechanics"],
+  construcao: ["construction"],
+  transporte: ["transport", "transportation"],
+};
+
+function expandToken(token: string): string[] {
+  const extras = PT_EN_SYNONYMS[token];
+  return extras && extras.length ? [token, ...extras.map(normalize)] : [token];
+}
+
 export default function PgwpChecker() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("all");
@@ -85,7 +118,10 @@ export default function PgwpChecker() {
         normalize(r.description) +
         " " +
         normalize(r.category);
-      return tokens.every((t) => haystack.includes(t));
+      // Cada token deve bater (ele mesmo OU qualquer sinônimo em inglês)
+      return tokens.every((t) =>
+        expandToken(t).some((variant) => haystack.includes(variant))
+      );
     });
   }, [data, query, category]);
 
@@ -151,6 +187,19 @@ export default function PgwpChecker() {
               <span className="font-medium text-foreground">BArch, MArch, DArch, PhD</span>)
               indicam as titulações acadêmicas oferecidas na área — bacharelado,
               mestrado, doutorado e equivalentes.
+            </p>
+          </div>
+
+          <div className="mt-3 flex items-start gap-2 text-sm text-muted-foreground">
+            <Info className="h-4 w-4 mt-0.5 shrink-0" />
+            <p>
+              As áreas aparecem com o nome técnico oficial usado pelo governo
+              canadense, muitas vezes em inglês. Se você não reconhecer um termo,
+              ele pode ser o nome técnico da sua área.{" "}
+              <span className="font-medium text-foreground">Dica:</span> tente
+              buscar em português (ex.:{" "}
+              <span className="font-medium text-foreground">"física", "engenharia"</span>)
+              ou confirme o nome do seu programa com a instituição.
             </p>
           </div>
         </div>
