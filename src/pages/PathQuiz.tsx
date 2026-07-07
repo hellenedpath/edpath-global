@@ -54,15 +54,6 @@ function destinationLabel(key: string): string {
 const QUESTIONS: Question[] = [
   {
     id: 1,
-    title: "Qual é o seu maior objetivo?",
-    options: [
-      { key: "stay", label: "Construir carreira e ficar no país" },
-      { key: "return", label: "Ter experiência internacional e voltar" },
-      { key: "explore", label: "Ainda estou explorando" },
-    ],
-  },
-  {
-    id: 2,
     title: "Onde você está agora?",
     options: [
       { key: "researching", label: "Só começando a pesquisar" },
@@ -72,12 +63,23 @@ const QUESTIONS: Question[] = [
     ],
   },
   {
-    id: 3,
-    title: "Como está seu nível de idioma (inglês/francês)?",
+    id: 2,
+    title: "Qual é o seu maior objetivo?",
     options: [
-      { key: "tested", label: "Já tenho teste oficial" },
-      { key: "fluent", label: "Falo bem, mas sem teste oficial" },
-      { key: "improve", label: "Preciso melhorar ou começar" },
+      { key: "stay", label: "Construir carreira e ficar no país" },
+      { key: "return", label: "Ter experiência internacional e voltar" },
+      { key: "explore", label: "Ainda estou explorando" },
+    ],
+  },
+  {
+    id: 3,
+    title: "Qual nível de estudo você pretende cursar?",
+    options: [
+      { key: "college", label: "Certificado ou Diploma de college" },
+      { key: "bachelor", label: "Bacharelado" },
+      { key: "master", label: "Mestrado" },
+      { key: "phd", label: "Doutorado" },
+      { key: "unknown_level", label: "Ainda não sei" },
     ],
   },
   {
@@ -96,15 +98,25 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 5,
-    title: "Você vai sozinho(a) ou com família?",
+    title: "Como está seu nível de idioma (inglês/francês)?",
     options: [
-      { key: "solo", label: "Sozinho(a)" },
-      { key: "partner", label: "Com cônjuge / parceiro(a)" },
-      { key: "children", label: "Com filhos" },
+      { key: "tested", label: "Já tenho teste oficial" },
+      { key: "fluent", label: "Falo bem, mas sem teste oficial" },
+      { key: "improve", label: "Preciso melhorar ou começar" },
     ],
   },
   {
     id: 6,
+    title: "Você vai com quem?",
+    options: [
+      { key: "solo", label: "Sozinho(a)" },
+      { key: "partner", label: "Com cônjuge ou parceiro(a)" },
+      { key: "children", label: "Com filhos" },
+      { key: "partner_children", label: "Com cônjuge e filhos" },
+    ],
+  },
+  {
+    id: 7,
     title: "Sobre seu orçamento?",
     options: [
       { key: "planned", label: "Já tenho recursos planejados" },
@@ -135,7 +147,7 @@ const STEPS: Step[] = [
 ];
 
 function currentStepFromAnswers(a: Answers): number {
-  const q2 = a[2];
+  const q2 = a[1];
   if (q2 === "researching") return 1;
   if (q2 === "knows") return 3;
   if (q2 === "accepted") return 6;
@@ -147,36 +159,54 @@ type Highlight = { step: number; kind: "priority" | "info"; message: string };
 
 function buildHighlights(a: Answers): Highlight[] {
   const h: Highlight[] = [];
-  if (a[3] === "improve") {
+  if (a[5] === "improve") {
     h.push({ step: 2, kind: "priority", message: "Prioridade: você precisará comprovar o idioma antes de aplicar." });
-  } else if (a[3] === "fluent") {
+  } else if (a[5] === "fluent") {
     h.push({ step: 2, kind: "info", message: "Agende um teste oficial (IELTS, CELPIP ou TEF) para formalizar seu nível." });
   }
-  if (a[1] === "stay") {
+  if (a[2] === "stay") {
     h.push({ step: 4, kind: "priority", message: "Seu objetivo é ficar no país — escolher um programa elegível ao PGWP é essencial." });
   }
-  if (a[6] === "understand") {
+  if (a[7] === "understand") {
     h.push({ step: 5, kind: "info", message: "Comece pelo planejamento de custos — é a base da sua comprovação financeira." });
-  } else if (a[6] === "work") {
+  } else if (a[7] === "work") {
     h.push({ step: 5, kind: "info", message: "Study permit permite trabalhar até 24h/semana, mas planeje reservas para os primeiros meses." });
   }
-  if (a[5] === "children") {
+  const hasChildren = a[6] === "children" || a[6] === "partner_children";
+  const hasPartner = a[6] === "partner" || a[6] === "partner_children";
+  if (hasChildren) {
     h.push({ step: 8, kind: "info", message: "Com filhos: pesquise escola pública (gratuita) e cobertura de saúde provincial na sua cidade." });
     h.push({ step: 5, kind: "info", message: "Custos com família aumentam a comprovação financeira exigida pelo IRCC." });
-  } else if (a[5] === "partner") {
-    h.push({ step: 8, kind: "info", message: "Cônjuge pode ter direito a open work permit dependendo do seu programa." });
+  }
+  if (hasPartner) {
+    const level = a[3];
+    if (level === "master" || level === "phd") {
+      h.push({
+        step: 8,
+        kind: "info",
+        message:
+          "Permissão de trabalho do cônjuge: pelas regras atuais do Canadá (desde jan/2025), o cônjuge de estudante de mestrado (16+ meses) ou doutorado geralmente pode solicitar permissão de trabalho aberta. As regras mudam com frequência — confirme os detalhes com um consultor RCIC licenciado.",
+      });
+    } else {
+      h.push({
+        step: 8,
+        kind: "priority",
+        message:
+          "Atenção — permissão de trabalho do cônjuge: pelas regras atuais do Canadá (desde jan/2025), o cônjuge de estudante de bacharelado, diploma ou certificado geralmente NÃO pode obter permissão de trabalho aberta. Isso pode impactar o orçamento familiar. Há exceções para alguns programas profissionais. As regras mudam — confirme sempre com um consultor RCIC licenciado.",
+      });
+    }
   }
   if (a[4] === "unknown") {
     h.push({ step: 3, kind: "info", message: "Explore áreas elegíveis ao PGWP antes de escolher — pode direcionar sua decisão." });
   }
-  if (a[2] === "arrived") {
+  if (a[1] === "arrived") {
     h.push({ step: 8, kind: "priority", message: "Foque em SIN, conta bancária, saúde provincial e moradia definitiva." });
   }
   return h;
 }
 
 function objectiveSummary(a: Answers): string {
-  const obj = a[1];
+  const obj = a[2];
   if (obj === "stay") return "Seu foco é construir carreira e permanecer no Canadá.";
   if (obj === "return") return "Seu foco é ganhar experiência internacional e voltar ao Brasil.";
   return "Você ainda está explorando o caminho — vamos passo a passo.";
