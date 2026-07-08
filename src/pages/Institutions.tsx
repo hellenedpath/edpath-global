@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search, Building2 } from "lucide-react";
+import { Search, Building2, ExternalLink } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -135,6 +135,17 @@ export default function Institutions() {
                   </p>
                 </div>
               </div>
+              <a
+                href={`https://www.google.com/search?q=${encodeURIComponent(
+                  `${it.name} official website`,
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(var(--azul))] hover:text-[hsl(var(--crimson))] transition-colors"
+              >
+                Visitar site oficial
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
             </div>
           ))}
         </div>
@@ -147,9 +158,9 @@ export default function Institutions() {
 
         <p className="mt-12 text-sm text-muted-foreground border-l-2 border-[hsl(var(--crimson))] pl-4 max-w-3xl">
           Lista de instituições públicas com base em dados oficiais do IRCC.
-          Esta lista cobre as principais províncias de destino de estudantes e
-          está sendo expandida. Confirme sempre as informações diretamente com a
-          instituição.
+          Cobre as principais províncias de destino de estudantes e está sendo
+          expandida. O botão leva a uma busca pelo site oficial da instituição —
+          confirme sempre as informações diretamente com a instituição.
         </p>
       </section>
     </>
