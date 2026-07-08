@@ -136,11 +136,11 @@ export default function Institutions() {
                 </div>
               </div>
               <a
-                href={`https://www.google.com/search?q=${encodeURIComponent(
+                href={`https://duckduckgo.com/?q=${encodeURIComponent(
                   `${it.name} official website`,
                 )}`}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer external"
                 className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(var(--azul))] hover:text-[hsl(var(--crimson))] transition-colors"
               >
                 Visitar site oficial
