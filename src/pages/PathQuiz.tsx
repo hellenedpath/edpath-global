@@ -741,8 +741,9 @@ export default function PathQuiz() {
                 </ul>
               )}
 
-              <p className="mt-5 text-xs text-muted-foreground leading-relaxed">
-                Este score é uma orientação baseada nas suas respostas, para ajudar sua reflexão. Não é uma avaliação oficial nem garante resultados. Decisões de imigração devem ser confirmadas com um consultor RCIC licenciado.
+              <IrccNote className="mt-5" />
+              <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
+                Este score é uma orientação baseada nas suas respostas, para ajudar sua reflexão. Não é uma avaliação oficial nem garante resultados. Decisões de imigração devem ser confirmadas com um consultor RCIC licenciado ou nas fontes oficiais do IRCC.
               </p>
             </div>
           );
