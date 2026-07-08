@@ -395,14 +395,14 @@ function computeScore(a: Answers): ScoreResult {
       factors.push({
         kind: "positive",
         message:
-          "No nível escolhido (mestrado/doutorado), seu cônjuge geralmente pode solicitar permissão de trabalho aberta.",
+          "No nível escolhido (mestrado/doutorado), em geral cônjuges costumam poder solicitar permissão de trabalho aberta. Estimativa — não confirma seu caso; confirme com um RCIC ou no IRCC.",
       });
     } else if (level === "bachelor" || level === "college") {
       score -= 10;
       factors.push({
         kind: "warning",
         message:
-          "No nível escolhido, seu cônjuge geralmente NÃO poderá obter permissão de trabalho — pode impactar o orçamento familiar.",
+          "No nível escolhido, em geral cônjuges normalmente NÃO obtêm permissão de trabalho aberta — pode impactar o orçamento familiar. Estimativa — não confirma seu caso; confirme com um RCIC ou no IRCC.",
       });
     }
   }
