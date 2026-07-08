@@ -44,6 +44,36 @@ export type Database = {
         }
         Relationships: []
       }
+      institutions: {
+        Row: {
+          country: string
+          created_at: string
+          id: string
+          name: string
+          province: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          country: string
+          created_at?: string
+          id?: string
+          name: string
+          province: string
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          country?: string
+          created_at?: string
+          id?: string
+          name?: string
+          province?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       programs: {
         Row: {
           cip_code: string | null
