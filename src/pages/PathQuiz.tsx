@@ -775,6 +775,8 @@ export default function PathQuiz() {
                       </div>
                     )}
 
+                    {s.n === 2 && <LanguageTestsGuide />}
+
                     {s.href && s.ctaLabel && (
                       <div className="mt-4">
                         <Button
