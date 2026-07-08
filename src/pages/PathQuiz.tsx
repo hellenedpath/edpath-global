@@ -212,6 +212,157 @@ function objectiveSummary(a: Answers): string {
   return "Você ainda está explorando o caminho — vamos passo a passo.";
 }
 
+// ---------- Compatibility score ----------
+type ScoreFactor = { kind: "positive" | "warning"; message: string };
+type ScoreResult = {
+  percent: number;
+  label: string;
+  tone: "high" | "medium" | "low";
+  factors: ScoreFactor[];
+};
+
+// Áreas com elegibilidade PGWP conhecida no nosso quiz.
+const PGWP_AREA_STATUS: Record<string, "eligible" | "conditional" | "not"> = {
+  it: "eligible",
+  engineering: "eligible",
+  trades: "eligible",
+  health: "eligible",
+  education: "conditional",
+  business: "conditional",
+  arts: "not",
+  unknown: "not",
+};
+
+function computeScore(a: Answers): ScoreResult {
+  let score = 60; // base
+  const factors: ScoreFactor[] = [];
+
+  const objective = a[2];
+  const area = a[4];
+  const language = a[5];
+  const companions = a[6];
+  const level = a[3];
+  const budget = a[7];
+  const pgwp = area ? PGWP_AREA_STATUS[area] : undefined;
+
+  // Área × Objetivo
+  if (objective === "stay") {
+    if (pgwp === "eligible") {
+      score += 20;
+      factors.push({
+        kind: "positive",
+        message: "Sua área é elegível para PGWP — pré-requisito para trabalhar após se formar.",
+      });
+    } else if (pgwp === "conditional") {
+      score += 5;
+      factors.push({
+        kind: "warning",
+        message:
+          "Sua área tem elegibilidade condicional ao PGWP — confirme se o programa específico e a instituição estão na lista oficial.",
+      });
+    } else if (pgwp === "not") {
+      score -= 20;
+      factors.push({
+        kind: "warning",
+        message:
+          "Sua área não aparece como elegível ao PGWP — como seu objetivo é ficar no país, isso é um ponto crítico.",
+      });
+    }
+  } else if (objective === "return") {
+    if (pgwp === "eligible") {
+      score += 5;
+      factors.push({
+        kind: "positive",
+        message: "Sua área é elegível ao PGWP — útil caso queira ganhar experiência de trabalho antes de voltar.",
+      });
+    } else if (pgwp === "not") {
+      score -= 5;
+      factors.push({
+        kind: "warning",
+        message: "Sua área não é elegível ao PGWP, mas como seu objetivo é voltar, o impacto é menor.",
+      });
+    }
+  } else if (objective === "explore") {
+    factors.push({
+      kind: "warning",
+      message: "Você ainda está explorando o objetivo — definir isso vai ajudar a escolher o programa certo.",
+    });
+  }
+
+  // Idioma
+  if (language === "tested") {
+    score += 10;
+    factors.push({
+      kind: "positive",
+      message: "Você já tem teste oficial de idioma — grande passo à frente na candidatura.",
+    });
+  } else if (language === "fluent") {
+    factors.push({
+      kind: "warning",
+      message: "Você fala bem, mas ainda precisa formalizar com um teste oficial (IELTS, CELPIP ou TEF).",
+    });
+  } else if (language === "improve") {
+    score -= 10;
+    factors.push({
+      kind: "warning",
+      message: "Você indicou que precisa melhorar o idioma — resolva antes de aplicar.",
+    });
+  }
+
+  // Cônjuge × nível
+  const hasPartner = companions === "partner" || companions === "partner_children";
+  if (hasPartner) {
+    if (level === "master" || level === "phd") {
+      score += 8;
+      factors.push({
+        kind: "positive",
+        message:
+          "No nível escolhido (mestrado/doutorado), seu cônjuge geralmente pode solicitar permissão de trabalho aberta.",
+      });
+    } else if (level === "bachelor" || level === "college") {
+      score -= 10;
+      factors.push({
+        kind: "warning",
+        message:
+          "No nível escolhido, seu cônjuge geralmente NÃO poderá obter permissão de trabalho — pode impactar o orçamento familiar.",
+      });
+    }
+  }
+
+  // Orçamento
+  if (budget === "planned") {
+    score += 10;
+    factors.push({
+      kind: "positive",
+      message: "Você já tem recursos planejados — reduz o risco financeiro da jornada.",
+    });
+  } else if (budget === "understand") {
+    factors.push({
+      kind: "warning",
+      message: "Você precisa entender melhor os custos — comece pela etapa de planejamento financeiro.",
+    });
+  } else if (budget === "work") {
+    score -= 10;
+    factors.push({
+      kind: "warning",
+      message:
+        "Você planeja depender de trabalho para se manter — study permit limita a 24h/semana; planeje reservas para os primeiros meses.",
+    });
+  }
+
+  const percent = Math.max(0, Math.min(100, Math.round(score)));
+  let label = "Requer atenção";
+  let tone: ScoreResult["tone"] = "low";
+  if (percent >= 80) {
+    label = "Alta compatibilidade";
+    tone = "high";
+  } else if (percent >= 55) {
+    label = "Compatibilidade média";
+    tone = "medium";
+  }
+  return { percent, label, tone, factors };
+}
+
 export default function PathQuiz() {
   const [started, setStarted] = useState(false);
   const [step, setStep] = useState(0); // 0..QUESTIONS.length-1
@@ -234,6 +385,7 @@ export default function PathQuiz() {
 
   const currentStep = useMemo(() => currentStepFromAnswers(answers), [answers]);
   const highlights = useMemo(() => buildHighlights(answers), [answers]);
+  const score = useMemo(() => computeScore(answers), [answers]);
   const highlightsByStep = useMemo(() => {
     const map = new Map<number, Highlight[]>();
     for (const h of highlights) {
@@ -441,6 +593,82 @@ export default function PathQuiz() {
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
           {objectiveSummary(answers)} Abaixo, a trilha completa em 8 etapas com o seu próximo passo destacado.
         </p>
+
+        {/* Compatibility Score */}
+        {(() => {
+          const toneClasses =
+            score.tone === "high"
+              ? { ring: "ring-emerald-500/40", text: "text-emerald-700", bar: "bg-emerald-500", badge: "bg-emerald-100 text-emerald-800" }
+              : score.tone === "medium"
+              ? { ring: "ring-amber-500/40", text: "text-amber-700", bar: "bg-amber-500", badge: "bg-amber-100 text-amber-900" }
+              : { ring: "ring-crimson/40", text: "text-crimson", bar: "bg-crimson", badge: "bg-crimson/10 text-crimson" };
+          const circumference = 2 * Math.PI * 44;
+          const dash = (score.percent / 100) * circumference;
+          return (
+            <div className={`mt-8 rounded-2xl border border-border bg-card p-6 md:p-8 shadow-sm ring-1 ${toneClasses.ring}`}>
+              <div className="flex flex-col md:flex-row md:items-center gap-6">
+                <div className="relative shrink-0" style={{ width: 120, height: 120 }}>
+                  <svg width="120" height="120" viewBox="0 0 120 120" className="-rotate-90">
+                    <circle cx="60" cy="60" r="44" strokeWidth="10" className="stroke-muted fill-none" />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="44"
+                      strokeWidth="10"
+                      strokeLinecap="round"
+                      className={`fill-none ${score.tone === "high" ? "stroke-emerald-500" : score.tone === "medium" ? "stroke-amber-500" : "stroke-crimson"}`}
+                      strokeDasharray={`${dash} ${circumference}`}
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className={`font-display text-3xl font-semibold ${toneClasses.text}`}>{score.percent}%</span>
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Score</span>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="text-xs uppercase tracking-widest text-muted-foreground">
+                    Score de compatibilidade
+                  </div>
+                  <div className="mt-1 flex flex-wrap items-center gap-2">
+                    <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold ${toneClasses.badge}`}>
+                      {score.label}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                    Baseado nas suas respostas sobre objetivo, área, idioma, família e orçamento. Veja abaixo os fatores que compõem seu score.
+                  </p>
+                </div>
+              </div>
+
+              {score.factors.length > 0 && (
+                <ul className="mt-6 grid gap-2">
+                  {score.factors.map((f, i) => (
+                    <li
+                      key={i}
+                      className={[
+                        "flex gap-3 rounded-lg border p-3 text-sm leading-relaxed",
+                        f.kind === "positive"
+                          ? "border-emerald-500/30 bg-emerald-500/5 text-emerald-900"
+                          : "border-amber-500/30 bg-amber-500/5 text-amber-900",
+                      ].join(" ")}
+                    >
+                      {f.kind === "positive" ? (
+                        <Check className="h-4 w-4 mt-0.5 shrink-0 text-emerald-600" />
+                      ) : (
+                        <AlertTriangle className="h-4 w-4 mt-0.5 shrink-0 text-amber-600" />
+                      )}
+                      <span>{f.message}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <p className="mt-5 text-xs text-muted-foreground leading-relaxed">
+                Este score é uma orientação baseada nas suas respostas, para ajudar sua reflexão. Não é uma avaliação oficial nem garante resultados. Decisões de imigração devem ser confirmadas com um consultor RCIC licenciado.
+              </p>
+            </div>
+          );
+        })()}
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Button variant="outline" onClick={reset}>
