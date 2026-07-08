@@ -85,8 +85,13 @@ function LanguageTestsGuide() {
         </p>
       </div>
 
+      <IrccNote
+        className="mt-4"
+        href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/language-requirements.html"
+        linkLabel="Testes de idioma aceitos pelo IRCC"
+      />
       <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
-        <strong>Disclaimer:</strong> as listas de testes e notas mínimas mudam e variam por instituição e programa. Confirme sempre os requisitos atuais diretamente com a instituição e nas fontes oficiais do IRCC. A EdPath orienta de forma imparcial e não vende cursos preparatórios.
+        <strong>Disclaimer:</strong> as listas de testes e notas mínimas mudam e variam por instituição e programa. Em geral, o cenário acima reflete as regras atuais, mas <strong>não confirma o seu caso</strong>. Confirme sempre os requisitos atuais diretamente com a instituição, nas fontes oficiais do IRCC e/ou com um consultor RCIC licenciado. A EdPath orienta de forma imparcial e não vende cursos preparatórios.
       </p>
     </div>
   );
