@@ -218,7 +218,12 @@ function currentStepFromAnswers(a: Answers): number {
   return 1;
 }
 
-type Highlight = { step: number; kind: "priority" | "info"; message: string };
+type Highlight = {
+  step: number;
+  kind: "priority" | "info";
+  message: string;
+  officialLink?: { href: string; label: string };
+};
 
 function buildHighlights(a: Answers): Highlight[] {
   const h: Highlight[] = [];
@@ -248,14 +253,22 @@ function buildHighlights(a: Answers): Highlight[] {
         step: 8,
         kind: "info",
         message:
-          "Permissão de trabalho do cônjuge: pelas regras atuais do Canadá (desde jan/2025), o cônjuge de estudante de mestrado (16+ meses) ou doutorado geralmente pode solicitar permissão de trabalho aberta. As regras mudam com frequência — confirme os detalhes com um consultor RCIC licenciado.",
+          "Permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de mestrado (16+ meses) e doutorado costumam poder solicitar permissão de trabalho aberta. Esta é uma estimativa baseada em regras gerais e não confirma o seu caso. Cada situação tem particularidades — confirme o seu caso específico com um consultor de imigração licenciado (RCIC) ou diretamente no site oficial do IRCC.",
+        officialLink: {
+          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/permit/temporary/spouse-common-law-partner-work-permit.html",
+          label: "Página oficial do IRCC — work permit de cônjuge",
+        },
       });
     } else {
       h.push({
         step: 8,
         kind: "priority",
         message:
-          "Atenção — permissão de trabalho do cônjuge: pelas regras atuais do Canadá (desde jan/2025), o cônjuge de estudante de bacharelado, diploma ou certificado geralmente NÃO pode obter permissão de trabalho aberta. Isso pode impactar o orçamento familiar. Há exceções para alguns programas profissionais. As regras mudam — confirme sempre com um consultor RCIC licenciado.",
+          "Atenção — permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de bacharelado, diploma ou certificado normalmente NÃO podem obter permissão de trabalho aberta (há exceções para alguns programas profissionais). Esta é uma estimativa baseada em regras gerais e não confirma o seu caso — pode impactar o orçamento familiar. Confirme o seu caso específico com um consultor RCIC licenciado ou diretamente no site oficial do IRCC.",
+        officialLink: {
+          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/permit/temporary/spouse-common-law-partner-work-permit.html",
+          label: "Página oficial do IRCC — work permit de cônjuge",
+        },
       });
     }
   }
