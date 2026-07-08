@@ -1,10 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import {
   AlertTriangle,
   Bus,
   Building2,
+  Calculator,
   FileCheck,
   GraduationCap,
   Heart,
@@ -99,6 +102,15 @@ export default function Costs() {
         <p className="mt-8 text-center text-sm text-navy/70 font-medium max-w-2xl mx-auto">
           {t("costs.twoNumbers.note")}
         </p>
+
+        <div className="mt-8 flex justify-center">
+          <Button asChild className="bg-navy hover:bg-navy/90 text-white">
+            <Link to="/simulador-financeiro">
+              <Calculator className="mr-2 h-4 w-4" />
+              Simule seus custos
+            </Link>
+          </Button>
+        </div>
       </section>
 
       {/* Cities */}
