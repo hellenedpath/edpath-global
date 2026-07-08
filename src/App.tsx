@@ -16,6 +16,7 @@ import Canada from "./pages/Canada";
 import PgwpChecker from "./pages/PgwpChecker";
 import PathQuiz from "./pages/PathQuiz";
 import Programs from "./pages/Programs";
+import Institutions from "./pages/Institutions";
 import FinancialSimulator from "./pages/FinancialSimulator";
 
 const queryClient = new QueryClient();
@@ -37,6 +38,8 @@ const App = () => (
             <Route path="/canada/meu-caminho" element={<PathQuiz />} />
             <Route path="/diagnostico" element={<PathQuiz />} />
             <Route path="/programas" element={<Programs />} />
+            <Route path="/canada/instituicoes" element={<Institutions />} />
+            <Route path="/instituicoes" element={<Institutions />} />
             <Route path="/antes-de-comecar" element={<Before />} />
             <Route path="/custos" element={<Costs />} />
             <Route path="/simulador-financeiro" element={<FinancialSimulator />} />

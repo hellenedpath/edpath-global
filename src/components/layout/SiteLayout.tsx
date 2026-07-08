@@ -8,6 +8,7 @@ export default function SiteLayout() {
   const canadaPaths = [
     "/canada",
     "/programas",
+    "/instituicoes",
     "/antes-de-comecar",
     "/custos",
     "/saude",

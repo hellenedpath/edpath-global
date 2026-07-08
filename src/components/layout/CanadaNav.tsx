@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 const items = [
   { key: "path", to: "/meu-caminho", label: "Meu Caminho" },
   { key: "programs", to: "/programas" },
+  { key: "institutions", to: "/canada/instituicoes", label: "Instituições" },
   { key: "pgwp", to: "/canada/pgwp", label: "Verificador PGWP" },
   { key: "before", to: "/antes-de-comecar" },
   { key: "costs", to: "/custos" },
