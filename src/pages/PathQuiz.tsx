@@ -385,6 +385,7 @@ export default function PathQuiz() {
 
   const currentStep = useMemo(() => currentStepFromAnswers(answers), [answers]);
   const highlights = useMemo(() => buildHighlights(answers), [answers]);
+  const score = useMemo(() => computeScore(answers), [answers]);
   const highlightsByStep = useMemo(() => {
     const map = new Map<number, Highlight[]>();
     for (const h of highlights) {
@@ -592,6 +593,82 @@ export default function PathQuiz() {
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
           {objectiveSummary(answers)} Abaixo, a trilha completa em 8 etapas com o seu próximo passo destacado.
         </p>
+
+        {/* Compatibility Score */}
+        {(() => {
+          const toneClasses =
+            score.tone === "high"
+              ? { ring: "ring-emerald-500/40", text: "text-emerald-700", bar: "bg-emerald-500", badge: "bg-emerald-100 text-emerald-800" }
+              : score.tone === "medium"
+              ? { ring: "ring-amber-500/40", text: "text-amber-700", bar: "bg-amber-500", badge: "bg-amber-100 text-amber-900" }
+              : { ring: "ring-crimson/40", text: "text-crimson", bar: "bg-crimson", badge: "bg-crimson/10 text-crimson" };
+          const circumference = 2 * Math.PI * 44;
+          const dash = (score.percent / 100) * circumference;
+          return (
+            <div className={`mt-8 rounded-2xl border border-border bg-card p-6 md:p-8 shadow-sm ring-1 ${toneClasses.ring}`}>
+              <div className="flex flex-col md:flex-row md:items-center gap-6">
+                <div className="relative shrink-0" style={{ width: 120, height: 120 }}>
+                  <svg width="120" height="120" viewBox="0 0 120 120" className="-rotate-90">
+                    <circle cx="60" cy="60" r="44" strokeWidth="10" className="stroke-muted fill-none" />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="44"
+                      strokeWidth="10"
+                      strokeLinecap="round"
+                      className={`fill-none ${score.tone === "high" ? "stroke-emerald-500" : score.tone === "medium" ? "stroke-amber-500" : "stroke-crimson"}`}
+                      strokeDasharray={`${dash} ${circumference}`}
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className={`font-display text-3xl font-semibold ${toneClasses.text}`}>{score.percent}%</span>
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Score</span>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="text-xs uppercase tracking-widest text-muted-foreground">
+                    Score de compatibilidade
+                  </div>
+                  <div className="mt-1 flex flex-wrap items-center gap-2">
+                    <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold ${toneClasses.badge}`}>
+                      {score.label}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                    Baseado nas suas respostas sobre objetivo, área, idioma, família e orçamento. Veja abaixo os fatores que compõem seu score.
+                  </p>
+                </div>
+              </div>
+
+              {score.factors.length > 0 && (
+                <ul className="mt-6 grid gap-2">
+                  {score.factors.map((f, i) => (
+                    <li
+                      key={i}
+                      className={[
+                        "flex gap-3 rounded-lg border p-3 text-sm leading-relaxed",
+                        f.kind === "positive"
+                          ? "border-emerald-500/30 bg-emerald-500/5 text-emerald-900"
+                          : "border-amber-500/30 bg-amber-500/5 text-amber-900",
+                      ].join(" ")}
+                    >
+                      {f.kind === "positive" ? (
+                        <Check className="h-4 w-4 mt-0.5 shrink-0 text-emerald-600" />
+                      ) : (
+                        <AlertTriangle className="h-4 w-4 mt-0.5 shrink-0 text-amber-600" />
+                      )}
+                      <span>{f.message}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <p className="mt-5 text-xs text-muted-foreground leading-relaxed">
+                Este score é uma orientação baseada nas suas respostas, para ajudar sua reflexão. Não é uma avaliação oficial nem garante resultados. Decisões de imigração devem ser confirmadas com um consultor RCIC licenciado.
+              </p>
+            </div>
+          );
+        })()}
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Button variant="outline" onClick={reset}>
