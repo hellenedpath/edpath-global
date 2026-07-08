@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import IrccNote from "@/components/IrccNote";
 import {
   AlertTriangle,
   Building2,
@@ -254,10 +255,11 @@ export default function FinancialSimulator() {
                   </div>
                 </div>
                 <p className="text-sm">
-                  Este é o valor <strong>oficial de prova de fundos</strong>{" "}
+                  Em geral, este é o valor <strong>oficial de prova de fundos</strong>{" "}
                   exigido para o visto de estudo (fora de Quebec, vigente desde
-                  set/2025). É <strong>adicional à mensalidade</strong> e à
-                  passagem. O IRCC atualiza anualmente.
+                  set/2025). Costuma ser <strong>adicional à mensalidade</strong> e à
+                  passagem, e o IRCC atualiza anualmente. Esta é uma orientação
+                  geral e <strong>não confirma o seu caso</strong>.
                 </p>
                 <a
                   href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html"
@@ -268,6 +270,10 @@ export default function FinancialSimulator() {
                   Confirme o valor atual em canada.ca
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
+                <IrccNote
+                  href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html"
+                  linkLabel="Prova de fundos — página oficial do IRCC"
+                />
               </CardContent>
             </Card>
 
@@ -417,13 +423,15 @@ export default function FinancialSimulator() {
           </AlertTitle>
           <AlertDescription className="text-muted-foreground mt-2 leading-relaxed">
             As estimativas de custo de vida são aproximadas e servem apenas para
-            planejamento. Os valores reais variam conforme suas escolhas e o
-            mercado. A prova de fundos é um requisito oficial do governo
-            canadense (IRCC), atualizado anualmente e válido fora de Quebec —
-            confirme sempre o valor atual em canada.ca. Este simulador não
-            substitui aconselhamento financeiro ou de imigração.
+            planejamento. Em geral, os valores reais variam conforme suas
+            escolhas e o mercado. A prova de fundos é um requisito oficial do
+            governo canadense (IRCC), atualizado anualmente e válido fora de
+            Quebec — confirme sempre o valor atual em canada.ca. Este simulador
+            oferece <strong>orientação geral</strong>, <strong>não confirma o seu caso</strong>{" "}
+            e não substitui aconselhamento financeiro ou de imigração (RCIC).
           </AlertDescription>
         </Alert>
+        <IrccNote href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada.html" linkLabel="Study in Canada — IRCC oficial" />
 
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="outline">

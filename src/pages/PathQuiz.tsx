@@ -22,7 +22,9 @@ import {
   RotateCcw,
   Globe,
   Mail,
+  ExternalLink,
 } from "lucide-react";
+import IrccNote from "@/components/IrccNote";
 
 type AnswerKey = string;
 type Answers = Record<number, AnswerKey>;
@@ -83,8 +85,13 @@ function LanguageTestsGuide() {
         </p>
       </div>
 
+      <IrccNote
+        className="mt-4"
+        href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/language-requirements.html"
+        linkLabel="Testes de idioma aceitos pelo IRCC"
+      />
       <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
-        <strong>Disclaimer:</strong> as listas de testes e notas mínimas mudam e variam por instituição e programa. Confirme sempre os requisitos atuais diretamente com a instituição e nas fontes oficiais do IRCC. A EdPath orienta de forma imparcial e não vende cursos preparatórios.
+        <strong>Disclaimer:</strong> as listas de testes e notas mínimas mudam e variam por instituição e programa. Em geral, o cenário acima reflete as regras atuais, mas <strong>não confirma o seu caso</strong>. Confirme sempre os requisitos atuais diretamente com a instituição, nas fontes oficiais do IRCC e/ou com um consultor RCIC licenciado. A EdPath orienta de forma imparcial e não vende cursos preparatórios.
       </p>
     </div>
   );
@@ -218,7 +225,12 @@ function currentStepFromAnswers(a: Answers): number {
   return 1;
 }
 
-type Highlight = { step: number; kind: "priority" | "info"; message: string };
+type Highlight = {
+  step: number;
+  kind: "priority" | "info";
+  message: string;
+  officialLink?: { href: string; label: string };
+};
 
 function buildHighlights(a: Answers): Highlight[] {
   const h: Highlight[] = [];
@@ -248,14 +260,22 @@ function buildHighlights(a: Answers): Highlight[] {
         step: 8,
         kind: "info",
         message:
-          "Permissão de trabalho do cônjuge: pelas regras atuais do Canadá (desde jan/2025), o cônjuge de estudante de mestrado (16+ meses) ou doutorado geralmente pode solicitar permissão de trabalho aberta. As regras mudam com frequência — confirme os detalhes com um consultor RCIC licenciado.",
+          "Permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de mestrado (16+ meses) e doutorado costumam poder solicitar permissão de trabalho aberta. Esta é uma estimativa baseada em regras gerais e não confirma o seu caso. Cada situação tem particularidades — confirme o seu caso específico com um consultor de imigração licenciado (RCIC) ou diretamente no site oficial do IRCC.",
+        officialLink: {
+          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/permit/temporary/spouse-common-law-partner-work-permit.html",
+          label: "Página oficial do IRCC — work permit de cônjuge",
+        },
       });
     } else {
       h.push({
         step: 8,
         kind: "priority",
         message:
-          "Atenção — permissão de trabalho do cônjuge: pelas regras atuais do Canadá (desde jan/2025), o cônjuge de estudante de bacharelado, diploma ou certificado geralmente NÃO pode obter permissão de trabalho aberta. Isso pode impactar o orçamento familiar. Há exceções para alguns programas profissionais. As regras mudam — confirme sempre com um consultor RCIC licenciado.",
+          "Atenção — permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de bacharelado, diploma ou certificado normalmente NÃO podem obter permissão de trabalho aberta (há exceções para alguns programas profissionais). Esta é uma estimativa baseada em regras gerais e não confirma o seu caso — pode impactar o orçamento familiar. Confirme o seu caso específico com um consultor RCIC licenciado ou diretamente no site oficial do IRCC.",
+        officialLink: {
+          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/permit/temporary/spouse-common-law-partner-work-permit.html",
+          label: "Página oficial do IRCC — work permit de cônjuge",
+        },
       });
     }
   }
@@ -380,14 +400,14 @@ function computeScore(a: Answers): ScoreResult {
       factors.push({
         kind: "positive",
         message:
-          "No nível escolhido (mestrado/doutorado), seu cônjuge geralmente pode solicitar permissão de trabalho aberta.",
+          "No nível escolhido (mestrado/doutorado), em geral cônjuges costumam poder solicitar permissão de trabalho aberta. Estimativa — não confirma seu caso; confirme com um RCIC ou no IRCC.",
       });
     } else if (level === "bachelor" || level === "college") {
       score -= 10;
       factors.push({
         kind: "warning",
         message:
-          "No nível escolhido, seu cônjuge geralmente NÃO poderá obter permissão de trabalho — pode impactar o orçamento familiar.",
+          "No nível escolhido, em geral cônjuges normalmente NÃO obtêm permissão de trabalho aberta — pode impactar o orçamento familiar. Estimativa — não confirma seu caso; confirme com um RCIC ou no IRCC.",
       });
     }
   }
@@ -726,8 +746,9 @@ export default function PathQuiz() {
                 </ul>
               )}
 
-              <p className="mt-5 text-xs text-muted-foreground leading-relaxed">
-                Este score é uma orientação baseada nas suas respostas, para ajudar sua reflexão. Não é uma avaliação oficial nem garante resultados. Decisões de imigração devem ser confirmadas com um consultor RCIC licenciado.
+              <IrccNote className="mt-5" />
+              <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
+                Este score é uma orientação baseada nas suas respostas, para ajudar sua reflexão. Não é uma avaliação oficial nem garante resultados. Decisões de imigração devem ser confirmadas com um consultor RCIC licenciado ou nas fontes oficiais do IRCC.
               </p>
             </div>
           );
@@ -832,13 +853,51 @@ export default function PathQuiz() {
                                 h.kind === "priority" ? "text-amber-600" : "text-azul",
                               ].join(" ")}
                             />
-                            <span>{h.message}</span>
+                            <span>
+                              {h.message}
+                              {h.officialLink && (
+                                <>
+                                  {" "}
+                                  <a
+                                    href={h.officialLink.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 font-medium underline hover:no-underline"
+                                  >
+                                    {h.officialLink.label}
+                                    <ExternalLink className="h-3 w-3" />
+                                  </a>
+                                </>
+                              )}
+                            </span>
                           </div>
                         ))}
                       </div>
                     )}
 
                     {s.n === 2 && <LanguageTestsGuide />}
+
+                    {s.n === 4 && (
+                      <IrccNote
+                        className="mt-4"
+                        href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/eligibility.html"
+                        linkLabel="Lista oficial de áreas elegíveis ao PGWP"
+                      />
+                    )}
+                    {s.n === 5 && (
+                      <IrccNote
+                        className="mt-4"
+                        href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html"
+                        linkLabel="Prova de fundos — página oficial do IRCC"
+                      />
+                    )}
+                    {s.n === 8 && (
+                      <IrccNote
+                        className="mt-4"
+                        href="https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/permit/temporary/spouse-common-law-partner-work-permit.html"
+                        linkLabel="Work permit de cônjuge — página oficial do IRCC"
+                      />
+                    )}
 
                     {s.href && s.ctaLabel && (
                       <div className="mt-4">
