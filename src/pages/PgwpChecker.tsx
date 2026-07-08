@@ -4,6 +4,7 @@ import { CheckCircle2, AlertTriangle, Search, Info } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import IrccNote from "@/components/IrccNote";
 import {
   Tooltip,
   TooltipContent,
@@ -139,15 +140,21 @@ export default function PgwpChecker() {
               Sua área de estudo dá direito ao PGWP?
             </h1>
             <p className="mt-4 text-lg text-white/80 leading-relaxed">
-              Descubra se o seu campo de estudo é elegível para a permissão de
-              trabalho pós-graduação (PGWP), com base na lista oficial do
-              governo canadense.
+              Descubra, em geral, se um campo de estudo costuma ser elegível
+              para a permissão de trabalho pós-graduação (PGWP), com base na
+              lista oficial do governo canadense. Esta é uma orientação — não
+              confirma o seu caso específico.
             </p>
           </div>
         </div>
       </section>
 
       <section className="container py-10 md:py-14">
+        <IrccNote
+          className="mb-6"
+          href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/eligibility.html"
+          linkLabel="Regras oficiais do PGWP no IRCC"
+        />
         {/* Search + filters */}
         <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-sm">
           <div className="relative">
@@ -310,10 +317,12 @@ export default function PgwpChecker() {
           <p className="font-medium text-foreground mb-1">Aviso importante</p>
           <p>
             Esta informação é baseada na lista oficial de campos de estudo
-            elegíveis para PGWP do IRCC e serve como orientação. A elegibilidade
-            final depende também da instituição (DLI), da duração e do idioma.
-            Confirme sempre nas fontes oficiais do IRCC e, para decisões de
-            imigração, consulte um consultor RCIC licenciado.
+            elegíveis para PGWP do IRCC e serve como <strong>orientação geral</strong>.
+            Em geral, a elegibilidade final também depende da instituição
+            (DLI), da duração do programa e do idioma. Esta ferramenta{" "}
+            <strong>não confirma o seu caso específico</strong>. Confirme sempre
+            nas fontes oficiais do IRCC e, para decisões de imigração, consulte
+            um consultor RCIC licenciado.
           </p>
         </div>
       </section>
