@@ -27,6 +27,69 @@ import {
 type AnswerKey = string;
 type Answers = Record<number, AnswerKey>;
 
+function LanguageTestsGuide() {
+  return (
+    <div className="mt-5 rounded-xl border border-azul/30 bg-azul/5 p-4 md:p-5">
+      <div className="flex items-center gap-2">
+        <Languages className="h-4 w-4 text-azul" />
+        <h4 className="font-display text-base md:text-lg font-semibold text-navy">
+          Testes de idioma: escolha o certo para o seu objetivo
+        </h4>
+      </div>
+
+      <div className="mt-3 flex gap-2 rounded-md border border-amber-500/40 bg-amber-500/10 p-3 text-sm leading-relaxed text-amber-900">
+        <AlertTriangle className="h-4 w-4 mt-0.5 shrink-0 text-amber-600" />
+        <p>
+          <strong>Atenção:</strong> o teste aceito para <strong>ENTRAR</strong> na universidade pode não ser o mesmo aceito para <strong>IMIGRAÇÃO</strong> (residência permanente). Escolher o teste errado pode fazer você ter que repetir o exame depois. Verifique os dois objetivos antes de decidir.
+        </p>
+      </div>
+
+      <div className="mt-4 grid gap-3 md:grid-cols-2">
+        <div className="rounded-lg border border-border bg-card p-4">
+          <div className="text-xs uppercase tracking-widest text-muted-foreground">Seção 1</div>
+          <h5 className="mt-1 font-semibold text-navy">Para admissão na instituição (inglês)</h5>
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            As universidades canadenses geralmente aceitam: <strong>IELTS Academic</strong>, <strong>TOEFL iBT</strong>, <strong>Duolingo English Test (DET)</strong>, <strong>PTE Academic</strong>, <strong>Cambridge English (C1 Advanced/C2 Proficiency)</strong> e <strong>CAEL</strong>.
+          </p>
+          <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+            Cada instituição define quais testes aceita e a nota mínima — alguns programas de pós-graduação são mais restritos (ex.: podem não aceitar Duolingo). Sempre confirme com a instituição.
+          </p>
+        </div>
+
+        <div className="rounded-lg border border-crimson/30 bg-crimson/5 p-4">
+          <div className="text-xs uppercase tracking-widest text-crimson/80">Seção 2</div>
+          <h5 className="mt-1 font-semibold text-navy">Para imigração / PR (inglês)</h5>
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            O <strong>IRCC</strong> aceita uma lista mais restrita: <strong>IELTS General Training</strong>, <strong>CELPIP-General</strong> e <strong>PTE Core</strong>.
+          </p>
+          <p className="mt-2 text-sm text-navy leading-relaxed">
+            <strong>Duolingo, TOEFL e Cambridge NÃO são aceitos</strong> pelo IRCC para Express Entry / residência permanente.
+          </p>
+        </div>
+
+        <div className="rounded-lg border border-border bg-card p-4 md:col-span-2">
+          <div className="text-xs uppercase tracking-widest text-muted-foreground">Seção 3</div>
+          <h5 className="mt-1 font-semibold text-navy">Para francês</h5>
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            Admissão varia por instituição. Para imigração, o IRCC aceita <strong>TEF Canada</strong> e <strong>TCF Canada</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-4 flex gap-2 rounded-md border border-azul/30 bg-card p-3 text-sm leading-relaxed text-navy">
+        <Sparkles className="h-4 w-4 mt-0.5 shrink-0 text-azul" />
+        <p>
+          <strong>Dica prática:</strong> se o seu objetivo inclui ficar no Canadá (PR) no futuro, considere fazer desde já um teste aceito tanto para admissão quanto para imigração, ou planeje que precisará de dois testes diferentes.
+        </p>
+      </div>
+
+      <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
+        <strong>Disclaimer:</strong> as listas de testes e notas mínimas mudam e variam por instituição e programa. Confirme sempre os requisitos atuais diretamente com a instituição e nas fontes oficiais do IRCC. A EdPath orienta de forma imparcial e não vende cursos preparatórios.
+      </p>
+    </div>
+  );
+}
+
 type Question = {
   id: number;
   title: string;
@@ -774,6 +837,8 @@ export default function PathQuiz() {
                         ))}
                       </div>
                     )}
+
+                    {s.n === 2 && <LanguageTestsGuide />}
 
                     {s.href && s.ctaLabel && (
                       <div className="mt-4">
