@@ -847,13 +847,51 @@ export default function PathQuiz() {
                                 h.kind === "priority" ? "text-amber-600" : "text-azul",
                               ].join(" ")}
                             />
-                            <span>{h.message}</span>
+                            <span>
+                              {h.message}
+                              {h.officialLink && (
+                                <>
+                                  {" "}
+                                  <a
+                                    href={h.officialLink.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 font-medium underline hover:no-underline"
+                                  >
+                                    {h.officialLink.label}
+                                    <ExternalLink className="h-3 w-3" />
+                                  </a>
+                                </>
+                              )}
+                            </span>
                           </div>
                         ))}
                       </div>
                     )}
 
                     {s.n === 2 && <LanguageTestsGuide />}
+
+                    {s.n === 4 && (
+                      <IrccNote
+                        className="mt-4"
+                        href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/eligibility.html"
+                        linkLabel="Lista oficial de áreas elegíveis ao PGWP"
+                      />
+                    )}
+                    {s.n === 5 && (
+                      <IrccNote
+                        className="mt-4"
+                        href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html"
+                        linkLabel="Prova de fundos — página oficial do IRCC"
+                      />
+                    )}
+                    {s.n === 8 && (
+                      <IrccNote
+                        className="mt-4"
+                        href="https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/permit/temporary/spouse-common-law-partner-work-permit.html"
+                        linkLabel="Work permit de cônjuge — página oficial do IRCC"
+                      />
+                    )}
 
                     {s.href && s.ctaLabel && (
                       <div className="mt-4">
