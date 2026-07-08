@@ -262,7 +262,7 @@ function buildHighlights(a: Answers): Highlight[] {
         message:
           "Permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de mestrado (16+ meses) e doutorado costumam poder solicitar permissão de trabalho aberta. Esta é uma estimativa baseada em regras gerais e não confirma o seu caso. Cada situação tem particularidades — confirme o seu caso específico com um consultor de imigração licenciado (RCIC) ou diretamente no site oficial do IRCC.",
         officialLink: {
-          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/permit/temporary/spouse-common-law-partner-work-permit.html",
+          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/help-your-spouse-common-law-partner-work-canada.html",
           label: "Página oficial do IRCC — work permit de cônjuge",
         },
       });
@@ -273,7 +273,7 @@ function buildHighlights(a: Answers): Highlight[] {
         message:
           "Atenção — permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de bacharelado, diploma ou certificado normalmente NÃO podem obter permissão de trabalho aberta (há exceções para alguns programas profissionais). Esta é uma estimativa baseada em regras gerais e não confirma o seu caso — pode impactar o orçamento familiar. Confirme o seu caso específico com um consultor RCIC licenciado ou diretamente no site oficial do IRCC.",
         officialLink: {
-          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/permit/temporary/spouse-common-law-partner-work-permit.html",
+          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/help-your-spouse-common-law-partner-work-canada.html",
           label: "Página oficial do IRCC — work permit de cônjuge",
         },
       });
@@ -894,7 +894,7 @@ export default function PathQuiz() {
                     {s.n === 8 && (
                       <IrccNote
                         className="mt-4"
-                        href="https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/permit/temporary/spouse-common-law-partner-work-permit.html"
+                        href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/help-your-spouse-common-law-partner-work-canada.html"
                         linkLabel="Work permit de cônjuge — página oficial do IRCC"
                       />
                     )}
