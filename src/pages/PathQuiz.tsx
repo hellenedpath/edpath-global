@@ -212,6 +212,157 @@ function objectiveSummary(a: Answers): string {
   return "Você ainda está explorando o caminho — vamos passo a passo.";
 }
 
+// ---------- Compatibility score ----------
+type ScoreFactor = { kind: "positive" | "warning"; message: string };
+type ScoreResult = {
+  percent: number;
+  label: string;
+  tone: "high" | "medium" | "low";
+  factors: ScoreFactor[];
+};
+
+// Áreas com elegibilidade PGWP conhecida no nosso quiz.
+const PGWP_AREA_STATUS: Record<string, "eligible" | "conditional" | "not"> = {
+  it: "eligible",
+  engineering: "eligible",
+  trades: "eligible",
+  health: "eligible",
+  education: "conditional",
+  business: "conditional",
+  arts: "not",
+  unknown: "not",
+};
+
+function computeScore(a: Answers): ScoreResult {
+  let score = 60; // base
+  const factors: ScoreFactor[] = [];
+
+  const objective = a[2];
+  const area = a[4];
+  const language = a[5];
+  const companions = a[6];
+  const level = a[3];
+  const budget = a[7];
+  const pgwp = area ? PGWP_AREA_STATUS[area] : undefined;
+
+  // Área × Objetivo
+  if (objective === "stay") {
+    if (pgwp === "eligible") {
+      score += 20;
+      factors.push({
+        kind: "positive",
+        message: "Sua área é elegível para PGWP — pré-requisito para trabalhar após se formar.",
+      });
+    } else if (pgwp === "conditional") {
+      score += 5;
+      factors.push({
+        kind: "warning",
+        message:
+          "Sua área tem elegibilidade condicional ao PGWP — confirme se o programa específico e a instituição estão na lista oficial.",
+      });
+    } else if (pgwp === "not") {
+      score -= 20;
+      factors.push({
+        kind: "warning",
+        message:
+          "Sua área não aparece como elegível ao PGWP — como seu objetivo é ficar no país, isso é um ponto crítico.",
+      });
+    }
+  } else if (objective === "return") {
+    if (pgwp === "eligible") {
+      score += 5;
+      factors.push({
+        kind: "positive",
+        message: "Sua área é elegível ao PGWP — útil caso queira ganhar experiência de trabalho antes de voltar.",
+      });
+    } else if (pgwp === "not") {
+      score -= 5;
+      factors.push({
+        kind: "warning",
+        message: "Sua área não é elegível ao PGWP, mas como seu objetivo é voltar, o impacto é menor.",
+      });
+    }
+  } else if (objective === "explore") {
+    factors.push({
+      kind: "warning",
+      message: "Você ainda está explorando o objetivo — definir isso vai ajudar a escolher o programa certo.",
+    });
+  }
+
+  // Idioma
+  if (language === "tested") {
+    score += 10;
+    factors.push({
+      kind: "positive",
+      message: "Você já tem teste oficial de idioma — grande passo à frente na candidatura.",
+    });
+  } else if (language === "fluent") {
+    factors.push({
+      kind: "warning",
+      message: "Você fala bem, mas ainda precisa formalizar com um teste oficial (IELTS, CELPIP ou TEF).",
+    });
+  } else if (language === "improve") {
+    score -= 10;
+    factors.push({
+      kind: "warning",
+      message: "Você indicou que precisa melhorar o idioma — resolva antes de aplicar.",
+    });
+  }
+
+  // Cônjuge × nível
+  const hasPartner = companions === "partner" || companions === "partner_children";
+  if (hasPartner) {
+    if (level === "master" || level === "phd") {
+      score += 8;
+      factors.push({
+        kind: "positive",
+        message:
+          "No nível escolhido (mestrado/doutorado), seu cônjuge geralmente pode solicitar permissão de trabalho aberta.",
+      });
+    } else if (level === "bachelor" || level === "college") {
+      score -= 10;
+      factors.push({
+        kind: "warning",
+        message:
+          "No nível escolhido, seu cônjuge geralmente NÃO poderá obter permissão de trabalho — pode impactar o orçamento familiar.",
+      });
+    }
+  }
+
+  // Orçamento
+  if (budget === "planned") {
+    score += 10;
+    factors.push({
+      kind: "positive",
+      message: "Você já tem recursos planejados — reduz o risco financeiro da jornada.",
+    });
+  } else if (budget === "understand") {
+    factors.push({
+      kind: "warning",
+      message: "Você precisa entender melhor os custos — comece pela etapa de planejamento financeiro.",
+    });
+  } else if (budget === "work") {
+    score -= 10;
+    factors.push({
+      kind: "warning",
+      message:
+        "Você planeja depender de trabalho para se manter — study permit limita a 24h/semana; planeje reservas para os primeiros meses.",
+    });
+  }
+
+  const percent = Math.max(0, Math.min(100, Math.round(score)));
+  let label = "Requer atenção";
+  let tone: ScoreResult["tone"] = "low";
+  if (percent >= 80) {
+    label = "Alta compatibilidade";
+    tone = "high";
+  } else if (percent >= 55) {
+    label = "Compatibilidade média";
+    tone = "medium";
+  }
+  return { percent, label, tone, factors };
+}
+
 export default function PathQuiz() {
   const [started, setStarted] = useState(false);
   const [step, setStep] = useState(0); // 0..QUESTIONS.length-1
