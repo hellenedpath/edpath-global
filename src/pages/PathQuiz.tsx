@@ -22,7 +22,9 @@ import {
   RotateCcw,
   Globe,
   Mail,
+  ExternalLink,
 } from "lucide-react";
+import IrccNote from "@/components/IrccNote";
 
 type AnswerKey = string;
 type Answers = Record<number, AnswerKey>;
