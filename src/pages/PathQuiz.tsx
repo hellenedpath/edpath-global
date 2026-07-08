@@ -678,6 +678,9 @@ export default function PathQuiz() {
           <Button asChild className="bg-navy hover:bg-navy/90 text-white">
             <Link to="/canada">Ir ao portal Canadá</Link>
           </Button>
+          <Button asChild variant="outline" className="border-crimson text-crimson hover:bg-crimson/5">
+            <Link to="/simulador-financeiro">Simule seus custos</Link>
+          </Button>
         </div>
 
         {/* Timeline */}
