@@ -10,6 +10,7 @@ type Institution = {
   province: string;
   type: string;
   country: string;
+  website: string | null;
 };
 
 const PROVINCES = [
@@ -34,7 +35,7 @@ export default function Institutions() {
     (async () => {
       const { data, error } = await supabase
         .from("institutions")
-        .select("id,name,province,type,country")
+        .select("id,name,province,type,country,website")
         .order("name", { ascending: true });
       if (!error && data) setItems(data as Institution[]);
       setLoading(false);
@@ -136,9 +137,12 @@ export default function Institutions() {
                 </div>
               </div>
               <a
-                href={`https://duckduckgo.com/?q=${encodeURIComponent(
-                  `${it.name} official website`,
-                )}`}
+                href={
+                  it.website ??
+                  `https://duckduckgo.com/?q=${encodeURIComponent(
+                    `${it.name} official website`,
+                  )}`
+                }
                 target="_blank"
                 rel="noopener noreferrer external"
                 className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(var(--azul))] hover:text-[hsl(var(--crimson))] transition-colors"

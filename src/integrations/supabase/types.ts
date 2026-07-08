@@ -53,6 +53,7 @@ export type Database = {
           province: string
           type: string
           updated_at: string
+          website: string | null
         }
         Insert: {
           country: string
@@ -62,6 +63,7 @@ export type Database = {
           province: string
           type: string
           updated_at?: string
+          website?: string | null
         }
         Update: {
           country?: string
@@ -71,6 +73,7 @@ export type Database = {
           province?: string
           type?: string
           updated_at?: string
+          website?: string | null
         }
         Relationships: []
       }
