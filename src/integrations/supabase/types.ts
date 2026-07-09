@@ -48,6 +48,7 @@ export type Database = {
         Row: {
           country: string
           created_at: string
+          display_name: string | null
           id: string
           name: string
           province: string
@@ -58,6 +59,7 @@ export type Database = {
         Insert: {
           country: string
           created_at?: string
+          display_name?: string | null
           id?: string
           name: string
           province: string
@@ -68,6 +70,7 @@ export type Database = {
         Update: {
           country?: string
           created_at?: string
+          display_name?: string | null
           id?: string
           name?: string
           province?: string
