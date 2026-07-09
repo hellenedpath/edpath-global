@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search, GraduationCap, Wrench, ExternalLink } from "lucide-react";
+import { Search, Building2, ExternalLink } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -31,17 +31,14 @@ type Kind = "university" | "college";
 
 const classify = (name: string): Kind => {
   const n = name.toLowerCase();
-  if (n.includes("college") || n.includes("collège") || n.includes("institute") || n.includes("polytechnic")) {
-    return "college";
-  }
   if (n.includes("university") || n.includes("université")) {
     return "university";
   }
-  return "university";
+  return "college";
 };
 
 const KINDS = [
-  { key: "all", label: "Todas" },
+  { key: "all", label: "Todos os tipos" },
   { key: "university", label: "Universidades" },
   { key: "college", label: "Colleges" },
 ] as const;
@@ -170,30 +167,22 @@ export default function Institutions() {
         {/* List */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((it) => {
-            const k = classify(it.display_name ?? it.name);
-            const isUni = k === "university";
-            const Icon = isUni ? GraduationCap : Wrench;
+            const isUni = classify(it.display_name ?? it.name) === "university";
             return (
             <div
               key={it.id}
               className="rounded-xl border border-border bg-card p-5 hover:border-[hsl(var(--crimson))] hover:shadow-md transition-all"
             >
               <div className="flex items-start gap-3">
-                <div
-                  className={
-                    isUni
-                      ? "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))]"
-                      : "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-navy/10 text-navy"
-                  }
-                >
-                  <Icon className="h-5 w-5" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))]">
+                  <Building2 className="h-5 w-5" />
                 </div>
                 <div className="min-w-0">
                   <span
                     className={
                       isUni
-                        ? "inline-block text-[10px] font-medium uppercase tracking-wider text-[hsl(var(--azul))] mb-1"
-                        : "inline-block text-[10px] font-medium uppercase tracking-wider text-navy mb-1"
+                        ? "inline-block rounded-full px-2 py-0.5 text-[10px] font-medium bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))] mb-1.5"
+                        : "inline-block rounded-full px-2 py-0.5 text-[10px] font-medium bg-[hsl(var(--crimson))]/10 text-[hsl(var(--crimson))] mb-1.5"
                     }
                   >
                     {isUni ? "Universidade" : "College"}
