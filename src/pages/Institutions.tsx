@@ -12,6 +12,7 @@ type Institution = {
   country: string;
   website: string | null;
   display_name: string | null;
+  city: string | null;
 };
 
 const PROVINCES = [
@@ -36,7 +37,7 @@ export default function Institutions() {
     (async () => {
       const { data, error } = await supabase
         .from("institutions")
-        .select("id,name,province,type,country,website,display_name")
+        .select("id,name,province,type,country,website,display_name,city")
         .order("display_name", { ascending: true });
       if (!error && data) setItems(data as Institution[]);
       setLoading(false);
@@ -136,7 +137,7 @@ export default function Institutions() {
                     {it.display_name ?? it.name}
                   </h3>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    {provinceLabel(it.province)}
+                    {it.city ? `${it.city}, ${provinceLabel(it.province)}` : provinceLabel(it.province)}
                   </p>
                 </div>
               </div>
