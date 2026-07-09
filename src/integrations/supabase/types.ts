@@ -46,6 +46,7 @@ export type Database = {
       }
       institutions: {
         Row: {
+          city: string | null
           country: string
           created_at: string
           display_name: string | null
@@ -57,6 +58,7 @@ export type Database = {
           website: string | null
         }
         Insert: {
+          city?: string | null
           country: string
           created_at?: string
           display_name?: string | null
@@ -68,6 +70,7 @@ export type Database = {
           website?: string | null
         }
         Update: {
+          city?: string | null
           country?: string
           created_at?: string
           display_name?: string | null
