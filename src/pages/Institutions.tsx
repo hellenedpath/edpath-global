@@ -11,6 +11,7 @@ type Institution = {
   type: string;
   country: string;
   website: string | null;
+  display_name: string | null;
 };
 
 const PROVINCES = [
@@ -35,8 +36,8 @@ export default function Institutions() {
     (async () => {
       const { data, error } = await supabase
         .from("institutions")
-        .select("id,name,province,type,country,website")
-        .order("name", { ascending: true });
+        .select("id,name,province,type,country,website,display_name")
+        .order("display_name", { ascending: true });
       if (!error && data) setItems(data as Institution[]);
       setLoading(false);
     })();
@@ -46,7 +47,10 @@ export default function Institutions() {
     const q = query.trim().toLowerCase();
     return items.filter((it) => {
       if (province !== "all" && it.province !== province) return false;
-      if (q && !it.name.toLowerCase().includes(q)) return false;
+      if (q) {
+        const hay = `${it.display_name ?? ""} ${it.name}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
       return true;
     });
   }, [items, province, query]);
@@ -129,7 +133,7 @@ export default function Institutions() {
                 </div>
                 <div className="min-w-0">
                   <h3 className="font-semibold text-foreground leading-snug">
-                    {it.name}
+                    {it.display_name ?? it.name}
                   </h3>
                   <p className="mt-1 text-sm text-muted-foreground">
                     {provinceLabel(it.province)}
@@ -140,7 +144,7 @@ export default function Institutions() {
                 href={
                   it.website ??
                   `https://duckduckgo.com/?q=${encodeURIComponent(
-                    `${it.name} official website`,
+                    `${it.display_name ?? it.name} official website`,
                   )}`
                 }
                 target="_blank"
