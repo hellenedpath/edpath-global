@@ -27,15 +27,15 @@ type Item = { to: string; label: string };
 
 const primary: Item = { to: "/meu-caminho", label: "Meu Caminho" };
 
-const tools: Item[] = [
+const beforeYouGo: Item[] = [
   { to: "/canada/pgwp", label: "Verificador PGWP" },
   { to: "/canada/instituicoes", label: "Instituições" },
   { to: "/programas", label: "Explorar Programas" },
   { to: "/custos", label: "Simulador de Custos" },
+  { to: "/antes-de-comecar", label: "Antes de Começar" },
 ];
 
-const journey: Item[] = [
-  { to: "/antes-de-comecar", label: "Antes de Começar" },
+const onArrival: Item[] = [
   { to: "/custos", label: "Custos" },
   { to: "/saude", label: "Saúde" },
   { to: "/familia", label: "Família" },
@@ -83,23 +83,23 @@ function HoverDropdown({
           <button
             type="button"
             className={cn(
-              "shrink-0 inline-flex items-center gap-1 px-3 py-1.5 text-sm rounded-md transition-colors text-muted-foreground hover:text-foreground hover:bg-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--azul))]",
-              isActive && "bg-muted text-foreground font-medium",
+              "shrink-0 inline-flex items-center gap-1 px-1 py-1.5 text-sm transition-colors text-muted-foreground hover:text-[hsl(var(--azul))] focus:outline-none focus-visible:text-[hsl(var(--azul))]",
+              (isActive || open) && "text-foreground",
             )}
           >
             {label}
             <ChevronDown
               className={cn(
-                "h-3.5 w-3.5 transition-transform",
-                open && "rotate-180",
+                "h-3.5 w-3.5 opacity-60 transition-transform duration-200",
+                open && "rotate-180 opacity-100",
               )}
             />
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="start"
-          sideOffset={6}
-          className="min-w-56"
+          sideOffset={10}
+          className="min-w-60 rounded-xl border-border/60 bg-background/95 backdrop-blur-md p-2 shadow-[0_20px_60px_-20px_hsl(var(--navy)/0.25)] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0"
           onMouseEnter={cancelClose}
           onMouseLeave={scheduleClose}
         >
@@ -112,8 +112,8 @@ function HoverDropdown({
                 navigate(it.to);
               }}
               className={cn(
-                "cursor-pointer",
-                activePath === it.to && "bg-muted font-medium text-foreground",
+                "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
+                activePath === it.to && "text-foreground font-medium",
               )}
             >
               {it.label}
@@ -134,28 +134,34 @@ export function CanadaNav() {
 
   return (
     <div className="border-b border-border bg-background sticky top-16 z-40">
-      <div className="container flex items-center gap-3 py-2">
-        <div className="flex items-center gap-1.5 shrink-0 pr-3 mr-1 border-r border-border text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-          <span className="text-base leading-none">🇨🇦</span>
-          <span>{t("countries.canadaMenuLabel")}</span>
+      <div className="container flex items-center gap-6 py-3">
+        <div className="flex items-center gap-1.5 shrink-0 text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/80">
+          <span className="text-sm leading-none">🇨🇦</span>
+          <span className="hidden sm:inline">{t("countries.canadaMenuLabel")}</span>
         </div>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-2 flex-1">
+        <nav className="hidden md:flex items-center gap-7 flex-1">
           <NavLink
             to={primary.to}
             className={cn(
-              "shrink-0 inline-flex items-center px-3.5 py-1.5 text-sm rounded-md font-medium transition-colors border",
+              "group relative shrink-0 text-sm font-semibold transition-colors",
               primaryActive
-                ? "bg-[hsl(var(--crimson))] text-white border-transparent hover:bg-[hsl(var(--crimson))]/90"
-                : "bg-[hsl(var(--azul))] text-white border-transparent hover:bg-[hsl(var(--azul))]/90",
+                ? "text-[hsl(var(--crimson))]"
+                : "text-foreground hover:text-[hsl(var(--azul))]",
             )}
           >
             {primary.label}
+            <span
+              className={cn(
+                "pointer-events-none absolute -bottom-1 left-0 h-[2px] rounded-full bg-[hsl(var(--crimson))] transition-all duration-300",
+                primaryActive ? "w-full" : "w-4 group-hover:w-full group-hover:bg-[hsl(var(--azul))]",
+              )}
+            />
           </NavLink>
 
-          <HoverDropdown label="Ferramentas" items={tools} activePath={pathname} />
-          <HoverDropdown label="Sua Jornada" items={journey} activePath={pathname} />
+          <HoverDropdown label="Antes de ir" items={beforeYouGo} activePath={pathname} />
+          <HoverDropdown label="Ao chegar" items={onArrival} activePath={pathname} />
         </nav>
 
         {/* Mobile trigger */}
@@ -181,23 +187,23 @@ export function CanadaNav() {
                   to={primary.to}
                   onClick={() => setMobileOpen(false)}
                   className={cn(
-                    "block w-full text-center px-4 py-2.5 rounded-md font-medium transition-colors",
+                    "block w-full px-2 py-3 text-base font-semibold border-b border-border transition-colors",
                     primaryActive
-                      ? "bg-[hsl(var(--crimson))] text-white"
-                      : "bg-[hsl(var(--azul))] text-white hover:bg-[hsl(var(--azul))]/90",
+                      ? "text-[hsl(var(--crimson))]"
+                      : "text-foreground hover:text-[hsl(var(--azul))]",
                   )}
                 >
                   {primary.label}
                 </NavLink>
 
                 <Accordion type="multiple" className="w-full">
-                  <AccordionItem value="tools">
+                  <AccordionItem value="before">
                     <AccordionTrigger className="text-sm font-medium">
-                      Ferramentas
+                      Antes de ir
                     </AccordionTrigger>
                     <AccordionContent>
                       <ul className="flex flex-col">
-                        {tools.map((it) => (
+                        {beforeYouGo.map((it) => (
                           <li key={it.to}>
                             <NavLink
                               to={it.to}
@@ -216,13 +222,13 @@ export function CanadaNav() {
                       </ul>
                     </AccordionContent>
                   </AccordionItem>
-                  <AccordionItem value="journey">
+                  <AccordionItem value="arrival">
                     <AccordionTrigger className="text-sm font-medium">
-                      Sua Jornada
+                      Ao chegar
                     </AccordionTrigger>
                     <AccordionContent>
                       <ul className="flex flex-col">
-                        {journey.map((it) => (
+                        {onArrival.map((it) => (
                           <li key={it.to}>
                             <NavLink
                               to={it.to}
