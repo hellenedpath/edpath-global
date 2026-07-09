@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search, Building2, ExternalLink } from "lucide-react";
+import { Search, GraduationCap, Wrench, ExternalLink } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -27,10 +27,30 @@ const PROVINCES = [
 const provinceLabel = (p: string) =>
   PROVINCES.find((x) => x.key === p)?.label ?? p;
 
+type Kind = "university" | "college";
+
+const classify = (name: string): Kind => {
+  const n = name.toLowerCase();
+  if (n.includes("college") || n.includes("collège") || n.includes("institute") || n.includes("polytechnic")) {
+    return "college";
+  }
+  if (n.includes("university") || n.includes("université")) {
+    return "university";
+  }
+  return "university";
+};
+
+const KINDS = [
+  { key: "all", label: "Todas" },
+  { key: "university", label: "Universidades" },
+  { key: "college", label: "Colleges" },
+] as const;
+
 export default function Institutions() {
   const [items, setItems] = useState<Institution[]>([]);
   const [loading, setLoading] = useState(true);
   const [province, setProvince] = useState<string>("all");
+  const [kind, setKind] = useState<string>("all");
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -48,13 +68,14 @@ export default function Institutions() {
     const q = query.trim().toLowerCase();
     return items.filter((it) => {
       if (province !== "all" && it.province !== province) return false;
+      if (kind !== "all" && classify(it.display_name ?? it.name) !== kind) return false;
       if (q) {
         const hay = `${it.display_name ?? ""} ${it.name}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
-  }, [items, province, query]);
+  }, [items, province, kind, query]);
 
   const countLabel = useMemo(() => {
     const n = filtered.length;
@@ -77,6 +98,10 @@ export default function Institutions() {
             </h1>
             <p className="mt-5 text-lg text-white/80 leading-relaxed max-w-2xl">
               Universidades e colleges públicos reconhecidos, organizados por província.
+            </p>
+            <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-2xl">
+              No Canadá, <strong className="text-white">universidades</strong> oferecem bacharelado, mestrado e doutorado, com foco acadêmico.{" "}
+              <strong className="text-white">Colleges</strong> oferecem diplomas e certificados com foco prático e profissional — geralmente mais curtos e acessíveis. Ambos podem dar direito ao PGWP, dependendo do programa.
             </p>
           </div>
         </div>
@@ -116,6 +141,27 @@ export default function Institutions() {
             })}
           </div>
 
+          <div className="flex flex-wrap gap-2">
+            {KINDS.map((k) => {
+              const active = kind === k.key;
+              return (
+                <Button
+                  key={k.key}
+                  variant={active ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setKind(k.key)}
+                  className={
+                    active
+                      ? "bg-navy hover:bg-navy/90 text-white border-transparent"
+                      : ""
+                  }
+                >
+                  {k.label}
+                </Button>
+              );
+            })}
+          </div>
+
           <p className="text-sm text-muted-foreground">
             {loading ? "Carregando..." : countLabel}
           </p>
@@ -123,16 +169,35 @@ export default function Institutions() {
 
         {/* List */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((it) => (
+          {filtered.map((it) => {
+            const k = classify(it.display_name ?? it.name);
+            const isUni = k === "university";
+            const Icon = isUni ? GraduationCap : Wrench;
+            return (
             <div
               key={it.id}
               className="rounded-xl border border-border bg-card p-5 hover:border-[hsl(var(--crimson))] hover:shadow-md transition-all"
             >
               <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))]">
-                  <Building2 className="h-5 w-5" />
+                <div
+                  className={
+                    isUni
+                      ? "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))]"
+                      : "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-navy/10 text-navy"
+                  }
+                >
+                  <Icon className="h-5 w-5" />
                 </div>
                 <div className="min-w-0">
+                  <span
+                    className={
+                      isUni
+                        ? "inline-block text-[10px] font-medium uppercase tracking-wider text-[hsl(var(--azul))] mb-1"
+                        : "inline-block text-[10px] font-medium uppercase tracking-wider text-navy mb-1"
+                    }
+                  >
+                    {isUni ? "Universidade" : "College"}
+                  </span>
                   <h3 className="font-semibold text-foreground leading-snug">
                     {it.display_name ?? it.name}
                   </h3>
@@ -156,7 +221,8 @@ export default function Institutions() {
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {!loading && filtered.length === 0 && (
