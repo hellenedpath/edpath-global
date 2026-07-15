@@ -15,13 +15,13 @@ export default function Index() {
           aria-hidden="true"
           width={1920}
           height={1280}
-          className="absolute inset-0 h-full w-full object-cover opacity-65 pointer-events-none select-none"
+          className="absolute inset-0 h-full w-full object-cover opacity-85 pointer-events-none select-none"
         />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage:
-              "linear-gradient(to right, hsl(var(--navy) / 0.93) 0%, hsl(var(--navy) / 0.78) 55%, hsl(var(--navy) / 0.58) 100%)",
+              "linear-gradient(to right, hsl(var(--navy) / 0.92) 0%, hsl(var(--navy) / 0.55) 45%, hsl(var(--navy) / 0.22) 100%)",
           }}
         />
         <div
