@@ -209,6 +209,7 @@ export const en = {
       "EdPath Global provides educational information and navigation, not immigration advice. Immigration advice is given only by CICC-licensed RCIC consultants. We work independently and can connect you with trusted agencies and professionals when it makes sense.",
   },
   costs: {
+    simulate: "Simulate your costs",
     hero: {
       title: "How much it costs to study abroad",
       subtitle:
