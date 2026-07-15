@@ -4,6 +4,7 @@ export const pt = {
     destinations: "Destinos",
     myPath: "Meu Caminho",
     programs: "Explorar Programas",
+    pgwp: "Verificador PGWP",
     before: "Antes de Começar",
     costs: "Custos",
     health: "Saúde",
