@@ -1046,4 +1046,52 @@ export const pt = {
       spouseWorkPermit: "Work permit de cônjuge — página oficial do IRCC",
     },
   },
+
+  pgwpChecker: {
+    hero: {
+      badge: "Verificador PGWP",
+      title: "Sua área de estudo dá direito ao PGWP?",
+      subtitle:
+        "Descubra, em geral, se um campo de estudo costuma ser elegível para a permissão de trabalho pós-graduação (PGWP), com base na lista oficial do governo canadense. Esta é uma orientação — não confirma o seu caso específico.",
+    },
+    irccLinkLabel: "Regras oficiais do PGWP no IRCC",
+    search: {
+      placeholder: "Busque por área (ex.: nursing, engineering, business)",
+      allCategories: "Todas as categorias",
+      siglasHint:
+        "Siglas entre parênteses (ex.: <strong>BArch, MArch, DArch, PhD</strong>) indicam as titulações acadêmicas oferecidas na área — bacharelado, mestrado, doutorado e equivalentes.",
+      namesHint:
+        "As áreas aparecem com o nome técnico oficial usado pelo governo canadense, muitas vezes em inglês. Se você não reconhecer um termo, ele pode ser o nome técnico da sua área. <strong>Dica:</strong> tente buscar em português (ex.: <strong>\"física\", \"engenharia\"</strong>) ou confirme o nome do seu programa com a instituição.",
+    },
+    categories: {
+      stem: "STEM / Ciências e Tecnologia",
+      trade: "Trades / Ofícios",
+      health: "Saúde",
+      agriculture: "Agricultura",
+      transport: "Transporte",
+      other: "Outros",
+    },
+    coverage: {
+      label: "Cobertura atual dos dados:",
+      body:
+        "esta ferramenta cobre atualmente as áreas de <strong>STEM, Trades e Transporte</strong>. Estamos adicionando outras categorias, como Saúde, Educação e Agricultura. Se você não encontrar sua área, ela pode ainda não ter sido incluída — <strong>isso não significa que ela não seja elegível</strong>. Confirme sempre na <link>lista oficial do IRCC</link>.",
+    },
+    results: {
+      loading: "Carregando áreas de estudo...",
+      error: "Erro ao carregar dados. Tente novamente.",
+      count: "{{filtered}} de {{total}} áreas",
+      empty: "Nenhuma área encontrada para esta busca.",
+      badges: {
+        eligible: "Elegível para PGWP",
+        conditional: "Elegibilidade condicional",
+        conditionalTooltip: "Depende de requisitos específicos (instituição, duração, nível ou credencial).",
+        unknown: "Verificar",
+      },
+    },
+    disclaimer: {
+      title: "Aviso importante",
+      body:
+        "Esta informação é baseada na lista oficial de campos de estudo elegíveis para PGWP do IRCC e serve como <strong>orientação geral</strong>. Em geral, a elegibilidade final também depende da instituição (DLI), da duração do programa e do idioma. Esta ferramenta <strong>não confirma o seu caso específico</strong>. Confirme sempre nas fontes oficiais do IRCC e, para decisões de imigração, consulte um consultor RCIC licenciado.",
+    },
+  },
 };
