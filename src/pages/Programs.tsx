@@ -13,10 +13,31 @@ type CipRow = {
   title: string;
   description: string | null;
   category: string | null;
+  area_group: string | null;
 };
 
-const CATEGORIES = ["stem", "trade", "transport"] as const;
-type Category = (typeof CATEGORIES)[number];
+const GROUP_KEYS = [
+  "health",
+  "engineering",
+  "information_technology",
+  "biological_sciences",
+  "physical_sciences",
+  "construction_trades",
+  "mechanics_maintenance",
+  "math_statistics",
+  "transport",
+  "architecture_design",
+  "manufacturing",
+  "business",
+  "services_culinary",
+  "agriculture",
+  "safety_defense",
+  "humanities_social",
+  "interdisciplinary_sciences",
+  "communication_media",
+  "education",
+  "arts",
+] as const;
 
 function normalize(s: string) {
   return s
@@ -36,29 +57,38 @@ function statusFrom(desc: string | null): "eligible" | "conditional" | "unknown"
 export default function Programs() {
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<Category | "all">("all");
+  const [group, setGroup] = useState<string>("all");
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["cip_codes", "programs-page"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("cip_codes")
-        .select("id, code, title, description, category")
+        .select("id, code, title, description, category, area_group")
         .range(0, 999)
         .order("title", { ascending: true });
       if (error) throw error;
-      return data as CipRow[];
+      return data as unknown as CipRow[];
     },
   });
+
+  const groupCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    (data ?? []).forEach((r) => {
+      const g = r.area_group ?? "other";
+      counts.set(g, (counts.get(g) ?? 0) + 1);
+    });
+    return Array.from(counts.entries()).sort((a, b) => b[1] - a[1]);
+  }, [data]);
 
   const filtered = useMemo(() => {
     const q = normalize(query);
     return (data ?? []).filter((r) => {
-      if (category !== "all" && r.category !== category) return false;
+      if (group !== "all" && (r.area_group ?? "other") !== group) return false;
       if (!q) return true;
       return normalize(r.title).includes(q);
     });
-  }, [data, query, category]);
+  }, [data, query, group]);
 
   return (
     <>
@@ -96,19 +126,21 @@ export default function Programs() {
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <Button
               size="sm"
-              variant={category === "all" ? "default" : "outline"}
-              onClick={() => setCategory("all")}
+              variant={group === "all" ? "default" : "outline"}
+              onClick={() => setGroup("all")}
             >
-              {t("programs.search.allCategories")}
+              {t("programs.search.allAreas")}
+              <span className="ml-1.5 opacity-70">({data?.length ?? 0})</span>
             </Button>
-            {CATEGORIES.map((c) => (
+            {groupCounts.map(([g, count]) => (
               <Button
-                key={c}
+                key={g}
                 size="sm"
-                variant={category === c ? "default" : "outline"}
-                onClick={() => setCategory(c)}
+                variant={group === g ? "default" : "outline"}
+                onClick={() => setGroup(g)}
               >
-                {t(`programs.category.${c}`)}
+                {t(`programs.group.${g}`, { defaultValue: g })}
+                <span className="ml-1.5 opacity-70">({count})</span>
               </Button>
             ))}
           </div>
@@ -169,10 +201,10 @@ export default function Programs() {
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
                           <span className="font-mono">{r.code}</span>
-                          {r.category && (
+                          {r.area_group && (
                             <>
                               <span>•</span>
-                              <span>{t(`programs.category.${r.category}`)}</span>
+                              <span>{t(`programs.group.${r.area_group}`, { defaultValue: r.area_group })}</span>
                             </>
                           )}
                         </div>
