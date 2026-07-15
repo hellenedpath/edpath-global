@@ -204,6 +204,7 @@ export const pt = {
   },
 
   costs: {
+    simulate: "Simule seus custos",
     hero: {
       title: "Quanto custa estudar no exterior",
       subtitle: "Os dois números que todo estudante precisa entender antes de decidir. Conteúdo atual focado no Canadá.",

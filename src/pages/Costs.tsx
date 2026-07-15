@@ -107,7 +107,7 @@ export default function Costs() {
           <Button asChild className="bg-navy hover:bg-navy/90 text-white">
             <Link to="/simulador-financeiro">
               <Calculator className="mr-2 h-4 w-4" />
-              Simule seus custos
+              {t("costs.simulate")}
             </Link>
           </Button>
         </div>
