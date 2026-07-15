@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, Calendar, DollarSign, Heart, Home, Users, Graduat
 
 const themes = [
   { key: "programs", to: "/programas", Icon: BookOpen },
-  { key: "pgwp", to: "/canada/pgwp", Icon: GraduationCap, label: "Verificador PGWP", description: "Descubra se sua área de estudo dá direito à permissão de trabalho pós-graduação." },
+  { key: "pgwp", to: "/canada/pgwp", Icon: GraduationCap },
   { key: "before", to: "/antes-de-comecar", Icon: Calendar },
   { key: "costs", to: "/custos", Icon: DollarSign },
   { key: "health", to: "/saude", Icon: Heart },
@@ -30,7 +30,7 @@ export default function Canada() {
       </div>
 
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {themes.map(({ key, to, Icon, label }: any) => (
+        {themes.map(({ key, to, Icon }) => (
           <Link
             key={key}
             to={to}
@@ -39,7 +39,7 @@ export default function Canada() {
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-crimson/10 text-crimson">
               <Icon className="h-5 w-5" />
             </div>
-            <h2 className="mt-5 font-semibold text-lg text-foreground">{label ?? t(`nav.${key}`)}</h2>
+            <h2 className="mt-5 font-semibold text-lg text-foreground">{t(`nav.${key}`)}</h2>
             <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 group-hover:text-crimson transition-colors">
               {t("countries.exploreCta")}
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
