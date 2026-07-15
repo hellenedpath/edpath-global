@@ -29,6 +29,26 @@ export const en = {
     ctaQuiz: "Discover your path in 2 minutes",
     ctaExplore: "Explore by destination",
     quizNote: "6 quick questions · personalized roadmap in 8 steps",
+    trust: {
+      title: "Why trust EdPath",
+      items: [
+        {
+          title: "Honest information, no commissions",
+          content:
+            "Unlike traditional agents, we show the eligibility risks others hide.",
+        },
+        {
+          title: "Based on official data",
+          content:
+            "Our information comes from official Canadian government sources (IRCC, CIP).",
+        },
+        {
+          title: "We guide you every step",
+          content:
+            "From exploration to arrival, a complete and clear path.",
+        },
+      ],
+    },
   },
   canadaNav: {
     beforeYouGo: "Before you go",
