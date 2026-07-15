@@ -809,4 +809,237 @@ export const en = {
       redo: "Retake my assessment",
     },
   },
+
+  pathQuiz: {
+    landing: {
+      eyebrow: "Personalized diagnosis",
+      title: "Discover your path to study abroad",
+      subtitle:
+        "Choose your destination and answer a few quick questions. You'll get a personalized roadmap highlighting your next step.",
+      cta: "Start",
+      features: {
+        destination: { title: "Choose your destination", desc: "Canada available; other countries coming soon." },
+        questions: { title: "7 profile questions", desc: "Less than 2 minutes." },
+        roadmap: { title: "8-step roadmap", desc: "The complete path for your journey." },
+      },
+    },
+    destination: {
+      eyebrow: "Destination",
+      restart: "Restart",
+      title: "Which country do you want to go to?",
+      subtitle:
+        "Choose your destination. For now, the full roadmap is available for Canada — other countries are being prepared.",
+      available: "Available",
+      comingSoon: "Coming soon",
+      options: {
+        canada: "Canada",
+        usa: "United States",
+        uk: "United Kingdom",
+        australia: "Australia",
+        ireland: "Ireland",
+      },
+    },
+    soon: {
+      title: "This destination is still being prepared",
+      body: "For now, we have the complete Canada roadmap. Want to see how it works, or be notified when {{country}} is available?",
+      continueCanada: "Continue with Canada",
+      chooseOther: "Choose another country",
+      notifyTitle: "Notify me when {{country}} is available",
+      notifyThanks: "Thanks! We'll notify you at <strong>{{email}}</strong> as soon as the roadmap is ready.",
+      notifyEmailPlaceholder: "you@email.com",
+      notifyButton: "Notify me",
+      notifyPrivacy: "We'll only use your email to notify you about this destination. No spam.",
+    },
+    question: {
+      counter: "Question {{step}} of {{total}}",
+      restart: "Restart",
+      back: "Back",
+      hint: "Select an option to continue",
+    },
+    questions: {
+      q1: {
+        title: "Where are you right now?",
+        options: {
+          researching: "Just starting to research",
+          knows: "I roughly know what I want to study",
+          accepted: "Already accepted / preparing to go",
+          arrived: "I'm already in the country and need to settle in",
+        },
+      },
+      q2: {
+        title: "What is your main goal?",
+        options: {
+          stay: "Build a career and stay in the country",
+          return: "Gain international experience and return",
+          explore: "I'm still exploring",
+        },
+      },
+      q3: {
+        title: "Which study level do you plan to pursue?",
+        options: {
+          college: "College certificate or diploma",
+          bachelor: "Bachelor's degree",
+          master: "Master's degree",
+          phd: "PhD",
+          unknown_level: "Not sure yet",
+        },
+      },
+      q4: {
+        title: "Which field do you want to study?",
+        options: {
+          health: "Health",
+          it: "IT / Technology",
+          business: "Business",
+          engineering: "Engineering",
+          trades: "Trades",
+          education: "Education",
+          arts: "Arts",
+          unknown: "Not sure yet",
+        },
+      },
+      q5: {
+        title: "How is your language level (English/French)?",
+        options: {
+          tested: "I already have an official test",
+          fluent: "I speak well, but without an official test",
+          improve: "I need to improve or start",
+        },
+      },
+      q6: {
+        title: "Who are you going with?",
+        options: {
+          solo: "By myself",
+          partner: "With a spouse or partner",
+          children: "With children",
+          partner_children: "With spouse and children",
+        },
+      },
+      q7: {
+        title: "About your budget?",
+        options: {
+          planned: "I already have funds planned",
+          understand: "I need to understand the costs",
+          work: "I'll need to work to support myself",
+        },
+      },
+    },
+    result: {
+      eyebrow: "Your roadmap",
+      title: "Your personalized path",
+      intro: "Below, the complete 8-step path with your next step highlighted.",
+      scoreEyebrow: "Compatibility score",
+      scoreLabel: "Score",
+      scoreDesc:
+        "Based on your answers about goal, field, language, family and budget. See the factors that make up your score below.",
+      scoreDisclaimer:
+        "This score is guidance based on your answers, to support your reflection. It is not an official assessment and does not guarantee results. Immigration decisions must be confirmed with a licensed RCIC consultant or with official IRCC sources.",
+      labels: {
+        high: "High compatibility",
+        medium: "Medium compatibility",
+        low: "Needs attention",
+      },
+      redo: "Retake the quiz",
+      portalCanada: "Go to Canada portal",
+      simulate: "Simulate your costs",
+      stepPrefix: "Step {{n}}",
+      hereBadge: "You are here",
+      doneBadge: "Completed",
+      priorityBadge: "Priority",
+      nextStep: "Your next step",
+      importantTitle: "Important notice",
+      importantBody:
+        "This roadmap is personalized guidance based on your answers and serves as a guide. It does not replace professional advice. Immigration decisions must be made with a licensed RCIC consultant. Always confirm with official sources.",
+    },
+    objective: {
+      stay: "Your focus is to build a career and stay in Canada.",
+      return: "Your focus is to gain international experience and return to Brazil.",
+      explore: "You are still exploring the path — let's go step by step.",
+    },
+    highlights: {
+      languagePriority: "Priority: you'll need to prove your language level before applying.",
+      languageFluent: "Schedule an official test (IELTS, CELPIP or TEF) to formalize your level.",
+      stayPgwp: "Your goal is to stay in the country — choosing a PGWP-eligible program is essential.",
+      budgetUnderstand: "Start with cost planning — it's the foundation of your proof of funds.",
+      budgetWork: "A study permit allows working up to 24h/week, but plan reserves for the first months.",
+      childrenSchool: "With children: research public schools (free) and provincial health coverage in your city.",
+      childrenBudget: "Family costs increase the proof of funds required by IRCC.",
+      spouseHighLevel:
+        "Spouse work permit: in general, under current Canadian rules (since Jan/2025), spouses of master's (16+ months) and PhD students can usually apply for an open work permit. This is an estimate based on general rules and does not confirm your case. Each situation has its particularities — confirm your specific case with a licensed immigration consultant (RCIC) or directly on the official IRCC website.",
+      spouseLowLevel:
+        "Attention — spouse work permit: in general, under current Canadian rules (since Jan/2025), spouses of bachelor's, diploma or certificate students usually CANNOT obtain an open work permit (there are exceptions for some professional programs). This is an estimate based on general rules and does not confirm your case — it may impact the family budget. Confirm your specific case with a licensed RCIC consultant or directly on the official IRCC website.",
+      unknownArea: "Explore PGWP-eligible fields before choosing — it may guide your decision.",
+      arrivedFocus: "Focus on SIN, bank account, provincial healthcare and permanent housing.",
+      spouseLinkLabel: "Official IRCC page — spouse work permit",
+    },
+    steps: {
+      s1: { title: "Discover", description: "Understand Canada as a destination: provinces, education system and lifestyle.", ctaLabel: "Explore the Canada portal" },
+      s2: { title: "Check language", description: "Assess your English/French level and plan the official test (IELTS, CELPIP, TEF).", ctaLabel: "See initial preparation" },
+      s3: { title: "Choose a program", description: "Select the program, institution (DLI) and city that match your goal.", ctaLabel: "See programs" },
+      s4: { title: "Check PGWP eligibility", description: "Confirm whether your field of study qualifies for the post-graduation work permit.", ctaLabel: "Open PGWP checker" },
+      s5: { title: "Plan costs", description: "Estimate tuition, cost of living and the required proof of funds.", ctaLabel: "See costs" },
+      s6: { title: "Apply", description: "Submit your application to the institution and, with the acceptance letter, apply for the study permit.", ctaLabel: "Steps before you begin" },
+      s7: { title: "Prepare arrival", description: "Flight, insurance, temporary housing, documents and first days in Canada.", ctaLabel: "Work and housing" },
+      s8: { title: "Settle in", description: "SIN, bank account, healthcare, permanent housing and daily routine in Canada.", ctaLabel: "See how to settle in" },
+    },
+    languageGuide: {
+      title: "Language tests: choose the right one for your goal",
+      warning:
+        "<strong>Attention:</strong> the test accepted to <strong>ENTER</strong> the university may not be the same one accepted for <strong>IMMIGRATION</strong> (permanent residency). Choosing the wrong test may force you to retake the exam later. Check both goals before deciding.",
+      section1: {
+        label: "Section 1",
+        title: "For institution admission (English)",
+        body:
+          "Canadian universities generally accept: <strong>IELTS Academic</strong>, <strong>TOEFL iBT</strong>, <strong>Duolingo English Test (DET)</strong>, <strong>PTE Academic</strong>, <strong>Cambridge English (C1 Advanced/C2 Proficiency)</strong> and <strong>CAEL</strong>.",
+        note:
+          "Each institution defines which tests it accepts and the minimum score — some graduate programs are stricter (e.g., they may not accept Duolingo). Always confirm with the institution.",
+      },
+      section2: {
+        label: "Section 2",
+        title: "For immigration / PR (English)",
+        body:
+          "The <strong>IRCC</strong> accepts a more restricted list: <strong>IELTS General Training</strong>, <strong>CELPIP-General</strong> and <strong>PTE Core</strong>.",
+        warning:
+          "<strong>Duolingo, TOEFL and Cambridge are NOT accepted</strong> by IRCC for Express Entry / permanent residency.",
+      },
+      section3: {
+        label: "Section 3",
+        title: "For French",
+        body:
+          "Admission varies by institution. For immigration, IRCC accepts <strong>TEF Canada</strong> and <strong>TCF Canada</strong>.",
+      },
+      tip:
+        "<strong>Practical tip:</strong> if your goal includes staying in Canada (PR) in the future, consider taking a test accepted for both admission and immigration, or plan on needing two different tests.",
+      irccLinkLabel: "Language tests accepted by IRCC",
+      disclaimer:
+        "<strong>Disclaimer:</strong> the lists of tests and minimum scores change and vary by institution and program. In general, the above reflects the current landscape, but <strong>it does not confirm your case</strong>. Always confirm current requirements directly with the institution, on official IRCC sources and/or with a licensed RCIC consultant. EdPath provides unbiased guidance and does not sell prep courses.",
+    },
+    score: {
+      factors: {
+        stayEligible: "Your field is PGWP-eligible — a prerequisite to work after graduating.",
+        stayConditional:
+          "Your field has conditional PGWP eligibility — confirm whether your specific program and institution are on the official list.",
+        stayNot:
+          "Your field does not appear as PGWP-eligible — since your goal is to stay, this is a critical point.",
+        returnEligible: "Your field is PGWP-eligible — useful if you want work experience before returning.",
+        returnNot: "Your field is not PGWP-eligible, but since your goal is to return, the impact is smaller.",
+        exploreUnknown: "You are still exploring your goal — defining it will help you choose the right program.",
+        langTested: "You already have an official language test — a big step forward in your application.",
+        langFluent: "You speak well, but still need to formalize it with an official test (IELTS, CELPIP or TEF).",
+        langImprove: "You indicated you need to improve your language — resolve this before applying.",
+        spouseHigh:
+          "At the chosen level (master's/PhD), spouses can generally apply for an open work permit. Estimate — does not confirm your case; confirm with an RCIC or IRCC.",
+        spouseLow:
+          "At the chosen level, spouses generally do NOT get an open work permit — it may impact the family budget. Estimate — does not confirm your case; confirm with an RCIC or IRCC.",
+        budgetPlanned: "You already have funds planned — this reduces the financial risk of the journey.",
+        budgetUnderstand: "You need to better understand the costs — start with the financial planning step.",
+        budgetWork:
+          "You plan to rely on work to support yourself — the study permit limits you to 24h/week; plan reserves for the first months.",
+      },
+    },
+    irccLinks: {
+      pgwpEligibility: "Official list of PGWP-eligible fields",
+      proofOfFunds: "Proof of funds — official IRCC page",
+      spouseWorkPermit: "Spouse work permit — official IRCC page",
+    },
+  },
 };

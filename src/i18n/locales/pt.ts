@@ -813,4 +813,237 @@ export const pt = {
       redo: "Refazer meu diagnóstico",
     },
   },
+
+  pathQuiz: {
+    landing: {
+      eyebrow: "Diagnóstico personalizado",
+      title: "Descubra seu caminho para estudar no exterior",
+      subtitle:
+        "Escolha seu destino e responda algumas perguntas rápidas. Você recebe um roteiro personalizado, com o seu próximo passo.",
+      cta: "Começar",
+      features: {
+        destination: { title: "Escolha o destino", desc: "Canadá disponível; outros países em breve." },
+        questions: { title: "7 perguntas de perfil", desc: "Menos de 2 minutos." },
+        roadmap: { title: "Roteiro em 8 etapas", desc: "Trilha completa da sua jornada." },
+      },
+    },
+    destination: {
+      eyebrow: "Destino",
+      restart: "Recomeçar",
+      title: "Para qual país você quer ir?",
+      subtitle:
+        "Escolha seu destino. Por enquanto, o roteiro completo está disponível para o Canadá — outros países estão sendo preparados.",
+      available: "Disponível",
+      comingSoon: "Em breve",
+      options: {
+        canada: "Canadá",
+        usa: "Estados Unidos",
+        uk: "Reino Unido",
+        australia: "Austrália",
+        ireland: "Irlanda",
+      },
+    },
+    soon: {
+      title: "Esse destino ainda está sendo preparado",
+      body: "Por enquanto, temos o roteiro completo do Canadá. Quer ver como funciona ou ser avisado quando {{country}} estiver disponível?",
+      continueCanada: "Continuar pelo Canadá",
+      chooseOther: "Escolher outro país",
+      notifyTitle: "Avise-me quando {{country}} estiver disponível",
+      notifyThanks: "Obrigado! Vamos avisar você em <strong>{{email}}</strong> assim que o roteiro estiver pronto.",
+      notifyEmailPlaceholder: "seu@email.com",
+      notifyButton: "Quero ser avisado",
+      notifyPrivacy: "Usamos seu email apenas para avisar sobre este destino. Sem spam.",
+    },
+    question: {
+      counter: "Pergunta {{step}} de {{total}}",
+      restart: "Recomeçar",
+      back: "Voltar",
+      hint: "Selecione uma opção para continuar",
+    },
+    questions: {
+      q1: {
+        title: "Onde você está agora?",
+        options: {
+          researching: "Só começando a pesquisar",
+          knows: "Já sei mais ou menos o que quero estudar",
+          accepted: "Já fui aceito / me preparando para ir",
+          arrived: "Já estou no país e preciso me estabelecer",
+        },
+      },
+      q2: {
+        title: "Qual é o seu maior objetivo?",
+        options: {
+          stay: "Construir carreira e ficar no país",
+          return: "Ter experiência internacional e voltar",
+          explore: "Ainda estou explorando",
+        },
+      },
+      q3: {
+        title: "Qual nível de estudo você pretende cursar?",
+        options: {
+          college: "Certificado ou Diploma de college",
+          bachelor: "Bacharelado",
+          master: "Mestrado",
+          phd: "Doutorado",
+          unknown_level: "Ainda não sei",
+        },
+      },
+      q4: {
+        title: "Qual área você quer estudar?",
+        options: {
+          health: "Saúde",
+          it: "TI / Tecnologia",
+          business: "Negócios",
+          engineering: "Engenharia",
+          trades: "Trades / Ofícios",
+          education: "Educação",
+          arts: "Artes",
+          unknown: "Ainda não sei",
+        },
+      },
+      q5: {
+        title: "Como está seu nível de idioma (inglês/francês)?",
+        options: {
+          tested: "Já tenho teste oficial",
+          fluent: "Falo bem, mas sem teste oficial",
+          improve: "Preciso melhorar ou começar",
+        },
+      },
+      q6: {
+        title: "Você vai com quem?",
+        options: {
+          solo: "Sozinho(a)",
+          partner: "Com cônjuge ou parceiro(a)",
+          children: "Com filhos",
+          partner_children: "Com cônjuge e filhos",
+        },
+      },
+      q7: {
+        title: "Sobre seu orçamento?",
+        options: {
+          planned: "Já tenho recursos planejados",
+          understand: "Preciso entender os custos",
+          work: "Vou precisar trabalhar para me manter",
+        },
+      },
+    },
+    result: {
+      eyebrow: "Seu roteiro",
+      title: "Seu caminho personalizado",
+      intro: "Abaixo, a trilha completa em 8 etapas com o seu próximo passo destacado.",
+      scoreEyebrow: "Score de compatibilidade",
+      scoreLabel: "Score",
+      scoreDesc:
+        "Baseado nas suas respostas sobre objetivo, área, idioma, família e orçamento. Veja abaixo os fatores que compõem seu score.",
+      scoreDisclaimer:
+        "Este score é uma orientação baseada nas suas respostas, para ajudar sua reflexão. Não é uma avaliação oficial nem garante resultados. Decisões de imigração devem ser confirmadas com um consultor RCIC licenciado ou nas fontes oficiais do IRCC.",
+      labels: {
+        high: "Alta compatibilidade",
+        medium: "Compatibilidade média",
+        low: "Requer atenção",
+      },
+      redo: "Refazer o quiz",
+      portalCanada: "Ir ao portal Canadá",
+      simulate: "Simule seus custos",
+      stepPrefix: "Etapa {{n}}",
+      hereBadge: "Você está aqui",
+      doneBadge: "Concluída",
+      priorityBadge: "Prioridade",
+      nextStep: "Seu próximo passo",
+      importantTitle: "Aviso importante",
+      importantBody:
+        "Este roteiro é uma orientação personalizada baseada nas suas respostas e serve como guia. Não substitui aconselhamento profissional. Decisões de imigração devem ser tomadas com um consultor RCIC licenciado. Confirme sempre nas fontes oficiais.",
+    },
+    objective: {
+      stay: "Seu foco é construir carreira e permanecer no Canadá.",
+      return: "Seu foco é ganhar experiência internacional e voltar ao Brasil.",
+      explore: "Você ainda está explorando o caminho — vamos passo a passo.",
+    },
+    highlights: {
+      languagePriority: "Prioridade: você precisará comprovar o idioma antes de aplicar.",
+      languageFluent: "Agende um teste oficial (IELTS, CELPIP ou TEF) para formalizar seu nível.",
+      stayPgwp: "Seu objetivo é ficar no país — escolher um programa elegível ao PGWP é essencial.",
+      budgetUnderstand: "Comece pelo planejamento de custos — é a base da sua comprovação financeira.",
+      budgetWork: "Study permit permite trabalhar até 24h/semana, mas planeje reservas para os primeiros meses.",
+      childrenSchool: "Com filhos: pesquise escola pública (gratuita) e cobertura de saúde provincial na sua cidade.",
+      childrenBudget: "Custos com família aumentam a comprovação financeira exigida pelo IRCC.",
+      spouseHighLevel:
+        "Permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de mestrado (16+ meses) e doutorado costumam poder solicitar permissão de trabalho aberta. Esta é uma estimativa baseada em regras gerais e não confirma o seu caso. Cada situação tem particularidades — confirme o seu caso específico com um consultor de imigração licenciado (RCIC) ou diretamente no site oficial do IRCC.",
+      spouseLowLevel:
+        "Atenção — permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de bacharelado, diploma ou certificado normalmente NÃO podem obter permissão de trabalho aberta (há exceções para alguns programas profissionais). Esta é uma estimativa baseada em regras gerais e não confirma o seu caso — pode impactar o orçamento familiar. Confirme o seu caso específico com um consultor RCIC licenciado ou diretamente no site oficial do IRCC.",
+      unknownArea: "Explore áreas elegíveis ao PGWP antes de escolher — pode direcionar sua decisão.",
+      arrivedFocus: "Foque em SIN, conta bancária, saúde provincial e moradia definitiva.",
+      spouseLinkLabel: "Página oficial do IRCC — work permit de cônjuge",
+    },
+    steps: {
+      s1: { title: "Descobrir", description: "Entender o Canadá como destino: províncias, sistema educacional e estilo de vida.", ctaLabel: "Explorar o portal Canadá" },
+      s2: { title: "Verificar idioma", description: "Avaliar seu nível de inglês/francês e planejar o teste oficial (IELTS, CELPIP, TEF).", ctaLabel: "Ver preparação inicial" },
+      s3: { title: "Escolher programa", description: "Selecionar curso, instituição (DLI) e cidade que combinam com seu objetivo.", ctaLabel: "Ver programas" },
+      s4: { title: "Verificar elegibilidade PGWP", description: "Confirmar se sua área de estudo dá direito à permissão de trabalho pós-graduação.", ctaLabel: "Abrir verificador PGWP" },
+      s5: { title: "Planejar custo", description: "Estimar tuition, custo de vida e comprovação financeira necessária.", ctaLabel: "Ver custos" },
+      s6: { title: "Aplicar", description: "Enviar candidatura para a instituição e, com a carta de aceite, solicitar o study permit.", ctaLabel: "Passos antes de começar" },
+      s7: { title: "Preparar a chegada", description: "Passagem, seguro, moradia temporária, documentos e primeiros dias no Canadá.", ctaLabel: "Trabalho e moradia" },
+      s8: { title: "Estabelecer-se", description: "SIN, conta bancária, saúde, moradia definitiva e rotina no Canadá.", ctaLabel: "Ver como se estabelecer" },
+    },
+    languageGuide: {
+      title: "Testes de idioma: escolha o certo para o seu objetivo",
+      warning:
+        "<strong>Atenção:</strong> o teste aceito para <strong>ENTRAR</strong> na universidade pode não ser o mesmo aceito para <strong>IMIGRAÇÃO</strong> (residência permanente). Escolher o teste errado pode fazer você ter que repetir o exame depois. Verifique os dois objetivos antes de decidir.",
+      section1: {
+        label: "Seção 1",
+        title: "Para admissão na instituição (inglês)",
+        body:
+          "As universidades canadenses geralmente aceitam: <strong>IELTS Academic</strong>, <strong>TOEFL iBT</strong>, <strong>Duolingo English Test (DET)</strong>, <strong>PTE Academic</strong>, <strong>Cambridge English (C1 Advanced/C2 Proficiency)</strong> e <strong>CAEL</strong>.",
+        note:
+          "Cada instituição define quais testes aceita e a nota mínima — alguns programas de pós-graduação são mais restritos (ex.: podem não aceitar Duolingo). Sempre confirme com a instituição.",
+      },
+      section2: {
+        label: "Seção 2",
+        title: "Para imigração / PR (inglês)",
+        body:
+          "O <strong>IRCC</strong> aceita uma lista mais restrita: <strong>IELTS General Training</strong>, <strong>CELPIP-General</strong> e <strong>PTE Core</strong>.",
+        warning:
+          "<strong>Duolingo, TOEFL e Cambridge NÃO são aceitos</strong> pelo IRCC para Express Entry / residência permanente.",
+      },
+      section3: {
+        label: "Seção 3",
+        title: "Para francês",
+        body:
+          "Admissão varia por instituição. Para imigração, o IRCC aceita <strong>TEF Canada</strong> e <strong>TCF Canada</strong>.",
+      },
+      tip:
+        "<strong>Dica prática:</strong> se o seu objetivo inclui ficar no Canadá (PR) no futuro, considere fazer desde já um teste aceito tanto para admissão quanto para imigração, ou planeje que precisará de dois testes diferentes.",
+      irccLinkLabel: "Testes de idioma aceitos pelo IRCC",
+      disclaimer:
+        "<strong>Disclaimer:</strong> as listas de testes e notas mínimas mudam e variam por instituição e programa. Em geral, o cenário acima reflete as regras atuais, mas <strong>não confirma o seu caso</strong>. Confirme sempre os requisitos atuais diretamente com a instituição, nas fontes oficiais do IRCC e/ou com um consultor RCIC licenciado. A EdPath orienta de forma imparcial e não vende cursos preparatórios.",
+    },
+    score: {
+      factors: {
+        stayEligible: "Sua área é elegível para PGWP — pré-requisito para trabalhar após se formar.",
+        stayConditional:
+          "Sua área tem elegibilidade condicional ao PGWP — confirme se o programa específico e a instituição estão na lista oficial.",
+        stayNot:
+          "Sua área não aparece como elegível ao PGWP — como seu objetivo é ficar no país, isso é um ponto crítico.",
+        returnEligible: "Sua área é elegível ao PGWP — útil caso queira ganhar experiência de trabalho antes de voltar.",
+        returnNot: "Sua área não é elegível ao PGWP, mas como seu objetivo é voltar, o impacto é menor.",
+        exploreUnknown: "Você ainda está explorando o objetivo — definir isso vai ajudar a escolher o programa certo.",
+        langTested: "Você já tem teste oficial de idioma — grande passo à frente na candidatura.",
+        langFluent: "Você fala bem, mas ainda precisa formalizar com um teste oficial (IELTS, CELPIP ou TEF).",
+        langImprove: "Você indicou que precisa melhorar o idioma — resolva antes de aplicar.",
+        spouseHigh:
+          "No nível escolhido (mestrado/doutorado), em geral cônjuges costumam poder solicitar permissão de trabalho aberta. Estimativa — não confirma seu caso; confirme com um RCIC ou no IRCC.",
+        spouseLow:
+          "No nível escolhido, em geral cônjuges normalmente NÃO obtêm permissão de trabalho aberta — pode impactar o orçamento familiar. Estimativa — não confirma seu caso; confirme com um RCIC ou no IRCC.",
+        budgetPlanned: "Você já tem recursos planejados — reduz o risco financeiro da jornada.",
+        budgetUnderstand: "Você precisa entender melhor os custos — comece pela etapa de planejamento financeiro.",
+        budgetWork:
+          "Você planeja depender de trabalho para se manter — study permit limita a 24h/semana; planeje reservas para os primeiros meses.",
+      },
+    },
+    irccLinks: {
+      pgwpEligibility: "Lista oficial de áreas elegíveis ao PGWP",
+      proofOfFunds: "Prova de fundos — página oficial do IRCC",
+      spouseWorkPermit: "Work permit de cônjuge — página oficial do IRCC",
+    },
+  },
 };
