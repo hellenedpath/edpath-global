@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Compass } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
+import { TrustSection } from "@/components/TrustSection";
 import heroStudent from "@/assets/hero-student.jpg";
 
 export default function Index() {
@@ -63,6 +64,7 @@ export default function Index() {
           </p>
         </div>
       </section>
+      <TrustSection />
       <CountrySelector />
     </>
   );
