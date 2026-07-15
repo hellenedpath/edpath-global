@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       cip_codes: {
         Row: {
+          area_group: string | null
           category: string | null
           code: string
           created_at: string
@@ -25,6 +26,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          area_group?: string | null
           category?: string | null
           code: string
           created_at?: string
@@ -34,6 +36,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          area_group?: string | null
           category?: string | null
           code?: string
           created_at?: string
