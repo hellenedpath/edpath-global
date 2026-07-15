@@ -14,10 +14,10 @@ export const en = {
   },
   langs: {
     label: "Language",
-    pt: "Portuguese",
+    pt: "Português",
     en: "English",
-    es: "Spanish",
-    fr: "French",
+    es: "Español",
+    fr: "Français",
     soon: "coming soon",
   },
   home: {

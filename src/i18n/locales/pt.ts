@@ -14,9 +14,9 @@ export const pt = {
   langs: {
     label: "Idioma",
     pt: "Português",
-    en: "Inglês",
-    es: "Espanhol",
-    fr: "Francês",
+    en: "English",
+    es: "Español",
+    fr: "Français",
     soon: "em breve",
   },
   home: {
