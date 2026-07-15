@@ -1042,4 +1042,52 @@ export const en = {
       spouseWorkPermit: "Spouse work permit — official IRCC page",
     },
   },
+
+  pgwpChecker: {
+    hero: {
+      badge: "PGWP Checker",
+      title: "Does your field of study qualify for the PGWP?",
+      subtitle:
+        "Find out, in general terms, whether a field of study is usually eligible for the Post-Graduation Work Permit (PGWP), based on the official Canadian government list. This is guidance — it does not confirm your specific case.",
+    },
+    irccLinkLabel: "Official PGWP rules on IRCC",
+    search: {
+      placeholder: "Search by field (e.g. nursing, engineering, business)",
+      allCategories: "All categories",
+      siglasHint:
+        "Acronyms in parentheses (e.g. <strong>BArch, MArch, DArch, PhD</strong>) indicate the academic credentials offered in the field — bachelor's, master's, doctorate and equivalents.",
+      namesHint:
+        "Fields appear under the official technical name used by the Canadian government, often in English. If you don't recognize a term, it may be the technical name of your field. <strong>Tip:</strong> try searching in Portuguese too (e.g. <strong>\"física\", \"engenharia\"</strong>) or confirm the name of your program with the institution.",
+    },
+    categories: {
+      stem: "STEM / Science and Technology",
+      trade: "Trades",
+      health: "Health",
+      agriculture: "Agriculture",
+      transport: "Transport",
+      other: "Other",
+    },
+    coverage: {
+      label: "Current data coverage:",
+      body:
+        "this tool currently covers the fields of <strong>STEM, Trades and Transport</strong>. We are adding other categories such as Health, Education and Agriculture. If you don't find your field, it may not yet have been included — <strong>this does not mean it is not eligible</strong>. Always confirm on the <link>official IRCC list</link>.",
+    },
+    results: {
+      loading: "Loading fields of study...",
+      error: "Error loading data. Please try again.",
+      count: "{{filtered}} of {{total}} fields",
+      empty: "No fields found for this search.",
+      badges: {
+        eligible: "PGWP-eligible",
+        conditional: "Conditional eligibility",
+        conditionalTooltip: "Depends on specific requirements (institution, duration, level or credential).",
+        unknown: "Check",
+      },
+    },
+    disclaimer: {
+      title: "Important notice",
+      body:
+        "This information is based on the official IRCC list of PGWP-eligible fields of study and serves as <strong>general guidance</strong>. In general, final eligibility also depends on the institution (DLI), program duration and language of instruction. This tool <strong>does not confirm your specific case</strong>. Always confirm with official IRCC sources and, for immigration decisions, consult a licensed RCIC consultant.",
+    },
+  },
 };
