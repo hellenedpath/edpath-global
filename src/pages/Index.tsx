@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Compass } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
-import heroGlobal from "@/assets/hero-global.jpg";
+import heroStudent from "@/assets/hero-student.jpg";
 
 export default function Index() {
   const { t } = useTranslation();
@@ -10,18 +10,18 @@ export default function Index() {
     <>
       <section className="relative bg-navy text-primary-foreground overflow-hidden">
         <img
-          src={heroGlobal}
+          src={heroStudent}
           alt=""
           aria-hidden="true"
           width={1920}
           height={1280}
-          className="absolute inset-0 h-full w-full object-cover opacity-60 pointer-events-none select-none"
+          className="absolute inset-0 h-full w-full object-cover opacity-65 pointer-events-none select-none"
         />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage:
-              "linear-gradient(to right, hsl(var(--navy) / 0.92) 0%, hsl(var(--navy) / 0.75) 55%, hsl(var(--navy) / 0.55) 100%)",
+              "linear-gradient(to right, hsl(var(--navy) / 0.93) 0%, hsl(var(--navy) / 0.78) 55%, hsl(var(--navy) / 0.58) 100%)",
           }}
         />
         <div
