@@ -731,4 +731,82 @@ export const en = {
     empty: "No institutions found with these filters.",
     note: "List of public institutions based on official IRCC data. Covers the main destination provinces for students and is being expanded. The button opens a search for the institution's official website — always confirm information directly with the institution.",
   },
+
+  financialSimulator: {
+    back: "Back to Costs",
+    badge: "Financial Simulator",
+    heroTitle: "Estimate your study project in Canada",
+    heroSubtitle:
+      "Adjust the variables below to see a realistic cost range and the recommended reserve. Wide, honest ranges — planning, not a promise.",
+    choices: {
+      title: "Your choices",
+      city: {
+        label: "City / region",
+        large: { label: "Expensive large city", sub: "E.g.: Toronto, Vancouver" },
+        medium: { label: "Mid-sized city", sub: "E.g.: Ottawa, Calgary" },
+        small: { label: "Smaller city", sub: "More affordable" },
+      },
+      composition: {
+        label: "Household",
+        solo: "Solo",
+        spouse: "With spouse",
+        spouse_kid: "With spouse and children",
+      },
+      lifestyle: {
+        label: "Lifestyle",
+        economic: { label: "Economic", sub: "Cut costs, shared housing" },
+        moderate: { label: "Moderate", sub: "Average standard, occasional leisure" },
+        comfortable: { label: "Comfortable", sub: "More breathing room, no tight budget" },
+      },
+      duration: "Program duration (months)",
+    },
+    proofOfFunds: {
+      tag: "What the government requires",
+      title: "Official proof of funds (IRCC)",
+      label: {
+        solo: "1 person",
+        spouse: "With spouse (2 people)",
+        spouse_kid: "With spouse and 1 child (3 people)",
+      },
+      perYear: "/ year",
+      body:
+        "This is generally the <strong>official proof of funds</strong> amount required for a study permit (outside Quebec, current since Sep 2025). It is usually <strong>in addition to tuition</strong> and airfare, and IRCC updates it annually. This is general guidance and <strong>does not confirm your case</strong>.",
+      confirmLink: "Confirm the current amount at canada.ca",
+      irccLinkLabel: "Proof of funds — official IRCC page",
+    },
+    monthlyCost: {
+      tag: "What you will likely spend",
+      title: "Estimated monthly cost of living",
+      rangeLabel: "Estimated monthly range",
+      body:
+        "Approximate range covering housing, food, transport and essentials. <strong>Not a guaranteed amount</strong> — varies by city, neighborhood, exchange rate and personal choices.",
+    },
+    totalCost: {
+      title: "Estimated total cost ({{months}} months)",
+      body:
+        "Monthly cost-of-living range multiplied by the program length. Does not include tuition, airfare, insurance or fees.",
+    },
+    reserve: {
+      title: "Recommended reserve",
+      body:
+        "We suggest <strong>3 to 4 months</strong> of living costs as a reserve, <strong>in addition to</strong> proof of funds — the first months have extra setup costs (deposit, furniture, documents, phone).",
+    },
+    comparison: {
+      title: "Two different things — don't mix them up",
+      proofLabel: "Proof of funds (IRCC)",
+      proofDescription: "Official requirement for the visa.",
+      costLabel: "Estimated cost of living ({{months}} months)",
+      costDescription: "Realistic spending estimate — range (minimum → maximum).",
+    },
+    disclaimer: {
+      title: "Important: read before deciding",
+      body:
+        "Cost-of-living estimates are approximate and for planning only. Actual amounts usually vary based on your choices and the market. Proof of funds is an official requirement of the Canadian government (IRCC), updated annually and valid outside Quebec — always confirm the current amount at canada.ca. This simulator provides <strong>general guidance</strong>, <strong>does not confirm your case</strong> and does not replace financial or immigration advice (RCIC).",
+      irccLinkLabel: "Study in Canada — official IRCC",
+    },
+    actions: {
+      back: "Back to Costs",
+      redo: "Retake my assessment",
+    },
+  },
 };

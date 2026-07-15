@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation, Trans } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -56,12 +57,6 @@ const IRCC_FUNDS: Record<Composition, number> = {
   spouse_kid: 35040,
 };
 
-const IRCC_LABEL: Record<Composition, string> = {
-  solo: "1 pessoa",
-  spouse: "Com cônjuge (2 pessoas)",
-  spouse_kid: "Com cônjuge e 1 filho (3 pessoas)",
-};
-
 function fmt(n: number) {
   return "CAD $" + Math.round(n).toLocaleString("en-CA");
 }
@@ -71,6 +66,7 @@ function fmtRange([a, b]: [number, number]) {
 }
 
 export default function FinancialSimulator() {
+  const { t } = useTranslation();
   const [city, setCity] = useState<CityTier>("large");
   const [comp, setComp] = useState<Composition>("solo");
   const [style, setStyle] = useState<Lifestyle>("moderate");
@@ -96,19 +92,17 @@ export default function FinancialSimulator() {
             className="inline-flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-white mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
-            Voltar para Custos
+            {t("financialSimulator.back")}
           </Link>
           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary-foreground/70 mb-4">
             <Calculator className="w-4 h-4 text-crimson" />
-            Simulador Financeiro
+            {t("financialSimulator.badge")}
           </div>
           <h1 className="font-display text-4xl md:text-5xl font-semibold leading-[1.1] tracking-tight text-white">
-            Estime seu projeto de estudo no Canadá
+            {t("financialSimulator.heroTitle")}
           </h1>
           <p className="mt-5 text-lg text-primary-foreground/85 max-w-2xl leading-relaxed">
-            Ajuste as variáveis abaixo para ver uma faixa realista de custos e a
-            reserva recomendada. Faixas amplas e honestas — planejamento, não
-            promessa.
+            {t("financialSimulator.heroSubtitle")}
           </p>
         </div>
       </section>
@@ -118,20 +112,20 @@ export default function FinancialSimulator() {
         <Card className="border-border shadow-sm">
           <CardHeader>
             <CardTitle className="font-display text-2xl text-navy">
-              Suas escolhas
+              {t("financialSimulator.choices.title")}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-8">
             {/* City */}
             <div>
               <Label className="flex items-center gap-2 text-navy font-medium mb-3">
-                <Building2 className="w-4 h-4 text-azul" /> Cidade / região
+                <Building2 className="w-4 h-4 text-azul" /> {t("financialSimulator.choices.city.label")}
               </Label>
               <div className="grid gap-3 sm:grid-cols-3">
                 {[
-                  { k: "large", t: "Cidade grande cara", s: "Ex.: Toronto, Vancouver" },
-                  { k: "medium", t: "Cidade média", s: "Ex.: Ottawa, Calgary" },
-                  { k: "small", t: "Cidade menor", s: "Mais econômica" },
+                  { k: "large", t: t("financialSimulator.choices.city.large.label"), s: t("financialSimulator.choices.city.large.sub") },
+                  { k: "medium", t: t("financialSimulator.choices.city.medium.label"), s: t("financialSimulator.choices.city.medium.sub") },
+                  { k: "small", t: t("financialSimulator.choices.city.small.label"), s: t("financialSimulator.choices.city.small.sub") },
                 ].map((o) => (
                   <button
                     key={o.k}
@@ -152,13 +146,13 @@ export default function FinancialSimulator() {
             {/* Composition */}
             <div>
               <Label className="flex items-center gap-2 text-navy font-medium mb-3">
-                <Users className="w-4 h-4 text-azul" /> Composição
+                <Users className="w-4 h-4 text-azul" /> {t("financialSimulator.choices.composition.label")}
               </Label>
               <div className="grid gap-3 sm:grid-cols-3">
                 {[
-                  { k: "solo", t: "Sozinho(a)" },
-                  { k: "spouse", t: "Com cônjuge" },
-                  { k: "spouse_kid", t: "Com cônjuge e filhos" },
+                  { k: "solo", t: t("financialSimulator.choices.composition.solo") },
+                  { k: "spouse", t: t("financialSimulator.choices.composition.spouse") },
+                  { k: "spouse_kid", t: t("financialSimulator.choices.composition.spouse_kid") },
                 ].map((o) => (
                   <button
                     key={o.k}
@@ -178,13 +172,13 @@ export default function FinancialSimulator() {
             {/* Lifestyle */}
             <div>
               <Label className="flex items-center gap-2 text-navy font-medium mb-3">
-                <Wallet className="w-4 h-4 text-azul" /> Estilo de vida
+                <Wallet className="w-4 h-4 text-azul" /> {t("financialSimulator.choices.lifestyle.label")}
               </Label>
               <div className="grid gap-3 sm:grid-cols-3">
                 {[
-                  { k: "economic", t: "Econômico", s: "Corta gastos, moradia compartilhada" },
-                  { k: "moderate", t: "Moderado", s: "Padrão médio, lazer ocasional" },
-                  { k: "comfortable", t: "Confortável", s: "Mais folga, sem apertos" },
+                  { k: "economic", t: t("financialSimulator.choices.lifestyle.economic.label"), s: t("financialSimulator.choices.lifestyle.economic.sub") },
+                  { k: "moderate", t: t("financialSimulator.choices.lifestyle.moderate.label"), s: t("financialSimulator.choices.lifestyle.moderate.sub") },
+                  { k: "comfortable", t: t("financialSimulator.choices.lifestyle.comfortable.label"), s: t("financialSimulator.choices.lifestyle.comfortable.sub") },
                 ].map((o) => (
                   <button
                     key={o.k}
@@ -208,7 +202,7 @@ export default function FinancialSimulator() {
                 htmlFor="months"
                 className="flex items-center gap-2 text-navy font-medium mb-3"
               >
-                <Calendar className="w-4 h-4 text-azul" /> Duração do programa (meses)
+                <Calendar className="w-4 h-4 text-azul" /> {t("financialSimulator.choices.duration")}
               </Label>
               <Input
                 id="months"
@@ -237,29 +231,25 @@ export default function FinancialSimulator() {
                     <ShieldCheck className="w-5 h-5" />
                   </span>
                   <span className="text-xs uppercase tracking-widest text-azul font-medium">
-                    O que o governo exige
+                    {t("financialSimulator.proofOfFunds.tag")}
                   </span>
                 </div>
                 <CardTitle className="font-display text-2xl text-navy mt-3">
-                  Prova de fundos oficial (IRCC)
+                  {t("financialSimulator.proofOfFunds.title")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-muted-foreground leading-relaxed">
                 <div className="rounded-lg bg-azul/5 p-4">
                   <div className="text-xs uppercase tracking-widest text-azul">
-                    {IRCC_LABEL[comp]}
+                    {t(`financialSimulator.proofOfFunds.label.${comp}`)}
                   </div>
                   <div className="font-display text-3xl font-semibold text-navy mt-1">
                     {fmt(result.proof)}
-                    <span className="text-sm font-normal text-muted-foreground"> / ano</span>
+                    <span className="text-sm font-normal text-muted-foreground"> {t("financialSimulator.proofOfFunds.perYear")}</span>
                   </div>
                 </div>
                 <p className="text-sm">
-                  Em geral, este é o valor <strong>oficial de prova de fundos</strong>{" "}
-                  exigido para o visto de estudo (fora de Quebec, vigente desde
-                  set/2025). Costuma ser <strong>adicional à mensalidade</strong> e à
-                  passagem, e o IRCC atualiza anualmente. Esta é uma orientação
-                  geral e <strong>não confirma o seu caso</strong>.
+                  <Trans i18nKey="financialSimulator.proofOfFunds.body" />
                 </p>
                 <a
                   href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html"
@@ -267,12 +257,12 @@ export default function FinancialSimulator() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-sm font-medium text-azul hover:underline"
                 >
-                  Confirme o valor atual em canada.ca
+                  {t("financialSimulator.proofOfFunds.confirmLink")}
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
                 <IrccNote
                   href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html"
-                  linkLabel="Prova de fundos — página oficial do IRCC"
+                  linkLabel={t("financialSimulator.proofOfFunds.irccLinkLabel")}
                 />
               </CardContent>
             </Card>
@@ -284,26 +274,24 @@ export default function FinancialSimulator() {
                     <Wallet className="w-5 h-5" />
                   </span>
                   <span className="text-xs uppercase tracking-widest text-crimson font-medium">
-                    O que você provavelmente vai gastar
+                    {t("financialSimulator.monthlyCost.tag")}
                   </span>
                 </div>
                 <CardTitle className="font-display text-2xl text-navy mt-3">
-                  Custo de vida mensal (estimativa)
+                  {t("financialSimulator.monthlyCost.title")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-muted-foreground leading-relaxed">
                 <div className="rounded-lg bg-crimson/5 p-4">
                   <div className="text-xs uppercase tracking-widest text-crimson">
-                    Faixa estimada por mês
+                    {t("financialSimulator.monthlyCost.rangeLabel")}
                   </div>
                   <div className="font-display text-3xl font-semibold text-navy mt-1">
                     {fmtRange(result.monthly)}
                   </div>
                 </div>
                 <p className="text-sm">
-                  Faixa aproximada considerando moradia, alimentação, transporte
-                  e essenciais. <strong>Não é valor garantido</strong> — varia
-                  conforme cidade, bairro, câmbio e escolhas pessoais.
+                  <Trans i18nKey="financialSimulator.monthlyCost.body" />
                 </p>
               </CardContent>
             </Card>
@@ -318,7 +306,7 @@ export default function FinancialSimulator() {
                     <Calendar className="w-5 h-5" />
                   </span>
                   <CardTitle className="font-display text-xl text-navy">
-                    Custo total estimado ({months} meses)
+                    {t("financialSimulator.totalCost.title", { months })}
                   </CardTitle>
                 </div>
               </CardHeader>
@@ -327,8 +315,7 @@ export default function FinancialSimulator() {
                   {fmtRange(result.total)}
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Faixa de custo de vida mensal multiplicada pela duração do
-                  programa. Não inclui mensalidade, passagem, seguro nem taxas.
+                  {t("financialSimulator.totalCost.body")}
                 </p>
               </CardContent>
             </Card>
@@ -340,7 +327,7 @@ export default function FinancialSimulator() {
                     <PiggyBank className="w-5 h-5" />
                   </span>
                   <CardTitle className="font-display text-xl text-navy">
-                    Reserva recomendada
+                    {t("financialSimulator.reserve.title")}
                   </CardTitle>
                 </div>
               </CardHeader>
@@ -349,10 +336,7 @@ export default function FinancialSimulator() {
                   {fmtRange(result.reserve)}
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Sugerimos <strong>3 a 4 meses</strong> de custo de vida como
-                  reserva, <strong>além</strong> da prova de fundos — os
-                  primeiros meses têm gastos extras de instalação (depósito,
-                  móveis, documentos, telefone).
+                  <Trans i18nKey="financialSimulator.reserve.body" />
                 </p>
               </CardContent>
             </Card>
@@ -363,14 +347,14 @@ export default function FinancialSimulator() {
             <CardHeader>
               <CardTitle className="font-display text-lg text-navy flex items-center gap-2">
                 <Info className="w-4 h-4 text-azul" />
-                Duas coisas diferentes — não confunda
+                {t("financialSimulator.comparison.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
                 <div className="flex items-baseline justify-between text-sm mb-1">
-                  <span className="text-navy font-medium">Prova de fundos (IRCC)</span>
-                  <span className="text-muted-foreground">{fmt(result.proof)} / ano</span>
+                  <span className="text-navy font-medium">{t("financialSimulator.comparison.proofLabel")}</span>
+                  <span className="text-muted-foreground">{fmt(result.proof)} {t("financialSimulator.proofOfFunds.perYear")}</span>
                 </div>
                 <div className="h-3 rounded-full bg-muted overflow-hidden">
                   <div
@@ -381,13 +365,13 @@ export default function FinancialSimulator() {
                   />
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Requisito oficial para o visto.
+                  {t("financialSimulator.comparison.proofDescription")}
                 </p>
               </div>
               <div>
                 <div className="flex items-baseline justify-between text-sm mb-1">
                   <span className="text-navy font-medium">
-                    Custo de vida estimado ({months} meses)
+                    {t("financialSimulator.comparison.costLabel", { months })}
                   </span>
                   <span className="text-muted-foreground">{fmtRange(result.total)}</span>
                 </div>
@@ -406,7 +390,7 @@ export default function FinancialSimulator() {
                   />
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Estimativa realista de gastos — faixa (mínimo → máximo).
+                  {t("financialSimulator.comparison.costDescription")}
                 </p>
               </div>
             </CardContent>
@@ -419,26 +403,20 @@ export default function FinancialSimulator() {
         <Alert className="border-crimson/40 bg-crimson/5">
           <AlertTriangle className="h-5 w-5 text-crimson" />
           <AlertTitle className="font-display text-navy">
-            Importante: leia antes de decidir
+            {t("financialSimulator.disclaimer.title")}
           </AlertTitle>
           <AlertDescription className="text-muted-foreground mt-2 leading-relaxed">
-            As estimativas de custo de vida são aproximadas e servem apenas para
-            planejamento. Em geral, os valores reais variam conforme suas
-            escolhas e o mercado. A prova de fundos é um requisito oficial do
-            governo canadense (IRCC), atualizado anualmente e válido fora de
-            Quebec — confirme sempre o valor atual em canada.ca. Este simulador
-            oferece <strong>orientação geral</strong>, <strong>não confirma o seu caso</strong>{" "}
-            e não substitui aconselhamento financeiro ou de imigração (RCIC).
+            <Trans i18nKey="financialSimulator.disclaimer.body" />
           </AlertDescription>
         </Alert>
-        <IrccNote href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada.html" linkLabel="Study in Canada — IRCC oficial" />
+        <IrccNote href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada.html" linkLabel={t("financialSimulator.disclaimer.irccLinkLabel")} />
 
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="outline">
-            <Link to="/custos">Voltar para Custos</Link>
+            <Link to="/custos">{t("financialSimulator.actions.back")}</Link>
           </Button>
           <Button asChild className="bg-navy hover:bg-navy/90 text-white">
-            <Link to="/meu-caminho">Refazer meu diagnóstico</Link>
+            <Link to="/meu-caminho">{t("financialSimulator.actions.redo")}</Link>
           </Button>
         </div>
       </section>
