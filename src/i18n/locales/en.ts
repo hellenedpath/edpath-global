@@ -5,6 +5,7 @@ export const en = {
     destinations: "Destinations",
     myPath: "My Path",
     programs: "Explore Programs",
+    pgwp: "PGWP Checker",
     before: "Before You Start",
     costs: "Costs",
     health: "Health",
