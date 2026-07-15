@@ -90,14 +90,17 @@ export function Header() {
           <div className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
-              className="flex items-center gap-1.5 px-3 py-2 text-sm rounded-md hover:bg-white/10 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/30 text-primary-foreground transition-all"
               aria-label={t("langs.label")}
             >
               <Globe className="w-4 h-4" />
-              {i18n.language.toUpperCase().slice(0, 2)}
+              <span className="font-medium">
+                {i18n.language.toUpperCase().slice(0, 2)}
+              </span>
+              <ChevronDown className="w-3.5 h-3.5 opacity-70" />
             </button>
             {langOpen && (
-              <div className="absolute right-0 top-full mt-2 min-w-[180px] rounded-md border border-border bg-popover text-popover-foreground shadow-lg overflow-hidden">
+              <div className="absolute right-0 top-full mt-2 w-52 rounded-lg border border-white/10 bg-navy text-primary-foreground shadow-xl shadow-black/20 overflow-hidden py-1">
                 {langs.map((l) => (
                   l.active ? (
                     <button
@@ -108,19 +111,24 @@ export function Header() {
                         setLangOpen(false);
                       }}
                       className={cn(
-                        "w-full flex items-center justify-between px-3 py-2 text-sm text-left hover:bg-muted transition-colors",
-                        i18n.language === l.code && "bg-muted font-medium",
+                        "w-full flex items-center justify-between px-3 py-2.5 text-sm text-left transition-colors",
+                        i18n.language === l.code
+                          ? "bg-purple/15 text-white font-medium"
+                          : "hover:bg-white/10 text-primary-foreground/90",
                       )}
                     >
                       <span>{t(`langs.${l.code}`)}</span>
+                      {i18n.language === l.code && (
+                        <Check className="w-4 h-4 text-crimson" />
+                      )}
                     </button>
                   ) : (
                     <div
                       key={l.code}
-                      className="flex items-center justify-between px-3 py-2 text-sm text-muted-foreground"
+                      className="flex items-center justify-between px-3 py-2.5 text-sm text-primary-foreground/60"
                     >
                       <span>{t(`langs.${l.code}`)}</span>
-                      <span className="text-xs uppercase tracking-wide text-muted-foreground/80">
+                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/10 text-primary-foreground/80">
                         {t("langs.soon")}
                       </span>
                     </div>
