@@ -685,4 +685,10 @@ export const en = {
       check: "Check my program",
     },
   },
+
+  irccNote: {
+    title: "General information, does not confirm your case.",
+    body: "Confirm with the official IRCC or a licensed RCIC consultant.",
+    link: "View official IRCC page",
+  },
 };

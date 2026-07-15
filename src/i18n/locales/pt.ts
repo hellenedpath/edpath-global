@@ -689,4 +689,10 @@ export const pt = {
       check: "Verificar meu programa",
     },
   },
+
+  irccNote: {
+    title: "Informação geral, não confirma seu caso.",
+    body: "Confirme no IRCC oficial ou com um consultor RCIC licenciado.",
+    link: "Ver página oficial do IRCC",
+  },
 };
