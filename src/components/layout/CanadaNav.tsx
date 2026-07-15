@@ -27,20 +27,20 @@ type Item = { to: string; label: string };
 
 const primaryTo = "/meu-caminho";
 
-const beforeYouGo: Item[] = [
-  { to: "/canada/pgwp", label: "Verificador PGWP" },
-  { to: "/canada/instituicoes", label: "Instituições" },
-  { to: "/programas", label: "Explorar Programas" },
-  { to: "/custos", label: "Simulador de Custos" },
-  { to: "/antes-de-comecar", label: "Antes de Começar" },
-];
+const beforeYouGoDefs = [
+  { to: "/canada/pgwp", key: "pgwp" },
+  { to: "/canada/instituicoes", key: "institutions" },
+  { to: "/programas", key: "programs" },
+  { to: "/custos", key: "costsSimulator" },
+  { to: "/antes-de-comecar", key: "before" },
+] as const;
 
-const onArrival: Item[] = [
-  { to: "/custos", label: "Custos" },
-  { to: "/saude", label: "Saúde" },
-  { to: "/familia", label: "Família" },
-  { to: "/trabalho-moradia", label: "Trabalho e Moradia" },
-];
+const onArrivalDefs = [
+  { to: "/custos", key: "costs" },
+  { to: "/saude", key: "health" },
+  { to: "/familia", key: "family" },
+  { to: "/trabalho-moradia", key: "work" },
+] as const;
 
 function HoverDropdown({
   label,
@@ -132,6 +132,14 @@ export function CanadaNav() {
 
   const primary: Item = { to: primaryTo, label: t("nav.myPath") };
   const primaryActive = pathname === primary.to;
+  const beforeYouGo: Item[] = beforeYouGoDefs.map((d) => ({
+    to: d.to,
+    label: t(`canadaNav.items.${d.key}`),
+  }));
+  const onArrival: Item[] = onArrivalDefs.map((d) => ({
+    to: d.to,
+    label: t(`canadaNav.items.${d.key}`),
+  }));
 
   return (
     <div className="border-b border-border bg-background sticky top-16 z-40">
@@ -161,8 +169,8 @@ export function CanadaNav() {
             />
           </NavLink>
 
-          <HoverDropdown label="Antes de ir" items={beforeYouGo} activePath={pathname} />
-          <HoverDropdown label="Ao chegar" items={onArrival} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.beforeYouGo")} items={beforeYouGo} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.onArrival")} items={onArrival} activePath={pathname} />
         </nav>
 
         {/* Mobile trigger */}
@@ -171,16 +179,16 @@ export function CanadaNav() {
             <SheetTrigger asChild>
               <button
                 type="button"
-                aria-label="Abrir menu"
+                aria-label={t("canadaNav.openMenu")}
                 className="inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md border border-border text-foreground hover:bg-muted"
               >
                 <Menu className="h-4 w-4" />
-                Menu
+                {t("canadaNav.menu")}
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80">
               <SheetHeader>
-                <SheetTitle>Menu do Canadá</SheetTitle>
+                <SheetTitle>{t("canadaNav.canadaMenu")}</SheetTitle>
               </SheetHeader>
 
               <div className="mt-6 space-y-4">
@@ -200,7 +208,7 @@ export function CanadaNav() {
                 <Accordion type="multiple" className="w-full">
                   <AccordionItem value="before">
                     <AccordionTrigger className="text-sm font-medium">
-                      Antes de ir
+                      {t("canadaNav.beforeYouGo")}
                     </AccordionTrigger>
                     <AccordionContent>
                       <ul className="flex flex-col">
@@ -225,7 +233,7 @@ export function CanadaNav() {
                   </AccordionItem>
                   <AccordionItem value="arrival">
                     <AccordionTrigger className="text-sm font-medium">
-                      Ao chegar
+                      {t("canadaNav.onArrival")}
                     </AccordionTrigger>
                     <AccordionContent>
                       <ul className="flex flex-col">
