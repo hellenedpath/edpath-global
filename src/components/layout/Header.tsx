@@ -12,13 +12,13 @@ const navItems = [
 
 const langs = [
   { code: "pt", active: true },
-  { code: "en", active: false },
+  { code: "en", active: true },
   { code: "es", active: false },
   { code: "fr", active: false },
 ] as const;
 
 export function Header() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [langOpen, setLangOpen] = useState(false);
@@ -94,25 +94,37 @@ export function Header() {
               aria-label={t("langs.label")}
             >
               <Globe className="w-4 h-4" />
-              PT
+              {i18n.language.toUpperCase().slice(0, 2)}
             </button>
             {langOpen && (
               <div className="absolute right-0 top-full mt-2 min-w-[180px] rounded-md border border-border bg-popover text-popover-foreground shadow-lg overflow-hidden">
                 {langs.map((l) => (
-                  <div
-                    key={l.code}
-                    className={cn(
-                      "flex items-center justify-between px-3 py-2 text-sm",
-                      l.active ? "bg-muted font-medium" : "text-muted-foreground",
-                    )}
-                  >
-                    <span>{t(`langs.${l.code}`)}</span>
-                    {!l.active && (
+                  l.active ? (
+                    <button
+                      key={l.code}
+                      type="button"
+                      onClick={() => {
+                        i18n.changeLanguage(l.code);
+                        setLangOpen(false);
+                      }}
+                      className={cn(
+                        "w-full flex items-center justify-between px-3 py-2 text-sm text-left hover:bg-muted transition-colors",
+                        i18n.language === l.code && "bg-muted font-medium",
+                      )}
+                    >
+                      <span>{t(`langs.${l.code}`)}</span>
+                    </button>
+                  ) : (
+                    <div
+                      key={l.code}
+                      className="flex items-center justify-between px-3 py-2 text-sm text-muted-foreground"
+                    >
+                      <span>{t(`langs.${l.code}`)}</span>
                       <span className="text-xs uppercase tracking-wide text-muted-foreground/80">
                         {t("langs.soon")}
                       </span>
-                    )}
-                  </div>
+                    </div>
+                  )
                 ))}
               </div>
             )}
