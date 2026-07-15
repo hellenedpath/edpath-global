@@ -735,4 +735,82 @@ export const pt = {
     empty: "Nenhuma instituição encontrada com esses filtros.",
     note: "Lista de instituições públicas com base em dados oficiais do IRCC. Cobre as principais províncias de destino de estudantes e está sendo expandida. O botão leva a uma busca pelo site oficial da instituição — confirme sempre as informações diretamente com a instituição.",
   },
+
+  financialSimulator: {
+    back: "Voltar para Custos",
+    badge: "Simulador Financeiro",
+    heroTitle: "Estime seu projeto de estudo no Canadá",
+    heroSubtitle:
+      "Ajuste as variáveis abaixo para ver uma faixa realista de custos e a reserva recomendada. Faixas amplas e honestas — planejamento, não promessa.",
+    choices: {
+      title: "Suas escolhas",
+      city: {
+        label: "Cidade / região",
+        large: { label: "Cidade grande cara", sub: "Ex.: Toronto, Vancouver" },
+        medium: { label: "Cidade média", sub: "Ex.: Ottawa, Calgary" },
+        small: { label: "Cidade menor", sub: "Mais econômica" },
+      },
+      composition: {
+        label: "Composição",
+        solo: "Sozinho(a)",
+        spouse: "Com cônjuge",
+        spouse_kid: "Com cônjuge e filhos",
+      },
+      lifestyle: {
+        label: "Estilo de vida",
+        economic: { label: "Econômico", sub: "Corta gastos, moradia compartilhada" },
+        moderate: { label: "Moderado", sub: "Padrão médio, lazer ocasional" },
+        comfortable: { label: "Confortável", sub: "Mais folga, sem apertos" },
+      },
+      duration: "Duração do programa (meses)",
+    },
+    proofOfFunds: {
+      tag: "O que o governo exige",
+      title: "Prova de fundos oficial (IRCC)",
+      label: {
+        solo: "1 pessoa",
+        spouse: "Com cônjuge (2 pessoas)",
+        spouse_kid: "Com cônjuge e 1 filho (3 pessoas)",
+      },
+      perYear: "/ ano",
+      body:
+        "Em geral, este é o valor <strong>oficial de prova de fundos</strong> exigido para o visto de estudo (fora de Quebec, vigente desde set/2025). Costuma ser <strong>adicional à mensalidade</strong> e à passagem, e o IRCC atualiza anualmente. Esta é uma orientação geral e <strong>não confirma o seu caso</strong>.",
+      confirmLink: "Confirme o valor atual em canada.ca",
+      irccLinkLabel: "Prova de fundos — página oficial do IRCC",
+    },
+    monthlyCost: {
+      tag: "O que você provavelmente vai gastar",
+      title: "Custo de vida mensal (estimativa)",
+      rangeLabel: "Faixa estimada por mês",
+      body:
+        "Faixa aproximada considerando moradia, alimentação, transporte e essenciais. <strong>Não é valor garantido</strong> — varia conforme cidade, bairro, câmbio e escolhas pessoais.",
+    },
+    totalCost: {
+      title: "Custo total estimado ({{months}} meses)",
+      body:
+        "Faixa de custo de vida mensal multiplicada pela duração do programa. Não inclui mensalidade, passagem, seguro nem taxas.",
+    },
+    reserve: {
+      title: "Reserva recomendada",
+      body:
+        "Sugerimos <strong>3 a 4 meses</strong> de custo de vida como reserva, <strong>além</strong> da prova de fundos — os primeiros meses têm gastos extras de instalação (depósito, móveis, documentos, telefone).",
+    },
+    comparison: {
+      title: "Duas coisas diferentes — não confunda",
+      proofLabel: "Prova de fundos (IRCC)",
+      proofDescription: "Requisito oficial para o visto.",
+      costLabel: "Custo de vida estimado ({{months}} meses)",
+      costDescription: "Estimativa realista de gastos — faixa (mínimo → máximo).",
+    },
+    disclaimer: {
+      title: "Importante: leia antes de decidir",
+      body:
+        "As estimativas de custo de vida são aproximadas e servem apenas para planejamento. Em geral, os valores reais variam conforme suas escolhas e o mercado. A prova de fundos é um requisito oficial do governo canadense (IRCC), atualizado anualmente e válido fora de Quebec — confirme sempre o valor atual em canada.ca. Este simulador oferece <strong>orientação geral</strong>, <strong>não confirma o seu caso</strong> e não substitui aconselhamento financeiro ou de imigração (RCIC).",
+      irccLinkLabel: "Study in Canada — IRCC oficial",
+    },
+    actions: {
+      back: "Voltar para Custos",
+      redo: "Refazer meu diagnóstico",
+    },
+  },
 };
