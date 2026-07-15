@@ -1,5 +1,36 @@
 // English translations. Only keys added here override the PT fallback.
 export const en = {
+  nav: {
+    about: "About",
+    destinations: "Destinations",
+    programs: "Explore Programs",
+    before: "Before You Start",
+    costs: "Costs",
+    health: "Health",
+    family: "Family",
+    work: "Work & Housing",
+  },
+  langs: {
+    label: "Language",
+    pt: "Portuguese",
+    en: "English",
+    es: "Spanish",
+    fr: "French",
+    soon: "coming soon",
+  },
+  home: {
+    title: "Your safe path to studying abroad",
+    subtitle:
+      "Independent, verified and clear information to help you plan your studies around the world.",
+    ctaPrograms: "Explore Programs",
+    ctaBefore: "Before You Start",
+  },
+  footer: {
+    tagline: "Your smart compass for studying abroad",
+    expansion: "Canada available now. More countries coming soon.",
+    disclaimer:
+      "EdPath Global provides educational information, not immigration advice. Immigration advice can only be given by licensed RCIC consultants. We work as an independent information layer and can connect students with trusted agencies and professionals.",
+  },
   programs: {
     hero: {
       badge: "Canada",
