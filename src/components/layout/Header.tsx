@@ -85,7 +85,7 @@ export function Header() {
             className="hidden md:inline-flex items-center gap-1.5 rounded-md bg-crimson px-3.5 py-2 text-sm font-semibold text-white hover:bg-crimson/90 transition-colors"
           >
             <Compass className="w-4 h-4" />
-            Meu Caminho
+            {t("nav.myPath")}
           </Link>
           <div className="relative">
             <button
@@ -149,7 +149,7 @@ export function Header() {
               className="px-3 py-3 text-sm rounded-md bg-crimson hover:bg-crimson/90 text-white font-semibold inline-flex items-center gap-2"
             >
               <Compass className="w-4 h-4" />
-              Meu Caminho
+              {t("nav.myPath")}
             </NavLink>
             {navItems.map((item) =>
               item.type === "anchor" ? (
