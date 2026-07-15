@@ -1,35 +1,65 @@
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, Briefcase, CheckCircle2, GraduationCap, Info, Lightbulb, Search } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { AlertTriangle, ArrowRight, CheckCircle2, ExternalLink, Info, Search } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const tips = [
-  {
-    icon: Lightbulb,
-    title: "Pense no seu objetivo de carreira e de imigração",
-    description:
-      "Escolha uma área que faça sentido para o seu projeto de vida. Se o plano inclui trabalhar no país após a graduação, a elegibilidade para PGWP é um fator importante.",
-  },
-  {
-    icon: CheckCircle2,
-    title: "Verifique se a área dá direito a PGWP antes de se inscrever",
-    description:
-      "Nem todo programa em uma instituição autorizada gera direito à Permissão de Trabalho Pós-Graduação. Confirme a elegibilidade antes de pagar taxas ou assinar contratos.",
-  },
-  {
-    icon: Search,
-    title: "Confirme o código CIP do programa com a instituição",
-    description:
-      "O governo canadense classifica programas pelo CIP code. Use o código exato do seu curso para verificar a elegibilidade oficial no IRCC.",
-  },
-  {
-    icon: Briefcase,
-    title: "Considere o mercado de trabalho da área no Canadá",
-    description:
-      "Pesquise demanda regional, salários médios e requisitos de certificação para sua profissão. Um curso interessante pode não ter vagas abundantes onde você pretende morar.",
-  },
-];
+type CipRow = {
+  id: string;
+  code: string;
+  title: string;
+  description: string | null;
+  category: string | null;
+};
+
+const CATEGORIES = ["stem", "trade", "transport"] as const;
+type Category = (typeof CATEGORIES)[number];
+
+function normalize(s: string) {
+  return s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+function statusFrom(desc: string | null): "eligible" | "conditional" | "unknown" {
+  const d = (desc ?? "").toLowerCase();
+  if (d.includes("conditional")) return "conditional";
+  if (d.includes("eligible")) return "eligible";
+  return "unknown";
+}
 
 export default function Programs() {
+  const { t } = useTranslation();
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState<Category | "all">("all");
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["cip_codes", "programs-page"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("cip_codes")
+        .select("id, code, title, description, category")
+        .range(0, 999)
+        .order("title", { ascending: true });
+      if (error) throw error;
+      return data as CipRow[];
+    },
+  });
+
+  const filtered = useMemo(() => {
+    const q = normalize(query);
+    return (data ?? []).filter((r) => {
+      if (category !== "all" && r.category !== category) return false;
+      if (!q) return true;
+      return normalize(r.title).includes(q);
+    });
+  }, [data, query, category]);
+
   return (
     <>
       {/* Hero */}
@@ -38,82 +68,159 @@ export default function Programs() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/70 mb-4">
               <span className="text-lg leading-none">🇨🇦</span>
-              <span>Canadá</span>
+              <span>{t("programs.hero.badge")}</span>
             </div>
             <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight">
-              Explore áreas de estudo e sua elegibilidade
+              {t("programs.hero.title")}
             </h1>
             <p className="mt-5 text-lg text-white/80 leading-relaxed max-w-2xl">
-              Descubra quais áreas de estudo dão direito à permissão de trabalho pós-graduação (PGWP) e escolha seu caminho com segurança.
+              {t("programs.hero.subtitle")}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Tips */}
-      <section className="container py-14 md:py-20">
-        <div className="max-w-3xl mb-10">
-          <h2 className="font-display text-2xl md:text-3xl font-semibold text-navy">
-            Como escolher sua área com inteligência
-          </h2>
-          <p className="mt-3 text-muted-foreground leading-relaxed">
-            Antes de se inscrever em um programa, avalie estes pontos para evitar surpresas e fazer uma escolha alinhada aos seus objetivos.
-          </p>
-        </div>
+      <section className="container py-10 md:py-14">
+        {/* Search + categories */}
+        <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-sm">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={t("programs.search.placeholder")}
+              className="pl-9 h-11"
+            />
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {tips.map(({ icon: Icon, title, description }) => (
-            <div
-              key={title}
-              className="rounded-2xl border border-border bg-card p-6 md:p-7 transition-all hover:border-azul/40 hover:shadow-md"
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            <Button
+              size="sm"
+              variant={category === "all" ? "default" : "outline"}
+              onClick={() => setCategory("all")}
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-azul/10 text-azul">
-                <Icon className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 font-semibold text-foreground text-lg leading-snug">
-                {title}
-              </h3>
-              <p className="mt-2 text-muted-foreground leading-relaxed text-sm md:text-base">
-                {description}
-              </p>
-            </div>
-          ))}
+              {t("programs.search.allCategories")}
+            </Button>
+            {CATEGORIES.map((c) => (
+              <Button
+                key={c}
+                size="sm"
+                variant={category === c ? "default" : "outline"}
+                onClick={() => setCategory(c)}
+              >
+                {t(`programs.category.${c}`)}
+              </Button>
+            ))}
+          </div>
         </div>
-      </section>
 
-      {/* CTA */}
-      <section className="container pb-16 md:pb-24">
-        <div className="rounded-2xl border border-border bg-card p-8 md:p-12 text-center shadow-sm">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-crimson/10 text-crimson">
-            <GraduationCap className="h-6 w-6" />
-          </div>
-          <h2 className="mt-6 font-display text-2xl md:text-3xl font-semibold text-navy">
-            Pronto para verificar a elegibilidade da sua área?
-          </h2>
-          <p className="mt-3 text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Use o Verificador PGWP para consultar mais de 300 áreas de estudo e saber se o seu programa dá direito à permissão de trabalho pós-graduação.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button asChild size="lg" className="bg-crimson hover:bg-crimson/90 text-white px-8">
-              <Link to="/canada/pgwp">
-                Verificar elegibilidade da minha área
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link to="/antes-de-comecar">
-                <BookOpen className="h-4 w-4" />
-                Antes de começar
-              </Link>
-            </Button>
-          </div>
-
-          <div className="mt-6 inline-flex items-start gap-2 text-xs text-muted-foreground max-w-2xl mx-auto">
-            <Info className="h-4 w-4 shrink-0 mt-0.5" />
-            <p className="text-left">
-              A lista de áreas se baseia em fontes oficiais do IRCC sobre campos de estudo elegíveis para PGWP. Sempre confirme a elegibilidade final do seu programa diretamente com a instituição e nas fontes oficiais do governo canadense.
+        {/* Disclaimer */}
+        <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-5 flex items-start gap-3">
+          <AlertTriangle className="h-5 w-5 mt-0.5 shrink-0 text-amber-700" />
+          <div className="text-sm text-amber-950 leading-relaxed">
+            <p className="font-semibold text-amber-900 mb-1">
+              {t("programs.disclaimer.title")}
             </p>
+            <p>{t("programs.disclaimer.body")}</p>
+            <a
+              href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/eligibility.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex items-center gap-1 font-medium text-amber-900 underline hover:text-amber-950"
+            >
+              {t("programs.disclaimer.linkLabel")}
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
           </div>
+        </div>
+
+        {/* Results */}
+        <div className="mt-6">
+          {isLoading && (
+            <p className="text-muted-foreground text-sm py-10 text-center">
+              {t("programs.search.loading")}
+            </p>
+          )}
+          {error && (
+            <p className="text-crimson text-sm py-10 text-center">
+              {t("programs.search.error")}
+            </p>
+          )}
+
+          {!isLoading && !error && (
+            <>
+              <div className="flex items-center justify-between mb-3 text-sm text-muted-foreground">
+                <span>
+                  {t("programs.search.resultsCount", {
+                    count: filtered.length,
+                    total: data?.length ?? 0,
+                  })}
+                </span>
+              </div>
+
+              <ul className="space-y-3">
+                {filtered.map((r) => {
+                  const status = statusFrom(r.description);
+                  return (
+                    <li
+                      key={r.id}
+                      className="rounded-xl border border-border bg-card p-4 md:p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3"
+                    >
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                          <span className="font-mono">{r.code}</span>
+                          {r.category && (
+                            <>
+                              <span>•</span>
+                              <span>{t(`programs.category.${r.category}`)}</span>
+                            </>
+                          )}
+                        </div>
+                        <h3 className="font-medium text-foreground leading-snug">
+                          {r.title}
+                        </h3>
+                      </div>
+                      <div className="shrink-0">
+                        {status === "eligible" && (
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 text-emerald-800 px-3 py-1 text-xs font-medium">
+                            <CheckCircle2 className="h-3.5 w-3.5" />
+                            {t("programs.status.eligible")}
+                          </span>
+                        )}
+                        {status === "conditional" && (
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 text-amber-900 px-3 py-1 text-xs font-medium">
+                            <AlertTriangle className="h-3.5 w-3.5" />
+                            {t("programs.status.conditional")}
+                          </span>
+                        )}
+                        {status === "unknown" && (
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-muted text-muted-foreground px-3 py-1 text-xs font-medium">
+                            <Info className="h-3.5 w-3.5" />
+                            {r.description ?? "—"}
+                          </span>
+                        )}
+                      </div>
+                    </li>
+                  );
+                })}
+                {filtered.length === 0 && (
+                  <li className="text-center text-muted-foreground py-10 text-sm">
+                    {t("programs.search.empty")}
+                  </li>
+                )}
+              </ul>
+            </>
+          )}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-10 flex justify-center">
+          <Button asChild size="lg" className="bg-crimson hover:bg-crimson/90 text-white px-8">
+            <Link to="/canada/pgwp">
+              {t("programs.cta.check")}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </section>
     </>
