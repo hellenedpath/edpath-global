@@ -630,4 +630,39 @@ export const pt = {
     disclaimer:
       "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados. Trabalhamos como camada de informação independente e podemos conectar estudantes a agências e profissionais confiáveis.",
   },
+
+  programs: {
+    hero: {
+      badge: "Canadá",
+      title: "Explore áreas de estudo elegíveis para PGWP",
+      subtitle:
+        "Busque áreas de estudo que podem qualificar para a Permissão de Trabalho Pós-Graduação (PGWP), com base na lista oficial do governo canadense.",
+    },
+    search: {
+      placeholder: "Busque uma área (ex: nursing, engineering, computer)",
+      allCategories: "Todas as categorias",
+      resultsCount: "{{count}} de {{total}} áreas",
+      empty: "Nenhuma área encontrada para esta busca.",
+      loading: "Carregando áreas de estudo...",
+      error: "Erro ao carregar dados. Tente novamente.",
+    },
+    category: {
+      stem: "Ciência, Tecnologia e Engenharia",
+      trade: "Ofícios e Técnico",
+      transport: "Transporte",
+    },
+    status: {
+      eligible: "Elegível para PGWP",
+      conditional: "Elegibilidade condicional",
+    },
+    disclaimer: {
+      title: "Importante: leia antes de decidir",
+      body:
+        "Esta lista mostra apenas áreas que podem qualificar para o PGWP. Áreas que não aparecem aqui podem não ser elegíveis — muitos programas de negócios e gestão perderam a elegibilidade desde 2024. A elegibilidade final também depende da instituição, duração e idioma do curso. Confirme sempre o seu caso específico.",
+      linkLabel: "Consultar lista oficial do IRCC",
+    },
+    cta: {
+      check: "Verificar meu programa",
+    },
+  },
 };
