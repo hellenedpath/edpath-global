@@ -48,18 +48,18 @@ export default function Index() {
               className="group inline-flex items-center gap-2 rounded-md bg-crimson px-7 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-crimson/20 hover:bg-crimson/90 transition-colors"
             >
               <Compass className="w-5 h-5" />
-              Descubra seu caminho em 2 minutos
+              {t("home.ctaQuiz")}
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
               to="/#destinos"
               className="inline-flex items-center gap-2 rounded-md border border-white/25 bg-white/5 px-6 py-4 text-sm font-medium text-primary-foreground/90 hover:bg-white/10 transition-colors"
             >
-              Explorar por destino
+              {t("home.ctaExplore")}
             </Link>
           </div>
           <p className="mt-4 text-sm text-primary-foreground/70">
-            6 perguntas rápidas · roteiro personalizado em 8 etapas
+            {t("home.quizNote")}
           </p>
         </div>
       </section>

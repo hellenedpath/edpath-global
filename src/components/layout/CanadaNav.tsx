@@ -25,7 +25,7 @@ import {
 
 type Item = { to: string; label: string };
 
-const primary: Item = { to: "/meu-caminho", label: "Meu Caminho" };
+const primaryTo = "/meu-caminho";
 
 const beforeYouGo: Item[] = [
   { to: "/canada/pgwp", label: "Verificador PGWP" },
@@ -130,6 +130,7 @@ export function CanadaNav() {
   const { pathname } = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const primary: Item = { to: primaryTo, label: t("nav.myPath") };
   const primaryActive = pathname === primary.to;
 
   return (

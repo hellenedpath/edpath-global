@@ -2,6 +2,7 @@ export const pt = {
   nav: {
     about: "Sobre",
     destinations: "Destinos",
+    myPath: "Meu Caminho",
     programs: "Explorar Programas",
     before: "Antes de Começar",
     costs: "Custos",
@@ -23,6 +24,9 @@ export const pt = {
       "Informação independente, verificada e clara para você planejar seus estudos ao redor do mundo.",
     ctaPrograms: "Explorar Programas",
     ctaBefore: "Antes de Começar",
+    ctaQuiz: "Descubra seu caminho em 2 minutos",
+    ctaExplore: "Explorar por destino",
+    quizNote: "6 perguntas rápidas · roteiro personalizado em 8 etapas",
   },
   countries: {
     title: "Escolha seu destino",
