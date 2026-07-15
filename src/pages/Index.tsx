@@ -31,21 +31,21 @@ export default function Index() {
               "radial-gradient(circle at 20% 20%, hsl(var(--azul)) 0, transparent 45%), radial-gradient(circle at 85% 70%, hsl(var(--crimson)) 0, transparent 40%)",
           }}
         />
-        <div className="container relative py-24 md:py-32 lg:py-40 max-w-5xl">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary-foreground/70 mb-6">
-            <span className="w-6 h-px bg-crimson" />
+        <div className="container relative py-28 md:py-36 lg:py-48 max-w-5xl">
+          <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-8">
+            <span className="w-8 h-px bg-crimson" />
             EdPath Global
           </div>
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight text-white">
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight text-white max-w-4xl">
             {t("home.title")}
           </h1>
-          <p className="mt-6 text-lg md:text-xl text-primary-foreground/85 max-w-2xl leading-relaxed">
+          <p className="mt-8 text-lg md:text-xl lg:text-2xl text-primary-foreground/80 max-w-xl leading-[1.5]">
             {t("home.subtitle")}
           </p>
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-12 flex flex-wrap gap-4">
             <Link
               to="/meu-caminho"
-              className="group inline-flex items-center gap-2 rounded-md bg-crimson px-7 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-crimson/20 hover:bg-crimson/90 transition-colors"
+              className="group inline-flex items-center gap-2.5 rounded-lg bg-crimson px-8 py-4 text-base font-semibold text-primary-foreground shadow-md shadow-crimson/25 hover:bg-crimson/90 transition-colors"
             >
               <Compass className="w-5 h-5" />
               {t("home.ctaQuiz")}
@@ -53,12 +53,12 @@ export default function Index() {
             </Link>
             <Link
               to="/#destinos"
-              className="inline-flex items-center gap-2 rounded-md border border-white/25 bg-white/5 px-6 py-4 text-sm font-medium text-primary-foreground/90 hover:bg-white/10 transition-colors"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/30 bg-white/[0.07] px-7 py-4 text-sm font-medium text-primary-foreground/90 hover:bg-white/10 transition-colors"
             >
               {t("home.ctaExplore")}
             </Link>
           </div>
-          <p className="mt-4 text-sm text-primary-foreground/70">
+          <p className="mt-5 text-sm text-primary-foreground/65">
             {t("home.quizNote")}
           </p>
         </div>
