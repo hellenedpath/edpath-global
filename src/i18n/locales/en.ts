@@ -691,4 +691,44 @@ export const en = {
     body: "Confirm with the official IRCC or a licensed RCIC consultant.",
     link: "View official IRCC page",
   },
+
+  institutions: {
+    hero: {
+      badge: "Canada",
+      title: "Public institutions in Canada",
+      subtitle: "Recognized public universities and colleges, organized by province.",
+      description:
+        "In Canada, <strong>universities</strong> offer bachelor's, master's and doctoral degrees with an academic focus. <strong>Colleges</strong> offer diplomas and certificates with a practical, professional focus — usually shorter and more affordable. Both can lead to a PGWP, depending on the program.",
+    },
+    filters: {
+      searchPlaceholder: "Search by institution name...",
+      loading: "Loading...",
+      provinces: {
+        all: "All",
+        Ontario: "Ontario",
+        "British Columbia": "British Columbia",
+        Alberta: "Alberta",
+        Manitoba: "Manitoba",
+        Saskatchewan: "Saskatchewan",
+      },
+      types: {
+        all: "All types",
+        university: "Universities",
+        college: "Colleges",
+      },
+    },
+    badges: {
+      university: "University",
+      college: "College",
+    },
+    count: {
+      total: "{{count}} {{unit}} in total",
+      filtered: "{{count}} {{unit}} in {{province}}",
+      singular: "institution",
+      plural: "institutions",
+    },
+    visitSite: "Visit official website",
+    empty: "No institutions found with these filters.",
+    note: "List of public institutions based on official IRCC data. Covers the main destination provinces for students and is being expanded. The button opens a search for the institution's official website — always confirm information directly with the institution.",
+  },
 };

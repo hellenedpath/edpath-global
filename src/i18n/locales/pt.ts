@@ -695,4 +695,44 @@ export const pt = {
     body: "Confirme no IRCC oficial ou com um consultor RCIC licenciado.",
     link: "Ver página oficial do IRCC",
   },
+
+  institutions: {
+    hero: {
+      badge: "Canadá",
+      title: "Instituições públicas no Canadá",
+      subtitle: "Universidades e colleges públicos reconhecidos, organizados por província.",
+      description:
+        "No Canadá, <strong>universidades</strong> oferecem bacharelado, mestrado e doutorado, com foco acadêmico. <strong>Colleges</strong> oferecem diplomas e certificados com foco prático e profissional — geralmente mais curtos e acessíveis. Ambos podem dar direito ao PGWP, dependendo do programa.",
+    },
+    filters: {
+      searchPlaceholder: "Buscar por nome da instituição...",
+      loading: "Carregando...",
+      provinces: {
+        all: "Todas",
+        Ontario: "Ontário",
+        "British Columbia": "British Columbia",
+        Alberta: "Alberta",
+        Manitoba: "Manitoba",
+        Saskatchewan: "Saskatchewan",
+      },
+      types: {
+        all: "Todos os tipos",
+        university: "Universidades",
+        college: "Colleges",
+      },
+    },
+    badges: {
+      university: "Universidade",
+      college: "College",
+    },
+    count: {
+      total: "{{count}} {{unit}} no total",
+      filtered: "{{count}} {{unit}} em {{province}}",
+      singular: "instituição",
+      plural: "instituições",
+    },
+    visitSite: "Visitar site oficial",
+    empty: "Nenhuma instituição encontrada com esses filtros.",
+    note: "Lista de instituições públicas com base em dados oficiais do IRCC. Cobre as principais províncias de destino de estudantes e está sendo expandida. O botão leva a uma busca pelo site oficial da instituição — confirme sempre as informações diretamente com a instituição.",
+  },
 };
