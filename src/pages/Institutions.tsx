@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation, Trans } from "react-i18next";
 import { Search, Building2, ExternalLink } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
@@ -16,16 +17,13 @@ type Institution = {
 };
 
 const PROVINCES = [
-  { key: "all", label: "Todas" },
-  { key: "Ontario", label: "Ontário" },
-  { key: "British Columbia", label: "British Columbia" },
-  { key: "Alberta", label: "Alberta" },
-  { key: "Manitoba", label: "Manitoba" },
-  { key: "Saskatchewan", label: "Saskatchewan" },
-];
-
-const provinceLabel = (p: string) =>
-  PROVINCES.find((x) => x.key === p)?.label ?? p;
+  "all",
+  "Ontario",
+  "British Columbia",
+  "Alberta",
+  "Manitoba",
+  "Saskatchewan",
+] as const;
 
 type Kind = "university" | "college";
 
@@ -37,13 +35,10 @@ const classify = (name: string): Kind => {
   return "college";
 };
 
-const KINDS = [
-  { key: "all", label: "Todos os tipos" },
-  { key: "university", label: "Universidades" },
-  { key: "college", label: "Colleges" },
-] as const;
+const KINDS = ["all", "university", "college"] as const;
 
 export default function Institutions() {
+  const { t } = useTranslation();
   const [items, setItems] = useState<Institution[]>([]);
   const [loading, setLoading] = useState(true);
   const [province, setProvince] = useState<string>("all");
@@ -61,6 +56,9 @@ export default function Institutions() {
     })();
   }, []);
 
+  const provinceLabel = (p: string) =>
+    t(`institutions.filters.provinces.${p}`, { defaultValue: p });
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return items.filter((it) => {
@@ -76,9 +74,18 @@ export default function Institutions() {
 
   const countLabel = useMemo(() => {
     const n = filtered.length;
-    if (province === "all") return `${n} instituições no total`;
-    return `${n} ${n === 1 ? "instituição" : "instituições"} em ${provinceLabel(province)}`;
-  }, [filtered.length, province]);
+    const unit = n === 1
+      ? t("institutions.count.singular")
+      : t("institutions.count.plural");
+    if (province === "all") {
+      return t("institutions.count.total", { count: n, unit });
+    }
+    return t("institutions.count.filtered", {
+      count: n,
+      unit,
+      province: provinceLabel(province),
+    });
+  }, [filtered.length, province, t]);
 
   return (
     <>
@@ -88,17 +95,19 @@ export default function Institutions() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/70 mb-4">
               <span className="text-lg leading-none">🇨🇦</span>
-              <span>Canadá</span>
+              <span>{t("institutions.hero.badge")}</span>
             </div>
             <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight">
-              Instituições públicas no Canadá
+              {t("institutions.hero.title")}
             </h1>
             <p className="mt-5 text-lg text-white/80 leading-relaxed max-w-2xl">
-              Universidades e colleges públicos reconhecidos, organizados por província.
+              {t("institutions.hero.subtitle")}
             </p>
             <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-2xl">
-              No Canadá, <strong className="text-white">universidades</strong> oferecem bacharelado, mestrado e doutorado, com foco acadêmico.{" "}
-              <strong className="text-white">Colleges</strong> oferecem diplomas e certificados com foco prático e profissional — geralmente mais curtos e acessíveis. Ambos podem dar direito ao PGWP, dependendo do programa.
+              <Trans
+                i18nKey="institutions.hero.description"
+                components={{ strong: <strong className="text-white" /> }}
+              />
             </p>
           </div>
         </div>
@@ -112,27 +121,27 @@ export default function Institutions() {
             <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Buscar por nome da instituição..."
+              placeholder={t("institutions.filters.searchPlaceholder")}
               className="pl-9"
             />
           </div>
 
           <div className="flex flex-wrap gap-2">
             {PROVINCES.map((p) => {
-              const active = province === p.key;
+              const active = province === p;
               return (
                 <Button
-                  key={p.key}
+                  key={p}
                   variant={active ? "default" : "outline"}
                   size="sm"
-                  onClick={() => setProvince(p.key)}
+                  onClick={() => setProvince(p)}
                   className={
                     active
                       ? "bg-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/90 text-white border-transparent"
                       : ""
                   }
                 >
-                  {p.label}
+                  {provinceLabel(p)}
                 </Button>
               );
             })}
@@ -140,27 +149,27 @@ export default function Institutions() {
 
           <div className="flex flex-wrap gap-2">
             {KINDS.map((k) => {
-              const active = kind === k.key;
+              const active = kind === k;
               return (
                 <Button
-                  key={k.key}
+                  key={k}
                   variant={active ? "default" : "outline"}
                   size="sm"
-                  onClick={() => setKind(k.key)}
+                  onClick={() => setKind(k)}
                   className={
                     active
                       ? "bg-navy hover:bg-navy/90 text-white border-transparent"
                       : ""
                   }
                 >
-                  {k.label}
+                  {t(`institutions.filters.types.${k}`)}
                 </Button>
               );
             })}
           </div>
 
           <p className="text-sm text-muted-foreground">
-            {loading ? "Carregando..." : countLabel}
+            {loading ? t("institutions.filters.loading") : countLabel}
           </p>
         </div>
 
@@ -185,7 +194,7 @@ export default function Institutions() {
                         : "inline-block rounded-full px-2 py-0.5 text-[10px] font-medium bg-[hsl(var(--crimson))]/10 text-[hsl(var(--crimson))] mb-1.5"
                     }
                   >
-                    {isUni ? "Universidade" : "College"}
+                    {t(`institutions.badges.${isUni ? "university" : "college"}`)}
                   </span>
                   <h3 className="font-semibold text-foreground leading-snug">
                     {it.display_name ?? it.name}
@@ -206,7 +215,7 @@ export default function Institutions() {
                 rel="noopener noreferrer external"
                 className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(var(--azul))] hover:text-[hsl(var(--crimson))] transition-colors"
               >
-                Visitar site oficial
+                {t("institutions.visitSite")}
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             </div>
@@ -216,15 +225,12 @@ export default function Institutions() {
 
         {!loading && filtered.length === 0 && (
           <div className="mt-10 text-center text-muted-foreground">
-            Nenhuma instituição encontrada com esses filtros.
+            {t("institutions.empty")}
           </div>
         )}
 
         <p className="mt-12 text-sm text-muted-foreground border-l-2 border-[hsl(var(--crimson))] pl-4 max-w-3xl">
-          Lista de instituições públicas com base em dados oficiais do IRCC.
-          Cobre as principais províncias de destino de estudantes e está sendo
-          expandida. O botão leva a uma busca pelo site oficial da instituição —
-          confirme sempre as informações diretamente com a instituição.
+          {t("institutions.note")}
         </p>
       </section>
     </>
