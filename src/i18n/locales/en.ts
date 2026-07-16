@@ -390,6 +390,35 @@ export const en = {
       sourceUrl: "https://rentals.ca/national-rent-report",
       sourceLabel: "See national rent report (rentals.ca)",
     },
+    accommodation: {
+      title: "Types of accommodation and cost",
+      subtitle: "The most common options for students, from cheapest to most expensive.",
+      note: "Market averages, vary by city and neighbourhood. Reference: 2026.",
+      sourceUrl: "https://www.educanada.ca/study-plan-etudes/before-avant/housing-logement.aspx?lang=eng",
+      sourceLabel: "See official housing guide (EduCanada)",
+      items: [
+        {
+          tag: "Room in a house or shared apartment",
+          price: "$400–$1,200/month",
+          desc: "You have your own room; kitchen and bathroom are shared. Most common and affordable option for students. Varies by city.",
+        },
+        {
+          tag: "Institution residence (dorm)",
+          price: "$5,000–$9,000/school year",
+          desc: "About 8 months. Practical in the first year; usually includes utilities (water, electricity, internet).",
+        },
+        {
+          tag: "Shared apartment",
+          price: "About half of a 2-bedroom",
+          desc: "Sharing a 2-bedroom apartment with a roommate. Use the city cost table below as a reference.",
+        },
+        {
+          tag: "Studio or solo apartment",
+          price: "$1,500–$3,000/month",
+          desc: "In big cities. More privacy, higher cost.",
+        },
+      ],
+    },
     seal: {
       title: "These are references based on official data and market averages.",
       body:
