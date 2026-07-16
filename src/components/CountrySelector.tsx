@@ -21,6 +21,8 @@ const countries: Country[] = [
 
 export function CountrySelector() {
   const { t } = useTranslation();
+  const canada = countries.find((c) => c.code === "canada")!;
+  const others = countries.filter((c) => c.code !== "canada");
 
   return (
     <section id="destinos" className="bg-background py-28 md:py-36 scroll-mt-20">
@@ -34,70 +36,80 @@ export function CountrySelector() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
-          {countries.map((c) => {
-            const inner = (
-              <div
-                className={cn(
-                  "group relative h-full rounded-2xl overflow-hidden pt-9 pb-8 px-8 md:px-10 flex flex-col items-center text-center transition-all duration-500",
-                  c.available
-                    ? "bg-white shadow-[0_8px_30px_-12px_rgba(0,0,0,0.08)] ring-1 ring-border/60 hover:shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] hover:-translate-y-2 cursor-pointer"
-                    : "bg-white/70 ring-1 ring-border/60 opacity-95 hover:opacity-100 hover:-translate-y-1 cursor-default",
-                )}
+        {/* Featured: Canada */}
+        <Link
+          to={canada.to!}
+          aria-label={t(canada.nameKey)}
+          className="group relative block rounded-3xl overflow-hidden bg-white ring-2 ring-crimson/40 shadow-[0_24px_60px_-24px_rgba(224,64,91,0.35)] hover:shadow-[0_30px_70px_-20px_rgba(224,64,91,0.5)] hover:-translate-y-1 transition-all duration-500"
+        >
+          {/* Flag stripe */}
+          <div aria-hidden="true" className="absolute top-0 left-0 right-0 h-2 flex">
+            {canada.flag.map((color, i) => (
+              <div key={i} className="flex-1" style={{ backgroundColor: color }} />
+            ))}
+          </div>
+          {/* Ambient crimson glow */}
+          <div
+            aria-hidden="true"
+            className="absolute -right-24 -top-24 w-96 h-96 rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, hsl(var(--crimson) / 0.14) 0%, transparent 65%)",
+            }}
+          />
+          <div className="relative flex flex-col md:flex-row items-center gap-8 md:gap-12 px-8 md:px-16 py-12 md:py-14">
+            <div className="text-7xl md:text-8xl leading-none" aria-hidden="true">
+              {canada.emoji}
+            </div>
+            <div className="flex-1 text-center md:text-left">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.15em] uppercase bg-crimson text-white shadow-[0_6px_16px_-6px_hsl(var(--crimson)/0.6)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                {t("countries.available")}
+              </span>
+              <h3
+                className="font-display font-semibold leading-[0.95] mt-4 text-5xl md:text-6xl"
+                style={{ color: "#1B2A4A" }}
               >
-                {/* Flag color stripe */}
-                <div
-                  aria-hidden="true"
-                  className="absolute top-0 left-0 right-0 h-1.5 flex"
-                >
-                  {c.flag.map((color, i) => (
-                    <div key={i} className="flex-1" style={{ backgroundColor: color }} />
-                  ))}
-                </div>
-                <div className="text-3xl mb-4" aria-hidden="true">{c.emoji}</div>
-                <span
-                  className={cn(
-                    "mb-5 px-3.5 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.15em] uppercase border",
-                    c.available
-                      ? "bg-crimson text-white border-crimson"
-                      : "bg-muted text-muted-foreground border-border",
-                  )}
-                >
-                  {c.available ? t("countries.available") : t("countries.soon")}
-                </span>
-                <h3
-                  className={cn(
-                    "font-display font-semibold leading-[0.95] mb-2",
-                    c.available ? "text-3xl md:text-4xl" : "text-2xl md:text-3xl",
-                  )}
-                  style={{ color: c.available ? "#1B2A4A" : "#5A6478" }}
-                >
-                  {t(c.nameKey)}
-                </h3>
-                <div
-                  className={cn(
-                    "h-px mt-5 transition-all duration-500",
-                    c.available ? "w-10 bg-crimson group-hover:w-16" : "w-10 bg-border",
-                  )}
-                />
-                {c.available && (
-                  <div className="mt-5 text-sm font-medium text-foreground/60 group-hover:text-crimson transition-colors duration-300">
-                    {t("countries.exploreCta")} →
-                  </div>
-                )}
+                {t(canada.nameKey)}
+              </h3>
+              <div className="h-px w-12 bg-crimson mt-5 mb-5 mx-auto md:mx-0 group-hover:w-20 transition-all duration-500" />
+              <div className="inline-flex items-center gap-2 text-crimson font-semibold text-[15px] group-hover:gap-3 transition-all">
+                {t("countries.exploreCta")}
+                <span aria-hidden="true">→</span>
               </div>
-            );
+            </div>
+          </div>
+        </Link>
 
-            return c.available && c.to ? (
-              <Link key={c.code} to={c.to} aria-label={t(c.nameKey)} className="block h-full">
-                {inner}
-              </Link>
-            ) : (
-              <div key={c.code} aria-disabled="true" className="h-full">
-                {inner}
+        {/* Coming soon strip */}
+        <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {others.map((c) => (
+            <div
+              key={c.code}
+              aria-disabled="true"
+              className={cn(
+                "relative rounded-2xl overflow-hidden bg-white/60 ring-1 ring-border/60 px-6 py-8 flex flex-col items-center text-center opacity-70 hover:opacity-90 transition-opacity duration-300",
+              )}
+            >
+              <div aria-hidden="true" className="absolute top-0 left-0 right-0 h-1 flex">
+                {c.flag.map((color, i) => (
+                  <div key={i} className="flex-1" style={{ backgroundColor: color }} />
+                ))}
               </div>
-            );
-          })}
+              <div className="text-4xl mb-3" aria-hidden="true">
+                {c.emoji}
+              </div>
+              <h3
+                className="font-display text-xl md:text-2xl font-semibold leading-none mb-3"
+                style={{ color: "#5A6478" }}
+              >
+                {t(c.nameKey)}
+              </h3>
+              <span className="px-3 py-1 rounded-full text-[10px] font-semibold tracking-[0.15em] uppercase bg-muted text-muted-foreground">
+                {t("countries.soon")}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
