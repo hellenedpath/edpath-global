@@ -53,9 +53,7 @@ export default function HighSchools() {
     (async () => {
       const { data, error } = await supabase
         .from("high_schools")
-        .select(
-          "id,name,city,region,website,email,phone,application_fee,tuition_annual,diploma,grades,homestay,boarding,school_type,notes",
-        )
+        .select("*")
         .order("region", { ascending: true })
         .order("name", { ascending: true });
 
@@ -63,6 +61,7 @@ export default function HighSchools() {
       setLoading(false);
     })();
   }, []);
+
 
   const regions = useMemo(() => {
     const set = new Set<string>();
