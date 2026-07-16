@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams, useLocation } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -313,11 +313,22 @@ function computeScore(a: Answers): ScoreResult {
 
 export default function PathQuiz() {
   const { t } = useTranslation();
-  const [started, setStarted] = useState(false);
+  const [searchParams] = useSearchParams();
+  const { pathname } = useLocation();
+  const countryParam = searchParams.get("country");
+  const isCanadaContext =
+    (countryParam && DESTINATION_KEYS.includes(countryParam as typeof DESTINATION_KEYS[number])) ||
+    pathname.startsWith("/canada/");
+  const presetDestination = countryParam && DESTINATION_KEYS.includes(countryParam as typeof DESTINATION_KEYS[number])
+    ? countryParam
+    : pathname.startsWith("/canada/")
+      ? "canada"
+      : null;
+  const [started, setStarted] = useState<boolean>(!!presetDestination);
   const [step, setStep] = useState(0); // 0..QUESTIONS.length-1
   const [answers, setAnswers] = useState<Answers>({});
   const [finished, setFinished] = useState(false);
-  const [destination, setDestination] = useState<string | null>(null);
+  const [destination, setDestination] = useState<string | null>(presetDestination);
   const [notifyEmail, setNotifyEmail] = useState("");
   const [notifySubmitted, setNotifySubmitted] = useState(false);
 

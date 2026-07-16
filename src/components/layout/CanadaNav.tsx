@@ -28,12 +28,12 @@ import {
 type Item = { to: string; label: string };
 type Group = { title: string; items: Item[] };
 
-const primaryTo = "/meu-caminho";
+const primaryTo = "/meu-caminho?country=canada";
 
 const beforeYouGoGroupDefs = [
   {
     key: "startHere",
-    items: [{ to: "/meu-caminho", key: "myPath" }],
+    items: [{ to: "/meu-caminho?country=canada", key: "myPath" }],
   },
   {
     key: "chooseSchool",
@@ -88,10 +88,11 @@ function HoverDropdown({
   const navigate = useNavigate();
   const closeTimer = useRef<number | null>(null);
 
+  const pathOf = (to: string) => to.split("?")[0];
   const allItems: Item[] = groups
     ? groups.flatMap((g) => g.items)
     : items ?? [];
-  const isActive = allItems.some((it) => activePath === it.to);
+  const isActive = allItems.some((it) => activePath === pathOf(it.to));
 
   const cancelClose = () => {
     if (closeTimer.current) {
@@ -156,7 +157,7 @@ function HoverDropdown({
                       }}
                       className={cn(
                         "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
-                        activePath === it.to && "text-foreground font-medium",
+                      activePath === pathOf(it.to) && "text-foreground font-medium",
                       )}
                     >
                       {it.label}
@@ -174,7 +175,7 @@ function HoverDropdown({
                   }}
                   className={cn(
                     "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
-                    activePath === it.to && "text-foreground font-medium",
+                  activePath === pathOf(it.to) && "text-foreground font-medium",
                   )}
                 >
                   {it.label}
@@ -192,7 +193,7 @@ export function CanadaNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const primary: Item = { to: primaryTo, label: t("nav.myPath") };
-  const primaryActive = pathname === primary.to;
+  const primaryActive = pathname === primaryTo.split("?")[0];
   const beforeYouGoGroups: Group[] = beforeYouGoGroupDefs.map((g) => ({
     title: t(`canadaNav.groups.${g.key}`),
     items: g.items.map((it) => ({
