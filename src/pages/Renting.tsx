@@ -243,9 +243,13 @@ export default function Renting() {
             {t("renting.bodies.title")}
           </h2>
           <ul className="space-y-3 text-muted-foreground leading-relaxed">
-            {(["on", "bc", "ab"] as const).map((k) => (
-              <li key={k} className="rounded-md border border-border bg-card p-4">
-                {t(`renting.bodies.rows.${k}`)}
+            {(["on", "bc", "ab", "mb", "sk"] as const).map((k) => (
+              <li key={k} className="rounded-md border border-border bg-card p-4 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                <span className="flex-1">{t(`renting.bodies.rows.${k}`)}</span>
+                <SourceLink
+                  href={t(`renting.bodies.urls.${k}`)}
+                  label={t("renting.bodies.linkLabel")}
+                />
               </li>
             ))}
           </ul>
@@ -277,6 +281,12 @@ export default function Renting() {
         <p className="mt-6 text-muted-foreground leading-relaxed">
           {t("renting.credit.build")}
         </p>
+        <div className="mt-4">
+          <SourceLink
+            href={t("renting.credit.sourceUrl")}
+            label={t("renting.credit.sourceLabel")}
+          />
+        </div>
       </section>
 
       {/* Insurance */}
@@ -288,6 +298,12 @@ export default function Renting() {
           <p className="text-muted-foreground leading-relaxed">
             {t("renting.insurance.body")}
           </p>
+          <div className="mt-4">
+            <SourceLink
+              href={t("renting.insurance.sourceUrl")}
+              label={t("renting.insurance.sourceLabel")}
+            />
+          </div>
         </div>
       </section>
 

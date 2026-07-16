@@ -36,6 +36,11 @@ export const en = {
     canadaMenu: "Canada Menu",
     menu: "Menu",
     openMenu: "Open menu",
+    groups: {
+      course: "Course and institution",
+      costs: "Costs",
+      housing: "Housing and arrival",
+    },
     items: {
       pgwp: "PGWP Checker",
       institutions: "Institutions",
@@ -1347,27 +1352,41 @@ export const en = {
     bodies: {
       title: "Bodies that protect tenants (by province)",
       rows: {
-        on: "Ontario: Landlord and Tenant Board (LTB), under the Residential Tenancies Act. Free support: ACTO and community legal clinics.",
-        bc: "BC: Residential Tenancy Branch (RTB).",
-        ab: "Alberta: Residential Tenancy Dispute Resolution Service.",
+        on: "Ontario — Landlord and Tenant Board (LTB), under the Residential Tenancies Act. Free support: ACTO and community legal clinics.",
+        bc: "BC — Residential Tenancy Branch (RTB).",
+        ab: "Alberta — Residential Tenancy Dispute Resolution Service.",
+        mb: "Manitoba — Residential Tenancies Branch.",
+        sk: "Saskatchewan — Office of Residential Tenancies.",
       },
+      urls: {
+        on: "https://tribunalsontario.ca/ltb/",
+        bc: "https://www2.gov.bc.ca/gov/content/housing-tenancy/residential-tenancies",
+        ab: "https://www.alberta.ca/residential-tenancy-dispute-resolution-service",
+        mb: "https://www.gov.mb.ca/cca/rtb/",
+        sk: "https://www.saskatchewan.ca/government/government-structure/boards-commissions-and-agencies/office-of-residential-tenancies",
+      },
+      linkLabel: "Official site",
       note:
-        "Each province has an official, free body to resolve disputes. You have rights, and you have somewhere to turn.",
+        "Each province has an official, free body that offers information, mediation and dispute resolution. You have rights, and you have somewhere to turn.",
     },
     credit: {
       title: "Credit score and the newcomer challenge",
       body:
-        "You arrive without a Canadian credit history, but landlords usually ask for one. Compensate with: bank statements, letter of acceptance from your institution, proof of funds, a reference from a previous landlord, or a larger deposit (within the legal limit).",
+        "In Canada, credit scores run from 300 to 900, and credit history from another country does NOT transfer — you start from zero. Landlords usually ask for a credit check. Compensate with: bank statements, letter of acceptance from your institution, proof of funds, a reference from a previous landlord, or a larger deposit (within the legal limit).",
       sinTitle: "Important: your SIN",
       sin:
         "Your SIN (Social Insurance Number) is NOT required for a basic credit check — give only name, address and date of birth, and keep your SIN protected.",
       build:
         "Build credit quickly: open a bank account when you arrive, get a newcomer credit card, and use services that report your rent payments to the credit bureaus (improves your score in 6–12 months).",
+      sourceUrl: "https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/credit-report-score-basics.html",
+      sourceLabel: "Government of Canada — credit report and score basics",
     },
     insurance: {
       title: "Renter's insurance",
       body:
         "Many landlords require it. It's affordable and protects your belongings against theft, fire and damage. Confirm whether it is required before signing.",
+      sourceUrl: "https://www.canada.ca/en/financial-consumer-agency/services/insurance.html",
+      sourceLabel: "Government of Canada — insurance basics",
     },
     scamsCta: {
       title: "Protect yourself from rental scams",
@@ -1385,7 +1404,7 @@ export const en = {
       tag: "Before you go",
       title: "Rental scams: how to protect yourself",
       subtitle:
-        "International students are a primary target. In Toronto alone, more than 380 reports were filed in 2024. Learning the warning signs is your best protection.",
+        "International students are a primary target for rental scams — arriving from abroad, unfamiliar with local rules and under pressure to secure housing. Official bodies like the police and the Canadian Anti-Fraud Centre repeatedly warn about this risk. Knowing the warning signs is your best protection.",
     },
     redFlags: {
       title: "Red flags",
@@ -1429,6 +1448,8 @@ export const en = {
       title: "If you become a victim",
       body:
         "Stop all contact immediately. Contact your bank right away (if the e-transfer is still pending, try to cancel it). Report to the local police and to the Canadian Anti-Fraud Centre.",
+      antiFraudUrl: "https://antifraudcentre-centreantifraude.ca",
+      antiFraudLabel: "Canadian Anti-Fraud Centre",
     },
     backCta: {
       title: "Back to renting basics",
