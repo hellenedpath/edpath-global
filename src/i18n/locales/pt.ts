@@ -330,8 +330,11 @@ export const pt = {
             "Passagem, primeiro aluguel e depósito, mobília básica, roupa de inverno, celular e documentos. Costuma ser um gasto único mas alto no início.",
         },
       ],
+      totalLabel: "Custo total estimado",
       total:
-        "Custo total = (mensalidade + custo de vida mensal × meses de curso) + custos de chegada.",
+        "Custo total estimado = (custo de vida mensal × meses de curso) + custos de chegada.",
+      totalNote:
+        "Este total cobre apenas custo de vida. Some a mensalidade do seu programa (veja faixas acima) para ter o custo total real.",
     },
     disclaimer: {
       title: "Aviso importante",

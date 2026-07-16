@@ -336,8 +336,11 @@ export const en = {
             "Airfare, first rent and deposit, basic furniture, winter clothing, phone and documents. Usually a one-time but heavy upfront expense.",
         },
       ],
+      totalLabel: "Estimated total cost",
       total:
-        "Total cost = (tuition + monthly cost of living × months in the program) + arrival costs.",
+        "Estimated total cost = (monthly cost of living × months in the program) + arrival costs.",
+      totalNote:
+        "This total covers living costs only. Add your program's tuition (see the ranges above) to get the real total cost.",
     },
     disclaimer: {
       title: "Important notice",
