@@ -75,6 +75,8 @@ export type Database = {
           region: string | null
           school_type: string | null
           tuition_annual: string | null
+          tuition_en: string | null
+          tuition_pt: string | null
           updated_at: string | null
           website: string | null
         }
@@ -105,6 +107,8 @@ export type Database = {
           region?: string | null
           school_type?: string | null
           tuition_annual?: string | null
+          tuition_en?: string | null
+          tuition_pt?: string | null
           updated_at?: string | null
           website?: string | null
         }
@@ -135,6 +139,8 @@ export type Database = {
           region?: string | null
           school_type?: string | null
           tuition_annual?: string | null
+          tuition_en?: string | null
+          tuition_pt?: string | null
           updated_at?: string | null
           website?: string | null
         }

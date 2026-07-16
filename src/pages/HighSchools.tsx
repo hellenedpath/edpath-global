@@ -24,7 +24,10 @@ type HighSchool = {
   phone: string | null;
   application_fee: string | null;
   tuition_annual: string | null;
+  tuition_pt: string | null;
+  tuition_en: string | null;
   diploma: string | null;
+
   diploma_pt: string | null;
   diploma_en: string | null;
   grades: string | null;
@@ -102,12 +105,17 @@ export default function HighSchools() {
   const cardHomestay = (it: HighSchool) =>
     isEnglish ? it.homestay_en : it.homestay_pt;
 
+  const cardTuition = (it: HighSchool) => {
+    const active = isEnglish ? it.tuition_en : it.tuition_pt;
+    if (active) return active;
+    return it.tuition_en || it.tuition_pt || null;
+  };
 
   const formatTuition = (value: string | null) => {
     if (!value) return t("highSchools.card.tuitionMissing");
-    if (isEnglish && value.includes("/ano")) return value.replace("/ano", "/year");
     return value;
   };
+
 
   const typeOptions: Array<{ value: "all" | "public" | "private"; label: string }> = [
 
@@ -313,15 +321,16 @@ export default function HighSchools() {
                   <div className="flex items-center gap-1.5">
                     <dt className="text-muted-foreground">{t("highSchools.card.tuition")}:</dt>
                     <dd className="font-medium text-foreground">
-                      {formatTuition(it.tuition_annual)}
+                      {formatTuition(cardTuition(it))}
                     </dd>
                   </div>
-                  {it.tuition_annual && (
+                  {cardTuition(it) && (
                     <p className="text-[10px] text-muted-foreground mt-0.5">
                       {t("highSchools.card.tuitionEstimate")}
                     </p>
                   )}
                 </div>
+
 
 
               </dl>
