@@ -41,6 +41,7 @@ export const pt = {
       highSchools: "Ensino Médio (BC)",
       programs: "Explorar Programas",
       costsSimulator: "Simulador de Custos",
+      realCosts: "Custos reais",
       before: "Antes de Começar",
       costs: "Custos",
       health: "Saúde",

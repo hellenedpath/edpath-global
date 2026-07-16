@@ -42,6 +42,7 @@ export const en = {
       highSchools: "High School (BC)",
       programs: "Explore Programs",
       costsSimulator: "Cost Simulator",
+      realCosts: "Real costs",
       before: "Before You Start",
       costs: "Costs",
       health: "Health",
