@@ -1115,4 +1115,52 @@ export const en = {
         "This information is based on the official IRCC list of PGWP-eligible fields of study and serves as <strong>general guidance</strong>. In general, final eligibility also depends on the institution (DLI), program duration and language of instruction. This tool <strong>does not confirm your specific case</strong>. Always confirm with official IRCC sources and, for immigration decisions, consult a licensed RCIC consultant.",
     },
   },
+
+  highSchools: {
+    hero: {
+      badge: "Canada · British Columbia",
+      title: "High School in Canada (British Columbia)",
+      subtitle:
+        "BC public school districts that welcome international students in high school.",
+      description:
+        "Explore districts with an official international program, see diploma, grades offered, homestay and fees — then go straight to the district site to apply.",
+    },
+    context: {
+      title: "How it works:",
+      body:
+        "Not every school in Canada accepts international students at the high school level — only public school districts with an international program (or private schools). This page lists BC public districts that run an official international program. You apply directly to the district's international program.",
+    },
+    filters: {
+      searchPlaceholder: "Search by district name or city",
+      allRegions: "All regions",
+      loading: "Loading districts...",
+      count_one: "{{count}} district found",
+      count_other: "{{count}} districts found",
+    },
+    regions: {
+      "Metro Vancouver": "Metro Vancouver",
+      "Ilha de Vancouver": "Vancouver Island",
+      "Fraser Valley": "Fraser Valley",
+      "Okanagan (Interior)": "Okanagan (Interior)",
+      "Kootenays (Interior)": "Kootenays (Interior)",
+      "Interior": "Interior",
+      "Sea to Sky": "Sea to Sky",
+      "Sunshine Coast": "Sunshine Coast",
+      "Norte de BC": "Northern BC",
+    },
+    card: {
+      diploma: "Diploma",
+      grades: "Grades",
+      homestay: "Homestay",
+      applicationFee: "Application fee",
+      tuition: "Annual tuition",
+      applyCta: "View international program / Apply",
+    },
+    empty: "No districts found with these filters.",
+    disclaimer: {
+      title: "Honest heads-up:",
+      body:
+        "This information is a starting point. Requirements, costs and seats change every year — always confirm on the district's official site before applying.",
+    },
+  },
 };
