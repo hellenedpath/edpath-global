@@ -75,11 +75,11 @@ export default function Index() {
               </defs>
               <g
                 clipPath="url(#globeClip)"
-                fill="hsl(0 0% 100%)"
-                fillOpacity="0.11"
+                fill="hsl(228 40% 85%)"
+                fillOpacity="0.16"
                 stroke="hsl(0 0% 100%)"
-                strokeOpacity="0.22"
-                strokeWidth="0.75"
+                strokeOpacity="0.32"
+                strokeWidth="0.8"
                 strokeLinejoin="round"
               >
                 {/* North America */}
