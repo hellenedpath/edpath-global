@@ -27,6 +27,13 @@ export const en = {
     ctaPrograms: "Explore Programs",
     ctaBefore: "Before You Start",
     ctaChoose: "Choose your destination",
+    globeDestinations: {
+      canada: { label: "Canada", detail: "Verified path to study and work after graduation." },
+      usa: { label: "United States", detail: "Top-tier universities with strong research and internship options." },
+      uk: { label: "United Kingdom", detail: "Academic tradition and high-quality intensive programs." },
+      ireland: { label: "Ireland", detail: "English-language education with strong links to European careers." },
+      australia: { label: "Australia", detail: "Academic excellence, quality of life, and post-study work options." },
+    },
   },
   pillars: {
     independent: {

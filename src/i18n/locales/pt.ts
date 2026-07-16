@@ -26,6 +26,13 @@ export const pt = {
     ctaPrograms: "Explorar Programas",
     ctaBefore: "Antes de Começar",
     ctaChoose: "Escolha seu destino",
+    globeDestinations: {
+      canada: { label: "Canadá", detail: "Caminho verificado para estudar e trabalhar após a graduação." },
+      usa: { label: "Estados Unidos", detail: "Universidades de ponta e opções de estágio e pesquisa." },
+      uk: { label: "Reino Unido", detail: "Tradição acadêmica e cursos intensivos de alta qualidade." },
+      ireland: { label: "Irlanda", detail: "Educação em inglês com forte conexão para carreiras na Europa." },
+      australia: { label: "Austrália", detail: "Excelência acadêmica, qualidade de vida e opções de visto de trabalho." },
+    },
   },
   pillars: {
     independent: {

@@ -1,9 +1,15 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronDown, Shield, RefreshCw, Compass, ArrowRight } from "lucide-react";
+import { Shield, RefreshCw, Compass, ArrowRight } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
 
 export default function Index() {
   const { t } = useTranslation();
+  const [tooltip, setTooltip] = useState<{
+    key: string;
+    x: number;
+    y: number;
+  } | null>(null);
   const pillars = [
     { icon: Shield, key: "independent" as const },
     { icon: RefreshCw, key: "accurate" as const },
@@ -89,7 +95,14 @@ export default function Index() {
               ))}
               {/* Destination routes — Canada as origin, subtle arcs to the other 4 */}
               {(() => {
-                const dests = {
+                const dests = [
+                  { key: "canada", x: -160, y: -110 },
+                  { key: "usa", x: -135, y: -45 },
+                  { key: "uk", x: 30, y: -135 },
+                  { key: "ireland", x: 8, y: -120 },
+                  { key: "australia", x: 180, y: 125 },
+                ] as const;
+                const destMap: Record<string, { x: number; y: number }> = {
                   canada: { x: -160, y: -110 },
                   usa: { x: -135, y: -45 },
                   uk: { x: 30, y: -135 },
@@ -105,31 +118,53 @@ export default function Index() {
                   const cy = my * 0.55;
                   return `M ${a.x} ${a.y} Q ${cx} ${cy} ${b.x} ${b.y}`;
                 };
-                const routes: [keyof typeof dests, keyof typeof dests][] = [
+                const routes: [keyof typeof destMap, keyof typeof destMap][] = [
                   ["canada", "usa"],
                   ["canada", "ireland"],
                   ["ireland", "uk"],
                   ["canada", "australia"],
                 ];
+                const handleEnter =
+                  (key: string) => (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
+                    setTooltip({ key, x: e.clientX, y: e.clientY });
+                  };
+                const handleMove = (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
+                  setTooltip((prev) => (prev ? { ...prev, x: e.clientX, y: e.clientY } : null));
+                };
+                const handleLeave = () => setTooltip(null);
                 return (
                   <>
                     {/* Route lines between destinations */}
                     <g fill="none" stroke="hsl(0 0% 100%)" strokeOpacity="0.35" strokeWidth="1" strokeDasharray="2 5" strokeLinecap="round">
                       {routes.map(([from, to], i) => (
-                        <path key={i} d={arc(dests[from], dests[to])} />
+                        <path key={i} d={arc(destMap[from], destMap[to])} />
                       ))}
                     </g>
                     {/* Destination dots */}
-                    {Object.entries(dests).map(([name, p], i) => {
-                      const primary = name === "canada";
+                    {dests.map((d, i) => {
+                      const primary = d.key === "canada";
                       const glowR = primary ? 34 : 22;
                       const coreR = primary ? 5.5 : 4;
                       const centerR = primary ? 2.2 : 1.6;
                       const minOpacity = primary ? 0.55 : 0.35;
+                      const label = t(`home.globeDestinations.${d.key}.label`);
+                      const detail = t(`home.globeDestinations.${d.key}.detail`);
                       return (
-                        <g key={name}>
-                          <circle cx={p.x} cy={p.y} r={glowR} fill="url(#dotGlow)" opacity={primary ? 1 : 0.7} />
-                          <circle cx={p.x} cy={p.y} r={coreR} fill="hsl(var(--crimson))">
+                        <g key={d.key} data-destination={d.key}>
+                          <title>{`${label} — ${detail}`}</title>
+                          <circle
+                            cx={d.x}
+                            cy={d.y}
+                            r={glowR}
+                            fill="url(#dotGlow)"
+                            opacity={primary ? 1 : 0.7}
+                            className="cursor-pointer"
+                            style={{ pointerEvents: "all" }}
+                            onMouseEnter={handleEnter(d.key)}
+                            onMouseMove={handleMove}
+                            onMouseLeave={handleLeave}
+                          />
+                          <circle cx={d.x} cy={d.y} r={coreR} fill="hsl(var(--crimson))">
                             <animate
                               attributeName="opacity"
                               values={`1;${minOpacity};1`}
@@ -137,7 +172,7 @@ export default function Index() {
                               repeatCount="indefinite"
                             />
                           </circle>
-                          <circle cx={p.x} cy={p.y} r={centerR} fill="#ffffff" opacity={primary ? 1 : 0.85} />
+                          <circle cx={d.x} cy={d.y} r={centerR} fill="#ffffff" opacity={primary ? 1 : 0.85} />
                         </g>
                       );
                     })}
@@ -162,6 +197,21 @@ export default function Index() {
             </g>
           </svg>
 
+          {/* Destination tooltip */}
+          {tooltip && (
+            <div
+              className="fixed z-50 pointer-events-none rounded-xl bg-white/95 backdrop-blur-sm px-4 py-3 shadow-[0_8px_24px_-6px_rgba(5,21,86,0.22)] ring-1 ring-navy/10 max-w-xs"
+              style={{ left: tooltip.x + 16, top: tooltip.y - 16 }}
+            >
+              <p className="text-sm font-bold text-navy">
+                {t(`home.globeDestinations.${tooltip.key}.label`)}
+              </p>
+              <p className="text-xs text-muted-foreground leading-snug mt-1">
+                {t(`home.globeDestinations.${tooltip.key}.detail`)}
+              </p>
+            </div>
+          )}
+
           {/* Left-side fade so text stays readable — keeps graphics visible on the right */}
           <div
             className="absolute inset-0"
@@ -172,7 +222,7 @@ export default function Index() {
           />
         </div>
 
-        <div className="container relative py-28 md:py-36 lg:py-44 max-w-5xl">
+        <div className="container relative py-28 md:py-36 lg:py-44 max-w-5xl pointer-events-none">
           <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-10">
             <span className="w-8 h-px bg-crimson" />
             EdPath Global
@@ -185,7 +235,7 @@ export default function Index() {
           </p>
           <a
             href="#destinos"
-            className="group mt-12 inline-flex items-center gap-2.5 rounded-xl bg-crimson px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_4px_16px_-4px_hsl(var(--crimson)/0.45)] hover:bg-crimson/90 hover:shadow-[0_8px_24px_-6px_hsl(var(--crimson)/0.55)] hover:-translate-y-0.5 transition-all duration-300"
+            className="group pointer-events-auto mt-12 inline-flex items-center gap-2.5 rounded-xl bg-crimson px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_4px_16px_-4px_hsl(var(--crimson)/0.45)] hover:bg-crimson/90 hover:shadow-[0_8px_24px_-6px_hsl(var(--crimson)/0.55)] hover:-translate-y-0.5 transition-all duration-300"
           >
             {t("home.ctaChoose")}
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
