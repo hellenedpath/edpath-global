@@ -160,22 +160,21 @@ export default function Index() {
       </section>
 
       {/* Pillars */}
-      <section className="bg-background border-b border-border/60">
-        <div className="container max-w-6xl py-16 md:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+      <section className="bg-white">
+        <div className="container max-w-6xl py-20 md:py-28">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {pillars.map(({ icon: Icon, key }) => (
               <div
                 key={key}
-                className="group relative flex flex-col items-center text-center rounded-2xl bg-white p-8 md:p-10 ring-1 ring-border/60 shadow-[0_8px_30px_-20px_rgba(5,21,86,0.15)] hover:shadow-[0_16px_40px_-20px_rgba(5,21,86,0.2)] hover:-translate-y-0.5 transition-all duration-500"
+                className="group flex flex-col items-center text-center rounded-2xl bg-white p-8 md:p-10 ring-1 ring-border/50 shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)] hover:shadow-[0_8px_24px_-8px_rgba(5,21,86,0.12)] hover:-translate-y-0.5 transition-all duration-300"
               >
-                <div className="w-14 h-14 rounded-xl bg-crimson/10 flex items-center justify-center mb-5 ring-1 ring-crimson/15">
-                  <Icon className="w-7 h-7 text-crimson" strokeWidth={1.75} />
+                <div className="w-12 h-12 rounded-xl bg-crimson/10 flex items-center justify-center mb-6">
+                  <Icon className="w-6 h-6 text-crimson" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-display text-2xl font-medium text-navy tracking-tight">
+                <h3 className="text-xl md:text-2xl font-bold text-navy tracking-tight">
                   {t(`pillars.${key}.title`)}
                 </h3>
-                <div className="h-px w-8 bg-crimson mt-3 mb-4" />
-                <p className="text-muted-foreground text-[15px] leading-relaxed max-w-xs">
+                <p className="mt-3 text-muted-foreground text-[15px] leading-relaxed max-w-xs">
                   {t(`pillars.${key}.body`)}
                 </p>
               </div>
