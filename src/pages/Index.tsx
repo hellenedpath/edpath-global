@@ -150,17 +150,20 @@ export default function Index() {
                       const label = t(`home.globeDestinations.${d.key}.label`);
                       const detail = t(`home.globeDestinations.${d.key}.detail`);
                       return (
-                        <g
-                          key={d.key}
-                          data-destination={d.key}
-                          className="cursor-pointer"
-                          style={{ pointerEvents: "all" }}
-                          onMouseEnter={handleEnter(d.key)}
-                          onMouseMove={handleMove}
-                          onMouseLeave={handleLeave}
-                        >
+                        <g key={d.key} data-destination={d.key}>
                           <title>{`${label} — ${detail}`}</title>
-                          <circle cx={d.x} cy={d.y} r={glowR} fill="url(#dotGlow)" opacity={primary ? 1 : 0.7} />
+                          <circle
+                            cx={d.x}
+                            cy={d.y}
+                            r={glowR}
+                            fill="url(#dotGlow)"
+                            opacity={primary ? 1 : 0.7}
+                            className="cursor-pointer"
+                            style={{ pointerEvents: "all" }}
+                            onMouseEnter={handleEnter(d.key)}
+                            onMouseMove={handleMove}
+                            onMouseLeave={handleLeave}
+                          />
                           <circle cx={d.x} cy={d.y} r={coreR} fill="hsl(var(--crimson))">
                             <animate
                               attributeName="opacity"
