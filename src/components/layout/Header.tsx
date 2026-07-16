@@ -46,9 +46,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-navy text-primary-foreground border-b border-white/10">
       <div className="container flex items-center justify-between h-16 gap-6">
-        <Link to="/" aria-label="EdPath Global">
-          <Logo />
-        </Link>
+        <Logo />
 
         <nav className="hidden lg:flex items-center gap-1">
           {navItems.map((item) =>
