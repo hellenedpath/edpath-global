@@ -23,12 +23,12 @@ export default function Index() {
   return (
     <>
       <section className="relative text-primary-foreground overflow-hidden">
-        {/* Base gradient: deep navy → richer purple at base */}
+        {/* Base gradient: deep navy → richer royal blue at base */}
         <div
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(180deg, hsl(228 55% 12%) 0%, hsl(228 49% 18%) 40%, hsl(245 55% 22%) 85%, hsl(262 55% 26%) 100%)",
+              "linear-gradient(180deg, hsl(228 70% 12%) 0%, hsl(221 55% 18%) 40%, hsl(221 60% 24%) 85%, hsl(221 65% 30%) 100%)",
           }}
         />
         {/* Graphic backdrop: routes + stylized globe */}
