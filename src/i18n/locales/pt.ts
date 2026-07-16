@@ -27,6 +27,29 @@ export const pt = {
     ctaBefore: "Antes de Começar",
     ctaChoose: "Escolha seu destino",
   },
+  pillars: {
+    independent: {
+      title: "Independente",
+      body: "Feita para orientar você, com transparência.",
+    },
+    accurate: {
+      title: "Precisa e atualizada",
+      body: "Informação verificada que acompanha as mudanças nas regras.",
+    },
+    guided: {
+      title: "Guiada",
+      body: "Um caminho claro, do primeiro passo ao destino.",
+    },
+  },
+  howItWorks: {
+    eyebrow: "Como funciona",
+    title: "Três passos até seu caminho",
+    steps: [
+      { n: "01", title: "Escolha seu destino", desc: "Comece pelo país que faz sentido para você." },
+      { n: "02", title: "Faça seu diagnóstico", desc: "Responda algumas perguntas e receba um roteiro." },
+      { n: "03", title: "Siga sua jornada guiada", desc: "Um caminho claro, passo a passo, até chegar." },
+    ],
+  },
   canadaNav: {
     beforeYouGo: "Antes de ir",
     onArrival: "Ao chegar",
