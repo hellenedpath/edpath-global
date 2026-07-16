@@ -38,7 +38,8 @@ type HighSchool = {
 
 
 export default function HighSchools() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEnglish = i18n.language.startsWith("en");
   const [items, setItems] = useState<HighSchool[]>([]);
   const [loading, setLoading] = useState(true);
   const [region, setRegion] = useState<string>("all");
@@ -46,6 +47,7 @@ export default function HighSchools() {
     "all",
   );
   const [query, setQuery] = useState("");
+
 
   useEffect(() => {
     (async () => {
