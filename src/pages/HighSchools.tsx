@@ -25,8 +25,12 @@ type HighSchool = {
   application_fee: string | null;
   tuition_annual: string | null;
   diploma: string | null;
+  diploma_pt: string | null;
+  diploma_en: string | null;
   grades: string | null;
   homestay: string | null;
+  homestay_pt: string | null;
+  homestay_en: string | null;
   boarding: string | null;
   boarding_pt: string | null;
   boarding_en: string | null;
@@ -35,6 +39,7 @@ type HighSchool = {
   notes_pt: string | null;
   notes_en: string | null;
 };
+
 
 
 export default function HighSchools() {
@@ -90,6 +95,13 @@ export default function HighSchools() {
 
   const cardBoarding = (it: HighSchool) =>
     isEnglish ? it.boarding_en : it.boarding_pt;
+
+  const cardDiploma = (it: HighSchool) =>
+    isEnglish ? it.diploma_en : it.diploma_pt;
+
+  const cardHomestay = (it: HighSchool) =>
+    isEnglish ? it.homestay_en : it.homestay_pt;
+
 
   const formatTuition = (value: string | null) => {
     if (!value) return t("highSchools.card.tuitionMissing");
@@ -262,11 +274,11 @@ export default function HighSchools() {
 
 
               <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
-                {it.diploma && (
+                {cardDiploma(it) && (
                   <div className="flex items-center gap-1.5">
                     <Award className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
                     <dt className="text-muted-foreground">{t("highSchools.card.diploma")}:</dt>
-                    <dd className="font-medium text-foreground">{it.diploma}</dd>
+                    <dd className="font-medium text-foreground">{cardDiploma(it)}</dd>
                   </div>
                 )}
                 {it.grades && (
@@ -275,13 +287,14 @@ export default function HighSchools() {
                     <dd className="font-medium text-foreground">{it.grades}</dd>
                   </div>
                 )}
-                {it.homestay && (
+                {cardHomestay(it) && (
                   <div className="flex items-center gap-1.5">
                     <Home className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
                     <dt className="text-muted-foreground">{t("highSchools.card.homestay")}:</dt>
-                    <dd className="font-medium text-foreground">{it.homestay}</dd>
+                    <dd className="font-medium text-foreground">{cardHomestay(it)}</dd>
                   </div>
                 )}
+
                 {it.school_type === "private" && cardBoarding(it) && (
                   <div className="flex items-center gap-1.5 col-span-2">
                     <Bed className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
