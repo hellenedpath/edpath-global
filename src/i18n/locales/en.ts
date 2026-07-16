@@ -90,7 +90,6 @@ export const en = {
   },
   countries: {
     title: "Choose your destination",
-    subtitle: "Start with Canada. More countries coming soon.",
     available: "Available",
     soon: "Coming soon",
     exploreCta: "Explore content",
