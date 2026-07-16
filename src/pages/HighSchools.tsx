@@ -24,7 +24,10 @@ type HighSchool = {
   phone: string | null;
   application_fee: string | null;
   tuition_annual: string | null;
+  tuition_pt: string | null;
+  tuition_en: string | null;
   diploma: string | null;
+
   diploma_pt: string | null;
   diploma_en: string | null;
   grades: string | null;
