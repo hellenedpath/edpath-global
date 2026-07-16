@@ -69,12 +69,12 @@ export default function Index() {
                 </radialGradient>
                 <radialGradient id="globeFadeGrad" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor="white" stopOpacity="1" />
-                  <stop offset="80%" stopColor="white" stopOpacity="1" />
+                  <stop offset="75%" stopColor="white" stopOpacity="1" />
                   <stop offset="100%" stopColor="white" stopOpacity="0" />
                 </radialGradient>
                 <mask id="globeFade">
                   <rect x="-450" y="-450" width="900" height="900" fill="black" />
-                  <circle cx="0" cy="0" r="450" fill="url(#globeFadeGrad)" />
+                  <circle cx="0" cy="0" r="440" fill="url(#globeFadeGrad)" />
                 </mask>
                 <pattern id="dotGrid" width="12" height="12" patternUnits="userSpaceOnUse">
                   <circle cx="6" cy="6" r="1.3" fill="hsl(221 75% 78%)" fillOpacity="0.72" />
