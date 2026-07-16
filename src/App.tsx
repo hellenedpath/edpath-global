@@ -20,6 +20,7 @@ import FinancialSimulator from "./pages/FinancialSimulator";
 import HighSchools from "./pages/HighSchools";
 import Renting from "./pages/Renting";
 import RentalScams from "./pages/RentalScams";
+import StudyPermit from "./pages/StudyPermit";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,10 @@ const App = () => (
             <Route path="/canada/alugar" element={<Renting />} />
             <Route path="/golpes-de-aluguel" element={<RentalScams />} />
             <Route path="/canada/golpes-de-aluguel" element={<RentalScams />} />
+            <Route path="/study-permit" element={<StudyPermit />} />
+            <Route path="/canada/study-permit" element={<StudyPermit />} />
+            {/* Redirects for old removed page — point to Study Permit */}
+            <Route path="/antes-de-comecar" element={<StudyPermit />} />
             <Route path="/simulador-financeiro" element={<FinancialSimulator />} />
             <Route path="/canada/simulador" element={<FinancialSimulator />} />
             <Route path="/saude" element={<PagePlaceholder tKey="health" />} />
