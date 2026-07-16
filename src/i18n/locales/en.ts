@@ -1121,21 +1121,25 @@ export const en = {
       badge: "Canada · British Columbia",
       title: "High School in Canada (British Columbia)",
       subtitle:
-        "BC public school districts that welcome international students in high school.",
+        "BC public school districts and private schools that welcome international high school students.",
       description:
-        "Explore districts with an official international program, see diploma, grades offered, homestay and fees — then go straight to the district site to apply.",
+        "Explore public districts with an official international program and private schools with an international stream, see diploma, grades offered, homestay, boarding and fees — then go straight to the official site to apply.",
     },
     context: {
       title: "How it works:",
       body:
-        "Not every school in Canada accepts international students at the high school level — only public school districts with an international program (or private schools). This page lists BC public districts that run an official international program. You apply directly to the district's international program.",
+        "Not every school in Canada accepts international high school students. There are two main paths: public school districts with an official international program, and private schools that accept international students. This page lists both in BC — you apply directly to the district or school.",
     },
     filters: {
-      searchPlaceholder: "Search by district name or city",
+      searchPlaceholder: "Search by school name or city",
       allRegions: "All regions",
-      loading: "Loading districts...",
-      count_one: "{{count}} district found",
-      count_other: "{{count}} districts found",
+      loading: "Loading schools...",
+      count_one: "{{count}} school found",
+      count_other: "{{count}} schools found",
+      typeLabel: "Type",
+      allTypes: "All",
+      public: "Public (districts)",
+      private: "Private",
     },
     regions: {
       "Metro Vancouver": "Metro Vancouver",
@@ -1155,12 +1159,18 @@ export const en = {
       applicationFee: "Application fee",
       tuition: "Annual tuition",
       applyCta: "View international program / Apply",
+      type: {
+        public: "Public school district",
+        private: "Private school",
+      },
+      boarding: "Boarding",
     },
-    empty: "No districts found with these filters.",
+    empty: "No schools found with these filters.",
     disclaimer: {
       title: "Honest heads-up:",
       body:
-        "This information is a starting point. Requirements, costs and seats change every year — always confirm on the district's official site before applying.",
+        "This information is a starting point. Requirements, costs and seats change every year — always confirm on the district's or school's official site before applying.",
     },
   },
+
 };
