@@ -5,7 +5,7 @@ import { ArrowRight, BookOpen, Calendar, DollarSign, Heart, Home, Users, Graduat
 const themes = [
   { key: "programs", to: "/programas", Icon: BookOpen },
   { key: "pgwp", to: "/canada/pgwp", Icon: GraduationCap },
-  { key: "before", to: "/antes-de-comecar", Icon: Calendar },
+  { key: "before", to: "/study-permit", Icon: Calendar },
   { key: "costs", to: "/custos", Icon: DollarSign },
   { key: "health", to: "/saude", Icon: Heart },
   { key: "family", to: "/familia", Icon: Users },
