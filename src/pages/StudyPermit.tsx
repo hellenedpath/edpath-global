@@ -45,6 +45,7 @@ type ScamSection = {
 export default function StudyPermit() {
   const { t } = useTranslation();
   const steps = t("studyPermit.steps", { returnObjects: true }) as Step[];
+  const scam = t("studyPermit.scamProtection", { returnObjects: true }) as ScamSection;
 
   return (
     <>
