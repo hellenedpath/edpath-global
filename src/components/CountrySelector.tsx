@@ -87,25 +87,25 @@ export function CountrySelector() {
   const { t } = useTranslation();
 
   return (
-    <section id="destinos" className="bg-background py-20 md:py-24 scroll-mt-20">
+    <section id="destinos" className="bg-white py-20 md:py-28 scroll-mt-20">
       <div className="container max-w-6xl">
-        <div className="max-w-2xl mx-auto text-center mb-12 md:mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-navy leading-tight">
+        <div className="max-w-2xl mx-auto text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-navy leading-tight">
             {t("countries.title")}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {countries.map((c) => {
             const inner = (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <Flag code={c.code} className="w-8 h-5 shrink-0" />
                 <h3 className="text-lg font-semibold text-navy truncate flex-1">
                   {t(c.nameKey)}
                 </h3>
                 <span
                   className={cn(
-                    "px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-[0.12em] uppercase shrink-0",
+                    "px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-[0.12em] uppercase shrink-0",
                     c.available
                       ? "bg-crimson/10 text-crimson"
                       : "bg-muted text-muted-foreground",
@@ -116,14 +116,14 @@ export function CountrySelector() {
               </div>
             );
             const base =
-              "rounded-xl bg-white ring-1 ring-border/70 px-5 py-5 block";
+              "rounded-2xl bg-white ring-1 ring-border/50 px-6 py-6 shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)] block";
             if (c.available && c.to) {
               return (
                 <Link
                   key={c.code}
                   to={c.to}
                   aria-label={t(c.nameKey)}
-                  className={cn(base, "hover:ring-crimson/40 transition-colors")}
+                  className={cn(base, "hover:ring-crimson/40 hover:shadow-[0_8px_24px_-8px_rgba(5,21,86,0.12)] transition-all duration-300")}
                 >
                   {inner}
                 </Link>
