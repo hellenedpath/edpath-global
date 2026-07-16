@@ -274,11 +274,11 @@ export default function HighSchools() {
 
 
               <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
-                {it.diploma && (
+                {cardDiploma(it) && (
                   <div className="flex items-center gap-1.5">
                     <Award className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
                     <dt className="text-muted-foreground">{t("highSchools.card.diploma")}:</dt>
-                    <dd className="font-medium text-foreground">{it.diploma}</dd>
+                    <dd className="font-medium text-foreground">{cardDiploma(it)}</dd>
                   </div>
                 )}
                 {it.grades && (
@@ -287,13 +287,14 @@ export default function HighSchools() {
                     <dd className="font-medium text-foreground">{it.grades}</dd>
                   </div>
                 )}
-                {it.homestay && (
+                {cardHomestay(it) && (
                   <div className="flex items-center gap-1.5">
                     <Home className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
                     <dt className="text-muted-foreground">{t("highSchools.card.homestay")}:</dt>
-                    <dd className="font-medium text-foreground">{it.homestay}</dd>
+                    <dd className="font-medium text-foreground">{cardHomestay(it)}</dd>
                   </div>
                 )}
+
                 {it.school_type === "private" && cardBoarding(it) && (
                   <div className="flex items-center gap-1.5 col-span-2">
                     <Bed className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
