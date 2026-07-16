@@ -57,9 +57,13 @@ export type Database = {
           country: string | null
           created_at: string | null
           diploma: string | null
+          diploma_en: string | null
+          diploma_pt: string | null
           email: string | null
           grades: string | null
           homestay: string | null
+          homestay_en: string | null
+          homestay_pt: string | null
           id: string
           level: string | null
           name: string
@@ -83,9 +87,13 @@ export type Database = {
           country?: string | null
           created_at?: string | null
           diploma?: string | null
+          diploma_en?: string | null
+          diploma_pt?: string | null
           email?: string | null
           grades?: string | null
           homestay?: string | null
+          homestay_en?: string | null
+          homestay_pt?: string | null
           id?: string
           level?: string | null
           name: string
@@ -109,9 +117,13 @@ export type Database = {
           country?: string | null
           created_at?: string | null
           diploma?: string | null
+          diploma_en?: string | null
+          diploma_pt?: string | null
           email?: string | null
           grades?: string | null
           homestay?: string | null
+          homestay_en?: string | null
+          homestay_pt?: string | null
           id?: string
           level?: string | null
           name?: string
