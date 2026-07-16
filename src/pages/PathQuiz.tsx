@@ -565,6 +565,10 @@ export default function PathQuiz() {
   }
 
   // ---------- Result ----------
+  if (finished && destination === "canada") {
+    // Redirect handled by useEffect above; render nothing.
+    return null;
+  }
   if (finished) {
     return (
       <section className="container py-14 md:py-20 max-w-4xl">
