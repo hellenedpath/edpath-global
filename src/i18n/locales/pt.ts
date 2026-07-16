@@ -269,6 +269,31 @@ export const pt = {
       disclaimer:
         "Estes níveis são relativos e servem apenas para orientar a comparação. Confirme os valores atuais em fontes oficiais e diretamente com a instituição.",
     },
+    tuition: {
+      title: "Mensalidade estimada por tipo de programa",
+      subtitle:
+        "A mensalidade é geralmente o maior custo e varia muito conforme o programa, a instituição e a província. Use estas faixas oficiais como referência.",
+      note: "Médias oficiais por nível. O valor real depende da instituição e do programa específico — confirme sempre no site oficial da escola escolhida.",
+      sourceUrl: "https://www.educanada.ca/programs-programmes/education_cost-cout_education.aspx?lang=eng",
+      sourceLabel: "Ver faixas oficiais de mensalidade (EduCanada)",
+      items: [
+        {
+          tag: "College / Diploma",
+          price: "CAD $16.000 – $25.000/ano",
+          desc: "Opção mais econômica; muitos programas de 1-2 anos.",
+        },
+        {
+          tag: "Universidade — Graduação",
+          price: "CAD $19.000 – $50.000/ano",
+          desc: "Varia muito por província (Ontário é a mais cara) e área (engenharia, business e saúde ficam no topo).",
+        },
+        {
+          tag: "Universidade — Pós-graduação",
+          price: "CAD $7.000 – $28.000/ano",
+          desc: "",
+        },
+      ],
+    },
     components: {
       title: "O que compõe o custo total",
       subtitle:

@@ -275,6 +275,31 @@ export const en = {
       disclaimer:
         "These tiers are relative and meant only to guide comparison. Confirm current values with official sources and directly with the institution.",
     },
+    tuition: {
+      title: "Estimated tuition by program type",
+      subtitle:
+        "Tuition is usually the largest cost and varies a lot by program, institution, and province. Use these official ranges as a reference.",
+      note: "Official averages by level. The actual amount depends on the institution and specific program — always confirm on the chosen school's official website.",
+      sourceUrl: "https://www.educanada.ca/programs-programmes/education_cost-cout_education.aspx?lang=eng",
+      sourceLabel: "See official tuition ranges (EduCanada)",
+      items: [
+        {
+          tag: "College / Diploma",
+          price: "CAD $16,000 – $25,000/year",
+          desc: "Most affordable option; many programs are 1-2 years.",
+        },
+        {
+          tag: "University — Undergraduate",
+          price: "CAD $19,000 – $50,000/year",
+          desc: "Varies widely by province (Ontario is the most expensive) and field (engineering, business, and health are at the top).",
+        },
+        {
+          tag: "University — Graduate",
+          price: "CAD $7,000 – $28,000/year",
+          desc: "",
+        },
+      ],
+    },
     components: {
       title: "What makes up the total cost",
       subtitle:
