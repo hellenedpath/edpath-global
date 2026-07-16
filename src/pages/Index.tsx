@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Compass } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
 import heroStudent from "@/assets/hero-student.jpg";
 
@@ -42,25 +41,13 @@ export default function Index() {
           <p className="mt-8 text-lg md:text-xl lg:text-2xl text-primary-foreground/80 max-w-xl leading-[1.5]">
             {t("home.subtitle")}
           </p>
-          <div className="mt-12 flex flex-wrap gap-4">
-            <Link
-              to="/meu-caminho"
-              className="group inline-flex items-center gap-2.5 rounded-lg bg-crimson px-8 py-4 text-base font-semibold text-primary-foreground shadow-md shadow-crimson/25 hover:bg-crimson/90 transition-colors"
-            >
-              <Compass className="w-5 h-5" />
-              {t("home.ctaQuiz")}
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-            <Link
-              to="/#destinos"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/30 bg-white/[0.07] px-7 py-4 text-sm font-medium text-primary-foreground/90 hover:bg-white/10 transition-colors"
-            >
-              {t("home.ctaExplore")}
-            </Link>
-          </div>
-          <p className="mt-5 text-sm text-primary-foreground/65">
-            {t("home.quizNote")}
-          </p>
+          <a
+            href="#destinos"
+            className="group mt-12 inline-flex items-center gap-2.5 rounded-lg border border-white/30 bg-white/[0.07] px-7 py-4 text-sm font-medium text-primary-foreground/90 hover:bg-white/10 transition-colors"
+          >
+            {t("home.ctaChoose")}
+            <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
+          </a>
         </div>
       </section>
       <CountrySelector />
