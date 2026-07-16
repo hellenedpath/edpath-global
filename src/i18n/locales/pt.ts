@@ -1355,27 +1355,41 @@ export const pt = {
     bodies: {
       title: "Órgãos que protegem o inquilino (por província)",
       rows: {
-        on: "Ontário: Landlord and Tenant Board (LTB), sob o Residential Tenancies Act. Apoio gratuito: ACTO e clínicas jurídicas comunitárias.",
-        bc: "BC: Residential Tenancy Branch (RTB).",
-        ab: "Alberta: Residential Tenancy Dispute Resolution Service.",
+        on: "Ontário — Landlord and Tenant Board (LTB), sob o Residential Tenancies Act. Apoio gratuito: ACTO e clínicas jurídicas comunitárias.",
+        bc: "BC — Residential Tenancy Branch (RTB).",
+        ab: "Alberta — Residential Tenancy Dispute Resolution Service.",
+        mb: "Manitoba — Residential Tenancies Branch.",
+        sk: "Saskatchewan — Office of Residential Tenancies.",
       },
+      urls: {
+        on: "https://tribunalsontario.ca/ltb/",
+        bc: "https://www2.gov.bc.ca/gov/content/housing-tenancy/residential-tenancies",
+        ab: "https://www.alberta.ca/residential-tenancy-dispute-resolution-service",
+        mb: "https://www.gov.mb.ca/cca/rtb/",
+        sk: "https://www.saskatchewan.ca/government/government-structure/boards-commissions-and-agencies/office-of-residential-tenancies",
+      },
+      linkLabel: "Site oficial",
       note:
-        "Cada província tem um órgão oficial e gratuito para resolver disputas. Você tem direitos e tem onde recorrer.",
+        "Cada província tem um órgão oficial e gratuito que oferece informação, mediação e decisão de disputas. Você tem direitos e tem onde recorrer.",
     },
     credit: {
       title: "Credit score e o desafio do recém-chegado",
       body:
-        "Você chega sem histórico de crédito canadense, mas landlords costumam pedir. Compense com: extrato bancário, carta de aceite da instituição, comprovante de fundos, referência de landlord anterior, ou depósito maior (dentro do limite legal).",
+        "No Canadá o score vai de 300 a 900, e o histórico de crédito de outro país NÃO transfere — você começa do zero. Landlords costumam pedir verificação de crédito. Compense com: extrato bancário, carta de aceite da instituição, comprovante de fundos, referência de landlord anterior, ou depósito maior (dentro do limite legal).",
       sinTitle: "Importante: seu SIN",
       sin:
         "Seu SIN (número de seguro social) NÃO é obrigatório para verificação de crédito básica — dê apenas nome, endereço e data de nascimento, e proteja seu SIN.",
       build:
         "Construa crédito rápido: conta bancária ao chegar, cartão para newcomers, e serviços que reportam o pagamento do aluguel aos bureaus (melhora em 6–12 meses).",
+      sourceUrl: "https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/credit-report-score-basics.html",
+      sourceLabel: "Governo do Canadá — relatório e score de crédito",
     },
     insurance: {
       title: "Seguro de inquilino (renter's insurance)",
       body:
         "Muitos landlords exigem. É barato e protege seus pertences contra roubo, incêndio e danos. Confirme se é exigido antes de assinar.",
+      sourceUrl: "https://www.canada.ca/en/financial-consumer-agency/services/insurance.html",
+      sourceLabel: "Governo do Canadá — noções básicas de seguro",
     },
     scamsCta: {
       title: "Proteja-se de golpes de aluguel",
@@ -1393,7 +1407,7 @@ export const pt = {
       tag: "Antes de ir",
       title: "Golpes de aluguel: como se proteger",
       subtitle:
-        "Estudante internacional é alvo primário de golpe de aluguel. Só em Toronto foram mais de 380 denúncias em 2024. Saber reconhecer os sinais é sua melhor proteção.",
+        "Estudante internacional é alvo primário de golpe de aluguel — chegando de longe, sem conhecer as normas locais e sob pressão para garantir moradia. Órgãos oficiais como a polícia e o Canadian Anti-Fraud Centre alertam repetidamente sobre esse risco. Saber reconhecer os sinais é sua melhor proteção.",
     },
     redFlags: {
       title: "Bandeiras vermelhas",
@@ -1437,6 +1451,8 @@ export const pt = {
       title: "Se você for vítima",
       body:
         "Pare o contato imediatamente. Contate seu banco na hora (se o e-transfer estiver pendente, tente cancelar). Denuncie à polícia local e ao Canadian Anti-Fraud Centre.",
+      antiFraudUrl: "https://antifraudcentre-centreantifraude.ca",
+      antiFraudLabel: "Canadian Anti-Fraud Centre",
     },
     backCta: {
       title: "Voltar ao básico do aluguel",
