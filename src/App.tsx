@@ -19,6 +19,8 @@ import Programs from "./pages/Programs";
 import Institutions from "./pages/Institutions";
 import FinancialSimulator from "./pages/FinancialSimulator";
 import HighSchools from "./pages/HighSchools";
+import Renting from "./pages/Renting";
+import RentalScams from "./pages/RentalScams";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +47,10 @@ const App = () => (
             <Route path="/ensino-medio" element={<HighSchools />} />
             <Route path="/antes-de-comecar" element={<Before />} />
             <Route path="/custos" element={<Costs />} />
+            <Route path="/alugar-no-canada" element={<Renting />} />
+            <Route path="/canada/alugar" element={<Renting />} />
+            <Route path="/golpes-de-aluguel" element={<RentalScams />} />
+            <Route path="/canada/golpes-de-aluguel" element={<RentalScams />} />
             <Route path="/simulador-financeiro" element={<FinancialSimulator />} />
             <Route path="/canada/simulador" element={<FinancialSimulator />} />
             <Route path="/saude" element={<PagePlaceholder tKey="health" />} />

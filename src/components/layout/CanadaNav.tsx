@@ -33,6 +33,8 @@ const beforeYouGoDefs = [
   { to: "/canada/ensino-medio", key: "highSchools" },
   { to: "/programas", key: "programs" },
   { to: "/custos", key: "costsSimulator" },
+  { to: "/alugar-no-canada", key: "renting" },
+  { to: "/golpes-de-aluguel", key: "rentalScams" },
   { to: "/antes-de-comecar", key: "before" },
 ] as const;
 
