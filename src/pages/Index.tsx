@@ -54,7 +54,7 @@ export default function Index() {
           />
         </div>
 
-        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-[52%_48%] gap-10 lg:gap-12 items-start pt-8 md:pt-10 lg:pt-12 pb-10 md:pb-12 lg:pb-14">
+        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-[52%_48%] gap-10 lg:gap-12 items-start pt-16 md:pt-20 lg:pt-24 pb-14 md:pb-16 lg:pb-18">
           {/* Left column: text */}
           <div className="flex flex-col justify-start max-w-xl">
             <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-8">
