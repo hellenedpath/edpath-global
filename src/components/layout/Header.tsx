@@ -114,7 +114,7 @@ export function Header() {
                       className={cn(
                         "w-full flex items-center justify-between px-3 py-2.5 text-sm text-left transition-colors",
                         i18n.language === l.code
-                          ? "bg-purple/15 text-white font-medium"
+                          ? "bg-azul/15 text-white font-medium"
                           : "hover:bg-white/10 text-primary-foreground/90",
                       )}
                     >

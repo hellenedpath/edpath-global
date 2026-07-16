@@ -320,10 +320,10 @@ export default function FinancialSimulator() {
               </CardContent>
             </Card>
 
-            <Card className="border-purple/30 shadow-sm">
+            <Card className="border-azul/30 shadow-sm">
               <CardHeader>
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-purple/10 text-purple">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
                     <PiggyBank className="w-5 h-5" />
                   </span>
                   <CardTitle className="font-display text-xl text-navy">
