@@ -384,6 +384,35 @@ export const pt = {
       sourceUrl: "https://rentals.ca/national-rent-report",
       sourceLabel: "Ver relatório nacional de aluguel (rentals.ca)",
     },
+    accommodation: {
+      title: "Tipos de acomodação e custo",
+      subtitle: "As opções mais comuns para estudantes, do mais econômico ao mais caro.",
+      note: "Valores médios de mercado, variam por cidade e bairro. Referência: 2026.",
+      sourceUrl: "https://www.educanada.ca/study-plan-etudes/before-avant/housing-logement.aspx?lang=eng",
+      sourceLabel: "Ver guia oficial de moradia (EduCanada)",
+      items: [
+        {
+          tag: "Quarto em casa ou apê compartilhado",
+          price: "$400–$1.200/mês",
+          desc: "Você tem seu quarto; cozinha e banheiro divididos. Opção mais comum e econômica para estudante. Varia conforme a cidade.",
+        },
+        {
+          tag: "Residência da instituição (dorm)",
+          price: "$5.000–$9.000/ano letivo",
+          desc: "Cerca de 8 meses. Prático no primeiro ano; geralmente inclui contas (água, luz, internet).",
+        },
+        {
+          tag: "Apartamento dividido",
+          price: "Cerca da metade do 2 quartos",
+          desc: "Dividir um apartamento de 2 quartos com um colega. Use a tabela de custo por cidade abaixo como referência.",
+        },
+        {
+          tag: "Studio ou apartamento solo",
+          price: "$1.500–$3.000/mês",
+          desc: "Nas grandes cidades. Mais privacidade, custo mais alto.",
+        },
+      ],
+    },
     seal: {
       title: "Estas são referências baseadas em dados oficiais e médias de mercado.",
       body:
