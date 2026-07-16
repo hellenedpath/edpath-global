@@ -34,7 +34,7 @@ export default function Index() {
             alt="Student walking across a university campus"
             width={1280}
             height={1600}
-            className="absolute inset-y-0 right-0 h-full w-full lg:w-[62%] object-cover object-[center_15%]"
+            className="absolute inset-y-0 right-0 h-full w-full lg:w-[62%] object-cover object-[center_30%]"
           />
           {/* Left → right navy fade for text legibility */}
           <div
