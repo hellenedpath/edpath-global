@@ -36,9 +36,10 @@ export const pt = {
     menu: "Menu",
     openMenu: "Abrir menu",
     groups: {
-      course: "Curso e instituição",
-      costs: "Custos",
-      housing: "Moradia e chegada",
+      startHere: "Comece aqui",
+      chooseSchool: "Escolha sua escola",
+      planCosts: "Planeje os custos",
+      prepareMove: "Prepare a mudança",
     },
     items: {
       pgwp: "Verificador PGWP",
