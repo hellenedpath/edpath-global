@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { Link, useSearchParams, useLocation } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -315,6 +315,7 @@ export default function PathQuiz() {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const countryParam = searchParams.get("country");
   const isCanadaContext =
     (countryParam && DESTINATION_KEYS.includes(countryParam as typeof DESTINATION_KEYS[number])) ||
@@ -331,6 +332,27 @@ export default function PathQuiz() {
   const [destination, setDestination] = useState<string | null>(presetDestination);
   const [notifyEmail, setNotifyEmail] = useState("");
   const [notifySubmitted, setNotifySubmitted] = useState(false);
+
+  // When quiz completes with Canada destination, store recommended step
+  // and redirect back to the single journey home (/canada) — no separate result page.
+  useEffect(() => {
+    if (!finished) return;
+    if (destination !== "canada") return;
+    const q1 = answers[1];
+    const map: Record<string, number> = {
+      researching: 2,
+      knows: 3,
+      accepted: 4,
+      arrived: 6,
+    };
+    const step = (q1 && map[q1]) || 1;
+    try {
+      sessionStorage.setItem("canadaJourney.recommendedStep", String(step));
+    } catch {
+      /* ignore */
+    }
+    navigate("/canada");
+  }, [finished, destination, answers, navigate]);
 
   const destAvailable = destination ? AVAILABLE_DESTINATIONS.has(destination) : false;
   const destLabel = destination ? t(`pathQuiz.destination.options.${destination}`) : "";
