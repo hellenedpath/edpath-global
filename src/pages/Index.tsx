@@ -185,35 +185,30 @@ export default function Index() {
 
       {/* How it works */}
       <section className="bg-muted/40">
-        <div className="container max-w-6xl py-16 md:py-20">
-          <div className="text-center mb-12">
+        <div className="container max-w-6xl py-20 md:py-28">
+          <div className="text-center mb-16">
             <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
               <span className="w-6 h-px bg-crimson" />
               {t("howItWorks.eyebrow")}
               <span className="w-6 h-px bg-crimson" />
             </div>
-            <h2 className="font-display text-3xl md:text-5xl font-medium text-navy tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy tracking-tight">
               {t("howItWorks.title")}
             </h2>
           </div>
-          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
-            <div
-              aria-hidden="true"
-              className="hidden md:block absolute top-6 left-[16.6%] right-[16.6%] h-px"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, hsl(var(--purple)/0.3), hsl(var(--crimson)/0.5), hsl(var(--purple)/0.3))",
-              }}
-            />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {steps.map((s) => (
-              <div key={s.n} className="relative flex flex-col items-center text-center px-4">
-                <div className="w-12 h-12 rounded-full bg-navy text-white flex items-center justify-center font-sans text-sm font-medium tracking-wider ring-4 ring-muted/40 relative z-10">
+              <div
+                key={s.n}
+                className="flex flex-col items-center text-center rounded-2xl bg-white p-8 md:p-10 ring-1 ring-border/50 shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)]"
+              >
+                <div className="w-12 h-12 rounded-full bg-crimson/10 text-crimson flex items-center justify-center font-sans text-sm font-bold tracking-wider">
                   {s.n}
                 </div>
-                <h3 className="mt-5 font-display text-xl md:text-2xl font-medium text-navy tracking-tight">
+                <h3 className="mt-6 text-xl md:text-2xl font-bold text-navy tracking-tight">
                   {s.title}
                 </h3>
-                <p className="mt-2 text-muted-foreground text-[15px] leading-relaxed max-w-xs">
+                <p className="mt-3 text-muted-foreground text-[15px] leading-relaxed max-w-xs">
                   {s.desc}
                 </p>
               </div>
