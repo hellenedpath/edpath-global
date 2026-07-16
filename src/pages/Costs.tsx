@@ -7,6 +7,7 @@ import {
   AlertTriangle,
   Bus,
   Building2,
+  BedDouble,
   Calculator,
   ExternalLink,
   FileCheck,
@@ -24,12 +25,12 @@ import {
 } from "lucide-react";
 
 type Item = { title: string; content: string };
+type AccommodationItem = { tag: string; price: string; desc: string };
 
 const itemIcons = [GraduationCap, Home, UtensilsCrossed, Bus, Heart, Plane];
 
 const VISA_FEES = { studyPermit: 150, biometrics: 85, total: 235 };
 const PROOF_OF_FUNDS = { single: 22895, spouse: 4000, child: 3000 };
-const SHARED_ROOM = 930;
 const RENT_RANGES: { city: string; province: string; range: string }[] = [
   { city: "Vancouver", province: "BC", range: "$2,500 – $2,660" },
   { city: "Toronto", province: "ON", range: "~$2,200" },
@@ -58,6 +59,7 @@ export default function Costs() {
   const { t } = useTranslation();
 
   const items = t("costs.components.items", { returnObjects: true }) as unknown as Item[];
+  const accommodation = t("realCosts.accommodation.items", { returnObjects: true }) as unknown as AccommodationItem[];
 
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat("en-CA", {
@@ -186,8 +188,56 @@ export default function Costs() {
         </div>
       </section>
 
-      {/* Cities — real rent ranges */}
+      {/* Types of accommodation */}
       <section className="bg-white border-y border-border">
+        <div className="container py-16 md:py-24 max-w-5xl">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="font-display text-3xl md:text-4xl font-semibold text-navy">
+              {t("realCosts.accommodation.title")}
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              {t("realCosts.accommodation.subtitle")}
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2">
+            {accommodation.map((item) => (
+              <Card key={item.tag} className="border-border shadow-sm">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul shrink-0">
+                      <BedDouble className="w-5 h-5" />
+                    </span>
+                    <span className="text-xs uppercase tracking-widest text-azul font-medium">
+                      {item.tag}
+                    </span>
+                  </div>
+                  <CardTitle className="font-display text-2xl text-navy mt-3">
+                    {item.price}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                  {item.desc}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <p className="mt-6 text-center text-xs text-muted-foreground italic">
+            {t("realCosts.accommodation.note")}
+          </p>
+
+          <div className="mt-4 text-center">
+            <SourceLink
+              href={t("realCosts.accommodation.sourceUrl")}
+              label={t("realCosts.accommodation.sourceLabel")}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Cities — real rent ranges */}
+      <section className="border-y border-border">
         <div className="container py-16 md:py-24 max-w-5xl">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="font-display text-3xl md:text-4xl font-semibold text-navy">
@@ -218,21 +268,6 @@ export default function Costs() {
                 </CardContent>
               </Card>
             ))}
-
-            <Card className="border-azul/20 shadow-sm bg-azul/5">
-              <CardHeader className="pb-3">
-                <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-azul font-medium">
-                  <Home className="h-4 w-4" />
-                  {t("realCosts.rent.shared.tag")}
-                </div>
-                <CardTitle className="font-display text-2xl text-navy mt-2">
-                  ~{formatCurrency(SHARED_ROOM)}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground leading-relaxed">
-                {t("realCosts.rent.shared.label")}
-              </CardContent>
-            </Card>
           </div>
 
           <div className="mt-8 flex items-start gap-2 rounded-md border border-[hsl(var(--azul))]/30 bg-[hsl(var(--azul))]/5 p-4 text-sm leading-relaxed text-navy max-w-4xl mx-auto">
