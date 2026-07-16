@@ -23,6 +23,7 @@ export function Header() {
   const navigate = useNavigate();
   const [langOpen, setLangOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const showMyPath = location.pathname.startsWith("/canada");
 
   useEffect(() => {
     if (location.pathname === "/" && location.hash === "#destinos") {
@@ -80,13 +81,15 @@ export function Header() {
 
 
         <div className="flex items-center gap-2">
-          <Link
-            to="/meu-caminho"
-            className="hidden md:inline-flex items-center gap-1.5 rounded-md bg-crimson px-3.5 py-2 text-sm font-semibold text-white hover:bg-crimson/90 transition-colors"
-          >
-            <Compass className="w-4 h-4" />
-            {t("nav.myPath")}
-          </Link>
+          {showMyPath && (
+            <Link
+              to="/canada"
+              className="hidden md:inline-flex items-center gap-1.5 rounded-md bg-crimson px-3.5 py-2 text-sm font-semibold text-white hover:bg-crimson/90 transition-colors"
+            >
+              <Compass className="w-4 h-4" />
+              {t("nav.myPath")}
+            </Link>
+          )}
           <div className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
@@ -151,14 +154,16 @@ export function Header() {
       {mobileOpen && (
         <nav className="lg:hidden border-t border-white/10 bg-navy">
           <div className="container flex flex-col py-2">
-            <NavLink
-              to="/meu-caminho"
-              onClick={() => setMobileOpen(false)}
-              className="px-3 py-3 text-sm rounded-md bg-crimson hover:bg-crimson/90 text-white font-semibold inline-flex items-center gap-2"
-            >
-              <Compass className="w-4 h-4" />
-              {t("nav.myPath")}
-            </NavLink>
+            {showMyPath && (
+              <NavLink
+                to="/canada"
+                onClick={() => setMobileOpen(false)}
+                className="px-3 py-3 text-sm rounded-md bg-crimson hover:bg-crimson/90 text-white font-semibold inline-flex items-center gap-2"
+              >
+                <Compass className="w-4 h-4" />
+                {t("nav.myPath")}
+              </NavLink>
+            )}
             {navItems.map((item) =>
               item.type === "anchor" ? (
                 <a
