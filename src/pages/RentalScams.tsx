@@ -145,6 +145,12 @@ export default function RentalScams() {
             </AlertTitle>
             <AlertDescription className="text-muted-foreground mt-2 leading-relaxed">
               {t("rentalScams.victim.body")}
+              <span className="block mt-3">
+                <SourceLink
+                  href={t("rentalScams.victim.antiFraudUrl")}
+                  label={t("rentalScams.victim.antiFraudLabel")}
+                />
+              </span>
             </AlertDescription>
           </Alert>
         </div>
