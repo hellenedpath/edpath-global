@@ -70,21 +70,40 @@ export default function Index() {
             <g transform="translate(1180 450)">
               <circle r="290" fill="hsl(228 55% 10% / 0.35)" />
               <circle r="290" fill="none" stroke="hsl(221 90% 78%)" strokeOpacity="0.75" strokeWidth="1.5" />
-              {/* Continents — simplified silhouettes clipped to the globe */}
               <defs>
                 <clipPath id="globeClip">
                   <circle r="290" />
                 </clipPath>
               </defs>
-              <g
-                clipPath="url(#globeClip)"
-                fill="hsl(221 60% 85%)"
-                fillOpacity="0.16"
-                stroke="hsl(221 70% 80%)"
-                strokeOpacity="0.32"
-                strokeWidth="0.8"
-                strokeLinejoin="round"
-              >
+              {/* Subtle grid behind the continents */}
+              {/* Meridians */}
+              {[0, 30, 60, 90, 120, 150].map((a) => (
+                <ellipse
+                  key={a}
+                  rx="290"
+                  ry={290 * Math.abs(Math.cos((a * Math.PI) / 180))}
+                  fill="none"
+                  stroke="hsl(221 90% 78%)"
+                  strokeOpacity="0.3"
+                  strokeWidth="1"
+                  transform={`rotate(${a})`}
+                />
+              ))}
+              {/* Parallels */}
+              {[-60, -30, 0, 30, 60].map((lat) => (
+                <ellipse
+                  key={lat}
+                  cy={290 * Math.sin((lat * Math.PI) / 180)}
+                  rx={290 * Math.cos((lat * Math.PI) / 180)}
+                  ry={10}
+                  fill="none"
+                  stroke="hsl(221 90% 78%)"
+                  strokeOpacity="0.28"
+                  strokeWidth="1"
+                />
+              ))}
+              {/* Dot-map continents — landmasses formed by a regular dot mesh */}
+              <g clipPath="url(#globeClip)" fill="url(#dotGrid)">
                 {/* North America */}
                 <path d="M -240 -180 L -150 -190 L -95 -150 L -80 -100 L -110 -55 L -130 -30 L -155 -20 L -175 -55 L -205 -70 L -230 -110 Z" />
                 {/* Central America */}
@@ -110,32 +129,6 @@ export default function Index() {
                 {/* Japan */}
                 <path d="M 225 -85 L 240 -70 L 232 -55 L 218 -70 Z" />
               </g>
-              {/* Meridians */}
-              {[0, 30, 60, 90, 120, 150].map((a) => (
-                <ellipse
-                  key={a}
-                  rx="290"
-                  ry={290 * Math.abs(Math.cos((a * Math.PI) / 180))}
-                  fill="none"
-                  stroke="hsl(221 90% 78%)"
-                  strokeOpacity="0.45"
-                  strokeWidth="1"
-                  transform={`rotate(${a})`}
-                />
-              ))}
-              {/* Parallels */}
-              {[-60, -30, 0, 30, 60].map((lat) => (
-                <ellipse
-                  key={lat}
-                  cy={290 * Math.sin((lat * Math.PI) / 180)}
-                  rx={290 * Math.cos((lat * Math.PI) / 180)}
-                  ry={10}
-                  fill="none"
-                  stroke="hsl(221 90% 78%)"
-                  strokeOpacity="0.4"
-                  strokeWidth="1"
-                />
-              ))}
               {/* Destination routes — Canada as origin, subtle arcs to the other 4 */}
               {(() => {
                 const dests = [
