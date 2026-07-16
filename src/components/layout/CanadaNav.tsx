@@ -28,12 +28,12 @@ import {
 type Item = { to: string; label: string };
 type Group = { title: string; items: Item[] };
 
-const primaryTo = "/meu-caminho";
+const primaryTo = "/meu-caminho?country=canada";
 
 const beforeYouGoGroupDefs = [
   {
     key: "startHere",
-    items: [{ to: "/meu-caminho", key: "myPath" }],
+    items: [{ to: "/meu-caminho?country=canada", key: "myPath" }],
   },
   {
     key: "chooseSchool",

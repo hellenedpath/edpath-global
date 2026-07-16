@@ -80,8 +80,8 @@ export const pt = {
   },
   canadaSteps: {
     eyebrow: "Seu caminho, passo a passo",
-    title: "Do zero ao Canadá em 6 passos",
-    subtitle: "Um estudante que nunca saiu do país precisa de uma sequência clara. Siga na ordem — cada passo prepara o próximo.",
+    title: "Seu caminho para o Canadá, passo a passo",
+    subtitle: "Um estudante que nunca saiu do país precisa de uma sequência clara. Siga a ordem — cada passo prepara o próximo.",
     stepLabel: "Passo",
     primaryCta: "Começar este passo",
     alsoSee: "Veja também",

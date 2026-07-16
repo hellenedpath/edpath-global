@@ -12,7 +12,7 @@ type Step = {
 };
 
 const steps: Step[] = [
-  { key: "path", to: "/meu-caminho", Icon: Compass },
+  { key: "path", to: "/meu-caminho?country=canada", Icon: Compass },
   {
     key: "school",
     to: "/canada/pgwp",
