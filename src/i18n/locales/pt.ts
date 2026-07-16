@@ -305,6 +305,84 @@ export const pt = {
     },
   },
 
+  realCosts: {
+    hero: {
+      badge: "Canadá",
+      title: "Custos reais de estudar no Canadá",
+      subtitle:
+        "Dados oficiais do governo canadense e médias de mercado para você planejar com referências reais, não promessas.",
+    },
+    nav: {
+      label: "Custos reais",
+    },
+    visa: {
+      title: "Taxas de visto (governo do Canadá)",
+      subtitle: "Valores cobrados pelo IRCC para processar o permisso de estudo.",
+      studyPermit: {
+        tag: "Study permit",
+        label: "Por pessoa que aplica",
+      },
+      biometrics: {
+        tag: "Biometria",
+        label: "Válida por 10 anos. Quem já deu biometria para visto canadense na última década não paga de novo.",
+      },
+      total: {
+        tag: "Total mínimo do governo",
+        label: "Soma das taxas oficiais do IRCC",
+      },
+      alert: {
+        title: "Documentação custa mais do que só as taxas do governo",
+        body:
+          "Além dessas taxas oficiais, há custos que variam por país e não são cobrados pelo IRCC — taxa do centro de aplicação (VAC, ~$50), exame médico ($200-400), fotos e courier. Um orçamento realista de documentação fica entre CAD $500 e $800 no total.",
+      },
+      sourceUrl: "https://ircc.canada.ca/english/information/fees/fees.asp",
+      sourceLabel: "Ver tabela oficial de taxas do IRCC",
+    },
+    proof: {
+      title: "Prova de fundos (proof of funds)",
+      subtitle: "Quanto o IRCC exige que você comprove ter disponível para custos de vida, além da mensalidade.",
+      single: {
+        tag: "Estudante solteiro (fora de Quebec)",
+        label: "Por ano de custo de vida, além da mensalidade do primeiro ano e do transporte.",
+      },
+      family: {
+        tag: "Familiares acompanhantes",
+        title: "Valores adicionais por dependente",
+        spouse: "Cônjuge",
+        child: "Filho dependente",
+      },
+      perYear: "ano",
+      note: {
+        title: "Piso, não teto",
+        body:
+          "Valor vigente desde setembro de 2025. O IRCC revisa esse montante anualmente — confirme em canada.ca antes de aplicar. Este valor é um piso, não teto: mostrar exatamente o mínimo pode levantar dúvidas na análise; um colchão extra de $2.000-5.000 demonstra planejamento.",
+      },
+      sourceUrl: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html",
+      sourceLabel: "Ver requisito oficial de prova de fundos",
+    },
+    rent: {
+      title: "Custo de vida por cidade (aluguel médio, 1 quarto)",
+      subtitle: "Faixas de mercado para aluguel de apartamento com um quarto em cada região.",
+      reference: "Referência: meados de 2026",
+      perMonth: "/mês",
+      shared: {
+        tag: "Quarto dividido",
+        label: "Média nacional de acomodação compartilhada — mais econômica no início.",
+      },
+      note: {
+        title: "Médias de mercado",
+        body: "Médias de mercado, variam por bairro e mês. Referência: meados de 2026.",
+      },
+      sourceUrl: "https://rentals.ca/national-rent-report",
+      sourceLabel: "Ver relatório nacional de aluguel (rentals.ca)",
+    },
+    seal: {
+      title: "Estas são referências baseadas em dados oficiais e médias de mercado.",
+      body:
+        "Não confirmam o seu caso individual. Apenas o IRCC decide sobre aplicações, e apenas canada.ca mostra as regras e valores atuais.",
+    },
+  },
+
   family: {
     hero: {
       title: "Sua família na jornada",

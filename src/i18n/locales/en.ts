@@ -310,6 +310,85 @@ export const en = {
         "Values are approximate and change over time. Always confirm current costs with official sources. EdPath Global provides educational information, not financial advice. When it makes sense, we can connect you with trusted agencies and professionals.",
     },
   },
+
+  realCosts: {
+    hero: {
+      badge: "Canada",
+      title: "Real costs of studying in Canada",
+      subtitle:
+        "Official Canadian government data and market averages so you can plan with real references, not promises.",
+    },
+    nav: {
+      label: "Real costs",
+    },
+    visa: {
+      title: "Visa fees (Government of Canada)",
+      subtitle: "IRCC fees charged to process a study permit.",
+      studyPermit: {
+        tag: "Study permit",
+        label: "Per applicant",
+      },
+      biometrics: {
+        tag: "Biometrics",
+        label: "Valid for 10 years. If you already gave biometrics for a Canadian visa in the last decade, you do not pay again.",
+      },
+      total: {
+        tag: "Minimum government total",
+        label: "Sum of official IRCC fees",
+      },
+      alert: {
+        title: "Documentation costs more than just government fees",
+        body:
+          "Beyond these official fees, there are country-specific costs not charged by IRCC — the Visa Application Centre fee (VAC, ~$50), medical exam ($200-400), photos and courier. A realistic documentation budget totals CAD $500 to $800.",
+      },
+      sourceUrl: "https://ircc.canada.ca/english/information/fees/fees.asp",
+      sourceLabel: "See official IRCC fee table",
+    },
+    proof: {
+      title: "Proof of funds",
+      subtitle: "The amount IRCC requires you to prove you have available for living costs, in addition to tuition.",
+      single: {
+        tag: "Single student (outside Quebec)",
+        label: "Per year of living costs, in addition to first-year tuition and airfare.",
+      },
+      family: {
+        tag: "Accompanying family members",
+        title: "Additional amounts per dependent",
+        spouse: "Spouse",
+        child: "Dependent child",
+      },
+      perYear: "year",
+      note: {
+        title: "Floor, not ceiling",
+        body:
+          "Amount current since September 2025. IRCC reviews this figure annually — confirm at canada.ca before applying. This is a minimum, not a maximum: showing exactly the minimum can raise questions; an extra buffer of $2,000-5,000 shows planning.",
+      },
+      sourceUrl: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html",
+      sourceLabel: "See official proof of funds requirement",
+    },
+    rent: {
+      title: "Cost of living by city (average rent, 1 bedroom)",
+      subtitle: "Market ranges for a one-bedroom apartment in each region.",
+      reference: "Reference: mid-2026",
+      perMonth: "/month",
+      shared: {
+        tag: "Shared room",
+        label: "National average for shared accommodation — more affordable at the start.",
+      },
+      note: {
+        title: "Market averages",
+        body: "Market averages that vary by neighbourhood and month. Reference: mid-2026.",
+      },
+      sourceUrl: "https://rentals.ca/national-rent-report",
+      sourceLabel: "See national rent report (rentals.ca)",
+    },
+    seal: {
+      title: "These are references based on official data and market averages.",
+      body:
+        "They do not confirm your individual case. Only IRCC decides on applications, and only canada.ca shows the current rules and values.",
+    },
+  },
+
   family: {
     hero: {
       title: "Your family on the journey",
