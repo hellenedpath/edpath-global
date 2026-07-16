@@ -26,9 +26,7 @@ export const en = {
       "Independent, verified and clear information to help you plan your studies around the world.",
     ctaPrograms: "Explore Programs",
     ctaBefore: "Before You Start",
-    ctaQuiz: "Discover your path in 2 minutes",
-    ctaExplore: "Explore by destination",
-    quizNote: "6 quick questions · personalized roadmap in 8 steps",
+    ctaChoose: "Choose your destination",
   },
   canadaNav: {
     beforeYouGo: "Before you go",
