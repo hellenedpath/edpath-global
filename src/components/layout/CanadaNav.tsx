@@ -52,6 +52,12 @@ const beforeYouGoGroupDefs = [
     ],
   },
   {
+    key: "applyVisa",
+    items: [
+      { to: "/study-permit", key: "studyPermit" },
+    ],
+  },
+  {
     key: "prepareMove",
     items: [
       { to: "/alugar-no-canada", key: "renting" },
