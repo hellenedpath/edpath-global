@@ -220,9 +220,9 @@ export const en = {
   costs: {
     simulate: "Simulate your costs",
     hero: {
-      title: "How much it costs to study abroad",
+      title: "Studying in Canada",
       subtitle:
-        "The two numbers every student needs to understand before deciding. Current content focused on Canada.",
+        "The two numbers every student needs to understand before deciding — proof of funds vs. real cost of living in Canada.",
     },
     twoNumbers: {
       title: "The two numbers",
@@ -398,19 +398,19 @@ export const en = {
       sourceLabel: "See official housing guide (EduCanada)",
       items: [
         {
-          tag: "Room in a house or shared apartment",
+          tag: "Private room",
           price: "$400–$1,200/month",
-          desc: "You have your own room; kitchen and bathroom are shared. Most common and affordable option for students. Varies by city.",
+          desc: "You rent your own room in a house or apartment and share the kitchen and bathroom with others. Most common and affordable option for students. Varies by city.",
+        },
+        {
+          tag: "Shared apartment",
+          price: "About half of a 2-bedroom",
+          desc: "You and one or more roommates rent a whole apartment and split everything (rent, bills, common spaces). Use the city cost table below as a reference — usually about half the price of a 2-bedroom.",
         },
         {
           tag: "Institution residence (dorm)",
           price: "$5,000–$9,000/school year",
           desc: "About 8 months. Practical in the first year; usually includes utilities (water, electricity, internet).",
-        },
-        {
-          tag: "Shared apartment",
-          price: "About half of a 2-bedroom",
-          desc: "Sharing a 2-bedroom apartment with a roommate. Use the city cost table below as a reference.",
         },
         {
           tag: "Studio or solo apartment",

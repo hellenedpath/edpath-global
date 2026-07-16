@@ -8,7 +8,6 @@ import NotFound from "./pages/NotFound.tsx";
 import SiteLayout from "./components/layout/SiteLayout";
 import PagePlaceholder from "./pages/PagePlaceholder";
 import About from "./pages/About";
-import Before from "./pages/Before";
 import Costs from "./pages/Costs";
 import Family from "./pages/Family";
 import Work from "./pages/Work";
@@ -45,7 +44,6 @@ const App = () => (
             <Route path="/instituicoes" element={<Institutions />} />
             <Route path="/canada/ensino-medio" element={<HighSchools />} />
             <Route path="/ensino-medio" element={<HighSchools />} />
-            <Route path="/antes-de-comecar" element={<Before />} />
             <Route path="/custos" element={<Costs />} />
             <Route path="/alugar-no-canada" element={<Renting />} />
             <Route path="/canada/alugar" element={<Renting />} />

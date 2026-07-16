@@ -215,8 +215,8 @@ export const pt = {
   costs: {
     simulate: "Simule seus custos",
     hero: {
-      title: "Quanto custa estudar no exterior",
-      subtitle: "Os dois números que todo estudante precisa entender antes de decidir. Conteúdo atual focado no Canadá.",
+      title: "Estudar no Canadá",
+      subtitle: "Os dois números que todo estudante precisa entender antes de decidir — prova de fundos vs. custo real de vida no Canadá.",
     },
     twoNumbers: {
       title: "Os dois números",
@@ -392,19 +392,19 @@ export const pt = {
       sourceLabel: "Ver guia oficial de moradia (EduCanada)",
       items: [
         {
-          tag: "Quarto em casa ou apê compartilhado",
+          tag: "Quarto individual",
           price: "$400–$1.200/mês",
-          desc: "Você tem seu quarto; cozinha e banheiro divididos. Opção mais comum e econômica para estudante. Varia conforme a cidade.",
+          desc: "Você aluga um quarto próprio numa casa ou apartamento e divide cozinha e banheiro com outras pessoas. Opção mais comum e econômica para estudante. Varia conforme a cidade.",
+        },
+        {
+          tag: "Apartamento compartilhado",
+          price: "Cerca da metade do 2 quartos",
+          desc: "Você e um ou mais colegas alugam um apartamento inteiro e dividem tudo (aluguel, contas, espaços comuns). Use a tabela de custo por cidade abaixo como referência — geralmente cerca de metade do valor de um apê de 2 quartos.",
         },
         {
           tag: "Residência da instituição (dorm)",
           price: "$5.000–$9.000/ano letivo",
           desc: "Cerca de 8 meses. Prático no primeiro ano; geralmente inclui contas (água, luz, internet).",
-        },
-        {
-          tag: "Apartamento dividido",
-          price: "Cerca da metade do 2 quartos",
-          desc: "Dividir um apartamento de 2 quartos com um colega. Use a tabela de custo por cidade abaixo como referência.",
         },
         {
           tag: "Studio ou apartamento solo",

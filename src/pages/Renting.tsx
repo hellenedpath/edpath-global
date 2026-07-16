@@ -10,7 +10,6 @@ import {
   CreditCard,
   ExternalLink,
   FileText,
-  Home,
   KeyRound,
   Landmark,
   ShieldAlert,
@@ -99,20 +98,6 @@ export default function Renting() {
           </div>
 
           <div className="mt-10 grid gap-4 md:grid-cols-2">
-            <Card className="border-azul/20 bg-azul/5 shadow-sm">
-              <CardHeader className="pb-3">
-                <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-azul font-medium">
-                  <Home className="h-4 w-4" /> {t("renting.types.shared.label")}
-                </div>
-                <CardTitle className="font-display text-2xl text-navy mt-2">
-                  {t("renting.types.shared.value")}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                {t("renting.types.shared.hint")}
-              </CardContent>
-            </Card>
-
             <Card className="border-border shadow-sm">
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-azul font-medium">
