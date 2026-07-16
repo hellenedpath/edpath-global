@@ -105,12 +105,17 @@ export default function HighSchools() {
   const cardHomestay = (it: HighSchool) =>
     isEnglish ? it.homestay_en : it.homestay_pt;
 
+  const cardTuition = (it: HighSchool) => {
+    const active = isEnglish ? it.tuition_en : it.tuition_pt;
+    if (active) return active;
+    return it.tuition_en || it.tuition_pt || null;
+  };
 
   const formatTuition = (value: string | null) => {
     if (!value) return t("highSchools.card.tuitionMissing");
-    if (isEnglish && value.includes("/ano")) return value.replace("/ano", "/year");
     return value;
   };
+
 
   const typeOptions: Array<{ value: "all" | "public" | "private"; label: string }> = [
 
