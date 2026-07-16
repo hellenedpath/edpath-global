@@ -275,12 +275,20 @@ export default function HighSchools() {
                     <dd className="font-medium text-foreground">{it.application_fee}</dd>
                   </div>
                 )}
-                {it.tuition_annual && (
-                  <div className="flex items-center gap-1.5 col-span-2">
+                <div className="col-span-2">
+                  <div className="flex items-center gap-1.5">
                     <dt className="text-muted-foreground">{t("highSchools.card.tuition")}:</dt>
-                    <dd className="font-medium text-foreground">{it.tuition_annual}</dd>
+                    <dd className="font-medium text-foreground">
+                      {it.tuition_annual ? it.tuition_annual : t("highSchools.card.tuitionMissing")}
+                    </dd>
                   </div>
-                )}
+                  {it.tuition_annual && (
+                    <p className="text-[10px] text-muted-foreground mt-0.5">
+                      {t("highSchools.card.tuitionEstimate")}
+                    </p>
+                  )}
+                </div>
+
               </dl>
 
               <div className="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-border">
@@ -317,11 +325,17 @@ export default function HighSchools() {
 
         <div className="mt-12 flex items-start gap-2 rounded-md border border-[hsl(var(--azul))]/30 bg-[hsl(var(--azul))]/5 p-4 text-sm leading-relaxed text-navy max-w-4xl">
           <Info className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
-          <p>
-            <span className="font-medium">{t("highSchools.disclaimer.title")}</span>{" "}
-            {t("highSchools.disclaimer.body")}
-          </p>
+          <div>
+            <p>
+              <span className="font-medium">{t("highSchools.disclaimer.title")}</span>{" "}
+              {t("highSchools.disclaimer.body")}
+            </p>
+            <p className="mt-2">
+              {t("highSchools.disclaimer.costNote")}
+            </p>
+          </div>
         </div>
+
       </section>
     </>
   );

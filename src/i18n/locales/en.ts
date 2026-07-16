@@ -1157,7 +1157,9 @@ export const en = {
       grades: "Grades",
       homestay: "Homestay",
       applicationFee: "Application fee",
-      tuition: "Annual tuition",
+      tuition: "Estimated annual cost",
+      tuitionEstimate: "Estimate — may vary",
+      tuitionMissing: "Check the official site",
       applyCta: "View international program / Apply",
       type: {
         public: "Public school district",
@@ -1165,12 +1167,16 @@ export const en = {
       },
       boarding: "Boarding",
     },
+
     empty: "No schools found with these filters.",
     disclaimer: {
       title: "Honest heads-up:",
       body:
         "This information is a starting point. Requirements, costs and seats change every year — always confirm on the district's or school's official site before applying.",
+      costNote:
+        "Costs are estimates and change yearly. Always confirm on the school's official site.",
     },
+
   },
 
 };
