@@ -16,6 +16,8 @@ export default function SiteLayout() {
     "/trabalho-moradia",
     "/diagnostico",
     "/simulador-financeiro",
+    "/alugar-no-canada",
+    "/golpes-de-aluguel",
   ];
   const isCanadaContext = canadaPaths.some((p) => location.pathname === p || location.pathname.startsWith(p + "/"));
 

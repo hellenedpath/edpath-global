@@ -43,6 +43,8 @@ export const pt = {
       costsSimulator: "Simulador de Custos",
       realCosts: "Custos reais",
       before: "Antes de Começar",
+      renting: "Alugar no Canadá",
+      rentalScams: "Golpes de aluguel",
       costs: "Custos",
       health: "Saúde",
       family: "Família",
@@ -1269,6 +1271,179 @@ export const pt = {
         "Os valores são estimativas e mudam a cada ano. Confirme sempre no site oficial da escola.",
     },
 
+  },
+
+  renting: {
+    hero: {
+      tag: "Antes de ir",
+      title: "Alugar no Canadá",
+      subtitle:
+        "Como encontrar um lugar, entender seu contrato e conhecer seus direitos como inquilino.",
+    },
+    goldenRule: {
+      title: "A regra de ouro",
+      body:
+        "Nunca feche um aluguel de longe. Não pague nada antes de chegar. Não confie apenas em fotos. Chegue ao Canadá primeiro, fique num lugar temporário, veja o imóvel pessoalmente, e só então assine e pague. A pressa de garantir moradia é exatamente o que golpistas exploram.",
+    },
+    firstDays: {
+      title: "Onde ficar quando chegar",
+      body:
+        "Primeiros dias em Airbnb, hotel ou hospedagem temporária. Muitas instituições oferecem residência ou apoio de moradia para recém-chegados — contate o housing office da sua escola/college/universidade antes de viajar. Use esse tempo para procurar o aluguel definitivo com calma e ver os imóveis em pessoa.",
+    },
+    types: {
+      title: "Tipos de moradia e faixas de preço",
+      reference: "Referência de mercado: início de 2026",
+      note: "Médias de mercado, variam por bairro e mês.",
+      sourceLabel: "Fontes: Statistics Canada e Rentals.ca",
+      shared: { label: "Quarto compartilhado", value: "~$930/mês", hint: "Opção mais econômica no início" },
+      studio: { label: "Studio / bachelor", value: "$1.050 – $1.800/mês" },
+      oneBed: {
+        label: "1 quarto",
+        rows: [
+          "Vancouver: $2.500 – $2.660",
+          "Toronto: ~$2.200",
+          "Ottawa: ~$1.990",
+          "Calgary: $1.470 – $1.600",
+          "Edmonton: $1.300 – $1.450",
+          "Winnipeg: ~$1.300",
+          "Regina / Saskatoon: $1.100 – $1.380",
+        ],
+      },
+      twoBed: {
+        label: "2 quartos (para dividir ou família)",
+        rows: [
+          "Vancouver: ~$3.100",
+          "Toronto: ~$2.660",
+          "Ottawa: ~$2.350",
+          "Calgary: ~$1.900",
+          "Edmonton: ~$1.580",
+          "Prairies: $1.100 – $1.300",
+        ],
+      },
+    },
+    lease: {
+      title: "O contrato (lease)",
+      body:
+        "Sempre por escrito, nunca acordo verbal ou aperto de mão. Em Ontário, exija o Standard Lease (contrato padrão obrigatório do governo desde 2018) — se o landlord se recusa a usá-lo, é bandeira vermelha. O contrato deve conter: valor do aluguel, data de pagamento, período, o que está incluído (aquecimento, água, internet), termos do depósito, e o nome do dono legal (que deve bater com quem recebe o pagamento).",
+    },
+    deposit: {
+      title: "Depósito: o que é legal por província",
+      subtitle: "Proteção contra cobrança indevida",
+      rows: {
+        on: "Ontário: só é permitido o depósito do último mês (last month's rent). Depósito de dano ('damage deposit') é ILEGAL. O landlord deve pagar juros sobre o depósito anualmente.",
+        bc: "BC: máximo meio mês de aluguel de depósito de segurança. Não pode cobrar também o último mês.",
+        ab: "Alberta e Saskatchewan: até um mês.",
+        mb: "Manitoba: meio mês.",
+      },
+      warning:
+        "Saiba o que é legal na sua província antes de pagar. Muitos landlords cobram depósitos ilegais de quem não conhece as regras.",
+    },
+    rights: {
+      title: "Seus direitos como inquilino",
+      items: [
+        "O landlord não pode entrar quando quiser: precisa dar 24h de aviso por escrito (exceto emergência).",
+        "Aquecimento é obrigatório por lei no inverno (em Ontário, mínimo 20°C de setembro a junho; Toronto exige 21°C).",
+        "Há limite legal de aumento de aluguel por ano (em Ontário, 2,1% em 2026), com exceções.",
+        "Proteção contra despejo ilegal — só pelo processo oficial.",
+      ],
+    },
+    bodies: {
+      title: "Órgãos que protegem o inquilino (por província)",
+      rows: {
+        on: "Ontário: Landlord and Tenant Board (LTB), sob o Residential Tenancies Act. Apoio gratuito: ACTO e clínicas jurídicas comunitárias.",
+        bc: "BC: Residential Tenancy Branch (RTB).",
+        ab: "Alberta: Residential Tenancy Dispute Resolution Service.",
+      },
+      note:
+        "Cada província tem um órgão oficial e gratuito para resolver disputas. Você tem direitos e tem onde recorrer.",
+    },
+    credit: {
+      title: "Credit score e o desafio do recém-chegado",
+      body:
+        "Você chega sem histórico de crédito canadense, mas landlords costumam pedir. Compense com: extrato bancário, carta de aceite da instituição, comprovante de fundos, referência de landlord anterior, ou depósito maior (dentro do limite legal).",
+      sinTitle: "Importante: seu SIN",
+      sin:
+        "Seu SIN (número de seguro social) NÃO é obrigatório para verificação de crédito básica — dê apenas nome, endereço e data de nascimento, e proteja seu SIN.",
+      build:
+        "Construa crédito rápido: conta bancária ao chegar, cartão para newcomers, e serviços que reportam o pagamento do aluguel aos bureaus (melhora em 6–12 meses).",
+    },
+    insurance: {
+      title: "Seguro de inquilino (renter's insurance)",
+      body:
+        "Muitos landlords exigem. É barato e protege seus pertences contra roubo, incêndio e danos. Confirme se é exigido antes de assinar.",
+    },
+    scamsCta: {
+      title: "Proteja-se de golpes de aluguel",
+      body: "Estudante internacional é alvo primário. Conheça os sinais antes de pagar qualquer coisa.",
+      button: "Como identificar golpes de aluguel →",
+    },
+    sources: {
+      statcan: "Statistics Canada — Aluguel",
+      rentalsCa: "Rentals.ca National Rent Report",
+    },
+  },
+
+  rentalScams: {
+    hero: {
+      tag: "Antes de ir",
+      title: "Golpes de aluguel: como se proteger",
+      subtitle:
+        "Estudante internacional é alvo primário de golpe de aluguel. Só em Toronto foram mais de 380 denúncias em 2024. Saber reconhecer os sinais é sua melhor proteção.",
+    },
+    redFlags: {
+      title: "Bandeiras vermelhas",
+      items: [
+        "Preço muito abaixo do mercado (bom demais para ser verdade).",
+        "Pressão para pagar rápido ('outros esperando', 'pague hoje para reservar').",
+        "Landlord 'fora do país' que não pode mostrar o imóvel.",
+        "Pedido de pagamento não rastreável: e-transfer para 'segurar', gift card, cripto, transferência internacional.",
+        "Nome no pagamento diferente do nome no contrato.",
+        "Fotos que aparecem em outros anúncios com preços diferentes (fotos roubadas).",
+        "Sem contrato por escrito.",
+      ],
+    },
+    protect: {
+      title: "Como se proteger",
+      items: [
+        "Nunca pague depósito sem alguém de confiança ter visto o imóvel pessoalmente. Se estiver no exterior, peça a um amigo/parente para visitar.",
+        "Faça busca reversa das fotos do anúncio.",
+        "Pesquise o endereço em vários sites e compare.",
+        "Em Ontário, verifique o dono legal do imóvel no sistema OnLand e confira se bate com quem oferece o aluguel.",
+        "Exija contrato por escrito e recibo de cada pagamento.",
+        "Cuidado com e-transfer: se o golpista usa 'Autodeposit', o dinheiro NÃO pode ser revertido.",
+      ],
+    },
+    sources: {
+      title: "Fontes seguras para procurar moradia",
+      cmhc: {
+        label: "CMHC — órgão federal de habitação, com guias por província.",
+        url: "https://www.cmhc-schl.gc.ca",
+        linkLabel: "cmhc-schl.gc.ca",
+      },
+      housingOffice:
+        "O housing office da sua instituição — conecta com landlords confiáveis.",
+      settlement: {
+        label: "Settlement.Org — recurso oficial para recém-chegados em Ontário.",
+        url: "https://settlement.org",
+        linkLabel: "settlement.org",
+      },
+    },
+    victim: {
+      title: "Se você for vítima",
+      body:
+        "Pare o contato imediatamente. Contate seu banco na hora (se o e-transfer estiver pendente, tente cancelar). Denuncie à polícia local e ao Canadian Anti-Fraud Centre.",
+    },
+    backCta: {
+      title: "Voltar ao básico do aluguel",
+      body: "Veja contrato, regras de depósito e direitos do inquilino por província.",
+      button: "← Alugar no Canadá",
+    },
+  },
+
+  rentalSeal: {
+    title: "Um lembrete",
+    body:
+      "Informações baseadas em fontes oficiais e médias de mercado. Não confirmam o seu caso individual. As regras variam por província — confirme sempre com o órgão oficial da sua província.",
   },
 
 };

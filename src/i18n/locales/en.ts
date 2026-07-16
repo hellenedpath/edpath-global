@@ -44,6 +44,8 @@ export const en = {
       costsSimulator: "Cost Simulator",
       realCosts: "Real costs",
       before: "Before You Start",
+      renting: "Renting in Canada",
+      rentalScams: "Rental scams",
       costs: "Costs",
       health: "Health",
       family: "Family",
@@ -1266,6 +1268,179 @@ export const en = {
         "Costs are estimates and change yearly. Always confirm on the school's official site.",
     },
 
+  },
+
+  renting: {
+    hero: {
+      tag: "Before you go",
+      title: "Renting in Canada",
+      subtitle:
+        "How to find a place, understand your lease, and know your rights as a tenant.",
+    },
+    goldenRule: {
+      title: "The golden rule",
+      body:
+        "Never close a rental from abroad. Do not pay anything before arriving. Do not trust photos alone. Land in Canada first, stay somewhere temporary, view the place in person, and only then sign and pay. The pressure to secure housing quickly is exactly what scammers exploit.",
+    },
+    firstDays: {
+      title: "Where to stay when you first arrive",
+      body:
+        "Spend the first days in an Airbnb, hotel or short-term stay. Many institutions offer on-campus residence or newcomer housing support — contact the housing office at your school, college or university before you travel. Use that time to look for a long-term rental calmly and to visit places in person.",
+    },
+    types: {
+      title: "Types of housing and price ranges",
+      reference: "Market reference: early 2026",
+      note: "Market averages, vary by neighbourhood and month.",
+      sourceLabel: "Sources: Statistics Canada and Rentals.ca",
+      shared: { label: "Shared room", value: "~$930/month", hint: "Most affordable option to start with" },
+      studio: { label: "Studio / bachelor", value: "$1,050 – $1,800/month" },
+      oneBed: {
+        label: "1-bedroom",
+        rows: [
+          "Vancouver: $2,500 – $2,660",
+          "Toronto: ~$2,200",
+          "Ottawa: ~$1,990",
+          "Calgary: $1,470 – $1,600",
+          "Edmonton: $1,300 – $1,450",
+          "Winnipeg: ~$1,300",
+          "Regina / Saskatoon: $1,100 – $1,380",
+        ],
+      },
+      twoBed: {
+        label: "2-bedroom (to share or for a family)",
+        rows: [
+          "Vancouver: ~$3,100",
+          "Toronto: ~$2,660",
+          "Ottawa: ~$2,350",
+          "Calgary: ~$1,900",
+          "Edmonton: ~$1,580",
+          "Prairies: $1,100 – $1,300",
+        ],
+      },
+    },
+    lease: {
+      title: "The lease",
+      body:
+        "Always in writing — never a verbal agreement or a handshake. In Ontario, require the Standard Lease (government-mandated standard form since 2018) — if the landlord refuses to use it, that is a red flag. The lease should include: rent amount, payment date, term, what is included (heat, water, internet), deposit terms, and the name of the legal owner (which must match who receives the payment).",
+    },
+    deposit: {
+      title: "Deposit: what is legal in each province",
+      subtitle: "Protection against illegal charges",
+      rows: {
+        on: "Ontario: only last month's rent is allowed. A 'damage deposit' is ILLEGAL. The landlord must pay annual interest on the deposit.",
+        bc: "BC: maximum half a month's rent as a security deposit. Cannot also charge last month.",
+        ab: "Alberta and Saskatchewan: up to one month.",
+        mb: "Manitoba: half a month.",
+      },
+      warning:
+        "Know what is legal in your province before paying. Many landlords charge illegal deposits from newcomers who do not know the rules.",
+    },
+    rights: {
+      title: "Your rights as a tenant",
+      items: [
+        "The landlord cannot enter whenever they want: they must give 24 hours' written notice (except in emergencies).",
+        "Heat is mandatory by law in winter (in Ontario, minimum 20°C from September to June; Toronto requires 21°C).",
+        "There is a legal cap on annual rent increases (in Ontario, 2.1% in 2026), with exceptions.",
+        "Protection against illegal eviction — only through the official process.",
+      ],
+    },
+    bodies: {
+      title: "Bodies that protect tenants (by province)",
+      rows: {
+        on: "Ontario: Landlord and Tenant Board (LTB), under the Residential Tenancies Act. Free support: ACTO and community legal clinics.",
+        bc: "BC: Residential Tenancy Branch (RTB).",
+        ab: "Alberta: Residential Tenancy Dispute Resolution Service.",
+      },
+      note:
+        "Each province has an official, free body to resolve disputes. You have rights, and you have somewhere to turn.",
+    },
+    credit: {
+      title: "Credit score and the newcomer challenge",
+      body:
+        "You arrive without a Canadian credit history, but landlords usually ask for one. Compensate with: bank statements, letter of acceptance from your institution, proof of funds, a reference from a previous landlord, or a larger deposit (within the legal limit).",
+      sinTitle: "Important: your SIN",
+      sin:
+        "Your SIN (Social Insurance Number) is NOT required for a basic credit check — give only name, address and date of birth, and keep your SIN protected.",
+      build:
+        "Build credit quickly: open a bank account when you arrive, get a newcomer credit card, and use services that report your rent payments to the credit bureaus (improves your score in 6–12 months).",
+    },
+    insurance: {
+      title: "Renter's insurance",
+      body:
+        "Many landlords require it. It's affordable and protects your belongings against theft, fire and damage. Confirm whether it is required before signing.",
+    },
+    scamsCta: {
+      title: "Protect yourself from rental scams",
+      body: "International students are a primary target. Know the red flags before you pay anything.",
+      button: "How to spot rental scams →",
+    },
+    sources: {
+      statcan: "Statistics Canada — Rent",
+      rentalsCa: "Rentals.ca National Rent Report",
+    },
+  },
+
+  rentalScams: {
+    hero: {
+      tag: "Before you go",
+      title: "Rental scams: how to protect yourself",
+      subtitle:
+        "International students are a primary target. In Toronto alone, more than 380 reports were filed in 2024. Learning the warning signs is your best protection.",
+    },
+    redFlags: {
+      title: "Red flags",
+      items: [
+        "Price well below market (too good to be true).",
+        "Pressure to pay quickly ('others are waiting', 'pay today to reserve').",
+        "A landlord 'out of the country' who cannot show the place.",
+        "Untraceable payment requests: e-transfer to 'hold it', gift cards, crypto, international wire transfers.",
+        "The name on the payment differs from the name on the lease.",
+        "Photos that appear in other listings at different prices (stolen photos).",
+        "No written lease.",
+      ],
+    },
+    protect: {
+      title: "How to protect yourself",
+      items: [
+        "Never pay a deposit unless someone you trust has seen the place in person. If you are abroad, ask a friend or relative to visit.",
+        "Run a reverse image search on the listing photos.",
+        "Search the address on multiple sites and compare.",
+        "In Ontario, verify the legal owner on the OnLand system and check it matches whoever is offering the rental.",
+        "Require a written lease and a receipt for every payment.",
+        "Be careful with e-transfer: if the scammer uses 'Autodeposit', the money CANNOT be reversed.",
+      ],
+    },
+    sources: {
+      title: "Safe places to look for housing",
+      cmhc: {
+        label: "CMHC — Canada's federal housing agency, with guides by province.",
+        url: "https://www.cmhc-schl.gc.ca",
+        linkLabel: "cmhc-schl.gc.ca",
+      },
+      housingOffice:
+        "The housing office at your institution — connects you with trusted landlords.",
+      settlement: {
+        label: "Settlement.Org — official resource for newcomers in Ontario.",
+        url: "https://settlement.org",
+        linkLabel: "settlement.org",
+      },
+    },
+    victim: {
+      title: "If you become a victim",
+      body:
+        "Stop all contact immediately. Contact your bank right away (if the e-transfer is still pending, try to cancel it). Report to the local police and to the Canadian Anti-Fraud Centre.",
+    },
+    backCta: {
+      title: "Back to renting basics",
+      body: "See the lease, deposit rules and tenant rights for each province.",
+      button: "← Renting in Canada",
+    },
+  },
+
+  rentalSeal: {
+    title: "A quick reminder",
+    body:
+      "Information based on official sources and market averages. It does not confirm your individual case. Rules vary by province — always confirm with the official body in your province.",
   },
 
 };
