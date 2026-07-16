@@ -2,21 +2,85 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
+function Flag({ code, className }: { code: string; className?: string }) {
+  const common = "block rounded-[3px] overflow-hidden ring-1 ring-black/10 shadow-sm";
+  const cls = cn(common, className);
+  switch (code) {
+    case "canada":
+      return (
+        <svg viewBox="0 0 60 30" className={cls} aria-hidden="true">
+          <rect width="60" height="30" fill="#fff" />
+          <rect width="15" height="30" fill="#D52B1E" />
+          <rect x="45" width="15" height="30" fill="#D52B1E" />
+          <path fill="#D52B1E" d="M30 8l1.6 3.2 3.4-.8-1.6 3 2.6 2-3.2.6.4 3.2L30 17.6 26.8 19.2l.4-3.2-3.2-.6 2.6-2-1.6-3 3.4.8z" />
+        </svg>
+      );
+    case "usa":
+      return (
+        <svg viewBox="0 0 60 30" className={cls} aria-hidden="true">
+          {Array.from({ length: 13 }).map((_, i) => (
+            <rect key={i} y={i * (30 / 13)} width="60" height={30 / 13} fill={i % 2 === 0 ? "#B22234" : "#fff"} />
+          ))}
+          <rect width="24" height={30 * 7 / 13} fill="#3C3B6E" />
+        </svg>
+      );
+    case "uk":
+      return (
+        <svg viewBox="0 0 60 30" className={cls} aria-hidden="true">
+          <rect width="60" height="30" fill="#012169" />
+          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" />
+          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="2" />
+          <path d="M30,0 V30 M0,15 H60" stroke="#fff" strokeWidth="10" />
+          <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6" />
+        </svg>
+      );
+    case "australia":
+      return (
+        <svg viewBox="0 0 60 30" className={cls} aria-hidden="true">
+          <rect width="60" height="30" fill="#012169" />
+          <g transform="scale(0.5)">
+            <rect width="60" height="30" fill="#012169" />
+            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" />
+            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="2" />
+            <path d="M30,0 V30 M0,15 H60" stroke="#fff" strokeWidth="10" />
+            <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6" />
+          </g>
+          <g fill="#fff">
+            <circle cx="15" cy="22" r="1.5" />
+            <circle cx="42" cy="8" r="1.6" />
+            <circle cx="48" cy="16" r="1.6" />
+            <circle cx="42" cy="22" r="1.6" />
+            <circle cx="52" cy="22" r="1.2" />
+            <circle cx="47" cy="26" r="1.2" />
+          </g>
+        </svg>
+      );
+    case "ireland":
+      return (
+        <svg viewBox="0 0 60 30" className={cls} aria-hidden="true">
+          <rect width="20" height="30" fill="#169B62" />
+          <rect x="20" width="20" height="30" fill="#fff" />
+          <rect x="40" width="20" height="30" fill="#FF883E" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 type Country = {
   code: string;
   nameKey: string;
   available: boolean;
   to?: string;
-  flag: string[]; // 2-3 hex colors forming a flag stripe
-  emoji: string;
 };
 
 const countries: Country[] = [
-  { code: "canada", nameKey: "countries.list.canada", available: true, to: "/canada", emoji: "🇨🇦", flag: ["#D52B1E", "#FFFFFF", "#D52B1E"] },
-  { code: "usa", nameKey: "countries.list.usa", available: false, emoji: "🇺🇸", flag: ["#B22234", "#FFFFFF", "#3C3B6E"] },
-  { code: "uk", nameKey: "countries.list.uk", available: false, emoji: "🇬🇧", flag: ["#012169", "#FFFFFF", "#C8102E"] },
-  { code: "australia", nameKey: "countries.list.australia", available: false, emoji: "🇦🇺", flag: ["#012169", "#FFFFFF", "#E4002B"] },
-  { code: "ireland", nameKey: "countries.list.ireland", available: false, emoji: "🇮🇪", flag: ["#169B62", "#FFFFFF", "#FF883E"] },
+  { code: "canada", nameKey: "countries.list.canada", available: true, to: "/canada" },
+  { code: "usa", nameKey: "countries.list.usa", available: false },
+  { code: "uk", nameKey: "countries.list.uk", available: false },
+  { code: "australia", nameKey: "countries.list.australia", available: false },
+  { code: "ireland", nameKey: "countries.list.ireland", available: false },
 ];
 
 export function CountrySelector() {
@@ -25,13 +89,13 @@ export function CountrySelector() {
   const others = countries.filter((c) => c.code !== "canada");
 
   return (
-    <section id="destinos" className="bg-background py-28 md:py-36 scroll-mt-20">
+    <section id="destinos" className="bg-background py-20 md:py-24 scroll-mt-20">
       <div className="container max-w-6xl">
-        <div className="max-w-2xl mx-auto text-center mb-16 md:mb-20">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground">
+        <div className="max-w-2xl mx-auto text-center mb-12 md:mb-14">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-[56px] font-medium tracking-tight text-navy leading-[1.05]">
             {t("countries.title")}
           </h2>
-          <p className="mt-5 text-muted-foreground/80 text-lg md:text-xl max-w-xl mx-auto">
+          <p className="mt-4 text-muted-foreground text-base md:text-lg max-w-xl mx-auto leading-relaxed">
             {t("countries.subtitle")}
           </p>
         </div>
@@ -40,40 +104,22 @@ export function CountrySelector() {
         <Link
           to={canada.to!}
           aria-label={t(canada.nameKey)}
-          className="group relative block rounded-3xl overflow-hidden bg-white ring-2 ring-crimson/40 shadow-[0_24px_60px_-24px_rgba(224,64,91,0.35)] hover:shadow-[0_30px_70px_-20px_rgba(224,64,91,0.5)] hover:-translate-y-1 transition-all duration-500"
+          className="group relative block rounded-2xl overflow-hidden bg-white ring-1 ring-border shadow-[0_10px_40px_-20px_rgba(5,21,86,0.25)] hover:shadow-[0_20px_50px_-20px_rgba(224,64,91,0.35)] hover:-translate-y-0.5 transition-all duration-500"
         >
-          {/* Flag stripe */}
-          <div aria-hidden="true" className="absolute top-0 left-0 right-0 h-2 flex">
-            {canada.flag.map((color, i) => (
-              <div key={i} className="flex-1" style={{ backgroundColor: color }} />
-            ))}
-          </div>
-          {/* Ambient crimson glow */}
-          <div
-            aria-hidden="true"
-            className="absolute -right-24 -top-24 w-96 h-96 rounded-full pointer-events-none"
-            style={{
-              background:
-                "radial-gradient(circle, hsl(var(--crimson) / 0.14) 0%, transparent 65%)",
-            }}
-          />
-          <div className="relative flex flex-col md:flex-row items-center gap-8 md:gap-12 px-8 md:px-16 py-12 md:py-14">
-            <div className="text-7xl md:text-8xl leading-none" aria-hidden="true">
-              {canada.emoji}
-            </div>
+          <div aria-hidden="true" className="absolute top-0 left-0 bottom-0 w-1 bg-crimson" />
+          <div className="relative flex flex-col md:flex-row items-center gap-8 md:gap-12 px-8 md:px-14 py-10 md:py-12">
             <div className="flex-1 text-center md:text-left">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.15em] uppercase bg-crimson text-white shadow-[0_6px_16px_-6px_hsl(var(--crimson)/0.6)]">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-semibold tracking-[0.18em] uppercase bg-crimson text-white">
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                 {t("countries.available")}
               </span>
-              <h3
-                className="font-display font-semibold leading-[0.95] mt-4 text-5xl md:text-6xl"
-                style={{ color: "#1B2A4A" }}
-              >
-                {t(canada.nameKey)}
-              </h3>
-              <div className="h-px w-12 bg-crimson mt-5 mb-5 mx-auto md:mx-0 group-hover:w-20 transition-all duration-500" />
-              <div className="inline-flex items-center gap-2 text-crimson font-semibold text-[15px] group-hover:gap-3 transition-all">
+              <div className="mt-4 flex items-center gap-4 justify-center md:justify-start">
+                <Flag code="canada" className="w-10 h-6" />
+                <h3 className="font-display font-medium leading-[0.95] text-5xl md:text-6xl tracking-tight text-navy">
+                  {t(canada.nameKey)}
+                </h3>
+              </div>
+              <div className="mt-5 inline-flex items-center gap-2 text-crimson font-medium text-sm group-hover:gap-3 transition-all">
                 {t("countries.exploreCta")}
                 <span aria-hidden="true">→</span>
               </div>
@@ -82,32 +128,22 @@ export function CountrySelector() {
         </Link>
 
         {/* Coming soon strip */}
-        <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-4">
           {others.map((c) => (
             <div
               key={c.code}
               aria-disabled="true"
-              className={cn(
-                "relative rounded-2xl overflow-hidden bg-white/60 ring-1 ring-border/60 px-6 py-8 flex flex-col items-center text-center opacity-70 hover:opacity-90 transition-opacity duration-300",
-              )}
+              className="relative rounded-xl bg-white ring-1 ring-border/70 px-5 py-6 flex items-center gap-3 text-left opacity-90"
             >
-              <div aria-hidden="true" className="absolute top-0 left-0 right-0 h-1 flex">
-                {c.flag.map((color, i) => (
-                  <div key={i} className="flex-1" style={{ backgroundColor: color }} />
-                ))}
+              <Flag code={c.code} className="w-8 h-5 shrink-0" />
+              <div className="min-w-0 flex-1">
+                <h3 className="font-display text-lg font-medium leading-tight tracking-tight text-navy truncate">
+                  {t(c.nameKey)}
+                </h3>
+                <span className="mt-1 inline-block text-[10px] font-medium tracking-[0.15em] uppercase text-muted-foreground">
+                  {t("countries.soon")}
+                </span>
               </div>
-              <div className="text-4xl mb-3" aria-hidden="true">
-                {c.emoji}
-              </div>
-              <h3
-                className="font-display text-xl md:text-2xl font-semibold leading-none mb-3"
-                style={{ color: "#5A6478" }}
-              >
-                {t(c.nameKey)}
-              </h3>
-              <span className="px-3 py-1 rounded-full text-[10px] font-semibold tracking-[0.15em] uppercase bg-muted text-muted-foreground">
-                {t("countries.soon")}
-              </span>
             </div>
           ))}
         </div>
