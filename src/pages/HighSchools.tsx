@@ -321,15 +321,16 @@ export default function HighSchools() {
                   <div className="flex items-center gap-1.5">
                     <dt className="text-muted-foreground">{t("highSchools.card.tuition")}:</dt>
                     <dd className="font-medium text-foreground">
-                      {formatTuition(it.tuition_annual)}
+                      {formatTuition(cardTuition(it))}
                     </dd>
                   </div>
-                  {it.tuition_annual && (
+                  {cardTuition(it) && (
                     <p className="text-[10px] text-muted-foreground mt-0.5">
                       {t("highSchools.card.tuitionEstimate")}
                     </p>
                   )}
                 </div>
+
 
 
               </dl>
