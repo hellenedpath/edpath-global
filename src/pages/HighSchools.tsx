@@ -25,8 +25,12 @@ type HighSchool = {
   application_fee: string | null;
   tuition_annual: string | null;
   diploma: string | null;
+  diploma_pt: string | null;
+  diploma_en: string | null;
   grades: string | null;
   homestay: string | null;
+  homestay_pt: string | null;
+  homestay_en: string | null;
   boarding: string | null;
   boarding_pt: string | null;
   boarding_en: string | null;
@@ -35,6 +39,7 @@ type HighSchool = {
   notes_pt: string | null;
   notes_en: string | null;
 };
+
 
 
 export default function HighSchools() {
