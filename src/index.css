@@ -111,12 +111,14 @@ All colors MUST be HSL.
   }
 
   h1, h2, h3, h4 {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-weight: 600;
+    font-family: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
 
   .font-display {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 600;
+    font-family: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
 }
