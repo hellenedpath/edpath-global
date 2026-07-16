@@ -36,6 +36,11 @@ export const en = {
     canadaMenu: "Canada Menu",
     menu: "Menu",
     openMenu: "Open menu",
+    groups: {
+      course: "Course and institution",
+      costs: "Costs",
+      housing: "Housing and arrival",
+    },
     items: {
       pgwp: "PGWP Checker",
       institutions: "Institutions",
