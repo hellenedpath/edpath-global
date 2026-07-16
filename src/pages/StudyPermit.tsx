@@ -97,6 +97,11 @@ export default function StudyPermit() {
                   <p className="mt-2 text-muted-foreground leading-relaxed">
                     {s.body}
                   </p>
+                  {s.link && (
+                    <div className="mt-3">
+                      <SourceLink href={s.link.href} label={s.link.label} />
+                    </div>
+                  )}
                 </div>
               </div>
             </li>
