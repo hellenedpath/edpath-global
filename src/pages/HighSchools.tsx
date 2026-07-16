@@ -85,7 +85,20 @@ export default function HighSchools() {
     });
   }, [items, region, schoolType, query]);
 
+  const cardNotes = (it: HighSchool) =>
+    isEnglish ? it.notes_en : it.notes_pt;
+
+  const cardBoarding = (it: HighSchool) =>
+    isEnglish ? it.boarding_en : it.boarding_pt;
+
+  const formatTuition = (value: string | null) => {
+    if (!value) return t("highSchools.card.tuitionMissing");
+    if (isEnglish && value.includes("/ano")) return value.replace("/ano", "/year");
+    return value;
+  };
+
   const typeOptions: Array<{ value: "all" | "public" | "private"; label: string }> = [
+
     { value: "all", label: t("highSchools.filters.allTypes") },
     { value: "public", label: t("highSchools.filters.public") },
     { value: "private", label: t("highSchools.filters.private") },
