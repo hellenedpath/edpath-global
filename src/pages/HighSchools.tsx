@@ -254,11 +254,12 @@ export default function HighSchools() {
                 </div>
               </div>
 
-              {it.notes && (
+              {cardNotes(it) && (
                 <p className="mt-4 text-sm text-foreground/80 leading-relaxed">
-                  {it.notes}
+                  {cardNotes(it)}
                 </p>
               )}
+
 
               <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
                 {it.diploma && (
@@ -281,13 +282,14 @@ export default function HighSchools() {
                     <dd className="font-medium text-foreground">{it.homestay}</dd>
                   </div>
                 )}
-                {it.school_type === "private" && it.boarding && (
+                {it.school_type === "private" && cardBoarding(it) && (
                   <div className="flex items-center gap-1.5 col-span-2">
                     <Bed className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
                     <dt className="text-muted-foreground">{t("highSchools.card.boarding")}:</dt>
-                    <dd className="font-medium text-foreground">{it.boarding}</dd>
+                    <dd className="font-medium text-foreground">{cardBoarding(it)}</dd>
                   </div>
                 )}
+
                 {it.application_fee && (
                   <div className="flex items-center gap-1.5">
                     <dt className="text-muted-foreground">{t("highSchools.card.applicationFee")}:</dt>
@@ -298,7 +300,7 @@ export default function HighSchools() {
                   <div className="flex items-center gap-1.5">
                     <dt className="text-muted-foreground">{t("highSchools.card.tuition")}:</dt>
                     <dd className="font-medium text-foreground">
-                      {it.tuition_annual ? it.tuition_annual : t("highSchools.card.tuitionMissing")}
+                      {formatTuition(it.tuition_annual)}
                     </dd>
                   </div>
                   {it.tuition_annual && (
@@ -307,6 +309,7 @@ export default function HighSchools() {
                     </p>
                   )}
                 </div>
+
 
               </dl>
 
