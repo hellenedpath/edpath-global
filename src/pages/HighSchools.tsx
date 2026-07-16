@@ -166,10 +166,15 @@ export default function HighSchools() {
       <section className="container pt-8">
         <div className="flex items-start gap-3 rounded-lg border border-[hsl(var(--azul))]/30 bg-[hsl(var(--azul))]/5 p-4 text-sm leading-relaxed text-navy max-w-4xl">
           <Info className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
-          <p>
-            <span className="font-medium">{t("highSchools.context.title")}</span>{" "}
-            {t("highSchools.context.body")}
-          </p>
+          <div>
+            <p>
+              <span className="font-medium">{t("highSchools.context.title")}</span>{" "}
+              {t("highSchools.context.body")}
+            </p>
+            <p className="mt-2">
+              {t("highSchools.context.boardingNote")}
+            </p>
+          </div>
         </div>
       </section>
 

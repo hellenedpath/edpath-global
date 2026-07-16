@@ -1129,6 +1129,8 @@ export const en = {
       title: "How it works:",
       body:
         "Not every school in Canada accepts international high school students. There are two main paths: public school districts with an official international program, and private schools that accept international students. This page lists both in BC — you apply directly to the district or school.",
+      boardingNote:
+        "Boarding = the school offers residence (the student lives at school). Without boarding, the student lives with a homestay family.",
     },
     filters: {
       searchPlaceholder: "Search by school name or city",
