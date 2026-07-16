@@ -31,50 +31,53 @@ export default function Index() {
               "linear-gradient(180deg, hsl(228 70% 12%) 0%, hsl(221 55% 18%) 40%, hsl(221 60% 24%) 85%, hsl(221 65% 30%) 100%)",
           }}
         />
-        {/* Graphic backdrop: routes + stylized globe */}
-        <div className="absolute inset-0 pointer-events-none">
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 1600 900"
-            preserveAspectRatio="xMidYMid slice"
-            aria-hidden="true"
-          >
-            <defs>
-              <radialGradient id="glowBlue" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="hsl(var(--azul))" stopOpacity="0.55" />
-                <stop offset="100%" stopColor="hsl(var(--azul))" stopOpacity="0" />
-              </radialGradient>
-              <radialGradient id="glowCrimson" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="hsl(var(--crimson))" stopOpacity="0.45" />
-                <stop offset="100%" stopColor="hsl(var(--crimson))" stopOpacity="0" />
-              </radialGradient>
-              <linearGradient id="routeStroke" x1="0" x2="1" y1="0" y2="0">
-                <stop offset="0%" stopColor="hsl(221 90% 78%)" stopOpacity="0" />
-                <stop offset="50%" stopColor="hsl(221 90% 78%)" stopOpacity="1" />
-                <stop offset="100%" stopColor="hsl(var(--crimson))" stopOpacity="0" />
-              </linearGradient>
-              <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="hsl(var(--crimson))" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="hsl(var(--crimson))" stopOpacity="0" />
-              </radialGradient>
-              <pattern id="dotGrid" width="12" height="12" patternUnits="userSpaceOnUse">
-                <circle cx="6" cy="6" r="1.3" fill="hsl(221 75% 78%)" fillOpacity="0.72" />
-              </pattern>
-            </defs>
 
-            {/* Ambient glows */}
-            <circle cx="1150" cy="450" r="520" fill="url(#glowBlue)" />
-            <circle cx="1250" cy="620" r="360" fill="url(#glowCrimson)" />
+        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center py-20 md:py-28 lg:py-32 lg:min-h-[90vh]">
+          {/* Left column: text */}
+          <div className="flex flex-col justify-center max-w-xl">
+            <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-8">
+              <span className="w-8 h-px bg-crimson" />
+              EdPath Global
+            </div>
+            <h1 className="font-display text-4xl md:text-5xl font-bold leading-[1.05] tracking-[-0.02em] text-white">
+              {t("home.title")}
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-primary-foreground/80 leading-relaxed font-sans max-w-md">
+              {t("home.subtitle")}
+            </p>
+            <a
+              href="#destinos"
+              className="group mt-8 inline-flex items-center gap-2.5 rounded-xl bg-crimson px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_4px_16px_-4px_hsl(var(--crimson)/0.45)] hover:bg-crimson/90 hover:shadow-[0_8px_24px_-6px_hsl(var(--crimson)/0.55)] hover:-translate-y-0.5 transition-all duration-300 w-fit"
+            >
+              {t("home.ctaChoose")}
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </a>
+          </div>
 
-            {/* Stylized globe (right side) */}
-            <g transform="translate(1180 450)">
-              <circle r="290" fill="hsl(228 55% 10% / 0.35)" />
-              <circle r="290" fill="none" stroke="hsl(221 90% 78%)" strokeOpacity="0.75" strokeWidth="1.5" />
+          {/* Right column: interactive dot globe */}
+          <div className="relative h-[360px] sm:h-[420px] lg:h-[520px] xl:h-[580px]">
+            <svg
+              className="w-full h-full"
+              viewBox="-320 -320 640 640"
+              preserveAspectRatio="xMidYMid meet"
+              aria-hidden="true"
+            >
               <defs>
+                <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="hsl(var(--crimson))" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="hsl(var(--crimson))" stopOpacity="0" />
+                </radialGradient>
+                <pattern id="dotGrid" width="12" height="12" patternUnits="userSpaceOnUse">
+                  <circle cx="6" cy="6" r="1.3" fill="hsl(221 75% 78%)" fillOpacity="0.72" />
+                </pattern>
                 <clipPath id="globeClip">
                   <circle r="290" />
                 </clipPath>
               </defs>
+
+              <circle r="290" fill="hsl(228 55% 10% / 0.35)" />
+              <circle r="290" fill="none" stroke="hsl(221 90% 78%)" strokeOpacity="0.75" strokeWidth="1.5" />
+
               {/* Subtle grid behind the continents */}
               {/* Meridians */}
               {[0, 30, 60, 90, 120, 150].map((a) => (
@@ -102,6 +105,7 @@ export default function Index() {
                   strokeWidth="1"
                 />
               ))}
+
               {/* Dot-map continents — landmasses formed by a regular dot mesh */}
               <g clipPath="url(#globeClip)" fill="url(#dotGrid)">
                 {/* North America */}
@@ -129,6 +133,7 @@ export default function Index() {
                 {/* Japan */}
                 <path d="M 225 -85 L 240 -70 L 232 -55 L 218 -70 Z" />
               </g>
+
               {/* Destination routes — Canada as origin, subtle arcs to the other 4 */}
               {(() => {
                 const dests = [
@@ -145,11 +150,9 @@ export default function Index() {
                   ireland: { x: 8, y: -120 },
                   australia: { x: 180, y: 125 },
                 };
-                // Curved arc between two points (control point pulled toward globe center)
                 const arc = (a: { x: number; y: number }, b: { x: number; y: number }) => {
                   const mx = (a.x + b.x) / 2;
                   const my = (a.y + b.y) / 2;
-                  // pull toward origin to suggest a great-circle-ish arc
                   const cx = mx * 0.55;
                   const cy = my * 0.55;
                   return `M ${a.x} ${a.y} Q ${cx} ${cy} ${b.x} ${b.y}`;
@@ -170,13 +173,11 @@ export default function Index() {
                 const handleLeave = () => setTooltip(null);
                 return (
                   <>
-                    {/* Route lines between destinations */}
                     <g fill="none" stroke="hsl(0 0% 100%)" strokeOpacity="0.35" strokeWidth="1" strokeDasharray="2 5" strokeLinecap="round">
                       {routes.map(([from, to], i) => (
                         <path key={i} d={arc(destMap[from], destMap[to])} />
                       ))}
                     </g>
-                    {/* Destination dots */}
                     {dests.map((d, i) => {
                       const primary = d.key === "canada";
                       const glowR = primary ? 34 : 22;
@@ -215,67 +216,23 @@ export default function Index() {
                   </>
                 );
               })()}
-            </g>
+            </svg>
 
-            {/* Route lines traversing the canvas */}
-            <g fill="none" stroke="url(#routeStroke)" strokeWidth="2" strokeDasharray="4 10" strokeLinecap="round">
-              <path d="M -50 250 Q 400 120 900 300 T 1650 220" />
-              <path d="M -50 520 Q 350 700 780 520 T 1650 560" />
-              <path d="M 120 800 Q 500 620 950 780 T 1650 720" />
-              <path d="M 200 60 Q 600 300 1100 120 T 1650 60" />
-            </g>
-
-            {/* Faint grid latitude lines */}
-            <g stroke="hsl(0 0% 100% / 0.06)" strokeWidth="1">
-              {[150, 300, 450, 600, 750].map((y) => (
-                <line key={y} x1="0" y1={y} x2="1600" y2={y} />
-              ))}
-            </g>
-          </svg>
-
-          {/* Destination tooltip */}
-          {tooltip && (
-            <div
-              className="fixed z-50 pointer-events-none rounded-xl bg-white/95 backdrop-blur-sm px-4 py-3 shadow-[0_8px_24px_-6px_rgba(5,21,86,0.22)] ring-1 ring-navy/10 max-w-xs"
-              style={{ left: tooltip.x + 16, top: tooltip.y - 16 }}
-            >
-              <p className="text-sm font-bold text-navy">
-                {t(`home.globeDestinations.${tooltip.key}.label`)}
-              </p>
-              <p className="text-xs text-muted-foreground leading-snug mt-1">
-                {t(`home.globeDestinations.${tooltip.key}.detail`)}
-              </p>
-            </div>
-          )}
-
-          {/* Left-side fade so text stays readable — keeps graphics visible on the right */}
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, hsl(228 55% 12% / 0.92) 0%, hsl(228 55% 12% / 0.7) 35%, hsl(228 55% 12% / 0.15) 70%, transparent 100%)",
-            }}
-          />
-        </div>
-
-        <div className="container relative py-28 md:py-36 lg:py-44 max-w-5xl pointer-events-none">
-          <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-10">
-            <span className="w-8 h-px bg-crimson" />
-            EdPath Global
+            {/* Destination tooltip */}
+            {tooltip && (
+              <div
+                className="fixed z-50 pointer-events-none rounded-xl bg-white/95 backdrop-blur-sm px-4 py-3 shadow-[0_8px_24px_-6px_rgba(5,21,86,0.22)] ring-1 ring-navy/10 max-w-xs"
+                style={{ left: tooltip.x + 16, top: tooltip.y - 16 }}
+              >
+                <p className="text-sm font-bold text-navy">
+                  {t(`home.globeDestinations.${tooltip.key}.label`)}
+                </p>
+                <p className="text-xs text-muted-foreground leading-snug mt-1">
+                  {t(`home.globeDestinations.${tooltip.key}.detail`)}
+                </p>
+              </div>
+            )}
           </div>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-[-0.02em] text-white max-w-4xl">
-            {t("home.title")}
-          </h1>
-          <p className="mt-8 text-lg md:text-xl text-primary-foreground/80 max-w-xl leading-relaxed font-sans">
-            {t("home.subtitle")}
-          </p>
-          <a
-            href="#destinos"
-            className="group pointer-events-auto mt-12 inline-flex items-center gap-2.5 rounded-xl bg-crimson px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_4px_16px_-4px_hsl(var(--crimson)/0.45)] hover:bg-crimson/90 hover:shadow-[0_8px_24px_-6px_hsl(var(--crimson)/0.55)] hover:-translate-y-0.5 transition-all duration-300"
-          >
-            {t("home.ctaChoose")}
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </a>
         </div>
       </section>
 
