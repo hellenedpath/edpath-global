@@ -114,7 +114,7 @@ export default function Index() {
                   rx="290"
                   ry={290 * Math.abs(Math.cos((a * Math.PI) / 180))}
                   fill="none"
-                  stroke="hsl(262 90% 78%)"
+                  stroke="hsl(221 90% 78%)"
                   strokeOpacity="0.45"
                   strokeWidth="1"
                   transform={`rotate(${a})`}
@@ -128,7 +128,7 @@ export default function Index() {
                   rx={290 * Math.cos((lat * Math.PI) / 180)}
                   ry={10}
                   fill="none"
-                  stroke="hsl(262 90% 78%)"
+                  stroke="hsl(221 90% 78%)"
                   strokeOpacity="0.4"
                   strokeWidth="1"
                 />
