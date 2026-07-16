@@ -152,6 +152,7 @@ export default function Index() {
                       return (
                         <g
                           key={d.key}
+                          data-destination={d.key}
                           className="cursor-pointer"
                           style={{ pointerEvents: "all" }}
                           onMouseEnter={handleEnter(d.key)}
