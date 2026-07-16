@@ -11,6 +11,7 @@ export default function SiteLayout() {
     "/instituicoes",
     "/antes-de-comecar",
     "/custos",
+    "/custos-reais",
     "/saude",
     "/familia",
     "/trabalho-moradia",
