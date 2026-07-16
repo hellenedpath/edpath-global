@@ -193,6 +193,21 @@ export default function Index() {
             </g>
           </svg>
 
+          {/* Destination tooltip */}
+          {tooltip && (
+            <div
+              className="fixed z-50 pointer-events-none rounded-xl bg-white/95 backdrop-blur-sm px-4 py-3 shadow-[0_8px_24px_-6px_rgba(5,21,86,0.22)] ring-1 ring-navy/10 max-w-xs"
+              style={{ left: tooltip.x + 16, top: tooltip.y - 16 }}
+            >
+              <p className="text-sm font-bold text-navy">
+                {t(`home.globeDestinations.${tooltip.key}.label`)}
+              </p>
+              <p className="text-xs text-muted-foreground leading-snug mt-1">
+                {t(`home.globeDestinations.${tooltip.key}.detail`)}
+              </p>
+            </div>
+          )}
+
           {/* Left-side fade so text stays readable — keeps graphics visible on the right */}
           <div
             className="absolute inset-0"
