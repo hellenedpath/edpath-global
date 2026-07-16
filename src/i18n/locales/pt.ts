@@ -1133,6 +1133,8 @@ export const pt = {
       title: "Como funciona:",
       body:
         "Nem toda escola no Canadá aceita estudantes internacionais no ensino médio. Existem dois caminhos principais: distritos escolares públicos com programa internacional oficial e escolas privadas que recebem estudantes internacionais. Esta página lista ambos em BC — você aplica diretamente no site do distrito ou da escola.",
+      boardingNote:
+        "Boarding = a escola oferece internato (o aluno mora na escola). Sem internato, o aluno vive em casa de família (homestay).",
     },
     filters: {
       searchPlaceholder: "Buscar por nome da escola ou cidade",
