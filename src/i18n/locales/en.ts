@@ -131,6 +131,30 @@ export const en = {
         alt1: "Family",
       },
     },
+    youAreHere: "You are here — your next step",
+    clearHighlight: "Clear highlight",
+  },
+  healthPage: {
+    eyebrow: "On arrival · Health",
+    title: "Health in Canada",
+    subtitle: "Every international student needs health coverage. Understand the basics before you arrive.",
+    items: {
+      mandatory: {
+        title: "Health insurance is mandatory",
+        body: "Every international student needs health coverage. It can be provincial (some provinces cover students), private, or offered by the institution. Confirm with your school what is included.",
+      },
+      province: {
+        title: "Coverage varies by province",
+        body: "BC, Alberta, Saskatchewan, and Manitoba may cover international students under the provincial plan. Ontario generally requires private insurance (e.g., UHIP for universities). Confirm with your province.",
+      },
+      emergency: {
+        title: "In emergencies",
+        body: "Call 911 (free) for serious medical emergencies. For non-urgent issues, visit a walk-in clinic.",
+      },
+    },
+    officialLinkLabel: "See official IRCC page on health",
+    seal: "General information. Confirm coverage with your institution and provincial health service.",
+    sourceLink: "Official source: IRCC — Health insurance",
   },
   pages: {
     about: "About",

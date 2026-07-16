@@ -21,6 +21,7 @@ import HighSchools from "./pages/HighSchools";
 import Renting from "./pages/Renting";
 import RentalScams from "./pages/RentalScams";
 import StudyPermit from "./pages/StudyPermit";
+import Health from "./pages/Health";
 
 const queryClient = new QueryClient();
 
@@ -56,7 +57,8 @@ const App = () => (
             <Route path="/antes-de-comecar" element={<StudyPermit />} />
             <Route path="/simulador-financeiro" element={<FinancialSimulator />} />
             <Route path="/canada/simulador" element={<FinancialSimulator />} />
-            <Route path="/saude" element={<PagePlaceholder tKey="health" />} />
+            <Route path="/saude" element={<Health />} />
+            <Route path="/canada/saude" element={<Health />} />
             <Route path="/familia" element={<Family />} />
             <Route path="/trabalho-moradia" element={<Work />} />
           </Route>

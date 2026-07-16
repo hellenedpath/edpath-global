@@ -124,6 +124,30 @@ export const pt = {
         alt1: "Família",
       },
     },
+    youAreHere: "Você está aqui — seu próximo passo",
+    clearHighlight: "Limpar destaque",
+  },
+  healthPage: {
+    eyebrow: "Ao chegar · Saúde",
+    title: "Saúde no Canadá",
+    subtitle: "Todo estudante internacional precisa de cobertura de saúde. Entenda o básico antes de chegar.",
+    items: {
+      mandatory: {
+        title: "Seguro de saúde é obrigatório",
+        body: "Todo estudante internacional precisa de cobertura de saúde. Pode ser provincial (algumas províncias cobrem estudantes), privado, ou oferecido pela instituição. Confirme com sua escola o que está incluído.",
+      },
+      province: {
+        title: "Cobertura varia por província",
+        body: "BC, Alberta, Saskatchewan e Manitoba podem cobrir estudantes internacionais no plano provincial. Ontário geralmente exige seguro privado (ex.: UHIP para universidades). Confirme na sua província.",
+      },
+      emergency: {
+        title: "Em emergências",
+        body: "Ligue 911 (gratuito) para emergências médicas graves. Para questões não urgentes, procure uma walk-in clinic.",
+      },
+    },
+    officialLinkLabel: "Ver página oficial do IRCC sobre saúde",
+    seal: "Informação geral. Confirme a cobertura com sua instituição e a saúde pública da sua província.",
+    sourceLink: "Fonte oficial: IRCC — Health insurance",
   },
   pages: {
     about: "Sobre",
