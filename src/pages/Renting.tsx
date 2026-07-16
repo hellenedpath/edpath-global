@@ -10,7 +10,6 @@ import {
   CreditCard,
   ExternalLink,
   FileText,
-  Home,
   KeyRound,
   Landmark,
   ShieldAlert,
