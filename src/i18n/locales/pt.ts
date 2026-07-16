@@ -1161,7 +1161,9 @@ export const pt = {
       grades: "Séries",
       homestay: "Homestay",
       applicationFee: "Taxa de aplicação",
-      tuition: "Tuition anual",
+      tuition: "Valor anual estimado",
+      tuitionEstimate: "Estimativa — pode variar",
+      tuitionMissing: "Consulte no site oficial",
       applyCta: "Ver programa internacional / Aplicar",
       type: {
         public: "Distrito público",
@@ -1169,12 +1171,16 @@ export const pt = {
       },
       boarding: "Internato",
     },
+
     empty: "Nenhuma escola encontrada com estes filtros.",
     disclaimer: {
       title: "Aviso de honestidade:",
       body:
         "Estas informações são um ponto de partida. Requisitos, custos e vagas mudam a cada ano — confirme sempre no site oficial do distrito ou da escola antes de aplicar.",
+      costNote:
+        "Os valores são estimativas e mudam a cada ano. Confirme sempre no site oficial da escola.",
     },
+
   },
 
 };
