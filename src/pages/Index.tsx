@@ -263,7 +263,7 @@ export default function Index() {
             <span className="w-8 h-px bg-crimson" />
             EdPath Global
           </div>
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-[-0.02em] text-white max-w-4xl">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.97] tracking-[-0.03em] text-white max-w-4xl">
             {t("home.title")}
           </h1>
           <p className="mt-8 text-lg md:text-xl text-primary-foreground/80 max-w-xl leading-relaxed font-sans">
