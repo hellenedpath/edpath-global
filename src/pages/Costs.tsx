@@ -462,12 +462,16 @@ export default function Costs() {
         <div className="mt-10 rounded-lg bg-navy text-white p-6 md:p-8 max-w-3xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 text-xs uppercase tracking-widest text-white/70 mb-3">
             <Info className="w-4 h-4" />
-            Custo total
+            {t("costs.components.totalLabel")}
           </div>
           <p className="font-display text-lg md:text-xl leading-relaxed">
             {t("costs.components.total")}
           </p>
         </div>
+
+        <p className="mt-4 text-center text-sm text-muted-foreground max-w-3xl mx-auto">
+          {t("costs.components.totalNote")}
+        </p>
         </div>
       </section>
 
