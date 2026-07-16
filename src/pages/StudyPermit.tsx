@@ -4,6 +4,7 @@ import {
   AlertTriangle,
   ExternalLink,
   FileText,
+  Shield,
   ShieldAlert,
 } from "lucide-react";
 
@@ -25,11 +26,26 @@ type Step = {
   n: number;
   title: string;
   body: string;
+  link?: { href: string; label: string };
+};
+
+type ScamLink = { label: string; href: string };
+
+type ScamSection = {
+  title: string;
+  intro: string;
+  rights: { title: string; items: string[] };
+  redFlags: { title: string; items: string[] };
+  protect: { title: string; items: string[] };
+  victim: { title: string; body: string };
+  links: { title: string; items: ScamLink[] };
+  seal: { title: string; body: string };
 };
 
 export default function StudyPermit() {
   const { t } = useTranslation();
   const steps = t("studyPermit.steps", { returnObjects: true }) as Step[];
+  const scam = t("studyPermit.scamProtection", { returnObjects: true }) as ScamSection;
 
   return (
     <>
@@ -81,6 +97,11 @@ export default function StudyPermit() {
                   <p className="mt-2 text-muted-foreground leading-relaxed">
                     {s.body}
                   </p>
+                  {s.link && (
+                    <div className="mt-3">
+                      <SourceLink href={s.link.href} label={s.link.label} />
+                    </div>
+                  )}
                 </div>
               </div>
             </li>
@@ -122,6 +143,125 @@ export default function StudyPermit() {
               />
             </li>
           </ul>
+        </div>
+      </section>
+
+      {/* Scam protection */}
+      <section className="container py-16 md:py-20 max-w-5xl">
+        <div className="max-w-4xl">
+          <div className="flex items-center gap-3 mb-5">
+            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-crimson/10 text-crimson">
+              <Shield className="w-5 h-5" />
+            </span>
+            <h2 className="font-display text-2xl md:text-3xl text-navy font-semibold">
+              {scam.title}
+            </h2>
+          </div>
+          <p className="text-muted-foreground leading-relaxed max-w-3xl">
+            {scam.intro}
+          </p>
+
+          {/* Rights */}
+          <div className="mt-10">
+            <h3 className="font-display text-xl text-navy font-semibold mb-4">
+              {scam.rights.title}
+            </h3>
+            <ul className="grid md:grid-cols-3 gap-4">
+              {scam.rights.items.map((item, i) => (
+                <li
+                  key={i}
+                  className="rounded-lg border border-border bg-card p-5 shadow-sm"
+                >
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {item}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Red flags */}
+          <div className="mt-10">
+            <h3 className="font-display text-xl text-navy font-semibold mb-4">
+              {scam.redFlags.title}
+            </h3>
+            <ul className="grid sm:grid-cols-2 gap-4">
+              {scam.redFlags.items.map((item, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 rounded-lg border border-crimson/20 bg-crimson/5 p-4"
+                >
+                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-crimson/15 text-crimson text-xs font-bold">
+                    !
+                  </span>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {item}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* How to protect */}
+          <div className="mt-10">
+            <h3 className="font-display text-xl text-navy font-semibold mb-4">
+              {scam.protect.title}
+            </h3>
+            <ul className="grid md:grid-cols-2 gap-4">
+              {scam.protect.items.map((item, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 rounded-lg border border-border bg-muted/40 p-4"
+                >
+                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-azul/15 text-azul text-xs font-bold">
+                    {i + 1}
+                  </span>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {item}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Victim */}
+          <div className="mt-10 rounded-lg border border-border bg-card p-6">
+            <h3 className="font-display text-lg text-navy font-semibold mb-2">
+              {scam.victim.title}
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              {scam.victim.body}
+            </p>
+          </div>
+
+          {/* Scam official links */}
+          <div className="mt-10">
+            <h3 className="font-display text-xl text-navy font-semibold mb-4">
+              {scam.links.title}
+            </h3>
+            <ul className="flex flex-col gap-3">
+              {scam.links.items.map((item, i) => (
+                <li key={i}>
+                  <SourceLink href={item.href} label={item.label} />
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Scam seal */}
+          <div className="mt-10 rounded-lg border border-azul/30 bg-azul/5 p-6">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="h-5 w-5 text-azul shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-display text-lg text-navy font-semibold">
+                  {scam.seal.title}
+                </h3>
+                <p className="mt-2 text-muted-foreground leading-relaxed">
+                  {scam.seal.body}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

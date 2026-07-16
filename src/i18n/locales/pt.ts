@@ -1569,7 +1569,11 @@ export const pt = {
         n: 5,
         title: "Aplicar online",
         body:
-          "A aplicação é obrigatoriamente online, pelo IRCC Secure Account. Você preenche o formulário e paga as taxas: study permit CAD $150 + biometria CAD $85.",
+          "A aplicação é feita na página oficial do IRCC. Crie sua conta no IRCC Secure Account e aplique diretamente — os formulários são gratuitos.",
+        link: {
+          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/apply.html",
+          label: "Aplicar pelo site oficial do IRCC",
+        },
       },
       {
         n: 6,
@@ -1596,6 +1600,66 @@ export const pt = {
       title: "Um lembrete",
       body:
         "Informações baseadas no IRCC oficial. As regras e taxas mudam — confirme sempre em canada.ca antes de aplicar. Para decisões sobre o seu caso, consulte um RCIC licenciado.",
+    },
+    scamProtection: {
+      title: "Proteja-se de golpes de visto",
+      intro:
+        "Fraude de imigração é uma das ameaças mais comuns e caras contra estudantes internacionais. Estas orientações são do próprio IRCC.",
+      rights: {
+        title: "Você tem direitos que os golpistas escondem",
+        items: [
+          "Você pode aplicar sozinho, de graça. O IRCC trata a aplicação igual, com ou sem representante. Os formulários são gratuitos no site oficial — ninguém pode cobrar pelo acesso ao sistema.",
+          "Ninguém pode garantir visto ou '100% de aprovação'. Só o oficial de imigração decide cada caso.",
+          "As taxas do IRCC são iguais no mundo todo, ajustadas apenas pela moeda local. Se alguém cobra muito mais pela taxa de processamento, desconfie.",
+        ],
+      },
+      redFlags: {
+        title: "Bandeiras vermelhas (sinais de golpe)",
+        items: [
+          "Promessa de visto garantido ou aprovação rápida",
+          "Pedido de pagamento por conta pessoal, gift card, Western Union, MoneyGram ou cripto",
+          "Ameaça de deportação por taxas não pagas (o IRCC nunca faz isso)",
+          "Oferta para 'acelerar' o processo",
+          "Pedido para assinar formulário em branco",
+          "Carta de aceite suspeita — em 2024 o IRCC identificou mais de 10.000 cartas potencialmente falsas. Sempre confirme sua aceitação diretamente com a escola.",
+        ],
+      },
+      protect: {
+        title: "Como se proteger",
+        items: [
+          "Mantenha sua própria conta IRCC e a senha só com você",
+          "Nunca assine formulário em branco; leia o que assina",
+          "Exija contrato escrito e recibo de cada pagamento",
+          "Se usar um representante pago, verifique se ele é licenciado no registro público da CICC",
+        ],
+      },
+      victim: {
+        title: "Se você for vítima",
+        body:
+          "Reporte ao IRCC, ao Canadian Anti-Fraud Centre, e — se estiver fora do Canadá — à embaixada ou consulado canadense do seu país.",
+      },
+      links: {
+        title: "Links oficiais",
+        items: [
+          {
+            label: "Proteja-se de fraude (IRCC)",
+            href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/protect-fraud.html",
+          },
+          {
+            label: "Fraude contra recém-chegados (IRCC)",
+            href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/protect-fraud/newcomers.html",
+          },
+          {
+            label: "Verificar se um representante é licenciado (CICC)",
+            href: "https://college-ic.ca",
+          },
+        ],
+      },
+      seal: {
+        title: "Confirme na fonte oficial",
+        body:
+          "Informações baseadas no IRCC oficial. Confirme sempre em canada.ca. Para decisões sobre o seu caso, consulte um RCIC licenciado.",
+      },
     },
   },
 

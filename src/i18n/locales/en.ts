@@ -1566,7 +1566,11 @@ export const en = {
         n: 5,
         title: "Apply online",
         body:
-          "The application must be submitted online through the IRCC Secure Account. You fill out the form and pay the fees: study permit CAD $150 + biometrics CAD $85.",
+          "The application is done on the official IRCC page. Create your IRCC Secure Account and apply directly — the forms are free.",
+        link: {
+          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/apply.html",
+          label: "Apply on the official IRCC website",
+        },
       },
       {
         n: 6,
@@ -1593,6 +1597,66 @@ export const en = {
       title: "A quick reminder",
       body:
         "Information based on official IRCC sources. Rules and fees change — always confirm at canada.ca before applying. For decisions about your individual case, consult a licensed RCIC.",
+    },
+    scamProtection: {
+      title: "Protect yourself from visa scams",
+      intro:
+        "Immigration fraud is one of the most common and expensive threats against international students. These guidelines come from IRCC itself.",
+      rights: {
+        title: "Rights scammers hide from you",
+        items: [
+          "You can apply on your own, for free. IRCC treats your application the same, with or without a representative. The forms are free on the official website — no one can charge you for access to the system.",
+          "No one can guarantee a visa or '100% approval'. Only the immigration officer decides each case.",
+          "IRCC fees are the same around the world, adjusted only for local currency. If someone charges much more for the processing fee, be suspicious.",
+        ],
+      },
+      redFlags: {
+        title: "Red flags (scam signs)",
+        items: [
+          "Promise of a guaranteed visa or fast approval",
+          "Request for payment via personal account, gift card, Western Union, MoneyGram, or crypto",
+          "Threat of deportation for unpaid fees (IRCC never does this)",
+          "Offer to 'speed up' the process",
+          "Request to sign a blank form",
+          "Suspicious acceptance letter — in 2024 IRCC identified more than 10,000 potentially fake letters. Always confirm your acceptance directly with the school.",
+        ],
+      },
+      protect: {
+        title: "How to protect yourself",
+        items: [
+          "Keep your own IRCC account and password to yourself",
+          "Never sign a blank form; read what you sign",
+          "Demand a written contract and receipt for every payment",
+          "If you use a paid representative, check that they are licensed on the CICC public registry",
+        ],
+      },
+      victim: {
+        title: "If you are a victim",
+        body:
+          "Report to IRCC, the Canadian Anti-Fraud Centre, and — if you are outside Canada — the Canadian embassy or consulate in your country.",
+      },
+      links: {
+        title: "Official links",
+        items: [
+          {
+            label: "Protect yourself from fraud (IRCC)",
+            href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/protect-fraud.html",
+          },
+          {
+            label: "Fraud against newcomers (IRCC)",
+            href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/protect-fraud/newcomers.html",
+          },
+          {
+            label: "Check if a representative is licensed (CICC)",
+            href: "https://college-ic.ca",
+          },
+        ],
+      },
+      seal: {
+        title: "Confirm at the official source",
+        body:
+          "Information based on official IRCC sources. Always confirm at canada.ca. For decisions about your individual case, consult a licensed RCIC.",
+      },
     },
   },
 
