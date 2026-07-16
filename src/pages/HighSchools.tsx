@@ -1,0 +1,259 @@
+import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Search, GraduationCap, ExternalLink, Mail, Home, Award, Info } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
+type HighSchool = {
+  id: string;
+  name: string;
+  city: string | null;
+  region: string | null;
+  website: string | null;
+  email: string | null;
+  phone: string | null;
+  application_fee: string | null;
+  tuition_annual: string | null;
+  diploma: string | null;
+  grades: string | null;
+  homestay: string | null;
+  notes: string | null;
+};
+
+export default function HighSchools() {
+  const { t } = useTranslation();
+  const [items, setItems] = useState<HighSchool[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [region, setRegion] = useState<string>("all");
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await supabase
+        .from("high_schools")
+        .select(
+          "id,name,city,region,website,email,phone,application_fee,tuition_annual,diploma,grades,homestay,notes",
+        )
+        .order("region", { ascending: true })
+        .order("name", { ascending: true });
+      if (!error && data) setItems(data as HighSchool[]);
+      setLoading(false);
+    })();
+  }, []);
+
+  const regions = useMemo(() => {
+    const set = new Set<string>();
+    items.forEach((it) => it.region && set.add(it.region));
+    return Array.from(set).sort();
+  }, [items]);
+
+  const regionLabel = (r: string) =>
+    t(`highSchools.regions.${r}`, { defaultValue: r });
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return items.filter((it) => {
+      if (region !== "all" && it.region !== region) return false;
+      if (q) {
+        const hay = `${it.name} ${it.city ?? ""}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [items, region, query]);
+
+  return (
+    <>
+      {/* Hero */}
+      <section className="bg-navy text-white">
+        <div className="container py-16 md:py-20">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/70 mb-4">
+              <span className="text-lg leading-none">🇨🇦</span>
+              <span>{t("highSchools.hero.badge")}</span>
+            </div>
+            <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight">
+              {t("highSchools.hero.title")}
+            </h1>
+            <p className="mt-5 text-lg text-white/80 leading-relaxed max-w-2xl">
+              {t("highSchools.hero.subtitle")}
+            </p>
+            <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-2xl">
+              {t("highSchools.hero.description")}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Context note */}
+      <section className="container pt-8">
+        <div className="flex items-start gap-3 rounded-lg border border-[hsl(var(--azul))]/30 bg-[hsl(var(--azul))]/5 p-4 text-sm leading-relaxed text-navy max-w-4xl">
+          <Info className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
+          <p>
+            <span className="font-medium">{t("highSchools.context.title")}</span>{" "}
+            {t("highSchools.context.body")}
+          </p>
+        </div>
+      </section>
+
+      {/* Filters */}
+      <section className="container py-8">
+        <div className="flex flex-col gap-4">
+          <div className="relative max-w-xl">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={t("highSchools.filters.searchPlaceholder")}
+              className="pl-9"
+            />
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <Button
+              variant={region === "all" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setRegion("all")}
+              className={
+                region === "all"
+                  ? "bg-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/90 text-white border-transparent"
+                  : ""
+              }
+            >
+              {t("highSchools.filters.allRegions")}
+            </Button>
+            {regions.map((r) => {
+              const active = region === r;
+              return (
+                <Button
+                  key={r}
+                  variant={active ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setRegion(r)}
+                  className={
+                    active
+                      ? "bg-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/90 text-white border-transparent"
+                      : ""
+                  }
+                >
+                  {regionLabel(r)}
+                </Button>
+              );
+            })}
+          </div>
+
+          <p className="text-sm text-muted-foreground">
+            {loading
+              ? t("highSchools.filters.loading")
+              : t("highSchools.filters.count", { count: filtered.length })}
+          </p>
+        </div>
+
+        {/* List */}
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+          {filtered.map((it) => (
+            <article
+              key={it.id}
+              className="flex flex-col rounded-xl border border-border bg-card p-6 hover:border-[hsl(var(--crimson))] hover:shadow-md transition-all"
+            >
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[hsl(var(--crimson))]/10 text-[hsl(var(--crimson))]">
+                  <GraduationCap className="h-5 w-5" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="font-display text-lg font-semibold text-foreground leading-snug">
+                    {it.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {[it.city, it.region ? regionLabel(it.region) : null]
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </p>
+                </div>
+              </div>
+
+              {it.notes && (
+                <p className="mt-4 text-sm text-foreground/80 leading-relaxed">
+                  {it.notes}
+                </p>
+              )}
+
+              <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
+                {it.diploma && (
+                  <div className="flex items-center gap-1.5">
+                    <Award className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
+                    <dt className="text-muted-foreground">{t("highSchools.card.diploma")}:</dt>
+                    <dd className="font-medium text-foreground">{it.diploma}</dd>
+                  </div>
+                )}
+                {it.grades && (
+                  <div className="flex items-center gap-1.5">
+                    <dt className="text-muted-foreground">{t("highSchools.card.grades")}:</dt>
+                    <dd className="font-medium text-foreground">{it.grades}</dd>
+                  </div>
+                )}
+                {it.homestay && (
+                  <div className="flex items-center gap-1.5">
+                    <Home className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
+                    <dt className="text-muted-foreground">{t("highSchools.card.homestay")}:</dt>
+                    <dd className="font-medium text-foreground">{it.homestay}</dd>
+                  </div>
+                )}
+                {it.application_fee && (
+                  <div className="flex items-center gap-1.5">
+                    <dt className="text-muted-foreground">{t("highSchools.card.applicationFee")}:</dt>
+                    <dd className="font-medium text-foreground">{it.application_fee}</dd>
+                  </div>
+                )}
+                {it.tuition_annual && (
+                  <div className="flex items-center gap-1.5 col-span-2">
+                    <dt className="text-muted-foreground">{t("highSchools.card.tuition")}:</dt>
+                    <dd className="font-medium text-foreground">{it.tuition_annual}</dd>
+                  </div>
+                )}
+              </dl>
+
+              <div className="mt-5 flex flex-wrap items-center gap-3 pt-4 border-t border-border">
+                {it.website && (
+                  <a
+                    href={it.website}
+                    target="_blank"
+                    rel="noopener noreferrer external"
+                    className="inline-flex items-center gap-1.5 rounded-md bg-[hsl(var(--crimson))] px-4 py-2 text-sm font-medium text-white hover:bg-[hsl(var(--crimson))]/90 transition-colors"
+                  >
+                    {t("highSchools.card.applyCta")}
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                )}
+                {it.email && (
+                  <a
+                    href={`mailto:${it.email}`}
+                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-[hsl(var(--azul))] transition-colors"
+                  >
+                    <Mail className="h-3.5 w-3.5" />
+                    {it.email}
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {!loading && filtered.length === 0 && (
+          <div className="mt-10 text-center text-muted-foreground">
+            {t("highSchools.empty")}
+          </div>
+        )}
+
+        <div className="mt-12 flex items-start gap-2 rounded-md border border-[hsl(var(--azul))]/30 bg-[hsl(var(--azul))]/5 p-4 text-sm leading-relaxed text-navy max-w-4xl">
+          <Info className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
+          <p>
+            <span className="font-medium">{t("highSchools.disclaimer.title")}</span>{" "}
+            {t("highSchools.disclaimer.body")}
+          </p>
+        </div>
+      </section>
+    </>
+  );
+}

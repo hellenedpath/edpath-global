@@ -38,6 +38,7 @@ export const pt = {
     items: {
       pgwp: "Verificador PGWP",
       institutions: "Instituições",
+      highSchools: "Ensino Médio (BC)",
       programs: "Explorar Programas",
       costsSimulator: "Simulador de Custos",
       before: "Antes de Começar",
@@ -1116,6 +1117,54 @@ export const pt = {
       title: "Aviso importante",
       body:
         "Esta informação é baseada na lista oficial de campos de estudo elegíveis para PGWP do IRCC e serve como <strong>orientação geral</strong>. Em geral, a elegibilidade final também depende da instituição (DLI), da duração do programa e do idioma. Esta ferramenta <strong>não confirma o seu caso específico</strong>. Confirme sempre nas fontes oficiais do IRCC e, para decisões de imigração, consulte um consultor RCIC licenciado.",
+    },
+  },
+
+  highSchools: {
+    hero: {
+      badge: "Canadá · Colúmbia Britânica",
+      title: "Ensino Médio no Canadá (British Columbia)",
+      subtitle:
+        "Distritos escolares públicos de BC que aceitam estudantes internacionais no ensino médio.",
+      description:
+        "Explore os distritos com programa internacional oficial, veja diploma, séries atendidas, homestay e taxas — e vá direto ao site do distrito para aplicar.",
+    },
+    context: {
+      title: "Como funciona:",
+      body:
+        "Nem toda escola no Canadá aceita estudantes internacionais no ensino médio — apenas distritos escolares públicos com programa internacional (ou escolas privadas). Esta página lista os distritos públicos de BC que têm programa internacional oficial. O aluno se candidata direto com o programa internacional do distrito.",
+    },
+    filters: {
+      searchPlaceholder: "Buscar por nome do distrito ou cidade",
+      allRegions: "Todas as regiões",
+      loading: "Carregando distritos...",
+      count_one: "{{count}} distrito encontrado",
+      count_other: "{{count}} distritos encontrados",
+    },
+    regions: {
+      "Metro Vancouver": "Metro Vancouver",
+      "Ilha de Vancouver": "Ilha de Vancouver",
+      "Fraser Valley": "Fraser Valley",
+      "Okanagan (Interior)": "Okanagan (Interior)",
+      "Kootenays (Interior)": "Kootenays (Interior)",
+      "Interior": "Interior",
+      "Sea to Sky": "Sea to Sky",
+      "Sunshine Coast": "Sunshine Coast",
+      "Norte de BC": "Norte de BC",
+    },
+    card: {
+      diploma: "Diploma",
+      grades: "Séries",
+      homestay: "Homestay",
+      applicationFee: "Taxa de aplicação",
+      tuition: "Tuition anual",
+      applyCta: "Ver programa internacional / Aplicar",
+    },
+    empty: "Nenhum distrito encontrado com estes filtros.",
+    disclaimer: {
+      title: "Aviso de honestidade:",
+      body:
+        "Estas informações são um ponto de partida. Requisitos, custos e vagas mudam a cada ano — confirme sempre no site oficial do distrito antes de aplicar.",
     },
   },
 };

@@ -30,6 +30,7 @@ const primaryTo = "/meu-caminho";
 const beforeYouGoDefs = [
   { to: "/canada/pgwp", key: "pgwp" },
   { to: "/canada/instituicoes", key: "institutions" },
+  { to: "/canada/ensino-medio", key: "highSchools" },
   { to: "/programas", key: "programs" },
   { to: "/custos", key: "costsSimulator" },
   { to: "/antes-de-comecar", key: "before" },
