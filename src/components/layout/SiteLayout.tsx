@@ -9,7 +9,6 @@ export default function SiteLayout() {
     "/canada",
     "/programas",
     "/instituicoes",
-    "/antes-de-comecar",
     "/custos",
     "/saude",
     "/familia",

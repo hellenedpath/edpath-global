@@ -52,7 +52,6 @@ const beforeYouGoGroupDefs = [
     items: [
       { to: "/alugar-no-canada", key: "renting" },
       { to: "/golpes-de-aluguel", key: "rentalScams" },
-      { to: "/antes-de-comecar", key: "before" },
     ],
   },
 ] as const;
