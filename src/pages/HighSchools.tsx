@@ -322,19 +322,38 @@ export default function HighSchools() {
                     <dd className="font-medium text-foreground">{it.application_fee}</dd>
                   </div>
                 )}
-                <div className="col-span-2">
-                  <div className="flex items-center gap-1.5">
-                    <dt className="text-muted-foreground">{t("highSchools.card.tuition")}:</dt>
-                    <dd className="font-medium text-foreground">
-                      {formatTuition(cardTuition(it))}
+                {it.name === "Bodwell High School" ? (
+                  <div className="col-span-2">
+                    <dt className="text-muted-foreground">
+                      {t("highSchools.card.bodwell.estimatedCostLabel")}
+                    </dt>
+                    <dd className="mt-1.5 space-y-1">
+                      <p className="font-medium text-foreground">
+                        {t("highSchools.card.bodwell.boarding")}
+                      </p>
+                      <p className="font-medium text-foreground">
+                        {t("highSchools.card.bodwell.day")}
+                      </p>
                     </dd>
-                  </div>
-                  {cardTuition(it) && (
-                    <p className="text-[10px] text-muted-foreground mt-0.5">
-                      {t("highSchools.card.tuitionEstimate")}
+                    <p className="mt-2 text-[10px] italic text-muted-foreground">
+                      {t("highSchools.card.bodwell.disclaimer")}
                     </p>
-                  )}
-                </div>
+                  </div>
+                ) : (
+                  <div className="col-span-2">
+                    <div className="flex items-center gap-1.5">
+                      <dt className="text-muted-foreground">{t("highSchools.card.tuition")}:</dt>
+                      <dd className="font-medium text-foreground">
+                        {formatTuition(cardTuition(it))}
+                      </dd>
+                    </div>
+                    {cardTuition(it) && (
+                      <p className="text-[10px] text-muted-foreground mt-0.5">
+                        {t("highSchools.card.tuitionEstimate")}
+                      </p>
+                    )}
+                  </div>
+                )}
 
 
 
