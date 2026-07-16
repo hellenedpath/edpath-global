@@ -193,7 +193,7 @@ export function CanadaNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const primary: Item = { to: primaryTo, label: t("nav.myPath") };
-  const primaryActive = pathname === primary.to;
+  const primaryActive = pathname === primaryTo.split("?")[0];
   const beforeYouGoGroups: Group[] = beforeYouGoGroupDefs.map((g) => ({
     title: t(`canadaNav.groups.${g.key}`),
     items: g.items.map((it) => ({
