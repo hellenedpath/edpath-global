@@ -95,13 +95,17 @@ export default function Index() {
               ))}
               {/* Destination routes — Canada as origin, subtle arcs to the other 4 */}
               {(() => {
-                const dests = {
-                  canada: { x: -160, y: -110 },
-                  usa: { x: -135, y: -45 },
-                  uk: { x: 30, y: -135 },
-                  ireland: { x: 8, y: -120 },
-                  australia: { x: 180, y: 125 },
-                };
+                const dests = [
+                  { key: "canada", x: -160, y: -110 },
+                  { key: "usa", x: -135, y: -45 },
+                  { key: "uk", x: 30, y: -135 },
+                  { key: "ireland", x: 8, y: -120 },
+                  { key: "australia", x: 180, y: 125 },
+                ] as const;
+                const destMap = Object.fromEntries(dests.map((d) => [d.key, d])) as Record<
+                  (typeof dests)[number]["key"],
+                  { x: number; y: number }
+                >;
                 // Curved arc between two points (control point pulled toward globe center)
                 const arc = (a: { x: number; y: number }, b: { x: number; y: number }) => {
                   const mx = (a.x + b.x) / 2;
@@ -111,31 +115,49 @@ export default function Index() {
                   const cy = my * 0.55;
                   return `M ${a.x} ${a.y} Q ${cx} ${cy} ${b.x} ${b.y}`;
                 };
-                const routes: [keyof typeof dests, keyof typeof dests][] = [
+                const routes: [keyof typeof destMap, keyof typeof destMap][] = [
                   ["canada", "usa"],
                   ["canada", "ireland"],
                   ["ireland", "uk"],
                   ["canada", "australia"],
                 ];
+                const handleEnter =
+                  (key: string) => (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
+                    setTooltip({ key, x: e.clientX, y: e.clientY });
+                  };
+                const handleMove = (e: React.MouseEvent<SVGGElement, MouseEvent>) => {
+                  setTooltip((prev) => (prev ? { ...prev, x: e.clientX, y: e.clientY } : null));
+                };
+                const handleLeave = () => setTooltip(null);
                 return (
                   <>
                     {/* Route lines between destinations */}
                     <g fill="none" stroke="hsl(0 0% 100%)" strokeOpacity="0.35" strokeWidth="1" strokeDasharray="2 5" strokeLinecap="round">
                       {routes.map(([from, to], i) => (
-                        <path key={i} d={arc(dests[from], dests[to])} />
+                        <path key={i} d={arc(destMap[from], destMap[to])} />
                       ))}
                     </g>
                     {/* Destination dots */}
-                    {Object.entries(dests).map(([name, p], i) => {
-                      const primary = name === "canada";
+                    {dests.map((d, i) => {
+                      const primary = d.key === "canada";
                       const glowR = primary ? 34 : 22;
                       const coreR = primary ? 5.5 : 4;
                       const centerR = primary ? 2.2 : 1.6;
                       const minOpacity = primary ? 0.55 : 0.35;
+                      const label = t(`home.globeDestinations.${d.key}.label`);
+                      const detail = t(`home.globeDestinations.${d.key}.detail`);
                       return (
-                        <g key={name}>
-                          <circle cx={p.x} cy={p.y} r={glowR} fill="url(#dotGlow)" opacity={primary ? 1 : 0.7} />
-                          <circle cx={p.x} cy={p.y} r={coreR} fill="hsl(var(--crimson))">
+                        <g
+                          key={d.key}
+                          className="cursor-pointer"
+                          style={{ pointerEvents: "all" }}
+                          onMouseEnter={handleEnter(d.key)}
+                          onMouseMove={handleMove}
+                          onMouseLeave={handleLeave}
+                        >
+                          <title>{`${label} — ${detail}`}</title>
+                          <circle cx={d.x} cy={d.y} r={glowR} fill="url(#dotGlow)" opacity={primary ? 1 : 0.7} />
+                          <circle cx={d.x} cy={d.y} r={coreR} fill="hsl(var(--crimson))">
                             <animate
                               attributeName="opacity"
                               values={`1;${minOpacity};1`}
@@ -143,7 +165,7 @@ export default function Index() {
                               repeatCount="indefinite"
                             />
                           </circle>
-                          <circle cx={p.x} cy={p.y} r={centerR} fill="#ffffff" opacity={primary ? 1 : 0.85} />
+                          <circle cx={d.x} cy={d.y} r={centerR} fill="#ffffff" opacity={primary ? 1 : 0.85} />
                         </g>
                       );
                     })}
