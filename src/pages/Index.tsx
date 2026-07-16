@@ -23,12 +23,12 @@ export default function Index() {
   return (
     <>
       <section className="relative text-primary-foreground overflow-hidden">
-        {/* Base gradient: deep navy → richer purple at base */}
+        {/* Base gradient: deep navy → richer royal blue at base */}
         <div
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(180deg, hsl(228 55% 12%) 0%, hsl(228 49% 18%) 40%, hsl(245 55% 22%) 85%, hsl(262 55% 26%) 100%)",
+              "linear-gradient(180deg, hsl(228 70% 12%) 0%, hsl(221 55% 18%) 40%, hsl(221 60% 24%) 85%, hsl(221 65% 30%) 100%)",
           }}
         />
         {/* Graphic backdrop: routes + stylized globe */}
@@ -40,17 +40,17 @@ export default function Index() {
             aria-hidden="true"
           >
             <defs>
-              <radialGradient id="glowPurple" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="hsl(var(--purple))" stopOpacity="0.55" />
-                <stop offset="100%" stopColor="hsl(var(--purple))" stopOpacity="0" />
+              <radialGradient id="glowBlue" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="hsl(var(--azul))" stopOpacity="0.55" />
+                <stop offset="100%" stopColor="hsl(var(--azul))" stopOpacity="0" />
               </radialGradient>
               <radialGradient id="glowCrimson" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="hsl(var(--crimson))" stopOpacity="0.45" />
                 <stop offset="100%" stopColor="hsl(var(--crimson))" stopOpacity="0" />
               </radialGradient>
               <linearGradient id="routeStroke" x1="0" x2="1" y1="0" y2="0">
-                <stop offset="0%" stopColor="hsl(262 90% 78%)" stopOpacity="0" />
-                <stop offset="50%" stopColor="hsl(262 90% 78%)" stopOpacity="1" />
+                <stop offset="0%" stopColor="hsl(221 90% 78%)" stopOpacity="0" />
+                <stop offset="50%" stopColor="hsl(221 90% 78%)" stopOpacity="1" />
                 <stop offset="100%" stopColor="hsl(var(--crimson))" stopOpacity="0" />
               </linearGradient>
               <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
@@ -60,13 +60,13 @@ export default function Index() {
             </defs>
 
             {/* Ambient glows */}
-            <circle cx="1150" cy="450" r="520" fill="url(#glowPurple)" />
+            <circle cx="1150" cy="450" r="520" fill="url(#glowBlue)" />
             <circle cx="1250" cy="620" r="360" fill="url(#glowCrimson)" />
 
             {/* Stylized globe (right side) */}
             <g transform="translate(1180 450)">
               <circle r="290" fill="hsl(228 55% 10% / 0.35)" />
-              <circle r="290" fill="none" stroke="hsl(262 90% 78%)" strokeOpacity="0.75" strokeWidth="1.5" />
+              <circle r="290" fill="none" stroke="hsl(221 90% 78%)" strokeOpacity="0.75" strokeWidth="1.5" />
               {/* Continents — simplified silhouettes clipped to the globe */}
               <defs>
                 <clipPath id="globeClip">
@@ -75,9 +75,9 @@ export default function Index() {
               </defs>
               <g
                 clipPath="url(#globeClip)"
-                fill="hsl(228 40% 85%)"
+                fill="hsl(221 60% 85%)"
                 fillOpacity="0.16"
-                stroke="hsl(0 0% 100%)"
+                stroke="hsl(221 70% 80%)"
                 strokeOpacity="0.32"
                 strokeWidth="0.8"
                 strokeLinejoin="round"
@@ -114,7 +114,7 @@ export default function Index() {
                   rx="290"
                   ry={290 * Math.abs(Math.cos((a * Math.PI) / 180))}
                   fill="none"
-                  stroke="hsl(262 90% 78%)"
+                  stroke="hsl(221 90% 78%)"
                   strokeOpacity="0.45"
                   strokeWidth="1"
                   transform={`rotate(${a})`}
@@ -128,7 +128,7 @@ export default function Index() {
                   rx={290 * Math.cos((lat * Math.PI) / 180)}
                   ry={10}
                   fill="none"
-                  stroke="hsl(262 90% 78%)"
+                  stroke="hsl(221 90% 78%)"
                   strokeOpacity="0.4"
                   strokeWidth="1"
                 />
