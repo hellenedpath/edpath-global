@@ -36,6 +36,8 @@ export const en = {
     },
   },
   pillars: {
+    eyebrow: "Why EdPath",
+    title: "Information you can trust",
     independent: {
       title: "Independent",
       body: "Made to guide you, with transparency.",
