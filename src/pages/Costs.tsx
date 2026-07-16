@@ -26,6 +26,7 @@ import {
 
 type Item = { title: string; content: string };
 type AccommodationItem = { tag: string; price: string; desc: string };
+type TuitionItem = { tag: string; price: string; desc: string };
 
 const itemIcons = [GraduationCap, Home, UtensilsCrossed, Bus, Heart, Plane];
 
@@ -60,6 +61,7 @@ export default function Costs() {
 
   const items = t("costs.components.items", { returnObjects: true }) as unknown as Item[];
   const accommodation = t("realCosts.accommodation.items", { returnObjects: true }) as unknown as AccommodationItem[];
+  const tuitionItems = t("costs.tuition.items", { returnObjects: true }) as unknown as TuitionItem[];
 
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat("en-CA", {
@@ -375,6 +377,54 @@ export default function Costs() {
         </div>
       </section>
 
+      {/* Tuition */}
+      <section className="bg-white border-y border-border">
+        <div className="container py-16 md:py-24 max-w-5xl">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="font-display text-3xl md:text-4xl font-semibold text-navy">
+              {t("costs.tuition.title")}
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              {t("costs.tuition.subtitle")}
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {tuitionItems.map((item) => (
+              <Card key={item.tag} className="border-border shadow-sm">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul shrink-0">
+                      <GraduationCap className="w-5 h-5" />
+                    </span>
+                    <span className="text-xs uppercase tracking-widest text-azul font-medium">
+                      {item.tag}
+                    </span>
+                  </div>
+                  <CardTitle className="font-display text-2xl text-navy mt-3">
+                    {item.price}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                  {item.desc}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <p className="mt-6 text-center text-xs text-muted-foreground italic">
+            {t("costs.tuition.note")}
+          </p>
+
+          <div className="mt-4 text-center">
+            <SourceLink
+              href={t("costs.tuition.sourceUrl")}
+              label={t("costs.tuition.sourceLabel")}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Components */}
       <section className="bg-white border-y border-border">
         <div className="container py-16 md:py-24 max-w-5xl">
@@ -412,12 +462,16 @@ export default function Costs() {
         <div className="mt-10 rounded-lg bg-navy text-white p-6 md:p-8 max-w-3xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 text-xs uppercase tracking-widest text-white/70 mb-3">
             <Info className="w-4 h-4" />
-            Custo total
+            {t("costs.components.totalLabel")}
           </div>
           <p className="font-display text-lg md:text-xl leading-relaxed">
             {t("costs.components.total")}
           </p>
         </div>
+
+        <p className="mt-4 text-center text-sm text-muted-foreground max-w-3xl mx-auto">
+          {t("costs.components.totalNote")}
+        </p>
         </div>
       </section>
 
