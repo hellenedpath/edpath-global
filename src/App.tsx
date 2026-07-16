@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import RealCosts from "./pages/RealCosts";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -48,8 +47,6 @@ const App = () => (
             <Route path="/custos" element={<Costs />} />
             <Route path="/simulador-financeiro" element={<FinancialSimulator />} />
             <Route path="/canada/simulador" element={<FinancialSimulator />} />
-            <Route path="/custos-reais" element={<RealCosts />} />
-            <Route path="/canada/custos-reais" element={<RealCosts />} />
             <Route path="/saude" element={<PagePlaceholder tKey="health" />} />
             <Route path="/familia" element={<Family />} />
             <Route path="/trabalho-moradia" element={<Work />} />
