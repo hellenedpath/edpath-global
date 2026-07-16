@@ -1125,21 +1125,25 @@ export const pt = {
       badge: "Canadá · Colúmbia Britânica",
       title: "Ensino Médio no Canadá (British Columbia)",
       subtitle:
-        "Distritos escolares públicos de BC que aceitam estudantes internacionais no ensino médio.",
+        "Distritos escolares públicos e escolas privadas de BC que aceitam estudantes internacionais no ensino médio.",
       description:
-        "Explore os distritos com programa internacional oficial, veja diploma, séries atendidas, homestay e taxas — e vá direto ao site do distrito para aplicar.",
+        "Explore os distritos com programa internacional oficial e as escolas privadas com programa para internacionais, veja diploma, séries, homestay, internato e taxas — e vá direto ao site oficial para aplicar.",
     },
     context: {
       title: "Como funciona:",
       body:
-        "Nem toda escola no Canadá aceita estudantes internacionais no ensino médio — apenas distritos escolares públicos com programa internacional (ou escolas privadas). Esta página lista os distritos públicos de BC que têm programa internacional oficial. O aluno se candidata direto com o programa internacional do distrito.",
+        "Nem toda escola no Canadá aceita estudantes internacionais no ensino médio. Existem dois caminhos principais: distritos escolares públicos com programa internacional oficial e escolas privadas que recebem estudantes internacionais. Esta página lista ambos em BC — você aplica diretamente no site do distrito ou da escola.",
     },
     filters: {
-      searchPlaceholder: "Buscar por nome do distrito ou cidade",
+      searchPlaceholder: "Buscar por nome da escola ou cidade",
       allRegions: "Todas as regiões",
-      loading: "Carregando distritos...",
-      count_one: "{{count}} distrito encontrado",
-      count_other: "{{count}} distritos encontrados",
+      loading: "Carregando escolas...",
+      count_one: "{{count}} escola encontrada",
+      count_other: "{{count}} escolas encontradas",
+      typeLabel: "Tipo",
+      allTypes: "Todas",
+      public: "Públicas (distritos)",
+      private: "Privadas",
     },
     regions: {
       "Metro Vancouver": "Metro Vancouver",
@@ -1159,12 +1163,18 @@ export const pt = {
       applicationFee: "Taxa de aplicação",
       tuition: "Tuition anual",
       applyCta: "Ver programa internacional / Aplicar",
+      type: {
+        public: "Distrito público",
+        private: "Escola privada",
+      },
+      boarding: "Internato",
     },
-    empty: "Nenhum distrito encontrado com estes filtros.",
+    empty: "Nenhuma escola encontrada com estes filtros.",
     disclaimer: {
       title: "Aviso de honestidade:",
       body:
-        "Estas informações são um ponto de partida. Requisitos, custos e vagas mudam a cada ano — confirme sempre no site oficial do distrito antes de aplicar.",
+        "Estas informações são um ponto de partida. Requisitos, custos e vagas mudam a cada ano — confirme sempre no site oficial do distrito ou da escola antes de aplicar.",
     },
   },
+
 };
