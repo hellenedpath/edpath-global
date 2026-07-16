@@ -87,29 +87,63 @@ export default function Index() {
                   strokeWidth="1"
                 />
               ))}
-              {/* Destination dots — pulsing crimson */}
-              {[
-                [-180, -60],
-                [-40, -140],
-                [90, -30],
-                [180, 40],
-                [-90, 90],
-                [40, 150],
-                [-220, 30],
-              ].map(([x, y], i) => (
-                <g key={i}>
-                  <circle cx={x} cy={y} r="28" fill="url(#dotGlow)" />
-                  <circle cx={x} cy={y} r="5" fill="hsl(var(--crimson))">
-                    <animate
-                      attributeName="opacity"
-                      values="1;0.45;1"
-                      dur={`${2.2 + (i % 3) * 0.6}s`}
-                      repeatCount="indefinite"
-                    />
-                  </circle>
-                  <circle cx={x} cy={y} r="2" fill="#ffffff" opacity="0.95" />
-                </g>
-              ))}
+              {/* Destination routes — Canada as origin, subtle arcs to the other 4 */}
+              {(() => {
+                const dests = {
+                  canada: { x: -160, y: -110 },
+                  usa: { x: -135, y: -45 },
+                  uk: { x: 30, y: -135 },
+                  ireland: { x: 8, y: -120 },
+                  australia: { x: 180, y: 125 },
+                };
+                // Curved arc between two points (control point pulled toward globe center)
+                const arc = (a: { x: number; y: number }, b: { x: number; y: number }) => {
+                  const mx = (a.x + b.x) / 2;
+                  const my = (a.y + b.y) / 2;
+                  // pull toward origin to suggest a great-circle-ish arc
+                  const cx = mx * 0.55;
+                  const cy = my * 0.55;
+                  return `M ${a.x} ${a.y} Q ${cx} ${cy} ${b.x} ${b.y}`;
+                };
+                const routes: [keyof typeof dests, keyof typeof dests][] = [
+                  ["canada", "usa"],
+                  ["canada", "ireland"],
+                  ["ireland", "uk"],
+                  ["canada", "australia"],
+                ];
+                return (
+                  <>
+                    {/* Route lines between destinations */}
+                    <g fill="none" stroke="hsl(0 0% 100%)" strokeOpacity="0.35" strokeWidth="1" strokeDasharray="2 5" strokeLinecap="round">
+                      {routes.map(([from, to], i) => (
+                        <path key={i} d={arc(dests[from], dests[to])} />
+                      ))}
+                    </g>
+                    {/* Destination dots */}
+                    {Object.entries(dests).map(([name, p], i) => {
+                      const primary = name === "canada";
+                      const glowR = primary ? 34 : 22;
+                      const coreR = primary ? 5.5 : 4;
+                      const centerR = primary ? 2.2 : 1.6;
+                      const minOpacity = primary ? 0.55 : 0.35;
+                      return (
+                        <g key={name}>
+                          <circle cx={p.x} cy={p.y} r={glowR} fill="url(#dotGlow)" opacity={primary ? 1 : 0.7} />
+                          <circle cx={p.x} cy={p.y} r={coreR} fill="hsl(var(--crimson))">
+                            <animate
+                              attributeName="opacity"
+                              values={`1;${minOpacity};1`}
+                              dur={`${primary ? 2.4 : 3 + (i % 3) * 0.4}s`}
+                              repeatCount="indefinite"
+                            />
+                          </circle>
+                          <circle cx={p.x} cy={p.y} r={centerR} fill="#ffffff" opacity={primary ? 1 : 0.85} />
+                        </g>
+                      );
+                    })}
+                  </>
+                );
+              })()}
             </g>
 
             {/* Route lines traversing the canvas */}
