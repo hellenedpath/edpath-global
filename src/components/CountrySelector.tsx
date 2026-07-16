@@ -7,14 +7,16 @@ type Country = {
   nameKey: string;
   available: boolean;
   to?: string;
+  flag: string[]; // 2-3 hex colors forming a flag stripe
+  emoji: string;
 };
 
 const countries: Country[] = [
-  { code: "canada", nameKey: "countries.list.canada", available: true, to: "/canada" },
-  { code: "usa", nameKey: "countries.list.usa", available: false },
-  { code: "uk", nameKey: "countries.list.uk", available: false },
-  { code: "australia", nameKey: "countries.list.australia", available: false },
-  { code: "ireland", nameKey: "countries.list.ireland", available: false },
+  { code: "canada", nameKey: "countries.list.canada", available: true, to: "/canada", emoji: "🇨🇦", flag: ["#D52B1E", "#FFFFFF", "#D52B1E"] },
+  { code: "usa", nameKey: "countries.list.usa", available: false, emoji: "🇺🇸", flag: ["#B22234", "#FFFFFF", "#3C3B6E"] },
+  { code: "uk", nameKey: "countries.list.uk", available: false, emoji: "🇬🇧", flag: ["#012169", "#FFFFFF", "#C8102E"] },
+  { code: "australia", nameKey: "countries.list.australia", available: false, emoji: "🇦🇺", flag: ["#012169", "#FFFFFF", "#E4002B"] },
+  { code: "ireland", nameKey: "countries.list.ireland", available: false, emoji: "🇮🇪", flag: ["#169B62", "#FFFFFF", "#FF883E"] },
 ];
 
 export function CountrySelector() {
@@ -37,17 +39,27 @@ export function CountrySelector() {
             const inner = (
               <div
                 className={cn(
-                  "group relative h-full rounded-2xl p-8 md:p-10 flex flex-col items-center text-center transition-all duration-500",
+                  "group relative h-full rounded-2xl overflow-hidden pt-9 pb-8 px-8 md:px-10 flex flex-col items-center text-center transition-all duration-500",
                   c.available
-                    ? "bg-white shadow-[0_8px_30px_-12px_rgba(0,0,0,0.06)] border-t-[3px] border-crimson hover:shadow-[0_16px_40px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-2 cursor-pointer"
-                    : "bg-white/50 border border-border/60 opacity-95 hover:opacity-100 hover:-translate-y-1 cursor-default",
+                    ? "bg-white shadow-[0_8px_30px_-12px_rgba(0,0,0,0.08)] ring-1 ring-border/60 hover:shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] hover:-translate-y-2 cursor-pointer"
+                    : "bg-white/70 ring-1 ring-border/60 opacity-95 hover:opacity-100 hover:-translate-y-1 cursor-default",
                 )}
               >
+                {/* Flag color stripe */}
+                <div
+                  aria-hidden="true"
+                  className="absolute top-0 left-0 right-0 h-1.5 flex"
+                >
+                  {c.flag.map((color, i) => (
+                    <div key={i} className="flex-1" style={{ backgroundColor: color }} />
+                  ))}
+                </div>
+                <div className="text-3xl mb-4" aria-hidden="true">{c.emoji}</div>
                 <span
                   className={cn(
                     "mb-5 px-3.5 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.15em] uppercase border",
                     c.available
-                      ? "bg-crimson/5 text-crimson border-crimson/10"
+                      ? "bg-crimson text-white border-crimson"
                       : "bg-muted text-muted-foreground border-border",
                   )}
                 >
@@ -56,7 +68,7 @@ export function CountrySelector() {
                 <h3
                   className={cn(
                     "font-display font-semibold leading-[0.95] mb-2",
-                    c.available ? "text-4xl md:text-5xl" : "text-3xl md:text-4xl",
+                    c.available ? "text-3xl md:text-4xl" : "text-2xl md:text-3xl",
                   )}
                   style={{ color: c.available ? "#1B2A4A" : "#5A6478" }}
                 >
