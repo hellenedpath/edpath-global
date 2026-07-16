@@ -222,7 +222,7 @@ export default function Index() {
           />
         </div>
 
-        <div className="container relative py-28 md:py-36 lg:py-44 max-w-5xl">
+        <div className="container relative py-28 md:py-36 lg:py-44 max-w-5xl pointer-events-none">
           <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-10">
             <span className="w-8 h-px bg-crimson" />
             EdPath Global
