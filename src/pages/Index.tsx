@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { ChevronDown, Shield, RefreshCw, Compass } from "lucide-react";
+import { ChevronDown, Shield, RefreshCw, Compass, ArrowRight } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
 
 export default function Index() {
@@ -16,8 +16,16 @@ export default function Index() {
   }[];
   return (
     <>
-      <section className="relative bg-navy text-primary-foreground overflow-hidden">
-        {/* Graphic backdrop: deep navy + routes + stylized globe */}
+      <section className="relative text-primary-foreground overflow-hidden">
+        {/* Base gradient: deep navy → richer purple at base */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(180deg, hsl(228 55% 12%) 0%, hsl(228 49% 18%) 40%, hsl(245 55% 22%) 85%, hsl(262 55% 26%) 100%)",
+          }}
+        />
+        {/* Graphic backdrop: routes + stylized globe */}
         <div className="absolute inset-0 pointer-events-none">
           <svg
             className="absolute inset-0 w-full h-full"
@@ -27,18 +35,22 @@ export default function Index() {
           >
             <defs>
               <radialGradient id="glowPurple" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="hsl(var(--purple))" stopOpacity="0.35" />
+                <stop offset="0%" stopColor="hsl(var(--purple))" stopOpacity="0.55" />
                 <stop offset="100%" stopColor="hsl(var(--purple))" stopOpacity="0" />
               </radialGradient>
               <radialGradient id="glowCrimson" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="hsl(var(--crimson))" stopOpacity="0.3" />
+                <stop offset="0%" stopColor="hsl(var(--crimson))" stopOpacity="0.45" />
                 <stop offset="100%" stopColor="hsl(var(--crimson))" stopOpacity="0" />
               </radialGradient>
               <linearGradient id="routeStroke" x1="0" x2="1" y1="0" y2="0">
-                <stop offset="0%" stopColor="hsl(var(--purple))" stopOpacity="0" />
-                <stop offset="50%" stopColor="hsl(var(--purple))" stopOpacity="0.7" />
+                <stop offset="0%" stopColor="hsl(262 90% 78%)" stopOpacity="0" />
+                <stop offset="50%" stopColor="hsl(262 90% 78%)" stopOpacity="1" />
                 <stop offset="100%" stopColor="hsl(var(--crimson))" stopOpacity="0" />
               </linearGradient>
+              <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="hsl(var(--crimson))" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="hsl(var(--crimson))" stopOpacity="0" />
+              </radialGradient>
             </defs>
 
             {/* Ambient glows */}
@@ -46,9 +58,9 @@ export default function Index() {
             <circle cx="1250" cy="620" r="360" fill="url(#glowCrimson)" />
 
             {/* Stylized globe (right side) */}
-            <g transform="translate(1180 450)" opacity="0.55">
-              <circle r="290" fill="none" stroke="hsl(var(--purple))" strokeOpacity="0.35" strokeWidth="1" />
-              <circle r="290" fill="none" stroke="hsl(var(--crimson))" strokeOpacity="0.25" strokeWidth="1" />
+            <g transform="translate(1180 450)">
+              <circle r="290" fill="hsl(228 55% 10% / 0.35)" />
+              <circle r="290" fill="none" stroke="hsl(262 90% 78%)" strokeOpacity="0.75" strokeWidth="1.5" />
               {/* Meridians */}
               {[0, 30, 60, 90, 120, 150].map((a) => (
                 <ellipse
@@ -56,8 +68,8 @@ export default function Index() {
                   rx="290"
                   ry={290 * Math.abs(Math.cos((a * Math.PI) / 180))}
                   fill="none"
-                  stroke="hsl(var(--purple))"
-                  strokeOpacity="0.22"
+                  stroke="hsl(262 90% 78%)"
+                  strokeOpacity="0.45"
                   strokeWidth="1"
                   transform={`rotate(${a})`}
                 />
@@ -70,12 +82,12 @@ export default function Index() {
                   rx={290 * Math.cos((lat * Math.PI) / 180)}
                   ry={10}
                   fill="none"
-                  stroke="hsl(var(--purple))"
-                  strokeOpacity="0.2"
+                  stroke="hsl(262 90% 78%)"
+                  strokeOpacity="0.4"
                   strokeWidth="1"
                 />
               ))}
-              {/* Destination dots */}
+              {/* Destination dots — pulsing crimson */}
               {[
                 [-180, -60],
                 [-40, -140],
@@ -86,14 +98,22 @@ export default function Index() {
                 [-220, 30],
               ].map(([x, y], i) => (
                 <g key={i}>
-                  <circle cx={x} cy={y} r="6" fill="hsl(var(--crimson))" opacity="0.9" />
-                  <circle cx={x} cy={y} r="14" fill="hsl(var(--crimson))" opacity="0.15" />
+                  <circle cx={x} cy={y} r="28" fill="url(#dotGlow)" />
+                  <circle cx={x} cy={y} r="5" fill="hsl(var(--crimson))">
+                    <animate
+                      attributeName="opacity"
+                      values="1;0.45;1"
+                      dur={`${2.2 + (i % 3) * 0.6}s`}
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                  <circle cx={x} cy={y} r="2" fill="#ffffff" opacity="0.95" />
                 </g>
               ))}
             </g>
 
-            {/* Route lines (dashed) traversing the canvas */}
-            <g fill="none" stroke="url(#routeStroke)" strokeWidth="1.25" strokeDasharray="2 8" strokeLinecap="round" opacity="0.75">
+            {/* Route lines traversing the canvas */}
+            <g fill="none" stroke="url(#routeStroke)" strokeWidth="2" strokeDasharray="4 10" strokeLinecap="round">
               <path d="M -50 250 Q 400 120 900 300 T 1650 220" />
               <path d="M -50 520 Q 350 700 780 520 T 1650 560" />
               <path d="M 120 800 Q 500 620 950 780 T 1650 720" />
@@ -101,19 +121,19 @@ export default function Index() {
             </g>
 
             {/* Faint grid latitude lines */}
-            <g stroke="hsl(0 0% 100% / 0.05)" strokeWidth="1">
+            <g stroke="hsl(0 0% 100% / 0.06)" strokeWidth="1">
               {[150, 300, 450, 600, 750].map((y) => (
                 <line key={y} x1="0" y1={y} x2="1600" y2={y} />
               ))}
             </g>
           </svg>
 
-          {/* Left-side navy fade so text stays readable */}
+          {/* Left-side fade so text stays readable — keeps graphics visible on the right */}
           <div
             className="absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(to right, hsl(var(--navy)) 0%, hsl(var(--navy) / 0.85) 40%, hsl(var(--navy) / 0.45) 75%, hsl(var(--navy) / 0.35) 100%)",
+                "linear-gradient(to right, hsl(228 55% 12% / 0.92) 0%, hsl(228 55% 12% / 0.7) 35%, hsl(228 55% 12% / 0.15) 70%, transparent 100%)",
             }}
           />
         </div>
@@ -123,18 +143,18 @@ export default function Index() {
             <span className="w-8 h-px bg-crimson" />
             EdPath Global
           </div>
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight text-white max-w-4xl">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-[80px] font-semibold leading-[1.02] tracking-tight text-white max-w-4xl drop-shadow-[0_4px_30px_rgba(0,0,0,0.35)]">
             {t("home.title")}
           </h1>
-          <p className="mt-8 text-lg md:text-xl lg:text-2xl text-primary-foreground/80 max-w-xl leading-[1.5]">
+          <p className="mt-8 text-lg md:text-xl lg:text-2xl text-primary-foreground/85 max-w-xl leading-[1.5]">
             {t("home.subtitle")}
           </p>
           <a
             href="#destinos"
-            className="group mt-12 inline-flex items-center gap-2.5 rounded-lg border border-white/30 bg-white/[0.07] px-7 py-4 text-sm font-medium text-primary-foreground/90 hover:bg-white/10 transition-colors"
+            className="group mt-12 inline-flex items-center gap-2.5 rounded-lg bg-crimson px-8 py-4 text-[15px] font-semibold text-white shadow-[0_12px_30px_-8px_hsl(var(--crimson)/0.6)] hover:bg-crimson/90 hover:shadow-[0_16px_40px_-8px_hsl(var(--crimson)/0.7)] hover:-translate-y-0.5 transition-all"
           >
             {t("home.ctaChoose")}
-            <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </a>
         </div>
       </section>
@@ -142,17 +162,20 @@ export default function Index() {
       {/* Pillars */}
       <section className="bg-background border-b border-border/60">
         <div className="container max-w-6xl py-20 md:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {pillars.map(({ icon: Icon, key }) => (
-              <div key={key} className="flex flex-col">
-                <div className="w-11 h-11 rounded-lg bg-navy/[0.04] border border-navy/10 flex items-center justify-center mb-5">
-                  <Icon className="w-5 h-5 text-navy" strokeWidth={1.5} />
+              <div
+                key={key}
+                className="group relative flex flex-col items-center text-center rounded-2xl bg-white p-10 md:p-12 ring-1 ring-border/60 shadow-[0_8px_30px_-16px_rgba(5,21,86,0.15)] hover:shadow-[0_18px_44px_-18px_rgba(5,21,86,0.25)] hover:-translate-y-1 transition-all duration-500"
+              >
+                <div className="w-16 h-16 rounded-2xl bg-crimson/10 flex items-center justify-center mb-6 ring-1 ring-crimson/15">
+                  <Icon className="w-8 h-8 text-crimson" strokeWidth={1.75} />
                 </div>
                 <h3 className="font-display text-2xl md:text-[26px] font-semibold text-navy tracking-tight">
                   {t(`pillars.${key}.title`)}
                 </h3>
-                <div className="h-px w-8 bg-crimson mt-3 mb-4" />
-                <p className="text-muted-foreground text-[15px] leading-relaxed max-w-sm">
+                <div className="h-px w-10 bg-crimson mt-3 mb-4" />
+                <p className="text-muted-foreground text-[15px] leading-relaxed max-w-xs">
                   {t(`pillars.${key}.body`)}
                 </p>
               </div>
