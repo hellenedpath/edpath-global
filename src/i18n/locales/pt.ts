@@ -39,6 +39,7 @@ export const pt = {
       startHere: "Comece aqui",
       chooseSchool: "Escolha sua escola",
       planCosts: "Planeje os custos",
+      applyVisa: "Aplique para o visto",
       prepareMove: "Prepare a mudança",
     },
     items: {
@@ -50,6 +51,7 @@ export const pt = {
       costsSimulator: "Simulador de Custos",
       realCosts: "Custos reais",
       before: "Antes de Começar",
+      studyPermit: "Study Permit — Como aplicar",
       renting: "Alugar no Canadá",
       rentalScams: "Golpes de aluguel",
       costs: "Custos",
@@ -1524,6 +1526,77 @@ export const pt = {
     title: "Um lembrete",
     body:
       "Informações baseadas em fontes oficiais e médias de mercado. Não confirmam o seu caso individual. As regras variam por província — confirme sempre com o órgão oficial da sua província.",
+  },
+
+  studyPermit: {
+    hero: {
+      tag: "Aplique para o visto",
+      title: "Study Permit — Como aplicar",
+      subtitle:
+        "O documento que autoriza você a estudar no Canadá. Veja os passos oficiais do processo, do aceite à chegada.",
+    },
+    intro: {
+      title: "Antes de começar",
+      body:
+        "O study permit é o documento que autoriza você a estudar no Canadá. Veja os passos oficiais do processo. Estas são informações gerais baseadas no IRCC e não confirmam o seu caso — apenas o IRCC decide.",
+    },
+    steps: [
+      {
+        n: 1,
+        title: "Carta de aceite (Letter of Acceptance)",
+        body:
+          "De uma instituição designada (DLI). Deve estar em papel timbrado oficial e mostrar o valor da mensalidade, as datas de início e fim do programa e o prazo de matrícula.",
+      },
+      {
+        n: 2,
+        title: "PAL/TAL (Provincial Attestation Letter)",
+        body:
+          "Na maioria dos casos, você precisa aceitar a oferta e pagar a mensalidade (parte ou total) para a escola emitir. Mestrado e doutorado em DLI pública estão isentos desde 1º de janeiro de 2026.",
+      },
+      {
+        n: 3,
+        title: "Prova de fundos",
+        body:
+          "CAD $22.895/ano (fora de Quebec) + mensalidade do primeiro ano + passagem. Aceitos: extrato bancário dos últimos 4 meses, GIC, carta de bolsa ou declaração de patrocinador.",
+      },
+      {
+        n: 4,
+        title: "Passaporte válido + 2 fotos",
+        body:
+          "Passaporte válido durante todo o período de estudos e duas fotos no padrão exigido pelo IRCC.",
+      },
+      {
+        n: 5,
+        title: "Aplicar online",
+        body:
+          "A aplicação é obrigatoriamente online, pelo IRCC Secure Account. Você preenche o formulário e paga as taxas: study permit CAD $150 + biometria CAD $85.",
+      },
+      {
+        n: 6,
+        title: "Biometria",
+        body:
+          "Depois de aplicar, você recebe a carta de instrução (BIL) e tem 30 dias para dar sua biometria num centro de aplicação (VAC). Válida por 10 anos.",
+      },
+      {
+        n: 7,
+        title: "Processamento e chegada",
+        body:
+          "Se aprovado de fora do Canadá, você recebe uma carta de introdução (port-of-entry letter). O permit físico é emitido quando você chega ao Canadá.",
+      },
+    ],
+    links: {
+      title: "Links oficiais",
+      body:
+        "Consulte sempre a fonte oficial antes de aplicar. As regras e taxas podem mudar sem aviso.",
+      apply: "Como aplicar (IRCC)",
+      documents: "Documentos necessários (IRCC)",
+      visaOffice: "Instruções do escritório de visto do seu país (IRCC)",
+    },
+    seal: {
+      title: "Um lembrete",
+      body:
+        "Informações baseadas no IRCC oficial. As regras e taxas mudam — confirme sempre em canada.ca antes de aplicar. Para decisões sobre o seu caso, consulte um RCIC licenciado.",
+    },
   },
 
 };

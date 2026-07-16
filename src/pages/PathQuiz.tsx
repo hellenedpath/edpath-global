@@ -127,11 +127,11 @@ type Step = { n: number; Icon: typeof Compass; href?: string };
 
 const STEPS: Step[] = [
   { n: 1, Icon: Compass, href: "/canada" },
-  { n: 2, Icon: Languages, href: "/antes-de-comecar" },
+  { n: 2, Icon: Languages, href: "/study-permit" },
   { n: 3, Icon: BookOpen, href: "/programas" },
   { n: 4, Icon: GraduationCap, href: "/canada/pgwp" },
   { n: 5, Icon: DollarSign, href: "/custos" },
-  { n: 6, Icon: FileCheck, href: "/antes-de-comecar" },
+  { n: 6, Icon: FileCheck, href: "/study-permit" },
   { n: 7, Icon: Plane, href: "/trabalho-moradia" },
   { n: 8, Icon: Home, href: "/trabalho-moradia" },
 ];
