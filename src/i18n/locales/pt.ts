@@ -78,6 +78,53 @@ export const pt = {
       ireland: "Irlanda",
     },
   },
+  canadaSteps: {
+    eyebrow: "Seu caminho, passo a passo",
+    title: "Do zero ao Canadá em 6 passos",
+    subtitle: "Um estudante que nunca saiu do país precisa de uma sequência clara. Siga na ordem — cada passo prepara o próximo.",
+    stepLabel: "Passo",
+    primaryCta: "Começar este passo",
+    alsoSee: "Veja também",
+    nextHint: "Depois disso",
+    items: {
+      path: {
+        title: "Descubra seu caminho",
+        desc: "Não sabe por onde começar? Responda algumas perguntas e receba seu roteiro personalizado.",
+        cta: "Fazer o diagnóstico",
+      },
+      school: {
+        title: "Escolha sua escola e curso",
+        desc: "Verifique se o curso dá direito ao PGWP e encontre as instituições certas.",
+        cta: "Verificar PGWP",
+        alt1: "Ver instituições",
+        alt2: "Explorar programas",
+      },
+      costs: {
+        title: "Entenda os custos",
+        desc: "Quanto custa de verdade: mensalidade, prova de fundos e custo de vida.",
+        cta: "Ver custos",
+        alt1: "Simulador de custos",
+      },
+      visa: {
+        title: "Aplique para o visto",
+        desc: "Os documentos, as taxas e o passo a passo do study permit — e como evitar golpes.",
+        cta: "Ver Study Permit",
+      },
+      move: {
+        title: "Prepare sua mudança",
+        desc: "Onde morar, como alugar com segurança e evitar golpes de aluguel.",
+        cta: "Alugar no Canadá",
+        alt1: "Golpes de aluguel",
+        alt2: "Trabalho e moradia",
+      },
+      arrival: {
+        title: "Ao chegar",
+        desc: "Saúde, família, adaptação e seus primeiros passos no Canadá.",
+        cta: "Saúde no Canadá",
+        alt1: "Família",
+      },
+    },
+  },
   pages: {
     about: "Sobre",
     canada: "Canadá",

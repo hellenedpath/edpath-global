@@ -85,6 +85,53 @@ export const en = {
       ireland: "Ireland",
     },
   },
+  canadaSteps: {
+    eyebrow: "Your path, step by step",
+    title: "From zero to Canada in 6 steps",
+    subtitle: "A student who has never left home needs a clear sequence. Follow the order — each step sets up the next.",
+    stepLabel: "Step",
+    primaryCta: "Start this step",
+    alsoSee: "See also",
+    nextHint: "After this",
+    items: {
+      path: {
+        title: "Find your path",
+        desc: "Not sure where to start? Answer a few questions and get a personalized roadmap.",
+        cta: "Take the quiz",
+      },
+      school: {
+        title: "Choose your school and program",
+        desc: "Check if the program qualifies for PGWP and find the right institutions.",
+        cta: "Check PGWP",
+        alt1: "Browse institutions",
+        alt2: "Explore programs",
+      },
+      costs: {
+        title: "Understand the costs",
+        desc: "The real numbers: tuition, proof of funds, and cost of living.",
+        cta: "See costs",
+        alt1: "Cost simulator",
+      },
+      visa: {
+        title: "Apply for the visa",
+        desc: "Documents, fees, and the study permit step by step — and how to avoid scams.",
+        cta: "See Study Permit",
+      },
+      move: {
+        title: "Prepare your move",
+        desc: "Where to live, how to rent safely, and how to avoid rental scams.",
+        cta: "Renting in Canada",
+        alt1: "Rental scams",
+        alt2: "Work and housing",
+      },
+      arrival: {
+        title: "On arrival",
+        desc: "Health, family, adjusting, and your first steps in Canada.",
+        cta: "Health in Canada",
+        alt1: "Family",
+      },
+    },
+  },
   pages: {
     about: "About",
     canada: "Canada",
