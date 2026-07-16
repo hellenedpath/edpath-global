@@ -51,6 +51,8 @@ export type Database = {
         Row: {
           application_fee: string | null
           boarding: string | null
+          boarding_en: string | null
+          boarding_pt: string | null
           city: string | null
           country: string | null
           created_at: string | null
@@ -62,6 +64,8 @@ export type Database = {
           level: string | null
           name: string
           notes: string | null
+          notes_en: string | null
+          notes_pt: string | null
           phone: string | null
           province: string | null
           region: string | null
@@ -73,6 +77,8 @@ export type Database = {
         Insert: {
           application_fee?: string | null
           boarding?: string | null
+          boarding_en?: string | null
+          boarding_pt?: string | null
           city?: string | null
           country?: string | null
           created_at?: string | null
@@ -84,6 +90,8 @@ export type Database = {
           level?: string | null
           name: string
           notes?: string | null
+          notes_en?: string | null
+          notes_pt?: string | null
           phone?: string | null
           province?: string | null
           region?: string | null
@@ -95,6 +103,8 @@ export type Database = {
         Update: {
           application_fee?: string | null
           boarding?: string | null
+          boarding_en?: string | null
+          boarding_pt?: string | null
           city?: string | null
           country?: string | null
           created_at?: string | null
@@ -106,6 +116,8 @@ export type Database = {
           level?: string | null
           name?: string
           notes?: string | null
+          notes_en?: string | null
+          notes_pt?: string | null
           phone?: string | null
           province?: string | null
           region?: string | null

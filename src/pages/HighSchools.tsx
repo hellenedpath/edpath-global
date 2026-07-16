@@ -28,12 +28,18 @@ type HighSchool = {
   grades: string | null;
   homestay: string | null;
   boarding: string | null;
+  boarding_pt: string | null;
+  boarding_en: string | null;
   school_type: string | null;
   notes: string | null;
+  notes_pt: string | null;
+  notes_en: string | null;
 };
 
+
 export default function HighSchools() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEnglish = i18n.language.startsWith("en");
   const [items, setItems] = useState<HighSchool[]>([]);
   const [loading, setLoading] = useState(true);
   const [region, setRegion] = useState<string>("all");
@@ -42,13 +48,12 @@ export default function HighSchools() {
   );
   const [query, setQuery] = useState("");
 
+
   useEffect(() => {
     (async () => {
       const { data, error } = await supabase
         .from("high_schools")
-        .select(
-          "id,name,city,region,website,email,phone,application_fee,tuition_annual,diploma,grades,homestay,boarding,school_type,notes",
-        )
+        .select("*")
         .order("region", { ascending: true })
         .order("name", { ascending: true });
 
@@ -56,6 +61,7 @@ export default function HighSchools() {
       setLoading(false);
     })();
   }, []);
+
 
   const regions = useMemo(() => {
     const set = new Set<string>();
@@ -79,7 +85,20 @@ export default function HighSchools() {
     });
   }, [items, region, schoolType, query]);
 
+  const cardNotes = (it: HighSchool) =>
+    isEnglish ? it.notes_en : it.notes_pt;
+
+  const cardBoarding = (it: HighSchool) =>
+    isEnglish ? it.boarding_en : it.boarding_pt;
+
+  const formatTuition = (value: string | null) => {
+    if (!value) return t("highSchools.card.tuitionMissing");
+    if (isEnglish && value.includes("/ano")) return value.replace("/ano", "/year");
+    return value;
+  };
+
   const typeOptions: Array<{ value: "all" | "public" | "private"; label: string }> = [
+
     { value: "all", label: t("highSchools.filters.allTypes") },
     { value: "public", label: t("highSchools.filters.public") },
     { value: "private", label: t("highSchools.filters.private") },
@@ -235,11 +254,12 @@ export default function HighSchools() {
                 </div>
               </div>
 
-              {it.notes && (
+              {cardNotes(it) && (
                 <p className="mt-4 text-sm text-foreground/80 leading-relaxed">
-                  {it.notes}
+                  {cardNotes(it)}
                 </p>
               )}
+
 
               <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
                 {it.diploma && (
@@ -262,13 +282,14 @@ export default function HighSchools() {
                     <dd className="font-medium text-foreground">{it.homestay}</dd>
                   </div>
                 )}
-                {it.school_type === "private" && it.boarding && (
+                {it.school_type === "private" && cardBoarding(it) && (
                   <div className="flex items-center gap-1.5 col-span-2">
                     <Bed className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
                     <dt className="text-muted-foreground">{t("highSchools.card.boarding")}:</dt>
-                    <dd className="font-medium text-foreground">{it.boarding}</dd>
+                    <dd className="font-medium text-foreground">{cardBoarding(it)}</dd>
                   </div>
                 )}
+
                 {it.application_fee && (
                   <div className="flex items-center gap-1.5">
                     <dt className="text-muted-foreground">{t("highSchools.card.applicationFee")}:</dt>
@@ -279,7 +300,7 @@ export default function HighSchools() {
                   <div className="flex items-center gap-1.5">
                     <dt className="text-muted-foreground">{t("highSchools.card.tuition")}:</dt>
                     <dd className="font-medium text-foreground">
-                      {it.tuition_annual ? it.tuition_annual : t("highSchools.card.tuitionMissing")}
+                      {formatTuition(it.tuition_annual)}
                     </dd>
                   </div>
                   {it.tuition_annual && (
@@ -288,6 +309,7 @@ export default function HighSchools() {
                     </p>
                   )}
                 </div>
+
 
               </dl>
 
