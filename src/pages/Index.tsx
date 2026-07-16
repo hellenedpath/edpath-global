@@ -54,14 +54,14 @@ export default function Index() {
           />
         </div>
 
-        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-[52%_48%] gap-10 lg:gap-12 items-start pt-10 md:pt-12 lg:pt-14 pb-8 md:pb-10 lg:pb-12 lg:min-h-[48vh]">
+        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-[52%_48%] gap-10 lg:gap-12 items-start pt-12 md:pt-14 lg:pt-16 pb-16 md:pb-20 lg:pb-24">
           {/* Left column: text */}
           <div className="flex flex-col justify-start max-w-xl">
-            <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-14">
+            <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-12">
               <span className="w-8 h-px bg-crimson" />
               EdPath Global
             </div>
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.15] tracking-[-0.02em] text-white">
+            <h1 className="font-display text-5xl md:text-6xl font-bold leading-[1.15] tracking-[-0.02em] text-white">
               {t("home.title")}
             </h1>
             <p className="mt-12 text-lg md:text-xl text-primary-foreground/80 leading-relaxed font-sans max-w-md">
