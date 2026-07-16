@@ -26,6 +26,7 @@ import {
 
 type Item = { title: string; content: string };
 type AccommodationItem = { tag: string; price: string; desc: string };
+type TuitionItem = { tag: string; price: string; desc: string };
 
 const itemIcons = [GraduationCap, Home, UtensilsCrossed, Bus, Heart, Plane];
 
@@ -60,6 +61,7 @@ export default function Costs() {
 
   const items = t("costs.components.items", { returnObjects: true }) as unknown as Item[];
   const accommodation = t("realCosts.accommodation.items", { returnObjects: true }) as unknown as AccommodationItem[];
+  const tuitionItems = t("costs.tuition.items", { returnObjects: true }) as unknown as TuitionItem[];
 
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat("en-CA", {
