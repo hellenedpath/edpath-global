@@ -1,6 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Search, GraduationCap, ExternalLink, Mail, Home, Award, Info } from "lucide-react";
+import {
+  Search,
+  GraduationCap,
+  ExternalLink,
+  Mail,
+  Home,
+  Award,
+  Info,
+  Bed,
+} from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -18,6 +27,8 @@ type HighSchool = {
   diploma: string | null;
   grades: string | null;
   homestay: string | null;
+  boarding: string | null;
+  school_type: string | null;
   notes: string | null;
 };
 
@@ -26,6 +37,9 @@ export default function HighSchools() {
   const [items, setItems] = useState<HighSchool[]>([]);
   const [loading, setLoading] = useState(true);
   const [region, setRegion] = useState<string>("all");
+  const [schoolType, setSchoolType] = useState<"all" | "public" | "private">(
+    "all",
+  );
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -33,8 +47,9 @@ export default function HighSchools() {
       const { data, error } = await supabase
         .from("high_schools")
         .select(
-          "id,name,city,region,website,email,phone,application_fee,tuition_annual,diploma,grades,homestay,notes",
+          "id,name,city,region,website,email,phone,application_fee,tuition_annual,diploma,grades,homestay,boarding,school_type,notes",
         )
+        .order("school_type", { ascending: false })
         .order("region", { ascending: true })
         .order("name", { ascending: true });
       if (!error && data) setItems(data as HighSchool[]);
@@ -55,13 +70,35 @@ export default function HighSchools() {
     const q = query.trim().toLowerCase();
     return items.filter((it) => {
       if (region !== "all" && it.region !== region) return false;
+      if (schoolType !== "all" && it.school_type !== schoolType) return false;
       if (q) {
-        const hay = `${it.name} ${it.city ?? ""}`.toLowerCase();
+        const hay = `${it.name} ${it.city ?? ""} ${it.region ?? ""}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
-  }, [items, region, query]);
+  }, [items, region, schoolType, query]);
+
+  const typeOptions: Array<{ value: "all" | "public" | "private"; label: string }> = [
+    { value: "all", label: t("highSchools.filters.allTypes") },
+    { value: "public", label: t("highSchools.filters.public") },
+    { value: "private", label: t("highSchools.filters.private") },
+  ];
+
+  const typeBadge = (type: string | null) => {
+    const isPrivate = type === "private";
+    return (
+      <span
+        className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border ${
+          isPrivate
+            ? "bg-[hsl(var(--crimson))]/10 text-[hsl(var(--crimson))] border-[hsl(var(--crimson))]/20"
+            : "bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))] border-[hsl(var(--azul))]/20"
+        }`}
+      >
+        {isPrivate ? t("highSchools.card.type.private") : t("highSchools.card.type.public")}
+      </span>
+    );
+  };
 
   return (
     <>
@@ -108,6 +145,30 @@ export default function HighSchools() {
               placeholder={t("highSchools.filters.searchPlaceholder")}
               className="pl-9"
             />
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-sm text-muted-foreground mr-1">
+              {t("highSchools.filters.typeLabel")}
+            </span>
+            {typeOptions.map((opt) => {
+              const active = schoolType === opt.value;
+              return (
+                <Button
+                  key={opt.value}
+                  variant={active ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSchoolType(opt.value)}
+                  className={
+                    active
+                      ? "bg-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/90 text-white border-transparent"
+                      : ""
+                  }
+                >
+                  {opt.label}
+                </Button>
+              );
+            })}
           </div>
 
           <div className="flex flex-wrap gap-2">
@@ -162,6 +223,7 @@ export default function HighSchools() {
                   <GraduationCap className="h-5 w-5" />
                 </div>
                 <div className="min-w-0">
+                  <div className="mb-2">{typeBadge(it.school_type)}</div>
                   <h3 className="font-display text-lg font-semibold text-foreground leading-snug">
                     {it.name}
                   </h3>
@@ -198,6 +260,13 @@ export default function HighSchools() {
                     <Home className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
                     <dt className="text-muted-foreground">{t("highSchools.card.homestay")}:</dt>
                     <dd className="font-medium text-foreground">{it.homestay}</dd>
+                  </div>
+                )}
+                {it.school_type === "private" && it.boarding && (
+                  <div className="flex items-center gap-1.5 col-span-2">
+                    <Bed className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
+                    <dt className="text-muted-foreground">{t("highSchools.card.boarding")}:</dt>
+                    <dd className="font-medium text-foreground">{it.boarding}</dd>
                   </div>
                 )}
                 {it.application_fee && (
