@@ -28,26 +28,6 @@ export const pt = {
     ctaQuiz: "Descubra seu caminho em 2 minutos",
     ctaExplore: "Explorar por destino",
     quizNote: "6 perguntas rápidas · roteiro personalizado em 8 etapas",
-    trust: {
-      title: "Por que confiar no EdPath",
-      items: [
-        {
-          title: "Informação honesta, sem comissões",
-          content:
-            "Diferente de agentes tradicionais, mostramos os riscos de elegibilidade que outros escondem.",
-        },
-        {
-          title: "Baseado em dados oficiais",
-          content:
-            "Nossas informações vêm de fontes oficiais do governo canadense (IRCC, CIP).",
-        },
-        {
-          title: "Guiamos você em cada etapa",
-          content:
-            "Da exploração à chegada, um caminho completo e claro.",
-        },
-      ],
-    },
   },
   canadaNav: {
     beforeYouGo: "Antes de ir",
