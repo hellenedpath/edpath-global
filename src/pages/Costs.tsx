@@ -377,6 +377,54 @@ export default function Costs() {
         </div>
       </section>
 
+      {/* Tuition */}
+      <section className="bg-white border-y border-border">
+        <div className="container py-16 md:py-24 max-w-5xl">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="font-display text-3xl md:text-4xl font-semibold text-navy">
+              {t("costs.tuition.title")}
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              {t("costs.tuition.subtitle")}
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {tuitionItems.map((item) => (
+              <Card key={item.tag} className="border-border shadow-sm">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul shrink-0">
+                      <GraduationCap className="w-5 h-5" />
+                    </span>
+                    <span className="text-xs uppercase tracking-widest text-azul font-medium">
+                      {item.tag}
+                    </span>
+                  </div>
+                  <CardTitle className="font-display text-2xl text-navy mt-3">
+                    {item.price}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-sm text-muted-foreground leading-relaxed">
+                  {item.desc}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <p className="mt-6 text-center text-xs text-muted-foreground italic">
+            {t("costs.tuition.note")}
+          </p>
+
+          <div className="mt-4 text-center">
+            <SourceLink
+              href={t("costs.tuition.sourceUrl")}
+              label={t("costs.tuition.sourceLabel")}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Components */}
       <section className="bg-white border-y border-border">
         <div className="container py-16 md:py-24 max-w-5xl">
