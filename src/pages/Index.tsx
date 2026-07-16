@@ -82,13 +82,31 @@ export default function Index() {
       </section>
 
       {/* Pillars */}
-      <section className="bg-white">
-        <div className="container max-w-6xl py-20 md:py-28">
+      <section className="relative bg-white">
+        {/* Soft transition from navy hero to white */}
+        <div
+          className="absolute top-0 inset-x-0 h-24 -translate-y-full pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(180deg, hsl(221 60% 24%) 0%, hsl(221 55% 18%) 40%, transparent 100%)",
+          }}
+        />
+        <div className="container max-w-6xl pt-12 md:pt-16 pb-14 md:pb-18">
+          <div className="text-center mb-10 md:mb-12">
+            <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
+              <span className="w-6 h-px bg-crimson" />
+              {t("pillars.eyebrow")}
+              <span className="w-6 h-px bg-crimson" />
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy tracking-tight">
+              {t("pillars.title")}
+            </h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {pillars.map(({ icon: Icon, key }) => (
               <div
                 key={key}
-                className="group flex flex-col items-center text-center rounded-2xl bg-white p-8 md:p-10 ring-1 ring-border/50 shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)] hover:shadow-[0_8px_24px_-8px_rgba(5,21,86,0.12)] hover:-translate-y-0.5 transition-all duration-300"
+                className="group flex flex-col items-center text-center rounded-2xl bg-white p-8 md:p-10 ring-1 ring-border/60 shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)] hover:shadow-[0_8px_24px_-8px_rgba(5,21,86,0.12)] hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-crimson/10 flex items-center justify-center mb-6">
                   <Icon className="w-6 h-6 text-crimson" strokeWidth={1.5} />
