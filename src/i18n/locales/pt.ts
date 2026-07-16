@@ -1569,7 +1569,11 @@ export const pt = {
         n: 5,
         title: "Aplicar online",
         body:
-          "A aplicação é obrigatoriamente online, pelo IRCC Secure Account. Você preenche o formulário e paga as taxas: study permit CAD $150 + biometria CAD $85.",
+          "A aplicação é feita na página oficial do IRCC. Crie sua conta no IRCC Secure Account e aplique diretamente — os formulários são gratuitos.",
+        link: {
+          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/apply.html",
+          label: "Aplicar pelo site oficial do IRCC",
+        },
       },
       {
         n: 6,

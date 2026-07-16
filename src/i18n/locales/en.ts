@@ -1566,7 +1566,11 @@ export const en = {
         n: 5,
         title: "Apply online",
         body:
-          "The application must be submitted online through the IRCC Secure Account. You fill out the form and pay the fees: study permit CAD $150 + biometrics CAD $85.",
+          "The application is done on the official IRCC page. Create your IRCC Secure Account and apply directly — the forms are free.",
+        link: {
+          href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/apply.html",
+          label: "Apply on the official IRCC website",
+        },
       },
       {
         n: 6,
