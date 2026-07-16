@@ -138,20 +138,20 @@ export default function Index() {
           />
         </div>
 
-        <div className="container relative py-24 md:py-32 lg:py-40 max-w-5xl">
-          <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-8">
+        <div className="container relative py-28 md:py-36 lg:py-44 max-w-5xl">
+          <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-10">
             <span className="w-8 h-px bg-crimson" />
             EdPath Global
           </div>
-          <h1 className="font-display text-5xl md:text-6xl lg:text-[84px] font-medium leading-[1.02] tracking-[-0.03em] text-white max-w-4xl drop-shadow-[0_4px_30px_rgba(0,0,0,0.35)]">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-[-0.02em] text-white max-w-4xl">
             {t("home.title")}
           </h1>
-          <p className="mt-7 text-lg md:text-xl text-primary-foreground/85 max-w-xl leading-[1.55] font-sans">
+          <p className="mt-8 text-lg md:text-xl text-primary-foreground/80 max-w-xl leading-relaxed font-sans">
             {t("home.subtitle")}
           </p>
           <a
             href="#destinos"
-            className="group mt-10 inline-flex items-center gap-2.5 rounded-md bg-crimson px-7 py-3.5 text-[14px] font-medium tracking-wide text-white shadow-[0_12px_30px_-8px_hsl(var(--crimson)/0.6)] hover:bg-crimson/90 hover:-translate-y-0.5 transition-all"
+            className="group mt-12 inline-flex items-center gap-2.5 rounded-xl bg-crimson px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_4px_16px_-4px_hsl(var(--crimson)/0.45)] hover:bg-crimson/90 hover:shadow-[0_8px_24px_-6px_hsl(var(--crimson)/0.55)] hover:-translate-y-0.5 transition-all duration-300"
           >
             {t("home.ctaChoose")}
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -160,22 +160,21 @@ export default function Index() {
       </section>
 
       {/* Pillars */}
-      <section className="bg-background border-b border-border/60">
-        <div className="container max-w-6xl py-16 md:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+      <section className="bg-white">
+        <div className="container max-w-6xl py-20 md:py-28">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {pillars.map(({ icon: Icon, key }) => (
               <div
                 key={key}
-                className="group relative flex flex-col items-center text-center rounded-2xl bg-white p-8 md:p-10 ring-1 ring-border/60 shadow-[0_8px_30px_-20px_rgba(5,21,86,0.15)] hover:shadow-[0_16px_40px_-20px_rgba(5,21,86,0.2)] hover:-translate-y-0.5 transition-all duration-500"
+                className="group flex flex-col items-center text-center rounded-2xl bg-white p-8 md:p-10 ring-1 ring-border/50 shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)] hover:shadow-[0_8px_24px_-8px_rgba(5,21,86,0.12)] hover:-translate-y-0.5 transition-all duration-300"
               >
-                <div className="w-14 h-14 rounded-xl bg-crimson/10 flex items-center justify-center mb-5 ring-1 ring-crimson/15">
-                  <Icon className="w-7 h-7 text-crimson" strokeWidth={1.75} />
+                <div className="w-12 h-12 rounded-xl bg-crimson/10 flex items-center justify-center mb-6">
+                  <Icon className="w-6 h-6 text-crimson" strokeWidth={1.5} />
                 </div>
-                <h3 className="font-display text-2xl font-medium text-navy tracking-tight">
+                <h3 className="text-xl md:text-2xl font-bold text-navy tracking-tight">
                   {t(`pillars.${key}.title`)}
                 </h3>
-                <div className="h-px w-8 bg-crimson mt-3 mb-4" />
-                <p className="text-muted-foreground text-[15px] leading-relaxed max-w-xs">
+                <p className="mt-3 text-muted-foreground text-[15px] leading-relaxed max-w-xs">
                   {t(`pillars.${key}.body`)}
                 </p>
               </div>
@@ -186,35 +185,30 @@ export default function Index() {
 
       {/* How it works */}
       <section className="bg-muted/40">
-        <div className="container max-w-6xl py-16 md:py-20">
-          <div className="text-center mb-12">
+        <div className="container max-w-6xl py-20 md:py-28">
+          <div className="text-center mb-16">
             <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
               <span className="w-6 h-px bg-crimson" />
               {t("howItWorks.eyebrow")}
               <span className="w-6 h-px bg-crimson" />
             </div>
-            <h2 className="font-display text-3xl md:text-5xl font-medium text-navy tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy tracking-tight">
               {t("howItWorks.title")}
             </h2>
           </div>
-          <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
-            <div
-              aria-hidden="true"
-              className="hidden md:block absolute top-6 left-[16.6%] right-[16.6%] h-px"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, hsl(var(--purple)/0.3), hsl(var(--crimson)/0.5), hsl(var(--purple)/0.3))",
-              }}
-            />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {steps.map((s) => (
-              <div key={s.n} className="relative flex flex-col items-center text-center px-4">
-                <div className="w-12 h-12 rounded-full bg-navy text-white flex items-center justify-center font-sans text-sm font-medium tracking-wider ring-4 ring-muted/40 relative z-10">
+              <div
+                key={s.n}
+                className="flex flex-col items-center text-center rounded-2xl bg-white p-8 md:p-10 ring-1 ring-border/50 shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)]"
+              >
+                <div className="w-12 h-12 rounded-full bg-crimson/10 text-crimson flex items-center justify-center font-sans text-sm font-bold tracking-wider">
                   {s.n}
                 </div>
-                <h3 className="mt-5 font-display text-xl md:text-2xl font-medium text-navy tracking-tight">
+                <h3 className="mt-6 text-xl md:text-2xl font-bold text-navy tracking-tight">
                   {s.title}
                 </h3>
-                <p className="mt-2 text-muted-foreground text-[15px] leading-relaxed max-w-xs">
+                <p className="mt-3 text-muted-foreground text-[15px] leading-relaxed max-w-xs">
                   {s.desc}
                 </p>
               </div>
