@@ -28,6 +28,29 @@ export const en = {
     ctaBefore: "Before You Start",
     ctaChoose: "Choose your destination",
   },
+  pillars: {
+    independent: {
+      title: "Independent",
+      body: "Made to guide you, with transparency.",
+    },
+    accurate: {
+      title: "Accurate & up to date",
+      body: "Verified information that keeps up with changing rules.",
+    },
+    guided: {
+      title: "Guided",
+      body: "A clear path, from the first step to your destination.",
+    },
+  },
+  howItWorks: {
+    eyebrow: "How it works",
+    title: "Three steps to your path",
+    steps: [
+      { n: "01", title: "Choose your destination", desc: "Start with the country that fits you." },
+      { n: "02", title: "Take your diagnosis", desc: "Answer a few questions and get a roadmap." },
+      { n: "03", title: "Follow your guided path", desc: "A clear path, step by step, until you arrive." },
+    ],
+  },
   canadaNav: {
     beforeYouGo: "Before you go",
     onArrival: "After you arrive",
