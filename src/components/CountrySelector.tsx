@@ -93,9 +93,6 @@ export function CountrySelector() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-navy leading-tight">
             {t("countries.title")}
           </h2>
-          <p className="mt-3 text-muted-foreground text-base max-w-xl mx-auto leading-relaxed">
-            {t("countries.subtitle")}
-          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

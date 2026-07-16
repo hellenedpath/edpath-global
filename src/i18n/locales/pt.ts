@@ -83,7 +83,6 @@ export const pt = {
   },
   countries: {
     title: "Escolha seu destino",
-    subtitle: "Comece pelo Canadá. Mais países chegando em breve.",
     available: "Disponível",
     soon: "Em breve",
     exploreCta: "Explorar conteúdo",
