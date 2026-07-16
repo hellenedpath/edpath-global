@@ -4,6 +4,7 @@ import {
   AlertTriangle,
   ExternalLink,
   FileText,
+  Shield,
   ShieldAlert,
 } from "lucide-react";
 
@@ -25,6 +26,20 @@ type Step = {
   n: number;
   title: string;
   body: string;
+  link?: { href: string; label: string };
+};
+
+type ScamLink = { label: string; href: string };
+
+type ScamSection = {
+  title: string;
+  intro: string;
+  rights: { title: string; items: string[] };
+  redFlags: { title: string; items: string[] };
+  protect: { title: string; items: string[] };
+  victim: { title: string; body: string };
+  links: { title: string; items: ScamLink[] };
+  seal: { title: string; body: string };
 };
 
 export default function StudyPermit() {
