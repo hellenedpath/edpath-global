@@ -38,6 +38,7 @@ export const pt = {
     items: {
       pgwp: "Verificador PGWP",
       institutions: "Instituições",
+      highSchools: "Ensino Médio (BC)",
       programs: "Explorar Programas",
       costsSimulator: "Simulador de Custos",
       before: "Antes de Começar",

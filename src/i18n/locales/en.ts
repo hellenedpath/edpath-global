@@ -39,6 +39,7 @@ export const en = {
     items: {
       pgwp: "PGWP Checker",
       institutions: "Institutions",
+      highSchools: "High School (BC)",
       programs: "Explore Programs",
       costsSimulator: "Cost Simulator",
       before: "Before You Start",
