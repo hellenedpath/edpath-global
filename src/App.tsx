@@ -48,6 +48,8 @@ const App = () => (
             <Route path="/custos" element={<Costs />} />
             <Route path="/simulador-financeiro" element={<FinancialSimulator />} />
             <Route path="/canada/simulador" element={<FinancialSimulator />} />
+            <Route path="/custos-reais" element={<RealCosts />} />
+            <Route path="/canada/custos-reais" element={<RealCosts />} />
             <Route path="/saude" element={<PagePlaceholder tKey="health" />} />
             <Route path="/familia" element={<Family />} />
             <Route path="/trabalho-moradia" element={<Work />} />
