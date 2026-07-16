@@ -96,6 +96,13 @@ export default function HighSchools() {
   const cardBoarding = (it: HighSchool) =>
     isEnglish ? it.boarding_en : it.boarding_pt;
 
+  const cardDiploma = (it: HighSchool) =>
+    isEnglish ? it.diploma_en : it.diploma_pt;
+
+  const cardHomestay = (it: HighSchool) =>
+    isEnglish ? it.homestay_en : it.homestay_pt;
+
+
   const formatTuition = (value: string | null) => {
     if (!value) return t("highSchools.card.tuitionMissing");
     if (isEnglish && value.includes("/ano")) return value.replace("/ano", "/year");
