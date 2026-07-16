@@ -1,9 +1,15 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronDown, Shield, RefreshCw, Compass, ArrowRight } from "lucide-react";
+import { Shield, RefreshCw, Compass, ArrowRight } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
 
 export default function Index() {
   const { t } = useTranslation();
+  const [tooltip, setTooltip] = useState<{
+    key: string;
+    x: number;
+    y: number;
+  } | null>(null);
   const pillars = [
     { icon: Shield, key: "independent" as const },
     { icon: RefreshCw, key: "accurate" as const },
