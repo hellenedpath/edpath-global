@@ -40,6 +40,7 @@ export const en = {
       startHere: "Start here",
       chooseSchool: "Choose your school",
       planCosts: "Plan the costs",
+      applyVisa: "Apply for the visa",
       prepareMove: "Prepare the move",
     },
     items: {
@@ -51,6 +52,7 @@ export const en = {
       costsSimulator: "Cost Simulator",
       realCosts: "Real costs",
       before: "Before You Start",
+      studyPermit: "Study Permit — How to apply",
       renting: "Renting in Canada",
       rentalScams: "Rental scams",
       costs: "Costs",
@@ -1521,6 +1523,77 @@ export const en = {
     title: "A quick reminder",
     body:
       "Information based on official sources and market averages. It does not confirm your individual case. Rules vary by province — always confirm with the official body in your province.",
+  },
+
+  studyPermit: {
+    hero: {
+      tag: "Apply for the visa",
+      title: "Study Permit — How to apply",
+      subtitle:
+        "The document that authorizes you to study in Canada. See the official steps of the process, from acceptance to arrival.",
+    },
+    intro: {
+      title: "Before you begin",
+      body:
+        "The study permit is the document that authorizes you to study in Canada. See the official steps of the process. This is general information based on IRCC and does not confirm your individual case — only IRCC decides.",
+    },
+    steps: [
+      {
+        n: 1,
+        title: "Letter of Acceptance",
+        body:
+          "From a Designated Learning Institution (DLI). It must be on official letterhead and show tuition amount, program start and end dates, and enrollment deadline.",
+      },
+      {
+        n: 2,
+        title: "PAL/TAL (Provincial Attestation Letter)",
+        body:
+          "In most cases, you need to accept the offer and pay tuition (partial or full) for the school to issue it. Master's and PhD students at public DLIs are exempt as of January 1, 2026.",
+      },
+      {
+        n: 3,
+        title: "Proof of funds",
+        body:
+          "CAD $22,895/year (outside Quebec) + first-year tuition + return travel. Accepted: bank statements from the last 4 months, GIC, scholarship letter, or sponsor declaration.",
+      },
+      {
+        n: 4,
+        title: "Valid passport + 2 photos",
+        body:
+          "Passport valid throughout your studies and two photos meeting the IRCC standard.",
+      },
+      {
+        n: 5,
+        title: "Apply online",
+        body:
+          "The application must be submitted online through the IRCC Secure Account. You fill out the form and pay the fees: study permit CAD $150 + biometrics CAD $85.",
+      },
+      {
+        n: 6,
+        title: "Biometrics",
+        body:
+          "After applying, you receive the Biometric Instruction Letter (BIL) and have 30 days to give your biometrics at a Visa Application Centre (VAC). Valid for 10 years.",
+      },
+      {
+        n: 7,
+        title: "Processing and arrival",
+        body:
+          "If approved from outside Canada, you receive a port-of-entry letter of introduction. The physical permit is issued when you arrive in Canada.",
+      },
+    ],
+    links: {
+      title: "Official links",
+      body:
+        "Always check the official source before applying. Rules and fees can change without notice.",
+      apply: "How to apply (IRCC)",
+      documents: "Required documents (IRCC)",
+      visaOffice: "Instructions from your country's visa office (IRCC)",
+    },
+    seal: {
+      title: "A quick reminder",
+      body:
+        "Information based on official IRCC sources. Rules and fees change — always confirm at canada.ca before applying. For decisions about your individual case, consult a licensed RCIC.",
+    },
   },
 
 };
