@@ -57,8 +57,8 @@ export default function Index() {
                 <stop offset="0%" stopColor="hsl(var(--crimson))" stopOpacity="0.9" />
                 <stop offset="100%" stopColor="hsl(var(--crimson))" stopOpacity="0" />
               </radialGradient>
-              <pattern id="dotGrid" width="13" height="13" patternUnits="userSpaceOnUse">
-                <circle cx="6.5" cy="6.5" r="1.15" fill="hsl(221 75% 76%)" fillOpacity="0.62" />
+              <pattern id="dotGrid" width="12" height="12" patternUnits="userSpaceOnUse">
+                <circle cx="6" cy="6" r="1.3" fill="hsl(221 75% 78%)" fillOpacity="0.72" />
               </pattern>
             </defs>
 
