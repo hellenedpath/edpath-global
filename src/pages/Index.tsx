@@ -102,10 +102,13 @@ export default function Index() {
                   { key: "ireland", x: 8, y: -120 },
                   { key: "australia", x: 180, y: 125 },
                 ] as const;
-                const destMap = Object.fromEntries(dests.map((d) => [d.key, d])) as Record<
-                  (typeof dests)[number]["key"],
-                  { x: number; y: number }
-                >;
+                const destMap: Record<string, { x: number; y: number }> = {
+                  canada: { x: -160, y: -110 },
+                  usa: { x: -135, y: -45 },
+                  uk: { x: 30, y: -135 },
+                  ireland: { x: 8, y: -120 },
+                  australia: { x: 180, y: 125 },
+                };
                 // Curved arc between two points (control point pulled toward globe center)
                 const arc = (a: { x: number; y: number }, b: { x: number; y: number }) => {
                   const mx = (a.x + b.x) / 2;
