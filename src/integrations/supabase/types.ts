@@ -50,6 +50,7 @@ export type Database = {
       high_schools: {
         Row: {
           application_fee: string | null
+          boarding: string | null
           city: string | null
           country: string | null
           created_at: string | null
@@ -64,12 +65,14 @@ export type Database = {
           phone: string | null
           province: string | null
           region: string | null
+          school_type: string | null
           tuition_annual: string | null
           updated_at: string | null
           website: string | null
         }
         Insert: {
           application_fee?: string | null
+          boarding?: string | null
           city?: string | null
           country?: string | null
           created_at?: string | null
@@ -84,12 +87,14 @@ export type Database = {
           phone?: string | null
           province?: string | null
           region?: string | null
+          school_type?: string | null
           tuition_annual?: string | null
           updated_at?: string | null
           website?: string | null
         }
         Update: {
           application_fee?: string | null
+          boarding?: string | null
           city?: string | null
           country?: string | null
           created_at?: string | null
@@ -104,6 +109,7 @@ export type Database = {
           phone?: string | null
           province?: string | null
           region?: string | null
+          school_type?: string | null
           tuition_annual?: string | null
           updated_at?: string | null
           website?: string | null
