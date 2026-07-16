@@ -67,6 +67,46 @@ export default function Index() {
             <g transform="translate(1180 450)">
               <circle r="290" fill="hsl(228 55% 10% / 0.35)" />
               <circle r="290" fill="none" stroke="hsl(262 90% 78%)" strokeOpacity="0.75" strokeWidth="1.5" />
+              {/* Continents — simplified silhouettes clipped to the globe */}
+              <defs>
+                <clipPath id="globeClip">
+                  <circle r="290" />
+                </clipPath>
+              </defs>
+              <g
+                clipPath="url(#globeClip)"
+                fill="hsl(0 0% 100%)"
+                fillOpacity="0.11"
+                stroke="hsl(0 0% 100%)"
+                strokeOpacity="0.22"
+                strokeWidth="0.75"
+                strokeLinejoin="round"
+              >
+                {/* North America */}
+                <path d="M -240 -180 L -150 -190 L -95 -150 L -80 -100 L -110 -55 L -130 -30 L -155 -20 L -175 -55 L -205 -70 L -230 -110 Z" />
+                {/* Central America */}
+                <path d="M -140 -20 L -110 -10 L -95 15 L -80 35 L -95 30 L -120 10 Z" />
+                {/* South America */}
+                <path d="M -110 30 L -70 20 L -55 55 L -60 100 L -80 140 L -95 155 L -105 130 L -115 90 Z" />
+                {/* Europe */}
+                <path d="M -10 -155 L 45 -160 L 60 -140 L 55 -110 L 30 -95 L 5 -100 L -15 -120 Z" />
+                {/* Africa */}
+                <path d="M -5 -90 L 55 -95 L 70 -55 L 65 -10 L 45 40 L 25 65 L 5 55 L -10 20 L -15 -35 Z" />
+                {/* Asia */}
+                <path d="M 60 -160 L 175 -170 L 225 -140 L 235 -100 L 210 -60 L 170 -50 L 130 -60 L 95 -80 L 70 -105 Z" />
+                {/* India */}
+                <path d="M 100 -55 L 130 -50 L 135 -20 L 115 -5 L 100 -25 Z" />
+                {/* SE Asia / Indonesia */}
+                <path d="M 155 -20 L 205 -15 L 210 10 L 175 15 L 150 5 Z" />
+                {/* Australia */}
+                <path d="M 155 85 L 210 80 L 225 115 L 205 140 L 165 135 L 145 115 Z" />
+                {/* Greenland */}
+                <path d="M -90 -195 L -55 -200 L -40 -170 L -60 -150 L -85 -160 Z" />
+                {/* British Isles */}
+                <path d="M 2 -140 L 22 -142 L 20 -122 L 4 -120 Z" />
+                {/* Japan */}
+                <path d="M 225 -85 L 240 -70 L 232 -55 L 218 -70 Z" />
+              </g>
               {/* Meridians */}
               {[0, 30, 60, 90, 120, 150].map((a) => (
                 <ellipse
