@@ -44,7 +44,7 @@ const beforeYouGoGroupDefs = [
     key: "costs",
     items: [
       { to: "/simulador-financeiro", key: "costsSimulator" },
-      { to: "/custos", key: "realCosts" },
+      { to: "/custos", key: "costs" },
     ],
   },
   {
