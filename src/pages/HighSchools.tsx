@@ -28,9 +28,14 @@ type HighSchool = {
   grades: string | null;
   homestay: string | null;
   boarding: string | null;
+  boarding_pt: string | null;
+  boarding_en: string | null;
   school_type: string | null;
   notes: string | null;
+  notes_pt: string | null;
+  notes_en: string | null;
 };
+
 
 export default function HighSchools() {
   const { t } = useTranslation();
