@@ -47,6 +47,69 @@ export type Database = {
         }
         Relationships: []
       }
+      high_schools: {
+        Row: {
+          application_fee: string | null
+          city: string | null
+          country: string | null
+          created_at: string | null
+          diploma: string | null
+          email: string | null
+          grades: string | null
+          homestay: string | null
+          id: string
+          level: string | null
+          name: string
+          notes: string | null
+          phone: string | null
+          province: string | null
+          region: string | null
+          tuition_annual: string | null
+          updated_at: string | null
+          website: string | null
+        }
+        Insert: {
+          application_fee?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string | null
+          diploma?: string | null
+          email?: string | null
+          grades?: string | null
+          homestay?: string | null
+          id?: string
+          level?: string | null
+          name: string
+          notes?: string | null
+          phone?: string | null
+          province?: string | null
+          region?: string | null
+          tuition_annual?: string | null
+          updated_at?: string | null
+          website?: string | null
+        }
+        Update: {
+          application_fee?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string | null
+          diploma?: string | null
+          email?: string | null
+          grades?: string | null
+          homestay?: string | null
+          id?: string
+          level?: string | null
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          province?: string | null
+          region?: string | null
+          tuition_annual?: string | null
+          updated_at?: string | null
+          website?: string | null
+        }
+        Relationships: []
+      }
       institutions: {
         Row: {
           city: string | null
