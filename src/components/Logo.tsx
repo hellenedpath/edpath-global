@@ -18,12 +18,12 @@ export function Logo({ className }: { className?: string }) {
         strokeWidth={1.5}
       />
       <div className="flex flex-col leading-none">
-        <span className="font-sans text-lg md:text-xl font-bold tracking-tight">
+        <span className="font-display text-lg md:text-xl tracking-tight">
           <span className="text-white">Ed</span>
           <span className="text-[#E0405B]">Path</span>
         </span>
         <span
-          className="font-sans text-[10px] md:text-xs font-medium tracking-[0.12em] uppercase"
+          className="font-sans text-[10px] md:text-xs font-light tracking-[0.12em] uppercase"
           style={{ color: "#396CD8" }}
         >
           Global
