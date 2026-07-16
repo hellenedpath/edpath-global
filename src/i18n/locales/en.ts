@@ -1168,6 +1168,13 @@ export const en = {
         private: "Private school",
       },
       boarding: "Boarding",
+      bodwell: {
+        estimatedCostLabel: "Estimated annual cost",
+        boarding: "Boarding: CAD $42,000/year",
+        day: "Day (day student): CAD $25,000/year",
+        disclaimer:
+          "Estimate — tuition and program only. Additional fees apply.",
+      },
     },
 
     empty: "No schools found with these filters.",

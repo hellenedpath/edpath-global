@@ -1172,6 +1172,13 @@ export const pt = {
         private: "Escola privada",
       },
       boarding: "Internato",
+      bodwell: {
+        estimatedCostLabel: "Custo anual estimado",
+        boarding: "Boarding: CAD $42.000/ano",
+        day: "Day (aluno externo): CAD $25.000/ano",
+        disclaimer:
+          "Estimativa — apenas mensalidade + programa. Taxas adicionais à parte.",
+      },
     },
 
     empty: "Nenhuma escola encontrada com estes filtros.",
