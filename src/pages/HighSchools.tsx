@@ -49,9 +49,9 @@ export default function HighSchools() {
         .select(
           "id,name,city,region,website,email,phone,application_fee,tuition_annual,diploma,grades,homestay,boarding,school_type,notes",
         )
-        .order("school_type", { ascending: false })
         .order("region", { ascending: true })
         .order("name", { ascending: true });
+
       if (!error && data) setItems(data as HighSchool[]);
       setLoading(false);
     })();
