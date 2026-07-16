@@ -7,6 +7,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -24,18 +26,35 @@ import {
 } from "@/components/ui/accordion";
 
 type Item = { to: string; label: string };
+type Group = { title: string; items: Item[] };
 
 const primaryTo = "/meu-caminho";
 
-const beforeYouGoDefs = [
-  { to: "/canada/pgwp", key: "pgwp" },
-  { to: "/canada/instituicoes", key: "institutions" },
-  { to: "/canada/ensino-medio", key: "highSchools" },
-  { to: "/programas", key: "programs" },
-  { to: "/custos", key: "costsSimulator" },
-  { to: "/alugar-no-canada", key: "renting" },
-  { to: "/golpes-de-aluguel", key: "rentalScams" },
-  { to: "/antes-de-comecar", key: "before" },
+const beforeYouGoGroupDefs = [
+  {
+    key: "course",
+    items: [
+      { to: "/canada/pgwp", key: "pgwp" },
+      { to: "/canada/instituicoes", key: "institutions" },
+      { to: "/programas", key: "programs" },
+      { to: "/canada/ensino-medio", key: "highSchools" },
+    ],
+  },
+  {
+    key: "costs",
+    items: [
+      { to: "/simulador-financeiro", key: "costsSimulator" },
+      { to: "/custos", key: "realCosts" },
+    ],
+  },
+  {
+    key: "housing",
+    items: [
+      { to: "/alugar-no-canada", key: "renting" },
+      { to: "/golpes-de-aluguel", key: "rentalScams" },
+      { to: "/antes-de-comecar", key: "before" },
+    ],
+  },
 ] as const;
 
 const onArrivalDefs = [
@@ -48,17 +67,22 @@ const onArrivalDefs = [
 function HoverDropdown({
   label,
   items,
+  groups,
   activePath,
 }: {
   label: string;
-  items: Item[];
+  items?: Item[];
+  groups?: Group[];
   activePath: string;
 }) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const closeTimer = useRef<number | null>(null);
 
-  const isActive = items.some((it) => activePath === it.to);
+  const allItems: Item[] = groups
+    ? groups.flatMap((g) => g.items)
+    : items ?? [];
+  const isActive = allItems.some((it) => activePath === it.to);
 
   const cancelClose = () => {
     if (closeTimer.current) {
@@ -106,22 +130,47 @@ function HoverDropdown({
           onMouseEnter={cancelClose}
           onMouseLeave={scheduleClose}
         >
-          {items.map((it) => (
-            <DropdownMenuItem
-              key={it.to}
-              onSelect={(e) => {
-                e.preventDefault();
-                setOpen(false);
-                navigate(it.to);
-              }}
-              className={cn(
-                "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
-                activePath === it.to && "text-foreground font-medium",
-              )}
-            >
-              {it.label}
-            </DropdownMenuItem>
-          ))}
+          {groups
+            ? groups.map((g, gi) => (
+                <div key={g.title}>
+                  {gi > 0 && <DropdownMenuSeparator className="my-1" />}
+                  <DropdownMenuLabel className="px-3 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70">
+                    {g.title}
+                  </DropdownMenuLabel>
+                  {g.items.map((it) => (
+                    <DropdownMenuItem
+                      key={it.to}
+                      onSelect={(e) => {
+                        e.preventDefault();
+                        setOpen(false);
+                        navigate(it.to);
+                      }}
+                      className={cn(
+                        "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
+                        activePath === it.to && "text-foreground font-medium",
+                      )}
+                    >
+                      {it.label}
+                    </DropdownMenuItem>
+                  ))}
+                </div>
+              ))
+            : (items ?? []).map((it) => (
+                <DropdownMenuItem
+                  key={it.to}
+                  onSelect={(e) => {
+                    e.preventDefault();
+                    setOpen(false);
+                    navigate(it.to);
+                  }}
+                  className={cn(
+                    "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
+                    activePath === it.to && "text-foreground font-medium",
+                  )}
+                >
+                  {it.label}
+                </DropdownMenuItem>
+              ))}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
@@ -135,9 +184,12 @@ export function CanadaNav() {
 
   const primary: Item = { to: primaryTo, label: t("nav.myPath") };
   const primaryActive = pathname === primary.to;
-  const beforeYouGo: Item[] = beforeYouGoDefs.map((d) => ({
-    to: d.to,
-    label: t(`canadaNav.items.${d.key}`),
+  const beforeYouGoGroups: Group[] = beforeYouGoGroupDefs.map((g) => ({
+    title: t(`canadaNav.groups.${g.key}`),
+    items: g.items.map((it) => ({
+      to: it.to,
+      label: t(`canadaNav.items.${it.key}`),
+    })),
   }));
   const onArrival: Item[] = onArrivalDefs.map((d) => ({
     to: d.to,
@@ -172,7 +224,7 @@ export function CanadaNav() {
             />
           </NavLink>
 
-          <HoverDropdown label={t("canadaNav.beforeYouGo")} items={beforeYouGo} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.beforeYouGo")} groups={beforeYouGoGroups} activePath={pathname} />
           <HoverDropdown label={t("canadaNav.onArrival")} items={onArrival} activePath={pathname} />
         </nav>
 
@@ -214,24 +266,33 @@ export function CanadaNav() {
                       {t("canadaNav.beforeYouGo")}
                     </AccordionTrigger>
                     <AccordionContent>
-                      <ul className="flex flex-col">
-                        {beforeYouGo.map((it) => (
-                          <li key={it.to}>
-                            <NavLink
-                              to={it.to}
-                              onClick={() => setMobileOpen(false)}
-                              className={({ isActive }) =>
-                                cn(
-                                  "block px-2 py-2 text-sm rounded-md text-muted-foreground hover:text-foreground hover:bg-muted",
-                                  isActive && "bg-muted text-foreground font-medium",
-                                )
-                              }
-                            >
-                              {it.label}
-                            </NavLink>
-                          </li>
+                      <div className="flex flex-col gap-4">
+                        {beforeYouGoGroups.map((g) => (
+                          <div key={g.title}>
+                            <div className="px-2 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70">
+                              {g.title}
+                            </div>
+                            <ul className="flex flex-col">
+                              {g.items.map((it) => (
+                                <li key={it.to}>
+                                  <NavLink
+                                    to={it.to}
+                                    onClick={() => setMobileOpen(false)}
+                                    className={({ isActive }) =>
+                                      cn(
+                                        "block px-2 py-2 text-sm rounded-md text-muted-foreground hover:text-foreground hover:bg-muted",
+                                        isActive && "bg-muted text-foreground font-medium",
+                                      )
+                                    }
+                                  >
+                                    {it.label}
+                                  </NavLink>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="arrival">
