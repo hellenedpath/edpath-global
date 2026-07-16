@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Shield, RefreshCw, Compass, ArrowRight } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
