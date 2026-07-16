@@ -42,6 +42,7 @@ export const pt = {
       prepareMove: "Prepare a mudança",
     },
     items: {
+      myPath: "Meu Caminho",
       pgwp: "Verificador PGWP",
       institutions: "Instituições",
       highSchools: "Ensino Médio (BC)",

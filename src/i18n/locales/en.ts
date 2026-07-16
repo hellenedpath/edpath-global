@@ -43,6 +43,7 @@ export const en = {
       prepareMove: "Prepare the move",
     },
     items: {
+      myPath: "My Path",
       pgwp: "PGWP Checker",
       institutions: "Institutions",
       highSchools: "High School (BC)",
