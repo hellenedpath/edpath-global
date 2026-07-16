@@ -54,22 +54,22 @@ export default function Index() {
           />
         </div>
 
-        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-[52%_48%] gap-10 lg:gap-12 items-center py-20 md:py-28 lg:py-32 lg:min-h-[90vh]">
+        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-[52%_48%] gap-10 lg:gap-12 items-start pt-16 md:pt-20 lg:pt-24 pb-12 md:pb-16 lg:pb-20 lg:min-h-[72vh]">
           {/* Left column: text */}
-          <div className="flex flex-col justify-center max-w-xl">
-            <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-12">
+          <div className="flex flex-col justify-start max-w-xl">
+            <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-10">
               <span className="w-8 h-px bg-crimson" />
               EdPath Global
             </div>
             <h1 className="font-display text-5xl md:text-6xl font-bold leading-[1.18] tracking-[-0.02em] text-white">
               {t("home.title")}
             </h1>
-            <p className="mt-10 text-lg md:text-xl text-primary-foreground/80 leading-relaxed font-sans max-w-md">
+            <p className="mt-8 text-lg md:text-xl text-primary-foreground/80 leading-relaxed font-sans max-w-md">
               {t("home.subtitle")}
             </p>
             <a
               href="#destinos"
-              className="group mt-12 inline-flex items-center gap-2.5 rounded-xl bg-crimson px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_4px_16px_-4px_hsl(var(--crimson)/0.45)] hover:bg-crimson/90 hover:shadow-[0_8px_24px_-6px_hsl(var(--crimson)/0.55)] hover:-translate-y-0.5 transition-all duration-300 w-fit"
+              className="group mt-10 inline-flex items-center gap-2.5 rounded-xl bg-crimson px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_4px_16px_-4px_hsl(var(--crimson)/0.45)] hover:bg-crimson/90 hover:shadow-[0_8px_24px_-6px_hsl(var(--crimson)/0.55)] hover:-translate-y-0.5 transition-all duration-300 w-fit"
             >
               {t("home.ctaChoose")}
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
