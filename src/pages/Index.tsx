@@ -69,7 +69,7 @@ export default function Index() {
                 </radialGradient>
                 <radialGradient id="globeFadeGrad" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor="white" stopOpacity="1" />
-                  <stop offset="75%" stopColor="white" stopOpacity="1" />
+                  <stop offset="70%" stopColor="white" stopOpacity="1" />
                   <stop offset="100%" stopColor="white" stopOpacity="0" />
                 </radialGradient>
                 <mask id="globeFade">
