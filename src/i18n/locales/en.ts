@@ -37,11 +37,13 @@ export const en = {
     menu: "Menu",
     openMenu: "Open menu",
     groups: {
-      course: "Course and institution",
-      costs: "Costs",
-      housing: "Housing and arrival",
+      startHere: "Start here",
+      chooseSchool: "Choose your school",
+      planCosts: "Plan the costs",
+      prepareMove: "Prepare the move",
     },
     items: {
+      myPath: "My Path",
       pgwp: "PGWP Checker",
       institutions: "Institutions",
       highSchools: "High School (BC)",

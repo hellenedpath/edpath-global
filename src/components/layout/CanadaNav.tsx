@@ -32,7 +32,11 @@ const primaryTo = "/meu-caminho";
 
 const beforeYouGoGroupDefs = [
   {
-    key: "course",
+    key: "startHere",
+    items: [{ to: "/meu-caminho", key: "myPath" }],
+  },
+  {
+    key: "chooseSchool",
     items: [
       { to: "/canada/pgwp", key: "pgwp" },
       { to: "/canada/instituicoes", key: "institutions" },
@@ -41,14 +45,14 @@ const beforeYouGoGroupDefs = [
     ],
   },
   {
-    key: "costs",
+    key: "planCosts",
     items: [
       { to: "/simulador-financeiro", key: "costsSimulator" },
       { to: "/custos", key: "costs" },
     ],
   },
   {
-    key: "housing",
+    key: "prepareMove",
     items: [
       { to: "/alugar-no-canada", key: "renting" },
       { to: "/golpes-de-aluguel", key: "rentalScams" },
