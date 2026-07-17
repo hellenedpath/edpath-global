@@ -3,6 +3,7 @@ export const pt = {
     about: "Sobre",
     destinations: "Destinos",
     myPath: "Meu caminho",
+    cta: "Começar",
     programs: "Explorar programas",
     pgwp: "Verificador PGWP",
     before: "Antes de começar",
