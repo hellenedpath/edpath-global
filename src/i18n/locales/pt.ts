@@ -69,6 +69,10 @@ export const pt = {
       { n: "03", title: "Siga sua jornada guiada", desc: "Um caminho claro, passo a passo, até você chegar." },
     ],
   },
+  destinationReal: {
+    title: "Seu destino é real",
+    subtitle: "Milhares de estudantes alcançam seus objetivos todos os anos. O seu é o próximo.",
+  },
   homeAbout: {
     eyebrow: "Sobre a EdPath",
     title: "Clareza no lugar do ruído.",

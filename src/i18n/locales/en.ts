@@ -70,6 +70,10 @@ export const en = {
       { n: "03", title: "Follow your guided path", desc: "A clear path, step by step, until you get there." },
     ],
   },
+  destinationReal: {
+    title: "Your destination is real",
+    subtitle: "Thousands of students reach their goals every year. Yours is next.",
+  },
   homeAbout: {
     eyebrow: "About EdPath",
     title: "Clarity instead of noise.",
