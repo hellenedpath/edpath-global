@@ -268,6 +268,39 @@ export type Database = {
           },
         ]
       }
+      sources: {
+        Row: {
+          created_at: string
+          id: string
+          last_checked: string | null
+          next_check_due: string | null
+          notes: string | null
+          type: string | null
+          url: string | null
+          valid_as_of: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          last_checked?: string | null
+          next_check_due?: string | null
+          notes?: string | null
+          type?: string | null
+          url?: string | null
+          valid_as_of?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          last_checked?: string | null
+          next_check_due?: string | null
+          notes?: string | null
+          type?: string | null
+          url?: string | null
+          valid_as_of?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
