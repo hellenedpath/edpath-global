@@ -185,6 +185,53 @@ export type Database = {
         }
         Relationships: []
       }
+      occupations: {
+        Row: {
+          created_at: string
+          id: string
+          noc_code: string | null
+          outlook: string | null
+          province: string | null
+          salary_high: string | null
+          salary_low: string | null
+          salary_median: string | null
+          source_id: string | null
+          title: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          noc_code?: string | null
+          outlook?: string | null
+          province?: string | null
+          salary_high?: string | null
+          salary_low?: string | null
+          salary_median?: string | null
+          source_id?: string | null
+          title?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          noc_code?: string | null
+          outlook?: string | null
+          province?: string | null
+          salary_high?: string | null
+          salary_low?: string | null
+          salary_median?: string | null
+          source_id?: string | null
+          title?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "occupations_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       programs: {
         Row: {
           application_url: string | null
