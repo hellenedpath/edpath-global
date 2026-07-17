@@ -89,7 +89,7 @@ export const en = {
       costsSimulator: "Cost Simulator",
       realCosts: "Real costs",
       before: "Before You Start",
-      studyPermit: "Study Permit, How to apply",
+      studyPermit: "Study Permit: How to apply",
       renting: "Renting in Canada",
       rentalScams: "Rental scams",
       costs: "Costs",
@@ -1662,7 +1662,7 @@ export const en = {
   studyPermit: {
     hero: {
       tag: "Apply for the visa",
-      title: "Study Permit, How to apply",
+      title: "Study Permit: How to apply",
       subtitle:
         "The document that authorizes you to study in Canada. See the official steps of the process, from acceptance to arrival.",
     },

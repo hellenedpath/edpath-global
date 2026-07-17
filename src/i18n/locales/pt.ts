@@ -88,7 +88,7 @@ export const pt = {
       costsSimulator: "Simulador de Custos",
       realCosts: "Custos reais",
       before: "Antes de Começar",
-      studyPermit: "Study Permit, Como aplicar",
+      studyPermit: "Study Permit: Como aplicar",
       renting: "Alugar no Canadá",
       rentalScams: "Golpes de aluguel",
       costs: "Custos",
@@ -1665,7 +1665,7 @@ export const pt = {
   studyPermit: {
     hero: {
       tag: "Aplique para o visto",
-      title: "Study Permit, Como aplicar",
+      title: "Study Permit: Como aplicar",
       subtitle:
         "O documento que autoriza você a estudar no Canadá. Veja os passos oficiais do processo, do aceite à chegada.",
     },
