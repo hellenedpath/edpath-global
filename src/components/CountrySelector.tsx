@@ -30,7 +30,7 @@ export function CountrySelector() {
 
   return (
     <section id="destinos" className="bg-white py-20 md:py-28 scroll-mt-20">
-      <div className="container max-w-6xl">
+      <div className="container max-w-[1320px]">
         <div className="max-w-2xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-navy leading-tight">
             {t("countries.title")}
