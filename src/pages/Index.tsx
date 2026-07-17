@@ -367,7 +367,7 @@ export default function Index() {
               "linear-gradient(90deg, hsl(228 70% 10% / 0.9) 0%, hsl(228 65% 14% / 0.75) 45%, hsl(228 55% 20% / 0.35) 100%)",
           }}
         />
-        <div className="container relative z-10 py-24 md:py-32 max-w-[1320px]" data-reveal>
+        <div className="container relative z-10 py-24 md:py-32 max-w-[1320px] text-center" data-reveal>
           <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-white/70 mb-5">
             <span className="w-6 h-px bg-crimson" />
             {t("closing.eyebrow")}
@@ -375,7 +375,7 @@ export default function Index() {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.02em] leading-[1.05]">
             {t("closing.title")}
           </h2>
-          <p className="mt-6 text-lg text-white/80 max-w-xl leading-relaxed">
+          <p className="mt-6 text-lg text-white/80 max-w-xl mx-auto leading-relaxed">
             {t("closing.body")}
           </p>
         </div>
