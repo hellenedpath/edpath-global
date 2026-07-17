@@ -56,8 +56,8 @@ export const en = {
     title: "Three steps to your path",
     steps: [
       { n: "01", title: "Choose your destination", desc: "Start with the country that fits you." },
-      { n: "02", title: "Take your diagnosis", desc: "Answer a few questions and get a roadmap." },
-      { n: "03", title: "Follow your guided path", desc: "A clear path, step by step, until you arrive." },
+      { n: "02", title: "Find your path", desc: "Answer a few questions and get your personalized roadmap." },
+      { n: "03", title: "Follow your guided path", desc: "A clear path, step by step, until you get there." },
     ],
   },
   homeAbout: {

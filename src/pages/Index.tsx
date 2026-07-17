@@ -107,11 +107,9 @@ export default function Index() {
             {pillars.map(({ icon: Icon, key }) => (
               <div
                 key={key}
-                className="group flex flex-col items-center text-center rounded-2xl bg-white p-8 md:p-10 ring-1 ring-border/60 shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)] hover:shadow-[0_8px_24px_-8px_rgba(5,21,86,0.12)] hover:-translate-y-0.5 transition-all duration-300"
+                className="group flex flex-col items-center text-center rounded-2xl bg-white p-10 md:p-12 ring-1 ring-border/50 shadow-[0_4px_20px_-10px_rgba(5,21,86,0.10)] hover:shadow-[0_14px_36px_-12px_rgba(5,21,86,0.18)] hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-crimson/10 flex items-center justify-center mb-6">
-                  <Icon className="w-6 h-6 text-crimson" strokeWidth={1.5} />
-                </div>
+                <Icon className="w-9 h-9 text-navy mb-6" strokeWidth={1.25} />
                 <h3 className="text-xl md:text-2xl font-bold text-navy tracking-tight">
                   {t(`pillars.${key}.title`)}
                 </h3>
@@ -125,15 +123,21 @@ export default function Index() {
       </section>
 
       {/* How it works */}
-      <section className="bg-muted/40">
+      <section
+        className="relative text-white"
+        style={{
+          backgroundImage:
+            "linear-gradient(180deg, hsl(228 70% 12%) 0%, hsl(221 55% 18%) 100%)",
+        }}
+      >
         <div className="container max-w-6xl py-20 md:py-28">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
+            <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-white/60 mb-4">
               <span className="w-6 h-px bg-crimson" />
               {t("howItWorks.eyebrow")}
               <span className="w-6 h-px bg-crimson" />
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
               {t("howItWorks.title")}
             </h2>
           </div>
@@ -141,15 +145,15 @@ export default function Index() {
             {steps.map((s) => (
               <div
                 key={s.n}
-                className="flex flex-col items-center text-center rounded-2xl bg-white p-8 md:p-10 ring-1 ring-border/50 shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)]"
+                className="group flex flex-col items-start text-left rounded-2xl bg-white/[0.04] p-8 md:p-10 ring-1 ring-white/10 hover:bg-white/[0.07] hover:ring-white/20 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-full bg-crimson/10 text-crimson flex items-center justify-center font-sans text-sm font-bold tracking-wider">
+                <span className="font-display text-4xl md:text-5xl font-bold text-crimson leading-none">
                   {s.n}
-                </div>
-                <h3 className="mt-6 text-xl md:text-2xl font-bold text-navy tracking-tight">
+                </span>
+                <h3 className="mt-6 text-xl md:text-2xl font-bold tracking-tight">
                   {s.title}
                 </h3>
-                <p className="mt-3 text-muted-foreground text-[15px] leading-relaxed max-w-xs">
+                <p className="mt-3 text-white/70 text-[15px] leading-relaxed">
                   {s.desc}
                 </p>
               </div>

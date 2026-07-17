@@ -55,8 +55,8 @@ export const pt = {
     title: "Três passos até seu caminho",
     steps: [
       { n: "01", title: "Escolha seu destino", desc: "Comece pelo país que faz sentido para você." },
-      { n: "02", title: "Faça seu diagnóstico", desc: "Responda algumas perguntas e receba um roteiro." },
-      { n: "03", title: "Siga sua jornada guiada", desc: "Um caminho claro, passo a passo, até chegar." },
+      { n: "02", title: "Descubra seu caminho", desc: "Responda algumas perguntas e receba seu roteiro personalizado." },
+      { n: "03", title: "Siga sua jornada guiada", desc: "Um caminho claro, passo a passo, até você chegar." },
     ],
   },
   homeAbout: {
