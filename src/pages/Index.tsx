@@ -201,8 +201,8 @@ export default function Index() {
           className="absolute -bottom-20 -left-20 w-[360px] h-[360px] rounded-full pointer-events-none"
           style={{ background: "radial-gradient(circle, hsl(350 75% 55% / 0.05), transparent 65%)" }}
         />
-        <div className="container relative z-10 max-w-6xl py-16 md:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <div className="container relative z-10 max-w-7xl py-16 md:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-8 items-center">
             <div data-reveal>
               <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
                 <span className="w-6 h-px bg-crimson" />
@@ -213,7 +213,7 @@ export default function Index() {
               </p>
               <div className="mt-6 space-y-4">
                 {(t("newEra.body", { returnObjects: true }) as string[]).map((p, i) => (
-                  <p key={i} className="text-base md:text-[17px] text-muted-foreground leading-relaxed max-w-xl">
+                  <p key={i} className="text-base md:text-[17px] text-muted-foreground leading-relaxed max-w-2xl">
                     {p}
                   </p>
                 ))}
@@ -227,13 +227,13 @@ export default function Index() {
               </Link>
             </div>
             <div data-reveal style={{ transitionDelay: "120ms" }} className="relative">
-              {/* Soft glow behind photo */}
+              {/* Soft warm glow behind photo */}
               <div
                 aria-hidden
-                className="absolute -inset-4 md:-inset-6 rounded-[2.5rem] blur-2xl opacity-60 pointer-events-none"
-                style={{ background: "radial-gradient(circle at center, hsl(221 80% 55% / 0.25), hsl(350 75% 55% / 0.15) 60%, transparent 75%)" }}
+                className="absolute -inset-5 md:-inset-8 rounded-[2.5rem] blur-3xl opacity-70 pointer-events-none"
+                style={{ background: "radial-gradient(circle at center, hsl(30 95% 62% / 0.35), hsl(38 90% 58% / 0.22) 55%, transparent 78%)" }}
               />
-              <div className="relative rounded-3xl overflow-hidden ring-1 ring-navy/10 shadow-[0_24px_60px_-20px_rgba(5,21,86,0.25)] aspect-[4/5]">
+              <div className="relative rounded-3xl overflow-hidden ring-1 ring-navy/10 shadow-[0_24px_60px_-20px_rgba(5,21,86,0.25)] aspect-[4/5] lg:scale-[1.05] origin-center">
                 <img
                   src={manifestoGrad.url}
                   alt="Smiling graduate student in cap and gown"
