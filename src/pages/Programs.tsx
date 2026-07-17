@@ -614,6 +614,18 @@ export default function Programs() {
                       </a>
                     </Button>
                   )}
+                  {selected.institutions?.name?.toLowerCase().includes("algonquin") && (
+                    <Button asChild variant="outline">
+                      <a
+                        href="https://www.algonquincollege.com/international/recruitment-team/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {T("Falar com um recruiter", "Talk to a recruiter")}
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  )}
                 </div>
 
                 <div className="rounded-lg bg-muted/60 border border-border p-3 flex items-start gap-2 text-xs text-muted-foreground">
