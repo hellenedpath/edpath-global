@@ -21,7 +21,7 @@ export const en = {
     soon: "coming soon",
   },
   home: {
-    title: "Your safe path to studying abroad",
+    title: "The new, smart and trustworthy way to study abroad.",
     subtitle:
       "Independent, verified and clear information to help you plan your studies around the world.",
     ctaPrograms: "Explore Programs",

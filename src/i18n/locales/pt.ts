@@ -20,7 +20,7 @@ export const pt = {
     soon: "em breve",
   },
   home: {
-    title: "Sua jornada segura para estudar no exterior",
+    title: "O novo jeito, inteligente e confiável, de estudar no exterior.",
     subtitle:
       "Informação independente, verificada e clara para você planejar seus estudos ao redor do mundo.",
     ctaPrograms: "Explorar Programas",
