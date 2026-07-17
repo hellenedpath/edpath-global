@@ -53,6 +53,8 @@ export const en = {
   },
   newEra: {
     title: "The new era of international education",
+    manifesto:
+      "A new category: the intelligent navigator that guides your journey with real, verified information.",
     body: [
       "Studying abroad has never had so much information available, and never been so easy to get lost in it. What students lack most is not information. It is clarity.",
       "EdPath gathers what really matters: verified against official sources, organized into a clear path, from the first step to your destination.",
@@ -74,6 +76,12 @@ export const en = {
     body:
       "Studying abroad has never had so much information available, and it has never been so easy to get lost in it. What students lack isn't information. It's clarity. EdPath brings together what really matters: verified from official sources, organized into a clear path, from the first step to your destination.",
     cta: "Discover EdPath",
+  },
+  closing: {
+    eyebrow: "Your next step",
+    title: "Your path abroad starts with clarity.",
+    body: "Take the first step with information you can trust.",
+    cta: "Choose your destination",
   },
   canadaNav: {
     beforeYouGo: "Before you go",
@@ -110,7 +118,7 @@ export const en = {
     tagline: "The new, smart and trusted way to study abroad.",
     expansion: "Canada available now. More countries coming soon.",
     disclaimer:
-      "EdPath Global provides educational information, not immigration advice. Immigration advice can only be given by licensed RCIC consultants. We work as an independent information layer and can connect students with trusted agencies and professionals.",
+      "EdPath Global provides educational information, not immigration advice. Immigration advice can only be given by licensed RCIC consultants. We work as an independent information layer and can connect students with trusted partners and professionals.",
   },
   countries: {
     title: "Choose your destination",
@@ -303,7 +311,7 @@ export const en = {
     disclaimer: {
       title: "Important notice",
       content:
-        "EdPath Global provides educational information, not immigration advice. Immigration decisions should be made with a CICC-licensed RCIC. Always confirm the rules on official IRCC sources. When it makes sense, we can connect you with trusted agencies and professionals.",
+        "EdPath Global provides educational information, not immigration advice. Immigration decisions should be made with a CICC-licensed RCIC. Always confirm the rules on official IRCC sources. When it makes sense, we can connect you with trusted partners and professionals.",
       cta: "Explore Programs",
     },
   },
@@ -325,7 +333,7 @@ export const en = {
         "We take responsibility for the information we provide, with a focus on accuracy and transparency.",
         "We offer independent, verified information so guidance serves the student's project first.",
         "We inform, we don't promise. Everything is grounded in official sources. We do not promise visas, jobs or permanent residency.",
-        "We collaborate with trusted agencies and professionals, acting as an information and referral layer that serves the student.",
+        "We collaborate with trusted partners and professionals, acting as an information and referral layer that serves the student.",
       ],
     },
     experience: {
@@ -356,12 +364,12 @@ export const en = {
         {
           title: "Connection with trusted partners",
           content:
-            "We connect you safely with vetted agencies and professionals.",
+            "We connect you safely with vetted partners and professionals.",
         },
       ],
     },
     disclaimer:
-      "EdPath Global provides educational information and navigation, not immigration advice. Immigration advice is given only by CICC-licensed RCIC consultants. We work independently and can connect you with trusted agencies and professionals when it makes sense.",
+      "EdPath Global provides educational information and navigation, not immigration advice. Immigration advice is given only by CICC-licensed RCIC consultants. We work independently and can connect you with trusted partners and professionals when it makes sense.",
   },
   costs: {
     simulate: "Simulate your costs",
@@ -489,7 +497,7 @@ export const en = {
     disclaimer: {
       title: "Important notice",
       content:
-        "Values are approximate and change over time. Always confirm current costs with official sources. EdPath Global provides educational information, not financial advice. When it makes sense, we can connect you with trusted agencies and professionals.",
+        "Values are approximate and change over time. Always confirm current costs with official sources. EdPath Global provides educational information, not financial advice. When it makes sense, we can connect you with trusted partners and professionals.",
     },
   },
 
@@ -727,7 +735,7 @@ export const en = {
     disclaimer: {
       title: "Important notice",
       content:
-        "General educational information; health and school rules vary by province and change over time. Always confirm on official sources. EdPath Global provides educational information, not immigration advice. Immigration advice is given only by licensed RCIC consultants. When it makes sense, we can connect you with trusted agencies and professionals.",
+        "General educational information; health and school rules vary by province and change over time. Always confirm on official sources. EdPath Global provides educational information, not immigration advice. Immigration advice is given only by licensed RCIC consultants. When it makes sense, we can connect you with trusted partners and professionals.",
     },
   },
   work: {

@@ -52,6 +52,8 @@ export const pt = {
   },
   newEra: {
     title: "A nova era da educação internacional",
+    manifesto:
+      "Uma nova categoria: o navegador inteligente que guia sua jornada com informação real e verificada.",
     body: [
       "Estudar no exterior nunca teve tanta informação disponível, e nunca foi tão fácil se perder nela. O que mais falta ao estudante não é informação. É clareza.",
       "A EdPath reúne o que realmente importa: verificado em fontes oficiais, organizado num caminho claro, do primeiro passo ao destino.",
@@ -73,6 +75,12 @@ export const pt = {
     body:
       "Estudar no exterior nunca teve tanta informação disponível, e nunca foi tão fácil se perder nela. O que falta ao estudante não é informação. É clareza. A EdPath reúne o que realmente importa: verificado em fontes oficiais, organizado num caminho claro, do primeiro passo ao destino.",
     cta: "Conheça a EdPath",
+  },
+  closing: {
+    eyebrow: "Seu próximo passo",
+    title: "Sua jornada no exterior começa com clareza.",
+    body: "Dê o primeiro passo com informação em que você pode confiar.",
+    cta: "Escolha seu destino",
   },
   canadaNav: {
     beforeYouGo: "Antes de ir",
@@ -296,7 +304,7 @@ export const pt = {
     disclaimer: {
       title: "Aviso importante",
       content:
-        "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Decisões de imigração devem ser tomadas com um consultor RCIC licenciado pelo CICC. Confirme sempre as regras nas fontes oficiais do IRCC. Quando fizer sentido, podemos conectar você a agências e profissionais confiáveis.",
+        "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Decisões de imigração devem ser tomadas com um consultor RCIC licenciado pelo CICC. Confirme sempre as regras nas fontes oficiais do IRCC. Quando fizer sentido, podemos conectar você a parceiros e profissionais confiáveis.",
       cta: "Explorar Programas",
     },
   },
@@ -319,7 +327,7 @@ export const pt = {
         "Operamos com responsabilidade sobre a informação que fornecemos, com foco em precisão e transparência.",
         "Oferecemos informação independente e verificada, para que a orientação sirva primeiro ao projeto do estudante.",
         "Informamos, não prometemos. Baseamos tudo em fontes oficiais. Não prometemos vistos, empregos ou residência permanente.",
-        "Colaboramos com agências e profissionais confiáveis, funcionando como uma camada de informação e intermediação a serviço do estudante.",
+        "Colaboramos com parceiros e profissionais confiáveis, funcionando como uma camada de informação e intermediação a serviço do estudante.",
       ],
     },
     experience: {
@@ -350,12 +358,12 @@ export const pt = {
         {
           title: "Conexão com parceiros confiáveis",
           content:
-            "Conectamos você a agências e profissionais verificados, com segurança.",
+            "Conectamos você a parceiros e profissionais verificados, com segurança.",
         },
       ],
     },
     disclaimer:
-      "A EdPath Global fornece informação educacional e navegação, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados pelo CICC. Trabalhamos de forma independente e podemos conectar você a agências e profissionais confiáveis quando fizer sentido.",
+      "A EdPath Global fornece informação educacional e navegação, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados pelo CICC. Trabalhamos de forma independente e podemos conectar você a parceiros e profissionais confiáveis quando fizer sentido.",
   },
 
   costs: {
@@ -483,7 +491,7 @@ export const pt = {
     disclaimer: {
       title: "Aviso importante",
       content:
-        "Valores são aproximados e mudam ao longo do tempo. Confirme sempre os custos atuais nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento financeiro. Quando fizer sentido, podemos conectar você a agências e profissionais confiáveis.",
+        "Valores são aproximados e mudam ao longo do tempo. Confirme sempre os custos atuais nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento financeiro. Quando fizer sentido, podemos conectar você a parceiros e profissionais confiáveis.",
     },
   },
 
@@ -721,7 +729,7 @@ export const pt = {
     disclaimer: {
       title: "Aviso importante",
       content:
-        "Informação educacional geral; regras de saúde e escola variam por província e mudam ao longo do tempo. Confirme sempre nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados. Quando fizer sentido, podemos conectar você a agências e profissionais confiáveis.",
+        "Informação educacional geral; regras de saúde e escola variam por província e mudam ao longo do tempo. Confirme sempre nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados. Quando fizer sentido, podemos conectar você a parceiros e profissionais confiáveis.",
     },
   },
 
@@ -942,7 +950,7 @@ export const pt = {
     tagline: "O novo jeito, inteligente e confiável, de estudar no exterior.",
     expansion: "Canadá disponível agora. Mais países em breve.",
     disclaimer:
-      "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados. Trabalhamos como camada de informação independente e podemos conectar estudantes a agências e profissionais confiáveis.",
+      "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados. Trabalhamos como camada de informação independente e podemos conectar estudantes a parceiros e profissionais confiáveis.",
   },
 
   programs: {
