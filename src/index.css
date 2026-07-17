@@ -158,5 +158,16 @@ All colors MUST be HSL.
     opacity: 0.55;
     pointer-events: none;
   }
+
+  .nav-link-underline {
+    @apply relative;
+  }
+  .nav-link-underline::after {
+    content: "";
+    @apply absolute left-1/2 -translate-x-1/2 bottom-1.5 h-[2px] w-0 bg-crimson rounded-full transition-all duration-300;
+  }
+  .nav-link-underline:hover::after {
+    @apply w-4/5;
+  }
 }
 
