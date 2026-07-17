@@ -174,52 +174,65 @@ export default function Index() {
         </div>
   </section>
 
-      {/* New era manifesto — with photo + aurora */}
-      <section className="relative text-white overflow-hidden">
+      {/* New era manifesto — light surface, subtle depth, soft glow behind photo */}
+      <section className="relative overflow-hidden bg-[hsl(210,20%,98%)]">
+        {/* Subtle geometric grid + soft gradient orbs */}
         <div
-          className="absolute inset-0"
+          aria-hidden
+          className="absolute inset-0 pointer-events-none opacity-[0.22]"
           style={{
             backgroundImage:
-              "linear-gradient(180deg, hsl(228 70% 12%) 0%, hsl(221 55% 18%) 100%)",
+              "linear-gradient(hsl(221 30% 60% / 0.07) 1px, transparent 1px), linear-gradient(90deg, hsl(221 30% 60% / 0.07) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+            maskImage:
+              "radial-gradient(ellipse at center, black 25%, transparent 80%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse at center, black 25%, transparent 80%)",
           }}
         />
-        <div aria-hidden className="absolute inset-0 pointer-events-none">
-          <div
-            className="aurora-blob animate-aurora-drift"
-            style={{ width: 560, height: 560, top: "-10%", right: "-8%", background: "hsl(221 80% 55% / 0.5)" }}
-          />
-          <div
-            className="aurora-blob animate-aurora-drift"
-            style={{ width: 440, height: 440, bottom: "-12%", left: "-6%", background: "hsl(350 75% 55% / 0.3)", animationDelay: "4s" }}
-          />
-        </div>
-        <div className="container relative z-10 max-w-6xl py-24 md:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div
+          aria-hidden
+          className="absolute -top-20 -right-20 w-[360px] h-[360px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, hsl(221 80% 55% / 0.08), transparent 65%)" }}
+        />
+        <div
+          aria-hidden
+          className="absolute -bottom-20 -left-20 w-[360px] h-[360px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, hsl(350 75% 55% / 0.05), transparent 65%)" }}
+        />
+        <div className="container relative z-10 max-w-6xl py-16 md:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
             <div data-reveal>
-              <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-white/60 mb-5">
+              <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
                 <span className="w-6 h-px bg-crimson" />
                 {t("newEra.title")}
               </div>
-              <p className="text-3xl md:text-4xl lg:text-[2.6rem] font-bold tracking-tight font-display leading-[1.15]">
+              <p className="text-2xl md:text-3xl lg:text-[2.25rem] font-bold tracking-tight font-display leading-[1.15] text-navy">
                 {t("newEra.manifesto")}
               </p>
-              <div className="mt-8 space-y-5">
+              <div className="mt-6 space-y-4">
                 {(t("newEra.body", { returnObjects: true }) as string[]).map((p, i) => (
-                  <p key={i} className="text-base md:text-lg text-white/75 leading-relaxed max-w-xl">
+                  <p key={i} className="text-base md:text-[17px] text-muted-foreground leading-relaxed max-w-xl">
                     {p}
                   </p>
                 ))}
               </div>
               <Link
                 to="/sobre"
-                className="group mt-10 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-b from-[#E0405B] to-[#B82C46] px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_8px_24px_-6px_hsl(var(--crimson)/0.5)] ring-1 ring-white/10 hover:brightness-110 hover:shadow-[0_14px_32px_-8px_hsl(var(--crimson)/0.65)] hover:-translate-y-0.5 transition-all duration-300"
+                className="group mt-8 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-b from-[#E0405B] to-[#B82C46] px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_8px_24px_-6px_hsl(var(--crimson)/0.5)] ring-1 ring-white/10 hover:brightness-110 hover:shadow-[0_14px_32px_-8px_hsl(var(--crimson)/0.65)] hover:-translate-y-0.5 transition-all duration-300"
               >
                 {t("newEra.cta")}
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
               </Link>
             </div>
-            <div data-reveal className="relative">
-              <div className="relative rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] aspect-[4/5]">
+            <div data-reveal style={{ transitionDelay: "120ms" }} className="relative">
+              {/* Soft glow behind photo */}
+              <div
+                aria-hidden
+                className="absolute -inset-4 md:-inset-6 rounded-[2.5rem] blur-2xl opacity-60 pointer-events-none"
+                style={{ background: "radial-gradient(circle at center, hsl(221 80% 55% / 0.25), hsl(350 75% 55% / 0.15) 60%, transparent 75%)" }}
+              />
+              <div className="relative rounded-3xl overflow-hidden ring-1 ring-navy/10 shadow-[0_24px_60px_-20px_rgba(5,21,86,0.25)] aspect-[4/5]">
                 <img
                   src={manifestoGrad.url}
                   alt="Smiling graduate student in cap and gown"
@@ -228,7 +241,7 @@ export default function Index() {
                   height={1600}
                   className="absolute inset-0 h-full w-full object-cover"
                 />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, hsl(228 70% 10% / 0.55) 100%)" }} />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 60%, hsl(228 49% 18% / 0.25) 100%)" }} />
               </div>
             </div>
           </div>
