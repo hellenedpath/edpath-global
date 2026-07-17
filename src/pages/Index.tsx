@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Shield, RefreshCw, Compass, ArrowRight, MapPin, Route, Footprints } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
-import heroStudent from "@/assets/hero-student.jpg";
+import heroStudent from "@/assets/hero-student.jpg.asset.json";
 import manifestoStudy from "@/assets/hero-students.jpg.asset.json";
 import closingInspire from "@/assets/closing-inspire.jpg";
 import { useReveal } from "@/hooks/use-reveal";
@@ -52,7 +52,7 @@ export default function Index() {
         {/* Hero background photo with navy overlay */}
         <div className="absolute inset-0 overflow-hidden">
           <img
-            src={heroStudent}
+            src={heroStudent.url}
             alt="Student walking across a university campus"
             width={1280}
             height={1600}
