@@ -77,7 +77,7 @@ export default function Index() {
           />
         </div>
 
-        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-[46%_54%] gap-10 lg:gap-12 items-start pt-28 md:pt-32 lg:pt-36 pb-16 md:pb-20 lg:pb-24">
+        <div className="container relative z-10 max-w-[1320px] grid grid-cols-1 lg:grid-cols-[46%_54%] gap-10 lg:gap-12 items-start pt-28 md:pt-32 lg:pt-36 pb-16 md:pb-20 lg:pb-24">
           {/* Left column: text */}
           <div className="flex flex-col justify-start max-w-xl animate-fade-up">
             <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-8">
@@ -138,7 +138,7 @@ export default function Index() {
           className="absolute -bottom-24 -left-24 w-[420px] h-[420px] rounded-full pointer-events-none"
           style={{ background: "radial-gradient(circle, hsl(350 75% 55% / 0.08), transparent 65%)" }}
         />
-        <div className="container relative max-w-6xl pt-12 md:pt-16 pb-14 md:pb-18">
+        <div className="container relative max-w-[1320px] pt-12 md:pt-16 pb-14 md:pb-18">
           <div className="text-center mb-10 md:mb-12" data-reveal>
             <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
               <span className="w-6 h-px bg-crimson" />
@@ -201,7 +201,7 @@ export default function Index() {
           className="absolute -bottom-20 -left-20 w-[360px] h-[360px] rounded-full pointer-events-none"
           style={{ background: "radial-gradient(circle, hsl(350 75% 55% / 0.05), transparent 65%)" }}
         />
-        <div className="container relative z-10 max-w-7xl py-16 md:py-20">
+        <div className="container relative z-10 max-w-[1320px] py-16 md:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-8 items-center">
             <div data-reveal>
               <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
@@ -270,7 +270,7 @@ export default function Index() {
           className="absolute -top-20 -right-20 w-[360px] h-[360px] rounded-full pointer-events-none"
           style={{ background: "radial-gradient(circle, hsl(221 80% 55% / 0.08), transparent 65%)" }}
         />
-        <div className="container relative z-10 max-w-6xl py-20 md:py-28">
+        <div className="container relative z-10 max-w-[1320px] py-20 md:py-28">
           <div className="text-center mb-12 md:mb-16" data-reveal>
             <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
               <span className="w-6 h-px bg-crimson" />
@@ -319,7 +319,7 @@ export default function Index() {
 
       {/* Destination is real banner */}
       <section className="relative" data-reveal>
-        <div className="container max-w-7xl px-4 md:px-6">
+        <div className="container max-w-[1320px] px-4 md:px-6">
           <div className="relative rounded-3xl overflow-hidden shadow-[0_24px_60px_-20px_rgba(5,21,86,0.18)]">
             <img
               src={destinationBanner.url}
@@ -367,7 +367,7 @@ export default function Index() {
               "linear-gradient(90deg, hsl(228 70% 10% / 0.9) 0%, hsl(228 65% 14% / 0.75) 45%, hsl(228 55% 20% / 0.35) 100%)",
           }}
         />
-        <div className="container relative z-10 py-24 md:py-32 max-w-3xl" data-reveal>
+        <div className="container relative z-10 py-24 md:py-32 max-w-[1320px]" data-reveal>
           <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-white/70 mb-5">
             <span className="w-6 h-px bg-crimson" />
             {t("closing.eyebrow")}
