@@ -34,11 +34,11 @@ const VISA_FEES = { studyPermit: 150, biometrics: 85, total: 235 };
 const PROOF_OF_FUNDS = { single: 22895, spouse: 4000, child: 3000 };
 const RENT_RANGES: { city: string; province: string; range: string }[] = [
   { city: "Vancouver", province: "BC", range: "$2,500 – $2,660" },
-  { city: "Toronto", province: "ON", range: "~$2,200" },
-  { city: "Ottawa", province: "ON", range: "~$1,990" },
+  { city: "Toronto", province: "ON", range: "$2,200" },
+  { city: "Ottawa", province: "ON", range: "$1,990" },
   { city: "Calgary", province: "AB", range: "$1,470 – $1,600" },
   { city: "Edmonton", province: "AB", range: "$1,300 – $1,450" },
-  { city: "Winnipeg", province: "MB", range: "~$1,300" },
+  { city: "Winnipeg", province: "MB", range: "$1,300" },
   { city: "Regina / Saskatoon", province: "SK", range: "$1,100 – $1,380" },
 ];
 
