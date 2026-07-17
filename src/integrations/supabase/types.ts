@@ -187,69 +187,84 @@ export type Database = {
       }
       programs: {
         Row: {
+          application_url: string | null
+          book_meeting_url: string | null
+          campus_city: string | null
           cip_code: string | null
-          city: string | null
-          country: string
           created_at: string
+          credential: string | null
           duration_months: number | null
-          field_of_study: string | null
+          english_admission_tests: Json | null
+          field_area: string | null
+          has_coop: boolean
           id: string
-          institution: string
-          intake_dates: string[] | null
-          is_pgwp_eligible: boolean
-          language: string | null
-          level: string
+          institution_id: string
+          intl_office_url: string | null
+          min_grade: string | null
           name: string
-          requirements: string | null
-          tuition_cad: number | null
+          open_to_international: boolean
+          pgwp_basis: string | null
+          pgwp_eligible: string | null
+          pgwp_english_clb: number | null
+          prerequisites: string | null
+          tuition_intl_year: string | null
           updated_at: string
-          url: string | null
         }
         Insert: {
+          application_url?: string | null
+          book_meeting_url?: string | null
+          campus_city?: string | null
           cip_code?: string | null
-          city?: string | null
-          country: string
           created_at?: string
+          credential?: string | null
           duration_months?: number | null
-          field_of_study?: string | null
+          english_admission_tests?: Json | null
+          field_area?: string | null
+          has_coop?: boolean
           id?: string
-          institution: string
-          intake_dates?: string[] | null
-          is_pgwp_eligible?: boolean
-          language?: string | null
-          level: string
+          institution_id: string
+          intl_office_url?: string | null
+          min_grade?: string | null
           name: string
-          requirements?: string | null
-          tuition_cad?: number | null
+          open_to_international?: boolean
+          pgwp_basis?: string | null
+          pgwp_eligible?: string | null
+          pgwp_english_clb?: number | null
+          prerequisites?: string | null
+          tuition_intl_year?: string | null
           updated_at?: string
-          url?: string | null
         }
         Update: {
+          application_url?: string | null
+          book_meeting_url?: string | null
+          campus_city?: string | null
           cip_code?: string | null
-          city?: string | null
-          country?: string
           created_at?: string
+          credential?: string | null
           duration_months?: number | null
-          field_of_study?: string | null
+          english_admission_tests?: Json | null
+          field_area?: string | null
+          has_coop?: boolean
           id?: string
-          institution?: string
-          intake_dates?: string[] | null
-          is_pgwp_eligible?: boolean
-          language?: string | null
-          level?: string
+          institution_id?: string
+          intl_office_url?: string | null
+          min_grade?: string | null
           name?: string
-          requirements?: string | null
-          tuition_cad?: number | null
+          open_to_international?: boolean
+          pgwp_basis?: string | null
+          pgwp_eligible?: string | null
+          pgwp_english_clb?: number | null
+          prerequisites?: string | null
+          tuition_intl_year?: string | null
           updated_at?: string
-          url?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "programs_cip_code_fkey"
-            columns: ["cip_code"]
+            foreignKeyName: "programs_institution_id_fkey"
+            columns: ["institution_id"]
             isOneToOne: false
-            referencedRelation: "cip_codes"
-            referencedColumns: ["code"]
+            referencedRelation: "institutions"
+            referencedColumns: ["id"]
           },
         ]
       }
