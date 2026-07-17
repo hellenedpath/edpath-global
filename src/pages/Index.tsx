@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Shield, RefreshCw, Compass, ArrowRight, MapPin, Route, Footprints } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
 import heroStudent from "@/assets/hero-student.jpg";
-import manifestoStudy from "@/assets/manifesto-study.jpg";
+import manifestoStudy from "@/assets/hero-students.jpg.asset.json";
 import closingInspire from "@/assets/closing-inspire.jpg";
 import { useReveal } from "@/hooks/use-reveal";
 
@@ -212,16 +212,16 @@ export default function Index() {
               </div>
               <Link
                 to="/sobre"
-                className="group mt-10 inline-flex items-center gap-2 rounded-xl bg-crimson px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_4px_16px_-4px_hsl(var(--crimson)/0.45)] hover:bg-crimson/90 hover:shadow-[0_10px_28px_-6px_hsl(var(--crimson)/0.6)] hover:-translate-y-0.5 transition-all duration-300"
+                className="group mt-10 inline-flex items-center gap-2 rounded-2xl bg-gradient-to-b from-[#E0405B] to-[#B82C46] px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_8px_24px_-6px_hsl(var(--crimson)/0.5)] ring-1 ring-white/10 hover:brightness-110 hover:shadow-[0_14px_32px_-8px_hsl(var(--crimson)/0.65)] hover:-translate-y-0.5 transition-all duration-300"
               >
                 {t("newEra.cta")}
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
               </Link>
             </div>
             <div data-reveal className="relative">
               <div className="relative rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] aspect-[4/5]">
                 <img
-                  src={manifestoStudy}
+                  src={manifestoStudy.url}
                   alt="Student studying with warm natural light"
                   loading="lazy"
                   width={1280}
