@@ -176,7 +176,7 @@ export default function Index() {
   </section>
 
       {/* New era manifesto — light surface, subtle depth, soft glow behind photo */}
-      <section className="relative overflow-hidden bg-[hsl(210,20%,98%)]">
+      <section className="relative overflow-hidden" style={{ backgroundImage: "linear-gradient(180deg, hsl(43 24% 98%) 0%, hsl(43 18% 96%) 100%)" }}>
         {/* Subtle geometric grid + soft gradient orbs */}
         <div
           aria-hidden
@@ -250,7 +250,7 @@ export default function Index() {
       </section>
 
       {/* How it works */}
-      <section className="relative overflow-hidden bg-[hsl(210,20%,98%)]">
+      <section className="relative overflow-hidden" style={{ backgroundImage: "linear-gradient(180deg, hsl(43 24% 98%) 0%, hsl(43 18% 96%) 100%)" }}>
         {/* Subtle geometric grid + soft gradient orbs */}
         <div
           aria-hidden
