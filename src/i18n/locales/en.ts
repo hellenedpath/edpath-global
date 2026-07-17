@@ -51,6 +51,14 @@ export const en = {
       body: "A clear path, from the first step to your destination.",
     },
   },
+  newEra: {
+    title: "The new era of international education",
+    body: [
+      "Studying abroad has never had so much information available, and never been so easy to get lost in it. What students lack most is not information. It is clarity.",
+      "EdPath gathers what really matters: verified against official sources, organized into a clear path, from the first step to your destination.",
+    ],
+    cta: "Discover EdPath",
+  },
   howItWorks: {
     eyebrow: "How it works",
     title: "Three steps to your path",

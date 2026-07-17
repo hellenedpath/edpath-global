@@ -120,6 +120,43 @@ export default function Index() {
             ))}
           </div>
         </div>
+  </section>
+
+      {/* New era manifesto */}
+      <section className="relative text-white">
+        <div
+          className="absolute top-0 inset-x-0 h-24 -translate-y-full pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(180deg, transparent 0%, hsl(228 70% 12%) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(180deg, hsl(228 70% 12%) 0%, hsl(221 55% 18%) 100%)",
+          }}
+        />
+        <div className="container relative z-10 max-w-4xl py-24 md:py-32 text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display">
+            {t("newEra.title")}
+          </h2>
+          <div className="mt-8 md:mt-10 space-y-6">
+            {(t("newEra.body", { returnObjects: true }) as string[]).map((p, i) => (
+              <p key={i} className="text-lg md:text-xl text-white/80 leading-relaxed">
+                {p}
+              </p>
+            ))}
+          </div>
+          <Link
+            to="/sobre"
+            className="group mt-10 inline-flex items-center gap-2 rounded-xl bg-crimson px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_4px_16px_-4px_hsl(var(--crimson)/0.45)] hover:bg-crimson/90 hover:shadow-[0_8px_24px_-6px_hsl(var(--crimson)/0.55)] hover:-translate-y-0.5 transition-all duration-300"
+          >
+            {t("newEra.cta")}
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
       </section>
 
       {/* How it works */}
