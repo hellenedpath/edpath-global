@@ -249,49 +249,69 @@ export default function Index() {
       </section>
 
       {/* How it works */}
-      <section
-        className="relative text-white"
-        style={{
-          backgroundImage:
-            "linear-gradient(180deg, hsl(228 70% 12%) 0%, hsl(221 55% 18%) 100%)",
-        }}
-      >
-        <div className="container max-w-6xl py-20 md:py-28">
-          <div className="text-center mb-16" data-reveal>
-            <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-white/60 mb-4">
+      <section className="relative overflow-hidden bg-[hsl(210,20%,98%)]">
+        {/* Subtle geometric grid + soft gradient orbs */}
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none opacity-[0.22]"
+          style={{
+            backgroundImage:
+              "linear-gradient(hsl(221 30% 60% / 0.07) 1px, transparent 1px), linear-gradient(90deg, hsl(221 30% 60% / 0.07) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+            maskImage:
+              "radial-gradient(ellipse at center, black 25%, transparent 80%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse at center, black 25%, transparent 80%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="absolute -top-20 -right-20 w-[360px] h-[360px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, hsl(221 80% 55% / 0.08), transparent 65%)" }}
+        />
+        <div className="container relative z-10 max-w-6xl py-20 md:py-28">
+          <div className="text-center mb-12 md:mb-16" data-reveal>
+            <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
               <span className="w-6 h-px bg-crimson" />
               {t("howItWorks.eyebrow")}
               <span className="w-6 h-px bg-crimson" />
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy tracking-tight">
               {t("howItWorks.title")}
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {steps.map((s, i) => {
-              const StepIcon = stepIcons[i] ?? MapPin;
-              return (
-              <div
-                key={s.n}
-                data-reveal
-                style={{ transitionDelay: `${i * 120}ms` }}
-                className="group flex flex-col items-start text-left rounded-2xl bg-white/[0.04] p-8 md:p-10 ring-1 ring-white/10 hover:bg-white/[0.07] hover:ring-white/20 hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="flex items-center gap-4">
-                  <span className="font-display text-4xl md:text-5xl font-bold text-crimson leading-none">
-                    {s.n}
-                  </span>
-                  <StepIcon className="w-7 h-7 text-white/70" strokeWidth={1.25} />
-                </div>
-                <h3 className="mt-6 text-xl md:text-2xl font-bold tracking-tight">
-                  {s.title}
-                </h3>
-                <p className="mt-3 text-white/70 text-[15px] leading-relaxed">
-                  {s.desc}
-                </p>
-              </div>
-              );
-            })}
+          <div className="relative">
+            {/* Connecting line between cards */}
+            <div
+              aria-hidden
+              className="absolute top-[7.25rem] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-navy/15 to-transparent hidden md:block z-0"
+            />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
+              {steps.map((s, i) => {
+                const StepIcon = stepIcons[i] ?? MapPin;
+                return (
+                  <div
+                    key={s.n}
+                    data-reveal
+                    style={{ transitionDelay: `${i * 120}ms` }}
+                    className="group flex flex-col items-center text-center rounded-2xl bg-white p-8 md:p-10 ring-1 ring-border/50 shadow-[0_4px_20px_-10px_rgba(5,21,86,0.10)] hover:shadow-[0_24px_50px_-18px_rgba(5,21,86,0.18)] hover:-translate-y-2 transition-all duration-300"
+                  >
+                    <span className="font-display text-5xl md:text-6xl font-bold text-crimson leading-none">
+                      {s.n}
+                    </span>
+                    <span className="mt-6 mb-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-muted/50 text-navy/70 transition-colors duration-300 group-hover:bg-crimson/10 group-hover:text-crimson">
+                      <StepIcon className="w-6 h-6" strokeWidth={1.5} />
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-bold tracking-tight text-navy">
+                      {s.title}
+                    </h3>
+                    <p className="mt-3 text-muted-foreground text-[15px] leading-relaxed">
+                      {s.desc}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
