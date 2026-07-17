@@ -5,6 +5,7 @@ import { CountrySelector } from "@/components/CountrySelector";
 import heroStudent from "@/assets/hero-student.jpg.asset.json";
 import manifestoGrad from "@/assets/new-era.jpg.asset.json";
 import closingInspire from "@/assets/closing-inspire.jpg";
+import destinationBanner from "@/assets/destination-banner.png.asset.json";
 import { useReveal } from "@/hooks/use-reveal";
 
 export default function Index() {
@@ -311,6 +312,38 @@ export default function Index() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Destination is real banner */}
+      <section className="relative" data-reveal>
+        <div className="container max-w-7xl px-4 md:px-6">
+          <div className="relative rounded-3xl overflow-hidden shadow-[0_24px_60px_-20px_rgba(5,21,86,0.18)]">
+            <img
+              src={destinationBanner.url}
+              alt="Graduate student celebrating with confetti"
+              loading="lazy"
+              width={1600}
+              height={900}
+              className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
+            />
+            {/* Dark gradient overlay on the left */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(90deg, hsl(228 70% 10% / 0.92) 0%, hsl(228 65% 14% / 0.75) 40%, hsl(228 55% 20% / 0.35) 65%, transparent 100%)",
+              }}
+            />
+            <div className="relative z-10 py-20 md:py-28 px-8 md:px-14 lg:px-20 max-w-2xl">
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.05]">
+                {t("destinationReal.title")}
+              </h2>
+              <p className="mt-5 text-lg md:text-xl text-white/80 max-w-lg leading-relaxed">
+                {t("destinationReal.subtitle")}
+              </p>
             </div>
           </div>
         </div>
