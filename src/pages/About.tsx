@@ -20,9 +20,9 @@ export default function About() {
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight text-navy">
             {t("about.hero.title")}
           </h1>
-          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
+          <div className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed whitespace-pre-line">
             {t("about.hero.subtitle")}
-          </p>
+          </div>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {[
