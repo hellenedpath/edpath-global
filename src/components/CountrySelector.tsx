@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Flag } from "@/components/Flag";
 import canadaImg from "@/assets/country-canada.jpg";
 import usaImg from "@/assets/country-usa.jpg";
 import ukImg from "@/assets/country-uk.jpg";
@@ -55,11 +54,11 @@ export function CountrySelector() {
                     "absolute inset-0 h-full w-full object-cover transition-transform duration-[700ms] ease-out",
                     c.available
                       ? "group-hover:scale-[1.08]"
-                      : "grayscale-[45%] opacity-90 group-hover:scale-[1.04] group-hover:grayscale-0 group-hover:opacity-100",
+                      : "opacity-95 group-hover:scale-[1.04] group-hover:opacity-100",
                   )}
                 />
-                {/* Base gradient for legibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/40 to-transparent" />
+                {/* Base gradient for legibility — light so photo stays luminous */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent" />
 
                 {/* Status badge */}
                 <span
@@ -75,12 +74,9 @@ export function CountrySelector() {
 
                 {/* Content overlay */}
                 <div className="absolute inset-x-0 bottom-0 p-6 md:p-7 text-white">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Flag code={c.code} className="w-8 shrink-0" />
-                    <h3 className="text-2xl md:text-[26px] font-bold tracking-tight leading-none">
-                      {t(c.nameKey)}
-                    </h3>
-                  </div>
+                  <h3 className="mb-3 text-2xl md:text-[26px] font-bold tracking-tight leading-none">
+                    {t(c.nameKey)}
+                  </h3>
                   <ul
                     className={cn(
                       "space-y-1.5 overflow-hidden transition-all duration-500 ease-out",
