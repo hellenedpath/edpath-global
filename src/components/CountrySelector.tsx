@@ -54,7 +54,7 @@ export function CountrySelector() {
                     "absolute inset-0 h-full w-full object-cover transition-transform duration-[700ms] ease-out",
                     c.available
                       ? "group-hover:scale-[1.08]"
-                      : "grayscale-[45%] opacity-90 group-hover:scale-[1.04] group-hover:grayscale-0 group-hover:opacity-100",
+                      : "opacity-95 group-hover:scale-[1.04] group-hover:opacity-100",
                   )}
                 />
                 {/* Base gradient for legibility — light so photo stays luminous */}
