@@ -1,3 +1,4 @@
+import { Flag } from "@/components/Flag";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { Search, Building2, ExternalLink } from "lucide-react";

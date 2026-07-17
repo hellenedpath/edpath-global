@@ -1,3 +1,4 @@
+import { Flag } from "@/components/Flag";
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";

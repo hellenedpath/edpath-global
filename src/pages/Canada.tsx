@@ -1,3 +1,4 @@
+import { Flag } from "@/components/Flag";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
