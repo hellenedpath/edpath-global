@@ -479,7 +479,25 @@ export default function Programs() {
                       <p className="text-xs uppercase tracking-wider text-muted-foreground">
                         {T("Anuidade internacional", "International tuition / year")}
                       </p>
-                      <p className="font-medium text-navy mt-0.5">{selected.tuition_intl_year}</p>
+                      {selected.sources?.url ? (
+                        <a
+                          href={`${selected.sources.url}#fees-expenses`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 font-medium text-navy mt-0.5 underline hover:text-crimson"
+                        >
+                          {T("Ver tuition no site oficial", "See tuition on official site")}
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      ) : (
+                        <p className="font-medium text-navy mt-0.5">{selected.tuition_intl_year}</p>
+                      )}
+                      <p className="text-xs text-muted-foreground mt-1.5">
+                        {T(
+                          "Valores aproximados; custos extras (livros, seguro, taxas) podem se aplicar.",
+                          "Approximate values; extra costs (books, insurance, fees) may apply."
+                        )}
+                      </p>
                     </div>
                   )}
                 </div>
