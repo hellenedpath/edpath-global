@@ -148,7 +148,7 @@ export default function Programs() {
       const { data, error } = await supabase
         .from("programs")
         .select(
-          "id, name, credential, field_area, campus_city, min_grade, prerequisites, english_admission_tests, duration_months, tuition_intl_year, has_coop, pgwp_eligible, pgwp_basis, application_url, intl_office_url, occupation_ids, institution_id, institutions(id, name, display_name, city, province)"
+          "id, name, credential, field_area, campus_city, min_grade, prerequisites, english_admission_tests, duration_months, tuition_intl_year, has_coop, pgwp_eligible, pgwp_basis, application_url, intl_office_url, source_id, sources!source_id(id, url), occupation_ids, institution_id, institutions(id, name, display_name, city, province)"
         )
         .order("name", { ascending: true });
       if (error) throw error;
