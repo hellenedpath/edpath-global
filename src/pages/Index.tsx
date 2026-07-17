@@ -201,11 +201,6 @@ export default function Index() {
                 />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, hsl(228 70% 10% / 0.55) 100%)" }} />
               </div>
-              <div
-                aria-hidden
-                className="absolute -bottom-4 -right-4 w-32 h-32 rounded-2xl bg-crimson/90 hidden md:block"
-                style={{ filter: "blur(0px)" }}
-              />
             </div>
           </div>
         </div>
