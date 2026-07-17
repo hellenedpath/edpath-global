@@ -249,6 +249,7 @@ export type Database = {
           intl_office_url: string | null
           min_grade: string | null
           name: string
+          occupation_ids: string[] | null
           open_to_international: boolean
           pgwp_basis: string | null
           pgwp_eligible: string | null
@@ -274,6 +275,7 @@ export type Database = {
           intl_office_url?: string | null
           min_grade?: string | null
           name: string
+          occupation_ids?: string[] | null
           open_to_international?: boolean
           pgwp_basis?: string | null
           pgwp_eligible?: string | null
@@ -299,6 +301,7 @@ export type Database = {
           intl_office_url?: string | null
           min_grade?: string | null
           name?: string
+          occupation_ids?: string[] | null
           open_to_international?: boolean
           pgwp_basis?: string | null
           pgwp_eligible?: string | null
