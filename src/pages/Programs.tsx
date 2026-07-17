@@ -1,3 +1,4 @@
+import { Flag } from "@/components/Flag";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -97,7 +98,7 @@ export default function Programs() {
         <div className="container py-16 md:py-24">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/70 mb-4">
-              <span className="text-lg leading-none">🇨🇦</span>
+              <Flag code="canada" className="w-5 shrink-0" />
               <span>{t("programs.hero.badge")}</span>
             </div>
             <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight">

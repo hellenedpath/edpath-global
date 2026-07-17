@@ -2,80 +2,15 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Flag } from "@/components/Flag";
 import canadaImg from "@/assets/country-canada.jpg";
 import usaImg from "@/assets/country-usa.jpg";
 import ukImg from "@/assets/country-uk.jpg";
 import australiaImg from "@/assets/country-australia.jpg";
 import irelandImg from "@/assets/country-ireland.jpg";
 
-function Flag({ code, className }: { code: string; className?: string }) {
-  const common = "block rounded-[3px] overflow-hidden ring-1 ring-black/10 shadow-sm";
-  const cls = cn(common, className);
-  switch (code) {
-    case "canada":
-      return (
-        <svg viewBox="0 0 60 30" className={cls} aria-hidden="true">
-          <rect width="60" height="30" fill="#fff" />
-          <rect width="15" height="30" fill="#D52B1E" />
-          <rect x="45" width="15" height="30" fill="#D52B1E" />
-          <path fill="#D52B1E" d="M30 8l1.6 3.2 3.4-.8-1.6 3 2.6 2-3.2.6.4 3.2L30 17.6 26.8 19.2l.4-3.2-3.2-.6 2.6-2-1.6-3 3.4.8z" />
-        </svg>
-      );
-    case "usa":
-      return (
-        <svg viewBox="0 0 60 30" className={cls} aria-hidden="true">
-          {Array.from({ length: 13 }).map((_, i) => (
-            <rect key={i} y={i * (30 / 13)} width="60" height={30 / 13} fill={i % 2 === 0 ? "#B22234" : "#fff"} />
-          ))}
-          <rect width="24" height={30 * 7 / 13} fill="#3C3B6E" />
-        </svg>
-      );
-    case "uk":
-      return (
-        <svg viewBox="0 0 60 30" className={cls} aria-hidden="true">
-          <rect width="60" height="30" fill="#012169" />
-          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" />
-          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="2" />
-          <path d="M30,0 V30 M0,15 H60" stroke="#fff" strokeWidth="10" />
-          <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6" />
-        </svg>
-      );
-    case "australia":
-      return (
-        <svg viewBox="0 0 60 30" className={cls} aria-hidden="true">
-          <rect width="60" height="30" fill="#012169" />
-          <g transform="scale(0.5)">
-            <rect width="60" height="30" fill="#012169" />
-            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" />
-            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="2" />
-            <path d="M30,0 V30 M0,15 H60" stroke="#fff" strokeWidth="10" />
-            <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6" />
-          </g>
-          <g fill="#fff">
-            <circle cx="15" cy="22" r="1.5" />
-            <circle cx="42" cy="8" r="1.6" />
-            <circle cx="48" cy="16" r="1.6" />
-            <circle cx="42" cy="22" r="1.6" />
-            <circle cx="52" cy="22" r="1.2" />
-            <circle cx="47" cy="26" r="1.2" />
-          </g>
-        </svg>
-      );
-    case "ireland":
-      return (
-        <svg viewBox="0 0 60 30" className={cls} aria-hidden="true">
-          <rect width="20" height="30" fill="#169B62" />
-          <rect x="20" width="20" height="30" fill="#fff" />
-          <rect x="40" width="20" height="30" fill="#FF883E" />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
-
 type Country = {
-  code: string;
+  code: "canada" | "usa" | "uk" | "australia" | "ireland";
   nameKey: string;
   available: boolean;
   to?: string;
@@ -141,7 +76,7 @@ export function CountrySelector() {
                 {/* Content overlay */}
                 <div className="absolute inset-x-0 bottom-0 p-6 md:p-7 text-white">
                   <div className="flex items-center gap-3 mb-3">
-                    <Flag code={c.code} className="w-8 h-[20px] shrink-0" />
+                    <Flag code={c.code} className="w-8 shrink-0" />
                     <h3 className="text-2xl md:text-[26px] font-bold tracking-tight leading-none">
                       {t(c.nameKey)}
                     </h3>
