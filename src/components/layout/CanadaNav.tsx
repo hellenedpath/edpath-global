@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ChevronDown, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Flag } from "@/components/Flag";
 import {
   DropdownMenu,
   DropdownMenuContent,
