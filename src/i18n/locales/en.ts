@@ -53,6 +53,8 @@ export const en = {
   },
   newEra: {
     title: "The new era of international education",
+    manifesto:
+      "A new category: the intelligent navigator that guides your journey with real, verified information.",
     body: [
       "Studying abroad has never had so much information available, and never been so easy to get lost in it. What students lack most is not information. It is clarity.",
       "EdPath gathers what really matters: verified against official sources, organized into a clear path, from the first step to your destination.",
@@ -74,6 +76,12 @@ export const en = {
     body:
       "Studying abroad has never had so much information available, and it has never been so easy to get lost in it. What students lack isn't information. It's clarity. EdPath brings together what really matters: verified from official sources, organized into a clear path, from the first step to your destination.",
     cta: "Discover EdPath",
+  },
+  closing: {
+    eyebrow: "Your next step",
+    title: "Your path abroad starts with clarity.",
+    body: "Take the first step with information you can trust.",
+    cta: "Choose your destination",
   },
   canadaNav: {
     beforeYouGo: "Before you go",

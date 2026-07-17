@@ -52,6 +52,8 @@ export const pt = {
   },
   newEra: {
     title: "A nova era da educação internacional",
+    manifesto:
+      "Uma nova categoria: o navegador inteligente que guia sua jornada com informação real e verificada.",
     body: [
       "Estudar no exterior nunca teve tanta informação disponível, e nunca foi tão fácil se perder nela. O que mais falta ao estudante não é informação. É clareza.",
       "A EdPath reúne o que realmente importa: verificado em fontes oficiais, organizado num caminho claro, do primeiro passo ao destino.",
@@ -73,6 +75,12 @@ export const pt = {
     body:
       "Estudar no exterior nunca teve tanta informação disponível, e nunca foi tão fácil se perder nela. O que falta ao estudante não é informação. É clareza. A EdPath reúne o que realmente importa: verificado em fontes oficiais, organizado num caminho claro, do primeiro passo ao destino.",
     cta: "Conheça a EdPath",
+  },
+  closing: {
+    eyebrow: "Seu próximo passo",
+    title: "Sua jornada no exterior começa com clareza.",
+    body: "Dê o primeiro passo com informação em que você pode confiar.",
+    cta: "Escolha seu destino",
   },
   canadaNav: {
     beforeYouGo: "Antes de ir",
