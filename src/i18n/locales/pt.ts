@@ -80,7 +80,7 @@ export const pt = {
     eyebrow: "Seu próximo passo",
     title: "Sua jornada no exterior começa com clareza.",
     body: "Dê o primeiro passo com informação em que você pode confiar.",
-    cta: "Escolha seu destino",
+    cta: "Comece pelo Canadá",
   },
   canadaNav: {
     beforeYouGo: "Antes de ir",
