@@ -60,6 +60,13 @@ export const en = {
       { n: "03", title: "Follow your guided path", desc: "A clear path, step by step, until you arrive." },
     ],
   },
+  homeAbout: {
+    eyebrow: "About EdPath",
+    title: "Clarity instead of noise.",
+    body:
+      "Studying abroad has never had so much information available — and it has never been so easy to get lost in it. What students lack isn't information. It's clarity. EdPath brings together what really matters: verified from official sources, organized into a clear path, from the first step to your destination.",
+    cta: "Discover EdPath",
+  },
   canadaNav: {
     beforeYouGo: "Before you go",
     onArrival: "After you arrive",

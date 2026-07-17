@@ -59,6 +59,13 @@ export const pt = {
       { n: "03", title: "Siga sua jornada guiada", desc: "Um caminho claro, passo a passo, até chegar." },
     ],
   },
+  homeAbout: {
+    eyebrow: "Sobre a EdPath",
+    title: "Clareza no lugar do ruído.",
+    body:
+      "Estudar no exterior nunca teve tanta informação disponível — e nunca foi tão fácil se perder nela. O que falta ao estudante não é informação. É clareza. A EdPath reúne o que realmente importa: verificado em fontes oficiais, organizado num caminho claro, do primeiro passo ao destino.",
+    cta: "Conheça a EdPath",
+  },
   canadaNav: {
     beforeYouGo: "Antes de ir",
     onArrival: "Ao chegar",

@@ -109,45 +109,55 @@ export function CountrySelector() {
               returnObjects: true,
             }) as string[];
             const inner = (
-              <div className="flex flex-col h-full">
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <img
-                    src={c.image}
-                    alt={c.imageAlt}
-                    width={1200}
-                    height={800}
-                    loading="lazy"
-                    className={cn(
-                      "absolute inset-0 h-full w-full object-cover transition-transform duration-500",
-                      c.available ? "group-hover:scale-[1.03]" : "grayscale-[35%] opacity-90",
-                    )}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
-                  <span
-                    className={cn(
-                      "absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-[0.12em] uppercase backdrop-blur-sm",
-                      c.available
-                        ? "bg-crimson text-white shadow-sm"
-                        : "bg-white/85 text-navy/70",
-                    )}
-                  >
-                    {c.available ? t("countries.available") : t("countries.soon")}
-                  </span>
-                </div>
-                <div className="flex flex-col flex-1 p-6 md:p-7">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Flag code={c.code} className="w-7 h-[18px] shrink-0" />
-                    <h3 className="text-xl font-semibold text-navy tracking-tight">
+              <div className="relative aspect-[4/5] w-full overflow-hidden">
+                <img
+                  src={c.image}
+                  alt={c.imageAlt}
+                  width={1200}
+                  height={1500}
+                  loading="lazy"
+                  className={cn(
+                    "absolute inset-0 h-full w-full object-cover transition-transform duration-[700ms] ease-out",
+                    c.available
+                      ? "group-hover:scale-[1.08]"
+                      : "grayscale-[45%] opacity-90 group-hover:scale-[1.04] group-hover:grayscale-0 group-hover:opacity-100",
+                  )}
+                />
+                {/* Base gradient for legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/40 to-transparent" />
+
+                {/* Status badge */}
+                <span
+                  className={cn(
+                    "absolute top-4 right-4 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase backdrop-blur-md shadow-md",
+                    c.available
+                      ? "bg-crimson text-white ring-1 ring-white/20"
+                      : "bg-white/80 text-navy/70 ring-1 ring-white/40",
+                  )}
+                >
+                  {c.available ? t("countries.available") : t("countries.soon")}
+                </span>
+
+                {/* Content overlay */}
+                <div className="absolute inset-x-0 bottom-0 p-6 md:p-7 text-white">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Flag code={c.code} className="w-8 h-[20px] shrink-0" />
+                    <h3 className="text-2xl md:text-[26px] font-bold tracking-tight leading-none">
                       {t(c.nameKey)}
                     </h3>
                   </div>
-                  <ul className="space-y-2.5 flex-1">
+                  <ul
+                    className={cn(
+                      "space-y-1.5 overflow-hidden transition-all duration-500 ease-out",
+                      "max-h-0 opacity-0 group-hover:max-h-48 group-hover:opacity-100 group-hover:mt-2",
+                    )}
+                  >
                     {advantages.map((adv, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-[14px] leading-snug text-muted-foreground">
+                      <li key={i} className="flex items-start gap-2 text-[13.5px] leading-snug text-white/90">
                         <Check
                           className={cn(
                             "w-4 h-4 mt-0.5 shrink-0",
-                            c.available ? "text-crimson" : "text-navy/40",
+                            c.available ? "text-crimson" : "text-white/70",
                           )}
                           strokeWidth={2.5}
                         />
@@ -159,21 +169,28 @@ export function CountrySelector() {
               </div>
             );
             const base =
-              "group rounded-2xl bg-white ring-1 ring-border/50 overflow-hidden shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)] flex flex-col h-full";
+              "group relative rounded-2xl overflow-hidden shadow-[0_4px_18px_-6px_rgba(5,21,86,0.18)] transition-all duration-500 ease-out block";
             if (c.available && c.to) {
               return (
                 <Link
                   key={c.code}
                   to={c.to}
                   aria-label={t(c.nameKey)}
-                  className={cn(base, "ring-2 ring-crimson/30 hover:ring-crimson/60 hover:shadow-[0_12px_32px_-10px_rgba(5,21,86,0.18)] hover:-translate-y-0.5 transition-all duration-300")}
+                  className={cn(
+                    base,
+                    "ring-2 ring-crimson/40 hover:ring-crimson hover:shadow-[0_24px_50px_-16px_rgba(224,64,91,0.45)] hover:-translate-y-1.5",
+                  )}
                 >
                   {inner}
                 </Link>
               );
             }
             return (
-              <div key={c.code} aria-disabled="true" className={base}>
+              <div
+                key={c.code}
+                aria-disabled="true"
+                className={cn(base, "ring-1 ring-border/50 hover:shadow-[0_20px_40px_-14px_rgba(5,21,86,0.28)] hover:-translate-y-1")}
+              >
                 {inner}
               </div>
             );

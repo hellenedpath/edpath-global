@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { Shield, RefreshCw, Compass, ArrowRight } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
 import heroStudent from "@/assets/hero-student.jpg";
@@ -154,6 +155,30 @@ export default function Index() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* About teaser */}
+      <section className="bg-white">
+        <div className="container max-w-4xl py-20 md:py-24 text-center">
+          <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-5">
+            <span className="w-6 h-px bg-crimson" />
+            {t("homeAbout.eyebrow")}
+            <span className="w-6 h-px bg-crimson" />
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy tracking-tight">
+            {t("homeAbout.title")}
+          </h2>
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            {t("homeAbout.body")}
+          </p>
+          <Link
+            to="/sobre"
+            className="group mt-9 inline-flex items-center gap-2 rounded-xl border-2 border-navy px-7 py-3.5 text-sm font-semibold tracking-wide text-navy hover:bg-navy hover:text-white transition-all duration-300"
+          >
+            {t("homeAbout.cta")}
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </section>
 
