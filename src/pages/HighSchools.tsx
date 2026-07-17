@@ -147,7 +147,7 @@ export default function HighSchools() {
         <div className="container py-16 md:py-20">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/70 mb-4">
-              <span className="text-lg leading-none">🇨🇦</span>
+              <Flag code="canada" className="w-5 shrink-0" />
               <span>{t("highSchools.hero.badge")}</span>
             </div>
             <h1 className="font-display text-4xl md:text-5xl font-semibold tracking-tight">
