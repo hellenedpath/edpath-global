@@ -103,7 +103,7 @@ export default function Costs() {
           <Card className="border-azul/20 shadow-sm">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+                <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
                   <FileCheck className="w-5 h-5" />
                 </span>
                 <span className="text-xs uppercase tracking-widest text-azul font-medium">
@@ -159,7 +159,7 @@ export default function Costs() {
           <Card className="border-crimson/20 shadow-sm">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-crimson/10 text-crimson">
+                <span className="inline-flex items-center justify-center w-10 h-10 text-crimson">
                   <Wallet className="w-5 h-5" />
                 </span>
                 <span className="text-xs uppercase tracking-widest text-crimson font-medium">
@@ -207,7 +207,7 @@ export default function Costs() {
               <Card key={item.tag} className="border-border shadow-sm">
                 <CardHeader className="pb-3">
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul shrink-0">
+                    <span className="inline-flex items-center justify-center w-10 h-10 text-azul shrink-0">
                       <BedDouble className="w-5 h-5" />
                     </span>
                     <span className="text-xs uppercase tracking-widest text-azul font-medium">
@@ -304,7 +304,7 @@ export default function Costs() {
           <Card className="border-border shadow-sm">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+                <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
                   <Receipt className="w-5 h-5" />
                 </span>
                 <span className="text-xs uppercase tracking-widest text-azul font-medium">
@@ -323,7 +323,7 @@ export default function Costs() {
           <Card className="border-border shadow-sm">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+                <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
                   <Fingerprint className="w-5 h-5" />
                 </span>
                 <span className="text-xs uppercase tracking-widest text-azul font-medium">
@@ -342,7 +342,7 @@ export default function Costs() {
           <Card className="border-crimson/20 shadow-sm sm:col-span-2 lg:col-span-1">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-crimson/10 text-crimson">
+                <span className="inline-flex items-center justify-center w-10 h-10 text-crimson">
                   <Calculator className="w-5 h-5" />
                 </span>
                 <span className="text-xs uppercase tracking-widest text-crimson font-medium">
@@ -394,7 +394,7 @@ export default function Costs() {
               <Card key={item.tag} className="border-border shadow-sm">
                 <CardHeader className="pb-3">
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul shrink-0">
+                    <span className="inline-flex items-center justify-center w-10 h-10 text-azul shrink-0">
                       <GraduationCap className="w-5 h-5" />
                     </span>
                     <span className="text-xs uppercase tracking-widest text-azul font-medium">
@@ -445,7 +445,7 @@ export default function Costs() {
                 key={item.title}
                 className="rounded-lg border border-border bg-card p-6 shadow-sm"
               >
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul mb-4">
+                <span className="inline-flex items-center justify-center w-10 h-10 text-azul mb-4">
                   <Icon className="w-5 h-5" />
                 </span>
                 <h3 className="font-display text-lg font-semibold text-navy">

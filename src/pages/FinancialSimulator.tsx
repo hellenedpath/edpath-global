@@ -227,7 +227,7 @@ export default function FinancialSimulator() {
             <Card className="border-azul/30 shadow-sm">
               <CardHeader>
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+                  <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
                     <ShieldCheck className="w-5 h-5" />
                   </span>
                   <span className="text-xs uppercase tracking-widest text-azul font-medium">
@@ -270,7 +270,7 @@ export default function FinancialSimulator() {
             <Card className="border-crimson/30 shadow-sm">
               <CardHeader>
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-crimson/10 text-crimson">
+                  <span className="inline-flex items-center justify-center w-10 h-10 text-crimson">
                     <Wallet className="w-5 h-5" />
                   </span>
                   <span className="text-xs uppercase tracking-widest text-crimson font-medium">
@@ -302,7 +302,7 @@ export default function FinancialSimulator() {
             <Card className="border-border shadow-sm">
               <CardHeader>
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-navy/10 text-navy">
+                  <span className="inline-flex items-center justify-center w-10 h-10 text-navy">
                     <Calendar className="w-5 h-5" />
                   </span>
                   <CardTitle className="font-display text-xl text-navy">
@@ -323,7 +323,7 @@ export default function FinancialSimulator() {
             <Card className="border-azul/30 shadow-sm">
               <CardHeader>
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+                  <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
                     <PiggyBank className="w-5 h-5" />
                   </span>
                   <CardTitle className="font-display text-xl text-navy">

@@ -34,7 +34,7 @@ export default function About() {
                 key={label}
                 className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 shadow-sm"
               >
-                <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-azul/10 text-azul shrink-0">
+                <span className="inline-flex items-center justify-center w-9 h-9 text-azul shrink-0">
                   <Icon className="w-5 h-5" />
                 </span>
                 <span className="text-sm font-medium text-navy leading-tight">
@@ -63,7 +63,7 @@ export default function About() {
                   key={index}
                   className="flex items-start gap-4 rounded-xl bg-white/5 border border-white/10 p-6 md:p-8"
                 >
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 shrink-0 mt-0.5">
+                  <span className="inline-flex items-center justify-center w-8 h-8 text-emerald-400 shrink-0 mt-0.5">
                     <Check className="w-5 h-5" />
                   </span>
                   <p className="text-lg leading-relaxed text-primary-foreground/90">{item}</p>
@@ -109,7 +109,7 @@ export default function About() {
                     key={item.title}
                     className="rounded-xl border border-border bg-card p-6 md:p-8 shadow-sm"
                   >
-                    <span className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-azul/10 text-azul mb-4">
+                    <span className="inline-flex items-center justify-center w-11 h-11 text-azul mb-4">
                       <Icon className="w-5 h-5" />
                     </span>
                     <h3 className="font-display text-xl font-semibold text-navy">

@@ -70,7 +70,7 @@ export default function Family() {
                 >
                   <AccordionTrigger className="hover:no-underline py-5 text-left gap-4">
                     <div className="flex items-center gap-3">
-                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-azul/10 text-azul">
+                      <span className="inline-flex items-center justify-center w-9 h-9 text-azul">
                         <Heart className="w-5 h-5" />
                       </span>
                       <span className="font-display text-lg text-navy">{province.name}</span>
@@ -108,7 +108,7 @@ export default function Family() {
               return (
                 <Card key={level.title} className="border-border shadow-sm">
                   <CardHeader className="pb-3">
-                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul mb-3">
+                    <span className="inline-flex items-center justify-center w-10 h-10 text-azul mb-3">
                       <Icon className="w-5 h-5" />
                     </span>
                     <CardTitle className="font-display text-lg text-navy">
@@ -141,7 +141,7 @@ export default function Family() {
                 key={step.title}
                 className="flex items-start gap-4 rounded-lg border border-border bg-card p-6 shadow-sm"
               >
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-crimson/10 text-crimson font-display font-semibold shrink-0">
+                <span className="inline-flex items-center justify-center w-8 h-8 text-crimson font-display font-semibold shrink-0">
                   {index + 1}
                 </span>
                 <div>
@@ -163,7 +163,7 @@ export default function Family() {
         <div className="container py-16 md:py-24 max-w-5xl">
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center gap-3 mb-4">
-              <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+              <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
                 <GraduationCap className="w-5 h-5" />
               </span>
               <h2 className="font-display text-3xl md:text-4xl font-semibold text-navy">

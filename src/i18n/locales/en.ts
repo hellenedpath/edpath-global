@@ -64,7 +64,7 @@ export const en = {
     eyebrow: "About EdPath",
     title: "Clarity instead of noise.",
     body:
-      "Studying abroad has never had so much information available — and it has never been so easy to get lost in it. What students lack isn't information. It's clarity. EdPath brings together what really matters: verified from official sources, organized into a clear path, from the first step to your destination.",
+      "Studying abroad has never had so much information available, and it has never been so easy to get lost in it. What students lack isn't information. It's clarity. EdPath brings together what really matters: verified from official sources, organized into a clear path, from the first step to your destination.",
     cta: "Discover EdPath",
   },
   canadaNav: {
@@ -89,7 +89,7 @@ export const en = {
       costsSimulator: "Cost Simulator",
       realCosts: "Real costs",
       before: "Before You Start",
-      studyPermit: "Study Permit — How to apply",
+      studyPermit: "Study Permit, How to apply",
       renting: "Renting in Canada",
       rentalScams: "Rental scams",
       costs: "Costs",
@@ -133,7 +133,7 @@ export const en = {
       ],
       uk: [
         "Prestigious universities (Oxford, Cambridge)",
-        "Shorter programs — save time and cost",
+        "Shorter programs, save time and cost",
         "Strong in business, law and engineering",
       ],
       australia: [
@@ -151,7 +151,7 @@ export const en = {
   canadaSteps: {
     eyebrow: "Your path, step by step",
     title: "Your path to Canada, step by step",
-    subtitle: "A student who has never left home needs a clear sequence. Follow the order — each step sets up the next.",
+    subtitle: "A student who has never left home needs a clear sequence. Follow the order, each step sets up the next.",
     stepLabel: "Step",
     primaryCta: "Start this step",
     alsoSee: "See also",
@@ -177,7 +177,7 @@ export const en = {
       },
       visa: {
         title: "Apply for the visa",
-        desc: "Documents, fees, and the study permit step by step — and how to avoid scams.",
+        desc: "Documents, fees, and the study permit step by step, and how to avoid scams.",
         cta: "See Study Permit",
       },
       move: {
@@ -194,7 +194,7 @@ export const en = {
         alt1: "Family",
       },
     },
-    youAreHere: "You are here — your next step",
+    youAreHere: "You are here, your next step",
     clearHighlight: "Clear highlight",
   },
   healthPage: {
@@ -217,7 +217,7 @@ export const en = {
     },
     officialLinkLabel: "See official IRCC page on health",
     seal: "General information. Confirm coverage with your institution and provincial health service.",
-    sourceLink: "Official source: IRCC — Health insurance",
+    sourceLink: "Official source: IRCC, Health insurance",
   },
   pages: {
     about: "About",
@@ -303,7 +303,7 @@ export const en = {
     hero: {
       title: "The new era of international education",
       subtitle:
-        "The world has changed. The way we study in it has too.\n\nThere has never been so much information available about studying abroad — and never has it been so easy to get lost in it. Between websites, groups and promises, what students lack most is not information. It is clarity.\n\nEdPath was born for this. An intelligent platform that gathers what really matters — verified against official sources, organized into a clear path, updated in real time. No noise, no bias, no empty promises.\n\nFrom the first step to your destination, you find everything in one place: what to study, how much it costs, where to live, how to prepare — and the confidence that the information is real.\n\nThis is the new era of international education. Welcome to EdPath.",
+        "The world has changed. The way we study in it has too.\n\nThere has never been so much information available about studying abroad, and never has it been so easy to get lost in it. Between websites, groups and promises, what students lack most is not information. It is clarity.\n\nEdPath was born for this. An intelligent platform that gathers what really matters, verified against official sources, organized into a clear path, updated in real time. No noise, no bias, no empty promises.\n\nFrom the first step to your destination, you find everything in one place: what to study, how much it costs, where to live, how to prepare, and the confidence that the information is real.\n\nThis is the new era of international education. Welcome to EdPath.",
       badges: [
         "Clarity",
         "Official sources",
@@ -360,7 +360,7 @@ export const en = {
     hero: {
       title: "Studying in Canada",
       subtitle:
-        "The two numbers every student needs to understand before deciding — proof of funds vs. real cost of living in Canada.",
+        "The two numbers every student needs to understand before deciding, proof of funds vs. real cost of living in Canada.",
     },
     twoNumbers: {
       title: "The two numbers",
@@ -415,7 +415,7 @@ export const en = {
       title: "Estimated tuition by program type",
       subtitle:
         "Tuition is usually the largest cost and varies a lot by program, institution, and province. Use these official ranges as a reference.",
-      note: "Official averages by level. The actual amount depends on the institution and specific program — always confirm on the chosen school's official website.",
+      note: "Official averages by level. The actual amount depends on the institution and specific program, always confirm on the chosen school's official website.",
       sourceUrl: "https://www.educanada.ca/programs-programmes/education_cost-cout_education.aspx?lang=eng",
       sourceLabel: "See official tuition ranges (EduCanada)",
       items: [
@@ -425,12 +425,12 @@ export const en = {
           desc: "Most affordable option; many programs are 1-2 years.",
         },
         {
-          tag: "University — Undergraduate",
+          tag: "University, Undergraduate",
           price: "CAD $19,000 – $50,000/year",
           desc: "Varies widely by province (Ontario is the most expensive) and field (engineering, business, and health are at the top).",
         },
         {
-          tag: "University — Graduate",
+          tag: "University, Graduate",
           price: "CAD $7,000 – $28,000/year",
           desc: "",
         },
@@ -513,7 +513,7 @@ export const en = {
       alert: {
         title: "Documentation costs more than just government fees",
         body:
-          "Beyond these official fees, there are country-specific costs not charged by IRCC — the Visa Application Centre fee (VAC, ~$50), medical exam ($200-400), photos and courier. A realistic documentation budget totals CAD $500 to $800.",
+          "Beyond these official fees, there are country-specific costs not charged by IRCC, the Visa Application Centre fee (VAC, ~$50), medical exam ($200-400), photos and courier. A realistic documentation budget totals CAD $500 to $800.",
       },
       sourceUrl: "https://ircc.canada.ca/english/information/fees/fees.asp",
       sourceLabel: "See official IRCC fee table",
@@ -535,7 +535,7 @@ export const en = {
       note: {
         title: "Floor, not ceiling",
         body:
-          "Amount current since September 2025. IRCC reviews this figure annually — confirm at canada.ca before applying. This is a minimum, not a maximum: showing exactly the minimum can raise questions; an extra buffer of $2,000-5,000 shows planning.",
+          "Amount current since September 2025. IRCC reviews this figure annually, confirm at canada.ca before applying. This is a minimum, not a maximum: showing exactly the minimum can raise questions; an extra buffer of $2,000-5,000 shows planning.",
       },
       sourceUrl: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html",
       sourceLabel: "See official proof of funds requirement",
@@ -547,7 +547,7 @@ export const en = {
       perMonth: "/month",
       shared: {
         tag: "Shared room",
-        label: "National average for shared accommodation — more affordable at the start.",
+        label: "National average for shared accommodation, more affordable at the start.",
       },
       note: {
         title: "Market averages",
@@ -571,7 +571,7 @@ export const en = {
         {
           tag: "Shared apartment",
           price: "About half of a 2-bedroom",
-          desc: "You and one or more roommates rent a whole apartment and split everything (rent, bills, common spaces). Use the city cost table below as a reference — usually about half the price of a 2-bedroom.",
+          desc: "You and one or more roommates rent a whole apartment and split everything (rent, bills, common spaces). Use the city cost table below as a reference, usually about half the price of a 2-bedroom.",
         },
         {
           tag: "Institution residence (dorm)",
@@ -650,7 +650,7 @@ export const en = {
         {
           title: "Walk-in clinic",
           description:
-            "For mild, urgent issues that are not emergencies. No appointment needed — just show up, but expect a wait.",
+            "For mild, urgent issues that are not emergencies. No appointment needed, just show up, but expect a wait.",
         },
         {
           title: "811 line",
@@ -742,7 +742,7 @@ export const en = {
         {
           title: "Institution resources",
           description:
-            "Use Career Services, the co-op/internship coordinator, the International Student Office and talk to professors — they have industry contacts and hear about opportunities.",
+            "Use Career Services, the co-op/internship coordinator, the International Student Office and talk to professors, they have industry contacts and hear about opportunities.",
         },
         {
           title: "Academic projects",
@@ -985,7 +985,7 @@ export const en = {
     disclaimer: {
       title: "Important: read before deciding",
       body:
-        "This list only shows fields that may qualify for PGWP. Fields not shown here may not be eligible — many business and management programs lost eligibility after 2024. Final eligibility also depends on the institution, duration and language of the program. Always confirm your specific case.",
+        "This list only shows fields that may qualify for PGWP. Fields not shown here may not be eligible, many business and management programs lost eligibility after 2024. Final eligibility also depends on the institution, duration and language of the program. Always confirm your specific case.",
       linkLabel: "See the official IRCC list",
     },
     cta: {
@@ -1005,7 +1005,7 @@ export const en = {
       title: "Public institutions in Canada",
       subtitle: "Recognized public universities and colleges, organized by province.",
       description:
-        "In Canada, <strong>universities</strong> offer bachelor's, master's and doctoral degrees with an academic focus. <strong>Colleges</strong> offer diplomas and certificates with a practical, professional focus — usually shorter and more affordable. Both can lead to a PGWP, depending on the program.",
+        "In Canada, <strong>universities</strong> offer bachelor's, master's and doctoral degrees with an academic focus. <strong>Colleges</strong> offer diplomas and certificates with a practical, professional focus, usually shorter and more affordable. Both can lead to a PGWP, depending on the program.",
     },
     filters: {
       searchPlaceholder: "Search by institution name...",
@@ -1036,7 +1036,7 @@ export const en = {
     },
     visitSite: "Visit official website",
     empty: "No institutions found with these filters.",
-    note: "List of public institutions based on official IRCC data. Covers the main destination provinces for students and is being expanded. The button opens a search for the institution's official website — always confirm information directly with the institution.",
+    note: "List of public institutions based on official IRCC data. Covers the main destination provinces for students and is being expanded. The button opens a search for the institution's official website, always confirm information directly with the institution.",
   },
 
   financialSimulator: {
@@ -1044,7 +1044,7 @@ export const en = {
     badge: "Financial Simulator",
     heroTitle: "Estimate your study project in Canada",
     heroSubtitle:
-      "Adjust the variables below to see a realistic cost range and the recommended reserve. Wide, honest ranges — planning, not a promise.",
+      "Adjust the variables below to see a realistic cost range and the recommended reserve. Wide, honest ranges, planning, not a promise.",
     choices: {
       title: "Your choices",
       city: {
@@ -1079,14 +1079,14 @@ export const en = {
       body:
         "This is generally the <strong>official proof of funds</strong> amount required for a study permit (outside Quebec, current since Sep 2025). It is usually <strong>in addition to tuition</strong> and airfare, and IRCC updates it annually. This is general guidance and <strong>does not confirm your case</strong>.",
       confirmLink: "Confirm the current amount at canada.ca",
-      irccLinkLabel: "Proof of funds — official IRCC page",
+      irccLinkLabel: "Proof of funds, official IRCC page",
     },
     monthlyCost: {
       tag: "What you will likely spend",
       title: "Estimated monthly cost of living",
       rangeLabel: "Estimated monthly range",
       body:
-        "Approximate range covering housing, food, transport and essentials. <strong>Not a guaranteed amount</strong> — varies by city, neighborhood, exchange rate and personal choices.",
+        "Approximate range covering housing, food, transport and essentials. <strong>Not a guaranteed amount</strong>, varies by city, neighborhood, exchange rate and personal choices.",
     },
     totalCost: {
       title: "Estimated total cost ({{months}} months)",
@@ -1096,20 +1096,20 @@ export const en = {
     reserve: {
       title: "Recommended reserve",
       body:
-        "We suggest <strong>3 to 4 months</strong> of living costs as a reserve, <strong>in addition to</strong> proof of funds — the first months have extra setup costs (deposit, furniture, documents, phone).",
+        "We suggest <strong>3 to 4 months</strong> of living costs as a reserve, <strong>in addition to</strong> proof of funds, the first months have extra setup costs (deposit, furniture, documents, phone).",
     },
     comparison: {
-      title: "Two different things — don't mix them up",
+      title: "Two different things, don't mix them up",
       proofLabel: "Proof of funds (IRCC)",
       proofDescription: "Official requirement for the visa.",
       costLabel: "Estimated cost of living ({{months}} months)",
-      costDescription: "Realistic spending estimate — range (minimum → maximum).",
+      costDescription: "Realistic spending estimate, range (minimum → maximum).",
     },
     disclaimer: {
       title: "Important: read before deciding",
       body:
-        "Cost-of-living estimates are approximate and for planning only. Actual amounts usually vary based on your choices and the market. Proof of funds is an official requirement of the Canadian government (IRCC), updated annually and valid outside Quebec — always confirm the current amount at canada.ca. This simulator provides <strong>general guidance</strong>, <strong>does not confirm your case</strong> and does not replace financial or immigration advice (RCIC).",
-      irccLinkLabel: "Study in Canada — official IRCC",
+        "Cost-of-living estimates are approximate and for planning only. Actual amounts usually vary based on your choices and the market. Proof of funds is an official requirement of the Canadian government (IRCC), updated annually and valid outside Quebec, always confirm the current amount at canada.ca. This simulator provides <strong>general guidance</strong>, <strong>does not confirm your case</strong> and does not replace financial or immigration advice (RCIC).",
+      irccLinkLabel: "Study in Canada, official IRCC",
     },
     actions: {
       back: "Back to Costs",
@@ -1135,7 +1135,7 @@ export const en = {
       restart: "Restart",
       title: "Which country do you want to go to?",
       subtitle:
-        "Choose your destination. For now, the full roadmap is available for Canada — other countries are being prepared.",
+        "Choose your destination. For now, the full roadmap is available for Canada, other countries are being prepared.",
       available: "Available",
       comingSoon: "Coming soon",
       options: {
@@ -1260,23 +1260,23 @@ export const en = {
     objective: {
       stay: "Your focus is to build a career and stay in Canada.",
       return: "Your focus is to gain international experience and return to Brazil.",
-      explore: "You are still exploring the path — let's go step by step.",
+      explore: "You are still exploring the path, let's go step by step.",
     },
     highlights: {
       languagePriority: "Priority: you'll need to prove your language level before applying.",
       languageFluent: "Schedule an official test (IELTS, CELPIP or TEF) to formalize your level.",
-      stayPgwp: "Your goal is to stay in the country — choosing a PGWP-eligible program is essential.",
-      budgetUnderstand: "Start with cost planning — it's the foundation of your proof of funds.",
+      stayPgwp: "Your goal is to stay in the country, choosing a PGWP-eligible program is essential.",
+      budgetUnderstand: "Start with cost planning, it's the foundation of your proof of funds.",
       budgetWork: "A study permit allows working up to 24h/week, but plan reserves for the first months.",
       childrenSchool: "With children: research public schools (free) and provincial health coverage in your city.",
       childrenBudget: "Family costs increase the proof of funds required by IRCC.",
       spouseHighLevel:
-        "Spouse work permit: in general, under current Canadian rules (since Jan/2025), spouses of master's (16+ months) and PhD students can usually apply for an open work permit. This is an estimate based on general rules and does not confirm your case. Each situation has its particularities — confirm your specific case with a licensed immigration consultant (RCIC) or directly on the official IRCC website.",
+        "Spouse work permit: in general, under current Canadian rules (since Jan/2025), spouses of master's (16+ months) and PhD students can usually apply for an open work permit. This is an estimate based on general rules and does not confirm your case. Each situation has its particularities, confirm your specific case with a licensed immigration consultant (RCIC) or directly on the official IRCC website.",
       spouseLowLevel:
-        "Attention — spouse work permit: in general, under current Canadian rules (since Jan/2025), spouses of bachelor's, diploma or certificate students usually CANNOT obtain an open work permit (there are exceptions for some professional programs). This is an estimate based on general rules and does not confirm your case — it may impact the family budget. Confirm your specific case with a licensed RCIC consultant or directly on the official IRCC website.",
-      unknownArea: "Explore PGWP-eligible fields before choosing — it may guide your decision.",
+        "Attention, spouse work permit: in general, under current Canadian rules (since Jan/2025), spouses of bachelor's, diploma or certificate students usually CANNOT obtain an open work permit (there are exceptions for some professional programs). This is an estimate based on general rules and does not confirm your case, it may impact the family budget. Confirm your specific case with a licensed RCIC consultant or directly on the official IRCC website.",
+      unknownArea: "Explore PGWP-eligible fields before choosing, it may guide your decision.",
       arrivedFocus: "Focus on SIN, bank account, provincial healthcare and permanent housing.",
-      spouseLinkLabel: "Official IRCC page — spouse work permit",
+      spouseLinkLabel: "Official IRCC page, spouse work permit",
     },
     steps: {
       s1: { title: "Discover", description: "Understand Canada as a destination: provinces, education system and lifestyle.", ctaLabel: "Explore the Canada portal" },
@@ -1298,7 +1298,7 @@ export const en = {
         body:
           "Canadian universities generally accept: <strong>IELTS Academic</strong>, <strong>TOEFL iBT</strong>, <strong>Duolingo English Test (DET)</strong>, <strong>PTE Academic</strong>, <strong>Cambridge English (C1 Advanced/C2 Proficiency)</strong> and <strong>CAEL</strong>.",
         note:
-          "Each institution defines which tests it accepts and the minimum score — some graduate programs are stricter (e.g., they may not accept Duolingo). Always confirm with the institution.",
+          "Each institution defines which tests it accepts and the minimum score, some graduate programs are stricter (e.g., they may not accept Duolingo). Always confirm with the institution.",
       },
       section2: {
         label: "Section 2",
@@ -1322,31 +1322,31 @@ export const en = {
     },
     score: {
       factors: {
-        stayEligible: "Your field is PGWP-eligible — a prerequisite to work after graduating.",
+        stayEligible: "Your field is PGWP-eligible, a prerequisite to work after graduating.",
         stayConditional:
-          "Your field has conditional PGWP eligibility — confirm whether your specific program and institution are on the official list.",
+          "Your field has conditional PGWP eligibility, confirm whether your specific program and institution are on the official list.",
         stayNot:
-          "Your field does not appear as PGWP-eligible — since your goal is to stay, this is a critical point.",
-        returnEligible: "Your field is PGWP-eligible — useful if you want work experience before returning.",
+          "Your field does not appear as PGWP-eligible, since your goal is to stay, this is a critical point.",
+        returnEligible: "Your field is PGWP-eligible, useful if you want work experience before returning.",
         returnNot: "Your field is not PGWP-eligible, but since your goal is to return, the impact is smaller.",
-        exploreUnknown: "You are still exploring your goal — defining it will help you choose the right program.",
-        langTested: "You already have an official language test — a big step forward in your application.",
+        exploreUnknown: "You are still exploring your goal, defining it will help you choose the right program.",
+        langTested: "You already have an official language test, a big step forward in your application.",
         langFluent: "You speak well, but still need to formalize it with an official test (IELTS, CELPIP or TEF).",
-        langImprove: "You indicated you need to improve your language — resolve this before applying.",
+        langImprove: "You indicated you need to improve your language, resolve this before applying.",
         spouseHigh:
-          "At the chosen level (master's/PhD), spouses can generally apply for an open work permit. Estimate — does not confirm your case; confirm with an RCIC or IRCC.",
+          "At the chosen level (master's/PhD), spouses can generally apply for an open work permit. Estimate, does not confirm your case; confirm with an RCIC or IRCC.",
         spouseLow:
-          "At the chosen level, spouses generally do NOT get an open work permit — it may impact the family budget. Estimate — does not confirm your case; confirm with an RCIC or IRCC.",
-        budgetPlanned: "You already have funds planned — this reduces the financial risk of the journey.",
-        budgetUnderstand: "You need to better understand the costs — start with the financial planning step.",
+          "At the chosen level, spouses generally do NOT get an open work permit, it may impact the family budget. Estimate, does not confirm your case; confirm with an RCIC or IRCC.",
+        budgetPlanned: "You already have funds planned, this reduces the financial risk of the journey.",
+        budgetUnderstand: "You need to better understand the costs, start with the financial planning step.",
         budgetWork:
-          "You plan to rely on work to support yourself — the study permit limits you to 24h/week; plan reserves for the first months.",
+          "You plan to rely on work to support yourself, the study permit limits you to 24h/week; plan reserves for the first months.",
       },
     },
     irccLinks: {
       pgwpEligibility: "Official list of PGWP-eligible fields",
-      proofOfFunds: "Proof of funds — official IRCC page",
-      spouseWorkPermit: "Spouse work permit — official IRCC page",
+      proofOfFunds: "Proof of funds, official IRCC page",
+      spouseWorkPermit: "Spouse work permit, official IRCC page",
     },
   },
 
@@ -1355,14 +1355,14 @@ export const en = {
       badge: "PGWP Checker",
       title: "Does your field of study qualify for the PGWP?",
       subtitle:
-        "Find out, in general terms, whether a field of study is usually eligible for the Post-Graduation Work Permit (PGWP), based on the official Canadian government list. This is guidance — it does not confirm your specific case.",
+        "Find out, in general terms, whether a field of study is usually eligible for the Post-Graduation Work Permit (PGWP), based on the official Canadian government list. This is guidance, it does not confirm your specific case.",
     },
     irccLinkLabel: "Official PGWP rules on IRCC",
     search: {
       placeholder: "Search by field (e.g. nursing, engineering, business)",
       allCategories: "All categories",
       siglasHint:
-        "Acronyms in parentheses (e.g. <strong>BArch, MArch, DArch, PhD</strong>) indicate the academic credentials offered in the field — bachelor's, master's, doctorate and equivalents.",
+        "Acronyms in parentheses (e.g. <strong>BArch, MArch, DArch, PhD</strong>) indicate the academic credentials offered in the field, bachelor's, master's, doctorate and equivalents.",
       namesHint:
         "Fields appear under the official technical name used by the Canadian government, often in English. If you don't recognize a term, it may be the technical name of your field. <strong>Tip:</strong> try searching in Portuguese too (e.g. <strong>\"física\", \"engenharia\"</strong>) or confirm the name of your program with the institution.",
     },
@@ -1377,7 +1377,7 @@ export const en = {
     coverage: {
       label: "Current data coverage:",
       body:
-        "this tool currently covers the fields of <strong>STEM, Trades and Transport</strong>. We are adding other categories such as Health, Education and Agriculture. If you don't find your field, it may not yet have been included — <strong>this does not mean it is not eligible</strong>. Always confirm on the <link>official IRCC list</link>.",
+        "this tool currently covers the fields of <strong>STEM, Trades and Transport</strong>. We are adding other categories such as Health, Education and Agriculture. If you don't find your field, it may not yet have been included, <strong>this does not mean it is not eligible</strong>. Always confirm on the <link>official IRCC list</link>.",
     },
     results: {
       loading: "Loading fields of study...",
@@ -1405,12 +1405,12 @@ export const en = {
       subtitle:
         "BC public school districts and private schools that welcome international high school students.",
       description:
-        "Explore public districts with an official international program and private schools with an international stream, see diploma, grades offered, homestay, boarding and fees — then go straight to the official site to apply.",
+        "Explore public districts with an official international program and private schools with an international stream, see diploma, grades offered, homestay, boarding and fees, then go straight to the official site to apply.",
     },
     context: {
       title: "How it works:",
       body:
-        "Not every school in Canada accepts international high school students. There are two main paths: public school districts with an official international program, and private schools that accept international students. This page lists both in BC — you apply directly to the district or school.",
+        "Not every school in Canada accepts international high school students. There are two main paths: public school districts with an official international program, and private schools that accept international students. This page lists both in BC, you apply directly to the district or school.",
       boardingNote:
         "Boarding = the school offers residence (the student lives at school). Without boarding, the student lives with a homestay family.",
     },
@@ -1442,7 +1442,7 @@ export const en = {
       homestay: "Homestay",
       applicationFee: "Application fee",
       tuition: "Estimated annual cost",
-      tuitionEstimate: "Estimate — may vary",
+      tuitionEstimate: "Estimate, may vary",
       tuitionMissing: "Check the official site",
       applyCta: "View international program / Apply",
       type: {
@@ -1455,7 +1455,7 @@ export const en = {
         boarding: "Boarding: CAD $42,000/year",
         day: "Day (day student): CAD $25,000/year",
         disclaimer:
-          "Estimate — tuition and program only. Additional fees apply.",
+          "Estimate, tuition and program only. Additional fees apply.",
       },
     },
 
@@ -1463,7 +1463,7 @@ export const en = {
     disclaimer: {
       title: "Honest heads-up:",
       body:
-        "This information is a starting point. Requirements, costs and seats change every year — always confirm on the district's or school's official site before applying.",
+        "This information is a starting point. Requirements, costs and seats change every year, always confirm on the district's or school's official site before applying.",
       costNote:
         "Costs are estimates and change yearly. Always confirm on the school's official site.",
     },
@@ -1485,7 +1485,7 @@ export const en = {
     firstDays: {
       title: "Where to stay when you first arrive",
       body:
-        "Spend the first days in an Airbnb, hotel or short-term stay. Many institutions offer on-campus residence or newcomer housing support — contact the housing office at your school, college or university before you travel. Use that time to look for a long-term rental calmly and to visit places in person.",
+        "Spend the first days in an Airbnb, hotel or short-term stay. Many institutions offer on-campus residence or newcomer housing support, contact the housing office at your school, college or university before you travel. Use that time to look for a long-term rental calmly and to visit places in person.",
     },
     types: {
       title: "Types of housing and price ranges",
@@ -1521,7 +1521,7 @@ export const en = {
     lease: {
       title: "The lease",
       body:
-        "Always in writing — never a verbal agreement or a handshake. In Ontario, require the Standard Lease (government-mandated standard form since 2018) — if the landlord refuses to use it, that is a red flag. The lease should include: rent amount, payment date, term, what is included (heat, water, internet), deposit terms, and the name of the legal owner (which must match who receives the payment).",
+        "Always in writing, never a verbal agreement or a handshake. In Ontario, require the Standard Lease (government-mandated standard form since 2018), if the landlord refuses to use it, that is a red flag. The lease should include: rent amount, payment date, term, what is included (heat, water, internet), deposit terms, and the name of the legal owner (which must match who receives the payment).",
     },
     deposit: {
       title: "Deposit: what is legal in each province",
@@ -1541,17 +1541,17 @@ export const en = {
         "The landlord cannot enter whenever they want: they must give 24 hours' written notice (except in emergencies).",
         "Heat is mandatory by law in winter (in Ontario, minimum 20°C from September to June; Toronto requires 21°C).",
         "There is a legal cap on annual rent increases (in Ontario, 2.1% in 2026), with exceptions.",
-        "Protection against illegal eviction — only through the official process.",
+        "Protection against illegal eviction, only through the official process.",
       ],
     },
     bodies: {
       title: "Bodies that protect tenants (by province)",
       rows: {
-        on: "Ontario — Landlord and Tenant Board (LTB), under the Residential Tenancies Act. Free support: ACTO and community legal clinics.",
-        bc: "BC — Residential Tenancy Branch (RTB).",
-        ab: "Alberta — Residential Tenancy Dispute Resolution Service.",
-        mb: "Manitoba — Residential Tenancies Branch.",
-        sk: "Saskatchewan — Office of Residential Tenancies.",
+        on: "Ontario, Landlord and Tenant Board (LTB), under the Residential Tenancies Act. Free support: ACTO and community legal clinics.",
+        bc: "BC, Residential Tenancy Branch (RTB).",
+        ab: "Alberta, Residential Tenancy Dispute Resolution Service.",
+        mb: "Manitoba, Residential Tenancies Branch.",
+        sk: "Saskatchewan, Office of Residential Tenancies.",
       },
       urls: {
         on: "https://tribunalsontario.ca/ltb/",
@@ -1567,21 +1567,21 @@ export const en = {
     credit: {
       title: "Credit score and the newcomer challenge",
       body:
-        "In Canada, credit scores run from 300 to 900, and credit history from another country does NOT transfer — you start from zero. Landlords usually ask for a credit check. Compensate with: bank statements, letter of acceptance from your institution, proof of funds, a reference from a previous landlord, or a larger deposit (within the legal limit).",
+        "In Canada, credit scores run from 300 to 900, and credit history from another country does NOT transfer, you start from zero. Landlords usually ask for a credit check. Compensate with: bank statements, letter of acceptance from your institution, proof of funds, a reference from a previous landlord, or a larger deposit (within the legal limit).",
       sinTitle: "Important: your SIN",
       sin:
-        "Your SIN (Social Insurance Number) is NOT required for a basic credit check — give only name, address and date of birth, and keep your SIN protected.",
+        "Your SIN (Social Insurance Number) is NOT required for a basic credit check, give only name, address and date of birth, and keep your SIN protected.",
       build:
         "Build credit quickly: open a bank account when you arrive, get a newcomer credit card, and use services that report your rent payments to the credit bureaus (improves your score in 6–12 months).",
       sourceUrl: "https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/credit-report-score-basics.html",
-      sourceLabel: "Government of Canada — credit report and score basics",
+      sourceLabel: "Government of Canada, credit report and score basics",
     },
     insurance: {
       title: "Renter's insurance",
       body:
         "Many landlords require it. It's affordable and protects your belongings against theft, fire and damage. Confirm whether it is required before signing.",
       sourceUrl: "https://www.canada.ca/en/financial-consumer-agency/services/insurance.html",
-      sourceLabel: "Government of Canada — insurance basics",
+      sourceLabel: "Government of Canada, insurance basics",
     },
     scamsCta: {
       title: "Protect yourself from rental scams",
@@ -1589,7 +1589,7 @@ export const en = {
       button: "How to spot rental scams →",
     },
     sources: {
-      statcan: "Statistics Canada — Rent",
+      statcan: "Statistics Canada, Rent",
       rentalsCa: "Rentals.ca National Rent Report",
     },
   },
@@ -1599,7 +1599,7 @@ export const en = {
       tag: "Before you go",
       title: "Rental scams: how to protect yourself",
       subtitle:
-        "International students are a primary target for rental scams — arriving from abroad, unfamiliar with local rules and under pressure to secure housing. Official bodies like the police and the Canadian Anti-Fraud Centre repeatedly warn about this risk. Knowing the warning signs is your best protection.",
+        "International students are a primary target for rental scams, arriving from abroad, unfamiliar with local rules and under pressure to secure housing. Official bodies like the police and the Canadian Anti-Fraud Centre repeatedly warn about this risk. Knowing the warning signs is your best protection.",
     },
     redFlags: {
       title: "Red flags",
@@ -1627,14 +1627,14 @@ export const en = {
     sources: {
       title: "Safe places to look for housing",
       cmhc: {
-        label: "CMHC — Canada's federal housing agency, with guides by province.",
+        label: "CMHC, Canada's federal housing agency, with guides by province.",
         url: "https://www.cmhc-schl.gc.ca",
         linkLabel: "cmhc-schl.gc.ca",
       },
       housingOffice:
-        "The housing office at your institution — connects you with trusted landlords.",
+        "The housing office at your institution, connects you with trusted landlords.",
       settlement: {
-        label: "Settlement.Org — official resource for newcomers in Ontario.",
+        label: "Settlement.Org, official resource for newcomers in Ontario.",
         url: "https://settlement.org",
         linkLabel: "settlement.org",
       },
@@ -1656,20 +1656,20 @@ export const en = {
   rentalSeal: {
     title: "A quick reminder",
     body:
-      "Information based on official sources and market averages. It does not confirm your individual case. Rules vary by province — always confirm with the official body in your province.",
+      "Information based on official sources and market averages. It does not confirm your individual case. Rules vary by province, always confirm with the official body in your province.",
   },
 
   studyPermit: {
     hero: {
       tag: "Apply for the visa",
-      title: "Study Permit — How to apply",
+      title: "Study Permit, How to apply",
       subtitle:
         "The document that authorizes you to study in Canada. See the official steps of the process, from acceptance to arrival.",
     },
     intro: {
       title: "Before you begin",
       body:
-        "The study permit is the document that authorizes you to study in Canada. See the official steps of the process. This is general information based on IRCC and does not confirm your individual case — only IRCC decides.",
+        "The study permit is the document that authorizes you to study in Canada. See the official steps of the process. This is general information based on IRCC and does not confirm your individual case, only IRCC decides.",
     },
     steps: [
       {
@@ -1700,7 +1700,7 @@ export const en = {
         n: 5,
         title: "Apply online",
         body:
-          "The application is done on the official IRCC page. Create your IRCC Secure Account and apply directly — the forms are free.",
+          "The application is done on the official IRCC page. Create your IRCC Secure Account and apply directly, the forms are free.",
         link: {
           href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/apply.html",
           label: "Apply on the official IRCC website",
@@ -1730,7 +1730,7 @@ export const en = {
     seal: {
       title: "A quick reminder",
       body:
-        "Information based on official IRCC sources. Rules and fees change — always confirm at canada.ca before applying. For decisions about your individual case, consult a licensed RCIC.",
+        "Information based on official IRCC sources. Rules and fees change, always confirm at canada.ca before applying. For decisions about your individual case, consult a licensed RCIC.",
     },
     scamProtection: {
       title: "Protect yourself from visa scams",
@@ -1739,7 +1739,7 @@ export const en = {
       rights: {
         title: "Rights scammers hide from you",
         items: [
-          "You can apply on your own, for free. IRCC treats your application the same, with or without a representative. The forms are free on the official website — no one can charge you for access to the system.",
+          "You can apply on your own, for free. IRCC treats your application the same, with or without a representative. The forms are free on the official website, no one can charge you for access to the system.",
           "No one can guarantee a visa or '100% approval'. Only the immigration officer decides each case.",
           "IRCC fees are the same around the world, adjusted only for local currency. If someone charges much more for the processing fee, be suspicious.",
         ],
@@ -1752,7 +1752,7 @@ export const en = {
           "Threat of deportation for unpaid fees (IRCC never does this)",
           "Offer to 'speed up' the process",
           "Request to sign a blank form",
-          "Suspicious acceptance letter — in 2024 IRCC identified more than 10,000 potentially fake letters. Always confirm your acceptance directly with the school.",
+          "Suspicious acceptance letter, in 2024 IRCC identified more than 10,000 potentially fake letters. Always confirm your acceptance directly with the school.",
         ],
       },
       protect: {
@@ -1767,7 +1767,7 @@ export const en = {
       victim: {
         title: "If you are a victim",
         body:
-          "Report to IRCC, the Canadian Anti-Fraud Centre, and — if you are outside Canada — the Canadian embassy or consulate in your country.",
+          "Report to IRCC, the Canadian Anti-Fraud Centre, and, if you are outside Canada, the Canadian embassy or consulate in your country.",
       },
       links: {
         title: "Official links",

@@ -263,7 +263,7 @@ export default function HighSchools() {
               className="flex flex-col rounded-xl border border-border bg-card p-6 hover:border-[hsl(var(--crimson))] hover:shadow-md transition-all"
             >
               <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[hsl(var(--crimson))]/10 text-[hsl(var(--crimson))]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center text-[hsl(var(--crimson))]">
                   <GraduationCap className="h-5 w-5" />
                 </div>
                 <div className="min-w-0">

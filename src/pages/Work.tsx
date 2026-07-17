@@ -98,7 +98,7 @@ export default function Work() {
                     return (
                       <Card key={resource.title} className="border-border shadow-sm">
                         <CardHeader className="pb-3">
-                          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul mb-3">
+                          <span className="inline-flex items-center justify-center w-10 h-10 text-azul mb-3">
                             <Icon className="w-5 h-5" />
                           </span>
                           <CardTitle className="font-display text-lg text-navy">
@@ -119,7 +119,7 @@ export default function Work() {
                       key={tip.title}
                       className="flex items-start gap-4 rounded-lg border border-border bg-card p-6 shadow-sm"
                     >
-                      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-crimson/10 text-crimson shrink-0">
+                      <span className="inline-flex items-center justify-center w-8 h-8 text-crimson shrink-0">
                         <CheckCircle className="w-4 h-4" />
                       </span>
                       <div>
@@ -301,7 +301,7 @@ export default function Work() {
                     return (
                       <Card key={professional.title} className="border-border shadow-sm">
                         <CardHeader className="pb-3">
-                          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul mb-3">
+                          <span className="inline-flex items-center justify-center w-10 h-10 text-azul mb-3">
                             <Icon className="w-5 h-5" />
                           </span>
                           <CardTitle className="font-display text-lg text-navy">
