@@ -1,4 +1,3 @@
-import { Flag } from "@/components/Flag";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
@@ -66,7 +65,6 @@ export default function Canada() {
     <section className="container py-16 md:py-24">
       <div className="max-w-3xl">
         <div className="inline-flex items-center gap-2 text-sm text-muted-foreground mb-4">
-          <Flag code="canada" className="w-5 shrink-0" />
           <span className="uppercase tracking-widest text-xs">
             {t("canadaSteps.eyebrow")}
           </span>
