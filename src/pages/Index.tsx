@@ -125,13 +125,6 @@ export default function Index() {
       {/* New era manifesto */}
       <section className="relative text-white">
         <div
-          className="absolute top-0 inset-x-0 h-24 -translate-y-full pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(180deg, transparent 0%, hsl(228 70% 12%) 100%)",
-          }}
-        />
-        <div
           className="absolute inset-0"
           style={{
             backgroundImage:
