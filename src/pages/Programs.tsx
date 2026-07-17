@@ -42,6 +42,11 @@ type Program = {
   pgwp_basis: string | null;
   application_url: string | null;
   intl_office_url: string | null;
+  source_id: string | null;
+  sources: {
+    id: string;
+    url: string | null;
+  } | null;
   occupation_ids: string[] | null;
   institution_id: string;
   institutions: {
