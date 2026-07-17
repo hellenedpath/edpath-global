@@ -35,7 +35,7 @@ export default function Index() {
             alt="Student walking across a university campus"
             width={1280}
             height={1600}
-            className="absolute inset-y-0 right-0 h-full w-full lg:w-[62%] object-cover object-[center_45%]"
+            className="absolute inset-y-0 right-0 h-full w-full lg:w-[62%] object-cover object-[center_22%]"
           />
           {/* Left → right navy fade for text legibility */}
           <div
@@ -55,7 +55,7 @@ export default function Index() {
           />
         </div>
 
-        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-[52%_48%] gap-10 lg:gap-12 items-start pt-16 md:pt-20 lg:pt-24 pb-14 md:pb-16 lg:pb-18">
+        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-[52%_48%] gap-10 lg:gap-12 items-start pt-28 md:pt-32 lg:pt-36 pb-14 md:pb-16 lg:pb-18">
           {/* Left column: text */}
           <div className="flex flex-col justify-start max-w-xl">
             <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-primary-foreground/70 mb-8">
