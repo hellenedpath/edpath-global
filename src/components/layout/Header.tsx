@@ -154,6 +154,14 @@ export function Header() {
             )}
           </div>
 
+          <a
+            href="/#destinos"
+            onClick={goToDestinations}
+            className="hidden md:inline-flex items-center rounded-lg bg-crimson px-4 py-2 text-sm font-semibold text-white hover:bg-crimson/90 transition-colors shadow-sm"
+          >
+            {t("nav.cta")}
+          </a>
+
           <button
             className="lg:hidden p-2 rounded-md hover:bg-white/10"
             onClick={() => setMobileOpen((v) => !v)}
@@ -177,13 +185,20 @@ export function Header() {
                 {t("nav.myPath")}
               </NavLink>
             )}
+            <a
+              href="/#destinos"
+              onClick={goToDestinations}
+              className="px-3 py-3 text-sm rounded-md bg-crimson hover:bg-crimson/90 text-white font-semibold inline-flex items-center justify-center gap-2"
+            >
+              {t("nav.cta")}
+            </a>
             {navItems.map((item) =>
               item.type === "anchor" ? (
                 <a
                   key={item.key}
                   href={item.to}
                   onClick={goToDestinations}
-                  className="px-3 py-3 text-sm rounded-md hover:bg-white/10"
+                  className="nav-link-underline px-3 py-3 text-sm rounded-md hover:bg-white/10"
                 >
                   {t(`nav.${item.key}`)}
                 </a>
@@ -194,8 +209,8 @@ export function Header() {
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>
                     cn(
-                      "px-3 py-3 text-sm rounded-md hover:bg-white/10",
-                      isActive && "bg-white/10",
+                    "nav-link-underline px-3 py-3 text-sm rounded-md hover:bg-white/10",
+                    isActive && "bg-white/10",
                     )
                   }
                 >
