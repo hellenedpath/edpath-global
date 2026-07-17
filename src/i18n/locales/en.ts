@@ -99,7 +99,7 @@ export const en = {
     },
   },
   footer: {
-    tagline: "Your smart compass for studying abroad",
+    tagline: "The new, smart and trusted way to study abroad.",
     expansion: "Canada available now. More countries coming soon.",
     disclaimer:
       "EdPath Global provides educational information, not immigration advice. Immigration advice can only be given by licensed RCIC consultants. We work as an independent information layer and can connect students with trusted agencies and professionals.",
