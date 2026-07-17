@@ -104,7 +104,7 @@ export default function Index() {
       </section>
 
       {/* Pillars */}
-      <section className="relative bg-white">
+      <section className="relative bg-white overflow-hidden">
         {/* Soft transition from navy hero to white */}
         <div
           className="absolute top-0 inset-x-0 h-24 -translate-y-full pointer-events-none"
@@ -113,7 +113,31 @@ export default function Index() {
               "linear-gradient(180deg, hsl(221 60% 24%) 0%, hsl(221 55% 18%) 40%, transparent 100%)",
           }}
         />
-        <div className="container max-w-6xl pt-12 md:pt-16 pb-14 md:pb-18">
+        {/* Subtle geometric grid + brand gradient wash */}
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none opacity-[0.35]"
+          style={{
+            backgroundImage:
+              "linear-gradient(hsl(221 30% 60% / 0.08) 1px, transparent 1px), linear-gradient(90deg, hsl(221 30% 60% / 0.08) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+            maskImage:
+              "radial-gradient(ellipse at center, black 30%, transparent 78%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse at center, black 30%, transparent 78%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, hsl(221 80% 55% / 0.10), transparent 65%)" }}
+        />
+        <div
+          aria-hidden
+          className="absolute -bottom-24 -left-24 w-[420px] h-[420px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, hsl(350 75% 55% / 0.08), transparent 65%)" }}
+        />
+        <div className="container relative max-w-6xl pt-12 md:pt-16 pb-14 md:pb-18">
           <div className="text-center mb-10 md:mb-12" data-reveal>
             <div className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
               <span className="w-6 h-px bg-crimson" />
@@ -130,9 +154,14 @@ export default function Index() {
                 key={key}
                 data-reveal
                 style={{ transitionDelay: `${i * 90}ms` }}
-                className="group flex flex-col items-center text-center rounded-2xl bg-white p-10 md:p-12 ring-1 ring-border/50 shadow-[0_4px_20px_-10px_rgba(5,21,86,0.10)] hover:shadow-[0_14px_36px_-12px_rgba(5,21,86,0.18)] hover:-translate-y-1 transition-all duration-300"
+                className="group relative flex flex-col items-center text-center rounded-2xl bg-white/90 backdrop-blur-sm p-10 md:p-12 ring-1 ring-border/50 shadow-[0_4px_20px_-10px_rgba(5,21,86,0.10)] hover:shadow-[0_24px_50px_-18px_rgba(5,21,86,0.25)] hover:-translate-y-2 hover:ring-crimson/30 transition-all duration-300"
               >
-                <Icon className="w-9 h-9 text-navy mb-6" strokeWidth={1.25} />
+                <span
+                  aria-hidden
+                  className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-crimson/10 ring-1 ring-crimson/20 text-crimson transition-colors duration-300 group-hover:bg-crimson group-hover:text-white"
+                >
+                  <Icon className="w-6 h-6" strokeWidth={1.5} />
+                </span>
                 <h3 className="text-xl md:text-2xl font-bold text-navy tracking-tight">
                   {t(`pillars.${key}.title`)}
                 </h3>
@@ -201,11 +230,6 @@ export default function Index() {
                 />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 55%, hsl(228 70% 10% / 0.55) 100%)" }} />
               </div>
-              <div
-                aria-hidden
-                className="absolute -bottom-4 -right-4 w-32 h-32 rounded-2xl bg-crimson/90 hidden md:block"
-                style={{ filter: "blur(0px)" }}
-              />
             </div>
           </div>
         </div>
@@ -261,7 +285,6 @@ export default function Index() {
 
       <CountrySelector />
 
-      {/* Closing inspirational CTA */}
       <section className="relative overflow-hidden text-white">
         <img
           src={closingInspire}
@@ -289,13 +312,6 @@ export default function Index() {
           <p className="mt-6 text-lg text-white/80 max-w-xl leading-relaxed">
             {t("closing.body")}
           </p>
-          <Link
-            to="/canada"
-            className="group mt-10 inline-flex items-center gap-2.5 rounded-xl bg-crimson px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_4px_16px_-4px_hsl(var(--crimson)/0.45)] hover:bg-crimson/90 hover:shadow-[0_10px_28px_-6px_hsl(var(--crimson)/0.6)] hover:-translate-y-0.5 transition-all duration-300"
-          >
-            {t("closing.cta")}
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </Link>
         </div>
       </section>
     </>
