@@ -52,7 +52,7 @@ export default function Index() {
         {/* Hero background photo with navy overlay */}
         <div className="absolute inset-0 overflow-hidden">
           <img
-            src={heroStudent}
+            src={heroStudent.url}
             alt="Student walking across a university campus"
             width={1280}
             height={1600}
