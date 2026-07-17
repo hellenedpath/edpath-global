@@ -288,13 +288,13 @@ export const pt = {
 
   about: {
     hero: {
-      title: "Ajudamos você a estudar no exterior com segurança",
+      title: "A nova era da educação internacional",
       subtitle:
-        "Fundada sobre anos de experiência em educação internacional, a EdPath Global oferece a estudantes e famílias um recurso confiável para planejar seus estudos ao redor do mundo, com informação verificada, transparência e independência.",
+        "O mundo mudou. A forma de estudar nele também.\n\nEstudar no exterior nunca teve tanta informação disponível — e nunca foi tão fácil se perder nela. Entre sites, grupos e promessas, o que mais falta ao estudante não é informação. É clareza.\n\nA EdPath nasceu para isso. Uma plataforma inteligente que reúne o que realmente importa — verificado em fontes oficiais, organizado num caminho claro, atualizado em tempo real. Sem ruído, sem viés, sem promessas vazias.\n\nDo primeiro passo ao destino, você encontra tudo em um só lugar: o que estudar, quanto custa, onde morar, como se preparar — e a segurança de que a informação é real.\n\nEsta é a nova era da educação internacional. Bem-vindo à EdPath.",
       badges: [
-        "Empresa registrada",
-        "Informação de fontes oficiais",
-        "Independente e imparcial",
+        "Clareza",
+        "Fontes oficiais",
+        "Sem promessas vazias",
       ],
       expansionNote: "Canadá disponível agora. Mais países em breve.",
     },
