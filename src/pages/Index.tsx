@@ -256,7 +256,6 @@ export default function Index() {
 
       <CountrySelector />
 
-      {/* Closing inspirational CTA */}
       <section className="relative overflow-hidden text-white">
         <img
           src={closingInspire}
@@ -284,13 +283,6 @@ export default function Index() {
           <p className="mt-6 text-lg text-white/80 max-w-xl leading-relaxed">
             {t("closing.body")}
           </p>
-          <Link
-            to="/canada"
-            className="group mt-10 inline-flex items-center gap-2.5 rounded-xl bg-crimson px-8 py-4 text-sm font-semibold tracking-wide text-white shadow-[0_4px_16px_-4px_hsl(var(--crimson)/0.45)] hover:bg-crimson/90 hover:shadow-[0_10px_28px_-6px_hsl(var(--crimson)/0.6)] hover:-translate-y-0.5 transition-all duration-300"
-          >
-            {t("closing.cta")}
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </Link>
         </div>
       </section>
     </>
