@@ -303,7 +303,7 @@ export const en = {
     hero: {
       title: "The new era of international education",
       subtitle:
-        "The world has changed. The way we study in it has too.\n\nThere has never been so much information available about studying abroad, and never has it been so easy to get lost in it. Between websites, groups and promises, what students lack most is not information. It is clarity.\n\nEdPath was born for this. An intelligent platform that gathers what really matters, verified against official sources, organized into a clear path, updated in real time. No noise, no bias, no empty promises.\n\nFrom the first step to your destination, you find everything in one place: what to study, how much it costs, where to live, how to prepare, and the confidence that the information is real.\n\nThis is the new era of international education. Welcome to EdPath.",
+        "The world has changed. The way we study in it has too.\n\nStudying abroad has never had so much information available. And it has never been so easy to get lost in it. Between websites, groups and promises, what students lack most is not information. It is clarity.\n\nEdPath was born for this. An intelligent platform that gathers what really matters: verified against official sources, organized into a clear path, updated in real time. No noise, no bias, no empty promises.\n\nFrom the first step to your destination, you find everything in one place. What to study, how much it costs, where to live, how to prepare. And the confidence that the information is real.\n\nThis is the new era of international education. Welcome to EdPath.",
       badges: [
         "Clarity",
         "Official sources",
