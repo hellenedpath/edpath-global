@@ -529,6 +529,29 @@ export default function Programs() {
                   </div>
                 )}
 
+                {selected.institutions?.name?.toLowerCase().includes("algonquin") && (
+                  <div className="rounded-lg border border-border bg-card p-4">
+                    <h4 className="font-display font-semibold text-navy mb-1">
+                      {T("Requisitos de admissão por país", "Admission requirements by country")}
+                    </h4>
+                    <p className="text-muted-foreground mb-3 leading-relaxed">
+                      {T(
+                        "Veja o que o Algonquin exige do diploma do seu país de origem.",
+                        "See what Algonquin requires for your home country's diploma."
+                      )}
+                    </p>
+                    <a
+                      href="https://www.algonquincollege.com/international/admissions-apply/#country"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 font-medium text-navy underline hover:text-crimson"
+                    >
+                      {T("Requisitos de admissão por país", "Admission requirements by country")}
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+                )}
+
                 {formatEnglishTests(selected.english_admission_tests).length > 0 && (
                   <div>
                     <h4 className="font-display font-semibold text-navy mb-2">
