@@ -35,7 +35,7 @@ export default function Health() {
             className="rounded-2xl border border-border bg-card p-6 md:p-7"
           >
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-crimson/10 text-crimson shrink-0">
+              <div className="flex h-10 w-10 items-center justify-center text-crimson shrink-0">
                 <Icon className="h-5 w-5" />
               </div>
               <div>

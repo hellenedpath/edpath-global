@@ -72,7 +72,7 @@ export default function Renting() {
       <section className="container pb-8 max-w-4xl">
         <div className="rounded-lg border border-border bg-card p-6 md:p-8 shadow-sm">
           <div className="flex items-center gap-3 mb-3">
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+            <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
               <KeyRound className="w-5 h-5" />
             </span>
             <h2 className="font-display text-2xl text-navy font-semibold">
@@ -159,7 +159,7 @@ export default function Renting() {
       {/* Lease */}
       <section className="container py-16 md:py-20 max-w-4xl">
         <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+          <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
             <FileText className="w-5 h-5" />
           </span>
           <h2 className="font-display text-2xl md:text-3xl text-navy font-semibold">
@@ -173,7 +173,7 @@ export default function Renting() {
       <section className="bg-white border-y border-border">
         <div className="container py-16 md:py-20 max-w-4xl">
           <div className="flex items-center gap-3 mb-2">
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-crimson/10 text-crimson">
+            <span className="inline-flex items-center justify-center w-10 h-10 text-crimson">
               <Landmark className="w-5 h-5" />
             </span>
             <h2 className="font-display text-2xl md:text-3xl text-navy font-semibold">
@@ -204,7 +204,7 @@ export default function Renting() {
       {/* Rights */}
       <section className="container py-16 md:py-20 max-w-4xl">
         <div className="flex items-center gap-3 mb-6">
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+          <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
             <ShieldCheck className="w-5 h-5" />
           </span>
           <h2 className="font-display text-2xl md:text-3xl text-navy font-semibold">
@@ -247,7 +247,7 @@ export default function Renting() {
       {/* Credit */}
       <section className="container py-16 md:py-20 max-w-4xl">
         <div className="flex items-center gap-3 mb-4">
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+          <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
             <CreditCard className="w-5 h-5" />
           </span>
           <h2 className="font-display text-2xl md:text-3xl text-navy font-semibold">

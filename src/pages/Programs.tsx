@@ -228,7 +228,7 @@ export default function Programs() {
                         {status === "unknown" && (
                           <span className="inline-flex items-center gap-1.5 rounded-full bg-muted text-muted-foreground px-3 py-1 text-xs font-medium">
                             <Info className="h-3.5 w-3.5" />
-                            {r.description ?? "—"}
+                            {r.description ?? "-"}
                           </span>
                         )}
                       </div>

@@ -51,7 +51,7 @@ export default function RentalScams() {
       {/* Red flags */}
       <section className="container py-16 md:py-20 max-w-4xl">
         <div className="flex items-center gap-3 mb-6">
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-crimson/10 text-crimson">
+          <span className="inline-flex items-center justify-center w-10 h-10 text-crimson">
             <Flag className="w-5 h-5" />
           </span>
           <h2 className="font-display text-2xl md:text-3xl text-navy font-semibold">
@@ -75,7 +75,7 @@ export default function RentalScams() {
       <section className="bg-white border-y border-border">
         <div className="container py-16 md:py-20 max-w-4xl">
           <div className="flex items-center gap-3 mb-6">
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+            <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
               <ShieldCheck className="w-5 h-5" />
             </span>
             <h2 className="font-display text-2xl md:text-3xl text-navy font-semibold">
@@ -99,7 +99,7 @@ export default function RentalScams() {
       {/* Safe sources */}
       <section className="container py-16 md:py-20 max-w-4xl">
         <div className="flex items-center gap-3 mb-6">
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+          <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
             <Sparkles className="w-5 h-5" />
           </span>
           <h2 className="font-display text-2xl md:text-3xl text-navy font-semibold">

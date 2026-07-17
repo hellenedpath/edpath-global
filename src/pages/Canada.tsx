@@ -117,13 +117,13 @@ export default function Canada() {
                   )}
                 >
                   {isHighlighted && (
-                    <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-crimson/10 text-crimson text-xs font-semibold px-2.5 py-1">
+                    <div className="mb-3 inline-flex items-center gap-1.5 text-crimson text-xs font-semibold px-2.5 py-1">
                       <MapPin className="h-3 w-3" />
                       {t("canadaSteps.youAreHere")}
                     </div>
                   )}
                   <div className="flex items-start gap-3 mb-3">
-                    <div className="hidden sm:flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10 text-crimson shrink-0">
+                    <div className="hidden sm:flex h-9 w-9 items-center justify-center text-crimson shrink-0">
                       <Icon className="h-4.5 w-4.5" />
                     </div>
                     <div>

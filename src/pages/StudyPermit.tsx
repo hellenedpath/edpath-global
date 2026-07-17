@@ -87,7 +87,7 @@ export default function StudyPermit() {
               className="rounded-lg border border-border bg-card p-6 md:p-7 shadow-sm"
             >
               <div className="flex items-start gap-4">
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-crimson/10 text-crimson font-display text-lg font-semibold">
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center text-crimson font-display text-lg font-semibold">
                   {s.n}
                 </span>
                 <div className="flex-1">
@@ -113,7 +113,7 @@ export default function StudyPermit() {
       <section className="container py-16 max-w-4xl">
         <div className="rounded-lg border border-border bg-muted/40 p-6 md:p-8">
           <div className="flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-azul/10 text-azul">
+            <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
               <FileText className="w-5 h-5" />
             </span>
             <h2 className="font-display text-2xl text-navy font-semibold">
@@ -150,7 +150,7 @@ export default function StudyPermit() {
       <section className="container py-16 md:py-20 max-w-5xl">
         <div className="max-w-4xl">
           <div className="flex items-center gap-3 mb-5">
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-crimson/10 text-crimson">
+            <span className="inline-flex items-center justify-center w-10 h-10 text-crimson">
               <Shield className="w-5 h-5" />
             </span>
             <h2 className="font-display text-2xl md:text-3xl text-navy font-semibold">

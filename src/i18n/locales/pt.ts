@@ -63,7 +63,7 @@ export const pt = {
     eyebrow: "Sobre a EdPath",
     title: "Clareza no lugar do ruído.",
     body:
-      "Estudar no exterior nunca teve tanta informação disponível — e nunca foi tão fácil se perder nela. O que falta ao estudante não é informação. É clareza. A EdPath reúne o que realmente importa: verificado em fontes oficiais, organizado num caminho claro, do primeiro passo ao destino.",
+      "Estudar no exterior nunca teve tanta informação disponível, e nunca foi tão fácil se perder nela. O que falta ao estudante não é informação. É clareza. A EdPath reúne o que realmente importa: verificado em fontes oficiais, organizado num caminho claro, do primeiro passo ao destino.",
     cta: "Conheça a EdPath",
   },
   canadaNav: {
@@ -88,7 +88,7 @@ export const pt = {
       costsSimulator: "Simulador de Custos",
       realCosts: "Custos reais",
       before: "Antes de Começar",
-      studyPermit: "Study Permit — Como aplicar",
+      studyPermit: "Study Permit: Como aplicar",
       renting: "Alugar no Canadá",
       rentalScams: "Golpes de aluguel",
       costs: "Custos",
@@ -126,7 +126,7 @@ export const pt = {
       ],
       uk: [
         "Universidades de prestígio (Oxford, Cambridge)",
-        "Cursos mais curtos — economize tempo e custo",
+        "Cursos mais curtos, economize tempo e custo",
         "Forte em negócios, direito e engenharia",
       ],
       australia: [
@@ -144,7 +144,7 @@ export const pt = {
   canadaSteps: {
     eyebrow: "Seu caminho, passo a passo",
     title: "Seu caminho para o Canadá, passo a passo",
-    subtitle: "Um estudante que nunca saiu do país precisa de uma sequência clara. Siga a ordem — cada passo prepara o próximo.",
+    subtitle: "Um estudante que nunca saiu do país precisa de uma sequência clara. Siga a ordem, cada passo prepara o próximo.",
     stepLabel: "Passo",
     primaryCta: "Começar este passo",
     alsoSee: "Veja também",
@@ -170,7 +170,7 @@ export const pt = {
       },
       visa: {
         title: "Aplique para o visto",
-        desc: "Os documentos, as taxas e o passo a passo do study permit — e como evitar golpes.",
+        desc: "Os documentos, as taxas e o passo a passo do study permit, e como evitar golpes.",
         cta: "Ver Study Permit",
       },
       move: {
@@ -187,7 +187,7 @@ export const pt = {
         alt1: "Família",
       },
     },
-    youAreHere: "Você está aqui — seu próximo passo",
+    youAreHere: "Você está aqui, seu próximo passo",
     clearHighlight: "Limpar destaque",
   },
   healthPage: {
@@ -210,7 +210,7 @@ export const pt = {
     },
     officialLinkLabel: "Ver página oficial do IRCC sobre saúde",
     seal: "Informação geral. Confirme a cobertura com sua instituição e a saúde pública da sua província.",
-    sourceLink: "Fonte oficial: IRCC — Health insurance",
+    sourceLink: "Fonte oficial: IRCC, Health insurance",
   },
   pages: {
     about: "Sobre",
@@ -297,7 +297,7 @@ export const pt = {
     hero: {
       title: "A nova era da educação internacional",
       subtitle:
-        "O mundo mudou. A forma de estudar nele também.\n\nEstudar no exterior nunca teve tanta informação disponível — e nunca foi tão fácil se perder nela. Entre sites, grupos e promessas, o que mais falta ao estudante não é informação. É clareza.\n\nA EdPath nasceu para isso. Uma plataforma inteligente que reúne o que realmente importa — verificado em fontes oficiais, organizado num caminho claro, atualizado em tempo real. Sem ruído, sem viés, sem promessas vazias.\n\nDo primeiro passo ao destino, você encontra tudo em um só lugar: o que estudar, quanto custa, onde morar, como se preparar — e a segurança de que a informação é real.\n\nEsta é a nova era da educação internacional. Bem-vindo à EdPath.",
+        "O mundo mudou. A forma de estudar nele também.\n\nEstudar no exterior nunca teve tanta informação disponível. E nunca foi tão fácil se perder nela. Entre sites, grupos e promessas, o que mais falta ao estudante não é informação. É clareza.\n\nA EdPath nasceu para isso. Uma plataforma inteligente que reúne o que realmente importa: verificado em fontes oficiais, organizado num caminho claro, atualizado em tempo real. Sem ruído, sem viés, sem promessas vazias.\n\nDo primeiro passo ao destino, você encontra tudo em um só lugar. O que estudar, quanto custa, onde morar, como se preparar. E a segurança de que a informação é real.\n\nEsta é a nova era da educação internacional. Bem-vindo à EdPath.",
       badges: [
         "Clareza",
         "Fontes oficiais",
@@ -354,7 +354,7 @@ export const pt = {
     simulate: "Simule seus custos",
     hero: {
       title: "Estudar no Canadá",
-      subtitle: "Os dois números que todo estudante precisa entender antes de decidir — prova de fundos vs. custo real de vida no Canadá.",
+      subtitle: "Os dois números que todo estudante precisa entender antes de decidir, prova de fundos vs. custo real de vida no Canadá.",
     },
     twoNumbers: {
       title: "Os dois números",
@@ -409,7 +409,7 @@ export const pt = {
       title: "Mensalidade estimada por tipo de programa",
       subtitle:
         "A mensalidade é geralmente o maior custo e varia muito conforme o programa, a instituição e a província. Use estas faixas oficiais como referência.",
-      note: "Médias oficiais por nível. O valor real depende da instituição e do programa específico — confirme sempre no site oficial da escola escolhida.",
+      note: "Médias oficiais por nível. O valor real depende da instituição e do programa específico, confirme sempre no site oficial da escola escolhida.",
       sourceUrl: "https://www.educanada.ca/programs-programmes/education_cost-cout_education.aspx?lang=eng",
       sourceLabel: "Ver faixas oficiais de mensalidade (EduCanada)",
       items: [
@@ -419,12 +419,12 @@ export const pt = {
           desc: "Opção mais econômica; muitos programas de 1-2 anos.",
         },
         {
-          tag: "Universidade — Graduação",
+          tag: "Universidade, Graduação",
           price: "CAD $19.000 – $50.000/ano",
           desc: "Varia muito por província (Ontário é a mais cara) e área (engenharia, business e saúde ficam no topo).",
         },
         {
-          tag: "Universidade — Pós-graduação",
+          tag: "Universidade, Pós-graduação",
           price: "CAD $7.000 – $28.000/ano",
           desc: "",
         },
@@ -507,7 +507,7 @@ export const pt = {
       alert: {
         title: "Documentação custa mais do que só as taxas do governo",
         body:
-          "Além dessas taxas oficiais, há custos que variam por país e não são cobrados pelo IRCC — taxa do centro de aplicação (VAC, ~$50), exame médico ($200-400), fotos e courier. Um orçamento realista de documentação fica entre CAD $500 e $800 no total.",
+          "Além dessas taxas oficiais, há custos que variam por país e não são cobrados pelo IRCC, taxa do centro de aplicação (VAC, ~$50), exame médico ($200-400), fotos e courier. Um orçamento realista de documentação fica entre CAD $500 e $800 no total.",
       },
       sourceUrl: "https://ircc.canada.ca/english/information/fees/fees.asp",
       sourceLabel: "Ver tabela oficial de taxas do IRCC",
@@ -529,7 +529,7 @@ export const pt = {
       note: {
         title: "Piso, não teto",
         body:
-          "Valor vigente desde setembro de 2025. O IRCC revisa esse montante anualmente — confirme em canada.ca antes de aplicar. Este valor é um piso, não teto: mostrar exatamente o mínimo pode levantar dúvidas na análise; um colchão extra de $2.000-5.000 demonstra planejamento.",
+          "Valor vigente desde setembro de 2025. O IRCC revisa esse montante anualmente, confirme em canada.ca antes de aplicar. Este valor é um piso, não teto: mostrar exatamente o mínimo pode levantar dúvidas na análise; um colchão extra de $2.000-5.000 demonstra planejamento.",
       },
       sourceUrl: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html",
       sourceLabel: "Ver requisito oficial de prova de fundos",
@@ -541,7 +541,7 @@ export const pt = {
       perMonth: "/mês",
       shared: {
         tag: "Quarto dividido",
-        label: "Média nacional de acomodação compartilhada — mais econômica no início.",
+        label: "Média nacional de acomodação compartilhada, mais econômica no início.",
       },
       note: {
         title: "Médias de mercado",
@@ -565,7 +565,7 @@ export const pt = {
         {
           tag: "Apartamento compartilhado",
           price: "Cerca da metade do 2 quartos",
-          desc: "Você e um ou mais colegas alugam um apartamento inteiro e dividem tudo (aluguel, contas, espaços comuns). Use a tabela de custo por cidade abaixo como referência — geralmente cerca de metade do valor de um apê de 2 quartos.",
+          desc: "Você e um ou mais colegas alugam um apartamento inteiro e dividem tudo (aluguel, contas, espaços comuns). Use a tabela de custo por cidade abaixo como referência, geralmente cerca de metade do valor de um apê de 2 quartos.",
         },
         {
           tag: "Residência da instituição (dorm)",
@@ -931,7 +931,7 @@ export const pt = {
   },
 
   footer: {
-    tagline: "Sua bússola inteligente para estudar no exterior",
+    tagline: "O novo jeito, inteligente e confiável, de estudar no exterior.",
     expansion: "Canadá disponível agora. Mais países em breve.",
     disclaimer:
       "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados. Trabalhamos como camada de informação independente e podemos conectar estudantes a agências e profissionais confiáveis.",
@@ -988,7 +988,7 @@ export const pt = {
     disclaimer: {
       title: "Importante: leia antes de decidir",
       body:
-        "Esta lista mostra apenas áreas que podem qualificar para o PGWP. Áreas que não aparecem aqui podem não ser elegíveis — muitos programas de negócios e gestão perderam a elegibilidade desde 2024. A elegibilidade final também depende da instituição, duração e idioma do curso. Confirme sempre o seu caso específico.",
+        "Esta lista mostra apenas áreas que podem qualificar para o PGWP. Áreas que não aparecem aqui podem não ser elegíveis, muitos programas de negócios e gestão perderam a elegibilidade desde 2024. A elegibilidade final também depende da instituição, duração e idioma do curso. Confirme sempre o seu caso específico.",
       linkLabel: "Consultar lista oficial do IRCC",
     },
     cta: {
@@ -1008,7 +1008,7 @@ export const pt = {
       title: "Instituições públicas no Canadá",
       subtitle: "Universidades e colleges públicos reconhecidos, organizados por província.",
       description:
-        "No Canadá, <strong>universidades</strong> oferecem bacharelado, mestrado e doutorado, com foco acadêmico. <strong>Colleges</strong> oferecem diplomas e certificados com foco prático e profissional — geralmente mais curtos e acessíveis. Ambos podem dar direito ao PGWP, dependendo do programa.",
+        "No Canadá, <strong>universidades</strong> oferecem bacharelado, mestrado e doutorado, com foco acadêmico. <strong>Colleges</strong> oferecem diplomas e certificados com foco prático e profissional, geralmente mais curtos e acessíveis. Ambos podem dar direito ao PGWP, dependendo do programa.",
     },
     filters: {
       searchPlaceholder: "Buscar por nome da instituição...",
@@ -1039,7 +1039,7 @@ export const pt = {
     },
     visitSite: "Visitar site oficial",
     empty: "Nenhuma instituição encontrada com esses filtros.",
-    note: "Lista de instituições públicas com base em dados oficiais do IRCC. Cobre as principais províncias de destino de estudantes e está sendo expandida. O botão leva a uma busca pelo site oficial da instituição — confirme sempre as informações diretamente com a instituição.",
+    note: "Lista de instituições públicas com base em dados oficiais do IRCC. Cobre as principais províncias de destino de estudantes e está sendo expandida. O botão leva a uma busca pelo site oficial da instituição, confirme sempre as informações diretamente com a instituição.",
   },
 
   financialSimulator: {
@@ -1047,7 +1047,7 @@ export const pt = {
     badge: "Simulador Financeiro",
     heroTitle: "Estime seu projeto de estudo no Canadá",
     heroSubtitle:
-      "Ajuste as variáveis abaixo para ver uma faixa realista de custos e a reserva recomendada. Faixas amplas e honestas — planejamento, não promessa.",
+      "Ajuste as variáveis abaixo para ver uma faixa realista de custos e a reserva recomendada. Faixas amplas e honestas, planejamento, não promessa.",
     choices: {
       title: "Suas escolhas",
       city: {
@@ -1082,14 +1082,14 @@ export const pt = {
       body:
         "Em geral, este é o valor <strong>oficial de prova de fundos</strong> exigido para o visto de estudo (fora de Quebec, vigente desde set/2025). Costuma ser <strong>adicional à mensalidade</strong> e à passagem, e o IRCC atualiza anualmente. Esta é uma orientação geral e <strong>não confirma o seu caso</strong>.",
       confirmLink: "Confirme o valor atual em canada.ca",
-      irccLinkLabel: "Prova de fundos — página oficial do IRCC",
+      irccLinkLabel: "Prova de fundos, página oficial do IRCC",
     },
     monthlyCost: {
       tag: "O que você provavelmente vai gastar",
       title: "Custo de vida mensal (estimativa)",
       rangeLabel: "Faixa estimada por mês",
       body:
-        "Faixa aproximada considerando moradia, alimentação, transporte e essenciais. <strong>Não é valor garantido</strong> — varia conforme cidade, bairro, câmbio e escolhas pessoais.",
+        "Faixa aproximada considerando moradia, alimentação, transporte e essenciais. <strong>Não é valor garantido</strong>, varia conforme cidade, bairro, câmbio e escolhas pessoais.",
     },
     totalCost: {
       title: "Custo total estimado ({{months}} meses)",
@@ -1099,20 +1099,20 @@ export const pt = {
     reserve: {
       title: "Reserva recomendada",
       body:
-        "Sugerimos <strong>3 a 4 meses</strong> de custo de vida como reserva, <strong>além</strong> da prova de fundos — os primeiros meses têm gastos extras de instalação (depósito, móveis, documentos, telefone).",
+        "Sugerimos <strong>3 a 4 meses</strong> de custo de vida como reserva, <strong>além</strong> da prova de fundos, os primeiros meses têm gastos extras de instalação (depósito, móveis, documentos, telefone).",
     },
     comparison: {
-      title: "Duas coisas diferentes — não confunda",
+      title: "Duas coisas diferentes, não confunda",
       proofLabel: "Prova de fundos (IRCC)",
       proofDescription: "Requisito oficial para o visto.",
       costLabel: "Custo de vida estimado ({{months}} meses)",
-      costDescription: "Estimativa realista de gastos — faixa (mínimo → máximo).",
+      costDescription: "Estimativa realista de gastos, faixa (mínimo → máximo).",
     },
     disclaimer: {
       title: "Importante: leia antes de decidir",
       body:
-        "As estimativas de custo de vida são aproximadas e servem apenas para planejamento. Em geral, os valores reais variam conforme suas escolhas e o mercado. A prova de fundos é um requisito oficial do governo canadense (IRCC), atualizado anualmente e válido fora de Quebec — confirme sempre o valor atual em canada.ca. Este simulador oferece <strong>orientação geral</strong>, <strong>não confirma o seu caso</strong> e não substitui aconselhamento financeiro ou de imigração (RCIC).",
-      irccLinkLabel: "Study in Canada — IRCC oficial",
+        "As estimativas de custo de vida são aproximadas e servem apenas para planejamento. Em geral, os valores reais variam conforme suas escolhas e o mercado. A prova de fundos é um requisito oficial do governo canadense (IRCC), atualizado anualmente e válido fora de Quebec, confirme sempre o valor atual em canada.ca. Este simulador oferece <strong>orientação geral</strong>, <strong>não confirma o seu caso</strong> e não substitui aconselhamento financeiro ou de imigração (RCIC).",
+      irccLinkLabel: "Study in Canada, IRCC oficial",
     },
     actions: {
       back: "Voltar para Custos",
@@ -1138,7 +1138,7 @@ export const pt = {
       restart: "Recomeçar",
       title: "Para qual país você quer ir?",
       subtitle:
-        "Escolha seu destino. Por enquanto, o roteiro completo está disponível para o Canadá — outros países estão sendo preparados.",
+        "Escolha seu destino. Por enquanto, o roteiro completo está disponível para o Canadá, outros países estão sendo preparados.",
       available: "Disponível",
       comingSoon: "Em breve",
       options: {
@@ -1263,23 +1263,23 @@ export const pt = {
     objective: {
       stay: "Seu foco é construir carreira e permanecer no Canadá.",
       return: "Seu foco é ganhar experiência internacional e voltar ao Brasil.",
-      explore: "Você ainda está explorando o caminho — vamos passo a passo.",
+      explore: "Você ainda está explorando o caminho, vamos passo a passo.",
     },
     highlights: {
       languagePriority: "Prioridade: você precisará comprovar o idioma antes de aplicar.",
       languageFluent: "Agende um teste oficial (IELTS, CELPIP ou TEF) para formalizar seu nível.",
-      stayPgwp: "Seu objetivo é ficar no país — escolher um programa elegível ao PGWP é essencial.",
-      budgetUnderstand: "Comece pelo planejamento de custos — é a base da sua comprovação financeira.",
+      stayPgwp: "Seu objetivo é ficar no país, escolher um programa elegível ao PGWP é essencial.",
+      budgetUnderstand: "Comece pelo planejamento de custos, é a base da sua comprovação financeira.",
       budgetWork: "Study permit permite trabalhar até 24h/semana, mas planeje reservas para os primeiros meses.",
       childrenSchool: "Com filhos: pesquise escola pública (gratuita) e cobertura de saúde provincial na sua cidade.",
       childrenBudget: "Custos com família aumentam a comprovação financeira exigida pelo IRCC.",
       spouseHighLevel:
-        "Permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de mestrado (16+ meses) e doutorado costumam poder solicitar permissão de trabalho aberta. Esta é uma estimativa baseada em regras gerais e não confirma o seu caso. Cada situação tem particularidades — confirme o seu caso específico com um consultor de imigração licenciado (RCIC) ou diretamente no site oficial do IRCC.",
+        "Permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de mestrado (16+ meses) e doutorado costumam poder solicitar permissão de trabalho aberta. Esta é uma estimativa baseada em regras gerais e não confirma o seu caso. Cada situação tem particularidades, confirme o seu caso específico com um consultor de imigração licenciado (RCIC) ou diretamente no site oficial do IRCC.",
       spouseLowLevel:
-        "Atenção — permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de bacharelado, diploma ou certificado normalmente NÃO podem obter permissão de trabalho aberta (há exceções para alguns programas profissionais). Esta é uma estimativa baseada em regras gerais e não confirma o seu caso — pode impactar o orçamento familiar. Confirme o seu caso específico com um consultor RCIC licenciado ou diretamente no site oficial do IRCC.",
-      unknownArea: "Explore áreas elegíveis ao PGWP antes de escolher — pode direcionar sua decisão.",
+        "Atenção, permissão de trabalho do cônjuge: em geral, pelas regras atuais do Canadá (desde jan/2025), cônjuges de estudantes de bacharelado, diploma ou certificado normalmente NÃO podem obter permissão de trabalho aberta (há exceções para alguns programas profissionais). Esta é uma estimativa baseada em regras gerais e não confirma o seu caso, pode impactar o orçamento familiar. Confirme o seu caso específico com um consultor RCIC licenciado ou diretamente no site oficial do IRCC.",
+      unknownArea: "Explore áreas elegíveis ao PGWP antes de escolher, pode direcionar sua decisão.",
       arrivedFocus: "Foque em SIN, conta bancária, saúde provincial e moradia definitiva.",
-      spouseLinkLabel: "Página oficial do IRCC — work permit de cônjuge",
+      spouseLinkLabel: "Página oficial do IRCC, work permit de cônjuge",
     },
     steps: {
       s1: { title: "Descobrir", description: "Entender o Canadá como destino: províncias, sistema educacional e estilo de vida.", ctaLabel: "Explorar o portal Canadá" },
@@ -1301,7 +1301,7 @@ export const pt = {
         body:
           "As universidades canadenses geralmente aceitam: <strong>IELTS Academic</strong>, <strong>TOEFL iBT</strong>, <strong>Duolingo English Test (DET)</strong>, <strong>PTE Academic</strong>, <strong>Cambridge English (C1 Advanced/C2 Proficiency)</strong> e <strong>CAEL</strong>.",
         note:
-          "Cada instituição define quais testes aceita e a nota mínima — alguns programas de pós-graduação são mais restritos (ex.: podem não aceitar Duolingo). Sempre confirme com a instituição.",
+          "Cada instituição define quais testes aceita e a nota mínima, alguns programas de pós-graduação são mais restritos (ex.: podem não aceitar Duolingo). Sempre confirme com a instituição.",
       },
       section2: {
         label: "Seção 2",
@@ -1325,31 +1325,31 @@ export const pt = {
     },
     score: {
       factors: {
-        stayEligible: "Sua área é elegível para PGWP — pré-requisito para trabalhar após se formar.",
+        stayEligible: "Sua área é elegível para PGWP, pré-requisito para trabalhar após se formar.",
         stayConditional:
-          "Sua área tem elegibilidade condicional ao PGWP — confirme se o programa específico e a instituição estão na lista oficial.",
+          "Sua área tem elegibilidade condicional ao PGWP, confirme se o programa específico e a instituição estão na lista oficial.",
         stayNot:
-          "Sua área não aparece como elegível ao PGWP — como seu objetivo é ficar no país, isso é um ponto crítico.",
-        returnEligible: "Sua área é elegível ao PGWP — útil caso queira ganhar experiência de trabalho antes de voltar.",
+          "Sua área não aparece como elegível ao PGWP, como seu objetivo é ficar no país, isso é um ponto crítico.",
+        returnEligible: "Sua área é elegível ao PGWP, útil caso queira ganhar experiência de trabalho antes de voltar.",
         returnNot: "Sua área não é elegível ao PGWP, mas como seu objetivo é voltar, o impacto é menor.",
-        exploreUnknown: "Você ainda está explorando o objetivo — definir isso vai ajudar a escolher o programa certo.",
-        langTested: "Você já tem teste oficial de idioma — grande passo à frente na candidatura.",
+        exploreUnknown: "Você ainda está explorando o objetivo, definir isso vai ajudar a escolher o programa certo.",
+        langTested: "Você já tem teste oficial de idioma, grande passo à frente na candidatura.",
         langFluent: "Você fala bem, mas ainda precisa formalizar com um teste oficial (IELTS, CELPIP ou TEF).",
-        langImprove: "Você indicou que precisa melhorar o idioma — resolva antes de aplicar.",
+        langImprove: "Você indicou que precisa melhorar o idioma, resolva antes de aplicar.",
         spouseHigh:
-          "No nível escolhido (mestrado/doutorado), em geral cônjuges costumam poder solicitar permissão de trabalho aberta. Estimativa — não confirma seu caso; confirme com um RCIC ou no IRCC.",
+          "No nível escolhido (mestrado/doutorado), em geral cônjuges costumam poder solicitar permissão de trabalho aberta. Estimativa, não confirma seu caso; confirme com um RCIC ou no IRCC.",
         spouseLow:
-          "No nível escolhido, em geral cônjuges normalmente NÃO obtêm permissão de trabalho aberta — pode impactar o orçamento familiar. Estimativa — não confirma seu caso; confirme com um RCIC ou no IRCC.",
-        budgetPlanned: "Você já tem recursos planejados — reduz o risco financeiro da jornada.",
-        budgetUnderstand: "Você precisa entender melhor os custos — comece pela etapa de planejamento financeiro.",
+          "No nível escolhido, em geral cônjuges normalmente NÃO obtêm permissão de trabalho aberta, pode impactar o orçamento familiar. Estimativa, não confirma seu caso; confirme com um RCIC ou no IRCC.",
+        budgetPlanned: "Você já tem recursos planejados, reduz o risco financeiro da jornada.",
+        budgetUnderstand: "Você precisa entender melhor os custos, comece pela etapa de planejamento financeiro.",
         budgetWork:
-          "Você planeja depender de trabalho para se manter — study permit limita a 24h/semana; planeje reservas para os primeiros meses.",
+          "Você planeja depender de trabalho para se manter, study permit limita a 24h/semana; planeje reservas para os primeiros meses.",
       },
     },
     irccLinks: {
       pgwpEligibility: "Lista oficial de áreas elegíveis ao PGWP",
-      proofOfFunds: "Prova de fundos — página oficial do IRCC",
-      spouseWorkPermit: "Work permit de cônjuge — página oficial do IRCC",
+      proofOfFunds: "Prova de fundos, página oficial do IRCC",
+      spouseWorkPermit: "Work permit de cônjuge, página oficial do IRCC",
     },
   },
 
@@ -1358,14 +1358,14 @@ export const pt = {
       badge: "Verificador PGWP",
       title: "Sua área de estudo dá direito ao PGWP?",
       subtitle:
-        "Descubra, em geral, se um campo de estudo costuma ser elegível para a permissão de trabalho pós-graduação (PGWP), com base na lista oficial do governo canadense. Esta é uma orientação — não confirma o seu caso específico.",
+        "Descubra, em geral, se um campo de estudo costuma ser elegível para a permissão de trabalho pós-graduação (PGWP), com base na lista oficial do governo canadense. Esta é uma orientação, não confirma o seu caso específico.",
     },
     irccLinkLabel: "Regras oficiais do PGWP no IRCC",
     search: {
       placeholder: "Busque por área (ex.: nursing, engineering, business)",
       allCategories: "Todas as categorias",
       siglasHint:
-        "Siglas entre parênteses (ex.: <strong>BArch, MArch, DArch, PhD</strong>) indicam as titulações acadêmicas oferecidas na área — bacharelado, mestrado, doutorado e equivalentes.",
+        "Siglas entre parênteses (ex.: <strong>BArch, MArch, DArch, PhD</strong>) indicam as titulações acadêmicas oferecidas na área, bacharelado, mestrado, doutorado e equivalentes.",
       namesHint:
         "As áreas aparecem com o nome técnico oficial usado pelo governo canadense, muitas vezes em inglês. Se você não reconhecer um termo, ele pode ser o nome técnico da sua área. <strong>Dica:</strong> tente buscar em português (ex.: <strong>\"física\", \"engenharia\"</strong>) ou confirme o nome do seu programa com a instituição.",
     },
@@ -1380,7 +1380,7 @@ export const pt = {
     coverage: {
       label: "Cobertura atual dos dados:",
       body:
-        "esta ferramenta cobre atualmente as áreas de <strong>STEM, Trades e Transporte</strong>. Estamos adicionando outras categorias, como Saúde, Educação e Agricultura. Se você não encontrar sua área, ela pode ainda não ter sido incluída — <strong>isso não significa que ela não seja elegível</strong>. Confirme sempre na <link>lista oficial do IRCC</link>.",
+        "esta ferramenta cobre atualmente as áreas de <strong>STEM, Trades e Transporte</strong>. Estamos adicionando outras categorias, como Saúde, Educação e Agricultura. Se você não encontrar sua área, ela pode ainda não ter sido incluída, <strong>isso não significa que ela não seja elegível</strong>. Confirme sempre na <link>lista oficial do IRCC</link>.",
     },
     results: {
       loading: "Carregando áreas de estudo...",
@@ -1408,12 +1408,12 @@ export const pt = {
       subtitle:
         "Distritos escolares públicos e escolas privadas de BC que aceitam estudantes internacionais no ensino médio.",
       description:
-        "Explore os distritos com programa internacional oficial e as escolas privadas com programa para internacionais, veja diploma, séries, homestay, internato e taxas — e vá direto ao site oficial para aplicar.",
+        "Explore os distritos com programa internacional oficial e as escolas privadas com programa para internacionais, veja diploma, séries, homestay, internato e taxas, e vá direto ao site oficial para aplicar.",
     },
     context: {
       title: "Como funciona:",
       body:
-        "Nem toda escola no Canadá aceita estudantes internacionais no ensino médio. Existem dois caminhos principais: distritos escolares públicos com programa internacional oficial e escolas privadas que recebem estudantes internacionais. Esta página lista ambos em BC — você aplica diretamente no site do distrito ou da escola.",
+        "Nem toda escola no Canadá aceita estudantes internacionais no ensino médio. Existem dois caminhos principais: distritos escolares públicos com programa internacional oficial e escolas privadas que recebem estudantes internacionais. Esta página lista ambos em BC, você aplica diretamente no site do distrito ou da escola.",
       boardingNote:
         "Boarding = a escola oferece internato (o aluno mora na escola). Sem internato, o aluno vive em casa de família (homestay).",
     },
@@ -1445,7 +1445,7 @@ export const pt = {
       homestay: "Homestay",
       applicationFee: "Taxa de aplicação",
       tuition: "Valor anual estimado",
-      tuitionEstimate: "Estimativa — pode variar",
+      tuitionEstimate: "Estimativa, pode variar",
       tuitionMissing: "Consulte no site oficial",
       applyCta: "Ver programa internacional / Aplicar",
       type: {
@@ -1458,7 +1458,7 @@ export const pt = {
         boarding: "Boarding: CAD $42.000/ano",
         day: "Day (aluno externo): CAD $25.000/ano",
         disclaimer:
-          "Estimativa — apenas mensalidade + programa. Taxas adicionais à parte.",
+          "Estimativa, apenas mensalidade + programa. Taxas adicionais à parte.",
       },
     },
 
@@ -1466,7 +1466,7 @@ export const pt = {
     disclaimer: {
       title: "Aviso de honestidade:",
       body:
-        "Estas informações são um ponto de partida. Requisitos, custos e vagas mudam a cada ano — confirme sempre no site oficial do distrito ou da escola antes de aplicar.",
+        "Estas informações são um ponto de partida. Requisitos, custos e vagas mudam a cada ano, confirme sempre no site oficial do distrito ou da escola antes de aplicar.",
       costNote:
         "Os valores são estimativas e mudam a cada ano. Confirme sempre no site oficial da escola.",
     },
@@ -1488,7 +1488,7 @@ export const pt = {
     firstDays: {
       title: "Onde ficar quando chegar",
       body:
-        "Primeiros dias em Airbnb, hotel ou hospedagem temporária. Muitas instituições oferecem residência ou apoio de moradia para recém-chegados — contate o housing office da sua escola/college/universidade antes de viajar. Use esse tempo para procurar o aluguel definitivo com calma e ver os imóveis em pessoa.",
+        "Primeiros dias em Airbnb, hotel ou hospedagem temporária. Muitas instituições oferecem residência ou apoio de moradia para recém-chegados, contate o housing office da sua escola/college/universidade antes de viajar. Use esse tempo para procurar o aluguel definitivo com calma e ver os imóveis em pessoa.",
     },
     types: {
       title: "Tipos de moradia e faixas de preço",
@@ -1524,7 +1524,7 @@ export const pt = {
     lease: {
       title: "O contrato (lease)",
       body:
-        "Sempre por escrito, nunca acordo verbal ou aperto de mão. Em Ontário, exija o Standard Lease (contrato padrão obrigatório do governo desde 2018) — se o landlord se recusa a usá-lo, é bandeira vermelha. O contrato deve conter: valor do aluguel, data de pagamento, período, o que está incluído (aquecimento, água, internet), termos do depósito, e o nome do dono legal (que deve bater com quem recebe o pagamento).",
+        "Sempre por escrito, nunca acordo verbal ou aperto de mão. Em Ontário, exija o Standard Lease (contrato padrão obrigatório do governo desde 2018), se o landlord se recusa a usá-lo, é bandeira vermelha. O contrato deve conter: valor do aluguel, data de pagamento, período, o que está incluído (aquecimento, água, internet), termos do depósito, e o nome do dono legal (que deve bater com quem recebe o pagamento).",
     },
     deposit: {
       title: "Depósito: o que é legal por província",
@@ -1544,17 +1544,17 @@ export const pt = {
         "O landlord não pode entrar quando quiser: precisa dar 24h de aviso por escrito (exceto emergência).",
         "Aquecimento é obrigatório por lei no inverno (em Ontário, mínimo 20°C de setembro a junho; Toronto exige 21°C).",
         "Há limite legal de aumento de aluguel por ano (em Ontário, 2,1% em 2026), com exceções.",
-        "Proteção contra despejo ilegal — só pelo processo oficial.",
+        "Proteção contra despejo ilegal, só pelo processo oficial.",
       ],
     },
     bodies: {
       title: "Órgãos que protegem o inquilino (por província)",
       rows: {
-        on: "Ontário — Landlord and Tenant Board (LTB), sob o Residential Tenancies Act. Apoio gratuito: ACTO e clínicas jurídicas comunitárias.",
-        bc: "BC — Residential Tenancy Branch (RTB).",
-        ab: "Alberta — Residential Tenancy Dispute Resolution Service.",
-        mb: "Manitoba — Residential Tenancies Branch.",
-        sk: "Saskatchewan — Office of Residential Tenancies.",
+        on: "Ontário, Landlord and Tenant Board (LTB), sob o Residential Tenancies Act. Apoio gratuito: ACTO e clínicas jurídicas comunitárias.",
+        bc: "BC, Residential Tenancy Branch (RTB).",
+        ab: "Alberta, Residential Tenancy Dispute Resolution Service.",
+        mb: "Manitoba, Residential Tenancies Branch.",
+        sk: "Saskatchewan, Office of Residential Tenancies.",
       },
       urls: {
         on: "https://tribunalsontario.ca/ltb/",
@@ -1570,21 +1570,21 @@ export const pt = {
     credit: {
       title: "Credit score e o desafio do recém-chegado",
       body:
-        "No Canadá o score vai de 300 a 900, e o histórico de crédito de outro país NÃO transfere — você começa do zero. Landlords costumam pedir verificação de crédito. Compense com: extrato bancário, carta de aceite da instituição, comprovante de fundos, referência de landlord anterior, ou depósito maior (dentro do limite legal).",
+        "No Canadá o score vai de 300 a 900, e o histórico de crédito de outro país NÃO transfere, você começa do zero. Landlords costumam pedir verificação de crédito. Compense com: extrato bancário, carta de aceite da instituição, comprovante de fundos, referência de landlord anterior, ou depósito maior (dentro do limite legal).",
       sinTitle: "Importante: seu SIN",
       sin:
-        "Seu SIN (número de seguro social) NÃO é obrigatório para verificação de crédito básica — dê apenas nome, endereço e data de nascimento, e proteja seu SIN.",
+        "Seu SIN (número de seguro social) NÃO é obrigatório para verificação de crédito básica, dê apenas nome, endereço e data de nascimento, e proteja seu SIN.",
       build:
         "Construa crédito rápido: conta bancária ao chegar, cartão para newcomers, e serviços que reportam o pagamento do aluguel aos bureaus (melhora em 6–12 meses).",
       sourceUrl: "https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/credit-report-score-basics.html",
-      sourceLabel: "Governo do Canadá — relatório e score de crédito",
+      sourceLabel: "Governo do Canadá, relatório e score de crédito",
     },
     insurance: {
       title: "Seguro de inquilino (renter's insurance)",
       body:
         "Muitos landlords exigem. É barato e protege seus pertences contra roubo, incêndio e danos. Confirme se é exigido antes de assinar.",
       sourceUrl: "https://www.canada.ca/en/financial-consumer-agency/services/insurance.html",
-      sourceLabel: "Governo do Canadá — noções básicas de seguro",
+      sourceLabel: "Governo do Canadá, noções básicas de seguro",
     },
     scamsCta: {
       title: "Proteja-se de golpes de aluguel",
@@ -1592,7 +1592,7 @@ export const pt = {
       button: "Como identificar golpes de aluguel →",
     },
     sources: {
-      statcan: "Statistics Canada — Aluguel",
+      statcan: "Statistics Canada, Aluguel",
       rentalsCa: "Rentals.ca National Rent Report",
     },
   },
@@ -1602,7 +1602,7 @@ export const pt = {
       tag: "Antes de ir",
       title: "Golpes de aluguel: como se proteger",
       subtitle:
-        "Estudante internacional é alvo primário de golpe de aluguel — chegando de longe, sem conhecer as normas locais e sob pressão para garantir moradia. Órgãos oficiais como a polícia e o Canadian Anti-Fraud Centre alertam repetidamente sobre esse risco. Saber reconhecer os sinais é sua melhor proteção.",
+        "Estudante internacional é alvo primário de golpe de aluguel, chegando de longe, sem conhecer as normas locais e sob pressão para garantir moradia. Órgãos oficiais como a polícia e o Canadian Anti-Fraud Centre alertam repetidamente sobre esse risco. Saber reconhecer os sinais é sua melhor proteção.",
     },
     redFlags: {
       title: "Bandeiras vermelhas",
@@ -1630,14 +1630,14 @@ export const pt = {
     sources: {
       title: "Fontes seguras para procurar moradia",
       cmhc: {
-        label: "CMHC — órgão federal de habitação, com guias por província.",
+        label: "CMHC, órgão federal de habitação, com guias por província.",
         url: "https://www.cmhc-schl.gc.ca",
         linkLabel: "cmhc-schl.gc.ca",
       },
       housingOffice:
-        "O housing office da sua instituição — conecta com landlords confiáveis.",
+        "O housing office da sua instituição, conecta com landlords confiáveis.",
       settlement: {
-        label: "Settlement.Org — recurso oficial para recém-chegados em Ontário.",
+        label: "Settlement.Org, recurso oficial para recém-chegados em Ontário.",
         url: "https://settlement.org",
         linkLabel: "settlement.org",
       },
@@ -1659,20 +1659,20 @@ export const pt = {
   rentalSeal: {
     title: "Um lembrete",
     body:
-      "Informações baseadas em fontes oficiais e médias de mercado. Não confirmam o seu caso individual. As regras variam por província — confirme sempre com o órgão oficial da sua província.",
+      "Informações baseadas em fontes oficiais e médias de mercado. Não confirmam o seu caso individual. As regras variam por província, confirme sempre com o órgão oficial da sua província.",
   },
 
   studyPermit: {
     hero: {
       tag: "Aplique para o visto",
-      title: "Study Permit — Como aplicar",
+      title: "Study Permit: Como aplicar",
       subtitle:
         "O documento que autoriza você a estudar no Canadá. Veja os passos oficiais do processo, do aceite à chegada.",
     },
     intro: {
       title: "Antes de começar",
       body:
-        "O study permit é o documento que autoriza você a estudar no Canadá. Veja os passos oficiais do processo. Estas são informações gerais baseadas no IRCC e não confirmam o seu caso — apenas o IRCC decide.",
+        "O study permit é o documento que autoriza você a estudar no Canadá. Veja os passos oficiais do processo. Estas são informações gerais baseadas no IRCC e não confirmam o seu caso, apenas o IRCC decide.",
     },
     steps: [
       {
@@ -1703,7 +1703,7 @@ export const pt = {
         n: 5,
         title: "Aplicar online",
         body:
-          "A aplicação é feita na página oficial do IRCC. Crie sua conta no IRCC Secure Account e aplique diretamente — os formulários são gratuitos.",
+          "A aplicação é feita na página oficial do IRCC. Crie sua conta no IRCC Secure Account e aplique diretamente, os formulários são gratuitos.",
         link: {
           href: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/apply.html",
           label: "Aplicar pelo site oficial do IRCC",
@@ -1733,7 +1733,7 @@ export const pt = {
     seal: {
       title: "Um lembrete",
       body:
-        "Informações baseadas no IRCC oficial. As regras e taxas mudam — confirme sempre em canada.ca antes de aplicar. Para decisões sobre o seu caso, consulte um RCIC licenciado.",
+        "Informações baseadas no IRCC oficial. As regras e taxas mudam, confirme sempre em canada.ca antes de aplicar. Para decisões sobre o seu caso, consulte um RCIC licenciado.",
     },
     scamProtection: {
       title: "Proteja-se de golpes de visto",
@@ -1742,7 +1742,7 @@ export const pt = {
       rights: {
         title: "Você tem direitos que os golpistas escondem",
         items: [
-          "Você pode aplicar sozinho, de graça. O IRCC trata a aplicação igual, com ou sem representante. Os formulários são gratuitos no site oficial — ninguém pode cobrar pelo acesso ao sistema.",
+          "Você pode aplicar sozinho, de graça. O IRCC trata a aplicação igual, com ou sem representante. Os formulários são gratuitos no site oficial, ninguém pode cobrar pelo acesso ao sistema.",
           "Ninguém pode garantir visto ou '100% de aprovação'. Só o oficial de imigração decide cada caso.",
           "As taxas do IRCC são iguais no mundo todo, ajustadas apenas pela moeda local. Se alguém cobra muito mais pela taxa de processamento, desconfie.",
         ],
@@ -1755,7 +1755,7 @@ export const pt = {
           "Ameaça de deportação por taxas não pagas (o IRCC nunca faz isso)",
           "Oferta para 'acelerar' o processo",
           "Pedido para assinar formulário em branco",
-          "Carta de aceite suspeita — em 2024 o IRCC identificou mais de 10.000 cartas potencialmente falsas. Sempre confirme sua aceitação diretamente com a escola.",
+          "Carta de aceite suspeita, em 2024 o IRCC identificou mais de 10.000 cartas potencialmente falsas. Sempre confirme sua aceitação diretamente com a escola.",
         ],
       },
       protect: {
@@ -1770,7 +1770,7 @@ export const pt = {
       victim: {
         title: "Se você for vítima",
         body:
-          "Reporte ao IRCC, ao Canadian Anti-Fraud Centre, e — se estiver fora do Canadá — à embaixada ou consulado canadense do seu país.",
+          "Reporte ao IRCC, ao Canadian Anti-Fraud Centre, e, se estiver fora do Canadá, à embaixada ou consulado canadense do seu país.",
       },
       links: {
         title: "Links oficiais",

@@ -476,7 +476,7 @@ export default function PathQuiz() {
                     {t(`pathQuiz.destination.options.${key}`)}
                   </span>
                   {available ? (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-azul/10 text-azul text-xs font-semibold px-2.5 py-0.5">
+                    <span className="inline-flex items-center gap-1 text-azul text-xs font-semibold px-2.5 py-0.5">
                       {t("pathQuiz.destination.available")}
                     </span>
                   ) : (
@@ -709,13 +709,13 @@ export default function PathQuiz() {
                         {t("pathQuiz.result.stepPrefix", { n: s.n })}
                       </span>
                       {isCurrent && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-crimson/10 text-crimson text-xs font-semibold px-2.5 py-0.5">
+                        <span className="inline-flex items-center gap-1 text-crimson text-xs font-semibold px-2.5 py-0.5">
                           <MapPin className="h-3 w-3" />
                           {t("pathQuiz.result.hereBadge")}
                         </span>
                       )}
                       {isPast && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-azul/10 text-azul text-xs font-medium px-2.5 py-0.5">
+                        <span className="inline-flex items-center gap-1 text-azul text-xs font-medium px-2.5 py-0.5">
                           <Check className="h-3 w-3" />
                           {t("pathQuiz.result.doneBadge")}
                         </span>
