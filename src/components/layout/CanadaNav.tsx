@@ -209,8 +209,8 @@ export function CanadaNav() {
   return (
     <div className="border-b border-border bg-background sticky top-16 z-40">
       <div className="container flex items-center gap-6 py-3">
-        <div className="flex items-center gap-1.5 shrink-0 text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/80">
-          <span className="text-sm leading-none">🇨🇦</span>
+        <div className="flex items-center gap-2 shrink-0 text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/80">
+          <Flag code="canada" className="w-4 shrink-0" />
           <span className="hidden sm:inline">{t("countries.canadaMenuLabel")}</span>
         </div>
 
