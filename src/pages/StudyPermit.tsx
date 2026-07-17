@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import bannerPermit from "@/assets/banner-permit.jpg";
 import {
   AlertTriangle,
   ExternalLink,
@@ -51,6 +52,21 @@ export default function StudyPermit() {
     <>
       {/* Hero */}
       <section className="relative bg-navy text-primary-foreground overflow-hidden">
+        <img
+          src={bannerPermit}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover object-[center_50%] opacity-40"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, hsl(228 70% 12%) 0%, hsl(228 65% 14% / 0.85) 55%, hsl(228 55% 20% / 0.35) 100%)",
+          }}
+        />
         <div className="container relative py-20 md:py-28 max-w-5xl">
           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary-foreground/70 mb-6">
             <span className="w-6 h-px bg-crimson" />

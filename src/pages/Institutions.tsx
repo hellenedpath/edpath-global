@@ -4,6 +4,7 @@ import { Search, Building2, ExternalLink } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import bannerInstitutions from "@/assets/banner-institutions.jpg";
 
 type Institution = {
   id: string;
@@ -90,8 +91,23 @@ export default function Institutions() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-navy text-white">
-        <div className="container py-16 md:py-20">
+      <section className="relative bg-navy text-white overflow-hidden">
+        <img
+          src={bannerInstitutions}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover object-[center_45%] opacity-40"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, hsl(228 70% 12%) 0%, hsl(228 65% 14% / 0.85) 55%, hsl(228 55% 20% / 0.35) 100%)",
+          }}
+        />
+        <div className="container relative py-16 md:py-20">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/70 mb-4">
               <span>{t("institutions.hero.badge")}</span>
