@@ -11,15 +11,12 @@ export function Logo({ className }: { className?: string }) {
       )}
       aria-label="EdPath Global"
     >
-      <span className="font-display text-lg md:text-xl tracking-tight">
+      <span className="font-display font-bold text-2xl md:text-[26px] tracking-tight leading-none">
         <span className="text-white">Ed</span>
         <span className="text-[#E0405B]">Path</span>
       </span>
-      <span
-        className="font-sans text-[10px] md:text-xs font-light tracking-[0.16em] uppercase"
-        style={{ color: "#396CD8" }}
-      >
-        Global
+      <span className="font-sans text-[10px] md:text-[11px] font-medium tracking-[0.18em] uppercase text-white/55 mt-1.5">
+        Global Student Navigator
       </span>
     </Link>
   );
