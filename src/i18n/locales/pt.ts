@@ -50,6 +50,14 @@ export const pt = {
       body: "Um caminho claro, do primeiro passo ao destino.",
     },
   },
+  newEra: {
+    title: "A nova era da educação internacional",
+    body: [
+      "Estudar no exterior nunca teve tanta informação disponível, e nunca foi tão fácil se perder nela. O que mais falta ao estudante não é informação. É clareza.",
+      "A EdPath reúne o que realmente importa: verificado em fontes oficiais, organizado num caminho claro, do primeiro passo ao destino.",
+    ],
+    cta: "Conheça a EdPath",
+  },
   howItWorks: {
     eyebrow: "Como funciona",
     title: "Três passos até seu caminho",
