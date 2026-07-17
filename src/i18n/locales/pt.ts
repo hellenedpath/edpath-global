@@ -931,7 +931,7 @@ export const pt = {
   },
 
   footer: {
-    tagline: "Sua bússola inteligente para estudar no exterior",
+    tagline: "O novo jeito, inteligente e confiável, de estudar no exterior.",
     expansion: "Canadá disponível agora. Mais países em breve.",
     disclaimer:
       "A EdPath Global fornece informação educacional, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados. Trabalhamos como camada de informação independente e podemos conectar estudantes a agências e profissionais confiáveis.",
