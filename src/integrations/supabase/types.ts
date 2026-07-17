@@ -254,6 +254,7 @@ export type Database = {
           pgwp_eligible: string | null
           pgwp_english_clb: number | null
           prerequisites: string | null
+          source_id: string | null
           tuition_intl_year: string | null
           updated_at: string
         }
@@ -278,6 +279,7 @@ export type Database = {
           pgwp_eligible?: string | null
           pgwp_english_clb?: number | null
           prerequisites?: string | null
+          source_id?: string | null
           tuition_intl_year?: string | null
           updated_at?: string
         }
@@ -302,6 +304,7 @@ export type Database = {
           pgwp_eligible?: string | null
           pgwp_english_clb?: number | null
           prerequisites?: string | null
+          source_id?: string | null
           tuition_intl_year?: string | null
           updated_at?: string
         }
@@ -311,6 +314,13 @@ export type Database = {
             columns: ["institution_id"]
             isOneToOne: false
             referencedRelation: "institutions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "programs_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "sources"
             referencedColumns: ["id"]
           },
         ]

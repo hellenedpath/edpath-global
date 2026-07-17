@@ -1,0 +1,1 @@
+ALTER TABLE public.programs ADD COLUMN source_id uuid REFERENCES public.sources(id);
