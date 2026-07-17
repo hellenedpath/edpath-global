@@ -58,7 +58,7 @@ export function CountrySelector() {
                   )}
                 />
                 {/* Base gradient for legibility — light so photo stays luminous */}
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/65 via-navy/5 to-transparent" />
 
                 {/* Status badge */}
                 <span
