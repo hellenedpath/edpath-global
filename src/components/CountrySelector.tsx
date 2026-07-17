@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import canadaImg from "@/assets/country-canada.jpg";
+import usaImg from "@/assets/country-usa.jpg";
+import ukImg from "@/assets/country-uk.jpg";
+import australiaImg from "@/assets/country-australia.jpg";
+import irelandImg from "@/assets/country-ireland.jpg";
 
 function Flag({ code, className }: { code: string; className?: string }) {
   const common = "block rounded-[3px] overflow-hidden ring-1 ring-black/10 shadow-sm";
@@ -73,14 +79,16 @@ type Country = {
   nameKey: string;
   available: boolean;
   to?: string;
+  image: string;
+  imageAlt: string;
 };
 
 const countries: Country[] = [
-  { code: "canada", nameKey: "countries.list.canada", available: true, to: "/canada" },
-  { code: "usa", nameKey: "countries.list.usa", available: false },
-  { code: "uk", nameKey: "countries.list.uk", available: false },
-  { code: "australia", nameKey: "countries.list.australia", available: false },
-  { code: "ireland", nameKey: "countries.list.ireland", available: false },
+  { code: "canada", nameKey: "countries.list.canada", available: true, to: "/canada", image: canadaImg, imageAlt: "Rocky Mountains reflected in a turquoise lake in Canada" },
+  { code: "usa", nameKey: "countries.list.usa", available: false, image: usaImg, imageAlt: "New York City skyline at dusk" },
+  { code: "uk", nameKey: "countries.list.uk", available: false, image: ukImg, imageAlt: "Big Ben and Westminster in London" },
+  { code: "australia", nameKey: "countries.list.australia", available: false, image: australiaImg, imageAlt: "Sydney Opera House and Harbour Bridge" },
+  { code: "ireland", nameKey: "countries.list.ireland", available: false, image: irelandImg, imageAlt: "Cliffs of Moher in Ireland" },
 ];
 
 export function CountrySelector() {
@@ -97,33 +105,68 @@ export function CountrySelector() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {countries.map((c) => {
+            const advantages = t(`countries.advantages.${c.code}`, {
+              returnObjects: true,
+            }) as string[];
             const inner = (
-              <div className="flex items-center gap-4">
-                <Flag code={c.code} className="w-8 h-5 shrink-0" />
-                <h3 className="text-lg font-semibold text-navy truncate flex-1">
-                  {t(c.nameKey)}
-                </h3>
-                <span
-                  className={cn(
-                    "px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-[0.12em] uppercase shrink-0",
-                    c.available
-                      ? "bg-crimson/10 text-crimson"
-                      : "bg-muted text-muted-foreground",
-                  )}
-                >
-                  {c.available ? t("countries.available") : t("countries.soon")}
-                </span>
+              <div className="flex flex-col h-full">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img
+                    src={c.image}
+                    alt={c.imageAlt}
+                    width={1200}
+                    height={800}
+                    loading="lazy"
+                    className={cn(
+                      "absolute inset-0 h-full w-full object-cover transition-transform duration-500",
+                      c.available ? "group-hover:scale-[1.03]" : "grayscale-[35%] opacity-90",
+                    )}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
+                  <span
+                    className={cn(
+                      "absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-[0.12em] uppercase backdrop-blur-sm",
+                      c.available
+                        ? "bg-crimson text-white shadow-sm"
+                        : "bg-white/85 text-navy/70",
+                    )}
+                  >
+                    {c.available ? t("countries.available") : t("countries.soon")}
+                  </span>
+                </div>
+                <div className="flex flex-col flex-1 p-6 md:p-7">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Flag code={c.code} className="w-7 h-[18px] shrink-0" />
+                    <h3 className="text-xl font-semibold text-navy tracking-tight">
+                      {t(c.nameKey)}
+                    </h3>
+                  </div>
+                  <ul className="space-y-2.5 flex-1">
+                    {advantages.map((adv, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-[14px] leading-snug text-muted-foreground">
+                        <Check
+                          className={cn(
+                            "w-4 h-4 mt-0.5 shrink-0",
+                            c.available ? "text-crimson" : "text-navy/40",
+                          )}
+                          strokeWidth={2.5}
+                        />
+                        <span>{adv}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             );
             const base =
-              "rounded-2xl bg-white ring-1 ring-border/50 px-6 py-6 shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)] block";
+              "group rounded-2xl bg-white ring-1 ring-border/50 overflow-hidden shadow-[0_2px_14px_-6px_rgba(5,21,86,0.08)] flex flex-col h-full";
             if (c.available && c.to) {
               return (
                 <Link
                   key={c.code}
                   to={c.to}
                   aria-label={t(c.nameKey)}
-                  className={cn(base, "hover:ring-crimson/40 hover:shadow-[0_8px_24px_-8px_rgba(5,21,86,0.12)] transition-all duration-300")}
+                  className={cn(base, "ring-2 ring-crimson/30 hover:ring-crimson/60 hover:shadow-[0_12px_32px_-10px_rgba(5,21,86,0.18)] hover:-translate-y-0.5 transition-all duration-300")}
                 >
                   {inner}
                 </Link>

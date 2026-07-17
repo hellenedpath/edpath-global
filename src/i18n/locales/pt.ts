@@ -106,6 +106,33 @@ export const pt = {
       australia: "Austrália",
       ireland: "Irlanda",
     },
+    advantages: {
+      canada: [
+        "Ensino reconhecido mundialmente",
+        "Ambiente multicultural e seguro",
+        "Bom custo-benefício entre os principais destinos",
+      ],
+      usa: [
+        "Universidades de referência mundial",
+        "Enorme variedade de cursos e áreas",
+        "Vida de campus vibrante",
+      ],
+      uk: [
+        "Universidades de prestígio (Oxford, Cambridge)",
+        "Cursos mais curtos — economize tempo e custo",
+        "Forte em negócios, direito e engenharia",
+      ],
+      australia: [
+        "Ensino de alta qualidade e campi modernos",
+        "Excelente qualidade de vida",
+        "Ambiente seguro e acolhedor",
+      ],
+      ireland: [
+        "Universidades de excelência (Trinity College Dublin)",
+        "Diplomas respeitados globalmente",
+        "Ensino em inglês, forte ligação com a indústria",
+      ],
+    },
   },
   canadaSteps: {
     eyebrow: "Seu caminho, passo a passo",
