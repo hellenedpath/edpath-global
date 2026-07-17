@@ -81,7 +81,7 @@ export const en = {
     eyebrow: "Your next step",
     title: "Your path abroad starts with clarity.",
     body: "Take the first step with information you can trust.",
-    cta: "Choose your destination",
+    cta: "Start with Canada",
   },
   canadaNav: {
     beforeYouGo: "Before you go",
