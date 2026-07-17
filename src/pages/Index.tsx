@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Shield, RefreshCw, Compass, ArrowRight, MapPin, Route, Footprints } from "lucide-react";
 import { CountrySelector } from "@/components/CountrySelector";
 import heroStudent from "@/assets/hero-student.jpg.asset.json";
-import manifestoStudy from "@/assets/hero-students.jpg.asset.json";
+import manifestoGrad from "@/assets/new-era.jpg.asset.json";
 import closingInspire from "@/assets/closing-inspire.jpg";
 import { useReveal } from "@/hooks/use-reveal";
 
@@ -221,8 +221,8 @@ export default function Index() {
             <div data-reveal className="relative">
               <div className="relative rounded-3xl overflow-hidden ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] aspect-[4/5]">
                 <img
-                  src={manifestoStudy.url}
-                  alt="Student studying with warm natural light"
+                  src={manifestoGrad.url}
+                  alt="Smiling graduate student in cap and gown"
                   loading="lazy"
                   width={1280}
                   height={1600}
