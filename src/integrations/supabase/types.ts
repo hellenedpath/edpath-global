@@ -328,6 +328,116 @@ export type Database = {
           },
         ]
       }
+      programs_staging: {
+        Row: {
+          application_url: string | null
+          book_meeting_url: string | null
+          campus_city: string | null
+          cip_code: string | null
+          confidence: string | null
+          created_at: string
+          credential: string | null
+          duration_months: number | null
+          english_admission_tests: Json | null
+          extracted_at: string | null
+          field_area: string | null
+          field_confidence: Json | null
+          has_coop: boolean | null
+          id: string
+          institution_id: string | null
+          intl_office_url: string | null
+          min_grade: string | null
+          name: string | null
+          occupation_ids: string[] | null
+          open_to_international: boolean | null
+          pgwp_basis: string | null
+          pgwp_eligible: boolean | null
+          pgwp_english_clb: string | null
+          prerequisites: string | null
+          promoted_program_id: string | null
+          raw_source_url: string | null
+          review_notes: string | null
+          review_status: string
+          source_id: string | null
+          tuition_intl_year: number | null
+          updated_at: string
+        }
+        Insert: {
+          application_url?: string | null
+          book_meeting_url?: string | null
+          campus_city?: string | null
+          cip_code?: string | null
+          confidence?: string | null
+          created_at?: string
+          credential?: string | null
+          duration_months?: number | null
+          english_admission_tests?: Json | null
+          extracted_at?: string | null
+          field_area?: string | null
+          field_confidence?: Json | null
+          has_coop?: boolean | null
+          id?: string
+          institution_id?: string | null
+          intl_office_url?: string | null
+          min_grade?: string | null
+          name?: string | null
+          occupation_ids?: string[] | null
+          open_to_international?: boolean | null
+          pgwp_basis?: string | null
+          pgwp_eligible?: boolean | null
+          pgwp_english_clb?: string | null
+          prerequisites?: string | null
+          promoted_program_id?: string | null
+          raw_source_url?: string | null
+          review_notes?: string | null
+          review_status?: string
+          source_id?: string | null
+          tuition_intl_year?: number | null
+          updated_at?: string
+        }
+        Update: {
+          application_url?: string | null
+          book_meeting_url?: string | null
+          campus_city?: string | null
+          cip_code?: string | null
+          confidence?: string | null
+          created_at?: string
+          credential?: string | null
+          duration_months?: number | null
+          english_admission_tests?: Json | null
+          extracted_at?: string | null
+          field_area?: string | null
+          field_confidence?: Json | null
+          has_coop?: boolean | null
+          id?: string
+          institution_id?: string | null
+          intl_office_url?: string | null
+          min_grade?: string | null
+          name?: string | null
+          occupation_ids?: string[] | null
+          open_to_international?: boolean | null
+          pgwp_basis?: string | null
+          pgwp_eligible?: boolean | null
+          pgwp_english_clb?: string | null
+          prerequisites?: string | null
+          promoted_program_id?: string | null
+          raw_source_url?: string | null
+          review_notes?: string | null
+          review_status?: string
+          source_id?: string | null
+          tuition_intl_year?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "programs_staging_promoted_program_id_fkey"
+            columns: ["promoted_program_id"]
+            isOneToOne: false
+            referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       sources: {
         Row: {
           created_at: string
