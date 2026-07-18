@@ -91,6 +91,10 @@ export const en = {
   canadaNav: {
     beforeYouGo: "Before you go",
     onArrival: "After you arrive",
+    choose: "Choose",
+    plan: "Plan",
+    prepare: "Prepare",
+    arrive: "Arrive",
     canadaMenu: "Canada Menu",
     menu: "Menu",
     openMenu: "Open menu",
