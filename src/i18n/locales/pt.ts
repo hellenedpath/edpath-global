@@ -90,6 +90,10 @@ export const pt = {
   canadaNav: {
     beforeYouGo: "Antes de ir",
     onArrival: "Ao chegar",
+    choose: "Escolher",
+    plan: "Planejar",
+    prepare: "Preparar",
+    arrive: "Chegar",
     canadaMenu: "Menu do Canadá",
     menu: "Menu",
     openMenu: "Abrir menu",
