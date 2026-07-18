@@ -28,49 +28,30 @@ import {
 type Item = { to: string; label: string };
 type Group = { title: string; items: Item[] };
 
-const primaryTo = "/meu-caminho?country=canada";
+const primaryTo = "/canada/meu-caminho?country=canada";
+const highSchoolTo = "/canada/ensino-medio";
 
-const beforeYouGoGroupDefs = [
-  {
-    key: "startHere",
-    items: [{ to: "/meu-caminho?country=canada", key: "myPath" }],
-  },
-  {
-    key: "chooseSchool",
-    items: [
-      { to: "/canada/pgwp", key: "pgwp" },
-      { to: "/canada/instituicoes", key: "institutions" },
-      { to: "/programas", key: "programs" },
-      { to: "/canada/ensino-medio", key: "highSchools" },
-    ],
-  },
-  {
-    key: "planCosts",
-    items: [
-      { to: "/simulador-financeiro", key: "costsSimulator" },
-      { to: "/custos", key: "costs" },
-    ],
-  },
-  {
-    key: "applyVisa",
-    items: [
-      { to: "/study-permit", key: "studyPermit" },
-    ],
-  },
-  {
-    key: "prepareMove",
-    items: [
-      { to: "/alugar-no-canada", key: "renting" },
-      { to: "/golpes-de-aluguel", key: "rentalScams" },
-    ],
-  },
+const chooseDefs = [
+  { to: "/canada/programas", key: "programs" },
+  { to: "/canada/instituicoes", key: "institutions" },
+  { to: "/canada/pgwp", key: "pgwp" },
 ] as const;
 
-const onArrivalDefs = [
-  { to: "/custos", key: "costs" },
-  { to: "/saude", key: "health" },
-  { to: "/familia", key: "family" },
-  { to: "/trabalho-moradia", key: "work" },
+const planDefs = [
+  { to: "/canada/simulador", key: "costsSimulator" },
+  { to: "/canada/custos", key: "costs" },
+  { to: "/canada/study-permit", key: "studyPermit" },
+] as const;
+
+const prepareDefs = [
+  { to: "/canada/alugar", key: "renting" },
+  { to: "/canada/golpes-de-aluguel", key: "rentalScams" },
+] as const;
+
+const arriveDefs = [
+  { to: "/canada/saude", key: "health" },
+  { to: "/canada/familia", key: "family" },
+  { to: "/canada/trabalho-moradia", key: "work" },
 ] as const;
 
 function HoverDropdown({
@@ -194,17 +175,14 @@ export function CanadaNav() {
 
   const primary: Item = { to: primaryTo, label: t("nav.myPath") };
   const primaryActive = pathname === primaryTo.split("?")[0];
-  const beforeYouGoGroups: Group[] = beforeYouGoGroupDefs.map((g) => ({
-    title: t(`canadaNav.groups.${g.key}`),
-    items: g.items.map((it) => ({
-      to: it.to,
-      label: t(`canadaNav.items.${it.key}`),
-    })),
-  }));
-  const onArrival: Item[] = onArrivalDefs.map((d) => ({
-    to: d.to,
-    label: t(`canadaNav.items.${d.key}`),
-  }));
+  const highSchool: Item = { to: highSchoolTo, label: t("canadaNav.items.highSchools") };
+  const highSchoolActive = pathname === highSchoolTo;
+  const toItems = (defs: readonly { to: string; key: string }[]): Item[] =>
+    defs.map((d) => ({ to: d.to, label: t(`canadaNav.items.${d.key}`) }));
+  const choose = toItems(chooseDefs);
+  const plan = toItems(planDefs);
+  const prepare = toItems(prepareDefs);
+  const arrive = toItems(arriveDefs);
 
   return (
     <div className="border-b border-border bg-background sticky top-16 z-40">
@@ -233,8 +211,22 @@ export function CanadaNav() {
             />
           </NavLink>
 
-          <HoverDropdown label={t("canadaNav.beforeYouGo")} groups={beforeYouGoGroups} activePath={pathname} />
-          <HoverDropdown label={t("canadaNav.onArrival")} items={onArrival} activePath={pathname} />
+          <NavLink
+            to={highSchool.to}
+            className={cn(
+              "shrink-0 text-sm transition-colors",
+              highSchoolActive
+                ? "text-foreground font-medium"
+                : "text-muted-foreground hover:text-[hsl(var(--azul))]",
+            )}
+          >
+            {highSchool.label}
+          </NavLink>
+
+          <HoverDropdown label={t("canadaNav.choose")} items={choose} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.plan")} items={plan} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.prepare")} items={prepare} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.arrive")} items={arrive} activePath={pathname} />
         </nav>
 
         {/* Mobile trigger */}
@@ -269,66 +261,52 @@ export function CanadaNav() {
                   {primary.label}
                 </NavLink>
 
+                <NavLink
+                  to={highSchool.to}
+                  onClick={() => setMobileOpen(false)}
+                  className={cn(
+                    "block w-full px-2 py-3 text-base font-medium border-b border-border transition-colors",
+                    highSchoolActive
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {highSchool.label}
+                </NavLink>
+
                 <Accordion type="multiple" className="w-full">
-                  <AccordionItem value="before">
-                    <AccordionTrigger className="text-sm font-medium">
-                      {t("canadaNav.beforeYouGo")}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="flex flex-col gap-4">
-                        {beforeYouGoGroups.map((g) => (
-                          <div key={g.title}>
-                            <div className="px-2 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70">
-                              {g.title}
-                            </div>
-                            <ul className="flex flex-col">
-                              {g.items.map((it) => (
-                                <li key={it.to}>
-                                  <NavLink
-                                    to={it.to}
-                                    onClick={() => setMobileOpen(false)}
-                                    className={({ isActive }) =>
-                                      cn(
-                                        "block px-2 py-2 text-sm rounded-md text-muted-foreground hover:text-foreground hover:bg-muted",
-                                        isActive && "bg-muted text-foreground font-medium",
-                                      )
-                                    }
-                                  >
-                                    {it.label}
-                                  </NavLink>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="arrival">
-                    <AccordionTrigger className="text-sm font-medium">
-                      {t("canadaNav.onArrival")}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <ul className="flex flex-col">
-                        {onArrival.map((it) => (
-                          <li key={it.to}>
-                            <NavLink
-                              to={it.to}
-                              onClick={() => setMobileOpen(false)}
-                              className={({ isActive }) =>
-                                cn(
-                                  "block px-2 py-2 text-sm rounded-md text-muted-foreground hover:text-foreground hover:bg-muted",
-                                  isActive && "bg-muted text-foreground font-medium",
-                                )
-                              }
-                            >
-                              {it.label}
-                            </NavLink>
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
+                  {[
+                    { value: "choose", label: t("canadaNav.choose"), items: choose },
+                    { value: "plan", label: t("canadaNav.plan"), items: plan },
+                    { value: "prepare", label: t("canadaNav.prepare"), items: prepare },
+                    { value: "arrive", label: t("canadaNav.arrive"), items: arrive },
+                  ].map((section) => (
+                    <AccordionItem key={section.value} value={section.value}>
+                      <AccordionTrigger className="text-sm font-medium">
+                        {section.label}
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="flex flex-col">
+                          {section.items.map((it) => (
+                            <li key={it.to}>
+                              <NavLink
+                                to={it.to}
+                                onClick={() => setMobileOpen(false)}
+                                className={({ isActive }) =>
+                                  cn(
+                                    "block px-2 py-2 text-sm rounded-md text-muted-foreground hover:text-foreground hover:bg-muted",
+                                    isActive && "bg-muted text-foreground font-medium",
+                                  )
+                                }
+                              >
+                                {it.label}
+                              </NavLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
                 </Accordion>
               </div>
             </SheetContent>
