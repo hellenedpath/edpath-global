@@ -68,11 +68,18 @@ type Occupation = {
   outlook: string | null;
 };
 
-const AREA_OPTIONS = [
-  { value: "health", en: "Health", pt: "Saúde" },
-  { value: "it", en: "IT / Advanced technology", pt: "TI / Tecnologia avançada" },
-  { value: "trades", en: "Trades", pt: "Trades / Ofícios técnicos" },
-];
+const AREA_LABELS: Record<string, { en: string; pt: string }> = {
+  health: { en: "Health", pt: "Saúde" },
+  it: { en: "IT / Advanced technology", pt: "TI / Tecnologia avançada" },
+  trades: { en: "Trades", pt: "Trades / Ofícios técnicos" },
+  business: { en: "Business", pt: "Business" },
+  other: { en: "Community & Services", pt: "Comunidade & Serviços" },
+};
+
+function areaKey(raw: string | null | undefined): string | null {
+  if (!raw) return null;
+  return raw.toLowerCase().trim();
+}
 
 function normalize(s: string) {
   return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
@@ -173,6 +180,23 @@ export default function Programs() {
     return m;
   }, [occupations]);
 
+  const areaOptions = useMemo(() => {
+    const set = new Set<string>();
+    (programs ?? []).forEach((p) => {
+      const k = areaKey(p.field_area);
+      if (k) set.add(k);
+    });
+    const known = ["health", "it", "trades", "business", "other"];
+    return Array.from(set).sort(
+      (a, b) => (known.indexOf(a) === -1 ? 99 : known.indexOf(a)) - (known.indexOf(b) === -1 ? 99 : known.indexOf(b))
+    );
+  }, [programs]);
+
+  const showPgwpToggle = useMemo(
+    () => (programs ?? []).some((p) => p.pgwp_eligible !== "yes"),
+    [programs]
+  );
+
   const credentials = useMemo(() => {
     const set = new Set<string>();
     (programs ?? []).forEach((p) => p.credential && set.add(p.credential));
@@ -184,7 +208,10 @@ export default function Programs() {
     return (programs ?? []).filter((p) => {
       if (onlyPgwp && p.pgwp_eligible !== "yes") return false;
       if (credential !== "all" && p.credential !== credential) return false;
-      if (area !== "all" && inferArea(p) !== area) return false;
+      if (area !== "all") {
+        const k = areaKey(p.field_area) ?? inferArea(p);
+        if (k !== area) return false;
+      }
       if (!q) return true;
       const hay = `${p.name} ${p.institutions?.name ?? ""} ${p.campus_city ?? ""}`;
       return normalize(hay).includes(q);
