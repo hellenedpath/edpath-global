@@ -284,16 +284,19 @@ export default function Programs() {
                 >
                   {T("Todas", "All")}
                 </Button>
-                {AREA_OPTIONS.map((a) => (
-                  <Button
-                    key={a.value}
-                    size="sm"
-                    variant={area === a.value ? "default" : "outline"}
-                    onClick={() => setArea(a.value)}
-                  >
-                    {a[lang as "pt" | "en"]}
-                  </Button>
-                ))}
+                {areaOptions.map((k) => {
+                  const label = AREA_LABELS[k]?.[lang as "pt" | "en"] ?? k;
+                  return (
+                    <Button
+                      key={k}
+                      size="sm"
+                      variant={area === k ? "default" : "outline"}
+                      onClick={() => setArea(k)}
+                    >
+                      {label}
+                    </Button>
+                  );
+                })}
               </div>
             </div>
 
@@ -323,12 +326,14 @@ export default function Programs() {
               </div>
             </div>
 
-            <label className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 cursor-pointer">
-              <Switch checked={onlyPgwp} onCheckedChange={setOnlyPgwp} />
-              <span className="text-sm font-medium">
-                {T("Só elegíveis a PGWP", "PGWP-eligible only")}
-              </span>
-            </label>
+            {showPgwpToggle && (
+              <label className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 cursor-pointer">
+                <Switch checked={onlyPgwp} onCheckedChange={setOnlyPgwp} />
+                <span className="text-sm font-medium">
+                  {T("Só elegíveis a PGWP", "PGWP-eligible only")}
+                </span>
+              </label>
+            )}
           </div>
         </div>
 
