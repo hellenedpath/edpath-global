@@ -5,20 +5,8 @@ import { CanadaNav } from "./CanadaNav";
 
 export default function SiteLayout() {
   const location = useLocation();
-  const canadaPaths = [
-    "/canada",
-    "/programas",
-    "/instituicoes",
-    "/custos",
-    "/saude",
-    "/familia",
-    "/trabalho-moradia",
-    "/diagnostico",
-    "/simulador-financeiro",
-    "/alugar-no-canada",
-    "/golpes-de-aluguel",
-  ];
-  const isCanadaContext = canadaPaths.some((p) => location.pathname === p || location.pathname.startsWith(p + "/"));
+  const isCanadaContext =
+    location.pathname === "/canada" || location.pathname.startsWith("/canada/");
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
