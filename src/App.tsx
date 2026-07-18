@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -25,6 +25,12 @@ import Health from "./pages/Health";
 
 const queryClient = new QueryClient();
 
+// Redirect preserving query string
+const Redirect = ({ to }: { to: string }) => {
+  const { search, hash } = useLocation();
+  return <Navigate to={{ pathname: to, search, hash }} replace />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -35,32 +41,38 @@ const App = () => (
           <Route element={<SiteLayout />}>
             <Route path="/" element={<Index />} />
             <Route path="/sobre" element={<About />} />
+            {/* Canonical Canada routes */}
             <Route path="/canada" element={<Canada />} />
             <Route path="/canada/pgwp" element={<PgwpChecker />} />
-            <Route path="/verificador-pgwp" element={<PgwpChecker />} />
-          <Route path="/meu-caminho" element={<PathQuiz />} />
             <Route path="/canada/meu-caminho" element={<PathQuiz />} />
-            <Route path="/diagnostico" element={<PathQuiz />} />
-            <Route path="/programas" element={<Programs />} />
+            <Route path="/canada/programas" element={<Programs />} />
             <Route path="/canada/instituicoes" element={<Institutions />} />
-            <Route path="/instituicoes" element={<Institutions />} />
             <Route path="/canada/ensino-medio" element={<HighSchools />} />
-            <Route path="/ensino-medio" element={<HighSchools />} />
-            <Route path="/custos" element={<Costs />} />
-            <Route path="/alugar-no-canada" element={<Renting />} />
+            <Route path="/canada/custos" element={<Costs />} />
             <Route path="/canada/alugar" element={<Renting />} />
-            <Route path="/golpes-de-aluguel" element={<RentalScams />} />
             <Route path="/canada/golpes-de-aluguel" element={<RentalScams />} />
-            <Route path="/study-permit" element={<StudyPermit />} />
             <Route path="/canada/study-permit" element={<StudyPermit />} />
-            {/* Redirects for old removed page — point to Study Permit */}
-            <Route path="/antes-de-comecar" element={<StudyPermit />} />
-            <Route path="/simulador-financeiro" element={<FinancialSimulator />} />
             <Route path="/canada/simulador" element={<FinancialSimulator />} />
-            <Route path="/saude" element={<Health />} />
             <Route path="/canada/saude" element={<Health />} />
-            <Route path="/familia" element={<Family />} />
-            <Route path="/trabalho-moradia" element={<Work />} />
+            <Route path="/canada/familia" element={<Family />} />
+            <Route path="/canada/trabalho-moradia" element={<Work />} />
+
+            {/* Legacy redirects → canonical routes (preserve query strings) */}
+            <Route path="/verificador-pgwp" element={<Redirect to="/canada/pgwp" />} />
+            <Route path="/meu-caminho" element={<Redirect to="/canada/meu-caminho" />} />
+            <Route path="/diagnostico" element={<Redirect to="/canada/meu-caminho" />} />
+            <Route path="/programas" element={<Redirect to="/canada/programas" />} />
+            <Route path="/instituicoes" element={<Redirect to="/canada/instituicoes" />} />
+            <Route path="/ensino-medio" element={<Redirect to="/canada/ensino-medio" />} />
+            <Route path="/custos" element={<Redirect to="/canada/custos" />} />
+            <Route path="/alugar-no-canada" element={<Redirect to="/canada/alugar" />} />
+            <Route path="/golpes-de-aluguel" element={<Redirect to="/canada/golpes-de-aluguel" />} />
+            <Route path="/study-permit" element={<Redirect to="/canada/study-permit" />} />
+            <Route path="/antes-de-comecar" element={<Redirect to="/canada/study-permit" />} />
+            <Route path="/simulador-financeiro" element={<Redirect to="/canada/simulador" />} />
+            <Route path="/saude" element={<Redirect to="/canada/saude" />} />
+            <Route path="/familia" element={<Redirect to="/canada/familia" />} />
+            <Route path="/trabalho-moradia" element={<Redirect to="/canada/trabalho-moradia" />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
