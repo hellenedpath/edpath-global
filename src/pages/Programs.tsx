@@ -759,7 +759,7 @@ export default function Programs() {
                         <div className="flex items-center justify-between gap-2 mt-1.5">
                           <span className="inline-flex items-center gap-1 text-muted-foreground">
                             <TrendingUp className="h-3.5 w-3.5" />
-                            {T("Perspectiva", "Outlook")}
+                            {T("Perspectiva de emprego", "Job outlook")}
                           </span>
                           {out ? (
                             <span className={`px-2 py-0.5 rounded-full font-medium ${out.className}`}>
