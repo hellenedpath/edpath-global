@@ -338,12 +338,9 @@ export default function Programs() {
                   return (
                     <button
                       key={p.id}
-                      onClick={() => complete && setSelected(p)}
-                      className={`group text-left rounded-2xl border border-border bg-card p-5 flex flex-col gap-3 transition-all ${
-                        complete
-                          ? "hover:border-crimson hover:shadow-md cursor-pointer"
-                          : "cursor-default opacity-95"
-                      }`}
+                      type="button"
+                      onClick={() => setSelected(p)}
+                      className="group text-left rounded-2xl border border-border bg-card p-5 flex flex-col gap-3 transition-all hover:border-crimson hover:shadow-md cursor-pointer"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -386,7 +383,7 @@ export default function Programs() {
                             <Briefcase className="h-3.5 w-3.5" />
                             {T("Salário", "Salary")}
                           </span>
-                          {complete && occ ? (
+                          {occ ? (
                             <span className="font-medium text-navy">
                               {occ.salary_low && occ.salary_high
                                 ? `${occ.salary_low} – ${occ.salary_high}`
@@ -394,7 +391,7 @@ export default function Programs() {
                             </span>
                           ) : (
                             <span className="text-muted-foreground italic">
-                              {T("Detalhes em breve", "Details coming soon")}
+                              {T("Ver fonte oficial", "See official source")}
                             </span>
                           )}
                         </div>
@@ -403,13 +400,13 @@ export default function Programs() {
                             <TrendingUp className="h-3.5 w-3.5" />
                             {T("Perspectiva", "Outlook")}
                           </span>
-                          {complete && out ? (
+                          {out ? (
                             <span className={`px-2 py-0.5 rounded-full font-medium ${out.className}`}>
                               {out.label}
                             </span>
                           ) : (
                             <span className="text-muted-foreground italic">
-                              {T("Detalhes em breve", "Details coming soon")}
+                              {T("Ver fonte oficial", "See official source")}
                             </span>
                           )}
                         </div>
