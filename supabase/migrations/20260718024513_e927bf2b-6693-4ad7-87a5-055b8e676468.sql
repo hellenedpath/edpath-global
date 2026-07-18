@@ -1,0 +1,1 @@
+DELETE FROM public.programs_staging WHERE id = 'be63ce08-adfc-46c9-9da2-044d5d4eff80';
