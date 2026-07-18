@@ -12,12 +12,14 @@ import {
   Search,
   ShieldCheck,
   TrendingUp,
+  Info,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -138,6 +140,177 @@ function formatEnglishTests(tests: Record<string, unknown> | null): string[] {
   });
 }
 
+// ---------- Eligibility screening ----------
+type EnglishTestKey = "IELTS_Academic" | "TOEFL_iBT" | "Duolingo" | "PTE" | "CAEL";
+
+const ENGLISH_TEST_OPTIONS: {
+  key: EnglishTestKey | "none";
+  labelPt: string;
+  labelEn: string;
+}[] = [
+  { key: "IELTS_Academic", labelPt: "IELTS Academic", labelEn: "IELTS Academic" },
+  { key: "TOEFL_iBT", labelPt: "TOEFL iBT", labelEn: "TOEFL iBT" },
+  { key: "Duolingo", labelPt: "Duolingo English Test", labelEn: "Duolingo English Test" },
+  { key: "PTE", labelPt: "PTE Academic", labelEn: "PTE Academic" },
+  { key: "CAEL", labelPt: "CAEL", labelEn: "CAEL" },
+  { key: "none", labelPt: "Ainda não fiz", labelEn: "Not taken yet" },
+];
+
+const CLOSE_THRESHOLDS: Record<EnglishTestKey, number> = {
+  IELTS_Academic: 0.5,
+  TOEFL_iBT: 6,
+  Duolingo: 10,
+  PTE: 5,
+  CAEL: 10,
+};
+
+type Profile = {
+  test: EnglishTestKey | "none" | "";
+  score: string;
+  hsDone: "yes" | "no" | "";
+  postSec: "yes" | "no" | "";
+};
+
+function isProfileActive(p: Profile) {
+  return p.test !== "" || p.hsDone !== "" || p.postSec !== "";
+}
+
+function parseRequiredOverall(raw: unknown): number | null {
+  if (typeof raw !== "string") return null;
+  const m = raw.match(/(\d+(?:\.\d+)?)/);
+  if (!m) return null;
+  const n = parseFloat(m[1]);
+  return isFinite(n) ? n : null;
+}
+
+type Eligibility =
+  | { status: "green"; reason: string }
+  | { status: "yellow"; reason: string; gap: number; testLabel: string }
+  | { status: "gray"; reason: string }
+  | { status: "neutral"; reason: string }
+  | null;
+
+function computeEligibility(
+  p: Program,
+  profile: Profile,
+  lang: "pt" | "en"
+): Eligibility {
+  if (!isProfileActive(profile)) return null;
+  const T = (pt: string, en: string) => (lang === "pt" ? pt : en);
+
+  const isGradCert = p.credential === "Ontario College Graduate Certificate";
+
+  // Formation gating first
+  if (isGradCert) {
+    if (profile.postSec !== "yes") {
+      return {
+        status: "gray",
+        reason: T("Requer formação prévia (pós-secundário)", "Requires prior post-secondary credential"),
+      };
+    }
+  } else {
+    if (profile.hsDone === "no") {
+      return {
+        status: "gray",
+        reason: T("Requer ensino médio concluído", "Requires completed secondary school"),
+      };
+    }
+    if (profile.hsDone === "") {
+      // No answer yet on HS — treat as neutral, keep evaluating english
+    }
+  }
+
+  // English
+  if (profile.test === "" || profile.test === "none") {
+    return {
+      status: "green",
+      reason: T("Você atende (inglês a verificar)", "You may qualify (English to verify)"),
+    };
+  }
+
+  const scoreNum = parseFloat(profile.score);
+  if (!isFinite(scoreNum)) {
+    return {
+      status: "neutral",
+      reason: T("Informe seu score para avaliar", "Enter your score to evaluate"),
+    };
+  }
+
+  const tests = p.english_admission_tests as Record<string, unknown> | null;
+  const raw = tests ? tests[profile.test] : undefined;
+  const required = parseRequiredOverall(raw);
+
+  if (raw == null) {
+    return {
+      status: "neutral",
+      reason: T("Verifique outros testes aceitos", "Check other accepted tests"),
+    };
+  }
+  if (required == null) {
+    return {
+      status: "neutral",
+      reason: T("Verifique na fonte oficial", "Check the official source"),
+    };
+  }
+
+  if (scoreNum >= required) {
+    return {
+      status: "green",
+      reason: T("Você atende aos requisitos de admissão", "You may qualify for admission"),
+    };
+  }
+
+  const gap = required - scoreNum;
+  const threshold = CLOSE_THRESHOLDS[profile.test];
+  const testLabel =
+    ENGLISH_TEST_OPTIONS.find((o) => o.key === profile.test)?.[lang === "pt" ? "labelPt" : "labelEn"] ??
+    profile.test;
+  if (gap <= threshold) {
+    return {
+      status: "yellow",
+      reason: T(
+        `Faltam ${gap.toFixed(1)} pontos no ${testLabel}`,
+        `${gap.toFixed(1)} points short on ${testLabel}`
+      ),
+      gap,
+      testLabel,
+    };
+  }
+
+  return {
+    status: "gray",
+    reason: T("Score de inglês abaixo do exigido", "English score below requirement"),
+  };
+}
+
+function EligibilityBadge({ e }: { e: Eligibility }) {
+  if (!e) return null;
+  const cls =
+    e.status === "green"
+      ? "bg-emerald-100 text-emerald-800 border-emerald-200"
+      : e.status === "yellow"
+      ? "bg-amber-100 text-amber-900 border-amber-200"
+      : e.status === "gray"
+      ? "bg-slate-100 text-slate-700 border-slate-200"
+      : "bg-sky-50 text-sky-800 border-sky-200";
+  const dot =
+    e.status === "green"
+      ? "bg-emerald-500"
+      : e.status === "yellow"
+      ? "bg-amber-500"
+      : e.status === "gray"
+      ? "bg-slate-400"
+      : "bg-sky-500";
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[11px] font-medium ${cls}`}
+    >
+      <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />
+      {e.reason}
+    </span>
+  );
+}
+
 export default function Programs() {
   const { i18n } = useTranslation();
   const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
@@ -148,6 +321,17 @@ export default function Programs() {
   const [credential, setCredential] = useState<string>("all");
   const [onlyPgwp, setOnlyPgwp] = useState(false);
   const [selected, setSelected] = useState<Program | null>(null);
+
+  // Profile (front-only, not persisted)
+  const [profile, setProfile] = useState<Profile>({
+    test: "",
+    score: "",
+    hsDone: "",
+    postSec: "",
+  });
+  const [eligFilter, setEligFilter] = useState<"all" | "green" | "yellow">("all");
+  const [gradesMet, setGradesMet] = useState<Record<string, boolean>>({});
+  const profileActive = isProfileActive(profile);
 
   const { data: programs, isLoading, error } = useQuery({
     queryKey: ["programs-full"],
@@ -212,11 +396,16 @@ export default function Programs() {
         const k = areaKey(p.field_area) ?? inferArea(p);
         if (k !== area) return false;
       }
+      if (profileActive && eligFilter !== "all") {
+        const e = computeEligibility(p, profile, lang as "pt" | "en");
+        if (eligFilter === "green" && e?.status !== "green") return false;
+        if (eligFilter === "yellow" && e?.status !== "yellow") return false;
+      }
       if (!q) return true;
       const hay = `${p.name} ${p.institutions?.name ?? ""} ${p.campus_city ?? ""}`;
       return normalize(hay).includes(q);
     });
-  }, [programs, query, area, credential, onlyPgwp]);
+  }, [programs, query, area, credential, onlyPgwp, profile, profileActive, eligFilter, lang]);
 
   const isComplete = (p: Program) => !!p.tuition_intl_year;
 
@@ -259,6 +448,140 @@ export default function Programs() {
       </section>
 
       <section className="mx-auto max-w-[1320px] px-6 py-10 md:py-14">
+        {/* Eligibility profile panel */}
+        <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-sm mb-5">
+          <div className="flex items-start justify-between gap-3 mb-4">
+            <div>
+              <h2 className="font-display text-lg font-semibold text-navy">
+                {T("Verifique sua elegibilidade", "Check your eligibility")}
+              </h2>
+              <p className="text-sm text-muted-foreground mt-1">
+                {T(
+                  "Preencha seu perfil e veja em quais programas você se encaixa. Grátis, nada salvo.",
+                  "Fill in your profile and see which programs fit. Free, nothing stored."
+                )}
+              </p>
+            </div>
+            {profileActive && (
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() =>
+                  setProfile({ test: "", score: "", hsDone: "", postSec: "" })
+                }
+              >
+                {T("Limpar", "Clear")}
+              </Button>
+            )}
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-4">
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                {T("Teste de inglês", "English test")}
+              </label>
+              <select
+                value={profile.test}
+                onChange={(e) =>
+                  setProfile((p) => ({ ...p, test: e.target.value as Profile["test"] }))
+                }
+                className="w-full h-10 rounded-md border border-input bg-background px-3 text-sm"
+              >
+                <option value="">{T("Selecione…", "Select…")}</option>
+                {ENGLISH_TEST_OPTIONS.map((o) => (
+                  <option key={o.key} value={o.key}>
+                    {lang === "pt" ? o.labelPt : o.labelEn}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                {T("Score (overall)", "Score (overall)")}
+              </label>
+              <Input
+                type="number"
+                step="0.1"
+                inputMode="decimal"
+                value={profile.score}
+                onChange={(e) => setProfile((p) => ({ ...p, score: e.target.value }))}
+                disabled={profile.test === "" || profile.test === "none"}
+                placeholder={T("Ex: 6.5", "e.g. 6.5")}
+                className="h-10"
+              />
+            </div>
+
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                {T("Ensino médio concluído?", "Secondary school completed?")}
+              </label>
+              <div className="flex gap-2">
+                {(["yes", "no"] as const).map((v) => (
+                  <Button
+                    key={v}
+                    size="sm"
+                    variant={profile.hsDone === v ? "default" : "outline"}
+                    onClick={() => setProfile((p) => ({ ...p, hsDone: v }))}
+                    className="flex-1"
+                  >
+                    {v === "yes" ? T("Sim", "Yes") : T("Não", "No")}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5 block">
+                {T("Já tem diploma pós-secundário?", "Already have a post-secondary diploma?")}
+              </label>
+              <div className="flex gap-2">
+                {(["yes", "no"] as const).map((v) => (
+                  <Button
+                    key={v}
+                    size="sm"
+                    variant={profile.postSec === v ? "default" : "outline"}
+                    onClick={() => setProfile((p) => ({ ...p, postSec: v }))}
+                    className="flex-1"
+                  >
+                    {v === "yes" ? T("Sim", "Yes") : T("Não", "No")}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {profileActive && (
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mr-1">
+                {T("Elegibilidade", "Eligibility")}
+              </span>
+              {([
+                ["all", T("Todos", "All")],
+                ["green", T("Você atende", "You may qualify")],
+                ["yellow", T("Quase lá", "Almost there")],
+              ] as const).map(([v, label]) => (
+                <Button
+                  key={v}
+                  size="sm"
+                  variant={eligFilter === v ? "default" : "outline"}
+                  onClick={() => setEligFilter(v)}
+                >
+                  {label}
+                </Button>
+              ))}
+            </div>
+          )}
+
+          <p className="mt-4 flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
+            <Info className="h-3.5 w-3.5 mt-0.5 shrink-0" />
+            {T(
+              "Esta é uma orientação de elegibilidade acadêmica baseada em fontes oficiais. Não confirma admissão nem sua situação de imigração. A decisão final é sempre da instituição.",
+              "This is an academic eligibility guide based on official sources. It does not confirm admission or your immigration status. Final decisions rest with the institution."
+            )}
+          </p>
+        </div>
+
         {/* Filters */}
         <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-sm">
           <div className="relative">
@@ -367,6 +690,7 @@ export default function Programs() {
                   const inst = p.institutions;
                   const occ = salaryRange(p);
                   const out = occ ? outlookMeta(occ.outlook, lang) : null;
+                  const elig = computeEligibility(p, profile, lang as "pt" | "en");
                   return (
                     <button
                       key={p.id}
@@ -374,6 +698,11 @@ export default function Programs() {
                       onClick={() => setSelected(p)}
                       className="group text-left rounded-2xl border border-border bg-card p-5 flex flex-col gap-3 transition-all hover:border-crimson hover:shadow-md cursor-pointer"
                     >
+                      {elig && (
+                        <div>
+                          <EligibilityBadge e={elig} />
+                        </div>
+                      )}
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <h3 className="font-display font-semibold text-navy leading-snug line-clamp-2">
@@ -554,6 +883,22 @@ export default function Programs() {
                     )}
                     {selected.prerequisites && (
                       <p className="leading-relaxed text-muted-foreground">{selected.prerequisites}</p>
+                    )}
+                    {selected.min_grade && (
+                      <label className="mt-3 flex items-center gap-2 text-sm text-muted-foreground cursor-pointer">
+                        <Checkbox
+                          checked={!!gradesMet[selected.id]}
+                          onCheckedChange={(v) =>
+                            setGradesMet((g) => ({ ...g, [selected.id]: v === true }))
+                          }
+                        />
+                        <span>
+                          {T(
+                            "Eu atendo a estes requisitos de notas",
+                            "I meet these grade requirements"
+                          )}
+                        </span>
+                      </label>
                     )}
                   </div>
                 )}
