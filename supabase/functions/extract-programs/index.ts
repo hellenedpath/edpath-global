@@ -96,8 +96,18 @@ Deno.serve(async (req) => {
   }
   const supabase = createClient(supabaseUrl, serviceKey);
 
+  let targets: Target[] = TARGETS;
+  let mode: "insert" | "upsert_by_url" = "insert";
+  try {
+    if (req.method === "POST") {
+      const body = await req.json();
+      if (Array.isArray(body?.targets) && body.targets.length > 0) targets = body.targets;
+      if (body?.mode === "upsert_by_url") mode = "upsert_by_url";
+    }
+  } catch (_) { /* no body */ }
+
   const results: any[] = [];
-  for (const t of TARGETS) {
+  for (const t of targets) {
     const row: any = {
       name: t.name,
       institution_id: null,
@@ -131,7 +141,18 @@ Deno.serve(async (req) => {
       row.review_notes += `página não localizada automaticamente ou falha de extração — verificar URL. Erro: ${(e as Error).message}`;
     }
 
-    const { data, error } = await supabase.from("programs_staging").insert(row).select().single();
+    let data: any = null;
+    let error: any = null;
+    if (mode === "upsert_by_url" && t.url) {
+      await supabase.from("programs_staging").delete().eq("raw_source_url", t.url);
+      // also delete any prior failed rows matching the target name
+      await supabase.from("programs_staging").delete().eq("name", t.name);
+      const r = await supabase.from("programs_staging").insert(row).select().single();
+      data = r.data; error = r.error;
+    } else {
+      const r = await supabase.from("programs_staging").insert(row).select().single();
+      data = r.data; error = r.error;
+    }
     if (error) {
       results.push({ name: t.name, error: error.message });
     } else {
