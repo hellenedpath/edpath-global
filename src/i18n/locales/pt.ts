@@ -2100,18 +2100,26 @@ export const pt = {
     title: "Custos além da mensalidade",
     subtitle: "Taxas obrigatórias e cenários que costumam aparecer depois",
     intro:
-      "A anuidade é só uma parte do custo total. Estas são as taxas que estudantes internacionais mais descobrem tarde. Os valores abaixo são referências da Conestoga College e servem para você planejar; cada instituição publica sua própria tabela.",
-    estimateTag: "estimativa",
+      "A anuidade é só uma parte do custo total. Os valores de mensalidade exibidos referem-se apenas à tuition; taxas auxiliares obrigatórias são adicionais e ficam pendentes de aprovação anual. Os valores abaixo são publicados pela Conestoga College para o ano letivo 2025-26.",
+    officialTag: "oficial",
     sections: {
       before: "Antes de começar",
       recurring: "Obrigatórias a cada período",
       changes: "Se algo mudar",
     },
     items: {
+      deposit: "Depósito obrigatório para garantir a vaga — não reembolsável",
+      depositAmount: "CAD $2.500,00",
+      depositNote:
+        "O depósito faz parte da mensalidade e abate o valor total. Ele não é devolvido se você desistir — exceto em caso de recusa de visto comprovada.",
+      palWarning:
+        "Se você recebeu um PAL (Provincial Attestation Letter) da instituição, o depósito não é reembolsável mesmo se você desistir antes do prazo.",
       applicationFee: "Taxa de aplicação internacional",
       applicationFeeAmount: "CAD $101,01",
-      visaRefusalFee: "Taxa por recusa de visto (se o study permit for negado)",
+      visaRefusalFee: "Recusa de visto: mensalidade devolvida, menos taxa administrativa",
       visaRefusalFeeAmount: "CAD $200,00",
+      visaRefusalNote:
+        "É necessário apresentar a carta oficial de recusa do IRCC. A instituição pode verificar a carta junto ao IRCC.",
       isr: "ISR — International Student Recovery (taxa obrigatória para internacionais em colleges de Ontário)",
       cihip: "CIHIP — seguro-saúde emergencial obrigatório",
       studentServices: "Taxa de serviços ao estudante",
@@ -2129,7 +2137,9 @@ export const pt = {
       latePayment: "Multa por pagamento em atraso",
       latePaymentAmount: "CAD $150,00",
     },
+    elsNote:
+      "Curso de inglês (ELS), se necessário antes do programa principal: CAD $5.500 por 4 meses, ou CAD $2.750 por 2 meses.",
     footnote:
-      "Os valores são definidos anualmente em maio e variam por campus e programa. Também podem existir taxas específicas do curso (uniformes, materiais, eText).",
+      "Valores referentes ao ano letivo 2025-26, sujeitos a alteração sem aviso prévio. As taxas auxiliares obrigatórias variam por campus e programa.",
   },
 };
