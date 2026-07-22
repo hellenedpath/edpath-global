@@ -38,6 +38,7 @@ import {
 } from "@/components/ui/dialog";
 import SourceBadge from "@/components/SourceBadge";
 import VerificationNote from "@/components/VerificationNote";
+import CostDisclosure from "@/components/CostDisclosure";
 
 type Program = {
   id: string;
@@ -151,6 +152,31 @@ function formatEnglishTests(tests: Record<string, unknown> | null): string[] {
     }
     return `${k.toUpperCase()}: ${String(v)}`;
   });
+}
+
+// ---------- Tuition display ----------
+// Values in `tuition_intl_year` may be: numeric-only strings (e.g. "15000",
+// "$15,000", "15000.00"), longer text (estimated ranges in PT/EN), or null.
+function parseNumericTuition(raw: string | null | undefined): number | null {
+  if (!raw) return null;
+  const cleaned = raw.trim();
+  // If it contains any alphabetic letters, treat as text (estimate/range).
+  if (/[A-Za-zÀ-ÿ]/.test(cleaned)) return null;
+  const digits = cleaned.replace(/[^\d.,-]/g, "").replace(/,/g, "");
+  const n = parseFloat(digits);
+  return isFinite(n) && n > 0 ? n : null;
+}
+
+function formatTuitionNumber(n: number, lang: "pt" | "en"): string {
+  try {
+    return new Intl.NumberFormat(lang === "pt" ? "pt-BR" : "en-CA", {
+      style: "currency",
+      currency: "CAD",
+      maximumFractionDigits: 0,
+    }).format(n);
+  } catch {
+    return `CAD $${Math.round(n).toLocaleString()}`;
+  }
 }
 
 // ---------- Eligibility screening ----------
