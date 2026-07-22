@@ -9,6 +9,7 @@ import {
   AlertTriangle,
   Clock,
   ExternalLink,
+  Home,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SourceBadge from "@/components/SourceBadge";
@@ -25,6 +26,8 @@ type Item = {
   amountKey?: string;
   noteKey?: string;
   emphasis?: boolean;
+  linkUrl?: string;
+  linkLabelKey?: string;
 };
 
 type FeeProfile = {
@@ -33,9 +36,11 @@ type FeeProfile = {
   sourceUrl: string;
   sourceDate: string;
   before: Item[];
-  recurring: Item[];
+  recurring?: Item[];
+  housing?: Item[];
   changes: Item[];
   hasElsNote?: boolean;
+  hasOptionalNote?: boolean;
 };
 
 /**
@@ -77,6 +82,33 @@ const FEE_PROFILES: Record<string, FeeProfile> = {
     ],
     hasElsNote: true,
   },
+  algonquin: {
+    key: "algonquin",
+    sourceUrl:
+      "https://www.algonquincollege.com/international/fees-and-expenses/",
+    sourceDate: "2025-12-10",
+    before: [
+      { key: "tuition", amountKey: "tuitionAmount", noteKey: "tuitionNote" },
+      { key: "learningResources", amountKey: "learningResourcesAmount" },
+    ],
+    housing: [
+      { key: "homestayFirst", amountKey: "homestayFirstAmount", noteKey: "homestayFirstNote" },
+      { key: "homestaySubsequent", amountKey: "homestaySubsequentAmount" },
+      { key: "residenceAccommodation", amountKey: "residenceAccommodationAmount" },
+      { key: "residenceMealPlan", amountKey: "residenceMealPlanAmount" },
+      { key: "residenceTotal", amountKey: "residenceTotalAmount" },
+      { key: "offCampus", amountKey: "offCampusAmount" },
+    ],
+    changes: [
+      {
+        key: "refundPolicy",
+        emphasis: true,
+        linkUrl: "https://www.algonquincollege.com/ro/pay/refund-policies/",
+        linkLabelKey: "refundPolicyLink",
+      },
+    ],
+    hasOptionalNote: true,
+  },
 };
 
 function resolveProfile(institutionName?: string | null): FeeProfile | null {
@@ -86,6 +118,7 @@ function resolveProfile(institutionName?: string | null): FeeProfile | null {
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
   if (n.includes("conestoga")) return FEE_PROFILES.conestoga;
+  if (n.includes("algonquin")) return FEE_PROFILES.algonquin;
   return null;
 }
 
@@ -150,6 +183,17 @@ export default function CostDisclosure({
               {t(itemKey(it.noteKey))}
             </p>
           )}
+          {it.linkUrl && it.linkLabelKey && (
+            <a
+              href={it.linkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-navy hover:text-[hsl(var(--crimson))] underline-offset-4 hover:underline pl-5"
+            >
+              {t(itemKey(it.linkLabelKey))}
+              <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
+            </a>
+          )}
         </li>
       ))}
     </ul>
@@ -205,13 +249,25 @@ export default function CostDisclosure({
             {renderList(profile.before)}
           </div>
 
-          <div>
-            <h4 className="flex items-center gap-2 text-sm font-semibold text-navy font-display">
-              <Repeat className="h-4 w-4 text-navy" strokeWidth={1.5} />
-              {t("costDisclosure.sections.recurring")}
-            </h4>
-            {renderList(profile.recurring)}
-          </div>
+          {profile.recurring && profile.recurring.length > 0 && (
+            <div>
+              <h4 className="flex items-center gap-2 text-sm font-semibold text-navy font-display">
+                <Repeat className="h-4 w-4 text-navy" strokeWidth={1.5} />
+                {t("costDisclosure.sections.recurring")}
+              </h4>
+              {renderList(profile.recurring)}
+            </div>
+          )}
+
+          {profile.housing && profile.housing.length > 0 && (
+            <div>
+              <h4 className="flex items-center gap-2 text-sm font-semibold text-navy font-display">
+                <Home className="h-4 w-4 text-navy" strokeWidth={1.5} />
+                {t("costDisclosure.sections.housing")}
+              </h4>
+              {renderList(profile.housing)}
+            </div>
+          )}
 
           <div>
             <h4 className="flex items-center gap-2 text-sm font-semibold text-navy font-display">
@@ -224,6 +280,12 @@ export default function CostDisclosure({
           {profile.hasElsNote && (
             <p className="text-xs text-muted-foreground leading-relaxed">
               {t(`costDisclosure.profiles.${profile.key}.elsNote`)}
+            </p>
+          )}
+
+          {profile.hasOptionalNote && (
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              {t(`costDisclosure.profiles.${profile.key}.optionalNote`)}
             </p>
           )}
 
