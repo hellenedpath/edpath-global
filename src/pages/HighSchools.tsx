@@ -9,10 +9,17 @@ import {
   Award,
   Info,
   Bed,
+  Compass,
+  Wallet,
+  FileText,
+  Stamp,
+  MessageCircle,
+  ArrowRight,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 type HighSchool = {
   id: string;
@@ -175,6 +182,96 @@ export default function HighSchools() {
             </p>
           </div>
         </div>
+      </section>
+
+      {/* How it works */}
+      <section className="container pt-10">
+        <div className="max-w-4xl">
+          <h2 className="font-display text-2xl font-semibold text-navy">
+            {t("highSchools.howItWorks.title")}
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            {t("highSchools.howItWorks.subtitle")}
+          </p>
+        </div>
+        <ol className="mt-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+          {(
+            t("highSchools.howItWorks.steps", { returnObjects: true }) as Array<{
+              title: string;
+              desc: string;
+            }>
+          ).map((step, i) => {
+            const Icon = [Compass, Wallet, FileText, Stamp][i] ?? Compass;
+            return (
+              <li key={i} className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <Icon className="h-5 w-5 text-navy" strokeWidth={1.5} />
+                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="font-display text-base font-semibold text-navy leading-snug">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {step.desc}
+                </p>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
+
+      {/* Public vs private */}
+      <section className="container pt-12">
+        <div className="max-w-4xl">
+          <h2 className="font-display text-2xl font-semibold text-navy">
+            {t("highSchools.publicVsPrivate.title")}
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            {t("highSchools.publicVsPrivate.subtitle")}
+          </p>
+        </div>
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+          {(["public", "private"] as const).map((kind) => {
+            const data = t(`highSchools.publicVsPrivate.${kind}`, {
+              returnObjects: true,
+            }) as {
+              label: string;
+              cost: string;
+              admission: string;
+              housing: string;
+              diploma: string;
+            };
+            return (
+              <div
+                key={kind}
+                className="rounded-xl border border-border bg-card p-6"
+              >
+                <h3 className="font-display text-lg font-semibold text-navy">
+                  {data.label}
+                </h3>
+                <dl className="mt-4 space-y-3 text-sm">
+                  {(
+                    ["cost", "admission", "housing", "diploma"] as const
+                  ).map((row) => (
+                    <div key={row}>
+                      <dt className="text-xs uppercase tracking-wider text-muted-foreground">
+                        {t(`highSchools.labels.${row}`)}
+                      </dt>
+                      <dd className="mt-0.5 text-foreground leading-relaxed">
+                        {data[row]}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            );
+          })}
+        </div>
+        <p className="mt-3 text-xs text-muted-foreground italic max-w-4xl">
+          {t("highSchools.publicVsPrivate.note")}
+        </p>
       </section>
 
       {/* Filters */}
@@ -389,6 +486,45 @@ export default function HighSchools() {
             {t("highSchools.empty")}
           </div>
         )}
+
+        {/* Next-step CTA */}
+        <div className="mt-12 rounded-xl border border-navy/15 bg-navy/[0.03] p-6 max-w-4xl">
+          <div className="flex items-start gap-4">
+            <MessageCircle
+              className="h-6 w-6 mt-1 shrink-0 text-navy"
+              strokeWidth={1.5}
+            />
+            <div className="flex-1">
+              <h3 className="font-display text-lg font-semibold text-navy">
+                {t("highSchools.nextStep.title")}
+              </h3>
+              <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                {t("highSchools.nextStep.body")}
+              </p>
+              <div className="mt-4 flex flex-wrap items-center gap-4">
+                <button
+                  type="button"
+                  onClick={() =>
+                    window.dispatchEvent(
+                      new CustomEvent("edpath:open-assistant"),
+                    )
+                  }
+                  className="inline-flex items-center gap-1.5 rounded-md bg-[hsl(var(--crimson))] px-4 py-2 text-sm font-medium text-white hover:bg-[hsl(var(--crimson))]/90 transition-colors"
+                >
+                  {t("highSchools.nextStep.askAssistant")}
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+                <Link
+                  to="/canada/study-permit"
+                  className="inline-flex items-center gap-1.5 text-sm text-navy hover:text-[hsl(var(--azul))] transition-colors underline-offset-4 hover:underline"
+                >
+                  {t("highSchools.nextStep.studyPermit")}
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="mt-12 flex items-start gap-2 rounded-md border border-[hsl(var(--azul))]/30 bg-[hsl(var(--azul))]/5 p-4 text-sm leading-relaxed text-navy max-w-4xl">
           <Info className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />

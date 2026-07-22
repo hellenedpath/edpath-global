@@ -29,6 +29,12 @@ export default function EdPathAssistant() {
     if (open) inputRef.current?.focus();
   }, [open]);
 
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener("edpath:open-assistant", handler);
+    return () => window.removeEventListener("edpath:open-assistant", handler);
+  }, []);
+
   async function send(text: string) {
     const trimmed = text.trim();
     if (!trimmed || loading) return;

@@ -74,8 +74,8 @@ const App = () => (
             <Route path="/saude" element={<Redirect to="/canada/saude" />} />
             <Route path="/familia" element={<Redirect to="/canada/familia" />} />
             <Route path="/trabalho-moradia" element={<Redirect to="/canada/trabalho-moradia" />} />
+            <Route path="/avatar-preview" element={<AvatarPreview />} />
           </Route>
-          <Route path="/avatar-preview" element={<AvatarPreview />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
