@@ -1431,11 +1431,29 @@ export default function Programs() {
                     <div className="space-y-2">
                       {selectedOccupations.map((o) => {
                         const out = outlookMeta(o.outlook, lang);
-                        const hasSalary = !!(o.salary_low || o.salary_high || o.salary_median);
-                        const salaryText =
-                          o.salary_low && o.salary_high
-                            ? `${o.salary_low} – ${o.salary_high}`
-                            : o.salary_median || "";
+                        const wage = pickWageForOccupation(
+                          o.noc_code,
+                          wagesByNoc,
+                          selected.institutions?.province ?? null
+                        );
+                        const hasSalary =
+                          !!wage &&
+                          (wage.wage_low != null ||
+                            wage.wage_median != null ||
+                            wage.wage_high != null);
+                        const regionLabel = wage
+                          ? wage.geo_level === "national"
+                            ? T("no Canadá", "in Canada")
+                            : wage.prov_code &&
+                              PROVINCE_CODE_TO_LABEL[wage.prov_code]
+                            ? T(
+                                `em ${PROVINCE_CODE_TO_LABEL[wage.prov_code].pt}`,
+                                `in ${PROVINCE_CODE_TO_LABEL[wage.prov_code].en}`
+                              )
+                            : wage.region_name_en
+                            ? T(`em ${wage.region_name_en}`, `in ${wage.region_name_en}`)
+                            : ""
+                          : "";
                         return (
                           <div
                             key={o.id}
@@ -1450,38 +1468,53 @@ export default function Programs() {
                                   </span>
                                 )}
                               </p>
-                              {hasSalary ? (
+                              {hasSalary && wage ? (
                                 <>
-                                  <p className="text-sm text-muted-foreground">{salaryText}</p>
-                                  {o.province && (
-                                    <p className="text-xs text-muted-foreground mt-0.5">
-                                      {T(
-                                        `Faixa salarial em ${o.province}`,
-                                        `Salary range in ${o.province}`
+                                  {wage.wage_median != null && (
+                                    <p className="text-sm font-medium text-navy mt-0.5">
+                                      {T("Mediana", "Median")}:{" "}
+                                      {formatWageValue(
+                                        wage.wage_median,
+                                        wage.wage_unit,
+                                        lang
                                       )}
                                     </p>
                                   )}
-                                  {o.sources?.url && (
-                                    <SourceBadge
-                                      url={o.sources.url}
-                                      validAsOf={o.sources.valid_as_of}
-                                      variant="inline"
-                                      className="mt-1"
-                                    />
+                                  {wage.wage_low != null && wage.wage_high != null && (
+                                    <p className="text-xs text-muted-foreground">
+                                      {T("Faixa", "Range")}:{" "}
+                                      {formatWageValue(wage.wage_low, wage.wage_unit, lang)}{" "}
+                                      –{" "}
+                                      {formatWageValue(wage.wage_high, wage.wage_unit, lang)}
+                                    </p>
                                   )}
+                                  {regionLabel && (
+                                    <p className="text-xs text-muted-foreground mt-0.5">
+                                      {regionLabel}
+                                    </p>
+                                  )}
+                                  {wage.reference_period && (
+                                    <p className="text-xs text-muted-foreground">
+                                      {T(
+                                        `Dados de referência: ${wage.reference_period}`,
+                                        `Reference period: ${wage.reference_period}`
+                                      )}
+                                    </p>
+                                  )}
+                                  <SourceBadge
+                                    url={WAGES_SOURCE_URL}
+                                    validAsOf={WAGES_SOURCE_VALID_AS_OF}
+                                    variant="inline"
+                                    className="mt-1"
+                                  />
                                 </>
-                              ) : o.noc_code ? (
-                                <a
-                                  href={`https://www.jobbank.gc.ca/marketreport/occupation/${o.noc_code}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-navy hover:underline"
-                                >
-                                  {T("Ver salários no Job Bank", "See salaries on Job Bank")}
-                                  <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
-                                </a>
                               ) : (
-                                <p className="text-sm text-muted-foreground">—</p>
+                                <p className="text-sm text-muted-foreground">
+                                  {T(
+                                    "Sem dado salarial publicado para esta ocupação nesta região.",
+                                    "No published wage data for this occupation in this region."
+                                  )}
+                                </p>
                               )}
                             </div>
                             {out && (
