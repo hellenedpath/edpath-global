@@ -6,6 +6,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import IrccNote from "@/components/IrccNote";
+import SourceBadge from "@/components/SourceBadge";
+import VerificationNote from "@/components/VerificationNote";
 import {
   Tooltip,
   TooltipContent,
@@ -311,6 +313,16 @@ export default function PgwpChecker() {
             <Trans i18nKey="pgwpChecker.disclaimer.body" components={{ strong: <strong /> }} />
           </p>
         </div>
+
+        <div className="mt-6 max-w-3xl">
+          <SourceBadge
+            variant="block"
+            url={IRCC_PGWP_URL}
+            validAsOf="2026-07-17"
+          />
+        </div>
+
+        <VerificationNote className="mt-8" />
       </section>
     </>
   );
