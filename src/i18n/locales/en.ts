@@ -123,6 +123,7 @@ export const en = {
       family: "Family",
       work: "Work and housing",
       verify: "Verify",
+      refunds: "Refund rules",
     },
   },
   footer: {

@@ -122,6 +122,7 @@ export const pt = {
       family: "Família",
       work: "Trabalho e moradia",
       verify: "Verificação",
+      refunds: "Regras de reembolso",
     },
   },
   countries: {
