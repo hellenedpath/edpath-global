@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation, Trans } from "react-i18next";
-import { CheckCircle2, AlertTriangle, Search, Info } from "lucide-react";
+import { CheckCircle2, AlertTriangle, Search, Info, ArrowRight, Compass, GraduationCap, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import IrccNote from "@/components/IrccNote";
 import SourceBadge from "@/components/SourceBadge";
 import VerificationNote from "@/components/VerificationNote";
@@ -93,6 +95,7 @@ export default function PgwpChecker() {
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("all");
+  const [onlyWithPrograms, setOnlyWithPrograms] = useState(false);
 
   function categoryLabel(cat: string | null) {
     if (!cat) return t("pgwpChecker.categories.other");
@@ -113,6 +116,34 @@ export default function PgwpChecker() {
     },
   });
 
+  // Program counts per CIP code (independent cache)
+  const { data: programCounts } = useQuery({
+    queryKey: ["cip_program_counts"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("programs")
+        .select("cip_code, institution_id")
+        .not("cip_code", "is", null)
+        .range(0, 9999);
+      if (error) throw error;
+      const map = new Map<string, { programs: number; insts: Set<string> }>();
+      (data ?? []).forEach((row: { cip_code: string | null; institution_id: string | null }) => {
+        const code = row.cip_code;
+        if (!code) return;
+        let entry = map.get(code);
+        if (!entry) {
+          entry = { programs: 0, insts: new Set() };
+          map.set(code, entry);
+        }
+        entry.programs += 1;
+        if (row.institution_id) entry.insts.add(row.institution_id);
+      });
+      const out = new Map<string, { programs: number; institutions: number }>();
+      map.forEach((v, k) => out.set(k, { programs: v.programs, institutions: v.insts.size }));
+      return out;
+    },
+  });
+
   const categories = useMemo(() => {
     const set = new Set<string>();
     (data ?? []).forEach((r) => r.category && set.add(r.category));
@@ -122,8 +153,9 @@ export default function PgwpChecker() {
   const filtered = useMemo(() => {
     const q = normalize(query);
     const tokens = q.split(" ").filter(Boolean);
-    return (data ?? []).filter((r) => {
+    const rows = (data ?? []).filter((r) => {
       if (category !== "all" && r.category !== category) return false;
+      if (onlyWithPrograms && !programCounts?.has(r.code)) return false;
       if (tokens.length === 0) return true;
       const haystack =
         normalize(r.title) +
@@ -138,7 +170,22 @@ export default function PgwpChecker() {
         expandToken(t).some((variant) => haystack.includes(variant))
       );
     });
-  }, [data, query, category]);
+    // When toggle OFF, sort codes-with-programs first, then alphabetically
+    if (!onlyWithPrograms && programCounts) {
+      return [...rows].sort((a, b) => {
+        const ha = programCounts.has(a.code) ? 0 : 1;
+        const hb = programCounts.has(b.code) ? 0 : 1;
+        if (ha !== hb) return ha - hb;
+        return (a.title ?? "").localeCompare(b.title ?? "");
+      });
+    }
+    return rows;
+  }, [data, query, category, onlyWithPrograms, programCounts]);
+
+  const codesWithProgramsCount = useMemo(() => {
+    if (!data || !programCounts) return 0;
+    return data.filter((r) => programCounts.has(r.code)).length;
+  }, [data, programCounts]);
 
   return (
     <>
@@ -216,6 +263,16 @@ export default function PgwpChecker() {
               />
             </p>
           </div>
+
+          <label className="mt-5 flex items-center gap-3 rounded-xl border border-navy/15 bg-navy/[0.03] px-4 py-3 cursor-pointer">
+            <Switch checked={onlyWithPrograms} onCheckedChange={setOnlyWithPrograms} />
+            <span className="text-sm font-medium text-navy">
+              {t("pgwpChecker.filters.withProgramsOnly")}
+            </span>
+            <span className="text-xs text-muted-foreground ml-auto">
+              {t("pgwpChecker.filters.withProgramsCount", { count: codesWithProgramsCount })}
+            </span>
+          </label>
         </div>
 
         {/* Coverage note */}
@@ -264,6 +321,7 @@ export default function PgwpChecker() {
               <ul className="space-y-3">
                 {filtered.map((r) => {
                   const status = eligibilityFromDescription(r.description);
+                  const pc = programCounts?.get(r.code);
                   return (
                     <li
                       key={r.id}
@@ -278,6 +336,22 @@ export default function PgwpChecker() {
                         <h3 className="font-medium text-foreground leading-snug">
                           {r.title}
                         </h3>
+                        {pc ? (
+                          <Link
+                            to={`/canada/programas?cip=${encodeURIComponent(r.code)}`}
+                            className="mt-1.5 inline-flex items-center gap-1.5 text-sm font-medium text-navy hover:text-[hsl(var(--crimson))] transition-colors group"
+                          >
+                            {t("pgwpChecker.programsLine.hasPrograms", {
+                              count: pc.programs,
+                              institutions: pc.institutions,
+                            })}
+                            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" strokeWidth={1.5} />
+                          </Link>
+                        ) : (
+                          <p className="mt-1.5 text-xs text-muted-foreground italic">
+                            {t("pgwpChecker.programsLine.none")}
+                          </p>
+                        )}
                       </div>
                       <div className="shrink-0">
                         {status === "eligible" && (
@@ -311,6 +385,48 @@ export default function PgwpChecker() {
               </ul>
             </>
           )}
+        </div>
+
+        {/* Next steps */}
+        <div className="mt-10 rounded-2xl border border-navy/15 bg-navy/[0.03] p-6 md:p-8">
+          <h2 className="font-display text-xl md:text-2xl font-semibold text-navy">
+            {t("pgwpChecker.nextSteps.title")}
+          </h2>
+          <p className="mt-1.5 text-sm text-muted-foreground">
+            {t("pgwpChecker.nextSteps.subtitle")}
+          </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            <Link
+              to="/canada/programas"
+              className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 hover:border-[hsl(var(--crimson))] transition-colors"
+            >
+              <GraduationCap className="h-5 w-5 text-navy shrink-0" strokeWidth={1.5} />
+              <span className="font-medium text-navy flex-1">
+                {t("pgwpChecker.nextSteps.seePrograms")}
+              </span>
+              <ArrowRight className="h-4 w-4 text-navy transition-transform group-hover:translate-x-0.5" strokeWidth={1.5} />
+            </Link>
+            <Link
+              to="/canada/meu-caminho?country=canada"
+              className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 hover:border-[hsl(var(--crimson))] transition-colors"
+            >
+              <Compass className="h-5 w-5 text-navy shrink-0" strokeWidth={1.5} />
+              <span className="font-medium text-navy flex-1">
+                {t("pgwpChecker.nextSteps.findPath")}
+              </span>
+              <ArrowRight className="h-4 w-4 text-navy transition-transform group-hover:translate-x-0.5" strokeWidth={1.5} />
+            </Link>
+          </div>
+          <button
+            type="button"
+            onClick={() =>
+              window.dispatchEvent(new CustomEvent("edpath:open-assistant"))
+            }
+            className="mt-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-navy transition-colors"
+          >
+            <MessageCircle className="h-3.5 w-3.5" strokeWidth={1.5} />
+            {t("pgwpChecker.nextSteps.askAssistant")}
+          </button>
         </div>
 
         {/* Disclaimer */}

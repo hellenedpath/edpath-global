@@ -22,7 +22,8 @@ import {
   ArrowRight,
   DollarSign,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -58,6 +59,7 @@ type Program = {
   intl_office_url: string | null;
   book_meeting_url: string | null;
   source_id: string | null;
+  cip_code: string | null;
   sources: {
     id: string;
     url: string | null;
@@ -395,6 +397,8 @@ export default function Programs() {
   const [onlyPgwp, setOnlyPgwp] = useState(false);
   const [onlyCoop, setOnlyCoop] = useState(false);
   const [selected, setSelected] = useState<Program | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const cipParam = searchParams.get("cip");
 
   // Profile (front-only, not persisted)
   const [profile, setProfile] = useState<Profile>({
@@ -413,13 +417,33 @@ export default function Programs() {
       const { data, error } = await supabase
         .from("programs")
         .select(
-          "id, name, credential, field_area, campus_city, min_grade, prerequisites, english_admission_tests, duration_months, tuition_intl_year, has_coop, pgwp_eligible, pgwp_basis, application_url, intl_office_url, book_meeting_url, source_id, sources!source_id(id, url, valid_as_of), occupation_ids, institution_id, institutions(id, name, display_name, city, province)"
+          "id, name, credential, field_area, campus_city, min_grade, prerequisites, english_admission_tests, duration_months, tuition_intl_year, has_coop, pgwp_eligible, pgwp_basis, application_url, intl_office_url, book_meeting_url, source_id, cip_code, sources!source_id(id, url, valid_as_of), occupation_ids, institution_id, institutions(id, name, display_name, city, province)"
         )
         .order("name", { ascending: true });
       if (error) throw error;
       return data as unknown as Program[];
     },
   });
+
+  const { data: cipInfo } = useQuery({
+    queryKey: ["cip_lookup", cipParam],
+    enabled: !!cipParam,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("cip_codes")
+        .select("code, title")
+        .eq("code", cipParam as string)
+        .maybeSingle();
+      if (error) throw error;
+      return data as { code: string; title: string } | null;
+    },
+  });
+
+  const clearCipFilter = () => {
+    const next = new URLSearchParams(searchParams);
+    next.delete("cip");
+    setSearchParams(next, { replace: true });
+  };
 
   const { data: occupations } = useQuery({
     queryKey: ["occupations-all"],
@@ -478,6 +502,7 @@ export default function Programs() {
   const filtered = useMemo(() => {
     const q = normalize(query);
     return (programs ?? []).filter((p) => {
+      if (cipParam && p.cip_code !== cipParam) return false;
       if (onlyPgwp && p.pgwp_eligible !== "yes") return false;
       if (onlyCoop && !p.has_coop) return false;
       if (province !== "all" && p.institutions?.province !== province) return false;
@@ -495,7 +520,7 @@ export default function Programs() {
       const hay = `${p.name} ${p.institutions?.name ?? ""} ${p.institutions?.display_name ?? ""} ${p.campus_city ?? ""}`;
       return normalize(hay).includes(q);
     });
-  }, [programs, query, area, credential, province, onlyPgwp, onlyCoop, profile, profileActive, eligFilter, lang]);
+  }, [programs, query, area, credential, province, onlyPgwp, onlyCoop, profile, profileActive, eligFilter, lang, cipParam]);
 
   const isComplete = (p: Program) => !!p.tuition_intl_year;
 
@@ -827,6 +852,33 @@ export default function Programs() {
 
           {!isLoading && !error && (
             <>
+              {cipParam && (
+                <div className="mb-4 flex items-start gap-3 rounded-xl border border-navy/20 bg-navy/[0.04] p-4">
+                  <BadgeCheck className="h-5 w-5 mt-0.5 shrink-0 text-navy" strokeWidth={1.5} />
+                  <div className="flex-1 min-w-0 text-sm text-navy">
+                    <p className="font-medium">
+                      {T("Mostrando programas com o código CIP", "Showing programs with CIP code")}{" "}
+                      <span className="font-mono">{cipParam}</span>
+                      {cipInfo?.title ? <> — {cipInfo.title}</> : null}
+                    </p>
+                    <Link
+                      to="/canada/pgwp"
+                      className="mt-1 inline-flex items-center gap-1 text-xs text-navy/80 hover:text-[hsl(var(--crimson))] underline-offset-4 hover:underline"
+                    >
+                      {T("Voltar ao verificador PGWP", "Back to PGWP checker")}
+                      <ArrowRight className="h-3 w-3" strokeWidth={1.5} />
+                    </Link>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={clearCipFilter}
+                    aria-label={T("Limpar filtro CIP", "Clear CIP filter")}
+                    className="shrink-0 rounded-md p-1 text-navy/70 hover:text-navy hover:bg-navy/5 transition-colors"
+                  >
+                    <X className="h-4 w-4" strokeWidth={1.5} />
+                  </button>
+                </div>
+              )}
               <div className="flex items-center justify-between mb-4 text-sm text-muted-foreground">
                 <span>
                   {T(

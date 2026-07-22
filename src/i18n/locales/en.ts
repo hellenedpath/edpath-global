@@ -1482,6 +1482,23 @@ export const en = {
       body:
         "This information is based on the official IRCC list of PGWP-eligible fields of study and serves as <strong>general guidance</strong>. In general, final eligibility also depends on the institution (DLI), program duration and language of instruction. This tool <strong>does not confirm your specific case</strong>. Always confirm with official IRCC sources and, for immigration decisions, consult a licensed RCIC consultant.",
     },
+    programsLine: {
+      hasPrograms_one: "{{count}} program on EdPath · {{institutions}} institution",
+      hasPrograms_other: "{{count}} programs on EdPath · {{institutions}} institutions",
+      hasProgramsInstOne: "{{count}} programs on EdPath · 1 institution",
+      none: "We don't have programs with this code yet. That does not mean none exist.",
+    },
+    filters: {
+      withProgramsOnly: "Only codes with programs on EdPath",
+      withProgramsCount: "({{count}} codes)",
+    },
+    nextSteps: {
+      title: "So, what's your next step?",
+      subtitle: "You've seen whether your field is eligible. These are the actions that make sense now.",
+      seePrograms: "See all eligible programs",
+      findPath: "Find your path",
+      askAssistant: "Your field didn't appear? Ask the EdPath Assistant.",
+    },
   },
 
   highSchools: {
