@@ -86,6 +86,99 @@ const PT_EN_SYNONYMS: Record<string, string[]> = {
   transporte: ["transport", "transportation"],
 };
 
+// Additional PT→EN synonyms for fields Brazilian students search most.
+Object.assign(PT_EN_SYNONYMS, {
+  enfermeiro: ["nurse", "nursing"],
+  enfermeira: ["nurse", "nursing"],
+  tecnico: ["technician", "technology"],
+  tecnica: ["technician", "technology"],
+  programacao: ["programming", "programmer", "computer"],
+  programador: ["programming", "programmer", "computer"],
+  dados: ["data", "analytics"],
+  redes: ["network", "networking"],
+  seguranca: ["security", "safety"],
+  nutricao: ["nutrition", "dietetics", "food"],
+  odontologia: ["dental", "dentistry"],
+  dentista: ["dental", "dentistry"],
+  farmacia: ["pharmacy", "pharmaceutical"],
+  fisioterapia: ["physical therapy", "physiotherapy"],
+  terapia: ["therapy", "therapist"],
+  soldagem: ["welding", "welder"],
+  soldador: ["welding", "welder"],
+  soldadura: ["welding"],
+  encanador: ["plumbing", "plumber"],
+  eletricista: ["electrical", "electrician"],
+  carpintaria: ["carpentry", "woodworking"],
+  culinaria: ["culinary", "food", "cook"],
+  gastronomia: ["culinary", "food", "cook"],
+  chef: ["culinary", "food", "cook"],
+  hotelaria: ["hospitality", "hotel"],
+  logistica: ["logistics", "supply chain"],
+  contabilidade: ["accounting", "accountant"],
+  marketing: ["marketing", "advertising", "digital"],
+  design: ["design", "graphic"],
+  infantil: ["child", "early childhood"],
+  crianca: ["child", "early childhood"],
+  social: ["social", "human services"],
+  veterinaria: ["veterinary", "animal"],
+  aviacao: ["aviation", "aircraft", "pilot"],
+  piloto: ["aviation", "aircraft", "pilot"],
+});
+
+// English & Portuguese suffix stripping, longest-first. Only strip when
+// the resulting stem is at least 4 chars; never stem tokens shorter than 5.
+const SUFFIXES: Array<[string, string]> = [
+  // Portuguese (longest first)
+  ["ologist", ""],
+  ["ology", ""],
+  ["mento", ""],
+  ["coes", ""],
+  ["ches", ""],
+  ["agem", ""],
+  ["dade", ""],
+  ["ista", ""],
+  ["eiro", ""],
+  ["eira", ""],
+  ["ando", ""],
+  ["endo", ""],
+  ["aria", ""],
+  ["cao", ""],
+  // English
+  ["ance", ""],
+  ["ence", ""],
+  ["tion", ""],
+  ["sion", ""],
+  ["ment", ""],
+  ["ing", ""],
+  ["ity", ""],
+  ["ies", "y"],
+  ["ist", ""],
+  ["er", ""],
+  ["or", ""],
+  ["es", ""],
+  ["s", ""],
+];
+
+function stem(token: string): string {
+  if (token.length < 5) return token;
+  for (const [suf, rep] of SUFFIXES) {
+    if (token.length - suf.length >= 4 && token.endsWith(suf)) {
+      return token.slice(0, token.length - suf.length) + rep;
+    }
+  }
+  return token;
+}
+
+function buildHaystack(...parts: Array<string | null | undefined>): string {
+  const raw = parts.map((p) => normalize(p)).join(" ");
+  const stems = raw
+    .split(" ")
+    .filter(Boolean)
+    .map(stem)
+    .join(" ");
+  return raw + " " + stems;
+}
+
 function expandToken(token: string): string[] {
   const extras = PT_EN_SYNONYMS[token];
   return extras && extras.length ? [token, ...extras.map(normalize)] : [token];
@@ -157,17 +250,14 @@ export default function PgwpChecker() {
       if (category !== "all" && r.category !== category) return false;
       if (onlyWithPrograms && !programCounts?.has(r.code)) return false;
       if (tokens.length === 0) return true;
-      const haystack =
-        normalize(r.title) +
-        " " +
-        normalize(r.code) +
-        " " +
-        normalize(r.description) +
-        " " +
-        normalize(r.category);
-      // Cada token deve bater (ele mesmo OU qualquer sinônimo em inglês)
-      return tokens.every((t) =>
-        expandToken(t).some((variant) => haystack.includes(variant))
+      const haystack = buildHaystack(r.title, r.code, r.description, r.category);
+      // Each token must match: itself, a PT→EN synonym, or the stem of either.
+      return tokens.every((tok) =>
+        expandToken(tok).some((variant) => {
+          if (haystack.includes(variant)) return true;
+          const s = stem(variant);
+          return s !== variant && haystack.includes(s);
+        })
       );
     });
     // When toggle OFF, sort codes-with-programs first, then alphabetically
