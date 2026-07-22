@@ -852,6 +852,33 @@ export default function Programs() {
 
           {!isLoading && !error && (
             <>
+              {cipParam && (
+                <div className="mb-4 flex items-start gap-3 rounded-xl border border-navy/20 bg-navy/[0.04] p-4">
+                  <BadgeCheck className="h-5 w-5 mt-0.5 shrink-0 text-navy" strokeWidth={1.5} />
+                  <div className="flex-1 min-w-0 text-sm text-navy">
+                    <p className="font-medium">
+                      {T("Mostrando programas com o código CIP", "Showing programs with CIP code")}{" "}
+                      <span className="font-mono">{cipParam}</span>
+                      {cipInfo?.title ? <> — {cipInfo.title}</> : null}
+                    </p>
+                    <Link
+                      to="/canada/pgwp"
+                      className="mt-1 inline-flex items-center gap-1 text-xs text-navy/80 hover:text-[hsl(var(--crimson))] underline-offset-4 hover:underline"
+                    >
+                      {T("Voltar ao verificador PGWP", "Back to PGWP checker")}
+                      <ArrowRight className="h-3 w-3" strokeWidth={1.5} />
+                    </Link>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={clearCipFilter}
+                    aria-label={T("Limpar filtro CIP", "Clear CIP filter")}
+                    className="shrink-0 rounded-md p-1 text-navy/70 hover:text-navy hover:bg-navy/5 transition-colors"
+                  >
+                    <X className="h-4 w-4" strokeWidth={1.5} />
+                  </button>
+                </div>
+              )}
               <div className="flex items-center justify-between mb-4 text-sm text-muted-foreground">
                 <span>
                   {T(
