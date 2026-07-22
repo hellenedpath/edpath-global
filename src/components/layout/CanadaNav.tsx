@@ -227,6 +227,16 @@ export function CanadaNav() {
           <HoverDropdown label={t("canadaNav.plan")} items={plan} activePath={pathname} />
           <HoverDropdown label={t("canadaNav.prepare")} items={prepare} activePath={pathname} />
           <HoverDropdown label={t("canadaNav.arrive")} items={arrive} activePath={pathname} />
+
+          <button
+            type="button"
+            onClick={() =>
+              window.dispatchEvent(new CustomEvent("edpath:open-assistant"))
+            }
+            className="shrink-0 ml-auto text-sm text-muted-foreground hover:text-[hsl(var(--azul))] transition-colors"
+          >
+            {t("canadaNav.askEdpath")}
+          </button>
         </nav>
 
         {/* Mobile trigger */}
@@ -308,6 +318,17 @@ export function CanadaNav() {
                     </AccordionItem>
                   ))}
                 </Accordion>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    window.dispatchEvent(new CustomEvent("edpath:open-assistant"));
+                  }}
+                  className="mt-4 block w-full px-2 py-3 text-left text-base font-medium border-t border-border text-foreground hover:text-[hsl(var(--azul))] transition-colors"
+                >
+                  {t("canadaNav.askEdpath")}
+                </button>
               </div>
             </SheetContent>
           </Sheet>

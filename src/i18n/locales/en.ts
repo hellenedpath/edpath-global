@@ -98,6 +98,7 @@ export const en = {
     canadaMenu: "Canada Menu",
     menu: "Menu",
     openMenu: "Open menu",
+    askEdpath: "Ask EdPath",
     groups: {
       startHere: "Start here",
       chooseSchool: "Choose your school",
@@ -1485,6 +1486,59 @@ export const en = {
     },
 
     empty: "No schools found with these filters.",
+    howItWorks: {
+      title: "How the high school path works",
+      subtitle: "Four steps to guide your decision. EdPath informs, you apply directly to the school.",
+      steps: [
+        {
+          title: "Choose the school and the province",
+          desc: "Compare public districts and private schools by region and program type.",
+        },
+        {
+          title: "Understand the real total cost",
+          desc: "Add tuition, homestay or boarding, fees and insurance. The final number goes beyond tuition.",
+        },
+        {
+          title: "Apply directly with the school",
+          desc: "Applications go through the district or private school's official site, not third parties.",
+        },
+        {
+          title: "Then request the study permit",
+          desc: "Once you hold the acceptance letter, follow the official study permit process.",
+        },
+      ],
+    },
+    publicVsPrivate: {
+      title: "Public vs. private: the practical difference",
+      subtitle: "General orientation. Exact figures vary by school, see the cards below.",
+      public: {
+        label: "Public district",
+        cost: "Typically the most affordable option for international students.",
+        admission: "Apply through the district's international program, with set deadlines.",
+        housing: "Homestay is the default, coordinated by the district.",
+        diploma: "Official provincial diploma (e.g., BC Dogwood).",
+      },
+      private: {
+        label: "Private school",
+        cost: "Typically higher cost, with more services included.",
+        admission: "Apply directly to the school, with its own process and interviews.",
+        housing: "Homestay or boarding (residence), when the school offers it.",
+        diploma: "Provincial diploma and, in some cases, additional credentials.",
+      },
+      note: "Exact figures vary by school. Always confirm on the official site.",
+    },
+    nextStep: {
+      title: "Still unsure about high school in Canada?",
+      body: "Ask the EdPath assistant about schools, costs and the next step.",
+      askAssistant: "Ask EdPath",
+      studyPermit: "See how the study permit works",
+    },
+    labels: {
+      cost: "Cost",
+      admission: "Admission",
+      housing: "Housing",
+      diploma: "Diploma",
+    },
     disclaimer: {
       title: "Honest heads-up:",
       body:

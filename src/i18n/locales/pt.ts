@@ -97,6 +97,7 @@ export const pt = {
     canadaMenu: "Menu do Canadá",
     menu: "Menu",
     openMenu: "Abrir menu",
+    askEdpath: "Pergunte à EdPath",
     groups: {
       startHere: "Comece aqui",
       chooseSchool: "Escolha sua escola",
@@ -1488,6 +1489,59 @@ export const pt = {
     },
 
     empty: "Nenhuma escola encontrada com estes filtros.",
+    howItWorks: {
+      title: "Como funciona o caminho do ensino médio",
+      subtitle: "Quatro passos para orientar sua decisão. A EdPath informa, você aplica direto na escola.",
+      steps: [
+        {
+          title: "Escolha a escola e a província",
+          desc: "Compare distritos públicos e escolas privadas por região e tipo de programa.",
+        },
+        {
+          title: "Entenda o custo total real",
+          desc: "Some mensalidade, homestay ou boarding, taxas e seguro. O valor final vai além da mensalidade.",
+        },
+        {
+          title: "Aplique direto com a escola",
+          desc: "A aplicação é feita no site oficial do distrito ou da escola privada, não com intermediários.",
+        },
+        {
+          title: "Depois, solicite o study permit",
+          desc: "Com a carta de aceitação em mãos, siga o processo oficial de permisso de estudo.",
+        },
+      ],
+    },
+    publicVsPrivate: {
+      title: "Público vs. privado: a diferença prática",
+      subtitle: "Orientação geral. Os valores exatos variam por escola, consulte os cards abaixo.",
+      public: {
+        label: "Distrito público",
+        cost: "Custo tipicamente mais acessível entre as opções para internacionais.",
+        admission: "Aplicação pelo programa internacional do distrito, com prazos definidos.",
+        housing: "Homestay como padrão, coordenada pelo próprio distrito.",
+        diploma: "Diploma provincial oficial (ex.: BC Dofe/Adult Dogwood).",
+      },
+      private: {
+        label: "Escola privada",
+        cost: "Custo tipicamente mais alto, com mais serviços incluídos.",
+        admission: "Aplicação direta com a escola, com processo próprio e entrevistas.",
+        housing: "Homestay ou boarding (internato), quando a escola oferece.",
+        diploma: "Diploma provincial e, em alguns casos, credenciais adicionais.",
+      },
+      note: "Valores exatos variam por escola. Confirme sempre no site oficial.",
+    },
+    nextStep: {
+      title: "Ainda com dúvidas sobre ensino médio no Canadá?",
+      body: "Pergunte ao assistente EdPath sobre escolas, custos e o próximo passo.",
+      askAssistant: "Perguntar à EdPath",
+      studyPermit: "Ver como funciona o study permit",
+    },
+    labels: {
+      cost: "Custo",
+      admission: "Admissão",
+      housing: "Moradia",
+      diploma: "Diploma",
+    },
     disclaimer: {
       title: "Aviso de honestidade:",
       body:
