@@ -92,7 +92,7 @@ const FEE_PROFILES: Record<string, FeeProfile> = {
       { key: "learningResources", amountKey: "learningResourcesAmount" },
     ],
     housing: [
-      { key: "homestayFirst", amountKey: "homestayFirstAmount", noteKey: "homestayFirstNote" },
+      { key: "homestayFirst", amountKey: "homestayFirstAmount" },
       { key: "homestaySubsequent", amountKey: "homestaySubsequentAmount" },
       { key: "residenceAccommodation", amountKey: "residenceAccommodationAmount" },
       { key: "residenceMealPlan", amountKey: "residenceMealPlanAmount" },
