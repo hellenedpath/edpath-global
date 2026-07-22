@@ -80,9 +80,6 @@ type Occupation = {
   id: string;
   noc_code: string | null;
   title: string | null;
-  salary_low: string | null;
-  salary_median: string | null;
-  salary_high: string | null;
   outlook: string | null;
   province: string | null;
   sources: {
@@ -90,6 +87,101 @@ type Occupation = {
     valid_as_of: string | null;
   } | null;
 };
+
+type Wage = {
+  noc_code: string;
+  geo_level: string;
+  prov_code: string | null;
+  region_name_en: string | null;
+  wage_low: number | null;
+  wage_median: number | null;
+  wage_high: number | null;
+  wage_unit: string | null;
+  reference_period: string | null;
+  wage_comment_en: string | null;
+};
+
+const WAGES_SOURCE_ID = "3a0322a5-c3f3-4186-815c-171f7b058c47";
+const WAGES_SOURCE_URL =
+  "https://ouvert.canada.ca/data/dataset/adad580f-76b0-4502-bd05-20c125de9116";
+const WAGES_SOURCE_VALID_AS_OF = "2025-11-19";
+
+const PROVINCE_NAME_TO_CODE: Record<string, string> = {
+  Alberta: "AB",
+  "British Columbia": "BC",
+  Manitoba: "MB",
+  "New Brunswick": "NB",
+  "Newfoundland and Labrador": "NL",
+  "Nova Scotia": "NS",
+  "Northwest Territories": "NT",
+  Nunavut: "NU",
+  Ontario: "ON",
+  "Prince Edward Island": "PE",
+  Quebec: "QC",
+  Québec: "QC",
+  Saskatchewan: "SK",
+  Yukon: "YT",
+};
+
+const PROVINCE_CODE_TO_LABEL: Record<string, { en: string; pt: string }> = {
+  AB: { en: "Alberta", pt: "Alberta" },
+  BC: { en: "British Columbia", pt: "Colúmbia Britânica" },
+  MB: { en: "Manitoba", pt: "Manitoba" },
+  NB: { en: "New Brunswick", pt: "New Brunswick" },
+  NL: { en: "Newfoundland and Labrador", pt: "Terra Nova e Labrador" },
+  NS: { en: "Nova Scotia", pt: "Nova Escócia" },
+  NT: { en: "Northwest Territories", pt: "Territórios do Noroeste" },
+  NU: { en: "Nunavut", pt: "Nunavut" },
+  ON: { en: "Ontario", pt: "Ontário" },
+  PE: { en: "Prince Edward Island", pt: "Ilha do Príncipe Eduardo" },
+  QC: { en: "Quebec", pt: "Quebec" },
+  SK: { en: "Saskatchewan", pt: "Saskatchewan" },
+  YT: { en: "Yukon", pt: "Yukon" },
+};
+
+function formatWageValue(value: number, unit: string | null, lang: string): string {
+  const isHourly = (unit || "").toLowerCase().startsWith("hour") || unit === "h";
+  const locale = lang === "pt" ? "pt-BR" : "en-CA";
+  if (isHourly) {
+    const formatted = new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency: "CAD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(value);
+    return lang === "pt" ? `${formatted}/hora` : `${formatted}/hour`;
+  }
+  const formatted = new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: "CAD",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(value);
+  return lang === "pt" ? `${formatted}/ano` : `${formatted}/year`;
+}
+
+function pickWageForOccupation(
+  nocCode: string | null,
+  wagesByNoc: Map<string, Wage[]>,
+  provinceName: string | null | undefined
+): Wage | null {
+  if (!nocCode) return null;
+  const rows = wagesByNoc.get(nocCode);
+  if (!rows || rows.length === 0) return null;
+  const provCode = provinceName ? PROVINCE_NAME_TO_CODE[provinceName] ?? null : null;
+  if (provCode) {
+    const provRow = rows.find(
+      (w) => w.geo_level === "provincial" && w.prov_code === provCode
+    );
+    if (provRow) return provRow;
+  }
+  const onRow = rows.find(
+    (w) => w.geo_level === "provincial" && w.prov_code === "ON"
+  );
+  if (onRow) return onRow;
+  const nat = rows.find((w) => w.geo_level === "national");
+  return nat ?? null;
+}
 
 const AREA_LABELS: Record<string, { en: string; pt: string }> = {
   health: { en: "Health", pt: "Saúde" },
@@ -456,12 +548,37 @@ export default function Programs() {
       const { data, error } = await supabase
         .from("occupations")
         .select(
-          "id, noc_code, title, salary_low, salary_median, salary_high, outlook, province, sources(url, valid_as_of)"
+          "id, noc_code, title, outlook, province, sources(url, valid_as_of)"
         );
       if (error) throw error;
       return data as Occupation[];
     },
   });
+
+  const { data: wages } = useQuery({
+    queryKey: ["wages-provincial-national"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("wages")
+        .select(
+          "noc_code, geo_level, prov_code, region_name_en, wage_low, wage_median, wage_high, wage_unit, reference_period, wage_comment_en"
+        )
+        .in("geo_level", ["provincial", "national"]);
+      if (error) throw error;
+      return data as Wage[];
+    },
+  });
+
+  const wagesByNoc = useMemo(() => {
+    const m = new Map<string, Wage[]>();
+    (wages ?? []).forEach((w) => {
+      if (!w.noc_code) return;
+      const arr = m.get(w.noc_code) ?? [];
+      arr.push(w);
+      m.set(w.noc_code, arr);
+    });
+    return m;
+  }, [wages]);
 
   const occById = useMemo(() => {
     const m = new Map<string, Occupation>();
@@ -530,15 +647,6 @@ export default function Programs() {
   }, [programs, query, area, credential, province, onlyPgwp, onlyCoop, profile, profileActive, eligFilter, lang, cipParam]);
 
   const isComplete = (p: Program) => !!p.tuition_intl_year;
-
-  const salaryRange = (p: Program) => {
-    const ids = p.occupation_ids ?? [];
-    for (const id of ids) {
-      const o = occById.get(id);
-      if (o && (o.salary_low || o.salary_high || o.salary_median)) return o;
-    }
-    return null;
-  };
 
   const selectedOccupations: Occupation[] = useMemo(() => {
     if (!selected) return [];
@@ -1323,11 +1431,29 @@ export default function Programs() {
                     <div className="space-y-2">
                       {selectedOccupations.map((o) => {
                         const out = outlookMeta(o.outlook, lang);
-                        const hasSalary = !!(o.salary_low || o.salary_high || o.salary_median);
-                        const salaryText =
-                          o.salary_low && o.salary_high
-                            ? `${o.salary_low} – ${o.salary_high}`
-                            : o.salary_median || "";
+                        const wage = pickWageForOccupation(
+                          o.noc_code,
+                          wagesByNoc,
+                          selected.institutions?.province ?? null
+                        );
+                        const hasSalary =
+                          !!wage &&
+                          (wage.wage_low != null ||
+                            wage.wage_median != null ||
+                            wage.wage_high != null);
+                        const regionLabel = wage
+                          ? wage.geo_level === "national"
+                            ? T("no Canadá", "in Canada")
+                            : wage.prov_code &&
+                              PROVINCE_CODE_TO_LABEL[wage.prov_code]
+                            ? T(
+                                `em ${PROVINCE_CODE_TO_LABEL[wage.prov_code].pt}`,
+                                `in ${PROVINCE_CODE_TO_LABEL[wage.prov_code].en}`
+                              )
+                            : wage.region_name_en
+                            ? T(`em ${wage.region_name_en}`, `in ${wage.region_name_en}`)
+                            : ""
+                          : "";
                         return (
                           <div
                             key={o.id}
@@ -1342,38 +1468,53 @@ export default function Programs() {
                                   </span>
                                 )}
                               </p>
-                              {hasSalary ? (
+                              {hasSalary && wage ? (
                                 <>
-                                  <p className="text-sm text-muted-foreground">{salaryText}</p>
-                                  {o.province && (
-                                    <p className="text-xs text-muted-foreground mt-0.5">
-                                      {T(
-                                        `Faixa salarial em ${o.province}`,
-                                        `Salary range in ${o.province}`
+                                  {wage.wage_median != null && (
+                                    <p className="text-sm font-medium text-navy mt-0.5">
+                                      {T("Mediana", "Median")}:{" "}
+                                      {formatWageValue(
+                                        wage.wage_median,
+                                        wage.wage_unit,
+                                        lang
                                       )}
                                     </p>
                                   )}
-                                  {o.sources?.url && (
-                                    <SourceBadge
-                                      url={o.sources.url}
-                                      validAsOf={o.sources.valid_as_of}
-                                      variant="inline"
-                                      className="mt-1"
-                                    />
+                                  {wage.wage_low != null && wage.wage_high != null && (
+                                    <p className="text-xs text-muted-foreground">
+                                      {T("Faixa", "Range")}:{" "}
+                                      {formatWageValue(wage.wage_low, wage.wage_unit, lang)}{" "}
+                                      –{" "}
+                                      {formatWageValue(wage.wage_high, wage.wage_unit, lang)}
+                                    </p>
                                   )}
+                                  {regionLabel && (
+                                    <p className="text-xs text-muted-foreground mt-0.5">
+                                      {regionLabel}
+                                    </p>
+                                  )}
+                                  {wage.reference_period && (
+                                    <p className="text-xs text-muted-foreground">
+                                      {T(
+                                        `Dados de referência: ${wage.reference_period}`,
+                                        `Reference period: ${wage.reference_period}`
+                                      )}
+                                    </p>
+                                  )}
+                                  <SourceBadge
+                                    url={WAGES_SOURCE_URL}
+                                    validAsOf={WAGES_SOURCE_VALID_AS_OF}
+                                    variant="inline"
+                                    className="mt-1"
+                                  />
                                 </>
-                              ) : o.noc_code ? (
-                                <a
-                                  href={`https://www.jobbank.gc.ca/marketreport/occupation/${o.noc_code}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-navy hover:underline"
-                                >
-                                  {T("Ver salários no Job Bank", "See salaries on Job Bank")}
-                                  <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
-                                </a>
                               ) : (
-                                <p className="text-sm text-muted-foreground">—</p>
+                                <p className="text-sm text-muted-foreground">
+                                  {T(
+                                    "Sem dado salarial publicado para esta ocupação nesta região.",
+                                    "No published wage data for this occupation in this region."
+                                  )}
+                                </p>
                               )}
                             </div>
                             {out && (
