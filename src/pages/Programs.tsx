@@ -455,7 +455,9 @@ export default function Programs() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("occupations")
-        .select("id, noc_code, title, salary_low, salary_median, salary_high, outlook");
+        .select(
+          "id, noc_code, title, salary_low, salary_median, salary_high, outlook, province, sources(url, valid_as_of)"
+        );
       if (error) throw error;
       return data as Occupation[];
     },
