@@ -1346,6 +1346,8 @@ export default function Programs() {
                   </p>
                 )}
 
+                <CostDisclosure />
+
                 <SourceBadge
                   variant="block"
                   url={selected.sources?.url}
