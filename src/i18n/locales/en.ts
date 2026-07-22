@@ -1818,5 +1818,22 @@ export const en = {
       },
     },
   },
-
+  assistant: {
+    title: "EdPath Assistant",
+    subtitle: "Verified information. No promises.",
+    openLabel: "Open EdPath assistant",
+    closeLabel: "Close assistant",
+    greeting:
+      "Hi! I'm the EdPath assistant. I answer based on verified data from the platform. How can I help?",
+    suggestions: [
+      "Does my program qualify for PGWP?",
+      "How much proof of funds do I need?",
+      "Which institutions are in Ontario?",
+    ],
+    placeholder: "Type your question...",
+    send: "Send",
+    disclaimer: "Educational information, not immigration advice.",
+    errorInline:
+      "Sorry, I had trouble answering right now. Please try again in a few seconds.",
+  },
 };
