@@ -477,6 +477,29 @@ export default function Programs() {
       </section>
 
       <section className="mx-auto max-w-[1320px] px-6 py-10 md:py-14">
+        {/* Honest coverage notice */}
+        {!isLoading && !error && (
+          <div className="mb-6 flex items-start gap-3 rounded-2xl border border-navy/15 bg-navy/[0.03] p-5">
+            <ShieldCheck
+              className="h-5 w-5 mt-0.5 shrink-0 text-navy"
+              strokeWidth={1.5}
+            />
+            <div className="text-sm leading-relaxed text-navy/90">
+              <p className="font-display font-semibold text-navy">
+                {t("programsPage.coverage.title")}
+              </p>
+              <p className="mt-1 text-muted-foreground">
+                {t("programsPage.coverage.body")}
+              </p>
+              <p className="mt-2 text-xs font-medium uppercase tracking-wider text-navy/80">
+                {t("programsPage.coverage.count", {
+                  count: programs?.length ?? 0,
+                })}
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Eligibility profile panel */}
         <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-sm mb-5">
           <div className="flex items-start justify-between gap-3 mb-4">
