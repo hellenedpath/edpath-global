@@ -197,6 +197,12 @@ export type Database = {
           salary_median: string | null
           source_id: string | null
           title: string | null
+          wage_high: number | null
+          wage_low: number | null
+          wage_median: number | null
+          wage_region: string | null
+          wage_unit: string | null
+          wage_updated_at: string | null
         }
         Insert: {
           created_at?: string
@@ -209,6 +215,12 @@ export type Database = {
           salary_median?: string | null
           source_id?: string | null
           title?: string | null
+          wage_high?: number | null
+          wage_low?: number | null
+          wage_median?: number | null
+          wage_region?: string | null
+          wage_unit?: string | null
+          wage_updated_at?: string | null
         }
         Update: {
           created_at?: string
@@ -221,6 +233,12 @@ export type Database = {
           salary_median?: string | null
           source_id?: string | null
           title?: string | null
+          wage_high?: number | null
+          wage_low?: number | null
+          wage_median?: number | null
+          wage_region?: string | null
+          wage_unit?: string | null
+          wage_updated_at?: string | null
         }
         Relationships: [
           {
