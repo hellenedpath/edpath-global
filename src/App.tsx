@@ -22,6 +22,7 @@ import Renting from "./pages/Renting";
 import RentalScams from "./pages/RentalScams";
 import StudyPermit from "./pages/StudyPermit";
 import Health from "./pages/Health";
+import Verify from "./pages/Verify";
 import AvatarPreview from "./pages/AvatarPreview";
 
 const queryClient = new QueryClient();
@@ -57,6 +58,7 @@ const App = () => (
             <Route path="/canada/saude" element={<Health />} />
             <Route path="/canada/familia" element={<Family />} />
             <Route path="/canada/trabalho-moradia" element={<Work />} />
+            <Route path="/canada/verificacao" element={<Verify />} />
 
             {/* Legacy redirects → canonical routes (preserve query strings) */}
             <Route path="/verificador-pgwp" element={<Redirect to="/canada/pgwp" />} />
