@@ -24,6 +24,7 @@ import StudyPermit from "./pages/StudyPermit";
 import Health from "./pages/Health";
 import Verify from "./pages/Verify";
 import AvatarPreview from "./pages/AvatarPreview";
+import ProgramsReview from "./pages/admin/ProgramsReview";
 
 const queryClient = new QueryClient();
 
@@ -77,6 +78,7 @@ const App = () => (
             <Route path="/familia" element={<Redirect to="/canada/familia" />} />
             <Route path="/trabalho-moradia" element={<Redirect to="/canada/trabalho-moradia" />} />
             <Route path="/avatar-preview" element={<AvatarPreview />} />
+            <Route path="/admin/programas-revisao" element={<ProgramsReview />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
