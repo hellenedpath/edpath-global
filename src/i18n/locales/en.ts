@@ -1890,4 +1890,47 @@ export const en = {
     errorInline:
       "Sorry, I had trouble answering right now. Please try again in a few seconds.",
   },
+  programsPage: {
+    coverage: {
+      title: "A database we're building carefully",
+      body:
+        "EdPath adds programs only after verifying them on the institution's official page. If a program isn't listed here, it doesn't mean it doesn't exist or doesn't qualify — it just hasn't passed our verification yet.",
+      count_one: "{{count}} program verified so far",
+      count_other: "{{count}} programs verified so far",
+    },
+    filters: {
+      provinceLabel: "Province",
+      allProvinces: "All",
+      coopLabel: "Co-op",
+      coopOnly: "Co-op only",
+    },
+    card: {
+      durationMonths: "{{count}} months",
+      durationMonth: "{{count}} month",
+      coop: "Co-op",
+      tuitionLabel: "International tuition",
+      pgwp: {
+        eligible: "PGWP eligible",
+        notEligible: "Not PGWP eligible",
+        unconfirmed: "PGWP to confirm",
+      },
+      englishLabel: "English",
+      verifiedAt: "Verified against official source",
+      verifiedOn: "on {{date}}",
+      sourceLink: "See official page",
+      sourcePending: "Official link to confirm with the institution.",
+      applyDirect: "Apply directly with the school",
+      intlOffice: "International office",
+      bookMeeting: "Book a meeting",
+      directNote:
+        "You apply directly with the institution. EdPath does not apply on your behalf.",
+    },
+    empty: {
+      title: "No programs match these filters",
+      body:
+        "Try broadening the filters, or ask EdPath about programs outside our current database.",
+      askAssistant: "Ask EdPath",
+      pgwpCta: "Check PGWP for a specific program",
+    },
+  },
 };
