@@ -1,80 +1,79 @@
-# Inspeção do CSV de salários (ESDC 2025) — só relatório
+# Diagnóstico — filtro do quiz sobre `programs`
 
-Fonte baixada: `2a71-das-wage2025opendata-esdc-all-19nov2025-vf.csv` (Open Government, revisão 2025-11-19).
+Base: **249 programas**, todos de Ontário, todos com `pgwp_eligible='yes'` (exceto 1 nulo). Só 3 instituições reais representadas (Conestoga/Algonquin/uma outra), o que explica a repetição extrema nos campos abaixo.
 
-## 1. Arquivo
+## 1. Requisito de inglês
+- Coluna: `english_admission_tests` (JSONB). Chaves fixas: `IELTS_Academic`, `TOEFL_iBT`, `Duolingo`, `PTE_Academic`, `CAEL`, `Cambridge`.
+- Preenchimento: **249/249** têm todas as chaves. Mas os **valores são texto livre** (não número comparável).
+- IELTS: só **6 strings distintas**, todas variantes de "6.0" ou "6.5" com nota de banda mínima. Regex-parseable com esforço mínimo.
+  - `6.5 (nenhuma banda abaixo de 6.0)` — 100
+  - `6.0 (nenhuma banda abaixo de 5.5)` — 83
+  - `6.0 geral (nenhuma banda abaixo de 5.5)` — 33
+  - `6.5 geral (nenhuma banda abaixo de 6.0)` — 28
+  - `6.0 (no band less than 5.5)` — 4
+  - `6.5 (no band less than 6.0)` — 1
+- TOEFL e Duolingo: idem, texto livre com o padrão Conestoga ("80 total…") ou Algonquin.
+- **Filtrável?** Sim para IELTS com um parser trivial (extrair o primeiro número). TOEFL/Duolingo idem, mas exigem parser separado por teste. Não há campo numérico canônico — é o parser ou nada.
 
-- Tamanho: **17.981.889 bytes (~17,2 MB)**
-- Linhas: **44.377** (44.376 de dados + 1 cabeçalho)
-- Encoding: UTF-8 com BOM
-- Delimitador: `,`
-- Colunas: **22**, nomes exatos:
+## 2. Área / categoria
+- Coluna: `field_area` (texto livre).
+- Preenchida em **66/249** (183 nulos = 73 % vazio).
+- 9 valores distintos, sem taxonomia: `IT` (18), `trades` (15), `health` (12), `other` (10), `business` (6), `Applied Computer Science & Information Technology` (2), `Trades & Apprenticeship` (1), `Health & Life Sciences` (1), `Business - Accounting` (1).
+- **Filtrável?** Não de forma confiável — 73 % nulos e mistura de rótulos curtos com rótulos longos (o extractor mudou de convenção entre lotes). Para um filtro de área, o CIP (via `cip_code` + tabela `cip_codes.area_group`/`category`) é mais consistente.
 
-```
-1  NOC_CNP
-2  NOC_Title_eng
-3  NOC_Title_fra
-4  prov
-5  ER_Code_Code_RE
-6  ER_Name
-7  Nom_RE
-8  Low_Wage_Salaire_Minium
-9  Median_Wage_Salaire_Median
-10 High_Wage_Salaire_Maximal
-11 Average_Wage_Salaire_Moyen
-12 Quartile1_Wage_Salaire_Quartile1
-13 Quartile3_Wage_Salaire_Quartile3
-14 Source2025_NHQ
-15 Data_Source_E
-16 Data_Source_F
-17 Reference_Period
-18 Revision_Date_Date_revision
-19 Annual_Wage_Flag_Salaire_annuel
-20 Wage_Comment_E
-21 Wage_Comment_F
-22 EmployeesWithNonWageBenefit_Pct
-```
+## 3. Custo (tuition internacional)
+- Coluna: `tuition_intl_year` (TEXT). Preenchida em **249/249**, **0 numéricas**.
+- Apenas **4 strings distintas** no banco todo:
+  - `CAD $15.026 (2 semestres, 2025-26)…` — 86
+  - `CAD $16.319 (2 semestres, 2025-26)…` — 67
+  - `CAD $17.225 a $22.000 por ano letivo (8 meses)…` — 61 (Algonquin, faixa)
+  - `CAD $16.440 (2 semestres, 2025-26)…` — 35
+- Unidade: não há coluna. A string mistura "por ano letivo (8 meses)" e "2 semestres" — na prática ambos são um ano acadêmico. Uma linha traz faixa (`$17.225 a $22.000`), não valor único.
+- **Filtrável?** Só com parser regex do primeiro valor CAD. Comparação "≤ $20.000" funciona nos 3 valores únicos; a faixa da Algonquin precisa de decisão (usar o piso? o teto?). Não há campo numérico.
 
-## 2. Amostra crua (5 primeiras linhas de dados)
+## 4. Nível / credencial
+- Preenchida em **249/249**. 5 valores distintos e limpos:
+  - Ontario College Graduate Certificate — 79
+  - Ontario College Diploma — 65
+  - Ontario College Certificate — 39
+  - Degree — 34
+  - Ontario College Advanced Diploma — 32
+- **Filtrável?** Sim, direto. Único campo realmente pronto.
 
-```
-NOC_00010,Legislators,Membres des corps législatifs,NAT,ER00,Canada,Canada,32867,84000,184000,97600,54400,132000,Census 2021 CAN NOC5,2021 Census,Recensement 2021,2021,2025-11-19,1,Wages for this occupation are presented at an annual rate...,Pour cette profession sont présentés au taux annuel...,63.1
-NOC_00010,Legislators,Membres des corps législatifs,NL,ER10,Newfoundland and Labrador,Terre-Neuve-et-Labrador,,99000,,90000,,,Census 2021 PR NOC5,2021 Census,Recensement 2021,2021,2025-11-19,1,Wages for this occupation are presented at an annual rate...,...,
-NOC_00010,Legislators,Membres des corps législatifs,NL,ER1010,Avalon Peninsula,Avalon Peninsula,,,,,,,N/A,NA,NA,NA,2025-11-19,0,"Due to data limitations, the wage for this occupation cannot be published...",...,
-NOC_00010,Legislators,Membres des corps législatifs,NL,ER1020,South Coast--Burin Peninsula,Côte-sud--Burin Peninsula,,,,,,,N/A,NA,NA,NA,2025-11-19,0,"Due to data limitations...",...,
-NOC_00010,Legislators,Membres des corps législatifs,NL,ER1030,West Coast--Northern Peninsula--Labrador,Côte-ouest--Northern Peninsula--Labrador,,,,,,,N/A,NA,NA,NA,2025-11-19,0,"Due to data limitations...",...,
-```
+## 5. Província e cidade
+- `institutions.province`: **249/249 = Ontario**. Uma província só.
+- `campus_city`: **249/249** preenchido.
+- **Filtrável?** Tecnicamente sim, mas hoje não segmenta nada — todos são ON.
 
-## 3. Respostas específicas
+## 6. PGWP
+- `pgwp_eligible`: 248 = `yes`, 1 = nulo. Nenhum `no`, nenhum `unknown`.
+- **Filtrável?** Sim, mas o filtro é degenerado — praticamente todo o catálogo é elegível.
 
-**Código NOC** — coluna `NOC_CNP`, formato `NOC_XXXXX` com prefixo literal `NOC_` + **5 dígitos com zero à esquerda** (ex.: `NOC_00010`, `NOC_22310`). Nosso banco guarda só os 5 dígitos, então o join precisa de `substr(NOC_CNP, 5)`.
+## 7. Teste de realidade do filtro
+Consulta pedida: saúde + college + IELTS≤6.5 + tuition≤$20.000/ano + Ontário + PGWP elegível.
 
-**Salários low / median / high** — `Low_Wage_Salaire_Minium`, `Median_Wage_Salaire_Median`, `High_Wage_Salaire_Maximal` (numéricos, inteiros; podem vir vazios quando a linha é suprimida por limite estatístico). Bônus disponível: `Average_Wage_Salaire_Moyen`, `Quartile1_Wage_Salaire_Quartile1`, `Quartile3_Wage_Salaire_Quartile3`.
+- Sem parser de inglês nem tuition, aplicando apenas os campos estruturados (`field_area ILIKE '%health%'` + `credential ILIKE '%diploma%'` + `pgwp='yes'` + `province='Ontario'`): **10 programas**.
+- IELTS ≤ 6.5 exclui 0 (todos os valores no banco são 6.0 ou 6.5) → continua **10**.
+- Tuition ≤ $20.000/ano exclui os 61 programas da Algonquin com faixa $17.225–$22.000 se o teto for usado; senão, 0 exclusões. Nos 10 candidatos de saúde, quase todos são Conestoga com $15–16k → provavelmente **~10** permanecem.
+- Sem o filtro de inglês: **mesmos 10** (o filtro de inglês não muda nada neste catálogo).
 
-**Hora vs anual** — coluna `Annual_Wage_Flag_Salaire_annuel` marca o modo: `0` = valores por **hora**, `1` = valores **anuais**. Só dois valores distintos no dataset. Alguns NOCs (ex.: legisladores, executivos, professores universitários) vêm como anuais mesmo quando os pares vêm por hora — não dá para assumir uniformidade.
+**Impacto real do campo de inglês no filtro hoje: zero.** O catálogo inteiro cabe em duas notas IELTS (6.0/6.5) e qualquer piso ≥6.5 zera; qualquer piso ≤6.5 mantém tudo.
 
-**Regiões** — três níveis conviventes na mesma tabela, distinguíveis pela combinação `prov` × `ER_Code_Code_RE`:
+## Veredito por campo
+| Campo | Serve para filtrar hoje? |
+|---|---|
+| credential | Sim |
+| province | Sim, mas trivial (100 % ON) |
+| pgwp_eligible | Sim, mas trivial (100 % yes) |
+| campus_city | Sim |
+| IELTS (parseado) | Tecnicamente sim, na prática não discrimina |
+| tuition | Só com parser regex e uma regra para faixa; 4 valores no banco |
+| field_area | **Não** — 73 % nulos e taxonomia incoerente. Use CIP. |
+| TOEFL/Duolingo/PTE/CAEL/Cambridge | Só com parser dedicado por teste |
 
-- **Nacional:** `prov = 'NAT'`, `ER_Code = 'ER00'`, `ER_Name = 'Canada'`.
-- **Provincial:** `prov ∈ {AB, BC, MB, NB, NL, NS, NU, NWT, ON, PEI, QC, SK, YK}` (14 códigos, incluindo `NAT`) e `ER_Code` de 4 caracteres (`ER10`, `ER35`, `ER59`, …). Ex.: Ontário inteiro = `prov='ON', ER_Code='ER35', ER_Name='Ontario'`.
-- **Regional (ERs):** mesmo `prov`, mas `ER_Code` de 6 caracteres (`ER3510`, `ER3530`, …). Ex.: Ottawa, Toronto, Halifax aparecem como linhas próprias com ER_Name específico.
+## Recomendação (para conversar antes de codar)
+1. Um filtro de quiz honesto hoje entrega variação real apenas em **credential** e (via CIP) **área**. Os demais são teatro.
+2. Se quisermos filtro de inglês/tuition/área que valha a pena, o próximo passo é normalizar em colunas dedicadas: `ielts_min NUMERIC`, `toefl_min NUMERIC`, `tuition_intl_year_cad_min/max NUMERIC`, `tuition_period TEXT`, e mapear `field_area` a partir de `cip_codes.area_group`. Sem isso, qualquer filtro depende de parser em runtime.
+3. Enquanto só houver Ontário e PGWP=yes no catálogo, esses dois filtros devem ser omitidos da UI para não dar falsa sensação de escolha.
 
-Regra prática: `length(ER_Code) = 4` → província inteira; `length(ER_Code) = 6` → região econômica; `prov='NAT'` → Canadá inteiro. `Nom_RE` traz o mesmo nome em francês.
-
-**Período de referência** — colunas `Reference_Period` (`2021`, `2023-2024`, `2024`, `NA`) e `Revision_Date_Date_revision` (todos `2025-11-19` neste dump). `Source2025_NHQ` e `Data_Source_E`/`Data_Source_F` explicam a fonte da linha (Census 2021, EPA, ESDC etc.), útil para gravar em `sources`.
-
-**Bilíngue** — sim, EN e FR conviventes: `NOC_Title_eng`/`NOC_Title_fra`, `ER_Name`/`Nom_RE`, `Data_Source_E`/`Data_Source_F`, `Wage_Comment_E`/`Wage_Comment_F`. Códigos (`NOC_CNP`, `prov`, `ER_Code`, valores numéricos, `Annual_Wage_Flag`) são neutros.
-
-## 4. Cruzamento com nosso banco
-
-- `public.occupations` tem **102 NOCs distintos**.
-- **102 de 102** aparecem no CSV. **Zero faltantes.**
-- Cobertura por linha depende ainda de província/região: várias linhas provinciais e regionais vêm com wage em branco e comentário "Due to data limitations, the wage for this occupation cannot be published. Please refer to the wage published for this occupation at the provincial level." — precisamos decidir fallback (região → província → nacional) na próxima etapa.
-
-## Pontos que exigem decisão antes de carregar
-
-- Unidade: nossa coluna `wage_unit` hoje é livre. O CSV mistura hora e anual por NOC — vamos gravar `Annual_Wage_Flag` como `hourly`/`annual` em `wage_unit`, sem conversão.
-- Granularidade: nosso `UNIQUE (noc_code, province)` só comporta nível provincial. O CSV traz também nacional e regional. Precisamos decidir: (a) importar só provincial + nacional, (b) ampliar o schema para armazenar ER_Code também.
-- Supressão: quando a linha provincial vem vazia, adotar fallback nacional? Ou deixar nulo e mostrar o link do Job Bank como hoje?
-
-Aguardando aprovação para partir para o desenho do importador na próxima rodada.
+Este é o relatório. Sem alterações no código nem no banco.
