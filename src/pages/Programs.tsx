@@ -1018,6 +1018,10 @@ export default function Programs() {
               )}
             </>
           )}
+
+          <div className="mt-12">
+            <VerificationNote />
+          </div>
         </div>
       </section>
 
