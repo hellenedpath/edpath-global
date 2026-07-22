@@ -1994,4 +1994,89 @@ export const pt = {
       pgwpCta: "Verificar PGWP de um programa específico",
     },
   },
+  verify: {
+    eyebrow: "Verificação",
+    title: "Confirme antes de confiar.",
+    subtitle:
+      "A EdPath não recebe comissão de nenhuma instituição e não representa nenhuma. Por isso, não tem motivo para esconder nada. Confirme cada informação abaixo diretamente na fonte oficial, em menos de dois minutos.",
+    checks: {
+      eyebrow: "Quatro verificações essenciais",
+      title: "Cheque cada uma antes de pagar qualquer valor",
+      subtitle:
+        "Cada checagem tem um link para a fonte oficial. Se algo não fecha em uma dessas quatro etapas, pare e pergunte antes de seguir.",
+      step: "Verificação",
+      action: "Como verificar",
+      items: {
+        dli: {
+          title: "A escola é uma Designated Learning Institution (DLI)?",
+          why:
+            "Somente instituições designadas (DLIs) podem receber estudantes internacionais no Canadá. E, dentro dessa lista, apenas parte dos programas dá direito à permissão de trabalho pós-graduação (PGWP).",
+          action:
+            "Procure o nome exato da escola na lista oficial de DLIs do governo do Canadá (IRCC). Se não estiver na lista, o estudo não vale para o Study Permit.",
+          officialLabel: "Lista oficial de DLIs (canada.ca)",
+          internalLabel: "Ver instituições verificadas pela EdPath",
+        },
+        consultant: {
+          title: "O consultor de imigração é licenciado?",
+          why:
+            "No Canadá, cobrar por conselhos de imigração é regulado. Apenas um consultor de imigração regulamentado (RCIC), um advogado de imigração ou um notário do Quebec pode oferecer esse serviço legalmente. Trabalhar com alguém não licenciado (\"ghost consultant\") pode fazer o pedido ser recusado.",
+          action:
+            "Peça o número de licença e confirme no registro público oficial do CICC (College of Immigration and Citizenship Consultants). Se o profissional se recusar a informar, isso já é um sinal de alerta.",
+          officialLabel: "Consulta pública do CICC",
+        },
+        loa: {
+          title: "A carta de aceitação (LOA) é real?",
+          why:
+            "Cartas de aceitação falsas ou adulteradas foram usadas em fraudes contra estudantes internacionais. A instituição é a única fonte capaz de confirmar se a carta e o número de estudante existem de verdade.",
+          action:
+            "Confirme a carta diretamente com o escritório internacional da instituição, usando os contatos que aparecem no site oficial da própria instituição — nunca use links, e-mails ou telefones enviados por um terceiro.",
+          officialLabel: "Como o IRCC descreve a LOA",
+        },
+        rental: {
+          title: "O aluguel é real?",
+          why:
+            "Golpes de aluguel a distância são comuns com estudantes que ainda não estão no Canadá. Preço muito abaixo do mercado, urgência para pagar depósito e recusa de fazer chamada de vídeo são sinais clássicos de fraude.",
+          action:
+            "Nunca envie depósito por moradia que você não confirmou. Use o serviço de housing da sua instituição e, se algo parecer suspeito, consulte o Canadian Anti-Fraud Centre antes de pagar.",
+          officialLabel: "Canadian Anti-Fraud Centre",
+          internalLabel: "Guia da EdPath sobre golpes de aluguel",
+        },
+      },
+    },
+    questions: {
+      eyebrow: "Antes de assinar qualquer contrato",
+      title: "Perguntas para fazer a qualquer intermediário",
+      subtitle:
+        "Se você está considerando contratar alguém para ajudar com escola, moradia ou imigração, faça estas perguntas antes de pagar. Peça as respostas por escrito.",
+      items: [
+        "Quem paga você e quanto? A instituição paga comissão, o estudante paga honorários, ou os dois?",
+        "Eu pago a instituição diretamente, ou o dinheiro passa por você?",
+        "Minha mensalidade é paga em meu nome, direto à escola, com recibo oficial?",
+        "Exatamente o que está incluído no valor que estou pagando, e o que é cobrado à parte?",
+        "Você é licenciado para dar orientação de imigração? Qual é o seu número de registro?",
+        "Se meu pedido for recusado, o que acontece com o dinheiro que já paguei?",
+        "Você me entrega tudo isso por escrito, com valores e prazos claros?",
+      ],
+    },
+    stance: {
+      eyebrow: "Onde a EdPath se posiciona",
+      title: "Nossos compromissos, em linguagem direta",
+      subtitle:
+        "Estes são os limites da EdPath. Se algo na plataforma parecer sair deles, avise a gente — é um erro que queremos corrigir.",
+      items: [
+        "A EdPath não recebe comissão de nenhuma instituição.",
+        "A EdPath não representa nenhuma instituição e não é parceira oficial de nenhuma.",
+        "A EdPath não aplica em nome do estudante, não recebe pagamentos e não processa documentos. Você aplica diretamente com a instituição.",
+        "A EdPath oferece informação educacional e orientação sobre programas, não conselho de imigração. Decisões de imigração devem ser levadas a um consultor de imigração regulamentado (RCIC) ou a um advogado de imigração.",
+        "Cada dado da plataforma está ligado a uma fonte oficial, com a data em que foi verificado.",
+      ],
+    },
+    next: {
+      title: "Ainda em dúvida sobre algo específico?",
+      body:
+        "Pergunte à EdPath sobre um programa, uma instituição ou uma situação concreta. Se preferir começar do zero, refaça o diagnóstico do seu caminho.",
+      askAssistant: "Perguntar à EdPath",
+      myPath: "Refazer o diagnóstico",
+    },
+  },
 };
