@@ -1,67 +1,79 @@
 
-# Diagnóstico — só leitura, nenhuma alteração
+# Teste de viabilidade Job Bank — relato honesto
 
-## 1. Extrator já existente
+## 1. NOCs testados
 
-Sim. Uma edge function: **`supabase/functions/extract-programs/index.ts`** (387 linhas).
+- `21231` — Software Engineer / Designer
+- `31303` — Registered Nurse
+- `41300` — Social Worker
 
-- **O que extrai hoje:** dados estruturados de páginas de programas de colleges canadenses (nome, credencial, campus, duração, co-op, tuition internacional, requisitos de inglês, pré-requisitos, statement PGWP da página, application_url, CIP).
-- **Fontes:** páginas HTML de sites institucionais (piloto Conestoga; suporta qualquer college via `institution_id`).
-- **Grava em:** `programs_staging` (nunca direto em `programs`).
-- **IA:** Anthropic (`ANTHROPIC_API_KEY`), dois prompts — extração de campos + seleção de CIP.
-- **Fluxo de fontes:** faz upsert em `sources` e vincula `source_id` na linha de staging.
-- **Suporta:** `dry_run`, delete escopado por `institution_id`.
+Todos os 3 estão sem salário no banco (dos 100 restantes).
 
-Existe também `edpath-assistant` (chat), sem função de extração.
+## 2. Acesso à URL "por NOC"
 
-## 2. Capacidade de fetch externo
+**A URL `https://www.jobbank.gc.ca/marketreport/occupation/{noc_code}` NÃO funciona.**
 
-**Sim.** A função usa `fetch(url, { headers: { "User-Agent": "Mozilla/5.0 EdPathBot/1.0" } })` para baixar HTML de URLs arbitrárias (linha 64). Não há restrição de domínio — dá para apontar para Job Bank sem mudanças de infra.
+Todas as 3 retornaram HTTP 404 com o mesmo `<h1>HTTP Error 404 - Not Found</h1>`. Também testei outras variantes com o NOC direto no path (`/marketreport/summary-occupation/{noc}/ON`, `/marketreport/wages-occupation/{noc}/on`, `/marketreport/summary/{noc}/on`, `/marketreport/wages/{noc}/on`): **todas 404**.
 
-## 3. Occupations sem salário
+Ou seja, o link "Job Bank" que o próprio site do EdPath usa hoje como fallback (`https://www.jobbank.gc.ca/marketreport/occupation/{noc_code}`, adicionado na última refatoração da página Programs) **está quebrado** — leva o usuário a uma página de erro.
 
-**Correção do número:** são **100** sem salário (não 69), de **104** totais. Apenas **4** têm salário preenchido (não 35).
+## 3. URL real da página de salários
 
-Lista completa dos 100 salvos em `/tmp/sem_salario.txt`. Primeiros 65 exibidos acima; os 35 restantes (truncados no output) posso listar na próxima resposta se quiser — ou dumpar para CSV em `/mnt/documents/`.
+O Job Bank usa **IDs internos opacos**, não o NOC, na URL. Descobri o padrão testando um ID conhecido (`17786`):
 
-Distribuição de província entre os 100:
-- `Ontario` — maioria absoluta
-- `Ontario (Ottawa region)` — ~10
-- `Canada` — 2 casos (`21223`, `32104`)
+- **`https://www.jobbank.gc.ca/wagereport/occupation/{internal_id}`** — página nacional com tabela completa por província/região. Server-rendered.
+- **`https://www.jobbank.gc.ca/marketreport/wages-occupation/{internal_id}/{loc_code}`** — mesma tabela filtrada por local. `loc_code` = `ON`, `QC`… ou `geo9219` (Toronto), `geo9193` (Ottawa) etc.
 
-Observação: há duplicatas de `noc_code` com títulos ligeiramente diferentes (ex.: `22310` aparece 2x, `32123` aparece 2x). Isso vai afetar a lógica de upsert do extrator de salários — precisa decidir se a chave natural é `(noc_code, province)` ou `(noc_code, province, title)`.
+O `internal_id` **não é o NOC**. Exemplo real: `17786` corresponde ao NOC **75119** ("Electric cable network installer helper"). Um NOC pode ter vários `internal_id` (uma linha por título de trabalho específico dentro do NOC).
 
-## 4. Formato dos 4 salários existentes
+**Não descobri um endpoint público que aceite `?noc=XXXXX` e devolva o `internal_id` em JSON.** O formulário `/trend-analysis/search-wages?noc=21231&province=ON` só devolve o form em branco — o preenchimento é via typeahead JS que chama um endpoint que ainda não localizei. O endpoint `/jobsearch/jobsuggest` também deu 404.
 
-Padrão uniforme: **string `$XX.XX/hour`** (hora, não anual), com 2 casas decimais e sufixo `/hour`.
+**Caminhos possíveis** (para você decidir):
+- **(a) Dataset oficial Open Government** — a própria página do Job Bank aponta para `https://open.canada.ca/data/en/dataset/adad580f-76b0-4502-bd05-20c125de9116` como fonte de "Historical wage data and more statistics". Provavelmente contém a tabela NOC → salário sem precisar raspar HTML.
+- **(b) Engenharia reversa do typeahead** de `search-wages` (achar o endpoint XHR que o JS chama).
+- **(c) Mapeamento manual** do subconjunto de NOCs que interessam (~100 linhas — uma vez, à mão).
 
-| noc_code | province | low | median | high |
-|---|---|---|---|---|
-| 32111 | Ontario (Ottawa region) | `$35.00/hour` | `$45.00/hour` | `$51.00/hour` |
-| 22220 | Ontario | `$21.00/hour` | `$36.00/hour` | `$55.00/hour` |
-| 72300 | Ontario (Ottawa region) | `$25.00/hour` | `$34.38/hour` | `$46.60/hour` |
-| 63200 | Ontario (Ottawa region) | `$17.20/hour` | `$19.00/hour` | `$23.00/hour` |
+## 4. Render: server-side ou JS?
 
-(Só 4 registros existem — não há um 5º para amostrar.)
+**Server-side.** A tabela HTML da `/wagereport/occupation/17786` vem completa no primeiro fetch, sem JavaScript. Exemplo real do HTML (linhas 68–79 da resposta, província Ontário e regiões):
 
-Colunas são `text`, não numéricas. `outlook` e `source_id` também existem por linha.
+```html
+<th class="province sub_header">Ontario</th>
+<td class="province align-center" headers="... header_min">17.60</td>
+<td class="province align-center" headers="... header_avg">23.00</td>
+<td class="province align-center aaaaa" headers="... header_max">38.96</td>
+...
+<th ...>Toronto Region</th>
+<td ...>17.85</td> <td ...>24.00</td> <td ...>44.23</td>
+<th ...>Ottawa Region</th>
+<td ...>17.60</td> <td ...>23.00</td> <td ...>35.48</td>
+```
 
-## 5. Padrões da tabela `sources`
+Cada linha vem também com um `<section>` de nota que diz literalmente: `Reference period: 2023-2024. Source: Employment Insurance Survey Data`. Data de atualização no cabeçalho: `These wages were updated on November 19, 2025`.
 
-Colunas: `id, type, url, valid_as_of (date), next_check_due (date), last_checked (date), notes (text), created_at`.
+Parse trivial com regex ou HTML parser. Alternativa mais limpa: usar `fetch_website` em modo markdown — o próprio Firecrawl/renderer já entrega uma tabela markdown navegável (a versão em markdown que testei tinha as 13 províncias + ~60 regiões, cada linha com Low/Median/High/Note).
 
-Padrões observados em produção:
+## 5. robots.txt e termos
 
-- **`type`** — enum informal em uso: `institution_site`, `job_bank`, `ircc`.
-- **`valid_as_of`** — data em que a página foi verificada manualmente (formato `YYYY-MM-DD`).
-- **`notes`** — frase em português, descritiva, mencionando o que a página cobre e ressalvas importantes (ex.: "Anuidade inclui seguro-saude, U-Pass...", "Valores por programa ficam nas páginas individuais").
-- **`url`** — URL canônica da página verificada (não a raiz do domínio).
-- **`next_check_due` / `last_checked`** — nem sempre preenchidos nos registros atuais.
+**robots.txt** de `https://www.jobbank.gc.ca/robots.txt`:
 
-Já existe **1 registro `job_bank`** genérico (`https://www.jobbank.gc.ca/explore-careers`, valid_as_of 2026-07-22, nota em português explicando NOC 2021 e que salário varia por província). Para extração de salários, o padrão natural seria uma linha `sources` **por página consultada** (URL específica de ocupação, ex.: `.../marketreport/wages-occupation/{id}/{location}`), com `type='job_bank'` e nota curta em pt-BR.
+```
+User-agent: *
+Crawl-delay: 5
+```
 
-## Pontos que valem decisão antes de construir
+Nenhum `Disallow`. **Tecnicamente permitido**, com pedido explícito de 5s entre requests.
 
-- Confirmar se salário deve continuar como string `$XX.XX/hour` (por consistência com os 4 existentes) ou migrar para numérico.
-- Definir chave natural para dedup: `(noc_code, province)` vs incluir `title`.
-- Decidir granularidade de `sources`: uma linha por ocupação-província, ou reutilizar a linha `job_bank` genérica.
+**Termos de uso:** não fui verificar o texto integral dos Terms. O Job Bank é um site do Governo do Canadá; a página do dataset Open Government (linkada dentro da própria página de salários) é distribuída sob licença Open Government (permite reuso com atribuição). Antes de rodar um crawl grande em produção, o correto é ler a página `https://www.jobbank.gc.ca/aboutsite/terms-conditions` — não fiz isso ainda porque você disse para não contornar sem consultar.
+
+## Recomendação
+
+**Não conseguimos ir do NOC direto para os salários pela URL.** Existe uma barreira real de mapeamento NOC → internal_id que precisa ser resolvida antes de qualquer pipeline.
+
+**Antes de construir extrator, preciso saber qual caminho seguir:**
+
+1. Investigar o **dataset Open Government** (opção (a)) — se tiver os salários por NOC direto em CSV/JSON, o "extrator" vira um simples download + parse, sem raspar HTML e sem crawl-delay. **É o caminho mais limpo se der certo.**
+2. **Engenharia reversa** do typeahead do search-wages (opção (b)) — mais frágil, depende de endpoint interno não documentado.
+3. **Mapeamento manual** dos ~100 NOCs (opção (c)) — 1–2 horas de trabalho humano, resultado permanente.
+
+Qual caminho quer que eu explore primeiro? (Sugiro (a).)
