@@ -2079,4 +2079,19 @@ export const pt = {
       myPath: "Refazer o diagnóstico",
     },
   },
+  sourceBadge: {
+    verified: "Verificado em fonte oficial",
+    verifiedOn: "Verificado em fonte oficial · {{date}}",
+    missing: "Sem link oficial nesta base — confirme diretamente com a instituição.",
+    staleNote:
+      "Este dado foi verificado há mais de 6 meses. Reconfirme no site oficial antes de decidir — regras e valores mudam.",
+    tooltip:
+      "Cada dado da EdPath é ligado a uma fonte oficial (instituição ou órgão do governo), com a data em que foi checado.",
+  },
+  verificationNote: {
+    title: "Como a EdPath verifica cada informação",
+    body:
+      "Cada dado desta página está ligado a uma fonte oficial e carrega a data em que foi verificado. Quando a EdPath não tem um número verificado, não inventamos — dizemos isso e mostramos o link direto para a fonte.",
+    cta: "Ver como verificar por conta própria",
+  },
 };

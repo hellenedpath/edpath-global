@@ -2076,4 +2076,19 @@ export const en = {
       myPath: "Redo the diagnosis",
     },
   },
+  sourceBadge: {
+    verified: "Verified at official source",
+    verifiedOn: "Verified at official source · {{date}}",
+    missing: "No official link on file — confirm directly with the institution.",
+    staleNote:
+      "This item was verified more than 6 months ago. Re-confirm on the official site before deciding — rules and prices change.",
+    tooltip:
+      "Every EdPath data point links to an official source (institution or government body), with the date it was checked.",
+  },
+  verificationNote: {
+    title: "How EdPath verifies each item",
+    body:
+      "Every data point on this page ties to an official source and carries the date it was verified. When EdPath does not have a verified figure, we say so and link to the source instead of guessing.",
+    cta: "See how to verify on your own",
+  },
 };
