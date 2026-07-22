@@ -84,6 +84,11 @@ type Occupation = {
   salary_median: string | null;
   salary_high: string | null;
   outlook: string | null;
+  province: string | null;
+  sources: {
+    url: string | null;
+    valid_as_of: string | null;
+  } | null;
 };
 
 const AREA_LABELS: Record<string, { en: string; pt: string }> = {
