@@ -1507,7 +1507,7 @@ export const pt = {
         },
         {
           title: "Depois, solicite o study permit",
-          desc: "Com a carta de aceitação em mãos, siga o processo oficial de permisso de estudo.",
+          desc: "Com a carta de aceitação em mãos, siga o processo oficial de permissão de estudo (study permit).",
         },
       ],
     },
@@ -1519,7 +1519,7 @@ export const pt = {
         cost: "Custo tipicamente mais acessível entre as opções para internacionais.",
         admission: "Aplicação pelo programa internacional do distrito, com prazos definidos.",
         housing: "Homestay como padrão, coordenada pelo próprio distrito.",
-        diploma: "Diploma provincial oficial (ex.: BC Dofe/Adult Dogwood).",
+        diploma: "Diploma provincial oficial (ex.: BC Dogwood, no British Columbia; OSSD, em Ontário).",
       },
       private: {
         label: "Escola privada",
@@ -1892,5 +1892,48 @@ export const pt = {
     disclaimer: "Informação educacional, não é aconselhamento de imigração.",
     errorInline:
       "Desculpe, tive um problema para responder agora. Tente novamente em alguns segundos.",
+  },
+  programsPage: {
+    coverage: {
+      title: "Base em construção progressiva",
+      body:
+        "A EdPath adiciona programas apenas depois de verificá-los na página oficial da instituição. A ausência de um programa aqui não significa que ele não exista ou que não qualifique — significa apenas que ainda não passou pela nossa verificação.",
+      count_one: "{{count}} programa verificado até agora",
+      count_other: "{{count}} programas verificados até agora",
+    },
+    filters: {
+      provinceLabel: "Província",
+      allProvinces: "Todas",
+      coopLabel: "Co-op",
+      coopOnly: "Só com co-op",
+    },
+    card: {
+      durationMonths: "{{count}} meses",
+      durationMonth: "{{count}} mês",
+      coop: "Co-op",
+      tuitionLabel: "Anuidade internacional",
+      pgwp: {
+        eligible: "PGWP elegível",
+        notEligible: "Não elegível para PGWP",
+        unconfirmed: "PGWP a confirmar",
+      },
+      englishLabel: "Inglês",
+      verifiedAt: "Verificado na fonte oficial",
+      verifiedOn: "em {{date}}",
+      sourceLink: "Ver página oficial",
+      sourcePending: "Link oficial a confirmar com a instituição.",
+      applyDirect: "Aplicar direto com a escola",
+      intlOffice: "Escritório internacional",
+      bookMeeting: "Agendar conversa",
+      directNote:
+        "Você aplica diretamente com a instituição. A EdPath não aplica em seu nome.",
+    },
+    empty: {
+      title: "Nenhum programa encontrado com esses filtros",
+      body:
+        "Tente ampliar os filtros ou pergunte à EdPath sobre programas fora da nossa base atual.",
+      askAssistant: "Perguntar à EdPath",
+      pgwpCta: "Verificar PGWP de um programa específico",
+    },
   },
 };

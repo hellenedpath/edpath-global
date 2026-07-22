@@ -13,7 +13,16 @@ import {
   ShieldCheck,
   TrendingUp,
   Info,
+  Shield,
+  ShieldOff,
+  Clock,
+  Users,
+  Languages,
+  MessageCircle,
+  ArrowRight,
+  DollarSign,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -44,10 +53,12 @@ type Program = {
   pgwp_basis: string | null;
   application_url: string | null;
   intl_office_url: string | null;
+  book_meeting_url: string | null;
   source_id: string | null;
   sources: {
     id: string;
     url: string | null;
+    valid_as_of: string | null;
   } | null;
   occupation_ids: string[] | null;
   institution_id: string;
@@ -311,15 +322,50 @@ function EligibilityBadge({ e }: { e: Eligibility }) {
   );
 }
 
+// PGWP visual state — never green unless data explicitly says "yes".
+function PgwpBadge({
+  status,
+  labels,
+}: {
+  status: string | null;
+  labels: { eligible: string; notEligible: string; unconfirmed: string };
+}) {
+  const v = (status ?? "").toLowerCase();
+  if (v === "yes") {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-800">
+        <ShieldCheck className="h-3 w-3" strokeWidth={1.5} />
+        {labels.eligible}
+      </span>
+    );
+  }
+  if (v === "no") {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full border border-[hsl(var(--crimson))]/25 bg-[hsl(var(--crimson))]/10 px-2 py-0.5 text-[11px] font-medium text-[hsl(var(--crimson))]">
+        <ShieldOff className="h-3 w-3" strokeWidth={1.5} />
+        {labels.notEligible}
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full border border-border bg-muted/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+      <Shield className="h-3 w-3" strokeWidth={1.5} />
+      {labels.unconfirmed}
+    </span>
+  );
+}
+
 export default function Programs() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
   const T = (pt: string, en: string) => (lang === "pt" ? pt : en);
 
   const [query, setQuery] = useState("");
   const [area, setArea] = useState<string>("all");
   const [credential, setCredential] = useState<string>("all");
+  const [province, setProvince] = useState<string>("all");
   const [onlyPgwp, setOnlyPgwp] = useState(false);
+  const [onlyCoop, setOnlyCoop] = useState(false);
   const [selected, setSelected] = useState<Program | null>(null);
 
   // Profile (front-only, not persisted)
@@ -339,7 +385,7 @@ export default function Programs() {
       const { data, error } = await supabase
         .from("programs")
         .select(
-          "id, name, credential, field_area, campus_city, min_grade, prerequisites, english_admission_tests, duration_months, tuition_intl_year, has_coop, pgwp_eligible, pgwp_basis, application_url, intl_office_url, source_id, sources!source_id(id, url), occupation_ids, institution_id, institutions(id, name, display_name, city, province)"
+          "id, name, credential, field_area, campus_city, min_grade, prerequisites, english_admission_tests, duration_months, tuition_intl_year, has_coop, pgwp_eligible, pgwp_basis, application_url, intl_office_url, book_meeting_url, source_id, sources!source_id(id, url, valid_as_of), occupation_ids, institution_id, institutions(id, name, display_name, city, province)"
         )
         .order("name", { ascending: true });
       if (error) throw error;
@@ -381,6 +427,20 @@ export default function Programs() {
     [programs]
   );
 
+  const provinceOptions = useMemo(() => {
+    const set = new Set<string>();
+    (programs ?? []).forEach((p) => {
+      const prov = p.institutions?.province;
+      if (prov) set.add(prov);
+    });
+    return Array.from(set).sort();
+  }, [programs]);
+
+  const showCoopToggle = useMemo(
+    () => (programs ?? []).some((p) => p.has_coop),
+    [programs]
+  );
+
   const credentials = useMemo(() => {
     const set = new Set<string>();
     (programs ?? []).forEach((p) => p.credential && set.add(p.credential));
@@ -391,6 +451,8 @@ export default function Programs() {
     const q = normalize(query);
     return (programs ?? []).filter((p) => {
       if (onlyPgwp && p.pgwp_eligible !== "yes") return false;
+      if (onlyCoop && !p.has_coop) return false;
+      if (province !== "all" && p.institutions?.province !== province) return false;
       if (credential !== "all" && p.credential !== credential) return false;
       if (area !== "all") {
         const k = areaKey(p.field_area) ?? inferArea(p);
@@ -402,10 +464,10 @@ export default function Programs() {
         if (eligFilter === "yellow" && e?.status !== "yellow") return false;
       }
       if (!q) return true;
-      const hay = `${p.name} ${p.institutions?.name ?? ""} ${p.campus_city ?? ""}`;
+      const hay = `${p.name} ${p.institutions?.name ?? ""} ${p.institutions?.display_name ?? ""} ${p.campus_city ?? ""}`;
       return normalize(hay).includes(q);
     });
-  }, [programs, query, area, credential, onlyPgwp, profile, profileActive, eligFilter, lang]);
+  }, [programs, query, area, credential, province, onlyPgwp, onlyCoop, profile, profileActive, eligFilter, lang]);
 
   const isComplete = (p: Program) => !!p.tuition_intl_year;
 
@@ -448,6 +510,29 @@ export default function Programs() {
       </section>
 
       <section className="mx-auto max-w-[1320px] px-6 py-10 md:py-14">
+        {/* Honest coverage notice */}
+        {!isLoading && !error && (
+          <div className="mb-6 flex items-start gap-3 rounded-2xl border border-navy/15 bg-navy/[0.03] p-5">
+            <ShieldCheck
+              className="h-5 w-5 mt-0.5 shrink-0 text-navy"
+              strokeWidth={1.5}
+            />
+            <div className="text-sm leading-relaxed text-navy/90">
+              <p className="font-display font-semibold text-navy">
+                {t("programsPage.coverage.title")}
+              </p>
+              <p className="mt-1 text-muted-foreground">
+                {t("programsPage.coverage.body")}
+              </p>
+              <p className="mt-2 text-xs font-medium uppercase tracking-wider text-navy/80">
+                {t("programsPage.coverage.count", {
+                  count: programs?.length ?? 0,
+                })}
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Eligibility profile panel */}
         <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-sm mb-5">
           <div className="flex items-start justify-between gap-3 mb-4">
@@ -658,6 +743,45 @@ export default function Programs() {
               </label>
             )}
           </div>
+
+          {(provinceOptions.length > 0 || showCoopToggle) && (
+            <div className="mt-5 grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
+              {provinceOptions.length > 0 && (
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                    {t("programsPage.filters.provinceLabel")}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Button
+                      size="sm"
+                      variant={province === "all" ? "default" : "outline"}
+                      onClick={() => setProvince("all")}
+                    >
+                      {t("programsPage.filters.allProvinces")}
+                    </Button>
+                    {provinceOptions.map((prov) => (
+                      <Button
+                        key={prov}
+                        size="sm"
+                        variant={province === prov ? "default" : "outline"}
+                        onClick={() => setProvince(prov)}
+                      >
+                        {prov}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {showCoopToggle && (
+                <label className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 cursor-pointer">
+                  <Switch checked={onlyCoop} onCheckedChange={setOnlyCoop} />
+                  <span className="text-sm font-medium">
+                    {t("programsPage.filters.coopOnly")}
+                  </span>
+                </label>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Results */}
@@ -686,24 +810,31 @@ export default function Programs() {
 
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {filtered.map((p) => {
-                  const complete = isComplete(p);
                   const inst = p.institutions;
-                  const occ = salaryRange(p);
-                  const out = occ ? outlookMeta(occ.outlook, lang) : null;
                   const elig = computeEligibility(p, profile, lang as "pt" | "en");
+                  const stop = (e: React.MouseEvent) => e.stopPropagation();
+                  const englishLines = formatEnglishTests(p.english_admission_tests);
+                  const pgwpLabels = {
+                    eligible: t("programsPage.card.pgwp.eligible"),
+                    notEligible: t("programsPage.card.pgwp.notEligible"),
+                    unconfirmed: t("programsPage.card.pgwp.unconfirmed"),
+                  };
+                  const locationParts = [p.campus_city, inst?.province].filter(Boolean);
                   return (
-                    <button
+                    <article
                       key={p.id}
-                      type="button"
-                      onClick={() => setSelected(p)}
-                      className="group text-left rounded-2xl border border-border bg-card p-5 flex flex-col gap-3 transition-all hover:border-crimson hover:shadow-md cursor-pointer"
+                      className="group rounded-2xl border border-border bg-card p-5 flex flex-col gap-3 transition-all hover:border-crimson hover:shadow-md"
                     >
                       {elig && (
                         <div>
                           <EligibilityBadge e={elig} />
                         </div>
                       )}
-                      <div className="flex items-start justify-between gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setSelected(p)}
+                        className="text-left flex items-start justify-between gap-3 cursor-pointer"
+                      >
                         <div className="min-w-0">
                           <h3 className="font-display font-semibold text-navy leading-snug line-clamp-2">
                             {p.name}
@@ -715,72 +846,193 @@ export default function Programs() {
                             </span>
                           </p>
                         </div>
-                        {p.pgwp_eligible === "yes" && (
-                          <Badge className="shrink-0 bg-emerald-100 text-emerald-800 hover:bg-emerald-100 border-0 gap-1">
-                            <BadgeCheck className="h-3.5 w-3.5" />
-                            PGWP
-                          </Badge>
-                        )}
-                      </div>
+                        <PgwpBadge status={p.pgwp_eligible} labels={pgwpLabels} />
+                      </button>
 
-                      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
-                        {p.campus_city && (
+                      <div className="flex flex-wrap gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
+                        {locationParts.length > 0 && (
                           <span className="inline-flex items-center gap-1">
-                            <MapPin className="h-3 w-3" />
-                            {p.campus_city}
+                            <MapPin className="h-3 w-3" strokeWidth={1.5} />
+                            {locationParts.join(", ")}
                           </span>
                         )}
                         {p.credential && (
                           <span className="inline-flex items-center gap-1">
-                            <GraduationCap className="h-3 w-3" />
+                            <GraduationCap className="h-3 w-3" strokeWidth={1.5} />
                             {p.credential}
+                          </span>
+                        )}
+                        {p.duration_months != null && (
+                          <span className="inline-flex items-center gap-1">
+                            <Clock className="h-3 w-3" strokeWidth={1.5} />
+                            {t(
+                              p.duration_months === 1
+                                ? "programsPage.card.durationMonth"
+                                : "programsPage.card.durationMonths",
+                              { count: p.duration_months },
+                            )}
+                          </span>
+                        )}
+                        {p.has_coop && (
+                          <span className="inline-flex items-center gap-1">
+                            <Users className="h-3 w-3" strokeWidth={1.5} />
+                            {t("programsPage.card.coop")}
                           </span>
                         )}
                       </div>
 
-                      <div className="mt-auto pt-3 border-t border-border/60 text-xs">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="inline-flex items-center gap-1 text-muted-foreground">
-                            <Briefcase className="h-3.5 w-3.5" />
-                            {T("Salário", "Salary")}
-                          </span>
-                          {occ ? (
-                            <span className="font-medium text-navy">
-                              {occ.salary_low && occ.salary_high
-                                ? `${occ.salary_low} – ${occ.salary_high}`
-                                : occ.salary_median || occ.salary_low || occ.salary_high}
-                            </span>
-                          ) : (
-                            <span className="text-muted-foreground italic">
-                              {T("Ver fonte oficial", "See official source")}
-                            </span>
+                      {(p.tuition_intl_year || englishLines.length > 0) && (
+                        <dl className="grid gap-1.5 text-xs">
+                          {p.tuition_intl_year && (
+                            <div className="flex items-start gap-1.5">
+                              <DollarSign
+                                className="h-3 w-3 mt-0.5 shrink-0 text-navy"
+                                strokeWidth={1.5}
+                              />
+                              <dt className="text-muted-foreground">
+                                {t("programsPage.card.tuitionLabel")}:
+                              </dt>
+                              <dd className="font-medium text-navy">
+                                {p.tuition_intl_year}
+                              </dd>
+                            </div>
+                          )}
+                          {englishLines.length > 0 && (
+                            <div className="flex items-start gap-1.5">
+                              <Languages
+                                className="h-3 w-3 mt-0.5 shrink-0 text-navy"
+                                strokeWidth={1.5}
+                              />
+                              <dt className="text-muted-foreground">
+                                {t("programsPage.card.englishLabel")}:
+                              </dt>
+                              <dd className="text-foreground line-clamp-2">
+                                {englishLines.join(" · ")}
+                              </dd>
+                            </div>
+                          )}
+                        </dl>
+                      )}
+
+                      {/* Direct actions */}
+                      {(p.application_url || p.intl_office_url || p.book_meeting_url) && (
+                        <div className="flex flex-wrap gap-x-3 gap-y-1.5 pt-1 text-xs">
+                          {p.application_url && (
+                            <a
+                              href={p.application_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={stop}
+                              className="inline-flex items-center gap-1 font-medium text-[hsl(var(--crimson))] hover:underline"
+                            >
+                              {t("programsPage.card.applyDirect")}
+                              <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
+                            </a>
+                          )}
+                          {p.intl_office_url && (
+                            <a
+                              href={p.intl_office_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={stop}
+                              className="inline-flex items-center gap-1 text-navy hover:underline"
+                            >
+                              {t("programsPage.card.intlOffice")}
+                              <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
+                            </a>
+                          )}
+                          {p.book_meeting_url && (
+                            <a
+                              href={p.book_meeting_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={stop}
+                              className="inline-flex items-center gap-1 text-navy hover:underline"
+                            >
+                              {t("programsPage.card.bookMeeting")}
+                              <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
+                            </a>
                           )}
                         </div>
-                        <div className="flex items-center justify-between gap-2 mt-1.5">
-                          <span className="inline-flex items-center gap-1 text-muted-foreground">
-                            <TrendingUp className="h-3.5 w-3.5" />
-                            {T("Perspectiva de emprego", "Job outlook")}
+                      )}
+
+                      {/* Verified source line */}
+                      <div className="mt-auto pt-3 border-t border-border/60 text-[11px] text-muted-foreground">
+                        {p.sources?.url ? (
+                          <a
+                            href={p.sources.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={stop}
+                            className="inline-flex items-center gap-1 hover:text-navy hover:underline"
+                          >
+                            <ShieldCheck className="h-3 w-3" strokeWidth={1.5} />
+                            <span>
+                              {t("programsPage.card.verifiedAt")}
+                              {p.sources.valid_as_of
+                                ? " · " +
+                                  t("programsPage.card.verifiedOn", {
+                                    date: p.sources.valid_as_of,
+                                  })
+                                : ""}
+                            </span>
+                            <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
+                          </a>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 italic">
+                            <Info className="h-3 w-3" strokeWidth={1.5} />
+                            {t("programsPage.card.sourcePending")}
                           </span>
-                          {out ? (
-                            <span className={`px-2 py-0.5 rounded-full font-medium ${out.className}`}>
-                              {out.label}
-                            </span>
-                          ) : (
-                            <span className="text-muted-foreground italic">
-                              {T("Ver fonte oficial", "See official source")}
-                            </span>
-                          )}
-                        </div>
+                        )}
                       </div>
-                    </button>
+                    </article>
                   );
                 })}
               </div>
 
               {filtered.length === 0 && (
-                <p className="text-center text-muted-foreground py-16 text-sm">
-                  {T("Nenhum programa encontrado com esses filtros.", "No programs match these filters.")}
-                </p>
+                <div className="mt-6 rounded-2xl border border-navy/15 bg-navy/[0.03] p-8 text-center">
+                  <h3 className="font-display text-lg font-semibold text-navy">
+                    {t("programsPage.empty.title")}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground max-w-lg mx-auto">
+                    {t("programsPage.empty.body")}
+                  </p>
+                  <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        window.dispatchEvent(
+                          new CustomEvent("edpath:open-assistant"),
+                        )
+                      }
+                      className="inline-flex items-center gap-1.5 rounded-md bg-[hsl(var(--crimson))] px-4 py-2 text-sm font-medium text-white hover:bg-[hsl(var(--crimson))]/90 transition-colors"
+                    >
+                      <MessageCircle className="h-4 w-4" strokeWidth={1.5} />
+                      {t("programsPage.empty.askAssistant")}
+                    </button>
+                    <Link
+                      to="/canada/pgwp"
+                      className="inline-flex items-center gap-1.5 text-sm text-navy hover:text-[hsl(var(--azul))] transition-colors underline-offset-4 hover:underline"
+                    >
+                      {t("programsPage.empty.pgwpCta")}
+                      <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {/* Persistent PGWP checker link */}
+              {filtered.length > 0 && (
+                <div className="mt-8 text-center text-sm">
+                  <Link
+                    to="/canada/pgwp"
+                    className="inline-flex items-center gap-1.5 text-navy hover:text-[hsl(var(--azul))] transition-colors underline-offset-4 hover:underline"
+                  >
+                    {t("programsPage.empty.pgwpCta")}
+                    <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+                  </Link>
+                </div>
               )}
             </>
           )}
@@ -998,7 +1250,7 @@ export default function Programs() {
                   {selected.application_url && (
                     <Button asChild className="bg-crimson hover:bg-crimson/90 text-white">
                       <a href={selected.application_url} target="_blank" rel="noopener noreferrer">
-                        {T("Aplicar no site oficial", "Apply on official site")}
+                        {t("programsPage.card.applyDirect")}
                         <ExternalLink className="h-4 w-4" />
                       </a>
                     </Button>
@@ -1006,7 +1258,15 @@ export default function Programs() {
                   {selected.intl_office_url && (
                     <Button asChild variant="outline">
                       <a href={selected.intl_office_url} target="_blank" rel="noopener noreferrer">
-                        {T("Escritório internacional", "International office")}
+                        {t("programsPage.card.intlOffice")}
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  )}
+                  {selected.book_meeting_url && (
+                    <Button asChild variant="outline">
+                      <a href={selected.book_meeting_url} target="_blank" rel="noopener noreferrer">
+                        {t("programsPage.card.bookMeeting")}
                         <ExternalLink className="h-4 w-4" />
                       </a>
                     </Button>
@@ -1024,6 +1284,13 @@ export default function Programs() {
                     </Button>
                   )}
                 </div>
+                {(selected.application_url ||
+                  selected.intl_office_url ||
+                  selected.book_meeting_url) && (
+                  <p className="text-xs text-muted-foreground italic">
+                    {t("programsPage.card.directNote")}
+                  </p>
+                )}
 
                 <div className="rounded-lg bg-muted/60 border border-border p-3 flex items-start gap-2 text-xs text-muted-foreground">
                   <ShieldCheck className="h-4 w-4 mt-0.5 shrink-0" />
