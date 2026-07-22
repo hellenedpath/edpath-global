@@ -20,6 +20,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import SourceBadge from "@/components/SourceBadge";
+import VerificationNote from "@/components/VerificationNote";
 
 type HighSchool = {
   id: string;
@@ -477,6 +479,9 @@ export default function HighSchools() {
                   </a>
                 )}
               </div>
+              <div className="mt-3">
+                <SourceBadge url={it.website} />
+              </div>
             </article>
           ))}
         </div>
@@ -538,6 +543,8 @@ export default function HighSchools() {
             </p>
           </div>
         </div>
+
+        <VerificationNote className="mt-8" />
 
       </section>
     </>
