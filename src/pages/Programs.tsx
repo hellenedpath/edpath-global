@@ -1274,6 +1274,12 @@ export default function Programs() {
                   </p>
                 )}
 
+                <SourceBadge
+                  variant="block"
+                  url={selected.sources?.url}
+                  validAsOf={selected.sources?.valid_as_of}
+                />
+
                 <div className="rounded-lg bg-muted/60 border border-border p-3 flex items-start gap-2 text-xs text-muted-foreground">
                   <ShieldCheck className="h-4 w-4 mt-0.5 shrink-0" />
                   <span>
