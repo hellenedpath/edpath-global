@@ -1,1 +1,4 @@
 project_id = "okikievbxskexmuifdqy"
+
+[functions.edpath-assistant]
+verify_jwt = false

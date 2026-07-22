@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { CanadaNav } from "./CanadaNav";
+import EdPathAssistant from "@/components/assistant/EdPathAssistant";
 
 export default function SiteLayout() {
   const location = useLocation();
@@ -16,6 +17,7 @@ export default function SiteLayout() {
         <Outlet />
       </main>
       <Footer />
+      <EdPathAssistant />
     </div>
   );
 }
