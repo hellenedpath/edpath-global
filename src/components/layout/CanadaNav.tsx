@@ -25,7 +25,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-type Item = { to: string; label: string };
+type Item = { to: string; label: string; primary?: boolean };
 type Group = { title: string; items: Item[] };
 
 const primaryTo = "/canada/meu-caminho?country=canada";
