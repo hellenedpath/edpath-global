@@ -301,6 +301,16 @@ export default function CostDisclosure({
               <span>{t("costDisclosure.footnote")}</span>
             </p>
           </div>
+
+          <p className="text-xs text-muted-foreground">
+            {t("costDisclosure.refundLink.question")}{" "}
+            <Link
+              to={t("refunds.path") as string}
+              className="text-navy hover:text-[hsl(var(--crimson))] underline-offset-4 hover:underline transition-colors"
+            >
+              {t("costDisclosure.refundLink.cta")}
+            </Link>
+          </p>
         </div>
       )}
 
@@ -338,6 +348,16 @@ export default function CostDisclosure({
               {t("costDisclosure.noProfile.noFeesUrl")}
             </p>
           )}
+
+          <p className="text-xs text-muted-foreground">
+            {t("costDisclosure.refundLink.question")}{" "}
+            <Link
+              to={t("refunds.path") as string}
+              className="text-navy hover:text-[hsl(var(--crimson))] underline-offset-4 hover:underline transition-colors"
+            >
+              {t("costDisclosure.refundLink.cta")}
+            </Link>
+          </p>
         </div>
       )}
     </section>
