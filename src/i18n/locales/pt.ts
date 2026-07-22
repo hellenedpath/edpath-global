@@ -122,6 +122,7 @@ export const pt = {
       family: "Família",
       work: "Trabalho e moradia",
       verify: "Verificação",
+      refunds: "Regras de reembolso",
     },
   },
   countries: {
@@ -2212,5 +2213,95 @@ export const pt = {
     },
     footnote:
       "Valores referentes ao ano letivo 2025-26, sujeitos a alteração sem aviso prévio. As taxas auxiliares obrigatórias variam por campus e programa.",
+  },
+  refunds: {
+    path: "/reembolso",
+    eyebrow: "Antes de pagar",
+    title: "Antes de pagar: entenda as regras de reembolso",
+    subtitle:
+      "Se você desistir do curso ou seu visto for negado, quanto do seu dinheiro volta? A resposta depende de datas — e quase ninguém explica isso antes de você pagar.",
+    intro: {
+      paragraphs: [
+        "Cada instituição no Canadá define a própria política de reembolso. Os valores mudam de escola para escola e são atualizados todo ano.",
+        "Mas a estrutura é quase sempre a mesma. Se você entender como essas políticas funcionam, você consegue ler qualquer uma delas — e sabe exatamente o que perguntar antes de transferir o primeiro pagamento.",
+        "São sete pontos. Leia antes de pagar.",
+      ],
+    },
+    points: {
+      eyebrow: "Os 7 pontos",
+      title: "Os 7 pontos que definem quanto do seu dinheiro volta",
+      step: "Ponto",
+      items: [
+        {
+          title: "Existe uma data-limite antes do início do semestre",
+          body:
+            "Quase toda instituição tem uma data — geralmente no fim do mês anterior ao início das aulas — que separa dois cenários. Antes dela, a penalidade por cancelar é menor. Depois dela, a penalidade aumenta.\n\nO que isso significa na prática: desistir no dia 30 e desistir no dia 2 do mês seguinte podem custar valores muito diferentes.",
+        },
+        {
+          title: "Existe um prazo depois do início das aulas (normalmente \"Day 10\")",
+          body:
+            "Depois que o semestre começa, ainda costuma existir uma janela curta — muitas vezes os primeiros 10 dias — em que algum reembolso ainda é possível.\n\nPassado esse prazo, na maioria das instituições não há reembolso nenhum. Em alguns casos, você ainda passa a dever o restante das mensalidades do semestre, mesmo sem frequentar.",
+        },
+        {
+          title: "Visto negado costuma ter tratamento diferente de \"desisti\"",
+          body:
+            "A maioria das instituições separa dois motivos de cancelamento: visto (study permit) negado pelo IRCC, com penalidade geralmente menor; e qualquer outro motivo, com penalidade maior.\n\nEssa diferença pode ser de milhares de dólares. Verifique qual é a regra da sua instituição para cada caso.",
+        },
+        {
+          title: "A carta do IRCC tem prazo para ser apresentada",
+          body:
+            "Se seu visto for negado, não basta ter a carta. Muitas instituições exigem que ela seja apresentada dentro de um prazo curto a partir da data da carta.\n\nTambém é comum exigirem que a carta seja posterior à sua última carta de aceitação ou pedido de adiamento.\n\nAtenção: perder esse prazo pode fazer você cair na categoria de penalidade maior, mesmo tendo o visto negado de verdade.",
+        },
+        {
+          title: "E se o visto não sair a tempo?",
+          body:
+            "Este é o ponto que mais pega estudante desprevenido.\n\nSe o IRCC ainda não decidiu nada quando o semestre começa, várias instituições exigem que você cancele mesmo assim para não perder o direito ao reembolso. Esperar a decisão pode significar perder o prazo — e a penalidade maior se aplica mesmo que a negativa chegue depois.",
+        },
+        {
+          title: "O seguro-saúde normalmente não é reembolsável",
+          body:
+            "O seguro-saúde obrigatório costuma ser cobrado à parte e, uma vez cobrado, quase nunca volta — mesmo que você cancele.\n\nO valor varia conforme o semestre em que você começa (quem começa em setembro paga o ano inteiro; quem começa em janeiro ou maio costuma pagar proporcional).",
+        },
+        {
+          title: "Adiar (deferral) tem regras próprias — e limites",
+          body:
+            "Adiar o início do curso costuma ser mais vantajoso que cancelar, mas quase sempre existem condições: normalmente apenas um adiamento por estudante; precisa ser para o mesmo curso, no mesmo campus; as taxas geralmente precisam estar integralmente pagas, já que pagamento parcial não qualifica; e se seu visto foi negado, muitas instituições não permitem adiamento — o cancelamento passa a ser a única opção.",
+        },
+      ],
+    },
+    extras: {
+      title: "Mais dois pontos que valem saber",
+      items: [
+        {
+          title: "O dinheiro volta para quem pagou",
+          body:
+            "Se alguém pagou por você, ou se o pagamento veio de fora do Canadá, o reembolso volta pela mesma origem. Instituições geralmente não transferem o valor para outra escola.",
+        },
+        {
+          title: "Não aparecer não é cancelar",
+          body:
+            "Simplesmente não ir às aulas não conta como cancelamento formal. As taxas continuam devidas. Para ter direito a qualquer reembolso, o cancelamento precisa ser feito oficialmente, dentro do prazo.",
+        },
+      ],
+    },
+    checklist: {
+      eyebrow: "Checklist",
+      title: "5 perguntas para fazer antes de pagar",
+      subtitle:
+        "Envie estas perguntas por escrito ao departamento internacional da instituição. Guarde a resposta.",
+      items: [
+        "Qual é a data-limite de cancelamento com penalidade reduzida para o meu semestre de início?",
+        "Qual é a penalidade se eu cancelar por motivo pessoal — e qual é se meu visto for negado?",
+        "Se meu visto for negado, em quantos dias preciso apresentar a carta do IRCC? E o que acontece se ainda não houver decisão quando o semestre começar?",
+        "O seguro-saúde é reembolsável? Qual o valor cobrado no meu semestre de início?",
+        "Posso adiar em vez de cancelar? Quantas vezes, e quais são as condições?",
+      ],
+    },
+    disclaimer: {
+      paragraphs: [
+        "Esta página explica como as políticas de reembolso costumam funcionar no Canadá. Ela não substitui a política oficial da sua instituição. Valores, prazos e regras são definidos por cada instituição e mudam periodicamente.",
+        "Consulte sempre o documento oficial da sua instituição antes de qualquer pagamento. Esta orientação é informativa e não confirma o seu caso.",
+      ],
+    },
   },
 };
