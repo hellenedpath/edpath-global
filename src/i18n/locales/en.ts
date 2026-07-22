@@ -2117,6 +2117,7 @@ export const en = {
     sections: {
       before: "Before you start",
       recurring: "Mandatory each term",
+      housing: "Housing costs",
       changes: "If plans change",
     },
     categories: {
@@ -2168,6 +2169,39 @@ export const en = {
           withdrawalElsAmount: "CAD $750.00",
           latePayment: "Late payment fee",
           latePaymentAmount: "CAD $150.00",
+        },
+      },
+      algonquin: {
+        intro:
+          "Algonquin College's published international tuition already includes health insurance, the U-Pass (bus pass), athletics centre access and student access fees. This differs from other institutions, which charge these separately. The amounts below are published by the institution itself.",
+        optionalNote:
+          "The institution also estimates optional items: clothing CAD $800 and miscellaneous CAD $1,150 per year.",
+        items: {
+          tuition: "Tuition and compulsory fees, 8-month academic year",
+          tuitionAmount: "CAD $17,225 – $22,000",
+          tuitionNote:
+            "Includes health insurance, U-Pass, athletics centre and student access fees.",
+          learningResources: "Learning resources and school supplies",
+          learningResourcesAmount: "CAD $200 – $1,000",
+          homestayFirst:
+            "Homestay, first month (includes $380 admin and registration fee)",
+          homestayFirstAmount: "CAD $1,586.25",
+          homestayFirstNote: "",
+          homestaySubsequent:
+            "Homestay, average subsequent month, accommodation and 3 meals/day",
+          homestaySubsequentAmount: "CAD $1,201.25",
+          residenceAccommodation: "Residence, 8 months, accommodation",
+          residenceAccommodationAmount: "CAD $12,460",
+          residenceMealPlan: "Residence, mandatory meal plan",
+          residenceMealPlanAmount: "CAD $4,397",
+          residenceTotal: "Residence total, 8 months",
+          residenceTotalAmount: "CAD $16,857",
+          offCampus:
+            "Off-campus, room in a shared 2-bedroom, per month (estimate, varies)",
+          offCampusAmount: "CAD $1,200 – $1,500",
+          refundPolicy:
+            "Withdrawal and refund policy: EdPath has not yet verified Algonquin's figures. Check the Registrar's Office official policy before paying anything.",
+          refundPolicyLink: "See Registrar's Office official policy",
         },
       },
     },
