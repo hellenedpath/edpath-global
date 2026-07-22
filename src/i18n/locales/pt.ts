@@ -1457,6 +1457,8 @@ export const pt = {
       stem: "STEM / Ciências e Tecnologia",
       trade: "Trades / Ofícios",
       health: "Saúde",
+      health_care: "Saúde e serviços sociais",
+      education: "Educação",
       agriculture: "Agricultura",
       transport: "Transporte",
       other: "Outros",
@@ -1464,7 +1466,7 @@ export const pt = {
     coverage: {
       label: "Cobertura atual dos dados:",
       body:
-        "esta ferramenta cobre atualmente as áreas de <strong>STEM, Trades e Transporte</strong>. Estamos adicionando outras categorias, como Saúde, Educação e Agricultura. Se você não encontrar sua área, ela pode ainda não ter sido incluída, <strong>isso não significa que ela não seja elegível</strong>. Confirme sempre na <link>lista oficial do IRCC</link>.",
+        "esta ferramenta cobre as <strong>seis categorias oficiais</strong> de campos de estudo elegíveis para PGWP do IRCC: STEM, Trades, Transporte, Saúde e serviços sociais, Educação e Agricultura. Esta é uma <strong>orientação</strong>, a decisão final é sempre do IRCC. Confirme sempre na <link>lista oficial do IRCC</link>.",
     },
     results: {
       loading: "Carregando áreas de estudo...",

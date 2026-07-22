@@ -22,16 +22,28 @@ type CipCode = {
   category: string | null;
 };
 
-const KNOWN_CATEGORIES = new Set(["stem", "trade", "health", "agriculture", "transport"]);
+const KNOWN_CATEGORIES = new Set([
+  "stem",
+  "trade",
+  "health_care",
+  "education",
+  "agriculture",
+  "transport",
+]);
 
 const IRCC_PGWP_URL =
   "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/eligibility.html";
 
 function eligibilityFromDescription(desc: string | null) {
-  const d = (desc ?? "").toLowerCase();
-  if (d.includes("conditional")) return "conditional" as const;
-  if (d.includes("eligible")) return "eligible" as const;
-  return "unknown" as const;
+  const d = normalize(desc);
+  if (
+    d.includes("conditional") ||
+    d.includes("condicionada") ||
+    d.includes("condicional")
+  ) {
+    return "conditional" as const;
+  }
+  return "eligible" as const;
 }
 
 function normalize(str: string | null | undefined) {
@@ -283,14 +295,9 @@ export default function PgwpChecker() {
                               </span>
                             </TooltipTrigger>
                             <TooltipContent className="max-w-xs">
-                              {t("pgwpChecker.results.badges.conditionalTooltip")}
+                              {r.description ?? t("pgwpChecker.results.badges.conditionalTooltip")}
                             </TooltipContent>
                           </Tooltip>
-                        )}
-                        {status === "unknown" && (
-                          <span className="inline-flex items-center gap-1.5 rounded-full bg-muted text-muted-foreground px-3 py-1 text-xs font-medium">
-                            {t("pgwpChecker.results.badges.unknown")}
-                          </span>
                         )}
                       </div>
                     </li>
