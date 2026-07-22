@@ -1485,6 +1485,23 @@ export const pt = {
       body:
         "Esta informação é baseada na lista oficial de campos de estudo elegíveis para PGWP do IRCC e serve como <strong>orientação geral</strong>. Em geral, a elegibilidade final também depende da instituição (DLI), da duração do programa e do idioma. Esta ferramenta <strong>não confirma o seu caso específico</strong>. Confirme sempre nas fontes oficiais do IRCC e, para decisões de imigração, consulte um consultor RCIC licenciado.",
     },
+    programsLine: {
+      hasPrograms_one: "{{count}} programa na EdPath · {{institutions}} instituição",
+      hasPrograms_other: "{{count}} programas na EdPath · {{institutions}} instituições",
+      hasProgramsInstOne: "{{count}} programas na EdPath · 1 instituição",
+      none: "Ainda não temos programas cadastrados com este código. Isso não significa que não existam.",
+    },
+    filters: {
+      withProgramsOnly: "Só códigos com programas na EdPath",
+      withProgramsCount: "({{count}} códigos)",
+    },
+    nextSteps: {
+      title: "E agora, qual seu próximo passo?",
+      subtitle: "Você viu se sua área é elegível. Estas são as ações que fazem sentido agora.",
+      seePrograms: "Ver todos os programas elegíveis",
+      findPath: "Descobrir seu caminho",
+      askAssistant: "Sua área não apareceu? Pergunte ao assistente EdPath.",
+    },
   },
 
   highSchools: {
