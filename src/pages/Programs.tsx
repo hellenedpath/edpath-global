@@ -1115,10 +1115,6 @@ export default function Programs() {
           )}
 
           <div className="mt-12">
-            <CostDisclosure />
-          </div>
-
-          <div className="mt-8">
             <VerificationNote />
           </div>
         </div>
