@@ -325,7 +325,6 @@ export default function PathQuiz() {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   const countryParam = searchParams.get("country");
   const isCanadaContext =
     (countryParam && DESTINATION_KEYS.includes(countryParam as typeof DESTINATION_KEYS[number])) ||
@@ -335,16 +334,35 @@ export default function PathQuiz() {
     : pathname.startsWith("/canada/")
       ? "canada"
       : null;
-  const [started, setStarted] = useState<boolean>(!!presetDestination);
+
+  // Attempt to restore answers from URL params (share/save link).
+  const restoredAnswers = useMemo<Answers | null>(() => {
+    const out: Answers = {};
+    for (const q of QUESTIONS) {
+      const v = searchParams.get(`a${q.id}`);
+      if (!v || !q.optionKeys.includes(v)) return null;
+      out[q.id] = v;
+    }
+    return out;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const restoredDestination = restoredAnswers ? presetDestination ?? "canada" : null;
+
+  const [started, setStarted] = useState<boolean>(!!presetDestination || !!restoredAnswers);
   const [step, setStep] = useState(0); // 0..QUESTIONS.length-1
-  const [answers, setAnswers] = useState<Answers>({});
-  const [finished, setFinished] = useState(false);
-  const [destination, setDestination] = useState<string | null>(presetDestination);
+  const [answers, setAnswers] = useState<Answers>(restoredAnswers ?? {});
+  const [finished, setFinished] = useState<boolean>(!!restoredAnswers);
+  const [destination, setDestination] = useState<string | null>(
+    restoredDestination ?? presetDestination,
+  );
   const [notifyEmail, setNotifyEmail] = useState("");
   const [notifySubmitted, setNotifySubmitted] = useState(false);
+  const [planWaitlist, setPlanWaitlist] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
 
-  // When quiz completes with Canada destination, store recommended step
-  // and redirect back to the single journey home (/canada) — no separate result page.
+  // When the Canada quiz finishes, store the recommended step so the Canada
+  // portal can react to it. The full result view renders here — no redirect.
   useEffect(() => {
     if (!finished) return;
     if (destination !== "canada") return;
@@ -355,14 +373,13 @@ export default function PathQuiz() {
       accepted: 4,
       arrived: 6,
     };
-    const step = (q1 && map[q1]) || 1;
+    const recommended = (q1 && map[q1]) || 1;
     try {
-      sessionStorage.setItem("canadaJourney.recommendedStep", String(step));
+      sessionStorage.setItem("canadaJourney.recommendedStep", String(recommended));
     } catch {
       /* ignore */
     }
-    navigate("/canada");
-  }, [finished, destination, answers, navigate]);
+  }, [finished, destination, answers]);
 
   const destAvailable = destination ? AVAILABLE_DESTINATIONS.has(destination) : false;
   const destLabel = destination ? t(`pathQuiz.destination.options.${destination}`) : "";
