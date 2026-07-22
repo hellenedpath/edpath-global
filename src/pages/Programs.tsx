@@ -13,7 +13,16 @@ import {
   ShieldCheck,
   TrendingUp,
   Info,
+  Shield,
+  ShieldOff,
+  Clock,
+  Users,
+  Languages,
+  MessageCircle,
+  ArrowRight,
+  DollarSign,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -44,10 +53,12 @@ type Program = {
   pgwp_basis: string | null;
   application_url: string | null;
   intl_office_url: string | null;
+  book_meeting_url: string | null;
   source_id: string | null;
   sources: {
     id: string;
     url: string | null;
+    valid_as_of: string | null;
   } | null;
   occupation_ids: string[] | null;
   institution_id: string;
@@ -312,14 +323,16 @@ function EligibilityBadge({ e }: { e: Eligibility }) {
 }
 
 export default function Programs() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
   const T = (pt: string, en: string) => (lang === "pt" ? pt : en);
 
   const [query, setQuery] = useState("");
   const [area, setArea] = useState<string>("all");
   const [credential, setCredential] = useState<string>("all");
+  const [province, setProvince] = useState<string>("all");
   const [onlyPgwp, setOnlyPgwp] = useState(false);
+  const [onlyCoop, setOnlyCoop] = useState(false);
   const [selected, setSelected] = useState<Program | null>(null);
 
   // Profile (front-only, not persisted)
@@ -339,7 +352,7 @@ export default function Programs() {
       const { data, error } = await supabase
         .from("programs")
         .select(
-          "id, name, credential, field_area, campus_city, min_grade, prerequisites, english_admission_tests, duration_months, tuition_intl_year, has_coop, pgwp_eligible, pgwp_basis, application_url, intl_office_url, source_id, sources!source_id(id, url), occupation_ids, institution_id, institutions(id, name, display_name, city, province)"
+          "id, name, credential, field_area, campus_city, min_grade, prerequisites, english_admission_tests, duration_months, tuition_intl_year, has_coop, pgwp_eligible, pgwp_basis, application_url, intl_office_url, book_meeting_url, source_id, sources!source_id(id, url, valid_as_of), occupation_ids, institution_id, institutions(id, name, display_name, city, province)"
         )
         .order("name", { ascending: true });
       if (error) throw error;
