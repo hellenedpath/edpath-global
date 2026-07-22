@@ -8,6 +8,7 @@ import {
   Repeat,
   AlertTriangle,
   Clock,
+  ExternalLink,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SourceBadge from "@/components/SourceBadge";
@@ -15,11 +16,9 @@ import SourceBadge from "@/components/SourceBadge";
 type Props = {
   className?: string;
   defaultOpen?: boolean;
+  institutionName?: string | null;
+  officialFeesUrl?: string | null;
 };
-
-const SOURCE_URL =
-  "https://www.conestogac.on.ca/international/apply-to-conestoga/fees-and-payment";
-const SOURCE_DATE = "2026-07-11";
 
 type Item = {
   key: string;
@@ -28,50 +27,91 @@ type Item = {
   emphasis?: boolean;
 };
 
-const BEFORE: Item[] = [
-  {
-    key: "deposit",
-    amountKey: "depositAmount",
-    noteKey: "depositNote",
-    emphasis: true,
-  },
-  { key: "palWarning", emphasis: true },
-  { key: "applicationFee", amountKey: "applicationFeeAmount" },
-  {
-    key: "visaRefusalFee",
-    amountKey: "visaRefusalFeeAmount",
-    noteKey: "visaRefusalNote",
-    emphasis: true,
-  },
-];
+type FeeProfile = {
+  /** i18n namespace suffix under costDisclosure.profiles.<key> */
+  key: string;
+  sourceUrl: string;
+  sourceDate: string;
+  before: Item[];
+  recurring: Item[];
+  changes: Item[];
+  hasElsNote?: boolean;
+};
 
-const RECURRING: Item[] = [
-  { key: "isr" },
-  { key: "cihip" },
-  { key: "studentServices" },
-  { key: "technology" },
-  { key: "upass", amountKey: "upassAmount" },
-  { key: "wil", amountKey: "wilAmount" },
-];
-
-const CHANGES: Item[] = [
-  {
-    key: "withdrawalPostSec",
-    amountKey: "withdrawalPostSecAmount",
-    emphasis: true,
+/**
+ * Verified per-institution fee profiles. Add a new institution by adding a
+ * new entry here plus its i18n block under `costDisclosure.profiles.<key>` —
+ * no other code changes required. Never seed a profile with unverified
+ * figures.
+ */
+const FEE_PROFILES: Record<string, FeeProfile> = {
+  conestoga: {
+    key: "conestoga",
+    sourceUrl:
+      "https://www.conestogac.on.ca/international/apply-to-conestoga/fees-and-payment",
+    sourceDate: "2026-07-11",
+    before: [
+      { key: "deposit", amountKey: "depositAmount", noteKey: "depositNote", emphasis: true },
+      { key: "palWarning", emphasis: true },
+      { key: "applicationFee", amountKey: "applicationFeeAmount" },
+      {
+        key: "visaRefusalFee",
+        amountKey: "visaRefusalFeeAmount",
+        noteKey: "visaRefusalNote",
+        emphasis: true,
+      },
+    ],
+    recurring: [
+      { key: "isr" },
+      { key: "cihip" },
+      { key: "studentServices" },
+      { key: "technology" },
+      { key: "upass", amountKey: "upassAmount" },
+      { key: "wil", amountKey: "wilAmount" },
+    ],
+    changes: [
+      { key: "withdrawalPostSec", amountKey: "withdrawalPostSecAmount", emphasis: true },
+      { key: "withdrawalGradCert", amountKey: "withdrawalGradCertAmount", emphasis: true },
+      { key: "withdrawalEls", amountKey: "withdrawalElsAmount", emphasis: true },
+      { key: "latePayment", amountKey: "latePaymentAmount" },
+    ],
+    hasElsNote: true,
   },
-  {
-    key: "withdrawalGradCert",
-    amountKey: "withdrawalGradCertAmount",
-    emphasis: true,
-  },
-  { key: "withdrawalEls", amountKey: "withdrawalElsAmount", emphasis: true },
-  { key: "latePayment", amountKey: "latePaymentAmount" },
-];
+};
 
-export default function CostDisclosure({ className, defaultOpen = false }: Props) {
+function resolveProfile(institutionName?: string | null): FeeProfile | null {
+  if (!institutionName) return null;
+  const n = institutionName
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+  if (n.includes("conestoga")) return FEE_PROFILES.conestoga;
+  return null;
+}
+
+// Generic category names shown when no verified profile exists.
+const GENERIC_CATEGORY_KEYS = [
+  "deposit",
+  "applicationFee",
+  "visaRefusal",
+  "mandatoryPerTerm",
+  "withdrawal",
+  "latePayment",
+] as const;
+
+export default function CostDisclosure({
+  className,
+  defaultOpen = false,
+  institutionName,
+  officialFeesUrl,
+}: Props) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(defaultOpen);
+  const profile = resolveProfile(institutionName);
+  const itemKey = (k: string) =>
+    profile
+      ? `costDisclosure.profiles.${profile.key}.items.${k}`
+      : `costDisclosure.items.${k}`;
 
   const renderList = (items: Item[]) => (
     <ul className="mt-2 space-y-1.5">
@@ -91,7 +131,7 @@ export default function CostDisclosure({ className, defaultOpen = false }: Props
                 />
               )}
               <span className={cn("min-w-0", !it.emphasis && "text-foreground")}>
-                {t(`costDisclosure.items.${it.key}`)}
+                {t(itemKey(it.key))}
               </span>
             </span>
             {it.amountKey && (
@@ -101,13 +141,13 @@ export default function CostDisclosure({ className, defaultOpen = false }: Props
                   it.emphasis ? "text-[hsl(var(--crimson))]" : "text-navy",
                 )}
               >
-                {t(`costDisclosure.items.${it.amountKey}`)}
+                {t(itemKey(it.amountKey))}
               </span>
             )}
           </div>
           {it.noteKey && (
             <p className="text-xs text-muted-foreground leading-relaxed pl-5">
-              {t(`costDisclosure.items.${it.noteKey}`)}
+              {t(itemKey(it.noteKey))}
             </p>
           )}
         </li>
@@ -151,10 +191,10 @@ export default function CostDisclosure({ className, defaultOpen = false }: Props
         />
       </button>
 
-      {open && (
+      {open && profile && (
         <div className="px-4 md:px-5 pb-5 space-y-5 border-t border-border">
           <p className="text-sm text-muted-foreground leading-relaxed pt-4">
-            {t("costDisclosure.intro")}
+            {t(`costDisclosure.profiles.${profile.key}.intro`)}
           </p>
 
           <div>
@@ -162,7 +202,7 @@ export default function CostDisclosure({ className, defaultOpen = false }: Props
               <FileText className="h-4 w-4 text-navy" strokeWidth={1.5} />
               {t("costDisclosure.sections.before")}
             </h4>
-            {renderList(BEFORE)}
+            {renderList(profile.before)}
           </div>
 
           <div>
@@ -170,7 +210,7 @@ export default function CostDisclosure({ className, defaultOpen = false }: Props
               <Repeat className="h-4 w-4 text-navy" strokeWidth={1.5} />
               {t("costDisclosure.sections.recurring")}
             </h4>
-            {renderList(RECURRING)}
+            {renderList(profile.recurring)}
           </div>
 
           <div>
@@ -178,24 +218,59 @@ export default function CostDisclosure({ className, defaultOpen = false }: Props
               <XCircle className="h-4 w-4 text-navy" strokeWidth={1.5} />
               {t("costDisclosure.sections.changes")}
             </h4>
-            {renderList(CHANGES)}
+            {renderList(profile.changes)}
           </div>
 
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            {t("costDisclosure.elsNote")}
-          </p>
+          {profile.hasElsNote && (
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              {t(`costDisclosure.profiles.${profile.key}.elsNote`)}
+            </p>
+          )}
 
           <div className="space-y-2">
             <SourceBadge
               variant="block"
-              url={SOURCE_URL}
-              validAsOf={SOURCE_DATE}
+              url={profile.sourceUrl}
+              validAsOf={profile.sourceDate}
             />
             <p className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
               <Clock className="h-3.5 w-3.5 mt-0.5 shrink-0" strokeWidth={1.5} />
               <span>{t("costDisclosure.footnote")}</span>
             </p>
           </div>
+        </div>
+      )}
+
+      {open && !profile && (
+        <div className="px-4 md:px-5 pb-5 space-y-4 border-t border-border">
+          <p className="text-sm text-muted-foreground leading-relaxed pt-4">
+            {t("costDisclosure.noProfile.message")}
+          </p>
+          <ul className="space-y-1.5">
+            {GENERIC_CATEGORY_KEYS.map((k) => (
+              <li
+                key={k}
+                className="flex items-start gap-2 text-sm text-foreground leading-relaxed"
+              >
+                <FileText
+                  className="h-3.5 w-3.5 mt-1 shrink-0 text-navy"
+                  strokeWidth={1.5}
+                />
+                <span>{t(`costDisclosure.categories.${k}`)}</span>
+              </li>
+            ))}
+          </ul>
+          {officialFeesUrl && (
+            <a
+              href={officialFeesUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-navy hover:text-[hsl(var(--crimson))] underline-offset-4 hover:underline"
+            >
+              {t("costDisclosure.noProfile.checkOfficial")}
+              <ExternalLink className="h-3.5 w-3.5" strokeWidth={1.5} />
+            </a>
+          )}
         </div>
       )}
     </section>

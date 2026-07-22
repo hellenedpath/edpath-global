@@ -1115,10 +1115,6 @@ export default function Programs() {
           )}
 
           <div className="mt-12">
-            <CostDisclosure />
-          </div>
-
-          <div className="mt-8">
             <VerificationNote />
           </div>
         </div>
@@ -1398,7 +1394,14 @@ export default function Programs() {
                   </p>
                 )}
 
-                <CostDisclosure />
+                <CostDisclosure
+                  institutionName={
+                    selected.institutions?.display_name ??
+                    selected.institutions?.name ??
+                    null
+                  }
+                  officialFeesUrl={selected.intl_office_url ?? null}
+                />
 
                 <SourceBadge
                   variant="block"

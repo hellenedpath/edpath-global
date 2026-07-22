@@ -2116,46 +2116,64 @@ export const pt = {
   costDisclosure: {
     title: "Custos além da mensalidade",
     subtitle: "Taxas obrigatórias e cenários que costumam aparecer depois",
-    intro:
-      "A anuidade é só uma parte do custo total. Os valores de mensalidade exibidos referem-se apenas à tuition; taxas auxiliares obrigatórias são adicionais e ficam pendentes de aprovação anual. Os valores abaixo são publicados pela Conestoga College para o ano letivo 2025-26.",
     officialTag: "oficial",
     sections: {
       before: "Antes de começar",
       recurring: "Obrigatórias a cada período",
       changes: "Se algo mudar",
     },
-    items: {
-      deposit: "Depósito obrigatório para garantir a vaga — não reembolsável",
-      depositAmount: "CAD $2.500,00",
-      depositNote:
-        "O depósito faz parte da mensalidade e abate o valor total. Ele não é devolvido se você desistir — exceto em caso de recusa de visto comprovada.",
-      palWarning:
-        "Se você recebeu um PAL (Provincial Attestation Letter) da instituição, o depósito não é reembolsável mesmo se você desistir antes do prazo.",
+    categories: {
+      deposit: "Depósito obrigatório para garantir a vaga",
       applicationFee: "Taxa de aplicação internacional",
-      applicationFeeAmount: "CAD $101,01",
-      visaRefusalFee: "Recusa de visto: mensalidade devolvida, menos taxa administrativa",
-      visaRefusalFeeAmount: "CAD $200,00",
-      visaRefusalNote:
-        "É necessário apresentar a carta oficial de recusa do IRCC. A instituição pode verificar a carta junto ao IRCC.",
-      isr: "ISR — International Student Recovery (taxa obrigatória para internacionais em colleges de Ontário)",
-      cihip: "CIHIP — seguro-saúde emergencial obrigatório",
-      studentServices: "Taxa de serviços ao estudante",
-      technology: "Taxa de tecnologia",
-      upass: "U-Pass (transporte público, por período)",
-      upassAmount: "CAD $124,91 (Waterloo) · $162,00 (Guelph)",
-      wil: "Taxa de documentação WIL (programas com estágio)",
-      wilAmount: "CAD $43 a $115",
-      withdrawalPostSec: "Cancelamento — pós-secundário internacional",
-      withdrawalPostSecAmount: "CAD $2.500,00",
-      withdrawalGradCert: "Cancelamento — degree ou graduate certificate internacional",
-      withdrawalGradCertAmount: "CAD $1.500,00",
-      withdrawalEls: "Cancelamento — ELS internacional",
-      withdrawalElsAmount: "CAD $750,00",
+      visaRefusal: "Política de reembolso em caso de recusa de visto",
+      mandatoryPerTerm:
+        "Taxas obrigatórias por período (seguro-saúde, serviços ao estudante, tecnologia, transporte)",
+      withdrawal: "Taxas de cancelamento",
       latePayment: "Multa por pagamento em atraso",
-      latePaymentAmount: "CAD $150,00",
     },
-    elsNote:
-      "Curso de inglês (ELS), se necessário antes do programa principal: CAD $5.500 por 4 meses, ou CAD $2.750 por 2 meses.",
+    noProfile: {
+      message:
+        "A EdPath ainda não tem os valores publicados desta instituição. Estas são as categorias de custo que existem — confirme os valores na página oficial de taxas da instituição.",
+      checkOfficial: "Ver a página oficial de taxas",
+    },
+    profiles: {
+      conestoga: {
+        intro:
+          "A anuidade é só uma parte do custo total. Os valores de mensalidade exibidos referem-se apenas à tuition; taxas auxiliares obrigatórias são adicionais e ficam pendentes de aprovação anual. Os valores abaixo são publicados pela Conestoga College para o ano letivo 2025-26.",
+        elsNote:
+          "Curso de inglês (ELS), se necessário antes do programa principal: CAD $5.500 por 4 meses, ou CAD $2.750 por 2 meses.",
+        items: {
+          deposit: "Depósito obrigatório para garantir a vaga — não reembolsável",
+          depositAmount: "CAD $2.500,00",
+          depositNote:
+            "O depósito faz parte da mensalidade e abate o valor total. Ele não é devolvido se você desistir — exceto em caso de recusa de visto comprovada.",
+          palWarning:
+            "Se você recebeu um PAL (Provincial Attestation Letter) da instituição, o depósito não é reembolsável mesmo se você desistir antes do prazo.",
+          applicationFee: "Taxa de aplicação internacional",
+          applicationFeeAmount: "CAD $101,01",
+          visaRefusalFee: "Recusa de visto: mensalidade devolvida, menos taxa administrativa",
+          visaRefusalFeeAmount: "CAD $200,00",
+          visaRefusalNote:
+            "É necessário apresentar a carta oficial de recusa do IRCC. A instituição pode verificar a carta junto ao IRCC.",
+          isr: "ISR — International Student Recovery (taxa obrigatória para internacionais em colleges de Ontário)",
+          cihip: "CIHIP — seguro-saúde emergencial obrigatório",
+          studentServices: "Taxa de serviços ao estudante",
+          technology: "Taxa de tecnologia",
+          upass: "U-Pass (transporte público, por período)",
+          upassAmount: "CAD $124,91 (Waterloo) · $162,00 (Guelph)",
+          wil: "Taxa de documentação WIL (programas com estágio)",
+          wilAmount: "CAD $43 a $115",
+          withdrawalPostSec: "Cancelamento — pós-secundário internacional",
+          withdrawalPostSecAmount: "CAD $2.500,00",
+          withdrawalGradCert: "Cancelamento — degree ou graduate certificate internacional",
+          withdrawalGradCertAmount: "CAD $1.500,00",
+          withdrawalEls: "Cancelamento — ELS internacional",
+          withdrawalElsAmount: "CAD $750,00",
+          latePayment: "Multa por pagamento em atraso",
+          latePaymentAmount: "CAD $150,00",
+        },
+      },
+    },
     footnote:
       "Valores referentes ao ano letivo 2025-26, sujeitos a alteração sem aviso prévio. As taxas auxiliares obrigatórias variam por campus e programa.",
   },
