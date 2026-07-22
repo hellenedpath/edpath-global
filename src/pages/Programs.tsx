@@ -1146,8 +1146,8 @@ export default function Programs() {
                         }
                         return (
                           <div className="mt-1 space-y-1">
-                            <span className="inline-block uppercase tracking-wider text-[10px] font-semibold text-[hsl(var(--crimson))]/80 border border-[hsl(var(--crimson))]/25 rounded px-1.5 py-0.5">
-                              {t("costDisclosure.estimateTag")}
+                            <span className="inline-block uppercase tracking-wider text-[10px] font-semibold text-navy border border-navy/25 rounded px-1.5 py-0.5">
+                              {t("costDisclosure.officialTag")}
                             </span>
                             <p className="text-sm text-foreground leading-relaxed">
                               {selected.tuition_intl_year}
