@@ -122,6 +122,7 @@ export const en = {
       health: "Health",
       family: "Family",
       work: "Work and housing",
+      verify: "Verify",
     },
   },
   footer: {
