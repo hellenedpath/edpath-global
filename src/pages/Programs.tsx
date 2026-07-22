@@ -22,7 +22,8 @@ import {
   ArrowRight,
   DollarSign,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -58,6 +59,7 @@ type Program = {
   intl_office_url: string | null;
   book_meeting_url: string | null;
   source_id: string | null;
+  cip_code: string | null;
   sources: {
     id: string;
     url: string | null;
