@@ -84,6 +84,11 @@ type Occupation = {
   salary_median: string | null;
   salary_high: string | null;
   outlook: string | null;
+  province: string | null;
+  sources: {
+    url: string | null;
+    valid_as_of: string | null;
+  } | null;
 };
 
 const AREA_LABELS: Record<string, { en: string; pt: string }> = {
@@ -450,7 +455,9 @@ export default function Programs() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("occupations")
-        .select("id, noc_code, title, salary_low, salary_median, salary_high, outlook");
+        .select(
+          "id, noc_code, title, salary_low, salary_median, salary_high, outlook, province, sources(url, valid_as_of)"
+        );
       if (error) throw error;
       return data as Occupation[];
     },
@@ -1316,12 +1323,17 @@ export default function Programs() {
                     <div className="space-y-2">
                       {selectedOccupations.map((o) => {
                         const out = outlookMeta(o.outlook, lang);
+                        const hasSalary = !!(o.salary_low || o.salary_high || o.salary_median);
+                        const salaryText =
+                          o.salary_low && o.salary_high
+                            ? `${o.salary_low} – ${o.salary_high}`
+                            : o.salary_median || "";
                         return (
                           <div
                             key={o.id}
                             className="rounded-lg border border-border p-3 flex flex-wrap items-center justify-between gap-2"
                           >
-                            <div>
+                            <div className="min-w-0">
                               <p className="font-medium text-navy">
                                 {o.title}
                                 {o.noc_code && (
@@ -1330,11 +1342,39 @@ export default function Programs() {
                                   </span>
                                 )}
                               </p>
-                              <p className="text-sm text-muted-foreground">
-                                {o.salary_low && o.salary_high
-                                  ? `${o.salary_low} – ${o.salary_high}`
-                                  : o.salary_median || "—"}
-                              </p>
+                              {hasSalary ? (
+                                <>
+                                  <p className="text-sm text-muted-foreground">{salaryText}</p>
+                                  {o.province && (
+                                    <p className="text-xs text-muted-foreground mt-0.5">
+                                      {T(
+                                        `Faixa salarial em ${o.province}`,
+                                        `Salary range in ${o.province}`
+                                      )}
+                                    </p>
+                                  )}
+                                  {o.sources?.url && (
+                                    <SourceBadge
+                                      url={o.sources.url}
+                                      validAsOf={o.sources.valid_as_of}
+                                      variant="inline"
+                                      className="mt-1"
+                                    />
+                                  )}
+                                </>
+                              ) : o.noc_code ? (
+                                <a
+                                  href={`https://www.jobbank.gc.ca/marketreport/occupation/${o.noc_code}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-navy hover:underline"
+                                >
+                                  {T("Ver salários no Job Bank", "See salaries on Job Bank")}
+                                  <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
+                                </a>
+                              ) : (
+                                <p className="text-sm text-muted-foreground">—</p>
+                              )}
                             </div>
                             {out && (
                               <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${out.className}`}>
