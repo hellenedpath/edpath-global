@@ -122,6 +122,94 @@ async function upsertSource(supabase: any, url: string): Promise<string | null> 
   return ins.data?.id ?? null;
 }
 
+// -----------------------------------------------------------------------------
+// CIP matching + PGWP determination
+// -----------------------------------------------------------------------------
+// IMPORTANT: our cip_codes table currently loads only 3 of the 6 IRCC PGWP
+// field-of-study categories (STEM, trade, transport). Absence of a CIP from
+// our table therefore does NOT mean the program is ineligible — it may simply
+// belong to a category we haven't loaded yet (agriculture/agri-food,
+// education, health care and social services). For that reason this function
+// NEVER writes pgwp_eligible = "no". Only the downstream PGWP verifier,
+// working from a complete official list, may assert ineligibility.
+// -----------------------------------------------------------------------------
+
+type CipRow = { code: string; title: string; description: string | null; category: string | null; area_group: string | null };
+
+function keywordsFor(name: string, fieldArea: string | null): string[] {
+  const stop = new Set([
+    "and","of","the","a","an","in","for","to","with","or","de","da","do","dos","das","e","o","a",
+    "college","ontario","certificate","diploma","advanced","graduate","bachelor","program","programs",
+    "technician","technology","technologist","techniques","fundamentals","introduction","studies",
+  ]);
+  const raw = `${name} ${fieldArea ?? ""}`.toLowerCase().split(/[^a-zà-ÿ0-9]+/).filter(Boolean);
+  const uniq = Array.from(new Set(raw)).filter((w) => w.length >= 4 && !stop.has(w));
+  return uniq.slice(0, 8);
+}
+
+async function findCipCandidates(
+  supabase: any,
+  name: string,
+  fieldArea: string | null,
+): Promise<CipRow[]> {
+  const kws = keywordsFor(name, fieldArea);
+  if (kws.length === 0) return [];
+  const seen = new Map<string, CipRow>();
+  for (const kw of kws) {
+    const pattern = `%${kw}%`;
+    const r = await supabase
+      .from("cip_codes")
+      .select("code,title,description,category,area_group")
+      .or(`title.ilike.${pattern},description.ilike.${pattern}`)
+      .limit(10);
+    for (const row of r.data ?? []) {
+      if (!seen.has(row.code)) seen.set(row.code, row as CipRow);
+      if (seen.size >= 25) break;
+    }
+    if (seen.size >= 25) break;
+  }
+  return Array.from(seen.values()).slice(0, 25);
+}
+
+async function pickCip(
+  apiKey: string,
+  program: { name: string; credential: string | null; field_area: string | null },
+  candidates: CipRow[],
+): Promise<{ cip_code: string | null; cip_confidence: "high" | "medium" | "low"; cip_reasoning: string }> {
+  if (candidates.length === 0) {
+    return { cip_code: null, cip_confidence: "low", cip_reasoning: "no candidates returned by keyword search" };
+  }
+  const allowed = new Set(candidates.map((c) => c.code));
+  const system = `You match a Canadian college program to a single official CIP code from a supplied candidate list. You may ONLY return a code that appears verbatim in the candidate list. If no candidate is a genuine match, return null. Never invent, construct, or guess a CIP code. Return ONLY JSON: {"cip_code": string|null, "cip_confidence": "high"|"medium"|"low", "cip_reasoning": string}.`;
+  const user = `Program: ${program.name}\nCredential: ${program.credential ?? "unknown"}\nField area: ${program.field_area ?? "unknown"}\n\nCandidates (code — title — category):\n${candidates.map((c) => `- ${c.code} — ${c.title} — ${c.category ?? ""}`).join("\n")}\n\nPick the single best match. If the candidates are only loosely related, return null with confidence "low".`;
+  const r = await fetch(ANTHROPIC_URL, {
+    method: "POST",
+    headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+    body: JSON.stringify({ model: MODEL, max_tokens: 400, system, messages: [{ role: "user", content: user }] }),
+  });
+  const j = await r.json();
+  if (!r.ok) throw new Error(`anthropic cip ${r.status}: ${JSON.stringify(j).slice(0, 300)}`);
+  const text = j?.content?.[0]?.text ?? "";
+  const m = text.match(/\{[\s\S]*\}/);
+  if (!m) return { cip_code: null, cip_confidence: "low", cip_reasoning: "no json in cip response" };
+  let parsed: any;
+  try { parsed = JSON.parse(m[0]); } catch { return { cip_code: null, cip_confidence: "low", cip_reasoning: "cip json parse error" }; }
+  const code = typeof parsed.cip_code === "string" ? parsed.cip_code : null;
+  if (code && !allowed.has(code)) {
+    return { cip_code: null, cip_confidence: "low", cip_reasoning: `model returned out-of-list code ${code}; discarded` };
+  }
+  const conf = parsed.cip_confidence === "high" || parsed.cip_confidence === "medium" ? parsed.cip_confidence : "low";
+  return { cip_code: code, cip_confidence: conf, cip_reasoning: String(parsed.cip_reasoning ?? "") };
+}
+
+function isDegreeCredential(credential: string | null): boolean {
+  if (!credential) return false;
+  const c = credential.toLowerCase();
+  return /(bachelor|master|doctoral|doctorate|phd|honours degree|honors degree|degree)/.test(c)
+    // exclude "college diploma" false positive — "degree" regex won't hit diploma
+    ;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
@@ -191,6 +279,46 @@ Deno.serve(async (req) => {
         ? " PGWP mentioned on page (statement stored in pgwp_basis for human review; eligibility not decided by extractor)."
         : " Page did not mention PGWP.";
       row.review_notes += (extracted.notes ? `AI notes: ${extracted.notes}` : "extracted via Anthropic") + pgwpNote;
+      // Preserve the page's PGWP statement (if any) as evidence in review_notes,
+      // rather than as the pgwp_basis determination itself.
+      const pageStatement = extracted.pgwp_statement_on_page ?? null;
+      if (pageStatement) row.review_notes += ` Page PGWP statement: "${pageStatement}".`;
+
+      // --- CIP matching + PGWP determination -----------------------------
+      let cipInfo: { cip_code: string | null; cip_confidence: "high" | "medium" | "low"; cip_reasoning: string } = {
+        cip_code: null, cip_confidence: "low", cip_reasoning: "not attempted",
+      };
+      try {
+        const candidates = await findCipCandidates(supabase, row.name, row.field_area);
+        cipInfo = await pickCip(apiKey, { name: row.name, credential: row.credential, field_area: row.field_area }, candidates);
+      } catch (e) {
+        row.review_notes += ` (cip matching failed: ${(e as Error).message})`;
+      }
+      row.cip_code = cipInfo.cip_code;
+      row.field_confidence = { ...(row.field_confidence ?? {}), cip_code: cipInfo.cip_confidence };
+
+      // Derive pgwp_eligible / pgwp_basis by strict rules.
+      // NEVER set pgwp_eligible = "no" here — our CIP table is incomplete.
+      row.pgwp_eligible = null;
+      row.pgwp_basis = null;
+      if (isDegreeCredential(row.credential)) {
+        row.pgwp_eligible = "yes";
+        row.pgwp_basis = "degree_exempt_from_field_requirement";
+      } else if (cipInfo.cip_code && cipInfo.cip_confidence === "high") {
+        // Confirm the code actually exists in cip_codes before asserting.
+        const chk = await supabase.from("cip_codes").select("code").eq("code", cipInfo.cip_code).maybeSingle();
+        if (chk.data?.code) {
+          row.pgwp_eligible = "yes";
+          row.pgwp_basis = "cip_on_list";
+        } else {
+          row.review_notes += ` (cip ${cipInfo.cip_code} not found in cip_codes on re-check)`;
+        }
+      } else if (cipInfo.cip_code) {
+        row.review_notes += ` Tentative CIP match ${cipInfo.cip_code} (confidence ${cipInfo.cip_confidence}) — human review required. Reasoning: ${cipInfo.cip_reasoning}.`;
+      } else {
+        row.review_notes += ` No CIP match found. This is NOT a determination of ineligibility — our cip_codes table does not yet cover all 6 IRCC categories (missing: agriculture/agri-food, education, health care & social services). Human review required.`;
+      }
+
       extractedOk = true;
     } catch (e) {
       row.confidence = "low";
@@ -244,6 +372,9 @@ Deno.serve(async (req) => {
         confidence: data.confidence,
         field_confidence: data.field_confidence,
         source_id: data.source_id,
+        cip_code: data.cip_code,
+        cip_confidence: data.field_confidence?.cip_code ?? null,
+        pgwp_eligible: data.pgwp_eligible,
         pgwp_basis: data.pgwp_basis,
         review_status: data.review_status,
         review_notes: data.review_notes,
