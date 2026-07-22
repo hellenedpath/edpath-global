@@ -710,6 +710,45 @@ export default function Programs() {
               </label>
             )}
           </div>
+
+          {(provinceOptions.length > 0 || showCoopToggle) && (
+            <div className="mt-5 grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
+              {provinceOptions.length > 0 && (
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                    {t("programsPage.filters.provinceLabel")}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Button
+                      size="sm"
+                      variant={province === "all" ? "default" : "outline"}
+                      onClick={() => setProvince("all")}
+                    >
+                      {t("programsPage.filters.allProvinces")}
+                    </Button>
+                    {provinceOptions.map((prov) => (
+                      <Button
+                        key={prov}
+                        size="sm"
+                        variant={province === prov ? "default" : "outline"}
+                        onClick={() => setProvince(prov)}
+                      >
+                        {prov}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {showCoopToggle && (
+                <label className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 cursor-pointer">
+                  <Switch checked={onlyCoop} onCheckedChange={setOnlyCoop} />
+                  <span className="text-sm font-medium">
+                    {t("programsPage.filters.coopOnly")}
+                  </span>
+                </label>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Results */}
