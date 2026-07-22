@@ -44,6 +44,7 @@ const planDefs = [
 ] as const;
 
 const prepareDefs = [
+  { to: "/canada/verificacao", key: "verify" },
   { to: "/canada/alugar", key: "renting" },
   { to: "/canada/golpes-de-aluguel", key: "rentalScams" },
 ] as const;
