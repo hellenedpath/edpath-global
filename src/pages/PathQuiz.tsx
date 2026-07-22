@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams, useLocation, useNavigate } from "react-router-dom";
+import { Link, useSearchParams, useLocation } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -24,6 +24,16 @@ import {
   Globe,
   Mail,
   ExternalLink,
+  Flag,
+  Users,
+  Wallet,
+  ListChecks,
+  Share2,
+  Copy,
+  ClipboardCheck,
+  Shield,
+  MessageCircle,
+  Target,
 } from "lucide-react";
 import IrccNote from "@/components/IrccNote";
 
@@ -127,13 +137,13 @@ type Step = { n: number; Icon: typeof Compass; href?: string };
 
 const STEPS: Step[] = [
   { n: 1, Icon: Compass, href: "/canada" },
-  { n: 2, Icon: Languages, href: "/study-permit" },
-  { n: 3, Icon: BookOpen, href: "/programas" },
+  { n: 2, Icon: Languages, href: "/canada/study-permit" },
+  { n: 3, Icon: BookOpen, href: "/canada/programas" },
   { n: 4, Icon: GraduationCap, href: "/canada/pgwp" },
-  { n: 5, Icon: DollarSign, href: "/custos" },
-  { n: 6, Icon: FileCheck, href: "/study-permit" },
-  { n: 7, Icon: Plane, href: "/trabalho-moradia" },
-  { n: 8, Icon: Home, href: "/trabalho-moradia" },
+  { n: 5, Icon: DollarSign, href: "/canada/custos" },
+  { n: 6, Icon: FileCheck, href: "/canada/study-permit" },
+  { n: 7, Icon: Plane, href: "/canada/trabalho-moradia" },
+  { n: 8, Icon: Home, href: "/canada/trabalho-moradia" },
 ];
 
 function currentStepFromAnswers(a: Answers): number {
