@@ -931,8 +931,8 @@ export default function Programs() {
                                 }
                                 return (
                                   <dd className="min-w-0 flex flex-wrap items-baseline gap-1.5 text-muted-foreground">
-                                    <span className="uppercase tracking-wider text-[10px] font-semibold text-[hsl(var(--crimson))]/80 border border-[hsl(var(--crimson))]/25 rounded px-1 py-px">
-                                      {t("costDisclosure.estimateTag")}
+                                    <span className="uppercase tracking-wider text-[10px] font-semibold text-navy border border-navy/25 rounded px-1 py-px">
+                                      {t("costDisclosure.officialTag")}
                                     </span>
                                     <span className="text-[11px] leading-snug">
                                       {p.tuition_intl_year}
@@ -1146,8 +1146,8 @@ export default function Programs() {
                         }
                         return (
                           <div className="mt-1 space-y-1">
-                            <span className="inline-block uppercase tracking-wider text-[10px] font-semibold text-[hsl(var(--crimson))]/80 border border-[hsl(var(--crimson))]/25 rounded px-1.5 py-0.5">
-                              {t("costDisclosure.estimateTag")}
+                            <span className="inline-block uppercase tracking-wider text-[10px] font-semibold text-navy border border-navy/25 rounded px-1.5 py-0.5">
+                              {t("costDisclosure.officialTag")}
                             </span>
                             <p className="text-sm text-foreground leading-relaxed">
                               {selected.tuition_intl_year}

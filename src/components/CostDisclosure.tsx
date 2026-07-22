@@ -18,18 +18,31 @@ type Props = {
 };
 
 const SOURCE_URL =
-  "https://www.conestogac.on.ca/admissions/paying-your-fees/tuition-fees";
-const SOURCE_DATE = "2026-06-25";
+  "https://www.conestogac.on.ca/international/apply-to-conestoga/fees-and-payment";
+const SOURCE_DATE = "2026-07-11";
 
 type Item = {
   key: string;
   amountKey?: string;
+  noteKey?: string;
   emphasis?: boolean;
 };
 
 const BEFORE: Item[] = [
+  {
+    key: "deposit",
+    amountKey: "depositAmount",
+    noteKey: "depositNote",
+    emphasis: true,
+  },
+  { key: "palWarning", emphasis: true },
   { key: "applicationFee", amountKey: "applicationFeeAmount" },
-  { key: "visaRefusalFee", amountKey: "visaRefusalFeeAmount", emphasis: true },
+  {
+    key: "visaRefusalFee",
+    amountKey: "visaRefusalFeeAmount",
+    noteKey: "visaRefusalNote",
+    emphasis: true,
+  },
 ];
 
 const RECURRING: Item[] = [
@@ -63,33 +76,39 @@ export default function CostDisclosure({ className, defaultOpen = false }: Props
   const renderList = (items: Item[]) => (
     <ul className="mt-2 space-y-1.5">
       {items.map((it) => (
-        <li
-          key={it.key}
-          className={cn(
-            "flex items-start justify-between gap-3 text-sm leading-relaxed",
-            it.emphasis && "text-[hsl(var(--crimson))]",
-          )}
-        >
-          <span className="flex items-start gap-2 min-w-0">
-            {it.emphasis && (
-              <AlertTriangle
-                className="h-3.5 w-3.5 mt-0.5 shrink-0"
-                strokeWidth={1.5}
-              />
+        <li key={it.key} className="space-y-1">
+          <div
+            className={cn(
+              "flex items-start justify-between gap-3 text-sm leading-relaxed",
+              it.emphasis && "text-[hsl(var(--crimson))]",
             )}
-            <span className={cn("min-w-0", !it.emphasis && "text-foreground")}>
-              {t(`costDisclosure.items.${it.key}`)}
-            </span>
-          </span>
-          {it.amountKey && (
-            <span
-              className={cn(
-                "shrink-0 font-medium tabular-nums",
-                it.emphasis ? "text-[hsl(var(--crimson))]" : "text-navy",
+          >
+            <span className="flex items-start gap-2 min-w-0">
+              {it.emphasis && (
+                <AlertTriangle
+                  className="h-3.5 w-3.5 mt-0.5 shrink-0"
+                  strokeWidth={1.5}
+                />
               )}
-            >
-              {t(`costDisclosure.items.${it.amountKey}`)}
+              <span className={cn("min-w-0", !it.emphasis && "text-foreground")}>
+                {t(`costDisclosure.items.${it.key}`)}
+              </span>
             </span>
+            {it.amountKey && (
+              <span
+                className={cn(
+                  "shrink-0 font-medium tabular-nums",
+                  it.emphasis ? "text-[hsl(var(--crimson))]" : "text-navy",
+                )}
+              >
+                {t(`costDisclosure.items.${it.amountKey}`)}
+              </span>
+            )}
+          </div>
+          {it.noteKey && (
+            <p className="text-xs text-muted-foreground leading-relaxed pl-5">
+              {t(`costDisclosure.items.${it.noteKey}`)}
+            </p>
           )}
         </li>
       ))}
@@ -161,6 +180,10 @@ export default function CostDisclosure({ className, defaultOpen = false }: Props
             </h4>
             {renderList(CHANGES)}
           </div>
+
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            {t("costDisclosure.elsNote")}
+          </p>
 
           <div className="space-y-2">
             <SourceBadge

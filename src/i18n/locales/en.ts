@@ -2097,18 +2097,26 @@ export const en = {
     title: "Costs beyond tuition",
     subtitle: "Mandatory fees and scenarios families often discover late",
     intro:
-      "Tuition is only part of the total. These are the costs international students most often discover late. The amounts below reference Conestoga College and are here so you can plan; each institution publishes its own schedule.",
-    estimateTag: "estimate",
+      "Tuition is only part of the total. Tuition figures shown are tuition only; mandatory ancillary fees are additional and pending annual approval. The amounts below are published by Conestoga College for the 2025-26 academic year.",
+    officialTag: "official",
     sections: {
       before: "Before you start",
       recurring: "Mandatory each term",
       changes: "If plans change",
     },
     items: {
+      deposit: "Mandatory deposit to secure your place — non-refundable",
+      depositAmount: "CAD $2,500.00",
+      depositNote:
+        "The deposit counts toward your tuition. It is not refunded if you withdraw — except with a documented visa refusal.",
+      palWarning:
+        "If you received a PAL (Provincial Attestation Letter) from the institution, the deposit is non-refundable even if you withdraw before the deadline.",
       applicationFee: "International application fee",
       applicationFeeAmount: "CAD $101.01",
-      visaRefusalFee: "Visa refusal fee (if the study permit is refused)",
+      visaRefusalFee: "Visa refusal: tuition refunded, less administrative fee",
       visaRefusalFeeAmount: "CAD $200.00",
+      visaRefusalNote:
+        "You must provide the official IRCC refusal letter. The institution may verify it with IRCC.",
       isr: "ISR — International Student Recovery (mandatory for internationals at Ontario colleges)",
       cihip: "CIHIP — mandatory emergency health insurance",
       studentServices: "Student services fee",
@@ -2126,7 +2134,9 @@ export const en = {
       latePayment: "Late payment fee",
       latePaymentAmount: "CAD $150.00",
     },
+    elsNote:
+      "English language studies (ELS), if needed before your main program: CAD $5,500 for 4 months, or CAD $2,750 for 2 months.",
     footnote:
-      "Amounts are set annually in May and vary by campus and program. Program-specific fees (uniforms, supplies, eText) may also apply.",
+      "Values are for the 2025-26 academic year and are subject to change without notice. Mandatory ancillary fees vary by campus and program.",
   },
 };
