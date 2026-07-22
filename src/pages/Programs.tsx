@@ -1118,7 +1118,10 @@ export default function Programs() {
                       <p className="text-xs uppercase tracking-wider text-muted-foreground">
                         {T("Anuidade internacional", "International tuition / year")}
                       </p>
-                      {selected.institutions?.name?.toLowerCase().includes("algonquin") ? (
+                      {(() => {
+                        const tuitionNum = parseNumericTuition(selected.tuition_intl_year);
+                        if (selected.institutions?.name?.toLowerCase().includes("algonquin")) {
+                          return (
                         <a
                           href="https://www.algonquincollege.com/ro/pay/fee-estimator/"
                           target="_blank"
@@ -1128,19 +1131,37 @@ export default function Programs() {
                           {T("Ver tuition no estimador oficial", "See tuition on official estimator")}
                           <ExternalLink className="h-3.5 w-3.5" />
                         </a>
-                      ) : selected.sources?.url ? (
-                        <a
-                          href={`${selected.sources.url}#fees-expenses`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 font-medium text-navy mt-0.5 underline hover:text-crimson"
-                        >
-                          {T("Ver tuition no site oficial", "See tuition on official site")}
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      ) : (
-                        <p className="font-medium text-navy mt-0.5">{selected.tuition_intl_year}</p>
-                      )}
+                          );
+                        }
+                        if (tuitionNum != null) {
+                          return (
+                            <p className="font-medium text-navy mt-0.5">
+                              {formatTuitionNumber(tuitionNum, lang as "pt" | "en")}
+                            </p>
+                          );
+                        }
+                        return (
+                          <div className="mt-1 space-y-1">
+                            <span className="inline-block uppercase tracking-wider text-[10px] font-semibold text-[hsl(var(--crimson))]/80 border border-[hsl(var(--crimson))]/25 rounded px-1.5 py-0.5">
+                              {t("costDisclosure.estimateTag")}
+                            </span>
+                            <p className="text-sm text-foreground leading-relaxed">
+                              {selected.tuition_intl_year}
+                            </p>
+                            {selected.sources?.url && (
+                              <a
+                                href={`${selected.sources.url}#fees-expenses`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-xs font-medium text-navy underline hover:text-crimson"
+                              >
+                                {T("Ver tuition no site oficial", "See tuition on official site")}
+                                <ExternalLink className="h-3 w-3" />
+                              </a>
+                            )}
+                          </div>
+                        );
+                      })()}
                       <p className="text-xs text-muted-foreground mt-1.5">
                         {T(
                           "Valores aproximados; custos extras (livros, seguro, taxas etc.) costumam adicionar US$500–US$1.000/ano.",
