@@ -1,79 +1,80 @@
+# Inspeção do CSV de salários (ESDC 2025) — só relatório
 
-# Teste de viabilidade Job Bank — relato honesto
+Fonte baixada: `2a71-das-wage2025opendata-esdc-all-19nov2025-vf.csv` (Open Government, revisão 2025-11-19).
 
-## 1. NOCs testados
+## 1. Arquivo
 
-- `21231` — Software Engineer / Designer
-- `31303` — Registered Nurse
-- `41300` — Social Worker
-
-Todos os 3 estão sem salário no banco (dos 100 restantes).
-
-## 2. Acesso à URL "por NOC"
-
-**A URL `https://www.jobbank.gc.ca/marketreport/occupation/{noc_code}` NÃO funciona.**
-
-Todas as 3 retornaram HTTP 404 com o mesmo `<h1>HTTP Error 404 - Not Found</h1>`. Também testei outras variantes com o NOC direto no path (`/marketreport/summary-occupation/{noc}/ON`, `/marketreport/wages-occupation/{noc}/on`, `/marketreport/summary/{noc}/on`, `/marketreport/wages/{noc}/on`): **todas 404**.
-
-Ou seja, o link "Job Bank" que o próprio site do EdPath usa hoje como fallback (`https://www.jobbank.gc.ca/marketreport/occupation/{noc_code}`, adicionado na última refatoração da página Programs) **está quebrado** — leva o usuário a uma página de erro.
-
-## 3. URL real da página de salários
-
-O Job Bank usa **IDs internos opacos**, não o NOC, na URL. Descobri o padrão testando um ID conhecido (`17786`):
-
-- **`https://www.jobbank.gc.ca/wagereport/occupation/{internal_id}`** — página nacional com tabela completa por província/região. Server-rendered.
-- **`https://www.jobbank.gc.ca/marketreport/wages-occupation/{internal_id}/{loc_code}`** — mesma tabela filtrada por local. `loc_code` = `ON`, `QC`… ou `geo9219` (Toronto), `geo9193` (Ottawa) etc.
-
-O `internal_id` **não é o NOC**. Exemplo real: `17786` corresponde ao NOC **75119** ("Electric cable network installer helper"). Um NOC pode ter vários `internal_id` (uma linha por título de trabalho específico dentro do NOC).
-
-**Não descobri um endpoint público que aceite `?noc=XXXXX` e devolva o `internal_id` em JSON.** O formulário `/trend-analysis/search-wages?noc=21231&province=ON` só devolve o form em branco — o preenchimento é via typeahead JS que chama um endpoint que ainda não localizei. O endpoint `/jobsearch/jobsuggest` também deu 404.
-
-**Caminhos possíveis** (para você decidir):
-- **(a) Dataset oficial Open Government** — a própria página do Job Bank aponta para `https://open.canada.ca/data/en/dataset/adad580f-76b0-4502-bd05-20c125de9116` como fonte de "Historical wage data and more statistics". Provavelmente contém a tabela NOC → salário sem precisar raspar HTML.
-- **(b) Engenharia reversa do typeahead** de `search-wages` (achar o endpoint XHR que o JS chama).
-- **(c) Mapeamento manual** do subconjunto de NOCs que interessam (~100 linhas — uma vez, à mão).
-
-## 4. Render: server-side ou JS?
-
-**Server-side.** A tabela HTML da `/wagereport/occupation/17786` vem completa no primeiro fetch, sem JavaScript. Exemplo real do HTML (linhas 68–79 da resposta, província Ontário e regiões):
-
-```html
-<th class="province sub_header">Ontario</th>
-<td class="province align-center" headers="... header_min">17.60</td>
-<td class="province align-center" headers="... header_avg">23.00</td>
-<td class="province align-center aaaaa" headers="... header_max">38.96</td>
-...
-<th ...>Toronto Region</th>
-<td ...>17.85</td> <td ...>24.00</td> <td ...>44.23</td>
-<th ...>Ottawa Region</th>
-<td ...>17.60</td> <td ...>23.00</td> <td ...>35.48</td>
-```
-
-Cada linha vem também com um `<section>` de nota que diz literalmente: `Reference period: 2023-2024. Source: Employment Insurance Survey Data`. Data de atualização no cabeçalho: `These wages were updated on November 19, 2025`.
-
-Parse trivial com regex ou HTML parser. Alternativa mais limpa: usar `fetch_website` em modo markdown — o próprio Firecrawl/renderer já entrega uma tabela markdown navegável (a versão em markdown que testei tinha as 13 províncias + ~60 regiões, cada linha com Low/Median/High/Note).
-
-## 5. robots.txt e termos
-
-**robots.txt** de `https://www.jobbank.gc.ca/robots.txt`:
+- Tamanho: **17.981.889 bytes (~17,2 MB)**
+- Linhas: **44.377** (44.376 de dados + 1 cabeçalho)
+- Encoding: UTF-8 com BOM
+- Delimitador: `,`
+- Colunas: **22**, nomes exatos:
 
 ```
-User-agent: *
-Crawl-delay: 5
+1  NOC_CNP
+2  NOC_Title_eng
+3  NOC_Title_fra
+4  prov
+5  ER_Code_Code_RE
+6  ER_Name
+7  Nom_RE
+8  Low_Wage_Salaire_Minium
+9  Median_Wage_Salaire_Median
+10 High_Wage_Salaire_Maximal
+11 Average_Wage_Salaire_Moyen
+12 Quartile1_Wage_Salaire_Quartile1
+13 Quartile3_Wage_Salaire_Quartile3
+14 Source2025_NHQ
+15 Data_Source_E
+16 Data_Source_F
+17 Reference_Period
+18 Revision_Date_Date_revision
+19 Annual_Wage_Flag_Salaire_annuel
+20 Wage_Comment_E
+21 Wage_Comment_F
+22 EmployeesWithNonWageBenefit_Pct
 ```
 
-Nenhum `Disallow`. **Tecnicamente permitido**, com pedido explícito de 5s entre requests.
+## 2. Amostra crua (5 primeiras linhas de dados)
 
-**Termos de uso:** não fui verificar o texto integral dos Terms. O Job Bank é um site do Governo do Canadá; a página do dataset Open Government (linkada dentro da própria página de salários) é distribuída sob licença Open Government (permite reuso com atribuição). Antes de rodar um crawl grande em produção, o correto é ler a página `https://www.jobbank.gc.ca/aboutsite/terms-conditions` — não fiz isso ainda porque você disse para não contornar sem consultar.
+```
+NOC_00010,Legislators,Membres des corps législatifs,NAT,ER00,Canada,Canada,32867,84000,184000,97600,54400,132000,Census 2021 CAN NOC5,2021 Census,Recensement 2021,2021,2025-11-19,1,Wages for this occupation are presented at an annual rate...,Pour cette profession sont présentés au taux annuel...,63.1
+NOC_00010,Legislators,Membres des corps législatifs,NL,ER10,Newfoundland and Labrador,Terre-Neuve-et-Labrador,,99000,,90000,,,Census 2021 PR NOC5,2021 Census,Recensement 2021,2021,2025-11-19,1,Wages for this occupation are presented at an annual rate...,...,
+NOC_00010,Legislators,Membres des corps législatifs,NL,ER1010,Avalon Peninsula,Avalon Peninsula,,,,,,,N/A,NA,NA,NA,2025-11-19,0,"Due to data limitations, the wage for this occupation cannot be published...",...,
+NOC_00010,Legislators,Membres des corps législatifs,NL,ER1020,South Coast--Burin Peninsula,Côte-sud--Burin Peninsula,,,,,,,N/A,NA,NA,NA,2025-11-19,0,"Due to data limitations...",...,
+NOC_00010,Legislators,Membres des corps législatifs,NL,ER1030,West Coast--Northern Peninsula--Labrador,Côte-ouest--Northern Peninsula--Labrador,,,,,,,N/A,NA,NA,NA,2025-11-19,0,"Due to data limitations...",...,
+```
 
-## Recomendação
+## 3. Respostas específicas
 
-**Não conseguimos ir do NOC direto para os salários pela URL.** Existe uma barreira real de mapeamento NOC → internal_id que precisa ser resolvida antes de qualquer pipeline.
+**Código NOC** — coluna `NOC_CNP`, formato `NOC_XXXXX` com prefixo literal `NOC_` + **5 dígitos com zero à esquerda** (ex.: `NOC_00010`, `NOC_22310`). Nosso banco guarda só os 5 dígitos, então o join precisa de `substr(NOC_CNP, 5)`.
 
-**Antes de construir extrator, preciso saber qual caminho seguir:**
+**Salários low / median / high** — `Low_Wage_Salaire_Minium`, `Median_Wage_Salaire_Median`, `High_Wage_Salaire_Maximal` (numéricos, inteiros; podem vir vazios quando a linha é suprimida por limite estatístico). Bônus disponível: `Average_Wage_Salaire_Moyen`, `Quartile1_Wage_Salaire_Quartile1`, `Quartile3_Wage_Salaire_Quartile3`.
 
-1. Investigar o **dataset Open Government** (opção (a)) — se tiver os salários por NOC direto em CSV/JSON, o "extrator" vira um simples download + parse, sem raspar HTML e sem crawl-delay. **É o caminho mais limpo se der certo.**
-2. **Engenharia reversa** do typeahead do search-wages (opção (b)) — mais frágil, depende de endpoint interno não documentado.
-3. **Mapeamento manual** dos ~100 NOCs (opção (c)) — 1–2 horas de trabalho humano, resultado permanente.
+**Hora vs anual** — coluna `Annual_Wage_Flag_Salaire_annuel` marca o modo: `0` = valores por **hora**, `1` = valores **anuais**. Só dois valores distintos no dataset. Alguns NOCs (ex.: legisladores, executivos, professores universitários) vêm como anuais mesmo quando os pares vêm por hora — não dá para assumir uniformidade.
 
-Qual caminho quer que eu explore primeiro? (Sugiro (a).)
+**Regiões** — três níveis conviventes na mesma tabela, distinguíveis pela combinação `prov` × `ER_Code_Code_RE`:
+
+- **Nacional:** `prov = 'NAT'`, `ER_Code = 'ER00'`, `ER_Name = 'Canada'`.
+- **Provincial:** `prov ∈ {AB, BC, MB, NB, NL, NS, NU, NWT, ON, PEI, QC, SK, YK}` (14 códigos, incluindo `NAT`) e `ER_Code` de 4 caracteres (`ER10`, `ER35`, `ER59`, …). Ex.: Ontário inteiro = `prov='ON', ER_Code='ER35', ER_Name='Ontario'`.
+- **Regional (ERs):** mesmo `prov`, mas `ER_Code` de 6 caracteres (`ER3510`, `ER3530`, …). Ex.: Ottawa, Toronto, Halifax aparecem como linhas próprias com ER_Name específico.
+
+Regra prática: `length(ER_Code) = 4` → província inteira; `length(ER_Code) = 6` → região econômica; `prov='NAT'` → Canadá inteiro. `Nom_RE` traz o mesmo nome em francês.
+
+**Período de referência** — colunas `Reference_Period` (`2021`, `2023-2024`, `2024`, `NA`) e `Revision_Date_Date_revision` (todos `2025-11-19` neste dump). `Source2025_NHQ` e `Data_Source_E`/`Data_Source_F` explicam a fonte da linha (Census 2021, EPA, ESDC etc.), útil para gravar em `sources`.
+
+**Bilíngue** — sim, EN e FR conviventes: `NOC_Title_eng`/`NOC_Title_fra`, `ER_Name`/`Nom_RE`, `Data_Source_E`/`Data_Source_F`, `Wage_Comment_E`/`Wage_Comment_F`. Códigos (`NOC_CNP`, `prov`, `ER_Code`, valores numéricos, `Annual_Wage_Flag`) são neutros.
+
+## 4. Cruzamento com nosso banco
+
+- `public.occupations` tem **102 NOCs distintos**.
+- **102 de 102** aparecem no CSV. **Zero faltantes.**
+- Cobertura por linha depende ainda de província/região: várias linhas provinciais e regionais vêm com wage em branco e comentário "Due to data limitations, the wage for this occupation cannot be published. Please refer to the wage published for this occupation at the provincial level." — precisamos decidir fallback (região → província → nacional) na próxima etapa.
+
+## Pontos que exigem decisão antes de carregar
+
+- Unidade: nossa coluna `wage_unit` hoje é livre. O CSV mistura hora e anual por NOC — vamos gravar `Annual_Wage_Flag` como `hourly`/`annual` em `wage_unit`, sem conversão.
+- Granularidade: nosso `UNIQUE (noc_code, province)` só comporta nível provincial. O CSV traz também nacional e regional. Precisamos decidir: (a) importar só provincial + nacional, (b) ampliar o schema para armazenar ER_Code também.
+- Supressão: quando a linha provincial vem vazia, adotar fallback nacional? Ou deixar nulo e mostrar o link do Job Bank como hoje?
+
+Aguardando aprovação para partir para o desenho do importador na próxima rodada.
