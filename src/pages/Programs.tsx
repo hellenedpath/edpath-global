@@ -920,9 +920,26 @@ export default function Programs() {
                               <dt className="text-muted-foreground">
                                 {t("programsPage.card.tuitionLabel")}:
                               </dt>
-                              <dd className="font-medium text-navy">
-                                {p.tuition_intl_year}
-                              </dd>
+                              {(() => {
+                                const num = parseNumericTuition(p.tuition_intl_year);
+                                if (num != null) {
+                                  return (
+                                    <dd className="font-medium text-navy">
+                                      {formatTuitionNumber(num, lang as "pt" | "en")}
+                                    </dd>
+                                  );
+                                }
+                                return (
+                                  <dd className="min-w-0 flex flex-wrap items-baseline gap-1.5 text-muted-foreground">
+                                    <span className="uppercase tracking-wider text-[10px] font-semibold text-[hsl(var(--crimson))]/80 border border-[hsl(var(--crimson))]/25 rounded px-1 py-px">
+                                      {t("costDisclosure.estimateTag")}
+                                    </span>
+                                    <span className="text-[11px] leading-snug">
+                                      {p.tuition_intl_year}
+                                    </span>
+                                  </dd>
+                                );
+                              })()}
                             </div>
                           )}
                           {englishLines.length > 0 && (
