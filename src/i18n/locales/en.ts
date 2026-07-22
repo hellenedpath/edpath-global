@@ -2113,46 +2113,64 @@ export const en = {
   costDisclosure: {
     title: "Costs beyond tuition",
     subtitle: "Mandatory fees and scenarios families often discover late",
-    intro:
-      "Tuition is only part of the total. Tuition figures shown are tuition only; mandatory ancillary fees are additional and pending annual approval. The amounts below are published by Conestoga College for the 2025-26 academic year.",
     officialTag: "official",
     sections: {
       before: "Before you start",
       recurring: "Mandatory each term",
       changes: "If plans change",
     },
-    items: {
-      deposit: "Mandatory deposit to secure your place — non-refundable",
-      depositAmount: "CAD $2,500.00",
-      depositNote:
-        "The deposit counts toward your tuition. It is not refunded if you withdraw — except with a documented visa refusal.",
-      palWarning:
-        "If you received a PAL (Provincial Attestation Letter) from the institution, the deposit is non-refundable even if you withdraw before the deadline.",
+    categories: {
+      deposit: "Mandatory deposit to secure your place",
       applicationFee: "International application fee",
-      applicationFeeAmount: "CAD $101.01",
-      visaRefusalFee: "Visa refusal: tuition refunded, less administrative fee",
-      visaRefusalFeeAmount: "CAD $200.00",
-      visaRefusalNote:
-        "You must provide the official IRCC refusal letter. The institution may verify it with IRCC.",
-      isr: "ISR — International Student Recovery (mandatory for internationals at Ontario colleges)",
-      cihip: "CIHIP — mandatory emergency health insurance",
-      studentServices: "Student services fee",
-      technology: "Technology fee",
-      upass: "U-Pass (public transit, per term)",
-      upassAmount: "CAD $124.91 (Waterloo) · $162.00 (Guelph)",
-      wil: "WIL documentation fee (programs with placements)",
-      wilAmount: "CAD $43 to $115",
-      withdrawalPostSec: "Withdrawal — international post-secondary",
-      withdrawalPostSecAmount: "CAD $2,500.00",
-      withdrawalGradCert: "Withdrawal — international degree or graduate certificate",
-      withdrawalGradCertAmount: "CAD $1,500.00",
-      withdrawalEls: "Withdrawal — international ELS",
-      withdrawalElsAmount: "CAD $750.00",
+      visaRefusal: "Visa refusal refund policy",
+      mandatoryPerTerm:
+        "Mandatory per-term fees (health insurance, student services, technology, transit)",
+      withdrawal: "Withdrawal fees",
       latePayment: "Late payment fee",
-      latePaymentAmount: "CAD $150.00",
     },
-    elsNote:
-      "English language studies (ELS), if needed before your main program: CAD $5,500 for 4 months, or CAD $2,750 for 2 months.",
+    noProfile: {
+      message:
+        "EdPath does not yet have this institution's published figures. These are the cost categories that exist — confirm the amounts on the institution's official fees page.",
+      checkOfficial: "Check the official fees page",
+    },
+    profiles: {
+      conestoga: {
+        intro:
+          "Tuition is only part of the total. Tuition figures shown are tuition only; mandatory ancillary fees are additional and pending annual approval. The amounts below are published by Conestoga College for the 2025-26 academic year.",
+        elsNote:
+          "English language studies (ELS), if needed before your main program: CAD $5,500 for 4 months, or CAD $2,750 for 2 months.",
+        items: {
+          deposit: "Mandatory deposit to secure your place — non-refundable",
+          depositAmount: "CAD $2,500.00",
+          depositNote:
+            "The deposit counts toward your tuition. It is not refunded if you withdraw — except with a documented visa refusal.",
+          palWarning:
+            "If you received a PAL (Provincial Attestation Letter) from the institution, the deposit is non-refundable even if you withdraw before the deadline.",
+          applicationFee: "International application fee",
+          applicationFeeAmount: "CAD $101.01",
+          visaRefusalFee: "Visa refusal: tuition refunded, less administrative fee",
+          visaRefusalFeeAmount: "CAD $200.00",
+          visaRefusalNote:
+            "You must provide the official IRCC refusal letter. The institution may verify it with IRCC.",
+          isr: "ISR — International Student Recovery (mandatory for internationals at Ontario colleges)",
+          cihip: "CIHIP — mandatory emergency health insurance",
+          studentServices: "Student services fee",
+          technology: "Technology fee",
+          upass: "U-Pass (public transit, per term)",
+          upassAmount: "CAD $124.91 (Waterloo) · $162.00 (Guelph)",
+          wil: "WIL documentation fee (programs with placements)",
+          wilAmount: "CAD $43 to $115",
+          withdrawalPostSec: "Withdrawal — international post-secondary",
+          withdrawalPostSecAmount: "CAD $2,500.00",
+          withdrawalGradCert: "Withdrawal — international degree or graduate certificate",
+          withdrawalGradCertAmount: "CAD $1,500.00",
+          withdrawalEls: "Withdrawal — international ELS",
+          withdrawalElsAmount: "CAD $750.00",
+          latePayment: "Late payment fee",
+          latePaymentAmount: "CAD $150.00",
+        },
+      },
+    },
     footnote:
       "Values are for the 2025-26 academic year and are subject to change without notice. Mandatory ancillary fees vary by campus and program.",
   },
