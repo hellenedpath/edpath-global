@@ -1250,7 +1250,7 @@ export default function Programs() {
                   {selected.application_url && (
                     <Button asChild className="bg-crimson hover:bg-crimson/90 text-white">
                       <a href={selected.application_url} target="_blank" rel="noopener noreferrer">
-                        {T("Aplicar no site oficial", "Apply on official site")}
+                        {t("programsPage.card.applyDirect")}
                         <ExternalLink className="h-4 w-4" />
                       </a>
                     </Button>
@@ -1258,7 +1258,15 @@ export default function Programs() {
                   {selected.intl_office_url && (
                     <Button asChild variant="outline">
                       <a href={selected.intl_office_url} target="_blank" rel="noopener noreferrer">
-                        {T("Escritório internacional", "International office")}
+                        {t("programsPage.card.intlOffice")}
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  )}
+                  {selected.book_meeting_url && (
+                    <Button asChild variant="outline">
+                      <a href={selected.book_meeting_url} target="_blank" rel="noopener noreferrer">
+                        {t("programsPage.card.bookMeeting")}
                         <ExternalLink className="h-4 w-4" />
                       </a>
                     </Button>
@@ -1276,6 +1284,13 @@ export default function Programs() {
                     </Button>
                   )}
                 </div>
+                {(selected.application_url ||
+                  selected.intl_office_url ||
+                  selected.book_meeting_url) && (
+                  <p className="text-xs text-muted-foreground italic">
+                    {t("programsPage.card.directNote")}
+                  </p>
+                )}
 
                 <div className="rounded-lg bg-muted/60 border border-border p-3 flex items-start gap-2 text-xs text-muted-foreground">
                   <ShieldCheck className="h-4 w-4 mt-0.5 shrink-0" />
