@@ -122,6 +122,7 @@ export const en = {
       health: "Health",
       family: "Family",
       work: "Work and housing",
+      verify: "Verify",
     },
   },
   footer: {
@@ -1988,6 +1989,91 @@ export const en = {
         "Try broadening the filters, or ask EdPath about programs outside our current database.",
       askAssistant: "Ask EdPath",
       pgwpCta: "Check PGWP for a specific program",
+    },
+  },
+  verify: {
+    eyebrow: "Verify",
+    title: "Confirm before you trust.",
+    subtitle:
+      "EdPath receives no commission from any institution and represents no institution, so it has no reason to hide anything. Confirm each item below directly at the official source, in under two minutes.",
+    checks: {
+      eyebrow: "Four essential checks",
+      title: "Run each one before you pay anything",
+      subtitle:
+        "Every check links to the official source. If one of the four does not add up, stop and ask before moving forward.",
+      step: "Check",
+      action: "How to verify",
+      items: {
+        dli: {
+          title: "Is the school a Designated Learning Institution (DLI)?",
+          why:
+            "Only designated institutions (DLIs) can host international students in Canada, and only some programs at those schools lead to a post-graduation work permit (PGWP).",
+          action:
+            "Search for the exact school name on the official IRCC DLI list. If it is not on the list, studying there does not qualify for a Study Permit.",
+          officialLabel: "Official DLI list (canada.ca)",
+          internalLabel: "See institutions verified by EdPath",
+        },
+        consultant: {
+          title: "Is the immigration consultant licensed?",
+          why:
+            "In Canada, charging for immigration advice is regulated. Only a regulated Canadian immigration consultant (RCIC), an immigration lawyer, or a Quebec notary is allowed to offer that service. Working with an unlicensed \"ghost consultant\" can get an application refused.",
+          action:
+            "Ask for the licence number and confirm it on the CICC public register (College of Immigration and Citizenship Consultants). If the person refuses to share it, treat that as a warning sign.",
+          officialLabel: "CICC public register",
+        },
+        loa: {
+          title: "Is the letter of acceptance (LOA) real?",
+          why:
+            "Fake or altered acceptance letters have been used in scams against international students. The institution is the only source that can confirm whether the letter and the student number actually exist.",
+          action:
+            "Confirm the letter directly with the institution's international office, using contact details taken from the institution's own official website — never from a link, email, or phone sent by a third party.",
+          officialLabel: "How IRCC describes the LOA",
+        },
+        rental: {
+          title: "Is the rental real?",
+          why:
+            "Long-distance rental scams are common against students who are not yet in Canada. A price well below market, pressure to send a deposit fast, and a landlord who refuses a video call are classic warning signs.",
+          action:
+            "Never send a deposit for housing you have not verified. Use your institution's housing office and, if anything feels off, check with the Canadian Anti-Fraud Centre before paying.",
+          officialLabel: "Canadian Anti-Fraud Centre",
+          internalLabel: "EdPath guide on rental scams",
+        },
+      },
+    },
+    questions: {
+      eyebrow: "Before you sign anything",
+      title: "Questions to ask any intermediary",
+      subtitle:
+        "If you are considering paying someone to help with school, housing, or immigration, ask these questions before you pay. Ask for the answers in writing.",
+      items: [
+        "Who pays you, and how much? Does the institution pay commission, does the student pay fees, or both?",
+        "Do I pay the institution directly, or does my money go through you?",
+        "Is my tuition paid to the school in my name, with an official receipt?",
+        "What exactly is included in what I am paying, and what costs extra?",
+        "Are you licensed to give immigration advice? What is your registration number?",
+        "If my application is refused, what happens to the money I have already paid?",
+        "Will you give me all of this in writing, with clear amounts and deadlines?",
+      ],
+    },
+    stance: {
+      eyebrow: "Where EdPath stands",
+      title: "Our commitments, in plain terms",
+      subtitle:
+        "These are EdPath's boundaries. If anything on the platform seems to step outside them, let us know — it is a mistake we want to fix.",
+      items: [
+        "EdPath receives no commission from any institution.",
+        "EdPath does not represent any institution and is not an official partner of any.",
+        "EdPath does not apply on the student's behalf, does not handle payments, and does not process documents. You apply directly with the institution.",
+        "EdPath provides educational information and program orientation, not immigration advice. Immigration decisions should go to a regulated Canadian immigration consultant (RCIC) or an immigration lawyer.",
+        "Every data point on the platform is tied to an official source, with the date it was verified.",
+      ],
+    },
+    next: {
+      title: "Still unsure about something specific?",
+      body:
+        "Ask EdPath about a program, an institution, or a concrete situation. Or start fresh and re-run your path diagnosis.",
+      askAssistant: "Ask EdPath",
+      myPath: "Redo the diagnosis",
     },
   },
 };

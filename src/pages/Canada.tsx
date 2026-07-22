@@ -13,37 +13,37 @@ type Step = {
 };
 
 const steps: Step[] = [
-  { key: "path", to: "/meu-caminho?country=canada", Icon: Compass },
+  { key: "path", to: "/canada/meu-caminho?country=canada", Icon: Compass },
   {
     key: "school",
     to: "/canada/pgwp",
     Icon: GraduationCap,
     alts: [
       { to: "/canada/instituicoes", labelKey: "alt1" },
-      { to: "/programas", labelKey: "alt2" },
+      { to: "/canada/programas", labelKey: "alt2" },
     ],
   },
   {
     key: "costs",
-    to: "/custos",
+    to: "/canada/custos",
     Icon: DollarSign,
-    alts: [{ to: "/simulador-financeiro", labelKey: "alt1" }],
+    alts: [{ to: "/canada/simulador", labelKey: "alt1" }],
   },
-  { key: "visa", to: "/study-permit", Icon: FileCheck },
+  { key: "visa", to: "/canada/study-permit", Icon: FileCheck },
   {
     key: "move",
-    to: "/alugar-no-canada",
+    to: "/canada/alugar",
     Icon: Home,
     alts: [
-      { to: "/golpes-de-aluguel", labelKey: "alt1" },
-      { to: "/trabalho-moradia", labelKey: "alt2" },
+      { to: "/canada/golpes-de-aluguel", labelKey: "alt1" },
+      { to: "/canada/trabalho-moradia", labelKey: "alt2" },
     ],
   },
   {
     key: "arrival",
-    to: "/saude",
+    to: "/canada/saude",
     Icon: MapPin,
-    alts: [{ to: "/familia", labelKey: "alt1" }],
+    alts: [{ to: "/canada/familia", labelKey: "alt1" }],
   },
 ];
 
