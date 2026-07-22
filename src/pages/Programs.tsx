@@ -810,24 +810,31 @@ export default function Programs() {
 
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {filtered.map((p) => {
-                  const complete = isComplete(p);
                   const inst = p.institutions;
-                  const occ = salaryRange(p);
-                  const out = occ ? outlookMeta(occ.outlook, lang) : null;
                   const elig = computeEligibility(p, profile, lang as "pt" | "en");
+                  const stop = (e: React.MouseEvent) => e.stopPropagation();
+                  const englishLines = formatEnglishTests(p.english_admission_tests);
+                  const pgwpLabels = {
+                    eligible: t("programsPage.card.pgwp.eligible"),
+                    notEligible: t("programsPage.card.pgwp.notEligible"),
+                    unconfirmed: t("programsPage.card.pgwp.unconfirmed"),
+                  };
+                  const locationParts = [p.campus_city, inst?.province].filter(Boolean);
                   return (
-                    <button
+                    <article
                       key={p.id}
-                      type="button"
-                      onClick={() => setSelected(p)}
-                      className="group text-left rounded-2xl border border-border bg-card p-5 flex flex-col gap-3 transition-all hover:border-crimson hover:shadow-md cursor-pointer"
+                      className="group rounded-2xl border border-border bg-card p-5 flex flex-col gap-3 transition-all hover:border-crimson hover:shadow-md"
                     >
                       {elig && (
                         <div>
                           <EligibilityBadge e={elig} />
                         </div>
                       )}
-                      <div className="flex items-start justify-between gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setSelected(p)}
+                        className="text-left flex items-start justify-between gap-3 cursor-pointer"
+                      >
                         <div className="min-w-0">
                           <h3 className="font-display font-semibold text-navy leading-snug line-clamp-2">
                             {p.name}
@@ -839,72 +846,193 @@ export default function Programs() {
                             </span>
                           </p>
                         </div>
-                        {p.pgwp_eligible === "yes" && (
-                          <Badge className="shrink-0 bg-emerald-100 text-emerald-800 hover:bg-emerald-100 border-0 gap-1">
-                            <BadgeCheck className="h-3.5 w-3.5" />
-                            PGWP
-                          </Badge>
-                        )}
-                      </div>
+                        <PgwpBadge status={p.pgwp_eligible} labels={pgwpLabels} />
+                      </button>
 
-                      <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
-                        {p.campus_city && (
+                      <div className="flex flex-wrap gap-x-3 gap-y-1.5 text-xs text-muted-foreground">
+                        {locationParts.length > 0 && (
                           <span className="inline-flex items-center gap-1">
-                            <MapPin className="h-3 w-3" />
-                            {p.campus_city}
+                            <MapPin className="h-3 w-3" strokeWidth={1.5} />
+                            {locationParts.join(", ")}
                           </span>
                         )}
                         {p.credential && (
                           <span className="inline-flex items-center gap-1">
-                            <GraduationCap className="h-3 w-3" />
+                            <GraduationCap className="h-3 w-3" strokeWidth={1.5} />
                             {p.credential}
+                          </span>
+                        )}
+                        {p.duration_months != null && (
+                          <span className="inline-flex items-center gap-1">
+                            <Clock className="h-3 w-3" strokeWidth={1.5} />
+                            {t(
+                              p.duration_months === 1
+                                ? "programsPage.card.durationMonth"
+                                : "programsPage.card.durationMonths",
+                              { count: p.duration_months },
+                            )}
+                          </span>
+                        )}
+                        {p.has_coop && (
+                          <span className="inline-flex items-center gap-1">
+                            <Users className="h-3 w-3" strokeWidth={1.5} />
+                            {t("programsPage.card.coop")}
                           </span>
                         )}
                       </div>
 
-                      <div className="mt-auto pt-3 border-t border-border/60 text-xs">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="inline-flex items-center gap-1 text-muted-foreground">
-                            <Briefcase className="h-3.5 w-3.5" />
-                            {T("Salário", "Salary")}
-                          </span>
-                          {occ ? (
-                            <span className="font-medium text-navy">
-                              {occ.salary_low && occ.salary_high
-                                ? `${occ.salary_low} – ${occ.salary_high}`
-                                : occ.salary_median || occ.salary_low || occ.salary_high}
-                            </span>
-                          ) : (
-                            <span className="text-muted-foreground italic">
-                              {T("Ver fonte oficial", "See official source")}
-                            </span>
+                      {(p.tuition_intl_year || englishLines.length > 0) && (
+                        <dl className="grid gap-1.5 text-xs">
+                          {p.tuition_intl_year && (
+                            <div className="flex items-start gap-1.5">
+                              <DollarSign
+                                className="h-3 w-3 mt-0.5 shrink-0 text-navy"
+                                strokeWidth={1.5}
+                              />
+                              <dt className="text-muted-foreground">
+                                {t("programsPage.card.tuitionLabel")}:
+                              </dt>
+                              <dd className="font-medium text-navy">
+                                {p.tuition_intl_year}
+                              </dd>
+                            </div>
+                          )}
+                          {englishLines.length > 0 && (
+                            <div className="flex items-start gap-1.5">
+                              <Languages
+                                className="h-3 w-3 mt-0.5 shrink-0 text-navy"
+                                strokeWidth={1.5}
+                              />
+                              <dt className="text-muted-foreground">
+                                {t("programsPage.card.englishLabel")}:
+                              </dt>
+                              <dd className="text-foreground line-clamp-2">
+                                {englishLines.join(" · ")}
+                              </dd>
+                            </div>
+                          )}
+                        </dl>
+                      )}
+
+                      {/* Direct actions */}
+                      {(p.application_url || p.intl_office_url || p.book_meeting_url) && (
+                        <div className="flex flex-wrap gap-x-3 gap-y-1.5 pt-1 text-xs">
+                          {p.application_url && (
+                            <a
+                              href={p.application_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={stop}
+                              className="inline-flex items-center gap-1 font-medium text-[hsl(var(--crimson))] hover:underline"
+                            >
+                              {t("programsPage.card.applyDirect")}
+                              <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
+                            </a>
+                          )}
+                          {p.intl_office_url && (
+                            <a
+                              href={p.intl_office_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={stop}
+                              className="inline-flex items-center gap-1 text-navy hover:underline"
+                            >
+                              {t("programsPage.card.intlOffice")}
+                              <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
+                            </a>
+                          )}
+                          {p.book_meeting_url && (
+                            <a
+                              href={p.book_meeting_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={stop}
+                              className="inline-flex items-center gap-1 text-navy hover:underline"
+                            >
+                              {t("programsPage.card.bookMeeting")}
+                              <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
+                            </a>
                           )}
                         </div>
-                        <div className="flex items-center justify-between gap-2 mt-1.5">
-                          <span className="inline-flex items-center gap-1 text-muted-foreground">
-                            <TrendingUp className="h-3.5 w-3.5" />
-                            {T("Perspectiva de emprego", "Job outlook")}
+                      )}
+
+                      {/* Verified source line */}
+                      <div className="mt-auto pt-3 border-t border-border/60 text-[11px] text-muted-foreground">
+                        {p.sources?.url ? (
+                          <a
+                            href={p.sources.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={stop}
+                            className="inline-flex items-center gap-1 hover:text-navy hover:underline"
+                          >
+                            <ShieldCheck className="h-3 w-3" strokeWidth={1.5} />
+                            <span>
+                              {t("programsPage.card.verifiedAt")}
+                              {p.sources.valid_as_of
+                                ? " · " +
+                                  t("programsPage.card.verifiedOn", {
+                                    date: p.sources.valid_as_of,
+                                  })
+                                : ""}
+                            </span>
+                            <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
+                          </a>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 italic">
+                            <Info className="h-3 w-3" strokeWidth={1.5} />
+                            {t("programsPage.card.sourcePending")}
                           </span>
-                          {out ? (
-                            <span className={`px-2 py-0.5 rounded-full font-medium ${out.className}`}>
-                              {out.label}
-                            </span>
-                          ) : (
-                            <span className="text-muted-foreground italic">
-                              {T("Ver fonte oficial", "See official source")}
-                            </span>
-                          )}
-                        </div>
+                        )}
                       </div>
-                    </button>
+                    </article>
                   );
                 })}
               </div>
 
               {filtered.length === 0 && (
-                <p className="text-center text-muted-foreground py-16 text-sm">
-                  {T("Nenhum programa encontrado com esses filtros.", "No programs match these filters.")}
-                </p>
+                <div className="mt-6 rounded-2xl border border-navy/15 bg-navy/[0.03] p-8 text-center">
+                  <h3 className="font-display text-lg font-semibold text-navy">
+                    {t("programsPage.empty.title")}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground max-w-lg mx-auto">
+                    {t("programsPage.empty.body")}
+                  </p>
+                  <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        window.dispatchEvent(
+                          new CustomEvent("edpath:open-assistant"),
+                        )
+                      }
+                      className="inline-flex items-center gap-1.5 rounded-md bg-[hsl(var(--crimson))] px-4 py-2 text-sm font-medium text-white hover:bg-[hsl(var(--crimson))]/90 transition-colors"
+                    >
+                      <MessageCircle className="h-4 w-4" strokeWidth={1.5} />
+                      {t("programsPage.empty.askAssistant")}
+                    </button>
+                    <Link
+                      to="/canada/pgwp"
+                      className="inline-flex items-center gap-1.5 text-sm text-navy hover:text-[hsl(var(--azul))] transition-colors underline-offset-4 hover:underline"
+                    >
+                      {t("programsPage.empty.pgwpCta")}
+                      <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+                    </Link>
+                  </div>
+                </div>
+              )}
+
+              {/* Persistent PGWP checker link */}
+              {filtered.length > 0 && (
+                <div className="mt-8 text-center text-sm">
+                  <Link
+                    to="/canada/pgwp"
+                    className="inline-flex items-center gap-1.5 text-navy hover:text-[hsl(var(--azul))] transition-colors underline-offset-4 hover:underline"
+                  >
+                    {t("programsPage.empty.pgwpCta")}
+                    <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+                  </Link>
+                </div>
               )}
             </>
           )}
