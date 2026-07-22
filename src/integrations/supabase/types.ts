@@ -197,12 +197,6 @@ export type Database = {
           salary_median: string | null
           source_id: string | null
           title: string | null
-          wage_high: number | null
-          wage_low: number | null
-          wage_median: number | null
-          wage_region: string | null
-          wage_unit: string | null
-          wage_updated_at: string | null
         }
         Insert: {
           created_at?: string
@@ -215,12 +209,6 @@ export type Database = {
           salary_median?: string | null
           source_id?: string | null
           title?: string | null
-          wage_high?: number | null
-          wage_low?: number | null
-          wage_median?: number | null
-          wage_region?: string | null
-          wage_unit?: string | null
-          wage_updated_at?: string | null
         }
         Update: {
           created_at?: string
@@ -233,12 +221,6 @@ export type Database = {
           salary_median?: string | null
           source_id?: string | null
           title?: string | null
-          wage_high?: number | null
-          wage_low?: number | null
-          wage_median?: number | null
-          wage_region?: string | null
-          wage_unit?: string | null
-          wage_updated_at?: string | null
         }
         Relationships: [
           {
@@ -486,6 +468,72 @@ export type Database = {
           type?: string | null
           url?: string | null
           valid_as_of?: string | null
+        }
+        Relationships: []
+      }
+      wages: {
+        Row: {
+          data_source_en: string | null
+          er_code: string | null
+          geo_level: string
+          id: string
+          imported_at: string
+          noc_code: string
+          prov_code: string | null
+          reference_period: string | null
+          region_name_en: string | null
+          region_name_fr: string | null
+          revision_date: string | null
+          wage_average: number | null
+          wage_comment_en: string | null
+          wage_high: number | null
+          wage_low: number | null
+          wage_median: number | null
+          wage_q1: number | null
+          wage_q3: number | null
+          wage_unit: string
+        }
+        Insert: {
+          data_source_en?: string | null
+          er_code?: string | null
+          geo_level: string
+          id?: string
+          imported_at?: string
+          noc_code: string
+          prov_code?: string | null
+          reference_period?: string | null
+          region_name_en?: string | null
+          region_name_fr?: string | null
+          revision_date?: string | null
+          wage_average?: number | null
+          wage_comment_en?: string | null
+          wage_high?: number | null
+          wage_low?: number | null
+          wage_median?: number | null
+          wage_q1?: number | null
+          wage_q3?: number | null
+          wage_unit: string
+        }
+        Update: {
+          data_source_en?: string | null
+          er_code?: string | null
+          geo_level?: string
+          id?: string
+          imported_at?: string
+          noc_code?: string
+          prov_code?: string | null
+          reference_period?: string | null
+          region_name_en?: string | null
+          region_name_fr?: string | null
+          revision_date?: string | null
+          wage_average?: number | null
+          wage_comment_en?: string | null
+          wage_high?: number | null
+          wage_low?: number | null
+          wage_median?: number | null
+          wage_q1?: number | null
+          wage_q3?: number | null
+          wage_unit?: string
         }
         Relationships: []
       }
