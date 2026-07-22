@@ -2118,6 +2118,10 @@ export const pt = {
     title: "Custos além da mensalidade",
     subtitle: "Taxas obrigatórias e cenários que costumam aparecer depois",
     officialTag: "oficial",
+    refundLink: {
+      question: "E se eu desistir ou meu visto for negado?",
+      cta: "Entenda as regras de reembolso",
+    },
     sections: {
       before: "Antes de começar",
       recurring: "Obrigatórias a cada período",

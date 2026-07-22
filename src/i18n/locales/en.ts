@@ -2115,6 +2115,10 @@ export const en = {
     title: "Costs beyond tuition",
     subtitle: "Mandatory fees and scenarios families often discover late",
     officialTag: "official",
+    refundLink: {
+      question: "What if I withdraw or my permit is refused?",
+      cta: "Understand the refund rules",
+    },
     sections: {
       before: "Before you start",
       recurring: "Mandatory each term",
