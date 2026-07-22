@@ -38,6 +38,7 @@ import {
 } from "@/components/ui/dialog";
 import SourceBadge from "@/components/SourceBadge";
 import VerificationNote from "@/components/VerificationNote";
+import CostDisclosure from "@/components/CostDisclosure";
 
 type Program = {
   id: string;
@@ -151,6 +152,31 @@ function formatEnglishTests(tests: Record<string, unknown> | null): string[] {
     }
     return `${k.toUpperCase()}: ${String(v)}`;
   });
+}
+
+// ---------- Tuition display ----------
+// Values in `tuition_intl_year` may be: numeric-only strings (e.g. "15000",
+// "$15,000", "15000.00"), longer text (estimated ranges in PT/EN), or null.
+function parseNumericTuition(raw: string | null | undefined): number | null {
+  if (!raw) return null;
+  const cleaned = raw.trim();
+  // If it contains any alphabetic letters, treat as text (estimate/range).
+  if (/[A-Za-zÀ-ÿ]/.test(cleaned)) return null;
+  const digits = cleaned.replace(/[^\d.,-]/g, "").replace(/,/g, "");
+  const n = parseFloat(digits);
+  return isFinite(n) && n > 0 ? n : null;
+}
+
+function formatTuitionNumber(n: number, lang: "pt" | "en"): string {
+  try {
+    return new Intl.NumberFormat(lang === "pt" ? "pt-BR" : "en-CA", {
+      style: "currency",
+      currency: "CAD",
+      maximumFractionDigits: 0,
+    }).format(n);
+  } catch {
+    return `CAD $${Math.round(n).toLocaleString()}`;
+  }
 }
 
 // ---------- Eligibility screening ----------
@@ -894,9 +920,26 @@ export default function Programs() {
                               <dt className="text-muted-foreground">
                                 {t("programsPage.card.tuitionLabel")}:
                               </dt>
-                              <dd className="font-medium text-navy">
-                                {p.tuition_intl_year}
-                              </dd>
+                              {(() => {
+                                const num = parseNumericTuition(p.tuition_intl_year);
+                                if (num != null) {
+                                  return (
+                                    <dd className="font-medium text-navy">
+                                      {formatTuitionNumber(num, lang as "pt" | "en")}
+                                    </dd>
+                                  );
+                                }
+                                return (
+                                  <dd className="min-w-0 flex flex-wrap items-baseline gap-1.5 text-muted-foreground">
+                                    <span className="uppercase tracking-wider text-[10px] font-semibold text-[hsl(var(--crimson))]/80 border border-[hsl(var(--crimson))]/25 rounded px-1 py-px">
+                                      {t("costDisclosure.estimateTag")}
+                                    </span>
+                                    <span className="text-[11px] leading-snug">
+                                      {p.tuition_intl_year}
+                                    </span>
+                                  </dd>
+                                );
+                              })()}
                             </div>
                           )}
                           {englishLines.length > 0 && (
@@ -1020,6 +1063,10 @@ export default function Programs() {
           )}
 
           <div className="mt-12">
+            <CostDisclosure />
+          </div>
+
+          <div className="mt-8">
             <VerificationNote />
           </div>
         </div>
@@ -1075,7 +1122,10 @@ export default function Programs() {
                       <p className="text-xs uppercase tracking-wider text-muted-foreground">
                         {T("Anuidade internacional", "International tuition / year")}
                       </p>
-                      {selected.institutions?.name?.toLowerCase().includes("algonquin") ? (
+                      {(() => {
+                        const tuitionNum = parseNumericTuition(selected.tuition_intl_year);
+                        if (selected.institutions?.name?.toLowerCase().includes("algonquin")) {
+                          return (
                         <a
                           href="https://www.algonquincollege.com/ro/pay/fee-estimator/"
                           target="_blank"
@@ -1085,19 +1135,37 @@ export default function Programs() {
                           {T("Ver tuition no estimador oficial", "See tuition on official estimator")}
                           <ExternalLink className="h-3.5 w-3.5" />
                         </a>
-                      ) : selected.sources?.url ? (
-                        <a
-                          href={`${selected.sources.url}#fees-expenses`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 font-medium text-navy mt-0.5 underline hover:text-crimson"
-                        >
-                          {T("Ver tuition no site oficial", "See tuition on official site")}
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      ) : (
-                        <p className="font-medium text-navy mt-0.5">{selected.tuition_intl_year}</p>
-                      )}
+                          );
+                        }
+                        if (tuitionNum != null) {
+                          return (
+                            <p className="font-medium text-navy mt-0.5">
+                              {formatTuitionNumber(tuitionNum, lang as "pt" | "en")}
+                            </p>
+                          );
+                        }
+                        return (
+                          <div className="mt-1 space-y-1">
+                            <span className="inline-block uppercase tracking-wider text-[10px] font-semibold text-[hsl(var(--crimson))]/80 border border-[hsl(var(--crimson))]/25 rounded px-1.5 py-0.5">
+                              {t("costDisclosure.estimateTag")}
+                            </span>
+                            <p className="text-sm text-foreground leading-relaxed">
+                              {selected.tuition_intl_year}
+                            </p>
+                            {selected.sources?.url && (
+                              <a
+                                href={`${selected.sources.url}#fees-expenses`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-xs font-medium text-navy underline hover:text-crimson"
+                              >
+                                {T("Ver tuition no site oficial", "See tuition on official site")}
+                                <ExternalLink className="h-3 w-3" />
+                              </a>
+                            )}
+                          </div>
+                        );
+                      })()}
                       <p className="text-xs text-muted-foreground mt-1.5">
                         {T(
                           "Valores aproximados; custos extras (livros, seguro, taxas etc.) costumam adicionar US$500–US$1.000/ano.",
@@ -1277,6 +1345,8 @@ export default function Programs() {
                     {t("programsPage.card.directNote")}
                   </p>
                 )}
+
+                <CostDisclosure />
 
                 <SourceBadge
                   variant="block"
