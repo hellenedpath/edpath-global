@@ -256,6 +256,7 @@ export type Database = {
           pgwp_english_clb: number | null
           prerequisites: string | null
           source_id: string | null
+          study_permit_eligible: string | null
           tuition_intl_year: string | null
           updated_at: string
         }
@@ -282,6 +283,7 @@ export type Database = {
           pgwp_english_clb?: number | null
           prerequisites?: string | null
           source_id?: string | null
+          study_permit_eligible?: string | null
           tuition_intl_year?: string | null
           updated_at?: string
         }
@@ -308,6 +310,7 @@ export type Database = {
           pgwp_english_clb?: number | null
           prerequisites?: string | null
           source_id?: string | null
+          study_permit_eligible?: string | null
           tuition_intl_year?: string | null
           updated_at?: string
         }
