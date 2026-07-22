@@ -2133,6 +2133,8 @@ export const en = {
       message:
         "EdPath does not yet have this institution's published figures. These are the cost categories that exist — confirm the amounts on the institution's official fees page.",
       checkOfficial: "Check the official fees page",
+      noFeesUrl:
+        "Look for the fees and costs section on the institution's official website.",
     },
     profiles: {
       conestoga: {

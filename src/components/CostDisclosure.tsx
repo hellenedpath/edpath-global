@@ -322,7 +322,7 @@ export default function CostDisclosure({
               </li>
             ))}
           </ul>
-          {officialFeesUrl && (
+          {officialFeesUrl ? (
             <a
               href={officialFeesUrl}
               target="_blank"
@@ -332,6 +332,10 @@ export default function CostDisclosure({
               {t("costDisclosure.noProfile.checkOfficial")}
               <ExternalLink className="h-3.5 w-3.5" strokeWidth={1.5} />
             </a>
+          ) : (
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {t("costDisclosure.noProfile.noFeesUrl")}
+            </p>
           )}
         </div>
       )}
