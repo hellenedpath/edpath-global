@@ -1516,7 +1516,7 @@ export const en = {
         cost: "Typically the most affordable option for international students.",
         admission: "Apply through the district's international program, with set deadlines.",
         housing: "Homestay is the default, coordinated by the district.",
-        diploma: "Official provincial diploma (e.g., BC Dogwood).",
+        diploma: "Official provincial diploma (e.g., BC Dogwood in British Columbia; OSSD in Ontario).",
       },
       private: {
         label: "Private school",
