@@ -592,11 +592,75 @@ export default function PathQuiz() {
   }
 
   // ---------- Result ----------
-  if (finished && destination === "canada") {
-    // Redirect handled by useEffect above; render nothing.
-    return null;
-  }
   if (finished) {
+    // Plan summary chips (only from actual answers).
+    type Chip = { icon: typeof Flag; labelKey: string; valueKey: string };
+    const summaryChips: Chip[] = [];
+    if (answers[2]) summaryChips.push({ icon: Flag, labelKey: "pathQuiz.plan.summary.objective", valueKey: `pathQuiz.questions.q2.options.${answers[2]}` });
+    if (answers[3]) summaryChips.push({ icon: GraduationCap, labelKey: "pathQuiz.plan.summary.level", valueKey: `pathQuiz.questions.q3.options.${answers[3]}` });
+    if (answers[4]) summaryChips.push({ icon: BookOpen, labelKey: "pathQuiz.plan.summary.field", valueKey: `pathQuiz.questions.q4.options.${answers[4]}` });
+    if (answers[5]) summaryChips.push({ icon: Languages, labelKey: "pathQuiz.plan.summary.language", valueKey: `pathQuiz.questions.q5.options.${answers[5]}` });
+    if (answers[6]) summaryChips.push({ icon: Users, labelKey: "pathQuiz.plan.summary.companions", valueKey: `pathQuiz.questions.q6.options.${answers[6]}` });
+    if (answers[7]) summaryChips.push({ icon: Wallet, labelKey: "pathQuiz.plan.summary.budget", valueKey: `pathQuiz.questions.q7.options.${answers[7]}` });
+
+    // Derive next 3 actions in priority order.
+    type NextAction = { key: string; titleKey: string; whyKey: string; href: string; Icon: typeof Languages };
+    const actionCandidates: NextAction[] = [];
+    if (answers[5] === "improve") {
+      actionCandidates.push({
+        key: "language",
+        titleKey: "pathQuiz.plan.nextActions.language.title",
+        whyKey: "pathQuiz.plan.nextActions.language.why",
+        href: "/canada/study-permit",
+        Icon: Languages,
+      });
+    }
+    if (answers[2] === "stay") {
+      actionCandidates.push({
+        key: "pgwp",
+        titleKey: "pathQuiz.plan.nextActions.pgwp.title",
+        whyKey: "pathQuiz.plan.nextActions.pgwp.why",
+        href: "/canada/pgwp",
+        Icon: GraduationCap,
+      });
+    }
+    if (answers[7] && answers[7] !== "planned") {
+      actionCandidates.push({
+        key: "budget",
+        titleKey: "pathQuiz.plan.nextActions.budget.title",
+        whyKey: "pathQuiz.plan.nextActions.budget.why",
+        href: "/canada/simulador",
+        Icon: Wallet,
+      });
+    }
+    const currentStepDef = STEPS.find((s) => s.n === currentStep);
+    if (currentStepDef?.href) {
+      actionCandidates.push({
+        key: `step-${currentStepDef.n}`,
+        titleKey: `pathQuiz.steps.s${currentStepDef.n}.title`,
+        whyKey: "pathQuiz.plan.nextActions.currentStep.why",
+        href: currentStepDef.href,
+        Icon: currentStepDef.Icon,
+      });
+    }
+    const nextActions = actionCandidates.slice(0, 3);
+
+    const copyShareLink = async () => {
+      try {
+        const url = new URL(window.location.href);
+        for (const q of QUESTIONS) {
+          const v = answers[q.id];
+          if (v) url.searchParams.set(`a${q.id}`, v);
+        }
+        if (destination) url.searchParams.set("country", destination);
+        await navigator.clipboard.writeText(url.toString());
+        setShareCopied(true);
+        setTimeout(() => setShareCopied(false), 2000);
+      } catch {
+        /* ignore */
+      }
+    };
+
     return (
       <section className="container py-14 md:py-20 max-w-4xl">
         <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-crimson mb-5">
@@ -609,6 +673,34 @@ export default function PathQuiz() {
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
           {t(objectiveSummaryKey(answers))} {t("pathQuiz.result.intro")}
         </p>
+
+        {/* Plan summary header — derived from answers */}
+        {summaryChips.length > 0 && (
+          <div className="mt-6 rounded-2xl border border-border bg-card p-5 md:p-6">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
+              <Target className="h-3.5 w-3.5" strokeWidth={1.5} />
+              {t("pathQuiz.plan.summary.eyebrow")}
+            </div>
+            <h2 className="mt-1 font-display text-lg md:text-xl font-semibold text-navy">
+              {t("pathQuiz.plan.summary.title")}
+            </h2>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {summaryChips.map((c) => {
+                const Icon = c.icon;
+                return (
+                  <span
+                    key={c.labelKey}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs"
+                  >
+                    <Icon className="h-3.5 w-3.5 text-navy" strokeWidth={1.5} />
+                    <span className="text-muted-foreground">{t(c.labelKey)}:</span>
+                    <span className="font-medium text-navy">{t(c.valueKey)}</span>
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Compatibility Score */}
         {(() => {
@@ -687,6 +779,52 @@ export default function PathQuiz() {
           );
         })()}
 
+        {/* Your next 3 actions */}
+        {nextActions.length > 0 && (
+          <div className="mt-6 rounded-2xl border border-navy/20 bg-navy/[0.03] p-5 md:p-6">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-navy/70">
+              <ListChecks className="h-3.5 w-3.5" strokeWidth={1.5} />
+              {t("pathQuiz.plan.nextActions.eyebrow")}
+            </div>
+            <h2 className="mt-1 font-display text-lg md:text-xl font-semibold text-navy">
+              {t("pathQuiz.plan.nextActions.title")}
+            </h2>
+            <ol className="mt-4 grid gap-3">
+              {nextActions.map((a, i) => {
+                const Icon = a.Icon;
+                return (
+                  <li
+                    key={a.key}
+                    className="flex gap-3 rounded-xl border border-border bg-card p-4"
+                  >
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border text-xs font-semibold text-navy">
+                      {i + 1}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <Icon className="h-4 w-4 text-navy" strokeWidth={1.5} />
+                        <h3 className="font-display font-semibold text-navy">
+                          {t(a.titleKey)}
+                        </h3>
+                      </div>
+                      <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                        {t(a.whyKey)}
+                      </p>
+                      <Link
+                        to={a.href}
+                        className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-crimson hover:underline"
+                      >
+                        {t("pathQuiz.plan.nextActions.cta")}
+                        <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+                      </Link>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+        )}
+
         <div className="mt-6 flex flex-wrap gap-3">
           <Button variant="outline" onClick={reset}>
             <RotateCcw className="mr-2 h-4 w-4" />
@@ -696,9 +834,25 @@ export default function PathQuiz() {
             <Link to="/canada">{t("pathQuiz.result.portalCanada")}</Link>
           </Button>
           <Button asChild variant="outline" className="border-crimson text-crimson hover:bg-crimson/5">
-            <Link to="/simulador-financeiro">{t("pathQuiz.result.simulate")}</Link>
+            <Link to="/canada/simulador">{t("pathQuiz.result.simulate")}</Link>
+          </Button>
+          <Button variant="outline" onClick={copyShareLink}>
+            {shareCopied ? (
+              <>
+                <ClipboardCheck className="mr-2 h-4 w-4" />
+                {t("pathQuiz.plan.share.copied")}
+              </>
+            ) : (
+              <>
+                <Share2 className="mr-2 h-4 w-4" />
+                {t("pathQuiz.plan.share.copy")}
+              </>
+            )}
           </Button>
         </div>
+        <p className="mt-2 text-xs text-muted-foreground">
+          {t("pathQuiz.plan.share.hint")}
+        </p>
 
         {/* Timeline */}
         <div className="mt-12 relative">
