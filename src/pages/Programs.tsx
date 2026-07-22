@@ -397,6 +397,8 @@ export default function Programs() {
   const [onlyPgwp, setOnlyPgwp] = useState(false);
   const [onlyCoop, setOnlyCoop] = useState(false);
   const [selected, setSelected] = useState<Program | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const cipParam = searchParams.get("cip");
 
   // Profile (front-only, not persisted)
   const [profile, setProfile] = useState<Profile>({
@@ -415,13 +417,33 @@ export default function Programs() {
       const { data, error } = await supabase
         .from("programs")
         .select(
-          "id, name, credential, field_area, campus_city, min_grade, prerequisites, english_admission_tests, duration_months, tuition_intl_year, has_coop, pgwp_eligible, pgwp_basis, application_url, intl_office_url, book_meeting_url, source_id, sources!source_id(id, url, valid_as_of), occupation_ids, institution_id, institutions(id, name, display_name, city, province)"
+          "id, name, credential, field_area, campus_city, min_grade, prerequisites, english_admission_tests, duration_months, tuition_intl_year, has_coop, pgwp_eligible, pgwp_basis, application_url, intl_office_url, book_meeting_url, source_id, cip_code, sources!source_id(id, url, valid_as_of), occupation_ids, institution_id, institutions(id, name, display_name, city, province)"
         )
         .order("name", { ascending: true });
       if (error) throw error;
       return data as unknown as Program[];
     },
   });
+
+  const { data: cipInfo } = useQuery({
+    queryKey: ["cip_lookup", cipParam],
+    enabled: !!cipParam,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("cip_codes")
+        .select("code, title")
+        .eq("code", cipParam as string)
+        .maybeSingle();
+      if (error) throw error;
+      return data as { code: string; title: string } | null;
+    },
+  });
+
+  const clearCipFilter = () => {
+    const next = new URLSearchParams(searchParams);
+    next.delete("cip");
+    setSearchParams(next, { replace: true });
+  };
 
   const { data: occupations } = useQuery({
     queryKey: ["occupations-all"],
@@ -480,6 +502,7 @@ export default function Programs() {
   const filtered = useMemo(() => {
     const q = normalize(query);
     return (programs ?? []).filter((p) => {
+      if (cipParam && p.cip_code !== cipParam) return false;
       if (onlyPgwp && p.pgwp_eligible !== "yes") return false;
       if (onlyCoop && !p.has_coop) return false;
       if (province !== "all" && p.institutions?.province !== province) return false;
@@ -497,7 +520,7 @@ export default function Programs() {
       const hay = `${p.name} ${p.institutions?.name ?? ""} ${p.institutions?.display_name ?? ""} ${p.campus_city ?? ""}`;
       return normalize(hay).includes(q);
     });
-  }, [programs, query, area, credential, province, onlyPgwp, onlyCoop, profile, profileActive, eligFilter, lang]);
+  }, [programs, query, area, credential, province, onlyPgwp, onlyCoop, profile, profileActive, eligFilter, lang, cipParam]);
 
   const isComplete = (p: Program) => !!p.tuition_intl_year;
 
