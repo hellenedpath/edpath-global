@@ -36,6 +36,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import SourceBadge from "@/components/SourceBadge";
+import VerificationNote from "@/components/VerificationNote";
 
 type Program = {
   id: string;
@@ -958,32 +960,12 @@ export default function Programs() {
 
                       {/* Verified source line */}
                       <div className="mt-auto pt-3 border-t border-border/60 text-[11px] text-muted-foreground">
-                        {p.sources?.url ? (
-                          <a
-                            href={p.sources.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={stop}
-                            className="inline-flex items-center gap-1 hover:text-navy hover:underline"
-                          >
-                            <ShieldCheck className="h-3 w-3" strokeWidth={1.5} />
-                            <span>
-                              {t("programsPage.card.verifiedAt")}
-                              {p.sources.valid_as_of
-                                ? " · " +
-                                  t("programsPage.card.verifiedOn", {
-                                    date: p.sources.valid_as_of,
-                                  })
-                                : ""}
-                            </span>
-                            <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
-                          </a>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 italic">
-                            <Info className="h-3 w-3" strokeWidth={1.5} />
-                            {t("programsPage.card.sourcePending")}
-                          </span>
-                        )}
+                        <span onClick={stop} onMouseDown={stop}>
+                          <SourceBadge
+                            url={p.sources?.url}
+                            validAsOf={p.sources?.valid_as_of}
+                          />
+                        </span>
                       </div>
                     </article>
                   );
