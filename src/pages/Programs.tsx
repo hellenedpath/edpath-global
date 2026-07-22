@@ -322,6 +322,39 @@ function EligibilityBadge({ e }: { e: Eligibility }) {
   );
 }
 
+// PGWP visual state — never green unless data explicitly says "yes".
+function PgwpBadge({
+  status,
+  labels,
+}: {
+  status: string | null;
+  labels: { eligible: string; notEligible: string; unconfirmed: string };
+}) {
+  const v = (status ?? "").toLowerCase();
+  if (v === "yes") {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-800">
+        <ShieldCheck className="h-3 w-3" strokeWidth={1.5} />
+        {labels.eligible}
+      </span>
+    );
+  }
+  if (v === "no") {
+    return (
+      <span className="inline-flex items-center gap-1 rounded-full border border-[hsl(var(--crimson))]/25 bg-[hsl(var(--crimson))]/10 px-2 py-0.5 text-[11px] font-medium text-[hsl(var(--crimson))]">
+        <ShieldOff className="h-3 w-3" strokeWidth={1.5} />
+        {labels.notEligible}
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full border border-border bg-muted/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+      <Shield className="h-3 w-3" strokeWidth={1.5} />
+      {labels.unconfirmed}
+    </span>
+  );
+}
+
 export default function Programs() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language?.startsWith("pt") ? "pt" : "en";
