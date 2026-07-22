@@ -1507,7 +1507,7 @@ export const pt = {
         },
         {
           title: "Depois, solicite o study permit",
-          desc: "Com a carta de aceitação em mãos, siga o processo oficial de permisso de estudo.",
+          desc: "Com a carta de aceitação em mãos, siga o processo oficial de permissão de estudo (study permit).",
         },
       ],
     },
@@ -1519,7 +1519,7 @@ export const pt = {
         cost: "Custo tipicamente mais acessível entre as opções para internacionais.",
         admission: "Aplicação pelo programa internacional do distrito, com prazos definidos.",
         housing: "Homestay como padrão, coordenada pelo próprio distrito.",
-        diploma: "Diploma provincial oficial (ex.: BC Dofe/Adult Dogwood).",
+        diploma: "Diploma provincial oficial (ex.: BC Dogwood, no British Columbia; OSSD, em Ontário).",
       },
       private: {
         label: "Escola privada",
