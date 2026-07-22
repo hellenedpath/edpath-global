@@ -121,6 +121,7 @@ export const pt = {
       health: "Saúde",
       family: "Família",
       work: "Trabalho e moradia",
+      verify: "Verificação",
     },
   },
   countries: {
