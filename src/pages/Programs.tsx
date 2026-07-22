@@ -1400,7 +1400,7 @@ export default function Programs() {
                     selected.institutions?.name ??
                     null
                   }
-                  officialFeesUrl={selected.intl_office_url ?? null}
+                  officialFeesUrl={null}
                 />
 
                 <SourceBadge

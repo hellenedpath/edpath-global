@@ -2136,6 +2136,8 @@ export const pt = {
       message:
         "A EdPath ainda não tem os valores publicados desta instituição. Estas são as categorias de custo que existem — confirme os valores na página oficial de taxas da instituição.",
       checkOfficial: "Ver a página oficial de taxas",
+      noFeesUrl:
+        "Procure a seção de taxas e custos no site oficial da instituição.",
     },
     profiles: {
       conestoga: {
