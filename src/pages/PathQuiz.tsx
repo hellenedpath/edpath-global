@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams, useLocation, useNavigate } from "react-router-dom";
+import { Link, useSearchParams, useLocation } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -24,6 +24,16 @@ import {
   Globe,
   Mail,
   ExternalLink,
+  Flag,
+  Users,
+  Wallet,
+  ListChecks,
+  Share2,
+  Copy,
+  ClipboardCheck,
+  Shield,
+  MessageCircle,
+  Target,
 } from "lucide-react";
 import IrccNote from "@/components/IrccNote";
 
@@ -127,13 +137,13 @@ type Step = { n: number; Icon: typeof Compass; href?: string };
 
 const STEPS: Step[] = [
   { n: 1, Icon: Compass, href: "/canada" },
-  { n: 2, Icon: Languages, href: "/study-permit" },
-  { n: 3, Icon: BookOpen, href: "/programas" },
+  { n: 2, Icon: Languages, href: "/canada/study-permit" },
+  { n: 3, Icon: BookOpen, href: "/canada/programas" },
   { n: 4, Icon: GraduationCap, href: "/canada/pgwp" },
-  { n: 5, Icon: DollarSign, href: "/custos" },
-  { n: 6, Icon: FileCheck, href: "/study-permit" },
-  { n: 7, Icon: Plane, href: "/trabalho-moradia" },
-  { n: 8, Icon: Home, href: "/trabalho-moradia" },
+  { n: 5, Icon: DollarSign, href: "/canada/custos" },
+  { n: 6, Icon: FileCheck, href: "/canada/study-permit" },
+  { n: 7, Icon: Plane, href: "/canada/trabalho-moradia" },
+  { n: 8, Icon: Home, href: "/canada/trabalho-moradia" },
 ];
 
 function currentStepFromAnswers(a: Answers): number {
@@ -315,7 +325,6 @@ export default function PathQuiz() {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   const countryParam = searchParams.get("country");
   const isCanadaContext =
     (countryParam && DESTINATION_KEYS.includes(countryParam as typeof DESTINATION_KEYS[number])) ||
@@ -325,16 +334,35 @@ export default function PathQuiz() {
     : pathname.startsWith("/canada/")
       ? "canada"
       : null;
-  const [started, setStarted] = useState<boolean>(!!presetDestination);
+
+  // Attempt to restore answers from URL params (share/save link).
+  const restoredAnswers = useMemo<Answers | null>(() => {
+    const out: Answers = {};
+    for (const q of QUESTIONS) {
+      const v = searchParams.get(`a${q.id}`);
+      if (!v || !q.optionKeys.includes(v)) return null;
+      out[q.id] = v;
+    }
+    return out;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const restoredDestination = restoredAnswers ? presetDestination ?? "canada" : null;
+
+  const [started, setStarted] = useState<boolean>(!!presetDestination || !!restoredAnswers);
   const [step, setStep] = useState(0); // 0..QUESTIONS.length-1
-  const [answers, setAnswers] = useState<Answers>({});
-  const [finished, setFinished] = useState(false);
-  const [destination, setDestination] = useState<string | null>(presetDestination);
+  const [answers, setAnswers] = useState<Answers>(restoredAnswers ?? {});
+  const [finished, setFinished] = useState<boolean>(!!restoredAnswers);
+  const [destination, setDestination] = useState<string | null>(
+    restoredDestination ?? presetDestination,
+  );
   const [notifyEmail, setNotifyEmail] = useState("");
   const [notifySubmitted, setNotifySubmitted] = useState(false);
+  const [planWaitlist, setPlanWaitlist] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
 
-  // When quiz completes with Canada destination, store recommended step
-  // and redirect back to the single journey home (/canada) — no separate result page.
+  // When the Canada quiz finishes, store the recommended step so the Canada
+  // portal can react to it. The full result view renders here — no redirect.
   useEffect(() => {
     if (!finished) return;
     if (destination !== "canada") return;
@@ -345,14 +373,13 @@ export default function PathQuiz() {
       accepted: 4,
       arrived: 6,
     };
-    const step = (q1 && map[q1]) || 1;
+    const recommended = (q1 && map[q1]) || 1;
     try {
-      sessionStorage.setItem("canadaJourney.recommendedStep", String(step));
+      sessionStorage.setItem("canadaJourney.recommendedStep", String(recommended));
     } catch {
       /* ignore */
     }
-    navigate("/canada");
-  }, [finished, destination, answers, navigate]);
+  }, [finished, destination, answers]);
 
   const destAvailable = destination ? AVAILABLE_DESTINATIONS.has(destination) : false;
   const destLabel = destination ? t(`pathQuiz.destination.options.${destination}`) : "";
@@ -565,11 +592,75 @@ export default function PathQuiz() {
   }
 
   // ---------- Result ----------
-  if (finished && destination === "canada") {
-    // Redirect handled by useEffect above; render nothing.
-    return null;
-  }
   if (finished) {
+    // Plan summary chips (only from actual answers).
+    type Chip = { icon: typeof Flag; labelKey: string; valueKey: string };
+    const summaryChips: Chip[] = [];
+    if (answers[2]) summaryChips.push({ icon: Flag, labelKey: "pathQuiz.plan.summary.objective", valueKey: `pathQuiz.questions.q2.options.${answers[2]}` });
+    if (answers[3]) summaryChips.push({ icon: GraduationCap, labelKey: "pathQuiz.plan.summary.level", valueKey: `pathQuiz.questions.q3.options.${answers[3]}` });
+    if (answers[4]) summaryChips.push({ icon: BookOpen, labelKey: "pathQuiz.plan.summary.field", valueKey: `pathQuiz.questions.q4.options.${answers[4]}` });
+    if (answers[5]) summaryChips.push({ icon: Languages, labelKey: "pathQuiz.plan.summary.language", valueKey: `pathQuiz.questions.q5.options.${answers[5]}` });
+    if (answers[6]) summaryChips.push({ icon: Users, labelKey: "pathQuiz.plan.summary.companions", valueKey: `pathQuiz.questions.q6.options.${answers[6]}` });
+    if (answers[7]) summaryChips.push({ icon: Wallet, labelKey: "pathQuiz.plan.summary.budget", valueKey: `pathQuiz.questions.q7.options.${answers[7]}` });
+
+    // Derive next 3 actions in priority order.
+    type NextAction = { key: string; titleKey: string; whyKey: string; href: string; Icon: typeof Languages };
+    const actionCandidates: NextAction[] = [];
+    if (answers[5] === "improve") {
+      actionCandidates.push({
+        key: "language",
+        titleKey: "pathQuiz.plan.nextActions.language.title",
+        whyKey: "pathQuiz.plan.nextActions.language.why",
+        href: "/canada/study-permit",
+        Icon: Languages,
+      });
+    }
+    if (answers[2] === "stay") {
+      actionCandidates.push({
+        key: "pgwp",
+        titleKey: "pathQuiz.plan.nextActions.pgwp.title",
+        whyKey: "pathQuiz.plan.nextActions.pgwp.why",
+        href: "/canada/pgwp",
+        Icon: GraduationCap,
+      });
+    }
+    if (answers[7] && answers[7] !== "planned") {
+      actionCandidates.push({
+        key: "budget",
+        titleKey: "pathQuiz.plan.nextActions.budget.title",
+        whyKey: "pathQuiz.plan.nextActions.budget.why",
+        href: "/canada/simulador",
+        Icon: Wallet,
+      });
+    }
+    const currentStepDef = STEPS.find((s) => s.n === currentStep);
+    if (currentStepDef?.href) {
+      actionCandidates.push({
+        key: `step-${currentStepDef.n}`,
+        titleKey: `pathQuiz.steps.s${currentStepDef.n}.title`,
+        whyKey: "pathQuiz.plan.nextActions.currentStep.why",
+        href: currentStepDef.href,
+        Icon: currentStepDef.Icon,
+      });
+    }
+    const nextActions = actionCandidates.slice(0, 3);
+
+    const copyShareLink = async () => {
+      try {
+        const url = new URL(window.location.href);
+        for (const q of QUESTIONS) {
+          const v = answers[q.id];
+          if (v) url.searchParams.set(`a${q.id}`, v);
+        }
+        if (destination) url.searchParams.set("country", destination);
+        await navigator.clipboard.writeText(url.toString());
+        setShareCopied(true);
+        setTimeout(() => setShareCopied(false), 2000);
+      } catch {
+        /* ignore */
+      }
+    };
+
     return (
       <section className="container py-14 md:py-20 max-w-4xl">
         <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-crimson mb-5">
@@ -582,6 +673,34 @@ export default function PathQuiz() {
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
           {t(objectiveSummaryKey(answers))} {t("pathQuiz.result.intro")}
         </p>
+
+        {/* Plan summary header — derived from answers */}
+        {summaryChips.length > 0 && (
+          <div className="mt-6 rounded-2xl border border-border bg-card p-5 md:p-6">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
+              <Target className="h-3.5 w-3.5" strokeWidth={1.5} />
+              {t("pathQuiz.plan.summary.eyebrow")}
+            </div>
+            <h2 className="mt-1 font-display text-lg md:text-xl font-semibold text-navy">
+              {t("pathQuiz.plan.summary.title")}
+            </h2>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {summaryChips.map((c) => {
+                const Icon = c.icon;
+                return (
+                  <span
+                    key={c.labelKey}
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs"
+                  >
+                    <Icon className="h-3.5 w-3.5 text-navy" strokeWidth={1.5} />
+                    <span className="text-muted-foreground">{t(c.labelKey)}:</span>
+                    <span className="font-medium text-navy">{t(c.valueKey)}</span>
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Compatibility Score */}
         {(() => {
@@ -660,6 +779,52 @@ export default function PathQuiz() {
           );
         })()}
 
+        {/* Your next 3 actions */}
+        {nextActions.length > 0 && (
+          <div className="mt-6 rounded-2xl border border-navy/20 bg-navy/[0.03] p-5 md:p-6">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-navy/70">
+              <ListChecks className="h-3.5 w-3.5" strokeWidth={1.5} />
+              {t("pathQuiz.plan.nextActions.eyebrow")}
+            </div>
+            <h2 className="mt-1 font-display text-lg md:text-xl font-semibold text-navy">
+              {t("pathQuiz.plan.nextActions.title")}
+            </h2>
+            <ol className="mt-4 grid gap-3">
+              {nextActions.map((a, i) => {
+                const Icon = a.Icon;
+                return (
+                  <li
+                    key={a.key}
+                    className="flex gap-3 rounded-xl border border-border bg-card p-4"
+                  >
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border text-xs font-semibold text-navy">
+                      {i + 1}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <Icon className="h-4 w-4 text-navy" strokeWidth={1.5} />
+                        <h3 className="font-display font-semibold text-navy">
+                          {t(a.titleKey)}
+                        </h3>
+                      </div>
+                      <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                        {t(a.whyKey)}
+                      </p>
+                      <Link
+                        to={a.href}
+                        className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-crimson hover:underline"
+                      >
+                        {t("pathQuiz.plan.nextActions.cta")}
+                        <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+                      </Link>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+        )}
+
         <div className="mt-6 flex flex-wrap gap-3">
           <Button variant="outline" onClick={reset}>
             <RotateCcw className="mr-2 h-4 w-4" />
@@ -669,9 +834,25 @@ export default function PathQuiz() {
             <Link to="/canada">{t("pathQuiz.result.portalCanada")}</Link>
           </Button>
           <Button asChild variant="outline" className="border-crimson text-crimson hover:bg-crimson/5">
-            <Link to="/simulador-financeiro">{t("pathQuiz.result.simulate")}</Link>
+            <Link to="/canada/simulador">{t("pathQuiz.result.simulate")}</Link>
+          </Button>
+          <Button variant="outline" onClick={copyShareLink}>
+            {shareCopied ? (
+              <>
+                <ClipboardCheck className="mr-2 h-4 w-4" />
+                {t("pathQuiz.plan.share.copied")}
+              </>
+            ) : (
+              <>
+                <Share2 className="mr-2 h-4 w-4" />
+                {t("pathQuiz.plan.share.copy")}
+              </>
+            )}
           </Button>
         </div>
+        <p className="mt-2 text-xs text-muted-foreground">
+          {t("pathQuiz.plan.share.hint")}
+        </p>
 
         {/* Timeline */}
         <div className="mt-12 relative">
@@ -825,6 +1006,62 @@ export default function PathQuiz() {
               );
             })}
           </ol>
+        </div>
+
+        {/* Paid Plan placeholder */}
+        <div className="mt-12 rounded-2xl border-2 border-navy/20 bg-gradient-to-br from-navy/[0.04] to-crimson/[0.04] p-6 md:p-8">
+          <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-crimson">
+            <Sparkles className="h-3.5 w-3.5" strokeWidth={1.5} />
+            {t("pathQuiz.plan.paid.eyebrow")}
+          </div>
+          <h2 className="mt-2 font-display text-2xl md:text-3xl font-semibold text-navy tracking-tight">
+            {t("pathQuiz.plan.paid.title")}
+          </h2>
+          <p className="mt-3 text-base text-muted-foreground leading-relaxed max-w-2xl">
+            {t("pathQuiz.plan.paid.subtitle")}
+          </p>
+          <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
+            {["shortlist", "totalCost", "pgwpStatus", "admission", "contacts"].map((k) => (
+              <li key={k} className="flex gap-2.5 text-sm leading-relaxed text-navy">
+                <Check className="h-4 w-4 mt-0.5 shrink-0 text-crimson" strokeWidth={1.5} />
+                <span>{t(`pathQuiz.plan.paid.includes.${k}`)}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6 flex gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 p-3.5 text-sm leading-relaxed text-amber-900">
+            <Shield className="h-4 w-4 mt-0.5 shrink-0 text-amber-700" strokeWidth={1.5} />
+            <p>{t("pathQuiz.plan.paid.disclaimer")}</p>
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            {planWaitlist ? (
+              <div className="inline-flex items-center gap-2 rounded-md border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-800">
+                <Check className="h-4 w-4" strokeWidth={1.5} />
+                {t("pathQuiz.plan.paid.waitlistThanks")}
+              </div>
+            ) : (
+              <Button
+                onClick={() => setPlanWaitlist(true)}
+                className="bg-crimson hover:bg-crimson/90 text-white"
+              >
+                {t("pathQuiz.plan.paid.waitlistCta")}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            )}
+            <Button
+              variant="outline"
+              onClick={() =>
+                window.dispatchEvent(new CustomEvent("edpath:open-assistant"))
+              }
+            >
+              <MessageCircle className="mr-2 h-4 w-4" />
+              {t("pathQuiz.plan.paid.askAssistant")}
+            </Button>
+          </div>
+          <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
+            {t("pathQuiz.plan.paid.notForSaleNote")}
+          </p>
         </div>
 
         <Alert className="mt-12 border-crimson/40 bg-crimson/5">

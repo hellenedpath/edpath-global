@@ -1374,6 +1374,63 @@ export const en = {
       proofOfFunds: "Proof of funds, official IRCC page",
       spouseWorkPermit: "Spouse work permit, official IRCC page",
     },
+    plan: {
+      summary: {
+        eyebrow: "Your profile",
+        title: "What you told us",
+        objective: "Goal",
+        level: "Intended level",
+        field: "Field",
+        language: "Language",
+        companions: "Who is coming with you",
+        budget: "Budget",
+      },
+      nextActions: {
+        eyebrow: "Your next steps",
+        title: "Your next 3 actions",
+        cta: "Open",
+        language: {
+          title: "Prepare your language test",
+          why: "You indicated you still need to improve your language. Without an official test, you can't apply to most programs.",
+        },
+        pgwp: {
+          title: "Confirm PGWP eligibility",
+          why: "Your goal is to stay in Canada. Before choosing a program, verify whether it qualifies for the post-graduation work permit.",
+        },
+        budget: {
+          title: "Plan the total budget",
+          why: "You don't have the budget locked yet. Simulating tuition, cost of living and proof of funds avoids surprises at application time.",
+        },
+        currentStep: {
+          why: "This is the journey step you are on now — start here so you don't skip ahead.",
+        },
+      },
+      share: {
+        copy: "Save or share this result",
+        copied: "Link copied",
+        hint: "We copied a link with your answers. Save or send it — reopening reproduces this result.",
+      },
+      paid: {
+        eyebrow: "Full EdPath Plan",
+        title: "Turn this roadmap into your study plan",
+        subtitle:
+          "The roadmap above is your free orientation. The full EdPath Plan deepens the analysis with verified data, applied to your profile.",
+        includes: {
+          shortlist: "Verified program shortlist, filtered by your level, field and goal.",
+          totalCost: "Real total-cost projection (tuition, proof of funds, cost of living).",
+          pgwpStatus: "PGWP eligibility status program by program, with official source.",
+          admission: "Admission requirements you must meet (language, prior education, documents).",
+          contacts: "Direct contacts at each institution, so you apply without middlemen.",
+        },
+        disclaimer:
+          "Educational orientation and program guidance. This is NOT immigration advice. Immigration decisions should be taken to a regulated immigration consultant (RCIC) or an immigration lawyer.",
+        waitlistCta: "Notify me when the Plan is available",
+        waitlistThanks: "Thanks — we'll let you know as soon as the Plan is available.",
+        askAssistant: "Talk to the EdPath Assistant",
+        notForSaleNote:
+          "The full Plan is not for sale yet. No price, charge or purchase happens now — only your interest in being notified is recorded.",
+      },
+    },
   },
 
   pgwpChecker: {

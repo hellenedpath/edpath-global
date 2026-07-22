@@ -1377,6 +1377,63 @@ export const pt = {
       proofOfFunds: "Prova de fundos, página oficial do IRCC",
       spouseWorkPermit: "Work permit de cônjuge, página oficial do IRCC",
     },
+    plan: {
+      summary: {
+        eyebrow: "Seu perfil",
+        title: "O que você nos contou",
+        objective: "Objetivo",
+        level: "Nível pretendido",
+        field: "Área",
+        language: "Idioma",
+        companions: "Quem vai com você",
+        budget: "Orçamento",
+      },
+      nextActions: {
+        eyebrow: "Seus próximos passos",
+        title: "Suas 3 próximas ações",
+        cta: "Abrir",
+        language: {
+          title: "Prepare o teste de idioma",
+          why: "Você indicou que precisa melhorar o idioma. Sem teste oficial, você não consegue aplicar para a maior parte dos programas.",
+        },
+        pgwp: {
+          title: "Confirme a elegibilidade PGWP",
+          why: "Seu objetivo é ficar no Canadá. Antes de escolher um programa, verifique se ele dá direito à permissão de trabalho pós-graduação.",
+        },
+        budget: {
+          title: "Planeje o orçamento total",
+          why: "Você ainda não tem o orçamento fechado. Simular tuition, custo de vida e comprovação financeira evita surpresas na aplicação.",
+        },
+        currentStep: {
+          why: "Este é o passo da jornada onde você está agora, comece por aqui para não pular etapas.",
+        },
+      },
+      share: {
+        copy: "Salvar ou compartilhar este resultado",
+        copied: "Link copiado",
+        hint: "Copiamos um link com as suas respostas. Guarde ou envie, ao abrir de novo, o resultado é reproduzido.",
+      },
+      paid: {
+        eyebrow: "Plano EdPath completo",
+        title: "Transforme este roteiro no seu plano de estudo",
+        subtitle:
+          "O roteiro acima é sua orientação gratuita. O Plano EdPath completo aprofunda a análise com dados verificados, aplicados ao seu perfil.",
+        includes: {
+          shortlist: "Shortlist de programas verificados, filtrados pelo seu nível, área e objetivo.",
+          totalCost: "Projeção real de custo total (tuition, comprovação financeira, custo de vida).",
+          pgwpStatus: "Status de elegibilidade PGWP programa a programa, com fonte oficial.",
+          admission: "Requisitos de admissão que você precisa atingir (idioma, escolaridade, documentos).",
+          contacts: "Contatos diretos de cada instituição, para você aplicar sem intermediários.",
+        },
+        disclaimer:
+          "Orientação educacional e sobre programas. NÃO é aconselhamento de imigração. Decisões de imigração devem ser levadas a um consultor de imigração regulamentado (RCIC) ou a um advogado de imigração.",
+        waitlistCta: "Quero ser avisado quando o Plano estiver disponível",
+        waitlistThanks: "Obrigado, avisaremos assim que o Plano estiver disponível.",
+        askAssistant: "Conversar com o Assistente EdPath",
+        notForSaleNote:
+          "O Plano completo ainda não está à venda. Nenhum preço, cobrança ou compra acontece agora, apenas o registro do seu interesse em ser avisado.",
+      },
+    },
   },
 
   pgwpChecker: {
