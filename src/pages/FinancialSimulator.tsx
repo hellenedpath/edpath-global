@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import IrccNote from "@/components/IrccNote";
+import SourceBadge from "@/components/SourceBadge";
+import VerificationNote from "@/components/VerificationNote";
 import {
   AlertTriangle,
   Building2,
@@ -264,6 +266,11 @@ export default function FinancialSimulator() {
                   href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html"
                   linkLabel={t("financialSimulator.proofOfFunds.irccLinkLabel")}
                 />
+                <SourceBadge
+                  variant="block"
+                  url="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html"
+                  validAsOf="2025-09-01"
+                />
               </CardContent>
             </Card>
 
@@ -419,6 +426,8 @@ export default function FinancialSimulator() {
             <Link to="/meu-caminho">{t("financialSimulator.actions.redo")}</Link>
           </Button>
         </div>
+
+        <VerificationNote />
       </section>
     </>
   );

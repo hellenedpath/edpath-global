@@ -5,6 +5,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import bannerInstitutions from "@/assets/banner-institutions.jpg";
+import SourceBadge from "@/components/SourceBadge";
+import VerificationNote from "@/components/VerificationNote";
 
 type Institution = {
   id: string;
@@ -219,20 +221,9 @@ export default function Institutions() {
                   </p>
                 </div>
               </div>
-              <a
-                href={
-                  it.website ??
-                  `https://duckduckgo.com/?q=${encodeURIComponent(
-                    `${it.display_name ?? it.name} official website`,
-                  )}`
-                }
-                target="_blank"
-                rel="noopener noreferrer external"
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(var(--azul))] hover:text-[hsl(var(--crimson))] transition-colors"
-              >
-                {t("institutions.visitSite")}
-                <ExternalLink className="h-3.5 w-3.5" />
-              </a>
+              <div className="mt-4">
+                <SourceBadge url={it.website} />
+              </div>
             </div>
             );
           })}
@@ -247,6 +238,8 @@ export default function Institutions() {
         <p className="mt-12 text-sm text-muted-foreground border-l-2 border-[hsl(var(--crimson))] pl-4 max-w-3xl">
           {t("institutions.note")}
         </p>
+
+        <VerificationNote className="mt-8" />
       </section>
     </>
   );

@@ -36,6 +36,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import SourceBadge from "@/components/SourceBadge";
+import VerificationNote from "@/components/VerificationNote";
 
 type Program = {
   id: string;
@@ -958,32 +960,12 @@ export default function Programs() {
 
                       {/* Verified source line */}
                       <div className="mt-auto pt-3 border-t border-border/60 text-[11px] text-muted-foreground">
-                        {p.sources?.url ? (
-                          <a
-                            href={p.sources.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={stop}
-                            className="inline-flex items-center gap-1 hover:text-navy hover:underline"
-                          >
-                            <ShieldCheck className="h-3 w-3" strokeWidth={1.5} />
-                            <span>
-                              {t("programsPage.card.verifiedAt")}
-                              {p.sources.valid_as_of
-                                ? " · " +
-                                  t("programsPage.card.verifiedOn", {
-                                    date: p.sources.valid_as_of,
-                                  })
-                                : ""}
-                            </span>
-                            <ExternalLink className="h-3 w-3" strokeWidth={1.5} />
-                          </a>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 italic">
-                            <Info className="h-3 w-3" strokeWidth={1.5} />
-                            {t("programsPage.card.sourcePending")}
-                          </span>
-                        )}
+                        <span onClick={stop} onMouseDown={stop}>
+                          <SourceBadge
+                            url={p.sources?.url}
+                            validAsOf={p.sources?.valid_as_of}
+                          />
+                        </span>
                       </div>
                     </article>
                   );
@@ -1036,6 +1018,10 @@ export default function Programs() {
               )}
             </>
           )}
+
+          <div className="mt-12">
+            <VerificationNote />
+          </div>
         </div>
       </section>
 
@@ -1291,6 +1277,12 @@ export default function Programs() {
                     {t("programsPage.card.directNote")}
                   </p>
                 )}
+
+                <SourceBadge
+                  variant="block"
+                  url={selected.sources?.url}
+                  validAsOf={selected.sources?.valid_as_of}
+                />
 
                 <div className="rounded-lg bg-muted/60 border border-border p-3 flex items-start gap-2 text-xs text-muted-foreground">
                   <ShieldCheck className="h-4 w-4 mt-0.5 shrink-0" />
