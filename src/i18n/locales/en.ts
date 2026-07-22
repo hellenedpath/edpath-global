@@ -2211,4 +2211,94 @@ export const en = {
     footnote:
       "Values are for the 2025-26 academic year and are subject to change without notice. Mandatory ancillary fees vary by campus and program.",
   },
+  refunds: {
+    path: "/refunds",
+    eyebrow: "Before you pay",
+    title: "Before you pay: understand the refund rules",
+    subtitle:
+      "If you withdraw, or your study permit is refused, how much of your money comes back? The answer depends on dates — and almost no one explains this before you pay.",
+    intro: {
+      paragraphs: [
+        "Every institution in Canada sets its own refund policy. Amounts differ from school to school and are updated every year.",
+        "But the structure is almost always the same. Once you understand how these policies work, you can read any of them — and you know exactly what to ask before you send your first payment.",
+        "Seven points. Read them before you pay.",
+      ],
+    },
+    points: {
+      eyebrow: "The 7 points",
+      title: "The 7 points that determine how much money you get back",
+      step: "Point",
+      items: [
+        {
+          title: "There is a cut-off date before the term starts",
+          body:
+            "Nearly every institution sets a date — usually at the end of the month before classes begin — that separates two scenarios. Before it, the withdrawal penalty is lower. After it, the penalty increases.\n\nWhat this means in practice: withdrawing on the 30th and withdrawing on the 2nd of the following month can cost very different amounts.",
+        },
+        {
+          title: "There is a deadline after classes begin (commonly \"Day 10\")",
+          body:
+            "Once the term has started, there is usually still a short window — often the first 10 days — when some refund is still possible.\n\nAfter that deadline, most institutions offer no refund at all. In some cases you may also still owe the remaining tuition for the term, even if you never attend.",
+        },
+        {
+          title: "A refused permit is usually treated differently from withdrawing by choice",
+          body:
+            "Most institutions separate two reasons for cancelling: a study permit refused by IRCC, generally carrying a lower penalty; and any other reason, carrying a higher penalty.\n\nThe difference can amount to thousands of dollars. Check what your institution's rule is for each case.",
+        },
+        {
+          title: "The IRCC letter has a deadline for submission",
+          body:
+            "If your permit is refused, having the letter is not enough. Many institutions require it to be submitted within a short window from the date on the letter.\n\nIt is also common for institutions to require that the letter be dated after your most recent letter of acceptance or deferral request.\n\nWatch out: missing this deadline can push you into the higher penalty category, even though your permit was genuinely refused.",
+        },
+        {
+          title: "What if there is no decision in time?",
+          body:
+            "This is the point that catches students off guard most often.\n\nIf IRCC has not decided by the time the term begins, several institutions require you to withdraw anyway in order to keep your refund rights. Waiting for the decision can mean missing the deadline — and the higher penalty may apply even if the refusal arrives afterwards.",
+        },
+        {
+          title: "Health insurance is usually non-refundable",
+          body:
+            "Mandatory health insurance is normally charged separately and, once charged, is rarely returned — even if you withdraw.\n\nThe amount depends on which term you start in (students starting in September typically pay for the full year; those starting in January or May usually pay a prorated amount).",
+        },
+        {
+          title: "Deferral has its own rules — and limits",
+          body:
+            "Postponing your start is often better than cancelling, but conditions almost always apply: usually only one deferral per student; it must be to the same program, at the same campus; fees generally must be paid in full, since partial payments do not qualify; and if your permit was refused, many institutions do not allow a deferral at all — withdrawal becomes the only option.",
+        },
+      ],
+    },
+    extras: {
+      title: "Two more things worth knowing",
+      items: [
+        {
+          title: "Money goes back to whoever paid",
+          body:
+            "If someone paid on your behalf, or the payment came from outside Canada, the refund returns through the same channel. Institutions generally do not transfer funds to another school.",
+        },
+        {
+          title: "Not showing up is not withdrawing",
+          body:
+            "Simply not attending does not count as a formal withdrawal. Fees remain owed. To qualify for any refund, you must withdraw officially, within the deadline.",
+        },
+      ],
+    },
+    checklist: {
+      eyebrow: "Checklist",
+      title: "5 questions to ask before you pay",
+      subtitle:
+        "Send these questions in writing to the institution's international office. Keep the reply.",
+      items: [
+        "What is the reduced-penalty withdrawal deadline for my starting term?",
+        "What is the penalty if I withdraw for personal reasons — and what is it if my study permit is refused?",
+        "If my permit is refused, how many days do I have to submit the IRCC letter? And what happens if there is still no decision when the term starts?",
+        "Is health insurance refundable? How much is charged for my starting term?",
+        "Can I defer instead of withdrawing? How many times, and under what conditions?",
+      ],
+    },
+    disclaimer: {
+      paragraphs: [
+        "This page explains how refund policies generally work in Canada. It does not replace your institution's official policy. Amounts, deadlines and rules are set by each institution and change periodically.",
+        "Always check your institution's official document before making any payment. This guidance is informational and does not confirm your individual case.",
+      ],
+    },
+  },
 };
