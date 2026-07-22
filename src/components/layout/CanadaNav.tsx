@@ -31,10 +31,12 @@ type Group = { title: string; items: Item[] };
 const primaryTo = "/canada/meu-caminho?country=canada";
 const highSchoolTo = "/canada/ensino-medio";
 
-const chooseDefs = [
+const discoverDefs = [
+  { to: primaryTo, key: "myPath", primary: true },
   { to: "/canada/programas", key: "programs" },
   { to: "/canada/instituicoes", key: "institutions" },
   { to: "/canada/pgwp", key: "pgwp" },
+  { to: "/canada/ensino-medio", key: "highSchools" },
 ] as const;
 
 const planDefs = [
@@ -49,7 +51,7 @@ const prepareDefs = [
   { to: "/canada/golpes-de-aluguel", key: "rentalScams" },
 ] as const;
 
-const arriveDefs = [
+const liveDefs = [
   { to: "/canada/saude", key: "health" },
   { to: "/canada/familia", key: "family" },
   { to: "/canada/trabalho-moradia", key: "work" },
