@@ -302,13 +302,13 @@ Deno.serve(async (req) => {
       row.pgwp_eligible = null;
       row.pgwp_basis = null;
       if (isDegreeCredential(row.credential)) {
-        row.pgwp_eligible = "yes";
+        row.pgwp_eligible = true;
         row.pgwp_basis = "degree_exempt_from_field_requirement";
       } else if (cipInfo.cip_code && cipInfo.cip_confidence === "high") {
         // Confirm the code actually exists in cip_codes before asserting.
         const chk = await supabase.from("cip_codes").select("code").eq("code", cipInfo.cip_code).maybeSingle();
         if (chk.data?.code) {
-          row.pgwp_eligible = "yes";
+          row.pgwp_eligible = true;
           row.pgwp_basis = "cip_on_list";
         } else {
           row.review_notes += ` (cip ${cipInfo.cip_code} not found in cip_codes on re-check)`;
