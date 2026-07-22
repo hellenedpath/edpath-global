@@ -1008,6 +1008,62 @@ export default function PathQuiz() {
           </ol>
         </div>
 
+        {/* Paid Plan placeholder */}
+        <div className="mt-12 rounded-2xl border-2 border-navy/20 bg-gradient-to-br from-navy/[0.04] to-crimson/[0.04] p-6 md:p-8">
+          <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-crimson">
+            <Sparkles className="h-3.5 w-3.5" strokeWidth={1.5} />
+            {t("pathQuiz.plan.paid.eyebrow")}
+          </div>
+          <h2 className="mt-2 font-display text-2xl md:text-3xl font-semibold text-navy tracking-tight">
+            {t("pathQuiz.plan.paid.title")}
+          </h2>
+          <p className="mt-3 text-base text-muted-foreground leading-relaxed max-w-2xl">
+            {t("pathQuiz.plan.paid.subtitle")}
+          </p>
+          <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
+            {["shortlist", "totalCost", "pgwpStatus", "admission", "contacts"].map((k) => (
+              <li key={k} className="flex gap-2.5 text-sm leading-relaxed text-navy">
+                <Check className="h-4 w-4 mt-0.5 shrink-0 text-crimson" strokeWidth={1.5} />
+                <span>{t(`pathQuiz.plan.paid.includes.${k}`)}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6 flex gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 p-3.5 text-sm leading-relaxed text-amber-900">
+            <Shield className="h-4 w-4 mt-0.5 shrink-0 text-amber-700" strokeWidth={1.5} />
+            <p>{t("pathQuiz.plan.paid.disclaimer")}</p>
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            {planWaitlist ? (
+              <div className="inline-flex items-center gap-2 rounded-md border border-emerald-500/40 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-800">
+                <Check className="h-4 w-4" strokeWidth={1.5} />
+                {t("pathQuiz.plan.paid.waitlistThanks")}
+              </div>
+            ) : (
+              <Button
+                onClick={() => setPlanWaitlist(true)}
+                className="bg-crimson hover:bg-crimson/90 text-white"
+              >
+                {t("pathQuiz.plan.paid.waitlistCta")}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            )}
+            <Button
+              variant="outline"
+              onClick={() =>
+                window.dispatchEvent(new CustomEvent("edpath:open-assistant"))
+              }
+            >
+              <MessageCircle className="mr-2 h-4 w-4" />
+              {t("pathQuiz.plan.paid.askAssistant")}
+            </Button>
+          </div>
+          <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
+            {t("pathQuiz.plan.paid.notForSaleNote")}
+          </p>
+        </div>
+
         <Alert className="mt-12 border-crimson/40 bg-crimson/5">
           <AlertTriangle className="h-5 w-5 text-crimson" />
           <AlertTitle className="font-display text-navy">{t("pathQuiz.result.importantTitle")}</AlertTitle>
