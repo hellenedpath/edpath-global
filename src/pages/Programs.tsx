@@ -1172,19 +1172,9 @@ export default function Programs() {
                       </p>
                       {(() => {
                         const tuitionNum = parseNumericTuition(selected.tuition_intl_year);
-                        if (selected.institutions?.name?.toLowerCase().includes("algonquin")) {
-                          return (
-                        <a
-                          href="https://www.algonquincollege.com/ro/pay/fee-estimator/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 font-medium text-navy mt-0.5 underline hover:text-crimson"
-                        >
-                          {T("Ver tuition no estimador oficial", "See tuition on official estimator")}
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                          );
-                        }
+                        const isAlgonquin = selected.institutions?.name
+                          ?.toLowerCase()
+                          .includes("algonquin");
                         if (tuitionNum != null) {
                           return (
                             <p className="font-medium text-navy mt-0.5">
@@ -1200,7 +1190,17 @@ export default function Programs() {
                             <p className="text-sm text-foreground leading-relaxed">
                               {selected.tuition_intl_year}
                             </p>
-                            {selected.sources?.url && (
+                            {isAlgonquin ? (
+                              <a
+                                href="https://www.algonquincollege.com/ro/pay/fee-estimator/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-xs font-medium text-navy underline hover:text-crimson"
+                              >
+                                {T("Ver estimador oficial de taxas", "See official fee estimator")}
+                                <ExternalLink className="h-3 w-3" />
+                              </a>
+                            ) : selected.sources?.url && (
                               <a
                                 href={`${selected.sources.url}#fees-expenses`}
                                 target="_blank"

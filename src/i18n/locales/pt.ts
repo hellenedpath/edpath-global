@@ -2120,6 +2120,7 @@ export const pt = {
     sections: {
       before: "Antes de começar",
       recurring: "Obrigatórias a cada período",
+      housing: "Custos de moradia",
       changes: "Se algo mudar",
     },
     categories: {
@@ -2171,6 +2172,39 @@ export const pt = {
           withdrawalElsAmount: "CAD $750,00",
           latePayment: "Multa por pagamento em atraso",
           latePaymentAmount: "CAD $150,00",
+        },
+      },
+      algonquin: {
+        intro:
+          "A anuidade publicada pela Algonquin College para estudantes internacionais já inclui seguro-saúde, U-Pass (passe de ônibus), acesso ao centro esportivo e taxas de acesso estudantil. Isso é diferente de outras instituições, que cobram esses itens à parte. Os valores abaixo são publicados pela própria instituição.",
+        optionalNote:
+          "A instituição também estima itens opcionais: roupas CAD $800 e diversos CAD $1.150 por ano.",
+        items: {
+          tuition: "Anuidade e taxas obrigatórias, ano letivo de 8 meses",
+          tuitionAmount: "CAD $17.225 – $22.000",
+          tuitionNote:
+            "Inclui seguro-saúde, U-Pass, centro esportivo e taxas de acesso estudantil.",
+          learningResources: "Recursos didáticos e material escolar",
+          learningResourcesAmount: "CAD $200 – $1.000",
+          homestayFirst:
+            "Homestay, primeiro mês (inclui taxa administrativa e de registro de $380)",
+          homestayFirstAmount: "CAD $1.586,25",
+          homestayFirstNote: "",
+          homestaySubsequent:
+            "Homestay, meses seguintes em média, acomodação e 3 refeições/dia",
+          homestaySubsequentAmount: "CAD $1.201,25",
+          residenceAccommodation: "Residência estudantil, 8 meses, acomodação",
+          residenceAccommodationAmount: "CAD $12.460",
+          residenceMealPlan: "Residência, plano de refeições obrigatório",
+          residenceMealPlanAmount: "CAD $4.397",
+          residenceTotal: "Residência total, 8 meses",
+          residenceTotalAmount: "CAD $16.857",
+          offCampus:
+            "Fora do campus, quarto em apartamento compartilhado de 2 quartos, por mês (estimativa, varia)",
+          offCampusAmount: "CAD $1.200 – $1.500",
+          refundPolicy:
+            "Política de cancelamento e reembolso: a EdPath ainda não verificou os valores da Algonquin. Consulte a política oficial do Registrar's Office antes de pagar qualquer valor.",
+          refundPolicyLink: "Ver política oficial do Registrar's Office",
         },
       },
     },

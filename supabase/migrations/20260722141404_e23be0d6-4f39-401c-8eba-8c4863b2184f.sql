@@ -1,0 +1,1 @@
+UPDATE programs SET tuition_intl_year = 'CAD $17.225 a $22.000 por ano letivo (8 meses), conforme o programa. Já inclui seguro-saúde, U-Pass e centro esportivo. Confirme o valor exato no estimador oficial.' WHERE institution_id IN (SELECT id FROM institutions WHERE lower(name) LIKE '%algonquin%');
