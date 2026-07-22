@@ -1454,6 +1454,8 @@ export const en = {
       stem: "STEM / Science and Technology",
       trade: "Trades",
       health: "Health",
+      health_care: "Health care and social services",
+      education: "Education",
       agriculture: "Agriculture",
       transport: "Transport",
       other: "Other",
@@ -1461,7 +1463,7 @@ export const en = {
     coverage: {
       label: "Current data coverage:",
       body:
-        "this tool currently covers the fields of <strong>STEM, Trades and Transport</strong>. We are adding other categories such as Health, Education and Agriculture. If you don't find your field, it may not yet have been included, <strong>this does not mean it is not eligible</strong>. Always confirm on the <link>official IRCC list</link>.",
+        "this tool covers all <strong>six official categories</strong> of PGWP-eligible fields of study from IRCC: STEM, Trades, Transport, Health care and social services, Education and Agriculture. This is <strong>guidance</strong>; the final decision is always made by IRCC. Always confirm on the <link>official IRCC list</link>.",
     },
     results: {
       loading: "Loading fields of study...",
