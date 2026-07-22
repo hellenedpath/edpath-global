@@ -394,6 +394,20 @@ export default function Programs() {
     [programs]
   );
 
+  const provinceOptions = useMemo(() => {
+    const set = new Set<string>();
+    (programs ?? []).forEach((p) => {
+      const prov = p.institutions?.province;
+      if (prov) set.add(prov);
+    });
+    return Array.from(set).sort();
+  }, [programs]);
+
+  const showCoopToggle = useMemo(
+    () => (programs ?? []).some((p) => p.has_coop),
+    [programs]
+  );
+
   const credentials = useMemo(() => {
     const set = new Set<string>();
     (programs ?? []).forEach((p) => p.credential && set.add(p.credential));
@@ -404,6 +418,8 @@ export default function Programs() {
     const q = normalize(query);
     return (programs ?? []).filter((p) => {
       if (onlyPgwp && p.pgwp_eligible !== "yes") return false;
+      if (onlyCoop && !p.has_coop) return false;
+      if (province !== "all" && p.institutions?.province !== province) return false;
       if (credential !== "all" && p.credential !== credential) return false;
       if (area !== "all") {
         const k = areaKey(p.field_area) ?? inferArea(p);
@@ -415,10 +431,10 @@ export default function Programs() {
         if (eligFilter === "yellow" && e?.status !== "yellow") return false;
       }
       if (!q) return true;
-      const hay = `${p.name} ${p.institutions?.name ?? ""} ${p.campus_city ?? ""}`;
+      const hay = `${p.name} ${p.institutions?.name ?? ""} ${p.institutions?.display_name ?? ""} ${p.campus_city ?? ""}`;
       return normalize(hay).includes(q);
     });
-  }, [programs, query, area, credential, onlyPgwp, profile, profileActive, eligFilter, lang]);
+  }, [programs, query, area, credential, province, onlyPgwp, onlyCoop, profile, profileActive, eligFilter, lang]);
 
   const isComplete = (p: Program) => !!p.tuition_intl_year;
 
