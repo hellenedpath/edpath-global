@@ -141,7 +141,8 @@ function HoverDropdown({
                       }}
                       className={cn(
                         "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
-                      activePath === pathOf(it.to) && "text-foreground font-medium",
+                       activePath === pathOf(it.to) && "text-foreground font-medium",
+                       it.primary && "text-[hsl(var(--crimson))] font-semibold focus:text-[hsl(var(--crimson))]",
                       )}
                     >
                       {it.label}
@@ -160,6 +161,7 @@ function HoverDropdown({
                   className={cn(
                     "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
                   activePath === pathOf(it.to) && "text-foreground font-medium",
+                  it.primary && "text-[hsl(var(--crimson))] font-semibold focus:text-[hsl(var(--crimson))]",
                   )}
                 >
                   {it.label}
