@@ -1879,6 +1879,9 @@ export const en = {
       body: "International students are a primary target. Know the red flags before you pay anything.",
       button: "How to spot rental scams →",
     },
+    safeSection: {
+      title: "Rent safely",
+    },
     sources: {
       statcan: "Statistics Canada, Rent",
       rentalsCa: "Rentals.ca National Rent Report",

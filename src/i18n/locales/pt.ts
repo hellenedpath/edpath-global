@@ -1882,6 +1882,9 @@ export const pt = {
       body: "Estudante internacional é alvo primário. Conheça os sinais antes de pagar qualquer coisa.",
       button: "Como identificar golpes de aluguel →",
     },
+    safeSection: {
+      title: "Alugue com segurança",
+    },
     sources: {
       statcan: "Statistics Canada, Aluguel",
       rentalsCa: "Rentals.ca National Rent Report",
