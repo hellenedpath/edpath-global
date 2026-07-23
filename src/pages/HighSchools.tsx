@@ -98,6 +98,10 @@ export default function HighSchools() {
       maximumFractionDigits: 0,
     }).format(value);
 
+  const formatNumber = (value: number) =>
+    new Intl.NumberFormat("en-CA").format(value);
+
+
   useEffect(() => {
     (async () => {
       const { data, error } = await supabase
