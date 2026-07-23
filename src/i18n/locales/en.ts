@@ -5,6 +5,7 @@ export const en = {
     destinations: "Destinations",
     myPath: "My path",
     cta: "Get started",
+    discoverMyPath: "Discover my path",
     programs: "Explore programs",
     pgwp: "PGWP checker",
     before: "Before you start",
