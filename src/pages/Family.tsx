@@ -16,14 +16,14 @@ import {
 } from "lucide-react";
 
 type DaycareRow = { province: string; cost: string; portal: string; portalUrl: string };
-type SchoolType = { title: string; body: string };
+type SchoolProvince = { province: string; body: string };
 
 export default function Family() {
   const { t } = useTranslation();
 
   const daycareRows = t("family.daycare.rows", { returnObjects: true }) as unknown as DaycareRow[];
   const daycareSteps = t("family.daycare.steps", { returnObjects: true }) as unknown as string[];
-  const schoolTypes = t("family.school.types", { returnObjects: true }) as unknown as SchoolType[];
+  const schoolProvinces = t("family.school.provinces", { returnObjects: true }) as unknown as SchoolProvince[];
   const enrollSteps = t("family.school.enrollSteps", { returnObjects: true }) as unknown as string[];
 
   return (
@@ -166,14 +166,17 @@ export default function Family() {
         <h3 className="mt-12 font-display text-xl font-semibold text-navy">
           {t("family.school.typesTitle")}
         </h3>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          {schoolTypes.map((type) => (
-            <Card key={type.title} className="border-border">
+        <p className="mt-4 text-muted-foreground leading-relaxed max-w-3xl">
+          {t("family.school.typesIntro")}
+        </p>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {schoolProvinces.map((p) => (
+            <Card key={p.province} className="border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="font-display text-base text-navy">{type.title}</CardTitle>
+                <CardTitle className="font-display text-base text-navy">{p.province}</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground leading-relaxed">
-                {type.body}
+                {p.body}
               </CardContent>
             </Card>
           ))}
