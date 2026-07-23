@@ -858,6 +858,65 @@ export default function Costs() {
         </div>
       </section>
 
+      {/* Refund policy — merged from former /reembolso page */}
+      <section className="bg-white border-y border-border">
+        <div className="container py-16 md:py-20 max-w-4xl">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="inline-flex items-center justify-center w-10 h-10 text-crimson">
+              <Receipt className="w-5 h-5" />
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl text-navy font-semibold">
+              {t("costs.refundSection.title")}
+            </h2>
+          </div>
+
+          <div className="space-y-4 text-muted-foreground leading-relaxed">
+            {(t("refunds.intro.paragraphs", { returnObjects: true }) as string[]).map(
+              (p, i) => (
+                <p key={i}>{p}</p>
+              ),
+            )}
+          </div>
+
+          <div className="mt-10 rounded-lg bg-navy text-white p-6 md:p-8">
+            <div className="text-xs uppercase tracking-widest text-white/70 mb-2">
+              {t("refunds.checklist.eyebrow")}
+            </div>
+            <h3 className="font-display text-xl md:text-2xl font-semibold">
+              {t("refunds.checklist.title")}
+            </h3>
+            <p className="mt-3 text-white/80 leading-relaxed">
+              {t("refunds.checklist.subtitle")}
+            </p>
+            <ol className="mt-6 space-y-3">
+              {(t("refunds.checklist.items", { returnObjects: true }) as string[]).map(
+                (q, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-4 rounded-md border border-white/15 bg-white/[0.04] p-4"
+                  >
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-crimson/70 text-xs font-semibold text-crimson">
+                      {i + 1}
+                    </span>
+                    <span className="text-white leading-relaxed text-sm">{q}</span>
+                  </li>
+                ),
+              )}
+            </ol>
+          </div>
+
+          <div className="mt-6 space-y-3">
+            {(t("refunds.disclaimer.paragraphs", { returnObjects: true }) as string[]).map(
+              (p, i) => (
+                <p key={i} className="text-sm text-muted-foreground leading-relaxed">
+                  {p}
+                </p>
+              ),
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* Disclaimer */}
       <section className="container py-16 max-w-3xl">
         <Alert className="border-crimson/40 bg-crimson/5">

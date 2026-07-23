@@ -1,8 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
 import bannerRenting from "@/assets/banner-renting.jpg";
 import {
   AlertTriangle,
@@ -11,10 +9,13 @@ import {
   CreditCard,
   ExternalLink,
   FileText,
+  Flag,
   KeyRound,
   Landmark,
+  LifeBuoy,
   ShieldAlert,
   ShieldCheck,
+  Sparkles,
   Users,
 } from "lucide-react";
 
@@ -37,6 +38,8 @@ export default function Renting() {
   const oneBedRows = t("renting.types.oneBed.rows", { returnObjects: true }) as string[];
   const twoBedRows = t("renting.types.twoBed.rows", { returnObjects: true }) as string[];
   const rights = t("renting.rights.items", { returnObjects: true }) as string[];
+  const redFlags = t("rentalScams.redFlags.items", { returnObjects: true }) as string[];
+  const protectItems = t("rentalScams.protect.items", { returnObjects: true }) as string[];
 
   return (
     <>
@@ -308,19 +311,122 @@ export default function Renting() {
         </div>
       </section>
 
-      {/* CTA to scams */}
-      <section className="container py-16 max-w-4xl">
-        <div className="rounded-lg bg-navy text-white p-8 md:p-10 text-center">
-          <ShieldAlert className="mx-auto h-8 w-8 text-crimson" />
-          <h2 className="font-display text-2xl md:text-3xl font-semibold mt-3">
-            {t("renting.scamsCta.title")}
-          </h2>
-          <p className="mt-3 text-white/80 leading-relaxed max-w-2xl mx-auto">
-            {t("renting.scamsCta.body")}
+      {/* Rent safely — merged from former "Rental scams" page */}
+      <section id="alugue-com-seguranca" className="bg-white border-y border-border scroll-mt-32">
+        <div className="container py-16 md:py-20 max-w-4xl">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="inline-flex items-center justify-center w-10 h-10 text-crimson">
+              <ShieldAlert className="w-5 h-5" />
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl text-navy font-semibold">
+              {t("renting.safeSection.title")}
+            </h2>
+          </div>
+          <p className="text-muted-foreground leading-relaxed">
+            {t("rentalScams.hero.subtitle")}
           </p>
-          <Button asChild className="mt-6 bg-crimson hover:bg-crimson/90 text-white">
-            <Link to="/golpes-de-aluguel">{t("renting.scamsCta.button")}</Link>
-          </Button>
+
+          {/* Red flags */}
+          <div className="mt-10">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="inline-flex items-center justify-center w-10 h-10 text-crimson">
+                <Flag className="w-5 h-5" />
+              </span>
+              <h3 className="font-display text-xl md:text-2xl text-navy font-semibold">
+                {t("rentalScams.redFlags.title")}
+              </h3>
+            </div>
+            <ul className="space-y-3">
+              {redFlags.map((it) => (
+                <li
+                  key={it}
+                  className="flex items-start gap-3 rounded-md border border-crimson/25 bg-crimson/5 p-4"
+                >
+                  <AlertTriangle className="h-5 w-5 text-crimson shrink-0 mt-0.5" />
+                  <span className="text-muted-foreground leading-relaxed">{it}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Protect yourself */}
+          <div className="mt-12">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
+                <ShieldCheck className="w-5 h-5" />
+              </span>
+              <h3 className="font-display text-xl md:text-2xl text-navy font-semibold">
+                {t("rentalScams.protect.title")}
+              </h3>
+            </div>
+            <ul className="space-y-3">
+              {protectItems.map((it) => (
+                <li
+                  key={it}
+                  className="flex items-start gap-3 rounded-md border border-azul/25 bg-azul/5 p-4"
+                >
+                  <ShieldCheck className="h-5 w-5 text-azul shrink-0 mt-0.5" />
+                  <span className="text-muted-foreground leading-relaxed">{it}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Safe sources */}
+          <div className="mt-12">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
+                <Sparkles className="w-5 h-5" />
+              </span>
+              <h3 className="font-display text-xl md:text-2xl text-navy font-semibold">
+                {t("rentalScams.sources.title")}
+              </h3>
+            </div>
+            <ul className="space-y-4">
+              <li className="rounded-md border border-border bg-card p-4">
+                <p className="text-muted-foreground leading-relaxed">
+                  {t("rentalScams.sources.cmhc.label")}
+                </p>
+                <div className="mt-2">
+                  <SourceLink
+                    href={t("rentalScams.sources.cmhc.url")}
+                    label={t("rentalScams.sources.cmhc.linkLabel")}
+                  />
+                </div>
+              </li>
+              <li className="rounded-md border border-border bg-card p-4 text-muted-foreground leading-relaxed">
+                {t("rentalScams.sources.housingOffice")}
+              </li>
+              <li className="rounded-md border border-border bg-card p-4">
+                <p className="text-muted-foreground leading-relaxed">
+                  {t("rentalScams.sources.settlement.label")}
+                </p>
+                <div className="mt-2">
+                  <SourceLink
+                    href={t("rentalScams.sources.settlement.url")}
+                    label={t("rentalScams.sources.settlement.linkLabel")}
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Victim */}
+          <Alert className="mt-10 border-crimson/40 bg-crimson/5">
+            <LifeBuoy className="h-5 w-5 text-crimson" />
+            <AlertTitle className="font-display text-navy">
+              {t("rentalScams.victim.title")}
+            </AlertTitle>
+            <AlertDescription className="text-muted-foreground mt-2 leading-relaxed">
+              {t("rentalScams.victim.body")}
+              <span className="block mt-3">
+                <SourceLink
+                  href={t("rentalScams.victim.antiFraudUrl")}
+                  label={t("rentalScams.victim.antiFraudLabel")}
+                />
+              </span>
+            </AlertDescription>
+          </Alert>
         </div>
       </section>
 

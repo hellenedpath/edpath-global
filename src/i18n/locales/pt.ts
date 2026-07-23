@@ -122,7 +122,7 @@ export const pt = {
       realCosts: "Custos reais",
       before: "Antes de começar",
       studyPermit: "Study Permit: Como aplicar",
-      renting: "Alugar no Canadá",
+      renting: "Moradia",
       rentalScams: "Golpes de aluguel",
       costs: "Custos",
       health: "Saúde",
@@ -387,6 +387,9 @@ export const pt = {
 
   costs: {
     simulate: "Simule seus custos",
+    refundSection: {
+      title: "Antes de pagar: entenda a política de reembolso",
+    },
     hero: {
       title: "Estudar no Canadá",
       subtitle: "Os dois números que todo estudante precisa entender antes de decidir, prova de fundos vs. custo real de vida no Canadá.",
@@ -1881,6 +1884,9 @@ export const pt = {
       title: "Proteja-se de golpes de aluguel",
       body: "Estudante internacional é alvo primário. Conheça os sinais antes de pagar qualquer coisa.",
       button: "Como identificar golpes de aluguel →",
+    },
+    safeSection: {
+      title: "Alugue com segurança",
     },
     sources: {
       statcan: "Statistics Canada, Aluguel",

@@ -18,13 +18,11 @@ import Programs from "./pages/Programs";
 import Institutions from "./pages/Institutions";
 import HighSchools from "./pages/HighSchools";
 import Renting from "./pages/Renting";
-import RentalScams from "./pages/RentalScams";
 import StudyPermit from "./pages/StudyPermit";
 import Health from "./pages/Health";
 import Verify from "./pages/Verify";
 import AvatarPreview from "./pages/AvatarPreview";
 import ProgramsReview from "./pages/admin/ProgramsReview";
-import Refunds from "./pages/Refunds";
 
 const queryClient = new QueryClient();
 
@@ -53,7 +51,7 @@ const App = () => (
             <Route path="/canada/ensino-medio" element={<HighSchools />} />
             <Route path="/canada/custos" element={<Costs />} />
             <Route path="/canada/alugar" element={<Renting />} />
-            <Route path="/canada/golpes-de-aluguel" element={<RentalScams />} />
+            <Route path="/canada/golpes-de-aluguel" element={<Redirect to="/canada/alugar" />} />
             <Route path="/canada/study-permit" element={<StudyPermit />} />
             <Route path="/canada/simulador" element={<Redirect to="/canada/custos" />} />
             <Route path="/canada/saude" element={<Health />} />
@@ -70,7 +68,7 @@ const App = () => (
             <Route path="/ensino-medio" element={<Redirect to="/canada/ensino-medio" />} />
             <Route path="/custos" element={<Redirect to="/canada/custos" />} />
             <Route path="/alugar-no-canada" element={<Redirect to="/canada/alugar" />} />
-            <Route path="/golpes-de-aluguel" element={<Redirect to="/canada/golpes-de-aluguel" />} />
+            <Route path="/golpes-de-aluguel" element={<Redirect to="/canada/alugar" />} />
             <Route path="/study-permit" element={<Redirect to="/canada/study-permit" />} />
             <Route path="/antes-de-comecar" element={<Redirect to="/canada/study-permit" />} />
             <Route path="/simulador-financeiro" element={<Redirect to="/canada/custos" />} />
@@ -79,8 +77,8 @@ const App = () => (
             <Route path="/trabalho-moradia" element={<Redirect to="/canada/trabalho-moradia" />} />
             <Route path="/avatar-preview" element={<AvatarPreview />} />
             <Route path="/admin/programas-revisao" element={<ProgramsReview />} />
-            <Route path="/reembolso" element={<Refunds />} />
-            <Route path="/refunds" element={<Refunds />} />
+            <Route path="/reembolso" element={<Redirect to="/canada/custos" />} />
+            <Route path="/refunds" element={<Redirect to="/canada/custos" />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

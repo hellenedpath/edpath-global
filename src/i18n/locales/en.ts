@@ -123,7 +123,7 @@ export const en = {
       realCosts: "Real costs",
       before: "Before you start",
       studyPermit: "Study permit: how to apply",
-      renting: "Renting in Canada",
+      renting: "Housing",
       rentalScams: "Rental scams",
       costs: "Costs",
       health: "Health",
@@ -392,6 +392,9 @@ export const en = {
   },
   costs: {
     simulate: "Simulate your costs",
+    refundSection: {
+      title: "Before you pay: understand the refund policy",
+    },
     hero: {
       title: "Studying in Canada",
       subtitle:
@@ -1878,6 +1881,9 @@ export const en = {
       title: "Protect yourself from rental scams",
       body: "International students are a primary target. Know the red flags before you pay anything.",
       button: "How to spot rental scams →",
+    },
+    safeSection: {
+      title: "Rent safely",
     },
     sources: {
       statcan: "Statistics Canada, Rent",
