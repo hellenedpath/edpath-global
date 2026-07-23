@@ -115,7 +115,7 @@ export const en = {
       myPath: "My path",
       pgwp: "PGWP checker",
       institutions: "Institutions",
-      highSchools: "High school (BC)",
+      highSchools: "High school",
       programs: "Explore programs",
       costsSimulator: "Cost simulator",
       realCosts: "Real costs",
