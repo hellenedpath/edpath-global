@@ -60,7 +60,7 @@ export default function HighSchools() {
   const isEnglish = i18n.language.startsWith("en");
   const [items, setItems] = useState<HighSchool[]>([]);
   const [loading, setLoading] = useState(true);
-  const [region, setRegion] = useState<string>("all");
+  const [province, setProvince] = useState<string>("all");
   const [schoolType, setSchoolType] = useState<"all" | "public" | "private">(
     "all",
   );
@@ -72,6 +72,7 @@ export default function HighSchools() {
       const { data, error } = await supabase
         .from("high_schools")
         .select("*")
+        .order("province", { ascending: true })
         .order("region", { ascending: true })
         .order("name", { ascending: true });
 
@@ -81,11 +82,14 @@ export default function HighSchools() {
   }, []);
 
 
-  const regions = useMemo(() => {
+  const provinces = useMemo(() => {
     const set = new Set<string>();
-    items.forEach((it) => it.region && set.add(it.region));
+    items.forEach((it) => it.province && set.add(it.province));
     return Array.from(set).sort();
   }, [items]);
+
+  const provinceLabel = (p: string) =>
+    t(`highSchools.provinces.${p}`, { defaultValue: p });
 
   const regionLabel = (r: string) =>
     t(`highSchools.regions.${r}`, { defaultValue: r });
@@ -93,15 +97,15 @@ export default function HighSchools() {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return items.filter((it) => {
-      if (region !== "all" && it.region !== region) return false;
+      if (province !== "all" && it.province !== province) return false;
       if (schoolType !== "all" && it.school_type !== schoolType) return false;
       if (q) {
-        const hay = `${it.name} ${it.city ?? ""} ${it.region ?? ""}`.toLowerCase();
+        const hay = `${it.name} ${it.city ?? ""} ${it.province ?? ""} ${it.region ?? ""}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
     });
-  }, [items, region, schoolType, query]);
+  }, [items, province, schoolType, query]);
 
   const cardNotes = (it: HighSchool) =>
     isEnglish ? it.notes_en : it.notes_pt;
