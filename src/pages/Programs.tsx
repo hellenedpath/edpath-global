@@ -735,36 +735,164 @@ export default function Programs() {
       </section>
 
       <section className="mx-auto max-w-[1320px] px-6 py-10 md:py-14">
-        {/* Honest coverage notice */}
+        {/* Trust chip — kept but small so it doesn't dominate the funnel */}
         {!isLoading && !error && (
-          <div className="mb-6 flex items-start gap-3 rounded-2xl border border-navy/15 bg-navy/[0.03] p-5">
-            <ShieldCheck
-              className="h-5 w-5 mt-0.5 shrink-0 text-navy"
-              strokeWidth={1.5}
-            />
-            <div className="text-sm leading-relaxed text-navy/90">
-              <p className="font-display font-semibold text-navy">
-                {t("programsPage.coverage.title")}
-              </p>
-              <p className="mt-1 text-muted-foreground">
-                {t("programsPage.coverage.body")}
-              </p>
-              <p className="mt-2 text-xs font-medium uppercase tracking-wider text-navy/80">
-                {t("programsPage.coverage.count", {
-                  count: programs?.length ?? 0,
-                })}
-              </p>
+          <div className="mb-6 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-navy/15 bg-navy/[0.03] px-2.5 py-1 text-navy">
+              <ShieldCheck className="h-3.5 w-3.5" strokeWidth={1.5} />
+              {T(
+                `${totalEligible} programas elegíveis a Study Permit e PGWP`,
+                `${totalEligible} programs eligible for Study Permit and PGWP`,
+              )}
+            </span>
+          </div>
+        )}
+
+        {/* STEP 1 — Area picker. Shown when no area is selected and no CIP filter is active. */}
+        {area === "all" && !cipParam && !isLoading && !error && (
+          <div className="rounded-2xl border border-border bg-card p-6 md:p-10 shadow-sm">
+            <h2 className="font-display text-2xl md:text-3xl font-semibold text-navy tracking-tight">
+              {T("O que você quer estudar?", "What do you want to study?")}
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
+              {T(
+                "Escolha uma área para ver apenas os programas que se encaixam. Todos já são elegíveis para permissão de estudo e PGWP.",
+                "Pick an area to see only programs that fit. Every one already qualifies for study permit and PGWP.",
+              )}
+            </p>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {AREA_GROUP_ORDER.map((g) => {
+                const count = areaCounts[g];
+                if (count === 0) return null;
+                const label = AREA_LABELS[g][lang as "pt" | "en"];
+                return (
+                  <button
+                    key={g}
+                    type="button"
+                    onClick={() => setArea(g)}
+                    className="group flex items-center justify-between gap-4 rounded-xl border border-border bg-background px-5 py-5 text-left transition-all hover:border-crimson hover:shadow-md"
+                  >
+                    <span className="font-display text-lg font-semibold text-navy group-hover:text-crimson">
+                      {label}
+                    </span>
+                    <span className="text-sm font-medium text-muted-foreground">
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}
 
-        {/* Eligibility profile panel */}
-        <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-sm mb-5">
+        {/* STEP 2 — Refine filters (shown once an area is picked or a CIP filter is active) */}
+        {(area !== "all" || cipParam) && (
+        <>
+        <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-2 text-sm">
+              <button
+                type="button"
+                onClick={() => {
+                  setArea("all");
+                  setLevel("all");
+                  setProvince("all");
+                  setOnlyCoop(false);
+                  setQuery("");
+                }}
+                className="inline-flex items-center gap-1 text-navy hover:text-crimson underline-offset-4 hover:underline"
+              >
+                ← {T("Ver todas as áreas", "All areas")}
+              </button>
+              {area !== "all" && (
+                <span className="text-muted-foreground">
+                  · <span className="font-medium text-navy">{AREA_LABELS[area as AreaGroup][lang as "pt" | "en"]}</span>
+                </span>
+              )}
+            </div>
+          </div>
+
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={T("Buscar por nome, instituição ou cidade", "Search by name, institution or city")}
+              className="pl-9 h-11"
+            />
+          </div>
+
+          <div className="mt-5 grid gap-5 md:grid-cols-[1fr_1fr_auto] md:items-end">
+            {/* Level (4 clean buckets replace the 30+ credential wall) */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                {T("Nível", "Level")}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  size="sm"
+                  variant={level === "all" ? "default" : "outline"}
+                  onClick={() => setLevel("all")}
+                >
+                  {T("Todos", "All")}
+                </Button>
+                {LEVEL_ORDER.map((lv) => (
+                  <Button
+                    key={lv}
+                    size="sm"
+                    variant={level === lv ? "default" : "outline"}
+                    onClick={() => setLevel(lv)}
+                  >
+                    {LEVEL_LABELS[lv][lang as "pt" | "en"]}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            {/* Province */}
+            {provinceOptions.length > 0 && (
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                  {t("programsPage.filters.provinceLabel")}
+                </p>
+                <select
+                  value={province}
+                  onChange={(e) => setProvince(e.target.value)}
+                  className="w-full h-10 rounded-md border border-input bg-background px-3 text-sm"
+                >
+                  <option value="all">{t("programsPage.filters.allProvinces")}</option>
+                  {provinceOptions.map((prov) => (
+                    <option key={prov} value={prov}>{prov}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {showCoopToggle && (
+              <label className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 cursor-pointer">
+                <Switch checked={onlyCoop} onCheckedChange={setOnlyCoop} />
+                <span className="text-sm font-medium">
+                  {t("programsPage.filters.coopOnly")}
+                </span>
+              </label>
+            )}
+          </div>
+        </div>
+
+        {/* Advanced eligibility profile — collapsed by default to keep the funnel clean */}
+        <details className="mt-4 rounded-2xl border border-border bg-card shadow-sm">
+          <summary className="cursor-pointer list-none px-5 py-4 md:px-6 flex items-center justify-between gap-3">
+            <span className="font-display text-sm font-semibold text-navy">
+              {T("Verificar minha elegibilidade (opcional)", "Check my eligibility (optional)")}
+            </span>
+            <span className="text-xs text-muted-foreground">
+              {T("Inglês, ensino médio, formação prévia", "English, high school, prior credential")}
+            </span>
+          </summary>
+          <div className="border-t border-border p-5 md:p-6">
           <div className="flex items-start justify-between gap-3 mb-4">
             <div>
-              <h2 className="font-display text-lg font-semibold text-navy">
-                {T("Verifique sua elegibilidade", "Check your eligibility")}
-              </h2>
               <p className="text-sm text-muted-foreground mt-1">
                 {T(
                   "Preencha seu perfil e veja em quais programas você se encaixa. Grátis, nada salvo.",
@@ -890,124 +1018,10 @@ export default function Programs() {
               "This is an academic eligibility guide based on official sources. It does not confirm admission or your immigration status. Final decisions rest with the institution."
             )}
           </p>
-        </div>
-
-        {/* Filters */}
-        <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-sm">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={T("Buscar por nome, instituição ou cidade", "Search by name, institution or city")}
-              className="pl-9 h-11"
-            />
           </div>
-
-          <div className="mt-5 grid gap-5 md:grid-cols-[1fr_1fr_auto] md:items-end">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                {T("Área", "Field")}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  size="sm"
-                  variant={area === "all" ? "default" : "outline"}
-                  onClick={() => setArea("all")}
-                >
-                  {T("Todas", "All")}
-                </Button>
-                {areaOptions.map((k) => {
-                  const label = AREA_LABELS[k]?.[lang as "pt" | "en"] ?? k;
-                  return (
-                    <Button
-                      key={k}
-                      size="sm"
-                      variant={area === k ? "default" : "outline"}
-                      onClick={() => setArea(k)}
-                    >
-                      {label}
-                    </Button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                {T("Credencial", "Credential")}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  size="sm"
-                  variant={credential === "all" ? "default" : "outline"}
-                  onClick={() => setCredential("all")}
-                >
-                  {T("Todas", "All")}
-                </Button>
-                {credentials.map((c) => (
-                  <Button
-                    key={c}
-                    size="sm"
-                    variant={credential === c ? "default" : "outline"}
-                    onClick={() => setCredential(c)}
-                    className="max-w-[220px] truncate"
-                  >
-                    {c}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {showPgwpToggle && (
-              <label className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 cursor-pointer">
-                <Switch checked={onlyPgwp} onCheckedChange={setOnlyPgwp} />
-                <span className="text-sm font-medium">
-                  {T("Só elegíveis a PGWP", "PGWP-eligible only")}
-                </span>
-              </label>
-            )}
-          </div>
-
-          {(provinceOptions.length > 0 || showCoopToggle) && (
-            <div className="mt-5 grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
-              {provinceOptions.length > 0 && (
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                    {t("programsPage.filters.provinceLabel")}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Button
-                      size="sm"
-                      variant={province === "all" ? "default" : "outline"}
-                      onClick={() => setProvince("all")}
-                    >
-                      {t("programsPage.filters.allProvinces")}
-                    </Button>
-                    {provinceOptions.map((prov) => (
-                      <Button
-                        key={prov}
-                        size="sm"
-                        variant={province === prov ? "default" : "outline"}
-                        onClick={() => setProvince(prov)}
-                      >
-                        {prov}
-                      </Button>
-                    ))}
-                  </div>
-                </div>
-              )}
-              {showCoopToggle && (
-                <label className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 cursor-pointer">
-                  <Switch checked={onlyCoop} onCheckedChange={setOnlyCoop} />
-                  <span className="text-sm font-medium">
-                    {t("programsPage.filters.coopOnly")}
-                  </span>
-                </label>
-              )}
-            </div>
-          )}
-        </div>
+        </details>
+        </>
+        )}
 
         {/* Results */}
         <div className="mt-6">
