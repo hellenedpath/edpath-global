@@ -211,8 +211,79 @@ export default function StudyPermit() {
 
       {/* Scam protection */}
       <section className="container py-16 md:py-20 max-w-5xl">
-        {/* placeholder anchor kept */}
-      </section>
+        {/* Embassies and consulates */}
+        <div className="max-w-4xl mb-20 md:mb-24">
+          <div className="flex items-center gap-3 mb-5">
+            <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
+              <Building2 className="w-5 h-5" />
+            </span>
+            <h2 className="font-display text-2xl md:text-3xl text-navy font-semibold">
+              {t("studyPermit.embassies.title")}
+            </h2>
+          </div>
+          <p className="text-muted-foreground leading-relaxed max-w-3xl">
+            {t("studyPermit.embassies.body")}
+          </p>
+
+          {groupOrder.map((g) => {
+            const list = EMBASSIES.filter((e) => e.group === g);
+            return (
+              <div key={g} className="mt-10">
+                <h3 className="font-display text-lg text-navy/80 font-semibold mb-4 uppercase tracking-wider text-sm">
+                  {t(`studyPermit.embassies.groups.${g}`)}
+                </h3>
+                <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {list.map((e) => (
+                    <li
+                      key={e.url}
+                      className="rounded-lg border border-border bg-card p-5 shadow-sm flex flex-col"
+                    >
+                      <div className="flex items-start gap-2 mb-1">
+                        <Building2 className="h-4 w-4 text-crimson shrink-0 mt-0.5" />
+                        <p className="font-display text-base text-navy font-semibold leading-tight">
+                          {isPt ? e.namePt : e.nameEn}
+                        </p>
+                      </div>
+                      <p className="text-sm text-muted-foreground ml-6">
+                        {isPt ? e.cityPt : e.cityEn}
+                      </p>
+                      <div className="mt-3 ml-6">
+                        <SourceLink
+                          href={e.url}
+                          label={t("studyPermit.embassies.cardLink")}
+                        />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+
+          <div className="mt-10 rounded-lg border border-azul/30 bg-azul/5 p-6">
+            <div className="flex items-start gap-3">
+              <Globe2 className="h-5 w-5 text-azul shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-display text-lg text-navy font-semibold">
+                  {t("studyPermit.embassies.finderTitle")}
+                </h3>
+                <p className="mt-2 text-muted-foreground leading-relaxed">
+                  {t("studyPermit.embassies.finderBody")}
+                </p>
+                <div className="mt-3">
+                  <SourceLink
+                    href="https://travel.gc.ca/assistance/embassies-consulates"
+                    label={t("studyPermit.embassies.finderLabel")}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="mt-4 text-xs italic text-muted-foreground">
+            {t("studyPermit.embassies.note")}
+          </p>
+        </div>
+
         <div className="max-w-4xl">
           <div className="flex items-center gap-3 mb-5">
             <span className="inline-flex items-center justify-center w-10 h-10 text-crimson">
