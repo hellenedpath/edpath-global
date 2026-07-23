@@ -1672,12 +1672,12 @@ export const en = {
       custody: {
         title: "Custodianship and minors",
         body:
-          "This is the question that scares parents most — and the one agencies most use to look indispensable. The official IRCC rule is clear. Who counts as a 'minor' depends on the province: the age of majority is 18 in Alberta, Manitoba, Ontario, PEI, Quebec and Saskatchewan; and 19 in British Columbia, New Brunswick, Newfoundland and Nova Scotia. A student under 17 must come with a parent or legal guardian, or have a custodian in Canada — a responsible adult, citizen or permanent resident, who handles the student's day-to-day care. Between 17 and the age of majority, custodianship is optional, but the immigration officer may require it case by case. The document is form IMM 5646 (Custodianship Declaration), two pages: page 1 is signed and notarized by the custodian in Canada; page 2 by the parents in the home country. In practice, most School Boards arrange homestay, which usually solves accommodation and custodianship at once.",
+          "This is one of the main questions for students who are minors — and the official IRCC rule is clear. Who counts as a 'minor' depends on the province: the age of majority is 18 in Alberta, Manitoba, Ontario, PEI, Quebec and Saskatchewan; and 19 in British Columbia, New Brunswick, Newfoundland and Nova Scotia. A student under 17 must come with a parent or legal guardian, or have a custodian in Canada — a responsible adult, citizen or permanent resident, who handles the student's day-to-day care. Between 17 and the age of majority, custodianship is optional, but the immigration officer may require it case by case. The document is form IMM 5646 (Custodianship Declaration), two pages: page 1 is signed and notarized by the custodian in Canada; page 2 by the parents in the home country. In practice, most School Boards arrange homestay, which usually solves accommodation and custodianship at once.",
       },
       homestay: {
         title: "Safe homestay: what nobody tells you",
         body:
-          "Here's something a commission-based agency rarely tells you: in Canada, the homestay system for minor students is NOT regulated by a single authority. CBC reporting and a University of Toronto study documented real cases of students facing insufficient food, lack of heating, no privacy, and even neglect in emergencies. This isn't to scare you — it's so you choose with open eyes. Because EdPath is commission-free and doesn't profit from homestay, we can warn you.",
+          "It's worth understanding this well: in Canada, the homestay system for minor students is not regulated by a single authority. CBC reporting and a University of Toronto study documented cases of students facing insufficient food, lack of heating, little privacy and lack of support in emergencies. This isn't to scare you — it's so you choose with good information and attention to the right details.",
         redFlagsTitle: "Warning signs",
         redFlags: [
           "The family won't confirm meals or the room before you accept",
@@ -1695,22 +1695,22 @@ export const en = {
           "Is there a board staff member who visits or checks on the student?",
         ],
         closing:
-          "Golden rule: prefer homestay arranged by the public School Board itself — there's more accountability and a channel to complain. Avoid middlemen who charge a lot and disappear afterward.",
+          "A good rule of thumb: prefer homestay arranged by the public School Board itself, where there is oversight and a clear channel to resolve problems. Always confirm who supports the student and how changing families works, if needed.",
       },
       custodian: {
         title: "Custodianship without traps: what to ask",
         body:
-          "Custodianship is mandatory for students under 17 (see the section above), but hiring a custodian has pitfalls. A real case reported by CBC: a family paid CAD $16,000 for a 'super-custodian' package that failed — in a health emergency, the custodian took over five hours and nine calls to respond. Custodianship isn't just a signed form; it's someone who must truly be present.",
+          "Custodianship is mandatory for students under 17 (see the section above). When choosing a custodian, it's worth paying attention: CBC reported a case of a family that paid CAD $16,000 for a 'super-custodian' package and, in a health emergency, struggled to get a fast response. Custodianship isn't just a signed document; it's someone who must truly be present.",
         checklistTitle: "Before choosing a custodian, confirm",
         checklist: [
           "Do they live near the school and the student's home?",
           "Do they respond fast in an emergency? Ask for a contact test.",
           "What's included in the fee and what's charged separately (e.g. hospital trips)?",
           "Is there a clear written contract listing the services?",
-          "Is it someone trustworthy recommended by the school/board, not an anonymous expensive 'package'?",
+          "Is it someone trustworthy recommended by the school/board?",
         ],
         closing:
-          "EdPath helps you ask the right questions — and, for the official document (IMM 5646) and the immigration case, we refer you to a regulated RCIC or lawyer, never a commission-based agency.",
+          "EdPath helps you ask the right questions — and, for the official document (IMM 5646) and the immigration case, we refer you to a regulated RCIC or immigration lawyer.",
       },
       parents: {
         title: "Can parents come along?",
@@ -1747,7 +1747,7 @@ export const en = {
         ],
       },
       steps: {
-        title: "Step by step: how to apply (no agency)",
+        title: "Step by step: how to apply",
         items: [
           "Choose the province and school using the map above.",
           "Check age and custodianship in the minors section.",
@@ -1756,7 +1756,7 @@ export const en = {
           "Arrange homestay or custodianship and health insurance.",
         ],
         footer:
-          "EdPath guides you through each step — and, when you need immigration legal support, we refer you to a regulated RCIC or lawyer, never a commission-based agency.",
+          "EdPath guides you through each step — and, when you need immigration legal support, we refer you to a regulated RCIC or immigration lawyer.",
       },
     },
   },
