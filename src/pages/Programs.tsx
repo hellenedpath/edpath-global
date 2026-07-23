@@ -553,10 +553,9 @@ export default function Programs() {
   const T = (pt: string, en: string) => (lang === "pt" ? pt : en);
 
   const [query, setQuery] = useState("");
-  const [area, setArea] = useState<string>("all");
-  const [credential, setCredential] = useState<string>("all");
+  const [area, setArea] = useState<AreaGroup | "all">("all");
+  const [level, setLevel] = useState<LevelBucket | "all">("all");
   const [province, setProvince] = useState<string>("all");
-  const [onlyPgwp, setOnlyPgwp] = useState(false);
   const [onlyCoop, setOnlyCoop] = useState(false);
   const [selected, setSelected] = useState<Program | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -574,13 +573,16 @@ export default function Programs() {
   const profileActive = isProfileActive(profile);
 
   const { data: programs, isLoading, error } = useQuery({
-    queryKey: ["programs-full"],
+    queryKey: ["programs-eligible"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("programs")
         .select(
           "id, name, credential, field_area, campus_city, min_grade, prerequisites, english_admission_tests, duration_months, tuition_intl_year, has_coop, pgwp_eligible, pgwp_basis, application_url, intl_office_url, book_meeting_url, source_id, cip_code, sources!source_id(id, url, valid_as_of), occupation_ids, institution_id, institutions(id, name, display_name, city, province)"
         )
+        // HARD FILTER — the funnel never shows programs a student can't actually use.
+        .eq("study_permit_eligible", "yes")
+        .eq("pgwp_eligible", "yes")
         .order("name", { ascending: true });
       if (error) throw error;
       return data as unknown as Program[];
@@ -651,22 +653,20 @@ export default function Programs() {
     return m;
   }, [occupations]);
 
-  const areaOptions = useMemo(() => {
-    const set = new Set<string>();
+  // Counts per area group across the whole eligible pool.
+  const areaCounts = useMemo(() => {
+    const counts: Record<AreaGroup, number> = {
+      health: 0, it: 0, business: 0, engineering: 0, science: 0,
+      trades: 0, social: 0, education: 0, other: 0,
+    };
     (programs ?? []).forEach((p) => {
-      const k = areaKey(p.field_area);
-      if (k) set.add(k);
+      const g = areaGroupOf(p.field_area);
+      if (g) counts[g]++;
     });
-    const known = ["health", "it", "trades", "business", "other"];
-    return Array.from(set).sort(
-      (a, b) => (known.indexOf(a) === -1 ? 99 : known.indexOf(a)) - (known.indexOf(b) === -1 ? 99 : known.indexOf(b))
-    );
+    return counts;
   }, [programs]);
 
-  const showPgwpToggle = useMemo(
-    () => (programs ?? []).some((p) => p.pgwp_eligible !== "yes"),
-    [programs]
-  );
+  const totalEligible = programs?.length ?? 0;
 
   const provinceOptions = useMemo(() => {
     const set = new Set<string>();
@@ -682,23 +682,15 @@ export default function Programs() {
     [programs]
   );
 
-  const credentials = useMemo(() => {
-    const set = new Set<string>();
-    (programs ?? []).forEach((p) => p.credential && set.add(p.credential));
-    return Array.from(set).sort();
-  }, [programs]);
-
   const filtered = useMemo(() => {
     const q = normalize(query);
     return (programs ?? []).filter((p) => {
       if (cipParam && p.cip_code !== cipParam) return false;
-      if (onlyPgwp && p.pgwp_eligible !== "yes") return false;
       if (onlyCoop && !p.has_coop) return false;
       if (province !== "all" && p.institutions?.province !== province) return false;
-      if (credential !== "all" && p.credential !== credential) return false;
+      if (level !== "all" && credentialToLevel(p.credential) !== level) return false;
       if (area !== "all") {
-        const k = areaKey(p.field_area) ?? inferArea(p);
-        if (k !== area) return false;
+        if (areaGroupOf(p.field_area) !== area) return false;
       }
       if (profileActive && eligFilter !== "all") {
         const e = computeEligibility(p, profile, lang as "pt" | "en");
@@ -709,7 +701,7 @@ export default function Programs() {
       const hay = `${p.name} ${p.institutions?.name ?? ""} ${p.institutions?.display_name ?? ""} ${p.campus_city ?? ""}`;
       return normalize(hay).includes(q);
     });
-  }, [programs, query, area, credential, province, onlyPgwp, onlyCoop, profile, profileActive, eligFilter, lang, cipParam]);
+  }, [programs, query, area, level, province, onlyCoop, profile, profileActive, eligFilter, lang, cipParam]);
 
   const isComplete = (p: Program) => !!p.tuition_intl_year;
 
