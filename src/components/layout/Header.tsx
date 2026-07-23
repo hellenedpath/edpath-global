@@ -1,7 +1,7 @@
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
-import { Check, ChevronDown, Compass, Globe, Menu, X } from "lucide-react";
+import { Check, ChevronDown, Globe, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
 
@@ -23,13 +23,11 @@ const langs = [
 export function Header() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
-  const navigate = useNavigate();
   const [langOpen, setLangOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [destOpen, setDestOpen] = useState(false);
   const destCloseTimer = useRef<number | null>(null);
-  const showMyPath = location.pathname.startsWith("/canada");
 
   useEffect(() => {
     if (location.pathname === "/" && location.hash === "#destinos") {
@@ -45,23 +43,12 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const goToDestinations = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setMobileOpen(false);
-    if (location.pathname === "/") {
-      document.getElementById("destinos")?.scrollIntoView({ behavior: "smooth", block: "start" });
-      history.replaceState(null, "", "/#destinos");
-    } else {
-      navigate("/#destinos");
-    }
-  };
-
   return (
     <header
       className={cn(
         "sticky top-0 z-50 transition-all duration-300 text-primary-foreground border-b border-white/10",
         scrolled
-          ? "bg-navy/90 backdrop-blur-md shadow-[0_4px_20px_-10px_rgba(0,0,0,0.3)]"
+          ? "bg-navy/95 backdrop-blur-md shadow-[0_4px_24px_-8px_rgba(0,0,0,0.35)]"
           : "bg-navy",
       )}
     >
@@ -82,7 +69,10 @@ export function Header() {
             <button
               type="button"
               onClick={() => setDestOpen((v) => !v)}
-              className="inline-flex items-center gap-1 nav-link-underline px-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 text-primary-foreground/90"
+              className={cn(
+                "nav-link-underline inline-flex items-center gap-1.5 px-4 py-2.5 text-[15px] font-medium rounded-md transition-colors",
+                "text-white/90 hover:text-white hover:bg-white/10",
+              )}
             >
               {t("nav.destinations")}
               <ChevronDown className={cn("w-3.5 h-3.5 opacity-70 transition-transform", destOpen && "rotate-180")} />
@@ -102,10 +92,10 @@ export function Header() {
                   ) : (
                     <div
                       key={d.code}
-                      className="flex items-center justify-between px-3 py-2.5 text-sm text-primary-foreground/60"
+                      className="flex items-center justify-between px-3 py-2.5 text-sm text-white/60"
                     >
                       <span>{t(`home.globeDestinations.${d.code}.label`)}</span>
-                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/10 text-primary-foreground/80">
+                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/10 text-white/80">
                         {t("countries.soon")}
                       </span>
                     </div>
@@ -118,8 +108,9 @@ export function Header() {
             to="/sobre"
             className={({ isActive }) =>
               cn(
-                "nav-link-underline px-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 text-primary-foreground/90",
-                isActive && "bg-white/10 text-primary-foreground",
+                "nav-link-underline px-4 py-2.5 text-[15px] font-medium rounded-md transition-colors",
+                "text-white/90 hover:text-white hover:bg-white/10",
+                isActive && "bg-white/10 text-white",
               )
             }
           >
@@ -127,33 +118,20 @@ export function Header() {
           </NavLink>
         </nav>
 
-
-
-        <div className="flex items-center gap-2">
-          {showMyPath && (
-            <Link
-              to="/canada"
-              className="hidden md:inline-flex items-center gap-1.5 rounded-md bg-crimson px-3.5 py-2 text-sm font-semibold text-white hover:bg-crimson/90 transition-colors"
-            >
-              <Compass className="w-4 h-4" />
-              {t("nav.myPath")}
-            </Link>
-          )}
+        <div className="flex items-center gap-2 md:gap-4">
           <div className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-white/30 text-primary-foreground transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full transition-all text-white/60 hover:text-white hover:bg-white/10"
               aria-label={t("langs.label")}
             >
               <Globe className="w-4 h-4" />
-              <span className="font-medium">
-                {i18n.language.toUpperCase().slice(0, 2)}
-              </span>
+              <span>{i18n.language.toUpperCase().slice(0, 2)}</span>
               <ChevronDown className="w-3.5 h-3.5 opacity-70" />
             </button>
             {langOpen && (
               <div className="absolute right-0 top-full mt-2 w-52 rounded-lg border border-white/10 bg-navy text-primary-foreground shadow-xl shadow-black/20 overflow-hidden py-1">
-                {langs.map((l) => (
+                {langs.map((l) =>
                   l.active ? (
                     <button
                       key={l.code}
@@ -166,40 +144,37 @@ export function Header() {
                         "w-full flex items-center justify-between px-3 py-2.5 text-sm text-left transition-colors",
                         i18n.language === l.code
                           ? "bg-azul/15 text-white font-medium"
-                          : "hover:bg-white/10 text-primary-foreground/90",
+                          : "hover:bg-white/10 text-white/90",
                       )}
                     >
                       <span>{t(`langs.${l.code}`)}</span>
-                      {i18n.language === l.code && (
-                        <Check className="w-4 h-4 text-crimson" />
-                      )}
+                      {i18n.language === l.code && <Check className="w-4 h-4 text-crimson" />}
                     </button>
                   ) : (
                     <div
                       key={l.code}
-                      className="flex items-center justify-between px-3 py-2.5 text-sm text-primary-foreground/60"
+                      className="flex items-center justify-between px-3 py-2.5 text-sm text-white/60"
                     >
                       <span>{t(`langs.${l.code}`)}</span>
-                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/10 text-primary-foreground/80">
+                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/10 text-white/80">
                         {t("langs.soon")}
                       </span>
                     </div>
-                  )
-                ))}
+                  ),
+                )}
               </div>
             )}
           </div>
 
-          <a
-            href="/#destinos"
-            onClick={goToDestinations}
-            className="hidden md:inline-flex items-center rounded-lg bg-crimson px-4 py-2 text-sm font-semibold text-white hover:bg-crimson/90 transition-colors shadow-sm"
+          <Link
+            to="/canada/meu-caminho?country=canada"
+            className="hidden md:inline-flex items-center justify-center rounded-full bg-crimson px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-crimson/90 hover:shadow-md hover:-translate-y-0.5 hover:scale-105 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/50"
           >
-            {t("nav.cta")}
-          </a>
+            {t("nav.discoverMyPath")}
+          </Link>
 
           <button
-            className="lg:hidden p-2 rounded-md hover:bg-white/10"
+            className="lg:hidden p-2 rounded-md text-white/90 hover:bg-white/10 transition-colors"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Menu"
           >
@@ -210,25 +185,15 @@ export function Header() {
 
       {mobileOpen && (
         <nav className="lg:hidden border-t border-white/10 bg-navy">
-          <div className="container flex flex-col py-2">
-            {showMyPath && (
-              <NavLink
-                to="/canada"
-                onClick={() => setMobileOpen(false)}
-                className="px-3 py-3 text-sm rounded-md bg-crimson hover:bg-crimson/90 text-white font-semibold inline-flex items-center gap-2"
-              >
-                <Compass className="w-4 h-4" />
-                {t("nav.myPath")}
-              </NavLink>
-            )}
-            <a
-              href="/#destinos"
-              onClick={goToDestinations}
-              className="px-3 py-3 text-sm rounded-md bg-crimson hover:bg-crimson/90 text-white font-semibold inline-flex items-center justify-center gap-2"
+          <div className="container flex flex-col py-3">
+            <Link
+              to="/canada/meu-caminho?country=canada"
+              onClick={() => setMobileOpen(false)}
+              className="mb-2 px-4 py-3 text-sm font-semibold rounded-full bg-crimson text-white inline-flex items-center justify-center gap-2 shadow-sm hover:bg-crimson/90 transition-colors"
             >
-              {t("nav.cta")}
-            </a>
-            <div className="px-3 pt-3 pb-1 text-xs uppercase tracking-wider text-primary-foreground/60">
+              {t("nav.discoverMyPath")}
+            </Link>
+            <div className="px-3 pt-3 pb-1 text-xs uppercase tracking-wider text-white/60">
               {t("nav.destinations")}
             </div>
             {destinations.map((d) =>
@@ -237,14 +202,14 @@ export function Header() {
                   key={d.code}
                   to={d.to}
                   onClick={() => setMobileOpen(false)}
-                  className="px-3 py-2.5 text-sm rounded-md hover:bg-white/10"
+                  className="px-3 py-2.5 text-sm rounded-md hover:bg-white/10 text-white/90"
                 >
                   {t(`home.globeDestinations.${d.code}.label`)}
                 </NavLink>
               ) : (
                 <div
                   key={d.code}
-                  className="flex items-center justify-between px-3 py-2.5 text-sm text-primary-foreground/60"
+                  className="flex items-center justify-between px-3 py-2.5 text-sm text-white/60"
                 >
                   <span>{t(`home.globeDestinations.${d.code}.label`)}</span>
                   <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/10">
@@ -258,8 +223,8 @@ export function Header() {
               onClick={() => setMobileOpen(false)}
               className={({ isActive }) =>
                 cn(
-                  "nav-link-underline px-3 py-3 text-sm rounded-md hover:bg-white/10 mt-2",
-                  isActive && "bg-white/10",
+                  "nav-link-underline px-3 py-3 text-sm rounded-md hover:bg-white/10 mt-2 text-white/90",
+                  isActive && "bg-white/10 text-white",
                 )
               }
             >
