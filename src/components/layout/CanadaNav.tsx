@@ -45,7 +45,6 @@ const planDefs = [
 const prepareDefs = [
   { to: "/canada/verificacao", key: "verify" },
   { to: "/canada/alugar", key: "renting" },
-  { to: "/canada/golpes-de-aluguel", key: "rentalScams" },
 ] as const;
 
 const liveDefs = [
@@ -187,9 +186,6 @@ export function CanadaNav() {
   const plan = toItems(planDefs);
   const prepare = toItems(prepareDefs);
   const live = toItems(liveDefs);
-
-  const refundsPath = (t("refunds.path") as string) || "/refunds";
-  plan.push({ to: refundsPath, label: t("canadaNav.items.refunds") });
 
   return (
     <div className="border-b border-border bg-background sticky top-16 z-40">
