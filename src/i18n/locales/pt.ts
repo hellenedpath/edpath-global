@@ -257,6 +257,25 @@ export const pt = {
         { name: "Emergency room / 911", body: "Só emergências graves. Casos leves esperam muitas horas — vá a walk-in ou ligue 811 antes." },
       ],
     },
+    emergency: {
+      title: "Encontrar hospital e emergência",
+      intro:
+        "Em emergência com risco de vida, ligue 911 (funciona em todo o Canadá). Para orientação de enfermeira 24h, ligue 811 na maioria das províncias (Manitoba usa outro número). Para achar o hospital ou pronto-socorro mais próximo, use o site oficial da sua província:",
+      numbers: {
+        emergency: { label: "911", body: "Emergência com risco de vida. Funciona em todo o Canadá." },
+        nurse: { label: "811", body: "Orientação de enfermeira 24h por telefone na maioria das províncias." },
+      },
+      manitobaNote: "Manitoba não usa 811; o contato é Health Links (204-788-8200 / 1-888-315-9257).",
+      links: [
+        { name: "Ontário — Health811 / localizador", url: "https://health811.ontario.ca/" },
+        { name: "British Columbia — HealthLink BC locator", url: "https://www.healthlinkbc.ca/find-care/find-health-services/bc-health-service-locator-app" },
+        { name: "Alberta — AHS Find Healthcare", url: "https://www.albertahealthservices.ca/findhealth/findhealth.aspx" },
+        { name: "Quebec — Info-Santé 811", url: "https://www.quebec.ca/en/health/finding-a-resource/info-sante-811" },
+        { name: "Manitoba — Health Links (204-788-8200 / 1-888-315-9257)", url: "https://www.gov.mb.ca/health/contact.html" },
+        { name: "Nova Scotia — Find nearest emergency care", url: "https://www.nshealth.ca/emergency-care/find-nearest-emergency-care" },
+        { name: "Saskatchewan — HealthLine 811", url: "https://www.saskhealthauthority.ca/your-health/conditions-diseases-services/healthline-8-1-1" },
+      ],
+    },
     familyDoctor: {
       title: "Conseguir um médico de família: a realidade",
       body: "A falta de médico de família é uma crise nacional: cerca de 6 milhões de adultos no Canadá não têm médico regular. Recém-chegados entram no fim da fila. Enquanto espera, use walk-in clinics e a linha 811, registre-se no plano provincial e pergunte no serviço de saúde da sua instituição.",
