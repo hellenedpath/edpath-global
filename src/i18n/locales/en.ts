@@ -1958,9 +1958,9 @@ export const en = {
         "The document that authorizes you to study in Canada. See the official steps of the process, from acceptance to arrival.",
     },
     intro: {
-      title: "Before you begin",
+      title: "EdPath informs — it does not provide immigration advice",
       body:
-        "The study permit is the document that authorizes you to study in Canada. See the official steps of the process. This is general information based on IRCC and does not confirm your individual case, only IRCC decides.",
+        "This page organizes public, official information so you can understand the study permit process. EdPath does not submit applications, does not represent you before the government, and does not give immigration advice. For your specific case, use the official IRCC sources, consult a regulated consultant (RCIC) or immigration lawyer, or contact the Canadian embassy/consulate in your country.",
     },
     steps: [
       {
@@ -2021,7 +2021,24 @@ export const en = {
     seal: {
       title: "A quick reminder",
       body:
-        "Information based on official IRCC sources. Rules and fees change, always confirm at canada.ca before applying. For decisions about your individual case, consult a licensed RCIC.",
+        "EdPath provides information, not immigration advice. Rules and fees change — always confirm at canada.ca, with a licensed RCIC, or with the Canadian embassy/consulate in your country before applying.",
+    },
+    embassies: {
+      title: "Canadian embassies and consulates",
+      body:
+        "For official questions about student visas, contacting the government, or verifying documents, reach out to the Canadian diplomatic mission in your country. Below are the main offices in Latin America, Africa and the Caribbean. Don't see your country? Use the official finder.",
+      groups: {
+        latam: "Latin America",
+        africa: "Africa",
+        caribbean: "Caribbean",
+      },
+      cardLink: "See official office",
+      finderTitle: "Don't see your country?",
+      finderBody:
+        "Don't see your country? Find the Canadian embassy or consulate anywhere in the world:",
+      finderLabel: "Official Government of Canada finder",
+      note:
+        "Some countries are served by a mission in a neighboring country (e.g. Venezuela via Bogotá). Always confirm in the official finder.",
     },
     scamProtection: {
       title: "Protect yourself from visa scams",
