@@ -35,7 +35,6 @@ const discoverDefs = [
   { to: "/canada/programas", key: "programs" },
   { to: "/canada/instituicoes", key: "institutions" },
   { to: "/canada/pgwp", key: "pgwp" },
-  { to: "/canada/ensino-medio", key: "highSchools" },
 ] as const;
 
 const planDefs = [
@@ -207,6 +206,21 @@ export function CanadaNav() {
           <HoverDropdown label={t("canadaNav.preparePhase")} items={prepare} activePath={pathname} />
           <HoverDropdown label={t("canadaNav.live")} items={live} activePath={pathname} />
 
+          <NavLink
+            to="/canada/ensino-medio"
+            className={({ isActive }) =>
+              cn(
+                "shrink-0 inline-flex items-center gap-1.5 px-1 py-1.5 text-sm font-medium transition-colors text-navy hover:text-[hsl(var(--crimson))]",
+                isActive && "text-[hsl(var(--crimson))]",
+              )
+            }
+          >
+            {t("canadaNav.highSchoolsFeatured")}
+            <span className="inline-flex items-center rounded-full bg-[hsl(var(--crimson))]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[hsl(var(--crimson))]">
+              {t("canadaNav.forParents")}
+            </span>
+          </NavLink>
+
           <button
             type="button"
             onClick={() =>
@@ -237,6 +251,22 @@ export function CanadaNav() {
               </SheetHeader>
 
               <div className="mt-6 space-y-4">
+                <NavLink
+                  to="/canada/ensino-medio"
+                  onClick={() => setMobileOpen(false)}
+                  className={({ isActive }) =>
+                    cn(
+                      "block px-2 py-3 text-sm rounded-md text-navy font-semibold hover:text-[hsl(var(--crimson))] hover:bg-muted",
+                      isActive && "text-[hsl(var(--crimson))]",
+                    )
+                  }
+                >
+                  {t("canadaNav.highSchoolsFeatured")}
+                  <span className="ml-2 inline-flex items-center rounded-full bg-[hsl(var(--crimson))]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[hsl(var(--crimson))]">
+                    {t("canadaNav.forParents")}
+                  </span>
+                </NavLink>
+
                 <Accordion type="multiple" className="w-full">
                   {[
                     { value: "discover", label: t("canadaNav.discover"), items: discover },
