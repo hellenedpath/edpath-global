@@ -1509,23 +1509,23 @@ export const en = {
 
   highSchools: {
     hero: {
-      badge: "Canada · British Columbia",
-      title: "High School in Canada (British Columbia)",
+      badge: "Canada · High school",
+      title: "High School in Canada",
       subtitle:
-        "BC public school districts and private schools that welcome international high school students.",
+        "Canadian public school districts and private schools that welcome international high school students.",
       description:
         "Explore public districts with an official international program and private schools with an international stream, see diploma, grades offered, homestay, boarding and fees, then go straight to the official site to apply.",
     },
     context: {
       title: "How it works:",
       body:
-        "Not every school in Canada accepts international high school students. There are two main paths: public school districts with an official international program, and private schools that accept international students. This page lists both in BC, you apply directly to the district or school.",
+        "Not every school in Canada accepts international high school students. There are two main paths: public school districts with an official international program, and private schools that accept international students. This page lists both by province, you apply directly to the district or school.",
       boardingNote:
         "Boarding = the school offers residence (the student lives at school). Without boarding, the student lives with a homestay family.",
     },
     filters: {
       searchPlaceholder: "Search by school name or city",
-      allRegions: "All regions",
+      allProvinces: "All provinces",
       loading: "Loading schools...",
       count_one: "{{count}} school found",
       count_other: "{{count}} schools found",
@@ -1533,6 +1533,10 @@ export const en = {
       allTypes: "All",
       public: "Public (districts)",
       private: "Private",
+    },
+    provinces: {
+      "British Columbia": "British Columbia",
+      "Ontário": "Ontario",
     },
     regions: {
       "Metro Vancouver": "Metro Vancouver",
