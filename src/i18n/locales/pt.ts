@@ -626,132 +626,78 @@ export const pt = {
 
   family: {
     hero: {
-      title: "Sua família na jornada",
+      title: "Vir com a família: o que você precisa saber antes",
       subtitle:
-        "O que estudantes com cônjuge e filhos precisam saber sobre saúde e escola.",
+        "Cônjuge, filhos, creche, escola e onde morar — as regras reais que definem o seu planejamento, com a fonte de cada informação.",
     },
-    provinces: {
-      title: "Seguro de saúde por província",
-      subtitle:
-        "A cobertura de saúde para dependentes varia muito conforme a província. Cada cônjuge e filho precisa da própria inscrição no plano de saúde local, e as regras de espera e custos diferem de um lugar para outro.",
+    spouse: {
+      badge: "Atualizado em 21 de janeiro de 2025",
+      title: "O cônjuge pode trabalhar? Nem sempre",
+      body:
+        "Desde 21 de janeiro de 2025, a permissão de trabalho aberta para o cônjuge (Spousal Open Work Permit) ficou restrita. Em regra, o cônjuge só consegue trabalhar se você estiver em: doutorado; mestrado de 16 meses ou mais; ou certos programas profissionais (medicina, direito, enfermagem, engenharia, farmácia, odontologia, veterinária). Isso significa que a maioria dos alunos de college, diploma ou mestrado curto NÃO dá direito à permissão de trabalho do cônjuge. Não planeje seu orçamento contando com a renda do cônjuge sem confirmar antes — é onde muitas famílias se surpreendem.",
+      sourceLabel: "Regra oficial do IRCC",
+      sourceUrl:
+        "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/updates/2025-spouses-common-law-study-permit.html",
+    },
+    daycare: {
+      title: "Creche (daycare): como funciona, quanto custa e onde aplicar",
+      intro:
+        "O Canadá tem o programa federal de creche a $10/dia (CWELCC), mas a meta de 2026 não foi atingida em todo o país, e o valor só vale em creches licenciadas e inscritas no programa. A maior dificuldade costuma ser a fila de espera, longa nas cidades grandes — inscreva-se cedo e em várias.",
+      tableTitle: "Custo médio por província",
+      cols: { province: "Província", cost: "Custo aproximado", portal: "Onde aplicar (portal oficial)" },
+      rows: [
+        { province: "Quebec", cost: "~$9,65/dia (tarifa fixa)", portal: "Portail de services de garde", portalUrl: "https://www.portail-servicesgarde.gouv.qc.ca" },
+        { province: "Ontário", cost: "~$22/dia (em transição)", portal: "findingqualitychildcare.ca/ontario + subsídio pela cidade", portalUrl: "https://www.findingqualitychildcare.ca/ontario" },
+        { province: "Colúmbia Britânica", cost: "varia por cidade (tarifa de mercado + subsídio ACCB)", portal: "gov.bc.ca/affordablechildcarebenefit", portalUrl: "https://www2.gov.bc.ca/gov/content/family-social-supports/caring-for-young-children/child-care-funding/child-care-benefit" },
+        { province: "Alberta", cost: "~$15/dia", portal: "Alberta Child Care Subsidy", portalUrl: "https://www.alberta.ca/child-care-subsidy" },
+        { province: "Manitoba", cost: "~$10/dia (meta atingida)", portal: "Manitoba Child Care Online", portalUrl: "https://www.gov.mb.ca/education/childcare/" },
+        { province: "Nova Escócia", cost: "~$24/dia (Halifax)", portal: "novascotia.ca/childcare", portalUrl: "https://www.novascotia.ca/childcare/" },
+      ],
+      stepsTitle: "Passo a passo",
+      steps: [
+        "Inscreva-se cedo e em várias creches — as filas nas cidades são longas.",
+        "Confirme que a creche é licenciada e inscrita no CWELCC (ou subsidiada, no Quebec) para pagar a tarifa reduzida.",
+        "Peça o subsídio de tarifa se sua renda for baixa.",
+        "Tenha em mãos: identidade dos pais e da criança, comprovante de endereço e comprovante de trabalho ou estudo.",
+      ],
       note:
-        "Os detalhes mudam com o tempo. Confirme sempre os requisitos, prazos e documentos exigidos nas fontes oficiais da província onde vai morar.",
-      items: [
-        {
-          name: "Ontário",
-          content:
-            "Em Ontario, o acesso ao OHIP para dependentes de estudantes internacionais depende de regras específicas e pode exigir um período de espera. Muitas famílias optam por um seguro-saúde privado temporário para cobrir esse intervalo. Verifique os critérios atuais e a documentação necessária no site oficial do governo de Ontario.",
-        },
-        {
-          name: "Colúmbia Britânica",
-          content:
-            "O MSP da Colúmbia Britânica cobre cônjuge e filhos dependentes, mas geralmente há um período de espera. Durante esse tempo, um seguro privado é recomendado. A inscrição deve ser feita assim que a família chegar, pois o processo pode levar semanas.",
-        },
-        {
-          name: "Alberta",
-          content:
-            "O AHCIP de Alberta costuma cobrir dependentes elegíveis. O estudante deve se inscrever primeiro e depois adicionar cônjuge e filhos. É importante confirmar se a instituição de ensino exige seguro-saúde privado obrigatório enquanto a inscrição provincial é processada.",
-        },
-        {
-          name: "Quebec",
-          content:
-            "Quebec tem regras próprias para estudantes internacionais e dependentes. A cobertura pública pode estar disponível, mas muitas instituições exigem seguro-saúde privado em grupo. Confirme com a escola e com o RAMQ quais são os passos para registrar a família.",
-        },
-        {
-          name: "Manitoba",
-          content:
-            "Manitoba oferece cobertura de saúde pública para dependentes elegíveis, com possível período de espera. A inscrição deve ser feita na Manitoba Health logo após a chegada. Enquanto isso, seguro privado é a saída mais segura para não ficar desprotegido.",
-        },
-        {
-          name: "Nova Escócia",
-          content:
-            "A MSI de Nova Escócia pode cobrir dependentes, mas as regras de elegibilidade e espera variam. A inscrição costuma exigir comprovação de residência na província. Verifique os prazos e documentos no site oficial antes de viajar.",
-        },
-      ],
-    },
-    careLevels: {
-      title: "Como funciona a saúde no dia a dia",
-      subtitle:
-        "No Canadá, a atenção à saúde funciona em níveis. Saber por onde começar economiza tempo, dinheiro e ansiedade.",
-      items: [
-        {
-          title: "Family doctor",
-          description:
-            "Médico de família para cuidado contínuo e acompanhamento. Pode levar tempo para conseguir um, então comece a busca assim que chegar.",
-        },
-        {
-          title: "Walk-in clinic",
-          description:
-            "Para problemas leves e urgentes que não são emergências. Não precisa agendar: basta chegar, mas pode haver espera.",
-        },
-        {
-          title: "Linha 811",
-          description:
-            "Telefone 24 horas com enfermeira que orienta se você deve ir a uma clínica, ao hospital ou cuidar do caso em casa.",
-        },
-        {
-          title: "Emergency room / 911",
-          description:
-            "Reserve para emergências graves e risco de vida. O atendimento é prioritário, e casos menos graves podem esperar muitas horas.",
-        },
-      ],
-    },
-    doctorSteps: {
-      title: "Como conseguir um family doctor",
-      subtitle:
-        "A falta de médicos de família é uma realidade em várias regiões. Estes passos ajudam a aumentar suas chances.",
-      items: [
-        {
-          title: "Registre a família no plano de saúde da província",
-          description:
-            "Sem a inscrição provincial ativa, fica mais difícil encontrar um médico de família que aceite novos pacientes.",
-        },
-        {
-          title: "Ligue para a linha 811",
-          description:
-            "A enfermeira pode indicar clínicas e programas de emparelhamento com médicos de família disponíveis na sua região.",
-        },
-        {
-          title: "Use ferramentas de busca de clínicas",
-          description:
-            "Várias províncias mantêm sites ou listas de clínicas com médicos aceitando novos pacientes. Atualize a busca com frequência.",
-        },
-        {
-          title: "Pergunte no serviço de saúde da instituição",
-          description:
-            "Universidades e colleges frequentemente têm um centro de saúde no campus ou podem orientar onde procurar atendimento.",
-        },
-        {
-          title: "Peça indicações na comunidade",
-          description:
-            "Grupos de estudantes, igrejas, associações e vizinhos podem saber quais clínicas estão aceitando novos pacientes no momento.",
-        },
-        {
-          title: "Use walk-in clinic enquanto espera",
-          description:
-            "Enquanto não consegue um médico de família, clínicas de atendimento sem agendamento são a alternativa para problemas de saúde pontuais.",
-        },
-      ],
+        "Quem tem study ou work permit válido geralmente consegue vaga em creche licenciada, mas os critérios variam por província — confirme no portal oficial. No Quebec, a elegibilidade de imigrantes temporários esteve em disputa em 2025; verifique o status atual.",
     },
     school: {
-      title: "Escola para os filhos",
-      content:
-        "Filhos de estudantes internacionais com study permit válido geralmente têm direito à educação pública gratuita do jardim de infância até o ensino médio, dependendo da província e do distrito escolar. O processo de matrícula exige documentação como comprovante de residência, study permit do responsável e histórico escolar do aluno.",
-      public: {
-        title: "Ensino público",
-        content:
-          "Geralmente gratuito para filhos de estudantes com study permit. Verifique o distrito escolar da cidade onde vai morar e os prazos de matrícula.",
+      title: "Escola dos filhos (K-12): como funciona de verdade",
+      catchment: {
+        title: "Antes de tudo: catchment",
+        body:
+          "No Canadá, a escola pública é gratuita — e definida pelo seu ENDEREÇO. Cada endereço pertence a uma zona escolar (catchment). É onde você mora que decide qual escola pública o seu filho pode frequentar. Escolas boas costumam estar cheias e só aceitam quem mora na zona. Por isso, escolher o bairro é escolher a escola. Antes de alugar, use o 'school locator' do conselho escolar para ver qual escola cobre aquele endereço.",
       },
-      daycare: {
-        title: "Creche",
-        content:
-          "Creches são serviços pagos, com filas de espera em algumas cidades. Planeje com antecedência, principalmente para crianças pequenas.",
-      },
+      typesTitle: "Os tipos de escola pública em Ontário",
+      types: [
+        { title: "Pública (laica)", body: "Aberta a todos, pela zona do endereço. Gratuita." },
+        { title: "Católica (pública, financiada pelo governo)", body: "Gratuita. No ensino médio, aceita alunos de qualquer religião que morem na zona. No fundamental, é destinada a famílias católicas — não-católicos geralmente precisam pedir exceção." },
+        { title: "Francófona", body: "Para famílias com direito ao ensino em francês (francês como primeira língua, escolaridade prévia em francês ou irmão em escola francófona)." },
+        { title: "French Immersion", body: "Um programa dentro da escola pública anglófona onde boa parte do ensino é em francês, para quem não tem francês nativo. Gratuito, não exige herança francesa. A entrada costuma ser na 1ª ou 2ª série, às vezes por sorteio com prioridade para quem mora na zona. Existe em quase todas as províncias." },
+      ],
+      rankingTitle: "Ranking de escolas: use com cabeça",
+      rankingBody:
+        "O Fraser Institute publica rankings gratuitos de escolas (Ontário, BC, Alberta, Quebec) em compareschoolrankings.org. Ele mede quase só notas de provas padronizadas e não ajusta pelo nível socioeconômico do bairro — por isso, use como um dado entre vários, não como veredito. Visite a escola, veja o apoio a recém-chegados (ESL) e converse com outras famílias.",
+      rankingCta: "Abrir compareschoolrankings.org",
+      rankingUrl: "https://www.compareschoolrankings.org/",
+      enrollTitle: "Passo a passo da matrícula",
+      enrollSteps: [
+        "Descubra a escola da sua zona pelo 'school locator' do conselho escolar (pelo endereço).",
+        "Registre online ou no Family Welcome Centre do conselho.",
+        "Leve: certidão de nascimento ou passaporte do filho, comprovante de endereço (contrato de aluguel ou conta de luz/água/gás — carteira de motorista e extrato não são aceitos), documentos de imigração, registro de vacinação e, no ensino médio, o histórico escolar.",
+      ],
+    },
+    where: {
+      title: "Onde morar: por que a área importa",
+      body:
+        "A área onde você mora define três coisas ligadas entre si: a escola pública do seu filho (pelo catchment), a segurança e o custo. Um bom bairro dá acesso a uma escola pública bem avaliada sem pagar escola privada. Não existe uma lista oficial de 'melhores cidades' — o certo é você combinar critérios objetivos: escola, segurança e custo. Regiões frequentemente citadas por famílias, como pontos de partida para pesquisar: na Grande Toronto, Markham, Oakville, Waterloo, Vaughan, Milton e Burlington; Ottawa (forte oferta pública, católica e bilíngue); e, na Grande Vancouver, Burnaby e Coquitlam (com custo de moradia mais alto). Antes de assinar um contrato: confirme a escola daquele endereço, veja a criminalidade local e compare o aluguel.",
     },
     disclaimer: {
       title: "Aviso importante",
       content:
-        "Informação educacional geral; regras de saúde e escola variam por província e mudam ao longo do tempo. Confirme sempre nas fontes oficiais. A EdPath Global fornece informação educacional, não aconselhamento de imigração. Aconselhamento de imigração é feito apenas por consultores RCIC licenciados. Quando fizer sentido, podemos conectar você a parceiros e profissionais confiáveis.",
+        "A EdPath fornece informação educacional, não aconselhamento de imigração. Regras, valores e prazos mudam — confirme sempre nas fontes oficiais (IRCC, governos provinciais, conselho escolar).",
     },
   },
 

@@ -632,132 +632,78 @@ export const en = {
 
   family: {
     hero: {
-      title: "Your family on the journey",
+      title: "Bringing your family: what to know first",
       subtitle:
-        "What students with a spouse and children need to know about health care and school.",
+        "Spouse, children, daycare, school and where to live — the real rules that shape your plan, with a source for each fact.",
     },
-    provinces: {
-      title: "Health insurance by province",
-      subtitle:
-        "Health coverage for dependents varies widely by province. Every spouse and child needs their own enrollment in the local health plan, and waiting periods and costs differ from place to place.",
+    spouse: {
+      badge: "Updated January 21, 2025",
+      title: "Can your spouse work? Not always",
+      body:
+        "Since January 21, 2025, the Spousal Open Work Permit has been restricted. As a rule, your spouse can only work if you are in: a PhD; a master's of 16 months or more; or certain professional programs (medicine, law, nursing, engineering, pharmacy, dentistry, veterinary medicine). This means most college, diploma or short master's students do NOT qualify their spouse for a work permit. Don't budget assuming your spouse's income without confirming first — this is where many families are caught off guard.",
+      sourceLabel: "Official IRCC rule",
+      sourceUrl:
+        "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/updates/2025-spouses-common-law-study-permit.html",
+    },
+    daycare: {
+      title: "Daycare: how it works, cost and where to apply",
+      intro:
+        "Canada has the federal $10/day daycare program (CWELCC), but the 2026 target has not been met everywhere, and the reduced rate only applies at licensed centres enrolled in the program. The biggest challenge is usually the waitlist — long in big cities, so sign up early and at several places.",
+      tableTitle: "Approximate cost by province",
+      cols: { province: "Province", cost: "Approx. cost", portal: "Where to apply (official portal)" },
+      rows: [
+        { province: "Quebec", cost: "~$9.65/day (fixed rate)", portal: "Portail de services de garde", portalUrl: "https://www.portail-servicesgarde.gouv.qc.ca" },
+        { province: "Ontario", cost: "~$22/day (in transition)", portal: "findingqualitychildcare.ca/ontario + city subsidy", portalUrl: "https://www.findingqualitychildcare.ca/ontario" },
+        { province: "British Columbia", cost: "varies by city (market rate + ACCB subsidy)", portal: "gov.bc.ca/affordablechildcarebenefit", portalUrl: "https://www2.gov.bc.ca/gov/content/family-social-supports/caring-for-young-children/child-care-funding/child-care-benefit" },
+        { province: "Alberta", cost: "~$15/day", portal: "Alberta Child Care Subsidy", portalUrl: "https://www.alberta.ca/child-care-subsidy" },
+        { province: "Manitoba", cost: "~$10/day (target met)", portal: "Manitoba Child Care Online", portalUrl: "https://www.gov.mb.ca/education/childcare/" },
+        { province: "Nova Scotia", cost: "~$24/day (Halifax)", portal: "novascotia.ca/childcare", portalUrl: "https://www.novascotia.ca/childcare/" },
+      ],
+      stepsTitle: "Step by step",
+      steps: [
+        "Sign up early and at several centres — city waitlists are long.",
+        "Confirm the centre is licensed and enrolled in CWELCC (or subsidized, in Quebec) so you pay the reduced rate.",
+        "Ask for the fee subsidy if your income is low.",
+        "Have ready: parents' and child's ID, proof of address and proof of work or study.",
+      ],
       note:
-        "Details change over time. Always confirm the requirements, deadlines and documents on the official sources of the province where you will live.",
-      items: [
-        {
-          name: "Ontario",
-          content:
-            "In Ontario, access to OHIP for dependents of international students depends on specific rules and may require a waiting period. Many families choose temporary private health insurance to cover that gap. Check the current criteria and required documentation on the official Ontario government website.",
-        },
-        {
-          name: "British Columbia",
-          content:
-            "British Columbia's MSP covers spouses and dependent children, but there is usually a waiting period. During that time, private insurance is recommended. Enrollment should be done as soon as the family arrives, since the process can take weeks.",
-        },
-        {
-          name: "Alberta",
-          content:
-            "Alberta's AHCIP usually covers eligible dependents. The student should enroll first and then add spouse and children. It's important to confirm whether the institution requires mandatory private health insurance while provincial enrollment is being processed.",
-        },
-        {
-          name: "Quebec",
-          content:
-            "Quebec has its own rules for international students and dependents. Public coverage may be available, but many institutions require private group health insurance. Confirm with the school and with RAMQ the steps to register the family.",
-        },
-        {
-          name: "Manitoba",
-          content:
-            "Manitoba offers public health coverage for eligible dependents, with a possible waiting period. Enrollment must be done with Manitoba Health shortly after arrival. In the meantime, private insurance is the safest way to avoid gaps.",
-        },
-        {
-          name: "Nova Scotia",
-          content:
-            "Nova Scotia's MSI may cover dependents, but eligibility and waiting rules vary. Enrollment usually requires proof of residency in the province. Check deadlines and documents on the official website before traveling.",
-        },
-      ],
-    },
-    careLevels: {
-      title: "How day-to-day health care works",
-      subtitle:
-        "In Canada, health care works in tiers. Knowing where to start saves time, money and anxiety.",
-      items: [
-        {
-          title: "Family doctor",
-          description:
-            "A family doctor for ongoing care and follow-up. It can take time to get one, so start looking as soon as you arrive.",
-        },
-        {
-          title: "Walk-in clinic",
-          description:
-            "For mild, urgent issues that are not emergencies. No appointment needed, just show up, but expect a wait.",
-        },
-        {
-          title: "811 line",
-          description:
-            "A 24-hour phone line staffed by a nurse who advises whether to go to a clinic, hospital or handle the case at home.",
-        },
-        {
-          title: "Emergency room / 911",
-          description:
-            "Reserve for serious emergencies and life-threatening cases. Care is prioritized, and less severe cases may wait many hours.",
-        },
-      ],
-    },
-    doctorSteps: {
-      title: "How to find a family doctor",
-      subtitle:
-        "The shortage of family doctors is a reality in many regions. These steps help improve your chances.",
-      items: [
-        {
-          title: "Register the family in the provincial health plan",
-          description:
-            "Without active provincial enrollment, it's harder to find a family doctor accepting new patients.",
-        },
-        {
-          title: "Call the 811 line",
-          description:
-            "The nurse can point you to clinics and matching programs with family doctors available in your area.",
-        },
-        {
-          title: "Use clinic search tools",
-          description:
-            "Several provinces maintain websites or lists of clinics with doctors accepting new patients. Refresh your search often.",
-        },
-        {
-          title: "Ask the institution's health services",
-          description:
-            "Universities and colleges often have an on-campus health centre or can point you to nearby care.",
-        },
-        {
-          title: "Ask for referrals in your community",
-          description:
-            "Student groups, churches, associations and neighbors may know which clinics are accepting new patients right now.",
-        },
-        {
-          title: "Use walk-in clinics while you wait",
-          description:
-            "Until you have a family doctor, walk-in clinics are the alternative for occasional health issues.",
-        },
-      ],
+        "Families with a valid study or work permit can usually access licensed daycare, but the criteria vary by province — confirm on the official portal. In Quebec, eligibility for temporary residents was disputed in 2025; check the current status.",
     },
     school: {
-      title: "School for your children",
-      content:
-        "Children of international students with a valid study permit are generally entitled to free public education from kindergarten through high school, depending on the province and school district. Enrollment requires documentation such as proof of residence, the parent's study permit and the student's school records.",
-      public: {
-        title: "Public school",
-        content:
-          "Usually free for children of students with a study permit. Check the school district in the city where you will live and the enrollment deadlines.",
+      title: "Children's school (K-12): how it really works",
+      catchment: {
+        title: "First: catchment",
+        body:
+          "In Canada, public school is free — and it's set by your ADDRESS. Every address belongs to a school zone (catchment). Where you live decides which public school your child can attend. Good schools are usually full and only accept families inside the zone. That's why choosing the neighborhood means choosing the school. Before you sign a lease, use the school board's 'school locator' to see which school covers that address.",
       },
-      daycare: {
-        title: "Daycare",
-        content:
-          "Daycare is a paid service and has waitlists in some cities. Plan ahead, especially for young children.",
-      },
+      typesTitle: "Types of public school in Ontario",
+      types: [
+        { title: "Public (secular)", body: "Open to all, by address zone. Free." },
+        { title: "Catholic (public, government-funded)", body: "Free. In high school, it accepts students of any religion who live in the zone. In elementary, it's meant for Catholic families — non-Catholics usually need to request an exception." },
+        { title: "Francophone", body: "For families with a right to French-language education (French as a first language, prior schooling in French, or a sibling in a Francophone school)." },
+        { title: "French Immersion", body: "A program inside the English public school where much of the teaching is in French, for students without a French background. Free, no French heritage required. Entry is usually in grade 1 or 2, sometimes by lottery with priority for families in the zone. Available in most provinces." },
+      ],
+      rankingTitle: "School rankings: use with care",
+      rankingBody:
+        "The Fraser Institute publishes free school rankings (Ontario, BC, Alberta, Quebec) at compareschoolrankings.org. It measures mostly standardized test scores and does not adjust for the neighborhood's socioeconomic level — so use it as one data point among several, not as a verdict. Visit the school, check newcomer support (ESL) and talk to other families.",
+      rankingCta: "Open compareschoolrankings.org",
+      rankingUrl: "https://www.compareschoolrankings.org/",
+      enrollTitle: "Enrollment step by step",
+      enrollSteps: [
+        "Find the school for your zone using the school board's 'school locator' (by address).",
+        "Register online or at the board's Family Welcome Centre.",
+        "Bring: your child's birth certificate or passport, proof of address (lease or hydro/water/gas bill — driver's licence and bank statements are not accepted), immigration documents, immunization record and, for high school, prior transcripts.",
+      ],
+    },
+    where: {
+      title: "Where to live: why the area matters",
+      body:
+        "Where you live decides three things that go together: your child's public school (via catchment), safety and cost. A good neighborhood gives you a well-rated public school without paying for private. There is no official list of 'best cities' — the right way is to combine objective criteria: school, safety and cost. Areas often mentioned by families, as starting points to research: in the Greater Toronto Area, Markham, Oakville, Waterloo, Vaughan, Milton and Burlington; Ottawa (strong public, Catholic and bilingual options); and, in Metro Vancouver, Burnaby and Coquitlam (with higher housing costs). Before signing a lease: confirm the school for that address, check local crime data and compare rent.",
     },
     disclaimer: {
       title: "Important notice",
       content:
-        "General educational information; health and school rules vary by province and change over time. Always confirm on official sources. EdPath Global provides educational information, not immigration advice. Immigration advice is given only by licensed RCIC consultants. When it makes sense, we can connect you with trusted partners and professionals.",
+        "EdPath provides educational information, not immigration advice. Rules, amounts and deadlines change — always confirm on official sources (IRCC, provincial governments, school board).",
     },
   },
   work: {
