@@ -320,32 +320,32 @@ export default function HighSchools() {
 
           <div className="flex flex-wrap gap-2">
             <Button
-              variant={region === "all" ? "default" : "outline"}
+              variant={province === "all" ? "default" : "outline"}
               size="sm"
-              onClick={() => setRegion("all")}
+              onClick={() => setProvince("all")}
               className={
-                region === "all"
+                province === "all"
                   ? "bg-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/90 text-white border-transparent"
                   : ""
               }
             >
-              {t("highSchools.filters.allRegions")}
+              {t("highSchools.filters.allProvinces")}
             </Button>
-            {regions.map((r) => {
-              const active = region === r;
+            {provinces.map((p) => {
+              const active = province === p;
               return (
                 <Button
-                  key={r}
+                  key={p}
                   variant={active ? "default" : "outline"}
                   size="sm"
-                  onClick={() => setRegion(r)}
+                  onClick={() => setProvince(p)}
                   className={
                     active
                       ? "bg-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/90 text-white border-transparent"
                       : ""
                   }
                 >
-                  {regionLabel(r)}
+                  {provinceLabel(p)}
                 </Button>
               );
             })}
