@@ -13,16 +13,21 @@ import {
   MapPin,
   School,
   UserX,
+  Wallet,
 } from "lucide-react";
 
 type DaycareRow = { province: string; cost: string; portal: string; portalUrl: string };
 type SchoolProvince = { province: string; body: string };
+type ChildBenefitLink = { label: string; url: string };
+type SubsidyLink = { name: string; url: string };
 
 export default function Family() {
   const { t } = useTranslation();
 
   const daycareRows = t("family.daycare.rows", { returnObjects: true }) as unknown as DaycareRow[];
   const daycareSteps = t("family.daycare.steps", { returnObjects: true }) as unknown as string[];
+  const childBenefitLinks = t("family.childBenefit.links", { returnObjects: true }) as unknown as ChildBenefitLink[];
+  const daycareSubsidyLinks = t("family.daycare.subsidy.links", { returnObjects: true }) as unknown as SubsidyLink[];
   const schoolProvinces = t("family.school.provinces", { returnObjects: true }) as unknown as SchoolProvince[];
   const enrollSteps = t("family.school.enrollSteps", { returnObjects: true }) as unknown as string[];
 
