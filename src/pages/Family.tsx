@@ -30,6 +30,7 @@ export default function Family() {
   const childBenefitLinks = t("family.childBenefit.links", { returnObjects: true }) as unknown as ChildBenefitLink[];
   const daycareSubsidyLinks = t("family.daycare.subsidy.links", { returnObjects: true }) as unknown as SubsidyLink[];
   const schoolProvinces = t("family.school.provinces", { returnObjects: true }) as unknown as SchoolProvince[];
+  const finderLinks = t("family.school.finderLinks", { returnObjects: true }) as unknown as FinderLink[];
   const enrollSteps = t("family.school.enrollSteps", { returnObjects: true }) as unknown as string[];
 
   return (
