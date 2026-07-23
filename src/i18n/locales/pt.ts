@@ -1646,6 +1646,44 @@ export const pt = {
         body:
           "Esta é a dúvida que mais assusta os pais — e a que as agências mais usam para parecer indispensáveis. A regra oficial do IRCC é clara. Quem é considerado 'menor' depende da província: a maioridade é 18 anos em Alberta, Manitoba, Ontário, PEI, Quebec e Saskatchewan; e 19 anos em British Columbia, New Brunswick, Newfoundland e Nova Scotia. Menor de 17 anos precisa vir com o pai ou responsável legal, ou ter um custodian (custódia) no Canadá — um adulto responsável, cidadão ou residente permanente, que cuida do dia a dia do aluno. Entre 17 e a maioridade, a custódia é opcional, mas o oficial de imigração pode exigir conforme o caso. O documento é o formulário IMM 5646 (Custodianship Declaration), de duas páginas: a página 1 é assinada e reconhecida em cartório pelo custodian no Canadá; a página 2, pelos pais no país de origem. Na prática, a maioria dos School Boards organiza homestay, e isso costuma resolver acomodação e custódia de uma vez.",
       },
+      homestay: {
+        title: "Homestay seguro: o que ninguém te conta",
+        body:
+          "Aqui está algo que uma agência comissionada raramente conta: no Canadá, o sistema de homestay para estudantes menores NÃO é regulamentado por uma autoridade única. Reportagens da CBC e um estudo da Universidade de Toronto documentaram casos reais de estudantes passando por comida insuficiente, falta de aquecimento, ausência de privacidade e até negligência em emergências. Não é para assustar — é para você escolher com os olhos abertos. Como o EdPath tem comissão-zero e não lucra com homestay, podemos te avisar.",
+        redFlagsTitle: "Sinais de alerta",
+        redFlags: [
+          "A família não deixa claro as refeições ou o quarto antes de você aceitar",
+          "Não há um contato de emergência que responda rápido",
+          "O custo é muito acima da média (CAD $950–$1.000/mês) sem justificativa",
+          "Ninguém do School Board acompanha ou fiscaliza a casa",
+          "O aluno relata isolamento, fome ou frio nas primeiras semanas e ninguém age",
+        ],
+        questionsTitle: "Pergunte antes de aceitar",
+        questions: [
+          "O homestay é organizado e fiscalizado pelo próprio School Board? (prefira que sim)",
+          "Quem é o contato em emergências e em quanto tempo responde?",
+          "O que exatamente está incluso: refeições, transporte, internet?",
+          "Posso trocar de família se não der certo, e como?",
+          "Há um responsável do board que visita ou acompanha o aluno?",
+        ],
+        closing:
+          "Regra de ouro: prefira homestay organizado pelo próprio School Board público — há mais responsabilidade e um canal para reclamar. Fuja de intermediários que cobram caro e somem depois.",
+      },
+      custodian: {
+        title: "Custódia sem armadilhas: o que perguntar",
+        body:
+          "A custódia é obrigatória para menores de 17 anos (veja a seção acima), mas contratar um custodian tem armadilhas. Um caso real reportado pela CBC: uma família pagou CAD $16.000 por um pacote 'super-custódia' que falhou — em uma emergência de saúde, o custodian levou mais de cinco horas e nove ligações para responder. Custódia não é só um papel assinado; é alguém que precisa estar presente de verdade.",
+        checklistTitle: "Antes de escolher um custodian, confirme",
+        checklist: [
+          "Ele mora perto da escola e da casa do aluno?",
+          "Responde rápido em emergência? Peça um teste de contato.",
+          "O que está incluído no valor e o que é cobrado à parte (ex: idas ao hospital)?",
+          "Há um contrato claro por escrito com os serviços?",
+          "É alguém de confiança indicado pela escola/board, não um 'pacote' anônimo caro?",
+        ],
+        closing:
+          "O EdPath te ajuda a fazer as perguntas certas — e, para o documento oficial (IMM 5646) e o caso de imigração, encaminhamos a um RCIC ou advogado regulamentado, nunca a uma agência comissionada.",
+      },
       parents: {
         title: "Os pais podem ir junto?",
         body:

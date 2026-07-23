@@ -20,6 +20,9 @@ import {
   Briefcase,
   Heart,
   ListChecks,
+  ShieldAlert,
+  CheckCircle2,
+  AlertTriangle,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
@@ -297,6 +300,89 @@ export default function HighSchools() {
               </h2>
               <p className="mt-3 text-sm text-foreground/85 leading-relaxed">
                 {t("highSchools.guide.custody.body")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Guide: Homestay safety */}
+      <section className="container pt-10">
+        <div className="max-w-4xl rounded-xl border border-[hsl(var(--crimson))]/30 bg-[hsl(var(--crimson))]/[0.04] p-6 md:p-8">
+          <div className="flex items-start gap-3">
+            <ShieldAlert className="h-6 w-6 mt-1 shrink-0 text-[hsl(var(--amber))]" strokeWidth={1.5} />
+            <div className="flex-1">
+              <h2 className="font-display text-2xl font-semibold text-navy">
+                {t("highSchools.guide.homestay.title")}
+              </h2>
+              <p className="mt-3 text-sm text-foreground/85 leading-relaxed">
+                {t("highSchools.guide.homestay.body")}
+              </p>
+              <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="rounded-lg border border-[hsl(var(--crimson))]/20 bg-background/60 p-4">
+                  <h3 className="font-display text-sm font-semibold text-[hsl(var(--crimson))] mb-3 flex items-center gap-2">
+                    <AlertTriangle className="h-4 w-4 text-[hsl(var(--amber))]" />
+                    {t("highSchools.guide.homestay.redFlagsTitle")}
+                  </h3>
+                  <ul className="space-y-2">
+                    {(t("highSchools.guide.homestay.redFlags", { returnObjects: true }) as string[]).map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
+                        <AlertTriangle className="h-3.5 w-3.5 mt-0.5 shrink-0 text-[hsl(var(--amber))]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-lg border border-border bg-background/60 p-4">
+                  <h3 className="font-display text-sm font-semibold text-navy mb-3 flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-[hsl(var(--azul))]" />
+                    {t("highSchools.guide.homestay.questionsTitle")}
+                  </h3>
+                  <ul className="space-y-2">
+                    {(t("highSchools.guide.homestay.questions", { returnObjects: true }) as string[]).map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
+                        <CheckCircle2 className="h-3.5 w-3.5 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <p className="mt-5 text-sm font-medium text-foreground/90 leading-relaxed">
+                {t("highSchools.guide.homestay.closing")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Guide: Custodian checklist */}
+      <section className="container pt-10">
+        <div className="max-w-4xl">
+          <div className="flex items-start gap-3">
+            <CheckCircle2 className="h-6 w-6 mt-1 shrink-0 text-[hsl(var(--azul))]" strokeWidth={1.5} />
+            <div className="flex-1">
+              <h2 className="font-display text-2xl font-semibold text-navy">
+                {t("highSchools.guide.custodian.title")}
+              </h2>
+              <p className="mt-3 text-sm text-foreground/80 leading-relaxed">
+                {t("highSchools.guide.custodian.body")}
+              </p>
+              <div className="mt-5 rounded-xl border border-border bg-card p-5">
+                <h3 className="font-display text-sm font-semibold text-navy mb-4">
+                  {t("highSchools.guide.custodian.checklistTitle")}
+                </h3>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {(t("highSchools.guide.custodian.checklist", { returnObjects: true }) as string[]).map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
+                      <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <p className="mt-4 text-sm text-foreground/80 leading-relaxed">
+                {t("highSchools.guide.custodian.closing")}
               </p>
             </div>
           </div>
