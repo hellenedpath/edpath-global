@@ -114,7 +114,7 @@ export const pt = {
       myPath: "Meu caminho",
       pgwp: "Verificador PGWP",
       institutions: "Instituições",
-      highSchools: "Ensino médio (BC)",
+      highSchools: "Ensino médio",
       programs: "Explorar programas",
       costsSimulator: "Simulador de custos",
       realCosts: "Custos reais",
@@ -1512,23 +1512,23 @@ export const pt = {
 
   highSchools: {
     hero: {
-      badge: "Canadá · Colúmbia Britânica",
-      title: "Ensino Médio no Canadá (British Columbia)",
+      badge: "Canadá · Ensino médio",
+      title: "Ensino Médio no Canadá",
       subtitle:
-        "Distritos escolares públicos e escolas privadas de BC que aceitam estudantes internacionais no ensino médio.",
+        "Distritos escolares públicos e escolas privadas no Canadá que aceitam estudantes internacionais no ensino médio.",
       description:
         "Explore os distritos com programa internacional oficial e as escolas privadas com programa para internacionais, veja diploma, séries, homestay, internato e taxas, e vá direto ao site oficial para aplicar.",
     },
     context: {
       title: "Como funciona:",
       body:
-        "Nem toda escola no Canadá aceita estudantes internacionais no ensino médio. Existem dois caminhos principais: distritos escolares públicos com programa internacional oficial e escolas privadas que recebem estudantes internacionais. Esta página lista ambos em BC, você aplica diretamente no site do distrito ou da escola.",
+        "Nem toda escola no Canadá aceita estudantes internacionais no ensino médio. Existem dois caminhos principais: distritos escolares públicos com programa internacional oficial e escolas privadas que recebem estudantes internacionais. Esta página lista ambos por província, você aplica diretamente no site do distrito ou da escola.",
       boardingNote:
         "Boarding = a escola oferece internato (o aluno mora na escola). Sem internato, o aluno vive em casa de família (homestay).",
     },
     filters: {
       searchPlaceholder: "Buscar por nome da escola ou cidade",
-      allRegions: "Todas as regiões",
+      allProvinces: "Todas as províncias",
       loading: "Carregando escolas...",
       count_one: "{{count}} escola encontrada",
       count_other: "{{count}} escolas encontradas",
@@ -1536,6 +1536,10 @@ export const pt = {
       allTypes: "Todas",
       public: "Públicas (distritos)",
       private: "Privadas",
+    },
+    provinces: {
+      "British Columbia": "Colúmbia Britânica",
+      "Ontário": "Ontário",
     },
     regions: {
       "Metro Vancouver": "Metro Vancouver",
@@ -1578,7 +1582,7 @@ export const pt = {
       steps: [
         {
           title: "Escolha a escola e a província",
-          desc: "Compare distritos públicos e escolas privadas por região e tipo de programa.",
+          desc: "Compare distritos públicos e escolas privadas por província, região e tipo de programa.",
         },
         {
           title: "Entenda o custo total real",
