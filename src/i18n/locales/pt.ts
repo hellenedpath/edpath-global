@@ -1948,9 +1948,6 @@ export const pt = {
   },
 
   rentalSeal: {
-    __safeSectionTitle: "",
-  },
-  _unused_placeholder_do_not_use: {
     title: "Um lembrete",
     body:
       "Informações baseadas em fontes oficiais e médias de mercado. Não confirmam o seu caso individual. As regras variam por província, confirme sempre com o órgão oficial da sua província.",
