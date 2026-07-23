@@ -1579,7 +1579,7 @@ export const en = {
       steps: [
         {
           title: "Choose the school and the province",
-          desc: "Compare public districts and private schools by region and program type.",
+          desc: "Compare public districts and private schools by province, region and program type.",
         },
         {
           title: "Understand the real total cost",

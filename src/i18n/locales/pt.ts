@@ -1582,7 +1582,7 @@ export const pt = {
       steps: [
         {
           title: "Escolha a escola e a província",
-          desc: "Compare distritos públicos e escolas privadas por região e tipo de programa.",
+          desc: "Compare distritos públicos e escolas privadas por província, região e tipo de programa.",
         },
         {
           title: "Entenda o custo total real",
