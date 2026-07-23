@@ -1297,7 +1297,7 @@ export const pt = {
     },
     objective: {
       stay: "Seu foco é construir carreira e permanecer no Canadá.",
-      return: "Seu foco é ganhar experiência internacional e voltar ao Brasil.",
+      return: "Seu foco é ganhar experiência internacional e voltar ao seu país.",
       explore: "Você ainda está explorando o caminho, vamos passo a passo.",
     },
     highlights: {

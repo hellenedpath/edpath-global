@@ -90,7 +90,7 @@ export default function FinancialSimulator() {
       <section className="relative bg-navy text-primary-foreground overflow-hidden">
         <div className="container relative py-16 md:py-24 max-w-5xl">
           <Link
-            to="/custos"
+            to="/canada/custos"
             className="inline-flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-white mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -420,10 +420,10 @@ export default function FinancialSimulator() {
 
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="outline">
-            <Link to="/custos">{t("financialSimulator.actions.back")}</Link>
+            <Link to="/canada/custos">{t("financialSimulator.actions.back")}</Link>
           </Button>
           <Button asChild className="bg-navy hover:bg-navy/90 text-white">
-            <Link to="/meu-caminho">{t("financialSimulator.actions.redo")}</Link>
+            <Link to="/canada/meu-caminho">{t("financialSimulator.actions.redo")}</Link>
           </Button>
         </div>
 
