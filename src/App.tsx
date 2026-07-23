@@ -16,7 +16,6 @@ import PgwpChecker from "./pages/PgwpChecker";
 import PathQuiz from "./pages/PathQuiz";
 import Programs from "./pages/Programs";
 import Institutions from "./pages/Institutions";
-import FinancialSimulator from "./pages/FinancialSimulator";
 import HighSchools from "./pages/HighSchools";
 import Renting from "./pages/Renting";
 import RentalScams from "./pages/RentalScams";
@@ -56,7 +55,7 @@ const App = () => (
             <Route path="/canada/alugar" element={<Renting />} />
             <Route path="/canada/golpes-de-aluguel" element={<RentalScams />} />
             <Route path="/canada/study-permit" element={<StudyPermit />} />
-            <Route path="/canada/simulador" element={<FinancialSimulator />} />
+            <Route path="/canada/simulador" element={<Redirect to="/canada/custos" />} />
             <Route path="/canada/saude" element={<Health />} />
             <Route path="/canada/familia" element={<Family />} />
             <Route path="/canada/trabalho-moradia" element={<Work />} />
@@ -74,7 +73,7 @@ const App = () => (
             <Route path="/golpes-de-aluguel" element={<Redirect to="/canada/golpes-de-aluguel" />} />
             <Route path="/study-permit" element={<Redirect to="/canada/study-permit" />} />
             <Route path="/antes-de-comecar" element={<Redirect to="/canada/study-permit" />} />
-            <Route path="/simulador-financeiro" element={<Redirect to="/canada/simulador" />} />
+            <Route path="/simulador-financeiro" element={<Redirect to="/canada/custos" />} />
             <Route path="/saude" element={<Redirect to="/canada/saude" />} />
             <Route path="/familia" element={<Redirect to="/canada/familia" />} />
             <Route path="/trabalho-moradia" element={<Redirect to="/canada/trabalho-moradia" />} />

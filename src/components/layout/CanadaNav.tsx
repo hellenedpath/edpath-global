@@ -38,7 +38,6 @@ const discoverDefs = [
 ] as const;
 
 const planDefs = [
-  { to: "/canada/simulador", key: "costsSimulator" },
   { to: "/canada/custos", key: "costs" },
   { to: "/canada/study-permit", key: "studyPermit" },
 ] as const;
