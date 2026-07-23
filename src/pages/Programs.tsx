@@ -607,7 +607,7 @@ export default function Programs() {
     queryFn: async () => {
       const RAW_AREAS: { group: AreaGroup; raw: string }[] = [
         { group: "health", raw: "health" },
-        { group: "it", raw: "it" },
+        { group: "it", raw: "IT" },
         { group: "business", raw: "business" },
         { group: "engineering", raw: "engineering" },
         { group: "science", raw: "science" },
@@ -628,6 +628,12 @@ export default function Programs() {
         health: 0, it: 0, business: 0, engineering: 0, science: 0,
         trades: 0, social: 0, education: 0, other: 0,
       };
+      const { count: totalCount, error: totalErr } = await supabase
+        .from("programs")
+        .select("*", { count: "exact", head: true })
+        .eq("study_permit_eligible", "yes")
+        .eq("pgwp_eligible", "yes");
+      if (totalErr) throw totalErr;
       await Promise.all(
         RAW_AREAS.map(async ({ group, raw }) => {
           const { count, error } = await supabase
@@ -640,8 +646,7 @@ export default function Programs() {
           counts[group] += count ?? 0;
         }),
       );
-      const total = Object.values(counts).reduce((a, b) => a + b, 0);
-      return { counts, total };
+      return { counts, total: totalCount ?? 0 };
     },
   });
 
