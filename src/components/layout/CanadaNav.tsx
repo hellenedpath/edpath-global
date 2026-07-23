@@ -29,7 +29,6 @@ type Item = { to: string; label: string; primary?: boolean };
 type Group = { title: string; items: Item[] };
 
 const primaryTo = "/canada/meu-caminho?country=canada";
-const highSchoolTo = "/canada/ensino-medio";
 
 const discoverDefs = [
   { to: primaryTo, key: "myPath", primary: true },
