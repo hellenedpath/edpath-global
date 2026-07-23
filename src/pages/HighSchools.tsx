@@ -23,6 +23,7 @@ import {
   ShieldAlert,
   CheckCircle2,
   AlertTriangle,
+  Calculator,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
@@ -74,6 +75,28 @@ export default function HighSchools() {
   );
   const [query, setQuery] = useState("");
 
+  // Cost calculator state
+  const [tuition, setTuition] = useState<number>(14000);
+  const [homestay, setHomestay] = useState<number>(12000);
+  const [healthInsurance, setHealthInsurance] = useState<number>(600);
+  const [custodianship, setCustodianship] = useState<number>(2000);
+  const [feesAndMaterials, setFeesAndMaterials] = useState<number>(1500);
+  const [flightsAndLocalTransport, setFlightsAndLocalTransport] = useState<number>(3000);
+
+  const totalCost =
+    tuition +
+    homestay +
+    healthInsurance +
+    custodianship +
+    feesAndMaterials +
+    flightsAndLocalTransport;
+
+  const formatCAD = (value: number) =>
+    new Intl.NumberFormat("en-CA", {
+      style: "currency",
+      currency: "CAD",
+      maximumFractionDigits: 0,
+    }).format(value);
 
   useEffect(() => {
     (async () => {
@@ -489,6 +512,188 @@ export default function HighSchools() {
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Cost calculator */}
+      <section className="container pt-12">
+        <div className="max-w-5xl">
+          <div className="flex items-center gap-3">
+            <Calculator className="h-5 w-5 text-navy" strokeWidth={1.5} />
+            <h2 className="font-display text-2xl font-semibold text-navy">
+              {t("highSchools.costCalc.title")}
+            </h2>
+          </div>
+          <p className="mt-3 text-sm text-foreground/80 leading-relaxed max-w-4xl">
+            {t("highSchools.costCalc.intro")}
+          </p>
+
+          <div className="mt-6 rounded-xl border border-border bg-card p-6 md:p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {/* Tuition */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label htmlFor="calc-tuition" className="text-sm font-medium text-navy">
+                    {t("highSchools.costCalc.tuition.label")}
+                  </label>
+                  <span className="text-sm font-semibold text-navy">{formatCAD(tuition)}</span>
+                </div>
+                <input
+                  id="calc-tuition"
+                  type="range"
+                  min={10000}
+                  max={45000}
+                  step={500}
+                  value={tuition}
+                  onChange={(e) => setTuition(Number(e.target.value))}
+                  className="w-full accent-[hsl(var(--azul))]"
+                  aria-label={t("highSchools.costCalc.tuition.label")}
+                />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>CAD $10,000</span>
+                  <span>CAD $45,000</span>
+                </div>
+              </div>
+
+              {/* Homestay */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label htmlFor="calc-homestay" className="text-sm font-medium text-navy">
+                    {t("highSchools.costCalc.homestay.label")}
+                  </label>
+                  <span className="text-sm font-semibold text-navy">{formatCAD(homestay)}</span>
+                </div>
+                <input
+                  id="calc-homestay"
+                  type="range"
+                  min={6000}
+                  max={24000}
+                  step={500}
+                  value={homestay}
+                  onChange={(e) => setHomestay(Number(e.target.value))}
+                  className="w-full accent-[hsl(var(--azul))]"
+                  aria-label={t("highSchools.costCalc.homestay.label")}
+                />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>CAD $6,000</span>
+                  <span>CAD $24,000</span>
+                </div>
+              </div>
+
+              {/* Health insurance */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label htmlFor="calc-health" className="text-sm font-medium text-navy">
+                    {t("highSchools.costCalc.health.label")}
+                  </label>
+                  <span className="text-sm font-semibold text-navy">{formatCAD(healthInsurance)}</span>
+                </div>
+                <input
+                  id="calc-health"
+                  type="range"
+                  min={0}
+                  max={2000}
+                  step={50}
+                  value={healthInsurance}
+                  onChange={(e) => setHealthInsurance(Number(e.target.value))}
+                  className="w-full accent-[hsl(var(--azul))]"
+                  aria-label={t("highSchools.costCalc.health.label")}
+                />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>CAD $0</span>
+                  <span>CAD $2,000</span>
+                </div>
+              </div>
+
+              {/* Custodianship */}
+              <div className="space-y-2">
+                <label htmlFor="calc-custody" className="text-sm font-medium text-navy">
+                  {t("highSchools.costCalc.custody.label")}
+                </label>
+                <select
+                  id="calc-custody"
+                  value={custodianship}
+                  onChange={(e) => setCustodianship(Number(e.target.value))}
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(var(--azul))]/30"
+                  aria-label={t("highSchools.costCalc.custody.label")}
+                >
+                  <option value={0}>{t("highSchools.costCalc.custody.none")}</option>
+                  <option value={1000}>{t("highSchools.costCalc.custody.low")}</option>
+                  <option value={2000}>{t("highSchools.costCalc.custody.mid")}</option>
+                  <option value={4000}>{t("highSchools.costCalc.custody.high")}</option>
+                </select>
+                <p className="text-xs text-muted-foreground">
+                  {t("highSchools.costCalc.custody.hint")}
+                </p>
+              </div>
+
+              {/* Fees and materials */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label htmlFor="calc-fees" className="text-sm font-medium text-navy">
+                    {t("highSchools.costCalc.fees.label")}
+                  </label>
+                  <span className="text-sm font-semibold text-navy">{formatCAD(feesAndMaterials)}</span>
+                </div>
+                <input
+                  id="calc-fees"
+                  type="range"
+                  min={0}
+                  max={6000}
+                  step={100}
+                  value={feesAndMaterials}
+                  onChange={(e) => setFeesAndMaterials(Number(e.target.value))}
+                  className="w-full accent-[hsl(var(--azul))]"
+                  aria-label={t("highSchools.costCalc.fees.label")}
+                />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>CAD $0</span>
+                  <span>CAD $6,000</span>
+                </div>
+              </div>
+
+              {/* Flights and local transport */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label htmlFor="calc-travel" className="text-sm font-medium text-navy">
+                    {t("highSchools.costCalc.travel.label")}
+                  </label>
+                  <span className="text-sm font-semibold text-navy">{formatCAD(flightsAndLocalTransport)}</span>
+                </div>
+                <input
+                  id="calc-travel"
+                  type="range"
+                  min={0}
+                  max={8000}
+                  step={250}
+                  value={flightsAndLocalTransport}
+                  onChange={(e) => setFlightsAndLocalTransport(Number(e.target.value))}
+                  className="w-full accent-[hsl(var(--azul))]"
+                  aria-label={t("highSchools.costCalc.travel.label")}
+                />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>CAD $0</span>
+                  <span>CAD $8,000</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-xl border-2 border-[hsl(var(--azul))]/30 bg-[hsl(var(--azul))]/[0.04] p-6 md:p-8 text-center">
+              <p className="text-sm font-medium text-foreground/80">
+                {t("highSchools.costCalc.total.label")}
+              </p>
+              <p className="mt-2 font-display text-4xl md:text-5xl font-bold text-navy">
+                {formatCAD(totalCost)}
+              </p>
+              <p className="mt-3 text-sm text-[hsl(var(--crimson))] font-medium">
+                {t("highSchools.costCalc.total.contrast", { tuition: formatCAD(tuition) })}
+              </p>
+            </div>
+
+            <p className="mt-5 text-xs text-muted-foreground italic max-w-4xl">
+              {t("highSchools.costCalc.note")}
+            </p>
           </div>
         </div>
       </section>
