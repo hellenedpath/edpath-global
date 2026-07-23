@@ -17,6 +17,8 @@ const IRCC_HEALTH_URL =
 
 type ProvinceRow = { name: string; body: string; url: string };
 type DailyCard = { name: string; body: string };
+type EmergencyNumber = { label: string; body: string };
+type EmergencyLink = { name: string; url: string };
 
 const dailyIcons = [Stethoscope, Building2, Phone, Hospital] as const;
 
