@@ -227,24 +227,43 @@ export const pt = {
   },
   healthPage: {
     eyebrow: "Ao chegar · Saúde",
-    title: "Saúde no Canadá",
-    subtitle: "Todo estudante internacional precisa de cobertura de saúde. Entenda o básico antes de chegar.",
-    items: {
-      mandatory: {
-        title: "Seguro de saúde é obrigatório",
-        body: "Todo estudante internacional precisa de cobertura de saúde. Pode ser provincial (algumas províncias cobrem estudantes), privado, ou oferecido pela instituição. Confirme com sua escola o que está incluído.",
-      },
-      province: {
-        title: "Cobertura varia por província",
-        body: "BC, Alberta, Saskatchewan e Manitoba podem cobrir estudantes internacionais no plano provincial. Ontário geralmente exige seguro privado (ex.: UHIP para universidades). Confirme na sua província.",
-      },
-      emergency: {
-        title: "Em emergências",
-        body: "Ligue 911 (gratuito) para emergências médicas graves. Para questões não urgentes, procure uma walk-in clinic.",
-      },
+    title: "Saúde no Canadá: o que ninguém explica antes",
+    subtitle: "Como funciona a cobertura, o que o plano público não paga, e as esperas reais — para você e sua família chegarem preparados.",
+    mandatory: {
+      title: "Seguro de saúde: obrigatório desde o primeiro dia",
+      body: "Ter study permit NÃO dá direito automático ao plano público de saúde. Na maioria das províncias há um período de espera antes de a cobertura provincial começar — e, durante esse tempo, você precisa de seguro-saúde privado. Muitas instituições exigem um seguro obrigatório e já incluem no valor. Confirme com a sua instituição antes de viajar: chegar sem cobertura e precisar de atendimento pode custar milhares de dólares.",
     },
+    provinces: {
+      title: "Cobertura por província",
+      intro: "Regras e prazos mudam. Confirme sempre na saúde pública da sua província e com sua instituição.",
+      rows: [
+        { name: "Ontário (OHIP)", body: "Study permit de 12+ meses pode qualificar, mas há espera de cerca de 3 meses. Nesse período, seguro privado é essencial." },
+        { name: "British Columbia (MSP)", body: "Costuma haver espera; no primeiro período muitos estudantes usam o plano de saúde da própria instituição antes de entrar no MSP." },
+        { name: "Quebec (RAMQ)", body: "Em geral exige seguro privado, salvo se o seu país tem acordo de seguridade social com o Quebec. A instituição costuma exigir seu próprio seguro." },
+        { name: "Alberta (AHCIP), Manitoba (MHSIP), Nova Scotia (MSI)", body: "Podem cobrir titulares de study permit elegíveis; confirme prazo de carência e inscrição." },
+      ],
+      dependentsTitle: "E os dependentes?",
+      dependentsBody: "Atenção: cônjuge e filhos nem sempre entram automaticamente na sua cobertura. Muitas vezes precisam de inscrição e pagamento separados (por exemplo, o UHIP em Ontário cobre dependentes mediante pagamento adicional). Confirme quem está coberto antes de contar com isso.",
+    },
+    daily: {
+      title: "Como funciona no dia a dia",
+      cards: [
+        { name: "Médico de família", body: "Cuidado contínuo e encaminhamentos. Pode demorar meses (ou anos) para conseguir um." },
+        { name: "Walk-in clinic", body: "Sem agendamento. Boa para problemas leves — resfriado, infecção, receitas simples." },
+        { name: "Linha 811", body: "Enfermeira 24h por telefone. Orienta se você deve ir à clínica, ao pronto-socorro ou ficar em casa." },
+        { name: "Emergency room / 911", body: "Só emergências graves. Casos leves podem esperar muitas horas — vá à walk-in ou 811 antes." },
+      ],
+    },
+    familyDoctor: {
+      title: "Conseguir um médico de família: a realidade",
+      body: "A falta de médico de família é uma crise nacional: pesquisas recentes apontam cerca de 6 milhões de adultos no Canadá sem médico ou equipe de atenção primária regular. Recém-chegados entram no fim da fila. Enquanto espera, use walk-in clinics e a linha 811, registre-se no plano da província (ajuda a ser aceito por um médico), pergunte no serviço de saúde da sua instituição e em grupos da comunidade.",
+    },
+    notCovered: {
+      title: "O que o plano público NÃO cobre",
+      body: "Mesmo com o plano provincial, ficam de fora em quase todo o país: dentista, óculos e exames de vista, e a maioria dos medicamentos. Esses custos saem do seu bolso ou de um seguro complementar. Para família com filhos, o dentista costuma ser o gasto extra mais frequente — planeje isso no orçamento.",
+    },
+    footerNote: "A EdPath dá informação, não assessoria de imigração ou médica. Regras, prazos e cobertura mudam por província e ao longo do tempo — confirme sempre nas fontes oficiais (IRCC e saúde pública da sua província).",
     officialLinkLabel: "Ver página oficial do IRCC sobre saúde",
-    seal: "Informação geral. Confirme a cobertura com sua instituição e a saúde pública da sua província.",
     sourceLink: "Fonte oficial: IRCC, Health insurance",
   },
   pages: {
