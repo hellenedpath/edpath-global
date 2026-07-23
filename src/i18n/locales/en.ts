@@ -735,6 +735,18 @@ export const en = {
         "The Fraser Institute publishes free school rankings (Ontario, BC, Alberta, Quebec) at compareschoolrankings.org. It measures mostly standardized test scores and does not adjust for the neighborhood's socioeconomic level — so use it as one data point among several, not as a verdict. Visit the school, check newcomer support (ESL) and talk to other families.",
       rankingCta: "Open compareschoolrankings.org",
       rankingUrl: "https://www.compareschoolrankings.org/",
+      finderTitle: "Where to find the public school (by province)",
+      finderIntro:
+        "Use your province's official finder to locate the school by address. Only Ontario has a postal-code search; in the others, you reach it through the school district.",
+      finderLinks: [
+        { name: "Ontario — Find your school", url: "https://www.ontario.ca/page/find-your-school" },
+        { name: "British Columbia — School districts", url: "https://bcforhighschool.gov.bc.ca/onshore/enrolling-in-a-bc-school/find-a-bc-school/school-districts/" },
+        { name: "Alberta — School & Authority Index", url: "https://education.alberta.ca/alberta-education/school-authority-index/" },
+        { name: "Quebec — Trouver un organisme scolaire", url: "https://www.quebec.ca/education/trouver-organisme-scolaire" },
+        { name: "Manitoba — Schools in Manitoba", url: "https://www.edu.gov.mb.ca/k12/schools/index.html" },
+        { name: "Nova Scotia — Regional Centres for Education", url: "https://www.ednet.ns.ca/" },
+        { name: "Saskatchewan — PreK-12 school divisions", url: "https://www.saskatchewan.ca/residents/education-and-learning/prek-12-education-early-learning-and-schools" },
+      ],
       enrollTitle: "Enrollment step by step",
       enrollSteps: [
         "Find the school for your zone using the school board's 'school locator' (by address).",
