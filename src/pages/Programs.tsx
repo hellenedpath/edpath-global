@@ -575,9 +575,9 @@ export default function Programs() {
   const { data: programs, isLoading, error } = useQuery({
     queryKey: ["programs-eligible"],
     queryFn: async () => {
-      // Supabase caps rows at 1000 per request. Paginate with .range() so the
-      // funnel gets the COMPLETE eligible pool — counts and lists depend on it.
-      const PAGE = 1000;
+      // PostgREST caps at 1000 rows/request. Use a page size BELOW the cap so
+      // .range() actually advances past 1000 and fetches the complete pool.
+      const PAGE = 500;
       const all: Program[] = [];
       for (let from = 0; ; from += PAGE) {
         const { data, error } = await supabase
@@ -596,6 +596,52 @@ export default function Programs() {
         if (batch.length < PAGE) break;
       }
       return all;
+    },
+  });
+
+  // Server-side exact counts — immune to the 1000-row cap. Drives the top
+  // badge and the area picker buttons so numbers reflect the DB, not a
+  // truncated fetch.
+  const { data: areaCountsServer } = useQuery({
+    queryKey: ["programs-area-counts"],
+    queryFn: async () => {
+      const RAW_AREAS: { group: AreaGroup; raw: string }[] = [
+        { group: "health", raw: "health" },
+        { group: "it", raw: "it" },
+        { group: "business", raw: "business" },
+        { group: "engineering", raw: "engineering" },
+        { group: "science", raw: "science" },
+        { group: "trades", raw: "trades" },
+        { group: "social", raw: "social services" },
+        { group: "education", raw: "education" },
+        { group: "other", raw: "environment" },
+        { group: "other", raw: "design" },
+        { group: "other", raw: "aviation" },
+        { group: "other", raw: "agriculture" },
+        { group: "other", raw: "general" },
+        { group: "other", raw: "media" },
+        { group: "other", raw: "hospitality" },
+        { group: "other", raw: "transport" },
+        { group: "other", raw: "other" },
+      ];
+      const counts: Record<AreaGroup, number> = {
+        health: 0, it: 0, business: 0, engineering: 0, science: 0,
+        trades: 0, social: 0, education: 0, other: 0,
+      };
+      await Promise.all(
+        RAW_AREAS.map(async ({ group, raw }) => {
+          const { count, error } = await supabase
+            .from("programs")
+            .select("*", { count: "exact", head: true })
+            .eq("study_permit_eligible", "yes")
+            .eq("pgwp_eligible", "yes")
+            .eq("field_area", raw);
+          if (error) throw error;
+          counts[group] += count ?? 0;
+        }),
+      );
+      const total = Object.values(counts).reduce((a, b) => a + b, 0);
+      return { counts, total };
     },
   });
 
@@ -663,8 +709,10 @@ export default function Programs() {
     return m;
   }, [occupations]);
 
-  // Counts per area group across the whole eligible pool.
-  const areaCounts = useMemo(() => {
+  // Prefer server-side exact counts (never truncated); fall back to the
+  // fetched array only while the count query is loading.
+  const areaCounts = useMemo<Record<AreaGroup, number>>(() => {
+    if (areaCountsServer) return areaCountsServer.counts;
     const counts: Record<AreaGroup, number> = {
       health: 0, it: 0, business: 0, engineering: 0, science: 0,
       trades: 0, social: 0, education: 0, other: 0,
@@ -674,9 +722,9 @@ export default function Programs() {
       if (g) counts[g]++;
     });
     return counts;
-  }, [programs]);
+  }, [areaCountsServer, programs]);
 
-  const totalEligible = programs?.length ?? 0;
+  const totalEligible = areaCountsServer?.total ?? programs?.length ?? 0;
 
   const provinceOptions = useMemo(() => {
     const set = new Set<string>();
