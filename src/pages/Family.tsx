@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -7,6 +8,8 @@ import {
   ExternalLink,
   GraduationCap,
   Home,
+  HeartPulse,
+  ArrowRight,
   MapPin,
   School,
   UserX,
@@ -222,6 +225,30 @@ export default function Family() {
             {t("family.where.body")}
           </p>
         </div>
+      </section>
+
+      {/* Health link */}
+      <section className="container py-12 md:py-16">
+        <Link
+          to="/canada/saude"
+          className="group max-w-4xl mx-auto flex items-start gap-4 rounded-xl border border-border bg-card p-5 md:p-6 hover:border-crimson/50 transition-colors"
+        >
+          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-crimson/10 text-crimson shrink-0">
+            <HeartPulse className="w-5 h-5" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <h3 className="font-display text-base font-semibold text-navy">
+              {t("family.healthLink.title")}
+            </h3>
+            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+              {t("family.healthLink.body")}
+            </p>
+            <span className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-navy group-hover:text-crimson transition-colors">
+              {t("family.healthLink.cta")}
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </div>
+        </Link>
       </section>
 
       {/* Disclaimer */}
