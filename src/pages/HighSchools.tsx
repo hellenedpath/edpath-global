@@ -674,7 +674,30 @@ export default function HighSchools() {
           </div>
         </div>
 
-        <div className="mt-12 flex items-start gap-2 rounded-md border border-[hsl(var(--azul))]/30 bg-[hsl(var(--azul))]/5 p-4 text-sm leading-relaxed text-navy max-w-4xl">
+        {/* Guide: Step by step */}
+        <div className="mt-12 max-w-4xl rounded-xl border border-border bg-card p-6 md:p-8">
+          <div className="flex items-center gap-3">
+            <ListChecks className="h-5 w-5 text-navy" strokeWidth={1.5} />
+            <h2 className="font-display text-2xl font-semibold text-navy">
+              {t("highSchools.guide.steps.title")}
+            </h2>
+          </div>
+          <ol className="mt-5 space-y-3">
+            {(t("highSchools.guide.steps.items", { returnObjects: true }) as string[]).map((item, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))] text-xs font-semibold">
+                  {i + 1}
+                </span>
+                <p className="text-sm text-foreground/85 leading-relaxed pt-0.5">{item}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-5 text-sm text-foreground/75 leading-relaxed italic">
+            {t("highSchools.guide.steps.footer")}
+          </p>
+        </div>
+
+        <div className="mt-8 flex items-start gap-2 rounded-md border border-[hsl(var(--azul))]/30 bg-[hsl(var(--azul))]/5 p-4 text-sm leading-relaxed text-navy max-w-4xl">
           <Info className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
           <div>
             <p>
