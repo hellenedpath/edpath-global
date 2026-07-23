@@ -1718,6 +1718,39 @@ export const pt = {
           ["Nova Scotia", "NS Diploma", "19", "$", "costeiro, ameno", "Inglês"],
         ],
       },
+      costCalc: {
+        title: "Simulador de custo total real",
+        intro:
+          "A mensalidade é só uma parte. Veja o custo anual REAL somando tudo o que ninguém mostra de primeira. Ajuste os valores conforme a escola e a província.",
+        tuition: {
+          label: "Mensalidade anual (tuition)",
+        },
+        homestay: {
+          label: "Homestay anual (moradia com família)",
+        },
+        health: {
+          label: "Seguro-saúde anual",
+        },
+        custody: {
+          label: "Custódia (custodian, se menor de 17)",
+          none: "Não preciso (0)",
+          low: "Básico: CAD $1.000/ano",
+          mid: "Padrão: CAD $2.000/ano",
+          high: "Completo: CAD $4.000/ano",
+          hint: "Obrigatória para menores de 17 em algumas províncias.",
+        },
+        fees: {
+          label: "Taxas escolares e materiais (uniforme, laptop, resource fees)",
+        },
+        travel: {
+          label: "Voos e transporte local anual",
+        },
+        total: {
+          label: "Custo total estimado por ano",
+          contrast: "Só a mensalidade seria {{tuition}} — o custo real é bem maior.",
+        },
+        note: "Estimativa para orientação. Os valores reais variam por escola, cidade e câmbio. Confirme sempre na fonte oficial.",
+      },
       steps: {
         title: "Passo a passo: como aplicar (sem agência)",
         items: [

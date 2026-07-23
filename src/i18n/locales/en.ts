@@ -1715,6 +1715,39 @@ export const en = {
           ["Nova Scotia", "NS Diploma", "19", "$", "coastal, mild", "English"],
         ],
       },
+      costCalc: {
+        title: "Real total-cost estimator",
+        intro:
+          "Tuition is only part of it. See the REAL annual cost by adding everything nobody shows upfront. Adjust the values by school and province.",
+        tuition: {
+          label: "Annual tuition",
+        },
+        homestay: {
+          label: "Annual homestay (host family)",
+        },
+        health: {
+          label: "Annual health insurance",
+        },
+        custody: {
+          label: "Custodianship (if under 17)",
+          none: "I don't need it (0)",
+          low: "Basic: CAD $1,000/year",
+          mid: "Standard: CAD $2,000/year",
+          high: "Full: CAD $4,000/year",
+          hint: "Required for students under 17 in some provinces.",
+        },
+        fees: {
+          label: "School fees and materials (uniform, laptop, resource fees)",
+        },
+        travel: {
+          label: "Flights and local transport per year",
+        },
+        total: {
+          label: "Estimated total cost per year",
+          contrast: "Tuition alone would be {{tuition}} — the real cost is much higher.",
+        },
+        note: "Estimate for guidance. Real values vary by school, city and exchange rate. Always confirm at the official source.",
+      },
       steps: {
         title: "Step by step: how to apply (no agency)",
         items: [
