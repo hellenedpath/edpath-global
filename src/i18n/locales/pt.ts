@@ -729,6 +729,18 @@ export const pt = {
         "O Fraser Institute publica rankings gratuitos de escolas (Ontário, BC, Alberta, Quebec) em compareschoolrankings.org. Ele mede quase só notas de provas padronizadas e não ajusta pelo nível socioeconômico do bairro — por isso, use como um dado entre vários, não como veredito. Visite a escola, veja o apoio a recém-chegados (ESL) e converse com outras famílias.",
       rankingCta: "Abrir compareschoolrankings.org",
       rankingUrl: "https://www.compareschoolrankings.org/",
+      finderTitle: "Onde buscar a escola pública (por província)",
+      finderIntro:
+        "Use o localizador oficial da sua província para achar a escola pelo endereço. Só Ontário tem busca por CEP; nas outras, você chega pelo distrito escolar.",
+      finderLinks: [
+        { name: "Ontário — Find your school", url: "https://www.ontario.ca/page/find-your-school" },
+        { name: "British Columbia — School districts", url: "https://bcforhighschool.gov.bc.ca/onshore/enrolling-in-a-bc-school/find-a-bc-school/school-districts/" },
+        { name: "Alberta — School & Authority Index", url: "https://education.alberta.ca/alberta-education/school-authority-index/" },
+        { name: "Quebec — Trouver un organisme scolaire", url: "https://www.quebec.ca/education/trouver-organisme-scolaire" },
+        { name: "Manitoba — Schools in Manitoba", url: "https://www.edu.gov.mb.ca/k12/schools/index.html" },
+        { name: "Nova Scotia — Regional Centres for Education", url: "https://www.ednet.ns.ca/" },
+        { name: "Saskatchewan — PreK-12 school divisions", url: "https://www.saskatchewan.ca/residents/education-and-learning/prek-12-education-early-learning-and-schools" },
+      ],
       enrollTitle: "Passo a passo da matrícula",
       enrollSteps: [
         "Descubra a escola da sua zona pelo 'school locator' do conselho escolar (pelo endereço).",
