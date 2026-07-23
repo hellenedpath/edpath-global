@@ -1294,7 +1294,7 @@ export const en = {
     },
     objective: {
       stay: "Your focus is to build a career and stay in Canada.",
-      return: "Your focus is to gain international experience and return to Brazil.",
+      return: "Your focus is to gain international experience and return to your home country.",
       explore: "You are still exploring the path, let's go step by step.",
     },
     highlights: {
