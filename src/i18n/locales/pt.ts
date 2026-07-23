@@ -1636,7 +1636,61 @@ export const pt = {
       costNote:
         "Os valores são estimativas e mudam a cada ano. Confirme sempre no site oficial da escola.",
     },
-
+    schoolsListTitle: "As escolas por província",
+    schoolsListSubtitle: "Use os filtros para encontrar distritos e escolas por província, tipo e cidade.",
+    guide: {
+      custody: {
+        title: "Custódia e menores de idade",
+        body:
+          "Esta é a dúvida que mais assusta os pais — e a que as agências mais usam para parecer indispensáveis. A regra oficial do IRCC é clara. Quem é considerado 'menor' depende da província: a maioridade é 18 anos em Alberta, Manitoba, Ontário, PEI, Quebec e Saskatchewan; e 19 anos em British Columbia, New Brunswick, Newfoundland e Nova Scotia. Menor de 17 anos precisa vir com o pai ou responsável legal, ou ter um custodian (custódia) no Canadá — um adulto responsável, cidadão ou residente permanente, que cuida do dia a dia do aluno. Entre 17 e a maioridade, a custódia é opcional, mas o oficial de imigração pode exigir conforme o caso. O documento é o formulário IMM 5646 (Custodianship Declaration), de duas páginas: a página 1 é assinada e reconhecida em cartório pelo custodian no Canadá; a página 2, pelos pais no país de origem. Na prática, a maioria dos School Boards organiza homestay, e isso costuma resolver acomodação e custódia de uma vez.",
+      },
+      parents: {
+        title: "Os pais podem ir junto?",
+        body:
+          "Sim. Um dos pais pode acompanhar o filho menor ao Canadá. Se o pai solicita o próprio visto de estudo ou trabalho junto com o pedido do filho, a carta de aceite do filho nem precisa estar pronta para o processo do pai andar. Para famílias que não querem deixar o filho sozinho, esse caminho existe e é oficial.",
+      },
+      housing: {
+        title: "Acomodação: homestay, internato ou com a família",
+        body:
+          "Há três caminhos. Homestay: o aluno mora com uma família anfitriã canadense, com refeições e supervisão — o mais comum, cerca de CAD $950 a $1.000 por mês, e ótimo para o idioma. Internato (boarding): oferecido por escolas privadas, com estudo, moradia e refeições no mesmo lugar, mais caro (CAD $30.000 a $90.000 por ano). Morar com o pai ou parente: quando um responsável acompanha ou já vive no Canadá. A escolha muda o custo total tanto quanto a própria mensalidade.",
+      },
+      work: {
+        title: "O aluno pode trabalhar?",
+        body:
+          "Atenção, porque muita gente se engana aqui: o estudante de ensino médio, por ser menor de idade, em geral NÃO pode trabalhar no Canadá. O próprio visto de estudo diz que não autoriza emprego fora da escola. A única exceção é um co-op ligado ao currículo, em escola credenciada. A permissão de trabalhar até 24 horas por semana é do ensino pós-secundário (faculdade), não do ensino médio. Ou seja: não conte com o filho trabalhando para pagar os estudos, e desconfie de quem promete isso.",
+      },
+      life: {
+        title: "Segurança e vida no Canadá",
+        body:
+          "O Canadá está entre os países mais seguros do mundo, e as escolas públicas têm estrutura de apoio a estudantes internacionais. A vida do aluno combina rotina escolar, atividades e imersão no inglês (ou francês, no Quebec). O homestay ajuda muito nos primeiros meses: o aluno tem supervisão familiar e pratica o idioma o tempo todo. O clima varia: as pradarias (Manitoba, Saskatchewan, Alberta) e o Quebec têm invernos rigorosos; a costa oeste (Vancouver, Victoria) é a mais amena do país.",
+      },
+      compare: {
+        title: "Mais barato ou mais caro? Comparando províncias",
+        intro:
+          "Se orçamento é prioridade, as províncias mais acessíveis (mensalidade mais custo de vida) são Quebec, Manitoba, Saskatchewan e as províncias do Atlântico como Nova Scotia. As mais caras são Ontário e British Columbia, puxadas por Toronto e Vancouver.",
+        headers: ["Província", "Diploma", "Maioridade", "Custo público", "Clima", "Idioma"],
+        rows: [
+          ["Ontário", "OSSD", "18", "$$$", "frio, 4 estações", "Inglês"],
+          ["British Columbia", "Dogwood", "19", "$$$", "ameno (costa oeste)", "Inglês"],
+          ["Quebec", "DES (5 anos)", "18", "$", "inverno rigoroso", "Inglês/Francês"],
+          ["Alberta", "Alberta Diploma", "18", "$", "inverno rigoroso", "Inglês"],
+          ["Manitoba", "Manitoba Diploma", "18", "$", "inverno muito frio", "Inglês"],
+          ["Nova Scotia", "NS Diploma", "19", "$", "costeiro, ameno", "Inglês"],
+        ],
+      },
+      steps: {
+        title: "Passo a passo: como aplicar (sem agência)",
+        items: [
+          "Escolha a província e a escola usando o mapa acima.",
+          "Verifique idade e custódia na seção sobre menores.",
+          "Aplique direto na escola ou School Board (o link oficial está em cada card).",
+          "Com a carta de aceite, solicite o study permit no IRCC.",
+          "Organize homestay ou custódia e o seguro-saúde.",
+        ],
+        footer:
+          "O EdPath te guia em cada passo — e, quando precisar de apoio legal de imigração, encaminhamos a um RCIC ou advogado regulamentado, nunca a uma agência comissionada.",
+      },
+    },
   },
 
   renting: {

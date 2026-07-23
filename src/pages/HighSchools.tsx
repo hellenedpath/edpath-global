@@ -15,6 +15,11 @@ import {
   Stamp,
   MessageCircle,
   ArrowRight,
+  ShieldCheck,
+  Users,
+  Briefcase,
+  Heart,
+  ListChecks,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
@@ -281,8 +286,141 @@ export default function HighSchools() {
         </p>
       </section>
 
+      {/* Guide: Custody (highlighted) */}
+      <section className="container pt-12">
+        <div className="max-w-4xl rounded-xl border-2 border-[hsl(var(--azul))]/40 bg-[hsl(var(--azul))]/5 p-6 md:p-8">
+          <div className="flex items-start gap-3">
+            <ShieldCheck className="h-6 w-6 mt-1 shrink-0 text-[hsl(var(--azul))]" strokeWidth={1.5} />
+            <div>
+              <h2 className="font-display text-2xl font-semibold text-navy">
+                {t("highSchools.guide.custody.title")}
+              </h2>
+              <p className="mt-3 text-sm text-foreground/85 leading-relaxed">
+                {t("highSchools.guide.custody.body")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Guide: Parents */}
+      <section className="container pt-10">
+        <div className="max-w-4xl">
+          <div className="flex items-center gap-3">
+            <Users className="h-5 w-5 text-navy" strokeWidth={1.5} />
+            <h2 className="font-display text-2xl font-semibold text-navy">
+              {t("highSchools.guide.parents.title")}
+            </h2>
+          </div>
+          <p className="mt-3 text-sm text-foreground/80 leading-relaxed">
+            {t("highSchools.guide.parents.body")}
+          </p>
+        </div>
+      </section>
+
+      {/* Guide: Housing */}
+      <section className="container pt-10">
+        <div className="max-w-4xl">
+          <div className="flex items-center gap-3">
+            <Home className="h-5 w-5 text-navy" strokeWidth={1.5} />
+            <h2 className="font-display text-2xl font-semibold text-navy">
+              {t("highSchools.guide.housing.title")}
+            </h2>
+          </div>
+          <p className="mt-3 text-sm text-foreground/80 leading-relaxed">
+            {t("highSchools.guide.housing.body")}
+          </p>
+        </div>
+      </section>
+
+      {/* Guide: Work (alert) */}
+      <section className="container pt-10">
+        <div className="max-w-4xl rounded-xl border border-[hsl(var(--crimson))]/30 bg-[hsl(var(--crimson))]/[0.04] p-6 md:p-8">
+          <div className="flex items-start gap-3">
+            <Briefcase className="h-6 w-6 mt-1 shrink-0 text-[hsl(var(--crimson))]" strokeWidth={1.5} />
+            <div>
+              <h2 className="font-display text-2xl font-semibold text-navy">
+                {t("highSchools.guide.work.title")}
+              </h2>
+              <p className="mt-3 text-sm text-foreground/85 leading-relaxed">
+                {t("highSchools.guide.work.body")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Guide: Life */}
+      <section className="container pt-10">
+        <div className="max-w-4xl">
+          <div className="flex items-center gap-3">
+            <Heart className="h-5 w-5 text-navy" strokeWidth={1.5} />
+            <h2 className="font-display text-2xl font-semibold text-navy">
+              {t("highSchools.guide.life.title")}
+            </h2>
+          </div>
+          <p className="mt-3 text-sm text-foreground/80 leading-relaxed">
+            {t("highSchools.guide.life.body")}
+          </p>
+        </div>
+      </section>
+
+      {/* Guide: Compare provinces (table) */}
+      <section className="container pt-10">
+        <div className="max-w-5xl">
+          <div className="flex items-center gap-3">
+            <Wallet className="h-5 w-5 text-navy" strokeWidth={1.5} />
+            <h2 className="font-display text-2xl font-semibold text-navy">
+              {t("highSchools.guide.compare.title")}
+            </h2>
+          </div>
+          <p className="mt-3 text-sm text-foreground/80 leading-relaxed max-w-4xl">
+            {t("highSchools.guide.compare.intro")}
+          </p>
+          <div className="mt-5 overflow-x-auto rounded-xl border border-border">
+            <table className="w-full text-sm">
+              <thead className="bg-navy/[0.04] text-navy">
+                <tr>
+                  {(t("highSchools.guide.compare.headers", { returnObjects: true }) as string[]).map((h) => (
+                    <th key={h} className="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider">
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {(t("highSchools.guide.compare.rows", { returnObjects: true }) as string[][]).map((row, i) => (
+                  <tr key={i} className="border-t border-border">
+                    {row.map((cell, j) => (
+                      <td
+                        key={j}
+                        className={`px-4 py-3 align-top ${j === 0 ? "font-medium text-navy" : "text-foreground/80"}`}
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Schools list intro */}
+      <section className="container pt-12">
+        <div className="max-w-4xl">
+          <h2 className="font-display text-2xl font-semibold text-navy">
+            {t("highSchools.schoolsListTitle")}
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            {t("highSchools.schoolsListSubtitle")}
+          </p>
+        </div>
+      </section>
+
       {/* Filters */}
-      <section className="container py-8">
+      <section className="container py-6">
         <div className="flex flex-col gap-4">
           <div className="relative max-w-xl">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -536,7 +674,30 @@ export default function HighSchools() {
           </div>
         </div>
 
-        <div className="mt-12 flex items-start gap-2 rounded-md border border-[hsl(var(--azul))]/30 bg-[hsl(var(--azul))]/5 p-4 text-sm leading-relaxed text-navy max-w-4xl">
+        {/* Guide: Step by step */}
+        <div className="mt-12 max-w-4xl rounded-xl border border-border bg-card p-6 md:p-8">
+          <div className="flex items-center gap-3">
+            <ListChecks className="h-5 w-5 text-navy" strokeWidth={1.5} />
+            <h2 className="font-display text-2xl font-semibold text-navy">
+              {t("highSchools.guide.steps.title")}
+            </h2>
+          </div>
+          <ol className="mt-5 space-y-3">
+            {(t("highSchools.guide.steps.items", { returnObjects: true }) as string[]).map((item, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))] text-xs font-semibold">
+                  {i + 1}
+                </span>
+                <p className="text-sm text-foreground/85 leading-relaxed pt-0.5">{item}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-5 text-sm text-foreground/75 leading-relaxed italic">
+            {t("highSchools.guide.steps.footer")}
+          </p>
+        </div>
+
+        <div className="mt-8 flex items-start gap-2 rounded-md border border-[hsl(var(--azul))]/30 bg-[hsl(var(--azul))]/5 p-4 text-sm leading-relaxed text-navy max-w-4xl">
           <Info className="h-4 w-4 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
           <div>
             <p>

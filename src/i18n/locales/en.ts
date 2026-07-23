@@ -1633,7 +1633,61 @@ export const en = {
       costNote:
         "Costs are estimates and change yearly. Always confirm on the school's official site.",
     },
-
+    schoolsListTitle: "Schools by province",
+    schoolsListSubtitle: "Use the filters to find districts and schools by province, type and city.",
+    guide: {
+      custody: {
+        title: "Custodianship and minors",
+        body:
+          "This is the question that scares parents most — and the one agencies most use to look indispensable. The official IRCC rule is clear. Who counts as a 'minor' depends on the province: the age of majority is 18 in Alberta, Manitoba, Ontario, PEI, Quebec and Saskatchewan; and 19 in British Columbia, New Brunswick, Newfoundland and Nova Scotia. A student under 17 must come with a parent or legal guardian, or have a custodian in Canada — a responsible adult, citizen or permanent resident, who handles the student's day-to-day care. Between 17 and the age of majority, custodianship is optional, but the immigration officer may require it case by case. The document is form IMM 5646 (Custodianship Declaration), two pages: page 1 is signed and notarized by the custodian in Canada; page 2 by the parents in the home country. In practice, most School Boards arrange homestay, which usually solves accommodation and custodianship at once.",
+      },
+      parents: {
+        title: "Can parents come along?",
+        body:
+          "Yes. One parent can accompany their minor child to Canada. If the parent applies for their own study or work permit together with the child's application, the child's letter of acceptance isn't even required for the parent's process to move forward. For families who don't want to leave their child alone, this path exists and is official.",
+      },
+      housing: {
+        title: "Accommodation: homestay, boarding or with family",
+        body:
+          "There are three paths. Homestay: the student lives with a Canadian host family, with meals and supervision — the most common, about CAD $950 to $1,000 per month, and great for language. Boarding: offered by private schools, with study, housing and meals in one place, pricier (CAD $30,000 to $90,000 per year). Living with a parent or relative: when a guardian accompanies or already lives in Canada. This choice changes the total cost as much as tuition itself.",
+      },
+      work: {
+        title: "Can the student work?",
+        body:
+          "Pay attention, because many people get this wrong: a high school student, being a minor, generally CANNOT work in Canada. The study permit itself states it does not authorize off-campus employment. The only exception is a curriculum-linked co-op at an accredited school. The 24-hours-per-week allowance is for post-secondary (college/university), not high school. So: don't count on your child working to pay for studies, and be wary of anyone who promises that.",
+      },
+      life: {
+        title: "Safety and life in Canada",
+        body:
+          "Canada is among the safest countries in the world, and public schools have support structures for international students. Student life blends school routine, activities and immersion in English (or French, in Quebec). Homestay helps a lot in the first months: the student has family supervision and practices the language constantly. Climate varies: the prairies (Manitoba, Saskatchewan, Alberta) and Quebec have harsh winters; the west coast (Vancouver, Victoria) is the mildest in the country.",
+      },
+      compare: {
+        title: "Cheaper or pricier? Comparing provinces",
+        intro:
+          "If budget is the priority, the most affordable provinces (tuition plus cost of living) are Quebec, Manitoba, Saskatchewan and the Atlantic provinces like Nova Scotia. The most expensive are Ontario and British Columbia, driven by Toronto and Vancouver.",
+        headers: ["Province", "Diploma", "Age of majority", "Public cost", "Climate", "Language"],
+        rows: [
+          ["Ontario", "OSSD", "18", "$$$", "cold, 4 seasons", "English"],
+          ["British Columbia", "Dogwood", "19", "$$$", "mild (west coast)", "English"],
+          ["Quebec", "DES (5 years)", "18", "$", "harsh winter", "English/French"],
+          ["Alberta", "Alberta Diploma", "18", "$", "harsh winter", "English"],
+          ["Manitoba", "Manitoba Diploma", "18", "$", "very cold winter", "English"],
+          ["Nova Scotia", "NS Diploma", "19", "$", "coastal, mild", "English"],
+        ],
+      },
+      steps: {
+        title: "Step by step: how to apply (no agency)",
+        items: [
+          "Choose the province and school using the map above.",
+          "Check age and custodianship in the minors section.",
+          "Apply directly to the school or School Board (the official link is on each card).",
+          "With the acceptance letter, apply for the study permit at IRCC.",
+          "Arrange homestay or custodianship and health insurance.",
+        ],
+        footer:
+          "EdPath guides you through each step — and, when you need immigration legal support, we refer you to a regulated RCIC or lawyer, never a commission-based agency.",
+      },
+    },
   },
 
   renting: {
