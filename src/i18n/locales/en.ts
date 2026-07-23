@@ -667,6 +667,16 @@ export const en = {
       sourceUrl:
         "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/updates/2025-spouses-common-law-study-permit.html",
     },
+    childBenefit: {
+      badge: "Alert",
+      title: "Canada Child Benefit: it doesn't come as soon as you arrive",
+      body:
+        "The Canada Child Benefit is a tax-free monthly payment per child under 18. But note: study permit holders are temporary residents and only become eligible after living in Canada for 18 continuous months, with a valid permit in the 19th month. So you won't receive it at the start — plan your first year and a half without it. To receive it later, you must file taxes in Canada (be a resident for tax purposes).",
+      links: [
+        { label: "Canada Child Benefit (government)", url: "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit.html" },
+        { label: "Who can apply (18-month rule)", url: "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-before-you-apply.html" },
+      ],
+    },
     daycare: {
       title: "Daycare: how it works, cost and where to apply",
       intro:
@@ -690,6 +700,17 @@ export const en = {
       ],
       note:
         "Families with a valid study or work permit can usually access licensed daycare, but the criteria vary by province — confirm on the official portal. In Quebec, eligibility for temporary residents was disputed in 2025; check the current status.",
+      subsidy: {
+        title: "Government subsidy (income-tested)",
+        body:
+          "Lower-income families can apply for a provincial subsidy that reduces the daycare cost even further. It's separate from the $10-a-day program. Check your province:",
+        links: [
+          { name: "British Columbia — Affordable Child Care Benefit", url: "https://www2.gov.bc.ca/gov/content/family-social-supports/caring-for-young-children/child-care-funding/child-care-benefit" },
+          { name: "Alberta — Child Care Subsidy", url: "https://www.alberta.ca/child-care-subsidy" },
+          { name: "Ontario — city subsidy (e.g. Toronto)", url: "https://www.toronto.ca/community-people/employment-social-support/child-family-support/child-care-support/" },
+          { name: "Quebec — reduced fee (Portail)", url: "https://www.portail-servicesgarde.gouv.qc.ca" },
+        ],
+      },
     },
     school: {
       title: "Children's school (K-12): how it really works",

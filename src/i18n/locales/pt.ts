@@ -661,6 +661,16 @@ export const pt = {
       sourceUrl:
         "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/updates/2025-spouses-common-law-study-permit.html",
     },
+    childBenefit: {
+      badge: "Alerta",
+      title: "Auxílio-criança (Canada Child Benefit): não vem logo que você chega",
+      body:
+        "O Canada Child Benefit é um pagamento mensal, isento de imposto, por filho menor de 18 anos. Mas atenção: quem tem study permit é residente temporário e só passa a ter direito depois de viver no Canadá por 18 meses seguidos, tendo um permit válido no 19º mês. Ou seja, você não recebe esse valor no começo — planeje o primeiro ano e meio sem ele. Para receber depois, é preciso declarar imposto de renda no Canadá (ser residente para fins fiscais).",
+      links: [
+        { label: "Canada Child Benefit (governo)", url: "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit.html" },
+        { label: "Quem pode aplicar (regra dos 18 meses)", url: "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-before-you-apply.html" },
+      ],
+    },
     daycare: {
       title: "Creche (daycare): como funciona, quanto custa e onde aplicar",
       intro:
@@ -684,6 +694,17 @@ export const pt = {
       ],
       note:
         "Quem tem study ou work permit válido geralmente consegue vaga em creche licenciada, mas os critérios variam por província — confirme no portal oficial. No Quebec, a elegibilidade de imigrantes temporários esteve em disputa em 2025; verifique o status atual.",
+      subsidy: {
+        title: "Subsídio do governo (por renda)",
+        body:
+          "Famílias de renda mais baixa podem pedir um subsídio provincial que reduz ainda mais o valor da creche. É separado do programa de $10/dia. Veja o da sua província:",
+        links: [
+          { name: "British Columbia — Affordable Child Care Benefit", url: "https://www2.gov.bc.ca/gov/content/family-social-supports/caring-for-young-children/child-care-funding/child-care-benefit" },
+          { name: "Alberta — Child Care Subsidy", url: "https://www.alberta.ca/child-care-subsidy" },
+          { name: "Ontário — subsídio pela cidade (ex. Toronto)", url: "https://www.toronto.ca/community-people/employment-social-support/child-family-support/child-care-support/" },
+          { name: "Quebec — tarifa reduzida (Portail)", url: "https://www.portail-servicesgarde.gouv.qc.ca" },
+        ],
+      },
     },
     school: {
       title: "Escola dos filhos (K-12): como funciona de verdade",
