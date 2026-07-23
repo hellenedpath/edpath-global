@@ -724,7 +724,11 @@ export default function Programs() {
     return counts;
   }, [areaCountsServer, programs]);
 
-  const totalEligible = areaCountsServer?.total ?? programs?.length ?? 0;
+  // Badge total must ONLY come from the server-side exact count so it stays
+  // consistent with the area buttons (which also use exact counts). Never
+  // fall back to programs.length — that array streams in and would show a
+  // partial number during loading.
+  const totalEligible: number | null = areaCountsServer?.total ?? null;
 
   const provinceOptions = useMemo(() => {
     const set = new Set<string>();
@@ -794,13 +798,17 @@ export default function Programs() {
 
       <section className="mx-auto max-w-[1320px] px-6 py-10 md:py-14">
         {/* Trust chip — kept but small so it doesn't dominate the funnel */}
-        {!isLoading && !error && (
+        {!error && (
           <div className="mb-6 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-navy/15 bg-navy/[0.03] px-2.5 py-1 text-navy">
               <ShieldCheck className="h-3.5 w-3.5" strokeWidth={1.5} />
-              {T(
-                `${totalEligible} programas elegíveis a Study Permit e PGWP`,
-                `${totalEligible} programs eligible for Study Permit and PGWP`,
+              {totalEligible == null ? (
+                <span className="inline-block h-3 w-16 animate-pulse rounded bg-navy/10" aria-hidden />
+              ) : (
+                T(
+                  `${totalEligible} programas elegíveis a Study Permit e PGWP`,
+                  `${totalEligible} programs eligible for Study Permit and PGWP`,
+                )
               )}
             </span>
           </div>
