@@ -1644,35 +1644,33 @@ export const pt = {
       title: "Simulador de custo total real",
       intro:
         "A mensalidade é só uma parte. Veja o custo anual REAL somando tudo o que ninguém mostra de primeira. Ajuste os valores conforme a escola e a província.",
-      tuition: {
-        label: "Mensalidade anual (tuition)",
-      },
-      homestay: {
-        label: "Homestay anual (moradia com família)",
-      },
-      health: {
-        label: "Seguro-saúde anual",
-      },
-      custody: {
-        label: "Custódia (custodian, se menor de 17)",
-        none: "Não preciso (0)",
-        low: "Básico: CAD $1.000/ano",
-        mid: "Padrão: CAD $2.000/ano",
-        high: "Completo: CAD $4.000/ano",
-        hint: "Obrigatória para menores de 17 em algumas províncias.",
-      },
-      fees: {
-        label: "Taxas escolares e materiais (uniforme, laptop, resource fees)",
-      },
-      travel: {
-        label: "Voos e transporte local anual",
+      fields: {
+        tuition: {
+          label: "Mensalidade (anual)",
+        },
+        homestay: {
+          label: "Moradia / homestay (anual)",
+        },
+        insurance: {
+          label: "Seguro-saúde",
+        },
+        custody: {
+          label: "Custódia (se menor de 17)",
+        },
+        schoolFees: {
+          label: "Taxas e materiais (uniforme, laptop)",
+        },
+        travel: {
+          label: "Voos e transporte",
+        },
       },
       total: {
         label: "Custo total estimado por ano",
-        contrast: "Só a mensalidade seria {{tuition}} — o custo real é bem maior.",
+        contrast: "Só a mensalidade seria CAD {{tuition}} — o custo real é quase {{multiplo}}× isso.",
       },
       note: "Estimativa para orientação. Os valores reais variam por escola, cidade e câmbio. Confirme sempre na fonte oficial.",
     },
+
     guide: {
       custody: {
         title: "Custódia e menores de idade",

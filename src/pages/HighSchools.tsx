@@ -98,6 +98,10 @@ export default function HighSchools() {
       maximumFractionDigits: 0,
     }).format(value);
 
+  const formatNumber = (value: number) =>
+    new Intl.NumberFormat("en-CA").format(value);
+
+
   useEffect(() => {
     (async () => {
       const { data, error } = await supabase
@@ -535,7 +539,7 @@ export default function HighSchools() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label htmlFor="calc-tuition" className="text-sm font-medium text-navy">
-                    {t("highSchools.costCalc.tuition.label")}
+                    {t("highSchools.costCalc.fields.tuition.label")}
                   </label>
                   <span className="text-sm font-semibold text-navy">{formatCAD(tuition)}</span>
                 </div>
@@ -548,7 +552,7 @@ export default function HighSchools() {
                   value={tuition}
                   onChange={(e) => setTuition(Number(e.target.value))}
                   className="w-full accent-[hsl(var(--azul))]"
-                  aria-label={t("highSchools.costCalc.tuition.label")}
+                  aria-label={t("highSchools.costCalc.fields.tuition.label")}
                 />
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <span>CAD $10,000</span>
@@ -560,23 +564,23 @@ export default function HighSchools() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label htmlFor="calc-homestay" className="text-sm font-medium text-navy">
-                    {t("highSchools.costCalc.homestay.label")}
+                    {t("highSchools.costCalc.fields.homestay.label")}
                   </label>
                   <span className="text-sm font-semibold text-navy">{formatCAD(homestay)}</span>
                 </div>
                 <input
                   id="calc-homestay"
                   type="range"
-                  min={6000}
+                  min={0}
                   max={24000}
                   step={500}
                   value={homestay}
                   onChange={(e) => setHomestay(Number(e.target.value))}
                   className="w-full accent-[hsl(var(--azul))]"
-                  aria-label={t("highSchools.costCalc.homestay.label")}
+                  aria-label={t("highSchools.costCalc.fields.homestay.label")}
                 />
                 <div className="flex justify-between text-xs text-muted-foreground">
-                  <span>CAD $6,000</span>
+                  <span>CAD $0</span>
                   <span>CAD $24,000</span>
                 </div>
               </div>
@@ -585,7 +589,7 @@ export default function HighSchools() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label htmlFor="calc-health" className="text-sm font-medium text-navy">
-                    {t("highSchools.costCalc.health.label")}
+                    {t("highSchools.costCalc.fields.insurance.label")}
                   </label>
                   <span className="text-sm font-semibold text-navy">{formatCAD(healthInsurance)}</span>
                 </div>
@@ -598,7 +602,7 @@ export default function HighSchools() {
                   value={healthInsurance}
                   onChange={(e) => setHealthInsurance(Number(e.target.value))}
                   className="w-full accent-[hsl(var(--azul))]"
-                  aria-label={t("highSchools.costCalc.health.label")}
+                  aria-label={t("highSchools.costCalc.fields.insurance.label")}
                 />
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <span>CAD $0</span>
@@ -608,31 +612,34 @@ export default function HighSchools() {
 
               {/* Custodianship */}
               <div className="space-y-2">
-                <label htmlFor="calc-custody" className="text-sm font-medium text-navy">
-                  {t("highSchools.costCalc.custody.label")}
-                </label>
-                <select
+                <div className="flex items-center justify-between">
+                  <label htmlFor="calc-custody" className="text-sm font-medium text-navy">
+                    {t("highSchools.costCalc.fields.custody.label")}
+                  </label>
+                  <span className="text-sm font-semibold text-navy">{formatCAD(custodianship)}</span>
+                </div>
+                <input
                   id="calc-custody"
+                  type="range"
+                  min={0}
+                  max={16000}
+                  step={500}
                   value={custodianship}
                   onChange={(e) => setCustodianship(Number(e.target.value))}
-                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(var(--azul))]/30"
-                  aria-label={t("highSchools.costCalc.custody.label")}
-                >
-                  <option value={0}>{t("highSchools.costCalc.custody.none")}</option>
-                  <option value={1000}>{t("highSchools.costCalc.custody.low")}</option>
-                  <option value={2000}>{t("highSchools.costCalc.custody.mid")}</option>
-                  <option value={4000}>{t("highSchools.costCalc.custody.high")}</option>
-                </select>
-                <p className="text-xs text-muted-foreground">
-                  {t("highSchools.costCalc.custody.hint")}
-                </p>
+                  className="w-full accent-[hsl(var(--azul))]"
+                  aria-label={t("highSchools.costCalc.fields.custody.label")}
+                />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>CAD $0</span>
+                  <span>CAD $16,000</span>
+                </div>
               </div>
 
               {/* Fees and materials */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label htmlFor="calc-fees" className="text-sm font-medium text-navy">
-                    {t("highSchools.costCalc.fees.label")}
+                    {t("highSchools.costCalc.fields.schoolFees.label")}
                   </label>
                   <span className="text-sm font-semibold text-navy">{formatCAD(feesAndMaterials)}</span>
                 </div>
@@ -640,16 +647,16 @@ export default function HighSchools() {
                   id="calc-fees"
                   type="range"
                   min={0}
-                  max={6000}
+                  max={5000}
                   step={100}
                   value={feesAndMaterials}
                   onChange={(e) => setFeesAndMaterials(Number(e.target.value))}
                   className="w-full accent-[hsl(var(--azul))]"
-                  aria-label={t("highSchools.costCalc.fees.label")}
+                  aria-label={t("highSchools.costCalc.fields.schoolFees.label")}
                 />
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <span>CAD $0</span>
-                  <span>CAD $6,000</span>
+                  <span>CAD $5,000</span>
                 </div>
               </div>
 
@@ -657,7 +664,7 @@ export default function HighSchools() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label htmlFor="calc-travel" className="text-sm font-medium text-navy">
-                    {t("highSchools.costCalc.travel.label")}
+                    {t("highSchools.costCalc.fields.travel.label")}
                   </label>
                   <span className="text-sm font-semibold text-navy">{formatCAD(flightsAndLocalTransport)}</span>
                 </div>
@@ -670,7 +677,7 @@ export default function HighSchools() {
                   value={flightsAndLocalTransport}
                   onChange={(e) => setFlightsAndLocalTransport(Number(e.target.value))}
                   className="w-full accent-[hsl(var(--azul))]"
-                  aria-label={t("highSchools.costCalc.travel.label")}
+                  aria-label={t("highSchools.costCalc.fields.travel.label")}
                 />
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <span>CAD $0</span>
@@ -687,7 +694,10 @@ export default function HighSchools() {
                 {formatCAD(totalCost)}
               </p>
               <p className="mt-3 text-sm text-[hsl(var(--crimson))] font-medium">
-                {t("highSchools.costCalc.total.contrast", { tuition: formatCAD(tuition) })}
+                {t("highSchools.costCalc.total.contrast", {
+                  tuition: formatNumber(tuition),
+                  multiplo: (totalCost / tuition).toFixed(1),
+                })}
               </p>
             </div>
 
@@ -697,6 +707,7 @@ export default function HighSchools() {
           </div>
         </div>
       </section>
+
 
       {/* Schools list intro */}
       <section className="container pt-12">
