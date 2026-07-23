@@ -7,6 +7,8 @@ import {
   FileText,
   Shield,
   ShieldAlert,
+  Building2,
+  Globe2,
 } from "lucide-react";
 
 function SourceLink({ href, label }: { href: string; label: string }) {
@@ -43,10 +45,55 @@ type ScamSection = {
   seal: { title: string; body: string };
 };
 
+type EmbassyGroupKey = "latam" | "africa" | "caribbean";
+type Embassy = {
+  group: EmbassyGroupKey;
+  namePt: string;
+  nameEn: string;
+  cityPt: string;
+  cityEn: string;
+  url: string;
+};
+
+const EMBASSIES: Embassy[] = [
+  // Latin America
+  { group: "latam", namePt: "Brasil", nameEn: "Brazil", cityPt: "Brasília", cityEn: "Brasília", url: "https://www.international.gc.ca/country-pays/brazil-bresil/brasilia.aspx?lang=eng" },
+  { group: "latam", namePt: "México", nameEn: "Mexico", cityPt: "Cidade do México", cityEn: "Mexico City", url: "https://www.international.gc.ca/country-pays/mexico-mexique/mexico_city-mexico.aspx?lang=eng" },
+  { group: "latam", namePt: "Colômbia", nameEn: "Colombia", cityPt: "Bogotá", cityEn: "Bogotá", url: "https://www.international.gc.ca/country-pays/colombia-colombie/bogota.aspx?lang=eng" },
+  { group: "latam", namePt: "Argentina", nameEn: "Argentina", cityPt: "Buenos Aires", cityEn: "Buenos Aires", url: "https://www.international.gc.ca/country-pays/argentina-argentine/buenos_aires.aspx?lang=eng" },
+  { group: "latam", namePt: "Chile", nameEn: "Chile", cityPt: "Santiago", cityEn: "Santiago", url: "https://www.international.gc.ca/country-pays/chile-chili/santiago.aspx?lang=eng" },
+  { group: "latam", namePt: "Peru", nameEn: "Peru", cityPt: "Lima", cityEn: "Lima", url: "https://www.international.gc.ca/country-pays/peru-perou/lima.aspx?lang=eng" },
+  { group: "latam", namePt: "Equador", nameEn: "Ecuador", cityPt: "Quito", cityEn: "Quito", url: "https://www.international.gc.ca/country-pays/ecuador-equateur/quito.aspx?lang=eng" },
+  { group: "latam", namePt: "Bolívia", nameEn: "Bolivia", cityPt: "La Paz", cityEn: "La Paz", url: "https://www.international.gc.ca/country-pays/bolivia-bolivie/la_paz.aspx?lang=eng" },
+  { group: "latam", namePt: "Uruguai", nameEn: "Uruguay", cityPt: "Montevidéu", cityEn: "Montevideo", url: "https://www.international.gc.ca/country-pays/uruguay/montevideo.aspx?lang=eng" },
+  { group: "latam", namePt: "Costa Rica", nameEn: "Costa Rica", cityPt: "San José", cityEn: "San José", url: "https://www.international.gc.ca/country-pays/costa_rica/san_jose.aspx?lang=eng" },
+  { group: "latam", namePt: "Guatemala", nameEn: "Guatemala", cityPt: "Cidade da Guatemala", cityEn: "Guatemala City", url: "https://www.international.gc.ca/country-pays/guatemala/guatemala_city.aspx?lang=eng" },
+  { group: "latam", namePt: "República Dominicana", nameEn: "Dominican Republic", cityPt: "Santo Domingo", cityEn: "Santo Domingo", url: "https://www.international.gc.ca/country-pays/dominican_republic-republique_dominicaine/santo_domingo.aspx?lang=eng" },
+  { group: "latam", namePt: "Cuba", nameEn: "Cuba", cityPt: "Havana", cityEn: "Havana", url: "https://www.international.gc.ca/country-pays/cuba/havana-la_havane.aspx?lang=eng" },
+  // Africa
+  { group: "africa", namePt: "Nigéria", nameEn: "Nigeria", cityPt: "Abuja", cityEn: "Abuja", url: "https://www.international.gc.ca/country-pays/nigeria/abuja.aspx?lang=eng" },
+  { group: "africa", namePt: "Quênia", nameEn: "Kenya", cityPt: "Nairóbi", cityEn: "Nairobi", url: "https://www.international.gc.ca/country-pays/kenya/nairobi.aspx?lang=eng" },
+  { group: "africa", namePt: "Gana", nameEn: "Ghana", cityPt: "Acra", cityEn: "Accra", url: "https://www.international.gc.ca/country-pays/ghana/accra.aspx?lang=eng" },
+  { group: "africa", namePt: "África do Sul", nameEn: "South Africa", cityPt: "Pretória", cityEn: "Pretoria", url: "https://www.international.gc.ca/country-pays/south_africa-afrique_sud/pretoria.aspx?lang=eng" },
+  { group: "africa", namePt: "Egito", nameEn: "Egypt", cityPt: "Cairo", cityEn: "Cairo", url: "https://www.international.gc.ca/country-pays/egypt-egypte/cairo-caire.aspx?lang=eng" },
+  { group: "africa", namePt: "Marrocos", nameEn: "Morocco", cityPt: "Rabat", cityEn: "Rabat", url: "https://www.international.gc.ca/country-pays/morocco-maroc/rabat.aspx?lang=eng" },
+  { group: "africa", namePt: "Etiópia", nameEn: "Ethiopia", cityPt: "Adis Abeba", cityEn: "Addis Ababa", url: "https://www.international.gc.ca/country-pays/ethiopia-ethiopie/addis_ababa-addis-abeba.aspx?lang=eng" },
+  { group: "africa", namePt: "Senegal", nameEn: "Senegal", cityPt: "Dakar", cityEn: "Dakar", url: "https://www.international.gc.ca/country-pays/senegal/dakar.aspx?lang=eng" },
+  { group: "africa", namePt: "Tanzânia", nameEn: "Tanzania", cityPt: "Dar es Salaam", cityEn: "Dar es Salaam", url: "https://www.international.gc.ca/country-pays/tanzania-tanzanie/dar_es_salaam.aspx?lang=eng" },
+  { group: "africa", namePt: "Camarões", nameEn: "Cameroon", cityPt: "Yaoundé", cityEn: "Yaoundé", url: "https://www.international.gc.ca/country-pays/cameroon-cameroun/yaounde.aspx?lang=eng" },
+  // Caribbean
+  { group: "caribbean", namePt: "Jamaica", nameEn: "Jamaica", cityPt: "Kingston", cityEn: "Kingston", url: "https://www.international.gc.ca/country-pays/jamaica-jamaique/kingston.aspx?lang=eng" },
+  { group: "caribbean", namePt: "Trinidad e Tobago", nameEn: "Trinidad and Tobago", cityPt: "Port of Spain", cityEn: "Port of Spain", url: "https://www.international.gc.ca/country-pays/trinidad_tobago-trinite_tobago/port_of_spain-port_d_espagne.aspx?lang=eng" },
+  { group: "caribbean", namePt: "Barbados", nameEn: "Barbados", cityPt: "Bridgetown", cityEn: "Bridgetown", url: "https://www.international.gc.ca/country-pays/barbados-barbade/bridgetown.aspx?lang=eng" },
+  { group: "caribbean", namePt: "Haiti", nameEn: "Haiti", cityPt: "Port-au-Prince", cityEn: "Port-au-Prince", url: "https://www.international.gc.ca/country-pays/haiti/port_au_prince.aspx?lang=eng" },
+];
+
 export default function StudyPermit() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const steps = t("studyPermit.steps", { returnObjects: true }) as Step[];
   const scam = t("studyPermit.scamProtection", { returnObjects: true }) as ScamSection;
+  const isPt = i18n.language?.toLowerCase().startsWith("pt");
+  const groupOrder: EmbassyGroupKey[] = ["latam", "africa", "caribbean"];
 
   return (
     <>
@@ -164,6 +211,8 @@ export default function StudyPermit() {
 
       {/* Scam protection */}
       <section className="container py-16 md:py-20 max-w-5xl">
+        {/* placeholder anchor kept */}
+      </section>
         <div className="max-w-4xl">
           <div className="flex items-center gap-3 mb-5">
             <span className="inline-flex items-center justify-center w-10 h-10 text-crimson">
