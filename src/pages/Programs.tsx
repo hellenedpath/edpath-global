@@ -1036,7 +1036,7 @@ export default function Programs() {
             </p>
           )}
 
-          {!isLoading && !error && (
+          {!isLoading && !error && (area !== "all" || cipParam) && (
             <>
               {cipParam && (
                 <div className="mb-4 flex items-start gap-3 rounded-xl border border-navy/20 bg-navy/[0.04] p-4">
@@ -1067,10 +1067,15 @@ export default function Programs() {
               )}
               <div className="flex items-center justify-between mb-4 text-sm text-muted-foreground">
                 <span>
-                  {T(
-                    `${filtered.length} de ${programs?.length ?? 0} programas`,
-                    `${filtered.length} of ${programs?.length ?? 0} programs`
-                  )}
+                  {area !== "all"
+                    ? T(
+                        `${filtered.length} programas em ${AREA_LABELS[area as AreaGroup].pt}`,
+                        `${filtered.length} programs in ${AREA_LABELS[area as AreaGroup].en}`,
+                      )
+                    : T(
+                        `${filtered.length} programas`,
+                        `${filtered.length} programs`,
+                      )}
                 </span>
               </div>
 
