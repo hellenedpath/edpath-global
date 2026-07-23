@@ -20,6 +20,7 @@ type DaycareRow = { province: string; cost: string; portal: string; portalUrl: s
 type SchoolProvince = { province: string; body: string };
 type ChildBenefitLink = { label: string; url: string };
 type SubsidyLink = { name: string; url: string };
+type FinderLink = { name: string; url: string };
 
 export default function Family() {
   const { t } = useTranslation();
