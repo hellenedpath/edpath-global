@@ -21,6 +21,7 @@ All colors MUST be HSL.
     --navy: 228 49% 18%;      /* #051556 */
     --azul: 221 67% 53%;      /* #396CD8 */
     --crimson: 350 72% 57%;   /* #E0405B */
+    --amber: 38 92% 50%;      /* warning accent */
 
     --primary: 228 49% 18%;
     --primary-foreground: 0 0% 100%;

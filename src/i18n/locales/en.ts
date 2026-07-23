@@ -1643,6 +1643,44 @@ export const en = {
         body:
           "This is the question that scares parents most — and the one agencies most use to look indispensable. The official IRCC rule is clear. Who counts as a 'minor' depends on the province: the age of majority is 18 in Alberta, Manitoba, Ontario, PEI, Quebec and Saskatchewan; and 19 in British Columbia, New Brunswick, Newfoundland and Nova Scotia. A student under 17 must come with a parent or legal guardian, or have a custodian in Canada — a responsible adult, citizen or permanent resident, who handles the student's day-to-day care. Between 17 and the age of majority, custodianship is optional, but the immigration officer may require it case by case. The document is form IMM 5646 (Custodianship Declaration), two pages: page 1 is signed and notarized by the custodian in Canada; page 2 by the parents in the home country. In practice, most School Boards arrange homestay, which usually solves accommodation and custodianship at once.",
       },
+      homestay: {
+        title: "Safe homestay: what nobody tells you",
+        body:
+          "Here's something a commission-based agency rarely tells you: in Canada, the homestay system for minor students is NOT regulated by a single authority. CBC reporting and a University of Toronto study documented real cases of students facing insufficient food, lack of heating, no privacy, and even neglect in emergencies. This isn't to scare you — it's so you choose with open eyes. Because EdPath is commission-free and doesn't profit from homestay, we can warn you.",
+        redFlagsTitle: "Warning signs",
+        redFlags: [
+          "The family won't confirm meals or the room before you accept",
+          "There's no emergency contact who responds quickly",
+          "The cost is well above average (CAD $950–$1,000/month) with no justification",
+          "No one from the School Board monitors or inspects the home",
+          "The student reports isolation, hunger or cold in the first weeks and no one acts",
+        ],
+        questionsTitle: "Ask before you accept",
+        questions: [
+          "Is the homestay arranged and monitored by the School Board itself? (prefer yes)",
+          "Who is the emergency contact and how fast do they respond?",
+          "What exactly is included: meals, transport, internet?",
+          "Can I change families if it doesn't work out, and how?",
+          "Is there a board staff member who visits or checks on the student?",
+        ],
+        closing:
+          "Golden rule: prefer homestay arranged by the public School Board itself — there's more accountability and a channel to complain. Avoid middlemen who charge a lot and disappear afterward.",
+      },
+      custodian: {
+        title: "Custodianship without traps: what to ask",
+        body:
+          "Custodianship is mandatory for students under 17 (see the section above), but hiring a custodian has pitfalls. A real case reported by CBC: a family paid CAD $16,000 for a 'super-custodian' package that failed — in a health emergency, the custodian took over five hours and nine calls to respond. Custodianship isn't just a signed form; it's someone who must truly be present.",
+        checklistTitle: "Before choosing a custodian, confirm",
+        checklist: [
+          "Do they live near the school and the student's home?",
+          "Do they respond fast in an emergency? Ask for a contact test.",
+          "What's included in the fee and what's charged separately (e.g. hospital trips)?",
+          "Is there a clear written contract listing the services?",
+          "Is it someone trustworthy recommended by the school/board, not an anonymous expensive 'package'?",
+        ],
+        closing:
+          "EdPath helps you ask the right questions — and, for the official document (IMM 5646) and the immigration case, we refer you to a regulated RCIC or lawyer, never a commission-based agency.",
+      },
       parents: {
         title: "Can parents come along?",
         body:
