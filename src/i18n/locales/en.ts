@@ -719,6 +719,11 @@ export const en = {
       body:
         "Where you live decides three things that go together: your child's public school (via catchment), safety and cost. A good neighborhood gives you a well-rated public school without paying for private. There is no official list of 'best cities' — the right way is to combine objective criteria: school, safety and cost. Areas often mentioned by families, as starting points to research: in the Greater Toronto Area, Markham, Oakville, Waterloo, Vaughan, Milton and Burlington; Ottawa (strong public, Catholic and bilingual options); and, in Metro Vancouver, Burnaby and Coquitlam (with higher housing costs). Before signing a lease: confirm the school for that address, check local crime data and compare rent.",
     },
+    healthLink: {
+      title: "Family healthcare",
+      body: "Coverage, waiting periods by province, dependants and what the public plan doesn't pay are covered in detail on the Health page.",
+      cta: "Open the Health page",
+    },
     disclaimer: {
       title: "Important notice",
       content:

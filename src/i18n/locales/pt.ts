@@ -713,6 +713,11 @@ export const pt = {
       body:
         "A área onde você mora define três coisas ligadas entre si: a escola pública do seu filho (pelo catchment), a segurança e o custo. Um bom bairro dá acesso a uma escola pública bem avaliada sem pagar escola privada. Não existe uma lista oficial de 'melhores cidades' — o certo é você combinar critérios objetivos: escola, segurança e custo. Regiões frequentemente citadas por famílias, como pontos de partida para pesquisar: na Grande Toronto, Markham, Oakville, Waterloo, Vaughan, Milton e Burlington; Ottawa (forte oferta pública, católica e bilíngue); e, na Grande Vancouver, Burnaby e Coquitlam (com custo de moradia mais alto). Antes de assinar um contrato: confirme a escola daquele endereço, veja a criminalidade local e compare o aluguel.",
     },
+    healthLink: {
+      title: "Saúde da família",
+      body: "Cobertura, esperas por província, dependentes e o que o plano público não paga estão detalhados na página de Saúde.",
+      cta: "Ver página de Saúde",
+    },
     disclaimer: {
       title: "Aviso importante",
       content:
