@@ -1589,7 +1589,7 @@ export const en = {
         },
         {
           title: "Apply directly with the school",
-          desc: "Applications go through the district or private school's official site, not third parties.",
+          desc: "Applications go through the district or private school's official site, directly with the school.",
         },
         {
           title: "Then request the study permit",

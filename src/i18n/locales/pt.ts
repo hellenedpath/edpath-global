@@ -1592,7 +1592,7 @@ export const pt = {
         },
         {
           title: "Aplique direto com a escola",
-          desc: "A aplicação é feita no site oficial do distrito ou da escola privada, não com intermediários.",
+          desc: "A aplicação é feita diretamente no site oficial do distrito ou da escola privada.",
         },
         {
           title: "Depois, solicite o study permit",
