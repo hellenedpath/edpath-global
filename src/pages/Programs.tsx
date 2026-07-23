@@ -183,38 +183,103 @@ function pickWageForOccupation(
   return nat ?? null;
 }
 
-const AREA_LABELS: Record<string, { en: string; pt: string }> = {
-  health: { en: "Health", pt: "Saúde" },
-  it: { en: "IT / Advanced technology", pt: "TI / Tecnologia avançada" },
-  trades: { en: "Trades", pt: "Trades / Ofícios técnicos" },
-  business: { en: "Business", pt: "Business" },
-  other: { en: "Community & Services", pt: "Comunidade & Serviços" },
+// ---------- Funnel: area groups ----------
+// Groups raw field_area values from the DB into a handful of student-facing areas.
+type AreaGroup =
+  | "health"
+  | "it"
+  | "business"
+  | "engineering"
+  | "science"
+  | "trades"
+  | "social"
+  | "education"
+  | "other";
+
+const AREA_GROUP_ORDER: AreaGroup[] = [
+  "health",
+  "it",
+  "business",
+  "engineering",
+  "science",
+  "trades",
+  "social",
+  "education",
+  "other",
+];
+
+// raw field_area (lower-cased) -> group
+const AREA_TO_GROUP: Record<string, AreaGroup> = {
+  health: "health",
+  it: "it",
+  business: "business",
+  engineering: "engineering",
+  science: "science",
+  trades: "trades",
+  "social services": "social",
+  education: "education",
+  environment: "other",
+  design: "other",
+  aviation: "other",
+  agriculture: "other",
+  general: "other",
+  media: "other",
+  hospitality: "other",
+  transport: "other",
+  other: "other",
 };
 
-function areaKey(raw: string | null | undefined): string | null {
+const AREA_LABELS: Record<AreaGroup, { en: string; pt: string }> = {
+  health: { en: "Health", pt: "Saúde" },
+  it: { en: "Technology (IT)", pt: "Tecnologia (TI)" },
+  business: { en: "Business", pt: "Negócios" },
+  engineering: { en: "Engineering", pt: "Engenharia" },
+  science: { en: "Sciences", pt: "Ciências" },
+  trades: { en: "Trades", pt: "Ofícios e Trades" },
+  social: { en: "Social services", pt: "Serviços sociais" },
+  education: { en: "Education", pt: "Educação" },
+  other: { en: "Other areas", pt: "Outras áreas" },
+};
+
+function areaGroupOf(raw: string | null | undefined): AreaGroup | null {
   if (!raw) return null;
-  return raw.toLowerCase().trim();
+  return AREA_TO_GROUP[raw.toLowerCase().trim()] ?? null;
+}
+
+// ---------- Funnel: 4 level buckets from raw credential text ----------
+type LevelBucket = "certificate" | "diploma" | "bachelor" | "pos";
+
+const LEVEL_ORDER: LevelBucket[] = ["certificate", "diploma", "bachelor", "pos"];
+
+const LEVEL_LABELS: Record<LevelBucket, { en: string; pt: string }> = {
+  certificate: { en: "Certificate", pt: "Certificado" },
+  diploma: { en: "Diploma", pt: "Diploma" },
+  bachelor: { en: "Bachelor", pt: "Bacharelado" },
+  pos: { en: "Graduate", pt: "Pós" },
+};
+
+function credentialToLevel(c: string | null | undefined): LevelBucket | null {
+  if (!c) return null;
+  const s = c.toLowerCase();
+  // Order matters: graduate-level phrases first, then bachelor, diploma, certificate.
+  if (
+    /master|graduate certificate|post[- ]?baccalaureate|post[- ]?graduate|post[- ]?degree|post[- ]?diploma/.test(
+      s,
+    )
+  )
+    return "pos";
+  if (/bachelor|baccalaureate|honours|applied degree|associate|(^|\s)degree(\s|$)/.test(s))
+    return "bachelor";
+  if (/diploma/.test(s)) return "diploma";
+  if (/certificate|citation/.test(s)) return "certificate";
+  return null;
 }
 
 function normalize(s: string) {
   return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
 
-function inferArea(p: Program): string | null {
-  if (p.field_area) {
-    const f = p.field_area.toLowerCase();
-    if (f.includes("health")) return "health";
-    if (f.includes("trade")) return "trades";
-    if (f.includes("it") || f.includes("tech") || f.includes("comput") || f.includes("cyber"))
-      return "it";
-  }
-  const name = (p.name || "").toLowerCase();
-  if (/nurs|health|dental|paramedic|radiation|medic|pharma|therap/.test(name)) return "health";
-  if (/comput|program|cyber|network|software|data|it |game|web/.test(name)) return "it";
-  if (/electric|hvac|heating|plumb|mechan|construc|weld|carpent|technician|automot|refriger/.test(name))
-    return "trades";
-  return null;
-}
+// (area inference removed — funnel uses explicit AREA_TO_GROUP mapping only)
 
 function outlookMeta(outlook: string | null, lang: string) {
   const o = (outlook || "").toLowerCase();
