@@ -20,6 +20,7 @@ type DaycareRow = { province: string; cost: string; portal: string; portalUrl: s
 type SchoolProvince = { province: string; body: string };
 type ChildBenefitLink = { label: string; url: string };
 type SubsidyLink = { name: string; url: string };
+type FinderLink = { name: string; url: string };
 
 export default function Family() {
   const { t } = useTranslation();
@@ -29,6 +30,7 @@ export default function Family() {
   const childBenefitLinks = t("family.childBenefit.links", { returnObjects: true }) as unknown as ChildBenefitLink[];
   const daycareSubsidyLinks = t("family.daycare.subsidy.links", { returnObjects: true }) as unknown as SubsidyLink[];
   const schoolProvinces = t("family.school.provinces", { returnObjects: true }) as unknown as SchoolProvince[];
+  const finderLinks = t("family.school.finderLinks", { returnObjects: true }) as unknown as FinderLink[];
   const enrollSteps = t("family.school.enrollSteps", { returnObjects: true }) as unknown as string[];
 
   return (
@@ -261,6 +263,31 @@ export default function Family() {
             {t("family.school.rankingCta")}
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
+        </div>
+
+        <div className="mt-12 rounded-lg border border-border bg-card p-6">
+          <h3 className="font-display text-xl font-semibold text-navy flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-crimson" />
+            {t("family.school.finderTitle")}
+          </h3>
+          <p className="mt-2 text-muted-foreground leading-relaxed">
+            {t("family.school.finderIntro")}
+          </p>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            {finderLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-azul hover:underline"
+                >
+                  {link.name}
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <h3 className="mt-12 font-display text-xl font-semibold text-navy">

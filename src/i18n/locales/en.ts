@@ -264,6 +264,25 @@ export const en = {
         { name: "Emergency room / 911", body: "Serious emergencies only. Minor cases wait many hours — try a walk-in or call 811 first." },
       ],
     },
+    emergency: {
+      title: "Find a hospital and emergency care",
+      intro:
+        "In a life-threatening emergency, call 911 (works across Canada). For 24h nurse advice, call 811 in most provinces (Manitoba uses a different number). To find the nearest hospital or ER, use your province's official site:",
+      numbers: {
+        emergency: { label: "911", body: "Life-threatening emergency. Works across Canada." },
+        nurse: { label: "811", body: "24/7 nurse advice by phone in most provinces." },
+      },
+      manitobaNote: "Manitoba does not use 811; contact Health Links (204-788-8200 / 1-888-315-9257).",
+      links: [
+        { name: "Ontario — Health811 / locator", url: "https://health811.ontario.ca/" },
+        { name: "British Columbia — HealthLink BC locator", url: "https://www.healthlinkbc.ca/find-care/find-health-services/bc-health-service-locator-app" },
+        { name: "Alberta — AHS Find Healthcare", url: "https://www.albertahealthservices.ca/findhealth/findhealth.aspx" },
+        { name: "Quebec — Info-Santé 811", url: "https://www.quebec.ca/en/health/finding-a-resource/info-sante-811" },
+        { name: "Manitoba — Health Links (204-788-8200 / 1-888-315-9257)", url: "https://www.gov.mb.ca/health/contact.html" },
+        { name: "Nova Scotia — Find nearest emergency care", url: "https://www.nshealth.ca/emergency-care/find-nearest-emergency-care" },
+        { name: "Saskatchewan — HealthLine 811", url: "https://www.saskhealthauthority.ca/your-health/conditions-diseases-services/healthline-8-1-1" },
+      ],
+    },
     familyDoctor: {
       title: "Getting a family doctor: the reality",
       body: "The shortage of family doctors is a national crisis: about 6 million adults in Canada have no regular doctor. Newcomers go to the back of the queue. While you wait, use walk-in clinics and the 811 line, register with your provincial plan and ask at your institution's health service.",
@@ -735,6 +754,18 @@ export const en = {
         "The Fraser Institute publishes free school rankings (Ontario, BC, Alberta, Quebec) at compareschoolrankings.org. It measures mostly standardized test scores and does not adjust for the neighborhood's socioeconomic level — so use it as one data point among several, not as a verdict. Visit the school, check newcomer support (ESL) and talk to other families.",
       rankingCta: "Open compareschoolrankings.org",
       rankingUrl: "https://www.compareschoolrankings.org/",
+      finderTitle: "Where to find the public school (by province)",
+      finderIntro:
+        "Use your province's official finder to locate the school by address. Only Ontario has a postal-code search; in the others, you reach it through the school district.",
+      finderLinks: [
+        { name: "Ontario — Find your school", url: "https://www.ontario.ca/page/find-your-school" },
+        { name: "British Columbia — School districts", url: "https://bcforhighschool.gov.bc.ca/onshore/enrolling-in-a-bc-school/find-a-bc-school/school-districts/" },
+        { name: "Alberta — School & Authority Index", url: "https://education.alberta.ca/alberta-education/school-authority-index/" },
+        { name: "Quebec — Trouver un organisme scolaire", url: "https://www.quebec.ca/education/trouver-organisme-scolaire" },
+        { name: "Manitoba — Schools in Manitoba", url: "https://www.edu.gov.mb.ca/k12/schools/index.html" },
+        { name: "Nova Scotia — Regional Centres for Education", url: "https://www.ednet.ns.ca/" },
+        { name: "Saskatchewan — PreK-12 school divisions", url: "https://www.saskatchewan.ca/residents/education-and-learning/prek-12-education-early-learning-and-schools" },
+      ],
       enrollTitle: "Enrollment step by step",
       enrollSteps: [
         "Find the school for your zone using the school board's 'school locator' (by address).",

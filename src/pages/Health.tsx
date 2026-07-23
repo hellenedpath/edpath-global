@@ -17,6 +17,8 @@ const IRCC_HEALTH_URL =
 
 type ProvinceRow = { name: string; body: string; url: string };
 type DailyCard = { name: string; body: string };
+type EmergencyNumber = { label: string; body: string };
+type EmergencyLink = { name: string; url: string };
 
 const dailyIcons = [Stethoscope, Building2, Phone, Hospital] as const;
 
@@ -29,6 +31,12 @@ export default function Health() {
   const dailyCards = t("healthPage.daily.cards", {
     returnObjects: true,
   }) as unknown as DailyCard[];
+  const emergencyNumbers = t("healthPage.emergency.numbers", {
+    returnObjects: true,
+  }) as unknown as Record<string, EmergencyNumber>;
+  const emergencyLinks = t("healthPage.emergency.links", {
+    returnObjects: true,
+  }) as unknown as EmergencyLink[];
 
   return (
     <>
@@ -145,6 +153,56 @@ export default function Health() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Section 3.5 — emergency */}
+      <section className="bg-muted/30 border-y border-border">
+        <div className="container py-16 md:py-24 max-w-5xl">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-navy">
+            {t("healthPage.emergency.title")}
+          </h2>
+          <p className="mt-4 max-w-3xl text-muted-foreground leading-relaxed">
+            {t("healthPage.emergency.intro")}
+          </p>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {Object.entries(emergencyNumbers).map(([key, item]) => (
+              <div
+                key={key}
+                className="rounded-xl border-2 border-crimson/40 bg-crimson/5 p-6"
+              >
+                <div className="flex items-center gap-3">
+                  <Phone className="w-6 h-6 text-crimson" />
+                  <span className="font-display text-3xl font-bold text-navy">
+                    {item.label}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-6 text-sm text-muted-foreground">
+            {t("healthPage.emergency.manitobaNote")}
+          </p>
+
+          <div className="mt-8 grid gap-4">
+            {emergencyLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between rounded-lg border border-border bg-card p-4 text-sm font-medium text-azul hover:bg-accent/50 transition-colors"
+              >
+                <span>{link.name}</span>
+                <ExternalLink className="w-4 h-4 shrink-0" />
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
