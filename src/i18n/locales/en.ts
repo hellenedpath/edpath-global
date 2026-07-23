@@ -264,6 +264,25 @@ export const en = {
         { name: "Emergency room / 911", body: "Serious emergencies only. Minor cases wait many hours — try a walk-in or call 811 first." },
       ],
     },
+    emergency: {
+      title: "Find a hospital and emergency care",
+      intro:
+        "In a life-threatening emergency, call 911 (works across Canada). For 24h nurse advice, call 811 in most provinces (Manitoba uses a different number). To find the nearest hospital or ER, use your province's official site:",
+      numbers: {
+        emergency: { label: "911", body: "Life-threatening emergency. Works across Canada." },
+        nurse: { label: "811", body: "24/7 nurse advice by phone in most provinces." },
+      },
+      manitobaNote: "Manitoba does not use 811; contact Health Links (204-788-8200 / 1-888-315-9257).",
+      links: [
+        { name: "Ontario — Health811 / locator", url: "https://health811.ontario.ca/" },
+        { name: "British Columbia — HealthLink BC locator", url: "https://www.healthlinkbc.ca/find-care/find-health-services/bc-health-service-locator-app" },
+        { name: "Alberta — AHS Find Healthcare", url: "https://www.albertahealthservices.ca/findhealth/findhealth.aspx" },
+        { name: "Quebec — Info-Santé 811", url: "https://www.quebec.ca/en/health/finding-a-resource/info-sante-811" },
+        { name: "Manitoba — Health Links (204-788-8200 / 1-888-315-9257)", url: "https://www.gov.mb.ca/health/contact.html" },
+        { name: "Nova Scotia — Find nearest emergency care", url: "https://www.nshealth.ca/emergency-care/find-nearest-emergency-care" },
+        { name: "Saskatchewan — HealthLine 811", url: "https://www.saskhealthauthority.ca/your-health/conditions-diseases-services/healthline-8-1-1" },
+      ],
+    },
     familyDoctor: {
       title: "Getting a family doctor: the reality",
       body: "The shortage of family doctors is a national crisis: about 6 million adults in Canada have no regular doctor. Newcomers go to the back of the queue. While you wait, use walk-in clinics and the 811 line, register with your provincial plan and ask at your institution's health service.",
