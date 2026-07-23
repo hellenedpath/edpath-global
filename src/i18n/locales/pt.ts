@@ -103,6 +103,8 @@ export const pt = {
     menu: "Menu",
     openMenu: "Abrir menu",
     askEdpath: "Pergunte à EdPath",
+    highSchoolsFeatured: "Ensino médio",
+    forParents: "Para pais",
     groups: {
       startHere: "Comece aqui",
       chooseSchool: "Escolha sua escola",

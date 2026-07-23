@@ -104,6 +104,8 @@ export const en = {
     menu: "Menu",
     openMenu: "Open menu",
     askEdpath: "Ask EdPath",
+    highSchoolsFeatured: "High school",
+    forParents: "For parents",
     groups: {
       startHere: "Start here",
       chooseSchool: "Choose your school",
