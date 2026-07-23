@@ -692,12 +692,16 @@ export const pt = {
         body:
           "No Canadá, a escola pública é gratuita — e definida pelo seu ENDEREÇO. Cada endereço pertence a uma zona escolar (catchment). É onde você mora que decide qual escola pública o seu filho pode frequentar. Escolas boas costumam estar cheias e só aceitam quem mora na zona. Por isso, escolher o bairro é escolher a escola. Antes de alugar, use o 'school locator' do conselho escolar para ver qual escola cobre aquele endereço.",
       },
-      typesTitle: "Os tipos de escola pública em Ontário",
-      types: [
-        { title: "Pública (laica)", body: "Aberta a todos, pela zona do endereço. Gratuita." },
-        { title: "Católica (pública, financiada pelo governo)", body: "Gratuita. No ensino médio, aceita alunos de qualquer religião que morem na zona. No fundamental, é destinada a famílias católicas — não-católicos geralmente precisam pedir exceção." },
-        { title: "Francófona", body: "Para famílias com direito ao ensino em francês (francês como primeira língua, escolaridade prévia em francês ou irmão em escola francófona)." },
-        { title: "French Immersion", body: "Um programa dentro da escola pública anglófona onde boa parte do ensino é em francês, para quem não tem francês nativo. Gratuito, não exige herança francesa. A entrada costuma ser na 1ª ou 2ª série, às vezes por sorteio com prioridade para quem mora na zona. Existe em quase todas as províncias." },
+      typesTitle: "Tipos de escola pública (varia por província)",
+      typesIntro: "Em todo o Canadá, a escola pública é gratuita e definida pelo endereço, e quase todas as províncias oferecem French Immersion (ensino em francês dentro da escola pública anglófona). O que muda de província para província é a existência de escola católica pública e a língua principal.",
+      provinces: [
+        { province: "Ontário", body: "Quatro sistemas públicos financiados: público (laico), CATÓLICO (financiado pelo governo — no ensino médio aceita qualquer religião pela zona; no fundamental é voltado a famílias católicas), francófono e católico francófono. Tem French Immersion." },
+        { province: "Alberta", body: "Como Ontário, tem escola CATÓLICA pública financiada, além da pública laica, francófona e French Immersion." },
+        { province: "Saskatchewan", body: "Também tem escola CATÓLICA pública financiada, além da pública, francófona e French Immersion." },
+        { province: "British Columbia", body: "NÃO tem católica pública (escolas católicas são privadas e pagas). Sistema público laico, rede francófona e French Immersion. Diploma Dogwood." },
+        { province: "Quebec", body: "Organizado por LÍNGUA, não por religião (as escolas religiosas foram abolidas em 1998). O padrão é o ensino em francês; o ensino em inglês é só para quem tem direito (geralmente um dos pais estudou em inglês no Canadá). Laico." },
+        { province: "Manitoba", body: "Público laico, rede francófona e French Immersion. Não tem sistema católico público financiado." },
+        { province: "Nova Scotia", body: "Público laico (em inglês), rede francófona (Conseil scolaire acadien) e French Immersion. Sem católica pública." },
       ],
       rankingTitle: "Ranking de escolas: use com cabeça",
       rankingBody:

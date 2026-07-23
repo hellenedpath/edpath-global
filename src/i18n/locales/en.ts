@@ -698,12 +698,16 @@ export const en = {
         body:
           "In Canada, public school is free — and it's set by your ADDRESS. Every address belongs to a school zone (catchment). Where you live decides which public school your child can attend. Good schools are usually full and only accept families inside the zone. That's why choosing the neighborhood means choosing the school. Before you sign a lease, use the school board's 'school locator' to see which school covers that address.",
       },
-      typesTitle: "Types of public school in Ontario",
-      types: [
-        { title: "Public (secular)", body: "Open to all, by address zone. Free." },
-        { title: "Catholic (public, government-funded)", body: "Free. In high school, it accepts students of any religion who live in the zone. In elementary, it's meant for Catholic families — non-Catholics usually need to request an exception." },
-        { title: "Francophone", body: "For families with a right to French-language education (French as a first language, prior schooling in French, or a sibling in a Francophone school)." },
-        { title: "French Immersion", body: "A program inside the English public school where much of the teaching is in French, for students without a French background. Free, no French heritage required. Entry is usually in grade 1 or 2, sometimes by lottery with priority for families in the zone. Available in most provinces." },
+      typesTitle: "Types of public school (varies by province)",
+      typesIntro: "Across Canada, public school is free and defined by your address, and almost every province offers French Immersion (French-language teaching within the English public system). What changes from province to province is whether there are publicly funded Catholic schools and the main language.",
+      provinces: [
+        { province: "Ontario", body: "Four publicly funded systems: public (secular), CATHOLIC (government-funded — in high school it accepts students of any religion in the zone; in elementary it is aimed at Catholic families), Francophone and Francophone Catholic. French Immersion is available." },
+        { province: "Alberta", body: "Like Ontario, it has publicly funded CATHOLIC schools, plus secular public, Francophone and French Immersion." },
+        { province: "Saskatchewan", body: "Also has publicly funded CATHOLIC schools, plus public, Francophone and French Immersion." },
+        { province: "British Columbia", body: "NO public Catholic schools (Catholic schools are private and fee-paying). Secular public system, Francophone network and French Immersion. Dogwood diploma." },
+        { province: "Quebec", body: "Organized by LANGUAGE, not religion (religious schools were abolished in 1998). The default is French-language school; English schooling is only for those with eligibility (usually one parent was educated in English in Canada). Secular." },
+        { province: "Manitoba", body: "Secular public, Francophone network and French Immersion. No publicly funded Catholic system." },
+        { province: "Nova Scotia", body: "Secular public (English), Francophone network (Conseil scolaire acadien) and French Immersion. No public Catholic system." },
       ],
       rankingTitle: "School rankings: use with care",
       rankingBody:
