@@ -1680,7 +1680,7 @@ export const pt = {
       homestay: {
         title: "Homestay seguro: o que ninguém te conta",
         body:
-          "Aqui está algo que uma agência comissionada raramente conta: no Canadá, o sistema de homestay para estudantes menores NÃO é regulamentado por uma autoridade única. Reportagens da CBC e um estudo da Universidade de Toronto documentaram casos reais de estudantes passando por comida insuficiente, falta de aquecimento, ausência de privacidade e até negligência em emergências. Não é para assustar — é para você escolher com os olhos abertos. Como o EdPath tem comissão-zero e não lucra com homestay, podemos te avisar.",
+          "Vale conhecer bem este ponto: no Canadá, o sistema de homestay para estudantes menores não é regulamentado por uma autoridade única. Reportagens da CBC e um estudo da Universidade de Toronto documentaram casos de estudantes que enfrentaram comida insuficiente, falta de aquecimento, pouca privacidade e falta de apoio em emergências. Não é para assustar — é para você escolher com informação e atenção aos detalhes certos.",
         redFlagsTitle: "Sinais de alerta",
         redFlags: [
           "A família não deixa claro as refeições ou o quarto antes de você aceitar",
@@ -1698,22 +1698,22 @@ export const pt = {
           "Há um responsável do board que visita ou acompanha o aluno?",
         ],
         closing:
-          "Regra de ouro: prefira homestay organizado pelo próprio School Board público — há mais responsabilidade e um canal para reclamar. Fuja de intermediários que cobram caro e somem depois.",
+          "Uma boa referência: prefira homestay organizado pelo próprio School Board público, onde há acompanhamento e um canal claro para resolver problemas. Confirme sempre quem acompanha o aluno e como funciona a troca de família, se necessário.",
       },
       custodian: {
         title: "Custódia sem armadilhas: o que perguntar",
         body:
-          "A custódia é obrigatória para menores de 17 anos (veja a seção acima), mas contratar um custodian tem armadilhas. Um caso real reportado pela CBC: uma família pagou CAD $16.000 por um pacote 'super-custódia' que falhou — em uma emergência de saúde, o custodian levou mais de cinco horas e nove ligações para responder. Custódia não é só um papel assinado; é alguém que precisa estar presente de verdade.",
+          "A custódia é obrigatória para menores de 17 anos (veja a seção acima). Ao escolher um custodian, vale ter atenção: a CBC noticiou o caso de uma família que pagou CAD $16.000 por um pacote 'super-custódia' e, numa emergência de saúde, teve dificuldade em obter resposta rápida. Custódia não é só um documento assinado; é alguém que precisa estar presente de verdade.",
         checklistTitle: "Antes de escolher um custodian, confirme",
         checklist: [
           "Ele mora perto da escola e da casa do aluno?",
           "Responde rápido em emergência? Peça um teste de contato.",
           "O que está incluído no valor e o que é cobrado à parte (ex: idas ao hospital)?",
           "Há um contrato claro por escrito com os serviços?",
-          "É alguém de confiança indicado pela escola/board, não um 'pacote' anônimo caro?",
+          "É alguém de confiança indicado pela escola/board?",
         ],
         closing:
-          "O EdPath te ajuda a fazer as perguntas certas — e, para o documento oficial (IMM 5646) e o caso de imigração, encaminhamos a um RCIC ou advogado regulamentado, nunca a uma agência comissionada.",
+          "O EdPath te ajuda a fazer as perguntas certas — e, para o documento oficial (IMM 5646) e o caso de imigração, encaminhamos a um RCIC ou advogado de imigração regulamentado.",
       },
       parents: {
         title: "Os pais podem ir junto?",
@@ -1750,7 +1750,7 @@ export const pt = {
         ],
       },
       steps: {
-        title: "Passo a passo: como aplicar (sem agência)",
+        title: "Passo a passo: como aplicar",
         items: [
           "Escolha a província e a escola usando o mapa acima.",
           "Verifique idade e custódia na seção sobre menores.",
@@ -1759,7 +1759,7 @@ export const pt = {
           "Organize homestay ou custódia e o seguro-saúde.",
         ],
         footer:
-          "O EdPath te guia em cada passo — e, quando precisar de apoio legal de imigração, encaminhamos a um RCIC ou advogado regulamentado, nunca a uma agência comissionada.",
+          "O EdPath te guia em cada passo — e, quando precisar de apoio legal de imigração, encaminhamos a um RCIC ou advogado de imigração regulamentado.",
       },
     },
   },
