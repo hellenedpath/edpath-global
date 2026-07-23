@@ -31,6 +31,12 @@ export default function Health() {
   const dailyCards = t("healthPage.daily.cards", {
     returnObjects: true,
   }) as unknown as DailyCard[];
+  const emergencyNumbers = t("healthPage.emergency.numbers", {
+    returnObjects: true,
+  }) as unknown as Record<string, EmergencyNumber>;
+  const emergencyLinks = t("healthPage.emergency.links", {
+    returnObjects: true,
+  }) as unknown as EmergencyLink[];
 
   return (
     <>
