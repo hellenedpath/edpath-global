@@ -27,6 +27,7 @@ type HighSchool = {
   id: string;
   name: string;
   city: string | null;
+  province: string | null;
   region: string | null;
   website: string | null;
   email: string | null;
