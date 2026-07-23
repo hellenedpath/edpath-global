@@ -11,6 +11,7 @@ import {
   ExternalLink,
   FileText,
   Handshake,
+  HeartHandshake,
   Home,
   Linkedin,
   Search,
@@ -23,6 +24,7 @@ type JobResource = { title: string; description: string };
 type JobTip = { title: string; description: string };
 type CvItem = { title: string; items: string[] };
 type Professional = { title: string; description: string };
+type SettlementAgency = { name: string; province: string; url: string };
 
 export default function Work() {
   const { t } = useTranslation();
@@ -31,8 +33,15 @@ export default function Work() {
   const jobTips = t("work.job.tips", { returnObjects: true }) as unknown as JobTip[];
   const cvSections = t("work.cv.sections", { returnObjects: true }) as unknown as CvItem[];
   const professionals = t("work.professionals.list", { returnObjects: true }) as unknown as Professional[];
+  const settlementAgencies = t("work.settlement.agencies", { returnObjects: true }) as unknown as SettlementAgency[];
 
   const jobResourceIcons = [Users, Briefcase, Search, Linkedin];
+
+  const groupedAgencies = settlementAgencies.reduce((acc, agency) => {
+    if (!acc[agency.province]) acc[agency.province] = [];
+    acc[agency.province].push(agency);
+    return acc;
+  }, {} as Record<string, SettlementAgency[]>);
 
   return (
     <>
@@ -56,7 +65,7 @@ export default function Work() {
       <section className="container py-16 md:py-24">
         <div className="max-w-5xl mx-auto">
           <Tabs defaultValue="job" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 h-auto p-1 bg-muted/50">
+            <TabsList className="grid w-full grid-cols-4 h-auto p-1 bg-muted/50">
               <TabsTrigger value="job" className="py-3 text-xs md:text-sm data-[state=active]:bg-white data-[state=active]:text-navy">
                 <Briefcase className="w-4 h-4 mr-2 hidden md:inline" />
                 {t("work.tabs.job")}
@@ -68,6 +77,10 @@ export default function Work() {
               <TabsTrigger value="professionals" className="py-3 text-xs md:text-sm data-[state=active]:bg-white data-[state=active]:text-navy">
                 <Handshake className="w-4 h-4 mr-2 hidden md:inline" />
                 {t("work.tabs.professionals")}
+              </TabsTrigger>
+              <TabsTrigger value="settlement" className="py-3 text-xs md:text-sm data-[state=active]:bg-white data-[state=active]:text-navy">
+                <HeartHandshake className="w-4 h-4 mr-2 hidden md:inline" />
+                {t("work.tabs.settlement")}
               </TabsTrigger>
             </TabsList>
 
@@ -288,6 +301,75 @@ export default function Work() {
                     {t("work.professionals.safety.content")}
                   </AlertDescription>
                 </Alert>
+              </div>
+            </TabsContent>
+
+            {/* Tab 4: Newcomer support agencies */}
+            <TabsContent value="settlement" className="mt-8">
+              <div className="space-y-8">
+                <div>
+                  <h2 className="font-display text-3xl md:text-4xl font-semibold text-navy">
+                    {t("work.settlement.title")}
+                  </h2>
+                  <p className="mt-4 text-muted-foreground max-w-3xl">
+                    {t("work.settlement.intro")}
+                  </p>
+                </div>
+
+                <div className="space-y-8">
+                  {Object.entries(groupedAgencies).map(([province, agencies]) => (
+                    <div key={province}>
+                      <h3 className="font-display text-lg font-semibold text-navy mb-3">
+                        {province}
+                      </h3>
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        {agencies.map((agency) => (
+                          <Card
+                            key={agency.name}
+                            className="border-border shadow-sm hover:border-azul/30 transition-colors"
+                          >
+                            <CardContent className="p-5">
+                              <div className="flex items-start justify-between gap-4">
+                                <div>
+                                  <p className="font-display font-semibold text-navy">
+                                    {agency.name}
+                                  </p>
+                                  <p className="text-sm text-muted-foreground mt-0.5">
+                                    {agency.province}
+                                  </p>
+                                </div>
+                                <a
+                                  href={agency.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-azul text-sm font-medium hover:underline shrink-0"
+                                >
+                                  {t("work.settlement.linkLabel")}
+                                  <ExternalLink className="w-3.5 h-3.5" />
+                                </a>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="rounded-lg border border-azul/30 bg-azul/5 p-6">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {t("work.settlement.federalLabel")}
+                  </p>
+                  <a
+                    href={t("work.settlement.federalLink")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-1.5 text-azul font-medium hover:underline"
+                  >
+                    {t("work.settlement.federalCta")}
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </TabsContent>
           </Tabs>

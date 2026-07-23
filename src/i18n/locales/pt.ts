@@ -738,6 +738,7 @@ export const pt = {
       job: "Encontrar trabalho",
       cv: "Currículo canadense",
       professionals: "Conectar com profissionais",
+      settlement: "Apoio ao imigrante",
     },
     housingLink: {
       text: "Procurando moradia? Veja a página dedicada de Moradia.",
@@ -746,7 +747,7 @@ export const pt = {
     job: {
       title: "Encontrar trabalho",
       subtitle:
-        "A busca por emprego no Canadá começa antes mesmo da primeira aula. Quanto mais cedo e melhor preparado, maiores as chances.",
+        "Foque em canais concretos e nas regras que realmente valem para estudantes internacionais.",
       rules: {
         title: "Quanto você pode trabalhar",
         content:
@@ -776,9 +777,9 @@ export const pt = {
             "A maioria das vagas não é anunciada. Rede de contatos e indicações são fundamentais: mantenha o LinkedIn atualizado e conecte-se com ex-alunos e profissionais da área.",
         },
         {
-          title: "Candidature-se e faça o acompanhamento",
+          title: "Aplique e acompanhe",
           description:
-            "Participe de feiras de carreira, candidate-se com consistência e, após enviar sua candidatura, mande uma mensagem cordial ao recrutador demonstrando interesse.",
+            "Candidate-se com consistência, acompanhe o status e envie uma mensagem curta ao recrutador quando apropriado.",
         },
       ],
       tips: [
@@ -787,12 +788,26 @@ export const pt = {
           description:
             "Só ocupações qualificadas contam como experiência relevante para a via de residência permanente. Trabalhos de sobrevivência pagam contas, mas não constroem a mesma trajetória.",
         },
-        {
-          title: "Comece cedo e seja consistente",
-          description:
-            "Ajuste o currículo para cada vaga, acompanhe as candidaturas e continue se conectando. O resultado vem da persistência, não de uma única candidatura.",
-        },
       ],
+    },
+    settlement: {
+      title: "Órgãos de apoio ao imigrante (gratuitos)",
+      intro: "Serviços gratuitos, financiados pelo governo, que ajudam com emprego, currículo e integração. Procure o da sua província:",
+      agencies: [
+        { name: "Manitoba Start", province: "Manitoba", url: "https://manitobastart.com/" },
+        { name: "ACCES Employment", province: "Ontário", url: "https://accesemployment.ca/" },
+        { name: "COSTI Immigrant Services", province: "Ontário", url: "https://www.costi.org/" },
+        { name: "ISSofBC", province: "British Columbia", url: "https://issbc.org/" },
+        { name: "Calgary Catholic Immigration Society (CCIS)", province: "Alberta", url: "https://ccisab.ca/" },
+        { name: "Newcomer Centre (Edmonton)", province: "Alberta", url: "https://newcomercentre.com/" },
+        { name: "Accompagnement Québec", province: "Quebec", url: "https://www.quebec.ca/en/immigration/integration-service-for-immigrants" },
+        { name: "ISANS", province: "Nova Scotia", url: "https://isans.ca/" },
+        { name: "Saskatoon Open Door Society", province: "Saskatchewan", url: "https://sods.sk.ca/" },
+      ],
+      linkLabel: "Acessar site",
+      federalLabel: "Não achou na sua província? Use o buscador oficial do governo (cobre todo o Canadá, exceto Quebec):",
+      federalLink: "https://www.ircc.canada.ca/english/newcomers/services/index.asp",
+      federalCta: "Buscar serviços para recém-chegados (IRCC)",
     },
     cv: {
       title: "Currículo canadense",
