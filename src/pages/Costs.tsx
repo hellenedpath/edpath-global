@@ -32,7 +32,7 @@ type TuitionItem = { tag: string; price: string; desc: string };
 const itemIcons = [GraduationCap, Home, UtensilsCrossed, Bus, Heart, Plane];
 
 const VISA_FEES = { studyPermit: 150, biometrics: 85, total: 235 };
-const PROOF_OF_FUNDS = { single: 22895, spouse: 4000, child: 3000 };
+const PROOF_OF_FUNDS = { single: 22895, spouse: 28502, child: 35040 };
 const RENT_RANGES: { city: string; province: string; range: string }[] = [
   { city: "Vancouver", province: "BC", range: "$2,500 – $2,660" },
   { city: "Toronto", province: "ON", range: "$2,200" },
@@ -150,13 +150,13 @@ export default function Costs() {
                     <span className="font-medium text-foreground">
                       {t("realCosts.proof.family.spouse")}:
                     </span>{" "}
-                    +{formatCurrency(PROOF_OF_FUNDS.spouse)}
+                    {formatCurrency(PROOF_OF_FUNDS.spouse)}
                   </li>
                   <li>
                     <span className="font-medium text-foreground">
                       {t("realCosts.proof.family.child")}:
                     </span>{" "}
-                    +{formatCurrency(PROOF_OF_FUNDS.child)}
+                    {formatCurrency(PROOF_OF_FUNDS.child)}
                   </li>
                 </ul>
                 <p className="text-xs text-muted-foreground pt-2">
@@ -198,7 +198,7 @@ export default function Costs() {
 
         <div className="mt-8 flex justify-center">
           <Button asChild className="bg-navy hover:bg-navy/90 text-white">
-            <Link to="/simulador-financeiro">
+            <Link to="/canada/simulador">
               <Calculator className="mr-2 h-4 w-4" />
               {t("costs.simulate")}
             </Link>

@@ -556,9 +556,9 @@ export const pt = {
       },
       family: {
         tag: "Familiares acompanhantes",
-        title: "Valores adicionais por dependente",
-        spouse: "Cônjuge",
-        child: "Filho dependente",
+        title: "Total exigido por tamanho de família",
+        spouse: "Com cônjuge (2 pessoas)",
+        child: "Com cônjuge e 1 filho (3 pessoas)",
       },
       perYear: "ano",
       note: {

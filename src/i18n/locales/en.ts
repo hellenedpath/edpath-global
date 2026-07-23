@@ -562,9 +562,9 @@ export const en = {
       },
       family: {
         tag: "Accompanying family members",
-        title: "Additional amounts per dependent",
-        spouse: "Spouse",
-        child: "Dependent child",
+        title: "Total required by family size",
+        spouse: "With spouse (2 people)",
+        child: "With spouse and 1 child (3 people)",
       },
       perYear: "year",
       note: {
