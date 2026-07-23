@@ -18,7 +18,6 @@ import Programs from "./pages/Programs";
 import Institutions from "./pages/Institutions";
 import HighSchools from "./pages/HighSchools";
 import Renting from "./pages/Renting";
-import RentalScams from "./pages/RentalScams";
 import StudyPermit from "./pages/StudyPermit";
 import Health from "./pages/Health";
 import Verify from "./pages/Verify";
