@@ -25,6 +25,8 @@ type JobTip = { title: string; description: string };
 type CvItem = { title: string; items: string[] };
 type Professional = { title: string; description: string };
 type SettlementAgency = { name: string; province: string; url: string };
+type JobSite = { name: string; description: string; url: string; isOfficial?: boolean };
+type JobSiteData = { title: string; intro: string; badge: string; linkLabel: string; sites: JobSite[] };
 
 export default function Work() {
   const { t } = useTranslation();
@@ -34,6 +36,7 @@ export default function Work() {
   const cvSections = t("work.cv.sections", { returnObjects: true }) as unknown as CvItem[];
   const professionals = t("work.professionals.list", { returnObjects: true }) as unknown as Professional[];
   const settlementAgencies = t("work.settlement.agencies", { returnObjects: true }) as unknown as SettlementAgency[];
+  const jobSites = t("work.job.jobSites", { returnObjects: true }) as unknown as JobSiteData;
 
   const jobResourceIcons = [Users, Briefcase, Search, Linkedin];
 
