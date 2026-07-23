@@ -176,6 +176,56 @@ export default function Work() {
                   ))}
                 </div>
 
+                {/* Trusted job sites */}
+                <div className="space-y-5">
+                  <div>
+                    <h3 className="font-display text-2xl font-semibold text-navy">
+                      {jobSites.title}
+                    </h3>
+                    <p className="mt-2 text-muted-foreground max-w-3xl">
+                      {jobSites.intro}
+                    </p>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {jobSites.sites.map((site) => (
+                      <Card
+                        key={site.name}
+                        className={
+                          site.isOfficial
+                            ? "border-azul/30 bg-azul/5 shadow-sm"
+                            : "border-border shadow-sm"
+                        }
+                      >
+                        <CardContent className="p-5">
+                          <div className="flex items-start justify-between gap-3">
+                            <h4 className="font-display text-lg font-semibold text-navy">
+                              {site.name}
+                            </h4>
+                            {site.isOfficial && (
+                              <span className="inline-flex items-center rounded-full bg-azul px-2 py-0.5 text-xs font-medium text-primary-foreground">
+                                {jobSites.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                            {site.description}
+                          </p>
+                          <a
+                            href={site.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 inline-flex items-center gap-1 text-azul text-sm font-medium hover:underline"
+                          >
+                            {jobSites.linkLabel}
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Housing link */}
                 <Link
                   to="/canada/alugar"
