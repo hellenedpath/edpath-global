@@ -15,6 +15,11 @@ import {
   Stamp,
   MessageCircle,
   ArrowRight,
+  ShieldCheck,
+  Users,
+  Briefcase,
+  Heart,
+  ListChecks,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
