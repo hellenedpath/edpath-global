@@ -392,6 +392,9 @@ export const en = {
   },
   costs: {
     simulate: "Simulate your costs",
+    refundSection: {
+      title: "Before you pay: understand the refund policy",
+    },
     hero: {
       title: "Studying in Canada",
       subtitle:

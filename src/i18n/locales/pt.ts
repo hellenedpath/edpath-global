@@ -387,6 +387,9 @@ export const pt = {
 
   costs: {
     simulate: "Simule seus custos",
+    refundSection: {
+      title: "Antes de pagar: entenda a política de reembolso",
+    },
     hero: {
       title: "Estudar no Canadá",
       subtitle: "Os dois números que todo estudante precisa entender antes de decidir, prova de fundos vs. custo real de vida no Canadá.",
