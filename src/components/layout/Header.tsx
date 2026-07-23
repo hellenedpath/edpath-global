@@ -1,14 +1,17 @@
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Check, ChevronDown, Compass, Globe, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/Logo";
 
-const navItems = [
-  { key: "about", to: "/sobre", type: "link" as const },
-  { key: "destinations", to: "/#destinos", type: "anchor" as const },
-];
+const destinations = [
+  { code: "canada", to: "/canada", active: true },
+  { code: "usa", to: null, active: false },
+  { code: "uk", to: null, active: false },
+  { code: "ireland", to: null, active: false },
+  { code: "australia", to: null, active: false },
+] as const;
 
 const langs = [
   { code: "pt", active: true },
@@ -24,6 +27,8 @@ export function Header() {
   const [langOpen, setLangOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [destOpen, setDestOpen] = useState(false);
+  const destCloseTimer = useRef<number | null>(null);
   const showMyPath = location.pathname.startsWith("/canada");
 
   useEffect(() => {
@@ -64,31 +69,62 @@ export function Header() {
         <Logo />
 
         <nav className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) =>
-            item.type === "anchor" ? (
-              <a
-                key={item.key}
-                href={item.to}
-                onClick={goToDestinations}
-                className="nav-link-underline px-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 text-primary-foreground/90"
-              >
-                {t(`nav.${item.key}`)}
-              </a>
-            ) : (
-              <NavLink
-                key={item.key}
-                to={item.to}
-                className={({ isActive }) =>
-                  cn(
-                    "nav-link-underline px-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 text-primary-foreground/90",
-                    isActive && "bg-white/10 text-primary-foreground",
-                  )
-                }
-              >
-                {t(`nav.${item.key}`)}
-              </NavLink>
-            ),
-          )}
+          <div
+            className="relative"
+            onMouseEnter={() => {
+              if (destCloseTimer.current) window.clearTimeout(destCloseTimer.current);
+              setDestOpen(true);
+            }}
+            onMouseLeave={() => {
+              destCloseTimer.current = window.setTimeout(() => setDestOpen(false), 120);
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setDestOpen((v) => !v)}
+              className="inline-flex items-center gap-1 nav-link-underline px-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 text-primary-foreground/90"
+            >
+              {t("nav.destinations")}
+              <ChevronDown className={cn("w-3.5 h-3.5 opacity-70 transition-transform", destOpen && "rotate-180")} />
+            </button>
+            {destOpen && (
+              <div className="absolute left-0 top-full mt-2 w-60 rounded-lg border border-white/10 bg-navy text-primary-foreground shadow-xl shadow-black/20 overflow-hidden py-1 z-50">
+                {destinations.map((d) =>
+                  d.active && d.to ? (
+                    <Link
+                      key={d.code}
+                      to={d.to}
+                      onClick={() => setDestOpen(false)}
+                      className="flex items-center justify-between px-3 py-2.5 text-sm hover:bg-white/10 transition-colors"
+                    >
+                      <span className="font-medium">{t(`home.globeDestinations.${d.code}.label`)}</span>
+                    </Link>
+                  ) : (
+                    <div
+                      key={d.code}
+                      className="flex items-center justify-between px-3 py-2.5 text-sm text-primary-foreground/60"
+                    >
+                      <span>{t(`home.globeDestinations.${d.code}.label`)}</span>
+                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/10 text-primary-foreground/80">
+                        {t("countries.soon")}
+                      </span>
+                    </div>
+                  ),
+                )}
+              </div>
+            )}
+          </div>
+          <NavLink
+            to="/sobre"
+            className={({ isActive }) =>
+              cn(
+                "nav-link-underline px-3 py-2.5 text-sm rounded-md transition-colors hover:bg-white/10 text-primary-foreground/90",
+                isActive && "bg-white/10 text-primary-foreground",
+              )
+            }
+          >
+            {t("nav.about")}
+          </NavLink>
         </nav>
 
 
@@ -192,32 +228,43 @@ export function Header() {
             >
               {t("nav.cta")}
             </a>
-            {navItems.map((item) =>
-              item.type === "anchor" ? (
-                <a
-                  key={item.key}
-                  href={item.to}
-                  onClick={goToDestinations}
-                  className="nav-link-underline px-3 py-3 text-sm rounded-md hover:bg-white/10"
-                >
-                  {t(`nav.${item.key}`)}
-                </a>
-              ) : (
+            <div className="px-3 pt-3 pb-1 text-xs uppercase tracking-wider text-primary-foreground/60">
+              {t("nav.destinations")}
+            </div>
+            {destinations.map((d) =>
+              d.active && d.to ? (
                 <NavLink
-                  key={item.key}
-                  to={item.to}
+                  key={d.code}
+                  to={d.to}
                   onClick={() => setMobileOpen(false)}
-                  className={({ isActive }) =>
-                    cn(
-                    "nav-link-underline px-3 py-3 text-sm rounded-md hover:bg-white/10",
-                    isActive && "bg-white/10",
-                    )
-                  }
+                  className="px-3 py-2.5 text-sm rounded-md hover:bg-white/10"
                 >
-                  {t(`nav.${item.key}`)}
+                  {t(`home.globeDestinations.${d.code}.label`)}
                 </NavLink>
+              ) : (
+                <div
+                  key={d.code}
+                  className="flex items-center justify-between px-3 py-2.5 text-sm text-primary-foreground/60"
+                >
+                  <span>{t(`home.globeDestinations.${d.code}.label`)}</span>
+                  <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/10">
+                    {t("countries.soon")}
+                  </span>
+                </div>
               ),
             )}
+            <NavLink
+              to="/sobre"
+              onClick={() => setMobileOpen(false)}
+              className={({ isActive }) =>
+                cn(
+                  "nav-link-underline px-3 py-3 text-sm rounded-md hover:bg-white/10 mt-2",
+                  isActive && "bg-white/10",
+                )
+              }
+            >
+              {t("nav.about")}
+            </NavLink>
           </div>
         </nav>
       )}

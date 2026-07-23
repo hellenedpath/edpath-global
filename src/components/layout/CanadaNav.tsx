@@ -25,16 +25,17 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-type Item = { to: string; label: string };
+type Item = { to: string; label: string; primary?: boolean };
 type Group = { title: string; items: Item[] };
 
 const primaryTo = "/canada/meu-caminho?country=canada";
-const highSchoolTo = "/canada/ensino-medio";
 
-const chooseDefs = [
+const discoverDefs = [
+  { to: primaryTo, key: "myPath", primary: true },
   { to: "/canada/programas", key: "programs" },
   { to: "/canada/instituicoes", key: "institutions" },
   { to: "/canada/pgwp", key: "pgwp" },
+  { to: "/canada/ensino-medio", key: "highSchools" },
 ] as const;
 
 const planDefs = [
@@ -49,7 +50,7 @@ const prepareDefs = [
   { to: "/canada/golpes-de-aluguel", key: "rentalScams" },
 ] as const;
 
-const arriveDefs = [
+const liveDefs = [
   { to: "/canada/saude", key: "health" },
   { to: "/canada/familia", key: "family" },
   { to: "/canada/trabalho-moradia", key: "work" },
@@ -139,7 +140,8 @@ function HoverDropdown({
                       }}
                       className={cn(
                         "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
-                      activePath === pathOf(it.to) && "text-foreground font-medium",
+                       activePath === pathOf(it.to) && "text-foreground font-medium",
+                       it.primary && "text-[hsl(var(--crimson))] font-semibold focus:text-[hsl(var(--crimson))]",
                       )}
                     >
                       {it.label}
@@ -158,6 +160,7 @@ function HoverDropdown({
                   className={cn(
                     "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
                   activePath === pathOf(it.to) && "text-foreground font-medium",
+                  it.primary && "text-[hsl(var(--crimson))] font-semibold focus:text-[hsl(var(--crimson))]",
                   )}
                 >
                   {it.label}
@@ -174,16 +177,18 @@ export function CanadaNav() {
   const { pathname } = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const primary: Item = { to: primaryTo, label: t("nav.myPath") };
-  const primaryActive = pathname === primaryTo.split("?")[0];
-  const highSchool: Item = { to: highSchoolTo, label: t("canadaNav.items.highSchools") };
-  const highSchoolActive = pathname === highSchoolTo;
-  const toItems = (defs: readonly { to: string; key: string }[]): Item[] =>
-    defs.map((d) => ({ to: d.to, label: t(`canadaNav.items.${d.key}`) }));
-  const choose = toItems(chooseDefs);
+  const toItems = (
+    defs: readonly { to: string; key: string; primary?: boolean }[],
+  ): Item[] =>
+    defs.map((d) => ({
+      to: d.to,
+      label: t(`canadaNav.items.${d.key}`),
+      primary: d.primary,
+    }));
+  const discover = toItems(discoverDefs);
   const plan = toItems(planDefs);
   const prepare = toItems(prepareDefs);
-  const arrive = toItems(arriveDefs);
+  const live = toItems(liveDefs);
 
   const refundsPath = (t("refunds.path") as string) || "/refunds";
   plan.push({ to: refundsPath, label: t("canadaNav.items.refunds") });
@@ -197,40 +202,10 @@ export function CanadaNav() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-7 flex-1">
-          <NavLink
-            to={primary.to}
-            className={cn(
-              "group relative shrink-0 text-sm font-semibold transition-colors",
-              primaryActive
-                ? "text-[hsl(var(--crimson))]"
-                : "text-foreground hover:text-[hsl(var(--azul))]",
-            )}
-          >
-            {primary.label}
-            <span
-              className={cn(
-                "pointer-events-none absolute -bottom-1 left-0 h-[2px] rounded-full bg-[hsl(var(--crimson))] transition-all duration-300",
-                primaryActive ? "w-full" : "w-4 group-hover:w-full group-hover:bg-[hsl(var(--azul))]",
-              )}
-            />
-          </NavLink>
-
-          <NavLink
-            to={highSchool.to}
-            className={cn(
-              "shrink-0 text-sm transition-colors",
-              highSchoolActive
-                ? "text-foreground font-medium"
-                : "text-muted-foreground hover:text-[hsl(var(--azul))]",
-            )}
-          >
-            {highSchool.label}
-          </NavLink>
-
-          <HoverDropdown label={t("canadaNav.choose")} items={choose} activePath={pathname} />
-          <HoverDropdown label={t("canadaNav.plan")} items={plan} activePath={pathname} />
-          <HoverDropdown label={t("canadaNav.prepare")} items={prepare} activePath={pathname} />
-          <HoverDropdown label={t("canadaNav.arrive")} items={arrive} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.discover")} items={discover} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.planPhase")} items={plan} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.preparePhase")} items={prepare} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.live")} items={live} activePath={pathname} />
 
           <button
             type="button"
@@ -262,38 +237,12 @@ export function CanadaNav() {
               </SheetHeader>
 
               <div className="mt-6 space-y-4">
-                <NavLink
-                  to={primary.to}
-                  onClick={() => setMobileOpen(false)}
-                  className={cn(
-                    "block w-full px-2 py-3 text-base font-semibold border-b border-border transition-colors",
-                    primaryActive
-                      ? "text-[hsl(var(--crimson))]"
-                      : "text-foreground hover:text-[hsl(var(--azul))]",
-                  )}
-                >
-                  {primary.label}
-                </NavLink>
-
-                <NavLink
-                  to={highSchool.to}
-                  onClick={() => setMobileOpen(false)}
-                  className={cn(
-                    "block w-full px-2 py-3 text-base font-medium border-b border-border transition-colors",
-                    highSchoolActive
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground",
-                  )}
-                >
-                  {highSchool.label}
-                </NavLink>
-
                 <Accordion type="multiple" className="w-full">
                   {[
-                    { value: "choose", label: t("canadaNav.choose"), items: choose },
-                    { value: "plan", label: t("canadaNav.plan"), items: plan },
-                    { value: "prepare", label: t("canadaNav.prepare"), items: prepare },
-                    { value: "arrive", label: t("canadaNav.arrive"), items: arrive },
+                    { value: "discover", label: t("canadaNav.discover"), items: discover },
+                    { value: "plan", label: t("canadaNav.planPhase"), items: plan },
+                    { value: "prepare", label: t("canadaNav.preparePhase"), items: prepare },
+                    { value: "live", label: t("canadaNav.live"), items: live },
                   ].map((section) => (
                     <AccordionItem key={section.value} value={section.value}>
                       <AccordionTrigger className="text-sm font-medium">
@@ -310,6 +259,7 @@ export function CanadaNav() {
                                   cn(
                                     "block px-2 py-2 text-sm rounded-md text-muted-foreground hover:text-foreground hover:bg-muted",
                                     isActive && "bg-muted text-foreground font-medium",
+                                    it.primary && "text-[hsl(var(--crimson))] font-semibold",
                                   )
                                 }
                               >
