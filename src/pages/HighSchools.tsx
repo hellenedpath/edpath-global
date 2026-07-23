@@ -75,6 +75,28 @@ export default function HighSchools() {
   );
   const [query, setQuery] = useState("");
 
+  // Cost calculator state
+  const [tuition, setTuition] = useState<number>(14000);
+  const [homestay, setHomestay] = useState<number>(12000);
+  const [healthInsurance, setHealthInsurance] = useState<number>(600);
+  const [custodianship, setCustodianship] = useState<number>(2000);
+  const [feesAndMaterials, setFeesAndMaterials] = useState<number>(1500);
+  const [flightsAndLocalTransport, setFlightsAndLocalTransport] = useState<number>(3000);
+
+  const totalCost =
+    tuition +
+    homestay +
+    healthInsurance +
+    custodianship +
+    feesAndMaterials +
+    flightsAndLocalTransport;
+
+  const formatCAD = (value: number) =>
+    new Intl.NumberFormat("en-CA", {
+      style: "currency",
+      currency: "CAD",
+      maximumFractionDigits: 0,
+    }).format(value);
 
   useEffect(() => {
     (async () => {
