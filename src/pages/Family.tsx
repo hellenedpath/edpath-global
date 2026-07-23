@@ -113,7 +113,7 @@ export default function Family() {
       </section>
 
       {/* Section 2 — Daycare */}
-  <section className="bg-muted/30 border-y border-border">
+      <section className="bg-muted/30 border-y border-border">
         <div className="container py-16 md:py-24 max-w-5xl">
           <div className="flex items-center gap-3 mb-4">
             <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
