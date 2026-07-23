@@ -727,20 +727,35 @@ export const pt = {
 
   work: {
     hero: {
-      title: "Trabalho e Moradia",
+      title: "Trabalho e carreira no Canadá",
       subtitle:
-        "Como encontrar emprego, montar um currículo canadense, escolher onde morar e se conectar com profissionais verificados.",
+        "Como encontrar emprego, montar um currículo canadense e se conectar com profissionais verificados — com as regras reais que valem para estudantes internacionais.",
     },
     tabs: {
       job: "Encontrar trabalho",
       cv: "Currículo canadense",
-      housing: "Moradia",
       professionals: "Conectar com profissionais",
+    },
+    housingLink: {
+      text: "Procurando moradia? Veja a página dedicada de Moradia.",
+      cta: "Abrir página de Moradia",
     },
     job: {
       title: "Encontrar trabalho",
       subtitle:
         "A busca por emprego no Canadá começa antes mesmo da primeira aula. Quanto mais cedo e melhor preparado, maiores as chances.",
+      rules: {
+        title: "Quanto você pode trabalhar",
+        content:
+          "Com study permit de ensino pós-secundário (college/universidade), você pode trabalhar até 24 horas por semana fora do campus durante o período letivo, e em tempo integral nas férias programadas. Estudante de ensino médio (menor de idade) em geral não pode trabalhar. O cônjuge só pode trabalhar se tiver a permissão de trabalho aberta — que ficou restrita em 2025 (veja a página Família). Confirme sempre a condição no seu próprio study permit e no IRCC.",
+        linkLabel: "Regra oficial do IRCC",
+        linkUrl: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work.html",
+      },
+      credentials: {
+        title: "Sua profissão pode exigir recertificação",
+        content:
+          "Profissões reguladas (medicina, direito, engenharia, enfermagem, contabilidade e outras) exigem que o seu diploma estrangeiro seja avaliado e reconhecido no Canadá — um processo que pode levar tempo e dinheiro. Dados oficiais mostram que muitos imigrantes recém-chegados acabam em empregos abaixo da sua qualificação enquanto passam por isso. Pesquise o órgão regulador da sua profissão na província antes de contar com atuar na sua área imediatamente.",
+      },
       resources: [
         {
           title: "Recursos da instituição",
