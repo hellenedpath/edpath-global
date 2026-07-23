@@ -123,7 +123,7 @@ export const en = {
       realCosts: "Real costs",
       before: "Before you start",
       studyPermit: "Study permit: how to apply",
-      renting: "Renting in Canada",
+      renting: "Housing",
       rentalScams: "Rental scams",
       costs: "Costs",
       health: "Health",
