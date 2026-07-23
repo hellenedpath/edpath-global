@@ -234,24 +234,43 @@ export const en = {
   },
   healthPage: {
     eyebrow: "On arrival · Health",
-    title: "Health in Canada",
-    subtitle: "Every international student needs health coverage. Understand the basics before you arrive.",
-    items: {
-      mandatory: {
-        title: "Health insurance is mandatory",
-        body: "Every international student needs health coverage. It can be provincial (some provinces cover students), private, or offered by the institution. Confirm with your school what is included.",
-      },
-      province: {
-        title: "Coverage varies by province",
-        body: "BC, Alberta, Saskatchewan, and Manitoba may cover international students under the provincial plan. Ontario generally requires private insurance (e.g., UHIP for universities). Confirm with your province.",
-      },
-      emergency: {
-        title: "In emergencies",
-        body: "Call 911 (free) for serious medical emergencies. For non-urgent issues, visit a walk-in clinic.",
-      },
+    title: "Healthcare in Canada: what no one explains beforehand",
+    subtitle: "How coverage works, what the public plan doesn't pay, and the real wait times — so you and your family arrive prepared.",
+    mandatory: {
+      title: "Health insurance: mandatory from day one",
+      body: "Holding a study permit does NOT automatically grant you public health coverage. Most provinces have a waiting period before provincial coverage begins — and during that time you need private health insurance. Many institutions require mandatory insurance already bundled into your fees. Confirm with your institution before you travel: arriving uncovered and needing care can cost thousands of dollars.",
     },
+    provinces: {
+      title: "Coverage by province",
+      intro: "Rules and timelines change. Always confirm with your provincial health service and your institution.",
+      rows: [
+        { name: "Ontario (OHIP)", body: "A study permit of 12+ months may qualify, but there is roughly a 3-month wait. During that period, private insurance is essential." },
+        { name: "British Columbia (MSP)", body: "There is usually a wait; in the first period many students rely on their institution's own health plan before enrolling in MSP." },
+        { name: "Quebec (RAMQ)", body: "Generally requires private insurance, unless your country has a social security agreement with Quebec. The institution usually mandates its own plan." },
+        { name: "Alberta (AHCIP), Manitoba (MHSIP), Nova Scotia (MSI)", body: "May cover eligible study permit holders; confirm waiting period and enrolment steps." },
+      ],
+      dependentsTitle: "What about dependants?",
+      dependentsBody: "Warning: spouse and children are not always automatically included in your coverage. They often need separate enrolment and payment (for example, UHIP in Ontario covers dependants for an extra fee). Confirm who is covered before you rely on it.",
+    },
+    daily: {
+      title: "How it works day to day",
+      cards: [
+        { name: "Family doctor", body: "Ongoing care and referrals. It can take months (or years) to be accepted by one." },
+        { name: "Walk-in clinic", body: "No appointment needed. Good for minor issues — colds, infections, simple prescriptions." },
+        { name: "811 line", body: "24/7 nurse by phone. Guides whether you should go to a clinic, the ER, or stay home." },
+        { name: "Emergency room / 911", body: "Serious emergencies only. Minor cases can wait many hours — try a walk-in or 811 first." },
+      ],
+    },
+    familyDoctor: {
+      title: "Getting a family doctor: the reality",
+      body: "The shortage of family doctors is a national crisis: recent surveys estimate about 6 million adults in Canada without a regular doctor or primary care team. Newcomers go to the back of the queue. While you wait, use walk-in clinics and the 811 line, register with your province's plan (it helps you get accepted by a doctor), ask at your institution's health service and in community groups.",
+    },
+    notCovered: {
+      title: "What the public plan does NOT cover",
+      body: "Even with a provincial plan, in almost every province the following are excluded: dental care, glasses and eye exams, and most prescription drugs. These costs come out of your pocket or from a supplementary insurance plan. For families with children, dental care is usually the most frequent extra expense — plan for it in your budget.",
+    },
+    footerNote: "EdPath provides information, not immigration or medical advice. Rules, timelines and coverage change by province and over time — always confirm with the official sources (IRCC and your provincial health service).",
     officialLinkLabel: "See official IRCC page on health",
-    seal: "General information. Confirm coverage with your institution and provincial health service.",
     sourceLink: "Official source: IRCC, Health insurance",
   },
   pages: {
