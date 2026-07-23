@@ -743,6 +743,7 @@ export const en = {
       job: "Find a job",
       cv: "Canadian résumé",
       professionals: "Connect with professionals",
+      settlement: "Newcomer support",
     },
     housingLink: {
       text: "Looking for housing? See the dedicated Housing page.",
@@ -751,7 +752,7 @@ export const en = {
     job: {
       title: "Find a job",
       subtitle:
-        "The job search in Canada starts before your first class. The earlier and better prepared you are, the higher your chances.",
+        "Focus on concrete channels and the rules that actually apply to international students.",
       rules: {
         title: "How much you can work",
         content:
@@ -783,7 +784,7 @@ export const en = {
         {
           title: "Apply and follow up",
           description:
-            "Attend career fairs, apply consistently and, after submitting an application, send a polite message to the recruiter showing your interest.",
+            "Apply consistently, track status and send a short message to the recruiter when appropriate.",
         },
       ],
       tips: [
@@ -792,12 +793,26 @@ export const en = {
           description:
             "Only skilled occupations count as relevant experience for the permanent residency path. Survival jobs pay the bills but don't build the same trajectory.",
         },
-        {
-          title: "Start early and stay consistent",
-          description:
-            "Tailor your résumé to each posting, track your applications and keep networking. Results come from persistence, not a single application.",
-        },
       ],
+    },
+    settlement: {
+      title: "Free newcomer support agencies",
+      intro: "Free, government-funded services that help with jobs, résumé and integration. Find the one in your province:",
+      agencies: [
+        { name: "Manitoba Start", province: "Manitoba", url: "https://manitobastart.com/" },
+        { name: "ACCES Employment", province: "Ontario", url: "https://accesemployment.ca/" },
+        { name: "COSTI Immigrant Services", province: "Ontario", url: "https://www.costi.org/" },
+        { name: "ISSofBC", province: "British Columbia", url: "https://issbc.org/" },
+        { name: "Calgary Catholic Immigration Society (CCIS)", province: "Alberta", url: "https://ccisab.ca/" },
+        { name: "Newcomer Centre (Edmonton)", province: "Alberta", url: "https://newcomercentre.com/" },
+        { name: "Accompagnement Québec", province: "Quebec", url: "https://www.quebec.ca/en/immigration/integration-service-for-immigrants" },
+        { name: "ISANS", province: "Nova Scotia", url: "https://isans.ca/" },
+        { name: "Saskatoon Open Door Society", province: "Saskatchewan", url: "https://sods.sk.ca/" },
+      ],
+      linkLabel: "Visit website",
+      federalLabel: "Not in your province? Use the official government finder (covers all of Canada except Quebec):",
+      federalLink: "https://www.ircc.canada.ca/english/newcomers/services/index.asp",
+      federalCta: "Find newcomer services (IRCC)",
     },
     cv: {
       title: "Canadian résumé",
