@@ -265,6 +265,31 @@ export default function Family() {
           </a>
         </div>
 
+        <div className="mt-12 rounded-lg border border-border bg-card p-6">
+          <h3 className="font-display text-xl font-semibold text-navy flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-crimson" />
+            {t("family.school.finderTitle")}
+          </h3>
+          <p className="mt-2 text-muted-foreground leading-relaxed">
+            {t("family.school.finderIntro")}
+          </p>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            {finderLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-azul hover:underline"
+                >
+                  {link.name}
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <h3 className="mt-12 font-display text-xl font-semibold text-navy">
           {t("family.school.enrollTitle")}
         </h3>
