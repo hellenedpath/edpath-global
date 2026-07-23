@@ -1,7 +1,13 @@
 import { useTranslation } from "react-i18next";
+import { useMemo, useState } from "react";
+import { Trans } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import IrccNote from "@/components/IrccNote";
+import SourceBadge from "@/components/SourceBadge";
 import { Link } from "react-router-dom";
 import bannerCosts from "@/assets/banner-costs.jpg";
 import {
@@ -10,6 +16,7 @@ import {
   Building2,
   BedDouble,
   Calculator,
+  Calendar,
   ExternalLink,
   FileCheck,
   Fingerprint,
@@ -19,8 +26,11 @@ import {
   Info,
   Landmark,
   MapPin,
+  PiggyBank,
   Plane,
   Receipt,
+  ShieldCheck,
+  Users,
   UtensilsCrossed,
   Wallet,
 } from "lucide-react";
@@ -33,6 +43,50 @@ const itemIcons = [GraduationCap, Home, UtensilsCrossed, Bus, Heart, Plane];
 
 const VISA_FEES = { studyPermit: 150, biometrics: 85, total: 235 };
 const PROOF_OF_FUNDS = { single: 22895, spouse: 28502, child: 35040 };
+
+// ——— Simulator constants ———
+type CityTier = "large" | "medium" | "small";
+type Composition = "solo" | "spouse" | "spouse_kid";
+type Lifestyle = "economic" | "moderate" | "comfortable";
+
+const BASE_MONTHLY: Record<CityTier, Record<Composition, [number, number]>> = {
+  large: {
+    solo: [2200, 3200],
+    spouse: [3200, 4600],
+    spouse_kid: [4000, 5800],
+  },
+  medium: {
+    solo: [1700, 2500],
+    spouse: [2500, 3700],
+    spouse_kid: [3200, 4600],
+  },
+  small: {
+    solo: [1300, 2000],
+    spouse: [2000, 3000],
+    spouse_kid: [2600, 3800],
+  },
+};
+
+const LIFESTYLE_FACTOR: Record<Lifestyle, number> = {
+  economic: 0.85,
+  moderate: 1,
+  comfortable: 1.2,
+};
+
+const IRCC_FUNDS: Record<Composition, number> = {
+  solo: 22895,
+  spouse: 28502,
+  spouse_kid: 35040,
+};
+
+function fmt(n: number) {
+  return "CAD $" + Math.round(n).toLocaleString("en-CA");
+}
+
+function fmtRange([a, b]: [number, number]) {
+  return `${fmt(a)} – ${fmt(b)}`;
+}
+
 const RENT_RANGES: { city: string; province: string; range: string }[] = [
   { city: "Vancouver", province: "BC", range: "$2,500 – $2,660" },
   { city: "Toronto", province: "ON", range: "$2,200" },
