@@ -76,10 +76,44 @@ export default function Family() {
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
-      </section>
+  </section>
 
-      {/* Section 2 — Daycare */}
-      <section className="bg-muted/30 border-y border-border">
+  {/* Section 1.5 — Canada Child Benefit */}
+  <section className="container pb-16 md:pb-20">
+    <div className="max-w-4xl mx-auto rounded-2xl border-2 border-crimson/60 bg-crimson/5 p-6 md:p-10 shadow-sm">
+      <div className="flex items-center gap-3 mb-4">
+        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-crimson/10 text-crimson">
+          <Wallet className="w-5 h-5" />
+        </span>
+        <span className="text-xs uppercase tracking-widest text-crimson font-semibold">
+          {t("family.childBenefit.badge")}
+        </span>
+      </div>
+      <h2 className="font-display text-2xl md:text-3xl font-semibold text-navy">
+        {t("family.childBenefit.title")}
+      </h2>
+      <p className="mt-4 text-base md:text-lg text-navy/85 leading-relaxed">
+        {t("family.childBenefit.body")}
+      </p>
+      <div className="mt-5 flex flex-wrap gap-4">
+        {childBenefitLinks.map((link) => (
+          <a
+            key={link.label}
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-crimson hover:underline"
+          >
+            {link.label}
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Section 2 — Daycare */}
+  <section className="bg-muted/30 border-y border-border">
         <div className="container py-16 md:py-24 max-w-5xl">
           <div className="flex items-center gap-3 mb-4">
             <span className="inline-flex items-center justify-center w-10 h-10 text-azul">
@@ -138,6 +172,30 @@ export default function Family() {
               </li>
             ))}
           </ol>
+
+          <div className="mt-8 rounded-lg border border-crimson/30 bg-crimson/[0.03] p-5">
+            <h3 className="font-display text-lg font-semibold text-navy">
+              {t("family.daycare.subsidy.title")}
+            </h3>
+            <p className="mt-2 text-muted-foreground leading-relaxed">
+              {t("family.daycare.subsidy.body")}
+            </p>
+            <ul className="mt-4 space-y-2">
+              {daycareSubsidyLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-azul hover:underline"
+                  >
+                    {link.name}
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <p className="mt-6 text-sm italic text-muted-foreground border-l-2 border-azul/40 pl-4">
             {t("family.daycare.note")}
