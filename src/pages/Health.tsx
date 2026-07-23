@@ -15,7 +15,7 @@ import IrccNote from "@/components/IrccNote";
 const IRCC_HEALTH_URL =
   "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/health-insurance.html";
 
-type ProvinceRow = { name: string; body: string };
+type ProvinceRow = { name: string; body: string; url: string };
 type DailyCard = { name: string; body: string };
 
 const dailyIcons = [Stethoscope, Building2, Phone, Hospital] as const;
