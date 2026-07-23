@@ -1961,9 +1961,9 @@ export const pt = {
         "O documento que autoriza você a estudar no Canadá. Veja os passos oficiais do processo, do aceite à chegada.",
     },
     intro: {
-      title: "Antes de começar",
+      title: "A EdPath informa — não presta assessoria de imigração",
       body:
-        "O study permit é o documento que autoriza você a estudar no Canadá. Veja os passos oficiais do processo. Estas são informações gerais baseadas no IRCC e não confirmam o seu caso, apenas o IRCC decide.",
+        "Esta página organiza informações públicas e oficiais para você entender o processo do study permit. A EdPath não submete pedidos, não representa você perante o governo e não dá aconselhamento de imigração. Para o seu caso específico, use as fontes oficiais do IRCC, procure um consultor regulamentado (RCIC) ou advogado de imigração, ou entre em contato com a embaixada/consulado do Canadá no seu país.",
     },
     steps: [
       {
@@ -2024,7 +2024,24 @@ export const pt = {
     seal: {
       title: "Um lembrete",
       body:
-        "Informações baseadas no IRCC oficial. As regras e taxas mudam, confirme sempre em canada.ca antes de aplicar. Para decisões sobre o seu caso, consulte um RCIC licenciado.",
+        "A EdPath dá informação, não assessoria de imigração. As regras e taxas mudam — confirme sempre em canada.ca, com um RCIC licenciado ou com a embaixada/consulado do Canadá no seu país antes de aplicar.",
+    },
+    embassies: {
+      title: "Embaixadas e consulados do Canadá",
+      body:
+        "Para dúvidas oficiais sobre visto de estudante, contato com o governo ou verificação de documentos, fale com a missão diplomática do Canadá no seu país. Abaixo, os principais escritórios na América Latina, África e Caribe. Não achou o seu país? Use o buscador oficial.",
+      groups: {
+        latam: "América Latina",
+        africa: "África",
+        caribbean: "Caribe",
+      },
+      cardLink: "Ver escritório oficial",
+      finderTitle: "Não encontrou seu país?",
+      finderBody:
+        "Não encontrou seu país? Busque a embaixada ou consulado do Canadá em qualquer lugar do mundo:",
+      finderLabel: "Buscador oficial do governo do Canadá",
+      note:
+        "Alguns países são atendidos por uma missão em país vizinho (ex: Venezuela via Bogotá). Confirme sempre no buscador oficial.",
     },
     scamProtection: {
       title: "Proteja-se de golpes de visto",
