@@ -92,6 +92,15 @@ export default function Health() {
                 <p className="mt-2 text-muted-foreground leading-relaxed">
                   {row.body}
                 </p>
+                <a
+                  href={row.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-azul hover:underline"
+                >
+                  {t("healthPage.provinces.officialLink")}
+                  <ExternalLink className="h-3 w-3" />
+                </a>
               </div>
             ))}
           </div>
