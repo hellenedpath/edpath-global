@@ -12,7 +12,7 @@ export const en = {
     costs: "Costs",
     health: "Health",
     family: "Family",
-    work: "Work & housing",
+    work: "Work",
   },
   langs: {
     label: "Language",
@@ -128,7 +128,7 @@ export const en = {
       costs: "Costs",
       health: "Health",
       family: "Family",
-      work: "Work and housing",
+      work: "Work",
       verify: "Verify",
       refunds: "Refund rules",
     },
@@ -281,7 +281,7 @@ export const en = {
     costs: "Costs",
     health: "Health",
     family: "Family",
-    work: "Work & housing",
+    work: "Work",
     empty: "Content under construction.",
     comingSoon: "Full, up-to-date content on this topic is coming soon.",
   },
@@ -732,20 +732,35 @@ export const en = {
   },
   work: {
     hero: {
-      title: "Work & Housing",
+      title: "Work and career in Canada",
       subtitle:
-        "How to find a job, build a Canadian résumé, choose where to live and connect with vetted professionals.",
+        "How to find a job, build a Canadian résumé and connect with vetted professionals — with the real rules that apply to international students.",
     },
     tabs: {
       job: "Find a job",
       cv: "Canadian résumé",
-      housing: "Housing",
       professionals: "Connect with professionals",
+    },
+    housingLink: {
+      text: "Looking for housing? See the dedicated Housing page.",
+      cta: "Open the Housing page",
     },
     job: {
       title: "Find a job",
       subtitle:
         "The job search in Canada starts before your first class. The earlier and better prepared you are, the higher your chances.",
+      rules: {
+        title: "How much you can work",
+        content:
+          "With a post-secondary study permit (college/university), you can work up to 24 hours per week off campus during the academic term, and full-time during scheduled breaks. High school students (minors) generally cannot work. A spouse can only work with an open work permit — which became restricted in 2025 (see the Family page). Always confirm the condition on your own study permit and with IRCC.",
+        linkLabel: "Official IRCC rule",
+        linkUrl: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work.html",
+      },
+      credentials: {
+        title: "Your profession may require recertification",
+        content:
+          "Regulated professions (medicine, law, engineering, nursing, accounting and others) require your foreign credential to be assessed and recognized in Canada — a process that can take time and money. Official data show many recent immigrants end up in jobs below their qualification while going through it. Research your profession's regulator in the province before assuming you can work in your field right away.",
+      },
       resources: [
         {
           title: "Institution resources",
