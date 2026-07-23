@@ -15,10 +15,9 @@ export function Logo({ className }: { className?: string }) {
         <span className="text-white">Ed</span>
         <span className="text-[#E0405B]">Path</span>
       </span>
-      <span className="font-sans text-[10px] md:text-[11px] font-medium tracking-[0.18em] uppercase text-white/55 mt-1.5">
+      <span className="font-sans text-[11px] md:text-xs font-medium tracking-[0.18em] uppercase text-white/70 mt-1.5">
         Global Student Navigator
       </span>
     </Link>
   );
 }
-
