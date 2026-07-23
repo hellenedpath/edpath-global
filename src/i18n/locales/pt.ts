@@ -793,6 +793,40 @@ export const pt = {
             "Só ocupações qualificadas contam como experiência relevante para a via de residência permanente. Trabalhos de sobrevivência pagam contas, mas não constroem a mesma trajetória.",
         },
       ],
+      jobSites: {
+        title: "Onde procurar vagas (sites confiáveis)",
+        intro: "Comece pelo Job Bank, o site oficial do governo. Combine com os demais:",
+        badge: "Oficial",
+        linkLabel: "Acessar site",
+        sites: [
+          {
+            name: "Job Bank",
+            description: "Site oficial do governo do Canadá. Empregadores verificados — o mais seguro.",
+            url: "https://www.jobbank.gc.ca/",
+            isOfficial: true,
+          },
+          {
+            name: "Indeed Canada",
+            description: "A maior base de vagas do país.",
+            url: "https://ca.indeed.com/",
+          },
+          {
+            name: "LinkedIn",
+            description: "Rede profissional e networking; muitas vagas vêm por indicação.",
+            url: "https://www.linkedin.com/",
+          },
+          {
+            name: "Glassdoor",
+            description: "Vagas + avaliações de empresas e faixas salariais.",
+            url: "https://www.glassdoor.ca/",
+          },
+          {
+            name: "Eluta.ca",
+            description: "Vagas publicadas direto pelos empregadores.",
+            url: "https://www.eluta.ca/",
+          },
+        ],
+      },
     },
     settlement: {
       title: "Órgãos de apoio ao imigrante (gratuitos)",

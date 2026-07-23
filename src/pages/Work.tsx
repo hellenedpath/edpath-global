@@ -25,6 +25,8 @@ type JobTip = { title: string; description: string };
 type CvItem = { title: string; items: string[] };
 type Professional = { title: string; description: string };
 type SettlementAgency = { name: string; province: string; url: string };
+type JobSite = { name: string; description: string; url: string; isOfficial?: boolean };
+type JobSiteData = { title: string; intro: string; badge: string; linkLabel: string; sites: JobSite[] };
 
 export default function Work() {
   const { t } = useTranslation();
@@ -34,6 +36,7 @@ export default function Work() {
   const cvSections = t("work.cv.sections", { returnObjects: true }) as unknown as CvItem[];
   const professionals = t("work.professionals.list", { returnObjects: true }) as unknown as Professional[];
   const settlementAgencies = t("work.settlement.agencies", { returnObjects: true }) as unknown as SettlementAgency[];
+  const jobSites = t("work.job.jobSites", { returnObjects: true }) as unknown as JobSiteData;
 
   const jobResourceIcons = [Users, Briefcase, Search, Linkedin];
 
@@ -171,6 +174,56 @@ export default function Work() {
                       </div>
                     </div>
                   ))}
+                </div>
+
+                {/* Trusted job sites */}
+                <div className="space-y-5">
+                  <div>
+                    <h3 className="font-display text-2xl font-semibold text-navy">
+                      {jobSites.title}
+                    </h3>
+                    <p className="mt-2 text-muted-foreground max-w-3xl">
+                      {jobSites.intro}
+                    </p>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {jobSites.sites.map((site) => (
+                      <Card
+                        key={site.name}
+                        className={
+                          site.isOfficial
+                            ? "border-azul/30 bg-azul/5 shadow-sm"
+                            : "border-border shadow-sm"
+                        }
+                      >
+                        <CardContent className="p-5">
+                          <div className="flex items-start justify-between gap-3">
+                            <h4 className="font-display text-lg font-semibold text-navy">
+                              {site.name}
+                            </h4>
+                            {site.isOfficial && (
+                              <span className="inline-flex items-center rounded-full bg-azul px-2 py-0.5 text-xs font-medium text-primary-foreground">
+                                {jobSites.badge}
+                              </span>
+                            )}
+                          </div>
+                          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                            {site.description}
+                          </p>
+                          <a
+                            href={site.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 inline-flex items-center gap-1 text-azul text-sm font-medium hover:underline"
+                          >
+                            {jobSites.linkLabel}
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Housing link */}

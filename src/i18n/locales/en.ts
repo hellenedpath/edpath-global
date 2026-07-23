@@ -798,6 +798,40 @@ export const en = {
             "Only skilled occupations count as relevant experience for the permanent residency path. Survival jobs pay the bills but don't build the same trajectory.",
         },
       ],
+      jobSites: {
+        title: "Where to look (trusted job sites)",
+        intro: "Start with Job Bank, the official government site. Combine it with the others:",
+        badge: "Official",
+        linkLabel: "Visit site",
+        sites: [
+          {
+            name: "Job Bank",
+            description: "Official Government of Canada site. Verified employers — the safest.",
+            url: "https://www.jobbank.gc.ca/",
+            isOfficial: true,
+          },
+          {
+            name: "Indeed Canada",
+            description: "The country's largest job database.",
+            url: "https://ca.indeed.com/",
+          },
+          {
+            name: "LinkedIn",
+            description: "Professional network; many jobs come via referrals.",
+            url: "https://www.linkedin.com/",
+          },
+          {
+            name: "Glassdoor",
+            description: "Jobs + company reviews and salary ranges.",
+            url: "https://www.glassdoor.ca/",
+          },
+          {
+            name: "Eluta.ca",
+            description: "Jobs posted directly by employers.",
+            url: "https://www.eluta.ca/",
+          },
+        ],
+      },
     },
     settlement: {
       title: "Free newcomer support agencies",
