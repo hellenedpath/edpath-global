@@ -413,53 +413,40 @@ export default function EnglishSchools() {
 function ProductPreview({ L }: { L: Record<string, string> }) {
   return (
     <div
-      className="relative w-full max-w-[460px] rounded-[24px] border border-border bg-white p-7 shadow-[0_28px_60px_-24px_rgba(5,21,86,0.35)] animate-float-y"
+      className="relative w-full max-w-[460px] rounded-[28px] border border-border bg-white p-7 shadow-[0_28px_60px_-24px_rgba(5,21,86,0.35)] animate-float-y"
     >
       <header>
         <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-[22px] font-bold text-[hsl(var(--navy))] leading-tight">
-            ILAC — International Language Academy
+          <h3 className="font-display text-[22px] font-bold text-[hsl(var(--azul))] leading-tight">
+            {L.previewTitle}
           </h3>
           <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[hsl(var(--azul)/0.12)] px-2.5 py-1 text-[11px] font-semibold text-[hsl(var(--azul))]">
-            <ShieldCheck className="h-3.5 w-3.5" />
-            Languages Canada
+            {L.previewBadge}
           </span>
         </div>
-        <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-[#4a5578]">
-          <MapPin className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
-          Toronto
-        </p>
       </header>
 
-      <div className="mt-6 space-y-3.5">
+      <div className="mt-6 space-y-3">
         <PreviewRow
           icon={<Coins className="h-4 w-4 text-[hsl(var(--crimson))]" />}
           bg="bg-[hsl(var(--crimson)/0.1)]"
           label={L.previewCostLabel}
-          value="$375–430"
-          valueClass="font-bold text-[hsl(var(--crimson))]"
+        />
+        <PreviewRow
+          icon={<ShieldCheck className="h-4 w-4 text-[hsl(var(--azul))]" />}
+          bg="bg-[hsl(var(--azul)/0.1)]"
+          label={L.previewAccredLabel}
         />
         <PreviewRow
           icon={<FileCheck className="h-4 w-4 text-[hsl(var(--azul))]" />}
           bg="bg-[hsl(var(--azul)/0.1)]"
           label={L.previewExamLabel}
-          value="IELTS · Cambridge"
         />
         <PreviewRow
-          icon={<ArrowUpRight className="h-4 w-4 text-[hsl(var(--azul))]" />}
+          icon={<Route className="h-4 w-4 text-[hsl(var(--azul))]" />}
           bg="bg-[hsl(var(--azul)/0.1)]"
           label={L.previewPathwayLabel}
-          value={L.previewPathwayValue}
         />
-      </div>
-
-      <div className="mt-7 pt-5 border-t border-border">
-        <button
-          type="button"
-          className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[hsl(var(--crimson))] px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-        >
-          {L.apply}
-        </button>
       </div>
     </div>
   );
@@ -469,24 +456,17 @@ function PreviewRow({
   icon,
   bg,
   label,
-  value,
-  valueClass,
 }: {
   icon: React.ReactNode;
   bg: string;
   label: string;
-  value: string;
-  valueClass?: string;
 }) {
   return (
     <div className="flex items-center gap-3">
       <span className={cn("inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg", bg)}>
         {icon}
       </span>
-      <div className="flex flex-1 items-center justify-between gap-2">
-        <span className="text-[14.5px] font-medium text-[#4a5578]">{label}</span>
-        <span className={cn("text-[15.5px] font-bold text-[hsl(var(--navy))]", valueClass)}>{value}</span>
-      </div>
+      <span className="flex-1 text-[15px] font-semibold text-[#23347e]">{label}</span>
     </div>
   );
 }
@@ -505,13 +485,13 @@ function Stat({
       ? "text-[hsl(var(--azul))]"
       : tone === "crimson"
       ? "text-[hsl(var(--crimson))]"
-      : "text-[hsl(var(--navy))]";
+      : "text-[hsl(var(--azul))]";
   return (
     <div>
       <div className={cn("font-display font-bold text-4xl md:text-5xl leading-none", color)}>
         {value}
       </div>
-      <div className="mt-2 text-xs md:text-sm text-[#4a5578] uppercase tracking-wider">
+      <div className="mt-2 text-xs md:text-sm text-[#55608a] uppercase tracking-wider">
         {label}
       </div>
     </div>
@@ -535,7 +515,7 @@ function ProvincePill({
         "rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors",
         active
           ? "bg-[hsl(var(--azul))] text-white border-[hsl(var(--azul))]"
-          : "bg-white text-[hsl(var(--navy))] border-border hover:bg-[hsl(var(--azul)/0.06)]",
+        : "bg-white text-[#23347e] border-border hover:bg-[hsl(var(--azul)/0.06)]",
       )}
     >
       {children}
@@ -565,15 +545,15 @@ function Fact({
       ? "bg-[hsl(var(--azul)/0.1)]"
       : "bg-[hsl(var(--azul)/0.08)]";
   return (
-    <div className="flex items-start gap-3">
-      <span className={cn("shrink-0 inline-flex h-9 w-9 items-center justify-center rounded-lg", bg)}>
+    <div className="flex items-start gap-3 py-1">
+      <span className={cn("shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-lg", bg)}>
         {icon}
       </span>
-      <div className="min-w-0">
-        <div className="text-[12.5px] font-semibold uppercase tracking-[0.1em] text-[#4a5578]">
+      <div className="min-w-0 flex-1">
+        <div className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#55608a]">
           {label}
         </div>
-        <div className={cn("mt-1 text-[16.5px] font-bold text-[hsl(var(--navy))] leading-snug break-words", valueClass)}>
+        <div className={cn("mt-1 text-[16px] font-bold text-[#23347e] leading-snug break-words whitespace-normal", valueClass)}>
           {value}
         </div>
       </div>
