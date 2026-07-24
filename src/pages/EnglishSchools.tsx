@@ -1,13 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  Search,
   SearchX,
   MapPin,
   ArrowRight,
   AlertTriangle,
   BookOpen,
-  GraduationCap,
   Building2,
   Map as MapIcon,
 } from "lucide-react";
@@ -39,7 +37,7 @@ type EnglishSchool = {
 const isEmpty = (v: string | null | undefined) =>
   !v || v.trim() === "" || v.trim() === "-" || v.trim() === "—";
 
-function cleanCost(raw: string | null | undefined, L: Record<string, string>): { label: string; value: string } {
+function cleanCost(raw: string | null | undefined, L: Record<string, any>): { label: string; value: string } {
   const s = (raw ?? "").trim();
   if (!s || /sob\s+or[çc]amento|n[ãa]o\s+publicado|sob\s+consulta|consulte/i.test(s)) {
     return { label: L.costLabel, value: L.onRequest };
@@ -62,12 +60,19 @@ function cleanCost(raw: string | null | undefined, L: Record<string, string>): {
 const softTile =
   "inline-flex items-center justify-center rounded-2xl shadow-[4px_4px_9px_rgba(5,21,86,0.11),-4px_-4px_8px_rgba(255,255,255,0.95)]";
 
+function truncateSmart(s: string, max: number): string {
+  if (s.length <= max) return s;
+  const slice = s.slice(0, max);
+  const lastSpace = slice.lastIndexOf(" ");
+  return (lastSpace > 40 ? slice.slice(0, lastSpace) : slice).trim() + "…";
+}
+
 export default function EnglishSchools() {
   const { i18n } = useTranslation();
   const isEN = i18n.language.startsWith("en");
   const [items, setItems] = useState<EnglishSchool[]>([]);
   const [loading, setLoading] = useState(true);
-  const [query, setQuery] = useState("");
+  const [activeProvince, setActiveProvince] = useState<string>("__all__");
   useReveal();
 
   useEffect(() => {
@@ -83,16 +88,21 @@ export default function EnglishSchools() {
     })();
   }, []);
 
+  const provinceCounts = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const s of items) {
+      const key = s.province || (isEN ? "Other" : "Outras");
+      map.set(key, (map.get(key) ?? 0) + 1);
+    }
+    return Array.from(map.entries()).sort((a, b) => b[1] - a[1]);
+  }, [items, isEN]);
+
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return items;
+    if (activeProvince === "__all__") return items;
     return items.filter(
-      (s) =>
-        (s.name ?? "").toLowerCase().includes(q) ||
-        (s.display_name ?? "").toLowerCase().includes(q) ||
-        (s.city ?? "").toLowerCase().includes(q),
+      (s) => (s.province || (isEN ? "Other" : "Outras")) === activeProvince,
     );
-  }, [items, query]);
+  }, [items, activeProvince, isEN]);
 
   const grouped = useMemo(() => {
     const map = new Map<string, EnglishSchool[]>();
@@ -133,11 +143,8 @@ export default function EnglishSchools() {
         warnTitle: "Important: an English course alone does not grant work rights",
         warnBody:
           "An English course by itself does not give you the right to work in Canada. Work rights only start when you enroll in an eligible post-secondary DLI program.",
-        findTitle: "Find my school",
-        searchLabel: "School or city",
-        searchPh: "e.g. Vancouver, ILSC",
-        searchCta: "Search schools",
-        browseHint: "or browse by province below",
+        exploreLabel: "Explore by province",
+        all: "All",
         fromLabel: "From",
         costLabel: "Cost",
         onRequest: "On request",
@@ -148,6 +155,11 @@ export default function EnglishSchools() {
         statSchools: "schools",
         statProvinces: "provinces",
         statCities: "cities",
+        factCost: "Weekly cost",
+        factExam: "Exam prep",
+        factPathway: "Pathway to college",
+        badgeMinAge: (n: number) => `Min. age ${n}`,
+        badgePartners: (n: number) => `${n}+ partners`,
       }
     : {
         eyebrow: "Canadá · Escolas de inglês",
@@ -160,11 +172,8 @@ export default function EnglishSchools() {
           "Importante: um curso de inglês, sozinho, não dá direito a trabalhar",
         warnBody:
           "Um curso de inglês, por si só, não dá direito a trabalhar no Canadá. O direito a trabalhar surge só ao ingressar em um programa elegível de DLI pós-secundário.",
-        findTitle: "Encontrar minha escola",
-        searchLabel: "Escola ou cidade",
-        searchPh: "ex.: Vancouver, ILSC",
-        searchCta: "Buscar escolas",
-        browseHint: "ou navegue por província logo abaixo",
+        exploreLabel: "Explorar por província",
+        all: "Todas",
         fromLabel: "A partir de",
         costLabel: "Custo",
         onRequest: "Sob consulta",
@@ -175,10 +184,12 @@ export default function EnglishSchools() {
         statSchools: "escolas",
         statProvinces: "províncias",
         statCities: "cidades",
+        factCost: "Custo por semana",
+        factExam: "Preparação para provas",
+        factPathway: "Caminho até o college",
+        badgeMinAge: (n: number) => `Idade mín. ${n}`,
+        badgePartners: (n: number) => `${n}+ parceiros`,
       };
-
-  const scrollToList = () =>
-    document.getElementById("schools-list")?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <div className="min-h-screen bg-white">
@@ -191,61 +202,55 @@ export default function EnglishSchools() {
         }}
       >
         <div className="container max-w-6xl relative py-14 md:py-20">
-          <div className="grid gap-10 md:gap-12 md:grid-cols-[1.25fr_.75fr] items-start">
-            <div data-reveal>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/70 backdrop-blur px-3 py-1 text-xs font-semibold text-[hsl(var(--azul))] border border-[hsl(var(--azul)/0.2)]">
-                <MapPin className="h-3.5 w-3.5" />
-                {L.eyebrow}
-              </span>
-              <h1 className="mt-5 font-display text-4xl md:text-5xl lg:text-[54px] font-bold text-[hsl(var(--navy))] tracking-tight leading-[1.08]">
-                {L.titleLead}
-                <span className="text-[hsl(var(--crimson))]">{L.titleAccent}</span>
-                {L.titleTail}
-              </h1>
-              <p className="mt-5 max-w-xl text-base md:text-lg text-[#55608a] leading-relaxed font-body">
-                {L.intro}
-              </p>
+          <div data-reveal className="max-w-4xl">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/70 backdrop-blur px-3.5 py-1.5 text-[14px] font-semibold text-[hsl(var(--azul))] border border-[hsl(var(--azul)/0.2)]">
+              <MapPin className="h-4 w-4" />
+              {L.eyebrow}
+            </span>
+            <h1 className="mt-6 font-display text-4xl md:text-5xl lg:text-[54px] font-bold text-[hsl(var(--navy))] tracking-tight leading-[1.08]">
+              {L.titleLead}
+              <span className="text-[hsl(var(--crimson))]">{L.titleAccent}</span>
+              {L.titleTail}
+            </h1>
+            <p className="mt-6 max-w-3xl text-lg md:text-xl text-[#5a6488] leading-relaxed">
+              {L.intro}
+            </p>
 
-              <div className="mt-8 grid grid-cols-3 gap-3 md:gap-4 max-w-xl">
-                <StatCard icon={<BookOpen className="h-5 w-5" />} tone="blue" value={totalSchools} label={L.statSchools} />
-                <StatCard icon={<MapIcon className="h-5 w-5" />} tone="red" value={totalProvinces} label={L.statProvinces} />
-                <StatCard icon={<Building2 className="h-5 w-5" />} tone="blue" value={totalCities} label={L.statCities} />
-              </div>
+            <div className="mt-9 grid grid-cols-3 gap-3 md:gap-4 max-w-2xl">
+              <StatCard icon={<BookOpen className="h-5 w-5" />} tone="blue" value={totalSchools} label={L.statSchools} />
+              <StatCard icon={<MapIcon className="h-5 w-5" />} tone="red" value={totalProvinces} label={L.statProvinces} />
+              <StatCard icon={<Building2 className="h-5 w-5" />} tone="blue" value={totalCities} label={L.statCities} />
             </div>
+          </div>
 
-            <form
-              data-reveal
-              onSubmit={(e) => {
-                e.preventDefault();
-                scrollToList();
-              }}
-              className="bg-white rounded-2xl border border-border shadow-[0_20px_50px_-24px_rgba(4,15,61,0.22)] p-6"
-            >
-              <h2 className="font-display text-lg font-bold text-[hsl(var(--navy))]">
-                {L.findTitle}
-              </h2>
-              <label className="block mt-4 text-[11px] font-semibold uppercase tracking-wider text-[#55608a]">
-                {L.searchLabel}
-              </label>
-              <div className="mt-1 flex items-center gap-2 rounded-xl border border-border px-3 py-2.5 focus-within:border-[hsl(var(--azul))] transition-colors">
-                <Search className="h-4 w-4 text-[hsl(var(--azul))] shrink-0" />
-                <input
-                  type="text"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder={L.searchPh}
-                  className="w-full bg-transparent outline-none text-[hsl(var(--navy))] placeholder:text-[#8892b8] text-[15px]"
+          {/* PROVINCE NAV */}
+          <div data-reveal className="mt-12">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
+              {L.exploreLabel}
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2.5">
+              <ProvincePill
+                label={L.all}
+                count={totalSchools}
+                active={activeProvince === "__all__"}
+                onClick={() => {
+                  setActiveProvince("__all__");
+                  document.getElementById("schools-list")?.scrollIntoView({ behavior: "smooth" });
+                }}
+              />
+              {provinceCounts.map(([p, n]) => (
+                <ProvincePill
+                  key={p}
+                  label={p}
+                  count={n}
+                  active={activeProvince === p}
+                  onClick={() => {
+                    setActiveProvince(p);
+                    document.getElementById("schools-list")?.scrollIntoView({ behavior: "smooth" });
+                  }}
                 />
-              </div>
-              <button
-                type="submit"
-                className="mt-4 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[hsl(var(--crimson))] hover:bg-[hsl(var(--crimson)/0.92)] text-white font-semibold px-5 py-3 transition-colors"
-              >
-                {L.searchCta}
-                <ArrowRight className="h-4 w-4" />
-              </button>
-              <p className="mt-3 text-xs text-[#55608a] text-center">{L.browseHint}</p>
-            </form>
+              ))}
+            </div>
           </div>
         </div>
       </header>
@@ -257,8 +262,8 @@ export default function EnglishSchools() {
             <AlertTriangle className="h-5 w-5 text-[hsl(var(--crimson))]" />
           </div>
           <div>
-            <p className="font-semibold text-[hsl(var(--navy))]">{L.warnTitle}</p>
-            <p className="mt-1 text-sm md:text-base text-[#55608a] leading-relaxed">
+            <p className="font-semibold text-[17px] text-[hsl(var(--navy))]">{L.warnTitle}</p>
+            <p className="mt-1.5 text-[15px] md:text-base text-[#5a6488] leading-relaxed">
               {L.warnBody}
             </p>
           </div>
@@ -298,10 +303,10 @@ export default function EnglishSchools() {
                       <div className={`${softTile} h-12 w-12 bg-[#e9f0fe]`}>
                         <MapPin className="h-5 w-5 text-[hsl(var(--azul))]" />
                       </div>
-                      <h2 className="font-display text-2xl md:text-[27px] font-bold text-[hsl(var(--navy))] tracking-tight">
+                      <h2 className="font-display text-2xl md:text-[30px] font-bold text-[hsl(var(--navy))] tracking-tight">
                         {province}
                       </h2>
-                      <span className="ml-auto text-xs md:text-sm text-[#55608a] bg-white border border-border rounded-full px-3 py-1">
+                      <span className="ml-auto text-xs md:text-sm text-[#5a6488] bg-white border border-border rounded-full px-3 py-1">
                         {citiesPreview ? `${citiesPreview} · ` : ""}
                         <span className="font-semibold text-[hsl(var(--navy))]">
                           {schools.length}
@@ -309,7 +314,7 @@ export default function EnglishSchools() {
                         {L.statSchools}
                       </span>
                     </div>
-                    <div className="grid gap-5 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-[22px] md:grid-cols-2 lg:grid-cols-3">
                       {schools.map((s, i) => (
                         <div
                           key={s.id}
@@ -350,21 +355,44 @@ function StatCard({
       <div className="mt-3 font-display text-2xl md:text-3xl font-bold text-[hsl(var(--navy))] leading-none">
         {value}
       </div>
-      <div className="mt-1 text-xs text-[#55608a]">{label}</div>
+      <div className="mt-1.5 text-[13px] text-[#5a6488]">{label}</div>
     </div>
   );
 }
 
-function pathwayLabel(raw: string | null | undefined, isEN: boolean): string | null {
-  if (isEmpty(raw)) return null;
-  const s = raw as string;
-  if (/university pathway/i.test(s)) return "University Pathway";
-  if (/entrada direta|admissão incondicional|dispensa o teste|dispensa ielts|satisfaz.*inglês|sem ielts/i.test(s))
-    return isEN ? "Waives IELTS" : "Dispensa IELTS";
-  if (/admissão condicional|conditional/i.test(s))
-    return isEN ? "Conditional admission" : "Admissão condicional";
-  if (/eap|english for academic|academic pathways/i.test(s)) return "College EAP";
-  return "College pathway";
+function ProvincePill({
+  label,
+  count,
+  active,
+  onClick,
+}: {
+  label: string;
+  count: number;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`group inline-flex items-center gap-2.5 rounded-xl border px-4 py-2.5 text-[15px] font-semibold transition-all ${
+        active
+          ? "bg-[hsl(var(--azul))] border-[hsl(var(--azul))] text-white shadow-sm"
+          : "bg-white border-border text-[hsl(var(--navy))] hover:border-[hsl(var(--azul))] hover:text-[hsl(var(--azul))]"
+      }`}
+    >
+      <span>{label}</span>
+      <span
+        className={`inline-flex items-center justify-center min-w-[28px] rounded-full px-2 py-0.5 text-[12px] font-bold ${
+          active
+            ? "bg-white/20 text-white"
+            : "bg-[hsl(var(--azul)/0.1)] text-[hsl(var(--azul))]"
+        }`}
+      >
+        {count}
+      </span>
+    </button>
+  );
 }
 
 function SchoolCard({
@@ -373,74 +401,115 @@ function SchoolCard({
   isEN,
 }: {
   school: EnglishSchool;
-  L: Record<string, string>;
+  L: Record<string, any>;
   isEN: boolean;
 }) {
   const { label: costLabel, value: costDisplay } = cleanCost(school.cost_per_week, L);
-
-  const pathwayTag = pathwayLabel(school.pathway, isEN);
   const examList = !isEmpty(school.exam_prep)
     ? (school.exam_prep as string)
         .split(",")
         .map((e) => e.trim())
         .filter(Boolean)
-        .slice(0, 2)
         .join(" · ")
     : null;
+  const pathwayText = !isEmpty(school.pathway) ? truncateSmart((school.pathway as string).trim(), 70) : null;
+  const courseChips = !isEmpty(school.course_types)
+    ? (school.course_types as string)
+        .split(",")
+        .map((c) => c.trim())
+        .filter(Boolean)
+        .slice(0, 3)
+    : [];
 
   const linkHref = school.application_url || school.website;
+  const location = [school.city, school.province].filter(Boolean).join(" · ");
+
+  // Badge
+  let badge: string | null = null;
+  const partners = (school.pathway || "").match(/(\d+)\s*\+?\s*(parceir|partner)/i);
+  if (partners) {
+    badge = (L.badgePartners as unknown as (n: number) => string)(parseInt(partners[1], 10));
+  } else if (!isEmpty(school.min_age)) {
+    const m = (school.min_age as string).match(/(\d+)/);
+    if (m) badge = (L.badgeMinAge as unknown as (n: number) => string)(parseInt(m[1], 10));
+  }
 
   return (
-    <article className="group h-full flex flex-col rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-20px_rgba(4,15,61,0.25)] hover:border-[hsl(var(--azul)/0.4)]">
-      <div className="flex items-start gap-3">
-        <div className={`${softTile} h-12 w-12 bg-[#e9f0fe] shrink-0`}>
-          <BookOpen className="h-5 w-5 text-[hsl(var(--azul))]" />
+    <article className="group h-full flex flex-col rounded-2xl border border-border bg-white p-[26px] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-20px_rgba(4,15,61,0.28)] hover:border-[hsl(var(--azul)/0.45)]">
+      <div className="flex items-start gap-4">
+        <div className={`${softTile} h-14 w-14 bg-[#e7f0ff] shrink-0`}>
+          <BookOpen className="h-6 w-6 text-[hsl(var(--azul))]" />
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="font-display text-[17px] font-semibold text-[hsl(var(--navy))] leading-snug tracking-tight break-words">
+          <h3 className="font-display text-[20px] font-bold text-[hsl(var(--navy))] leading-snug tracking-tight break-words">
             {school.display_name || school.name}
           </h3>
-          {school.city && (
-            <p className="mt-1 inline-flex items-center gap-1.5 text-sm text-[#55608a]">
-              <MapPin className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
-              {school.city}
+          {location && (
+            <p className="mt-1.5 inline-flex items-center gap-1.5 text-[15px] text-[#5a6488]">
+              <MapPin className="h-4 w-4 text-[hsl(var(--azul))]" />
+              {location}
             </p>
           )}
         </div>
       </div>
 
-      {(pathwayTag || examList) && (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {pathwayTag && (
-            <span className="inline-flex items-center gap-1 text-[12px] font-semibold rounded-full px-2.5 py-1 bg-[hsl(var(--azul)/0.10)] text-[#2b52a8]">
-              <GraduationCap className="h-3.5 w-3.5" />
-              {pathwayTag}
+      <div className="mt-5 space-y-4">
+        <div>
+          <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
+            {costLabel === L.fromLabel ? L.factCost : L.factCost}
+          </div>
+          <div className="mt-1 font-display font-bold text-[23px] leading-tight text-[hsl(var(--crimson))] whitespace-nowrap">
+            {costDisplay}
+          </div>
+        </div>
+
+        {examList && (
+          <div>
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
+              {L.factExam}
+            </div>
+            <div className="mt-1 text-[16px] text-[hsl(var(--navy))]">{examList}</div>
+          </div>
+        )}
+
+        {pathwayText && (
+          <div>
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
+              {L.factPathway}
+            </div>
+            <div className="mt-1 text-[16px] text-[hsl(var(--navy))] leading-snug">{pathwayText}</div>
+          </div>
+        )}
+      </div>
+
+      {courseChips.length > 0 && (
+        <div className="mt-5 flex flex-wrap gap-2">
+          {courseChips.map((c) => (
+            <span
+              key={c}
+              className="inline-flex items-center text-[12px] font-semibold rounded-full px-2.5 py-1"
+              style={{ backgroundColor: "rgba(31,95,208,0.09)", color: "hsl(var(--azul))" }}
+            >
+              {c}
             </span>
-          )}
-          {examList && (
-            <span className="inline-flex items-center text-[12px] font-medium rounded-full px-2.5 py-1 bg-white border border-border text-[#26336f]">
-              {examList}
-            </span>
-          )}
+          ))}
         </div>
       )}
 
-      <div className="mt-5">
-        <div className="text-[11px] font-semibold uppercase tracking-wider text-[#55608a]">
-          {costLabel}
-        </div>
-        <div className="mt-1 font-display font-bold text-[24px] leading-tight text-[hsl(var(--crimson))] whitespace-nowrap">
-          {costDisplay}
-        </div>
-      </div>
-
-      <div className="mt-6 pt-4 border-t border-border flex items-center justify-end gap-3 mt-auto">
+      <div className="mt-6 pt-4 border-t border-border flex items-center justify-between gap-3 mt-auto">
+        {badge ? (
+          <span className="inline-flex items-center text-[12px] font-semibold rounded-full px-2.5 py-1 bg-[hsl(var(--azul)/0.1)] text-[hsl(var(--azul))]">
+            {badge}
+          </span>
+        ) : (
+          <span />
+        )}
         {linkHref && (
           <a
             href={linkHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 font-display text-sm font-semibold text-[hsl(var(--crimson))] hover:underline"
+            className="inline-flex items-center gap-1 font-display text-[14px] font-semibold text-[hsl(var(--crimson))] hover:underline"
           >
             {L.details}
             <ArrowRight className="h-3.5 w-3.5" />
