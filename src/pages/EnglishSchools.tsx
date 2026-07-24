@@ -410,6 +410,25 @@ export default function EnglishSchools() {
 
 /* ---------- Reusable pieces ---------- */
 
+function HeroPhoto({ L }: { L: Record<string, string> }) {
+  return (
+    <div className="relative w-full max-w-[560px] animate-float-y">
+      <div className="relative overflow-hidden rounded-3xl shadow-[0_30px_60px_-24px_rgba(5,21,86,0.4)] ring-1 ring-black/5">
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+          alt="International students smiling together on campus"
+          className="block w-full h-[420px] md:h-[480px] object-cover"
+          loading="eager"
+        />
+        <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur px-3 py-1.5 text-[12px] font-semibold text-[hsl(var(--azul))] shadow-sm">
+          <ShieldCheck className="h-3.5 w-3.5" />
+          {L.languagesCanada}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function ProductPreview({ L }: { L: Record<string, string> }) {
   return (
     <div
