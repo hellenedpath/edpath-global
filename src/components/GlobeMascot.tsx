@@ -22,7 +22,7 @@ export function GlobeMascot({ className, ...rest }: Props) {
         </clipPath>
       </defs>
       <ellipse cx="100" cy="196" rx="52" ry="9" fill="#051556" opacity=".12" />
-      <circle cx="100" cy="112" r="72" fill="#396CD8" />
+      <circle cx="100" cy="112" r="72" fill="hsl(var(--azul))" />
       <g clipPath="url(#edpath-globe-mascot-clip)">
         <path d="M40 86 q22 -13 42 -4 q15 7 6 24 q-11 17 -33 12 q-24 -5 -15 -32z" fill="#0b2586" />
         <path d="M120 74 q26 -6 34 12 q6 17 -13 24 q-21 6 -29 -9 q-8 -19 8 -27z" fill="#0b2586" />
