@@ -1,7 +1,27 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ChevronDown, Menu } from "lucide-react";
+import {
+  ChevronDown,
+  Menu,
+  Compass,
+  GraduationCap,
+  Calculator,
+  ClipboardCheck,
+  Home,
+  MessageCircle,
+  BookOpen,
+  Building2,
+  Briefcase,
+  School,
+  Languages,
+  Coins,
+  ShieldCheck,
+  KeyRound,
+  HeartPulse,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -25,42 +45,97 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-type Item = { to: string; label: string; primary?: boolean };
+type Badge = { label: string; tone: "crimson" | "gold" };
+type Item = {
+  to: string;
+  label: string;
+  primary?: boolean;
+  icon?: LucideIcon;
+  badge?: Badge;
+};
 type Group = { title: string; items: Item[] };
 
 const primaryTo = "/canada/meu-caminho?country=canada";
 
-const discoverDefs = [
-  { to: primaryTo, key: "myPath", primary: true },
-  { to: "/canada/programas", key: "programs" },
-  { to: "/canada/instituicoes", key: "institutions" },
-  { to: "/canada/escolas-de-ingles", key: "englishSchools" },
-  { to: "/canada/pgwp", key: "pgwp" },
-] as const;
-
 const planDefs = [
-  { to: "/canada/custos", key: "costs" },
-  { to: "/canada/study-permit", key: "studyPermit" },
+  { to: "/canada/custos", key: "costs", icon: Coins },
+  { to: "/canada/study-permit", key: "studyPermit", icon: KeyRound },
 ] as const;
 
 const prepareDefs = [
-  { to: "/canada/verificacao", key: "verify" },
-  { to: "/canada/alugar", key: "renting" },
+  { to: "/canada/verificacao", key: "verify", icon: ShieldCheck },
+  { to: "/canada/alugar", key: "renting", icon: Home },
 ] as const;
 
 const liveDefs = [
-  { to: "/canada/saude", key: "health" },
-  { to: "/canada/familia", key: "family" },
-  { to: "/canada/trabalho-moradia", key: "work" },
+  { to: "/canada/saude", key: "health", icon: HeartPulse },
+  { to: "/canada/familia", key: "family", icon: Users },
+  { to: "/canada/trabalho-moradia", key: "work", icon: Briefcase },
 ] as const;
+
+function BadgePill({ badge }: { badge: Badge }) {
+  const tone =
+    badge.tone === "gold"
+      ? "bg-[hsl(var(--amber))]/15 text-[hsl(var(--amber))]"
+      : "bg-[hsl(var(--crimson))]/10 text-[hsl(var(--crimson))]";
+  return (
+    <span
+      className={cn(
+        "ml-auto inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-semibold",
+        tone,
+      )}
+    >
+      {badge.label}
+    </span>
+  );
+}
+
+function DropdownItemRow({
+  item,
+  active,
+  onSelect,
+}: {
+  item: Item;
+  active: boolean;
+  onSelect: () => void;
+}) {
+  const Icon = item.icon;
+  return (
+    <DropdownMenuItem
+      onSelect={(e) => {
+        e.preventDefault();
+        onSelect();
+      }}
+      className={cn(
+        "group cursor-pointer rounded-lg px-3 py-2.5 text-sm text-navy/80 transition-colors",
+        "focus:bg-[hsl(var(--azul))]/10 focus:text-[hsl(var(--azul))]",
+        active && "bg-[hsl(var(--azul))]/10 text-[hsl(var(--crimson))] font-semibold",
+        item.primary && "text-[hsl(var(--crimson))] font-semibold focus:text-[hsl(var(--crimson))]",
+      )}
+    >
+      {Icon && (
+        <Icon
+          className={cn(
+            "h-4 w-4 mr-2 shrink-0 text-[hsl(var(--azul))]/70 transition-colors group-hover:text-[hsl(var(--azul))]",
+            active && "text-[hsl(var(--crimson))]",
+          )}
+        />
+      )}
+      <span className="truncate">{item.label}</span>
+      {item.badge && <BadgePill badge={item.badge} />}
+    </DropdownMenuItem>
+  );
+}
 
 function HoverDropdown({
   label,
+  icon: Icon,
   items,
   groups,
   activePath,
 }: {
   label: string;
+  icon?: LucideIcon;
   items?: Item[];
   groups?: Group[];
   activePath: string;
@@ -101,10 +176,12 @@ function HoverDropdown({
           <button
             type="button"
             className={cn(
-              "shrink-0 inline-flex items-center gap-1 px-1 py-1.5 text-sm transition-colors text-muted-foreground hover:text-[hsl(var(--azul))] focus:outline-none focus-visible:text-[hsl(var(--azul))]",
-              (isActive || open) && "text-foreground",
+              "relative shrink-0 inline-flex items-center gap-1.5 px-2 py-1.5 text-sm font-medium transition-colors text-navy/80 hover:text-[hsl(var(--azul))] focus:outline-none focus-visible:text-[hsl(var(--azul))]",
+              "after:absolute after:left-2 after:right-2 after:-bottom-0.5 after:h-[2px] after:rounded-full after:bg-[hsl(var(--crimson))] after:origin-left after:scale-x-0 after:transition-transform after:duration-300",
+              (isActive || open) && "text-[hsl(var(--crimson))] after:scale-x-100",
             )}
           >
+            {Icon && <Icon className="h-4 w-4 opacity-80" />}
             {label}
             <ChevronDown
               className={cn(
@@ -117,7 +194,7 @@ function HoverDropdown({
         <DropdownMenuContent
           align="start"
           sideOffset={10}
-          className="min-w-60 rounded-xl border-border/60 bg-background/95 backdrop-blur-md p-2 shadow-[0_20px_60px_-20px_hsl(var(--navy)/0.25)] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0"
+          className="min-w-64 rounded-xl border-border/60 bg-background/95 backdrop-blur-md p-2 shadow-[0_20px_60px_-20px_hsl(var(--navy)/0.25)] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0"
           onMouseEnter={cancelClose}
           onMouseLeave={scheduleClose}
         >
@@ -125,44 +202,32 @@ function HoverDropdown({
             ? groups.map((g, gi) => (
                 <div key={g.title}>
                   {gi > 0 && <DropdownMenuSeparator className="my-1" />}
-                  <DropdownMenuLabel className="px-3 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground/70">
+                  <DropdownMenuLabel className="px-3 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[hsl(var(--azul))]/80">
                     {g.title}
                   </DropdownMenuLabel>
                   {g.items.map((it) => (
-                    <DropdownMenuItem
+                    <DropdownItemRow
                       key={it.to}
-                      onSelect={(e) => {
-                        e.preventDefault();
+                      item={it}
+                      active={activePath === pathOf(it.to)}
+                      onSelect={() => {
                         setOpen(false);
                         navigate(it.to);
                       }}
-                      className={cn(
-                        "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
-                       activePath === pathOf(it.to) && "text-foreground font-medium",
-                       it.primary && "text-[hsl(var(--crimson))] font-semibold focus:text-[hsl(var(--crimson))]",
-                      )}
-                    >
-                      {it.label}
-                    </DropdownMenuItem>
+                    />
                   ))}
                 </div>
               ))
             : (items ?? []).map((it) => (
-                <DropdownMenuItem
+                <DropdownItemRow
                   key={it.to}
-                  onSelect={(e) => {
-                    e.preventDefault();
+                  item={it}
+                  active={activePath === pathOf(it.to)}
+                  onSelect={() => {
                     setOpen(false);
                     navigate(it.to);
                   }}
-                  className={cn(
-                    "cursor-pointer rounded-lg px-3 py-2.5 text-sm text-muted-foreground focus:bg-muted/60 focus:text-foreground transition-colors",
-                  activePath === pathOf(it.to) && "text-foreground font-medium",
-                  it.primary && "text-[hsl(var(--crimson))] font-semibold focus:text-[hsl(var(--crimson))]",
-                  )}
-                >
-                  {it.label}
-                </DropdownMenuItem>
+                />
               ))}
         </DropdownMenuContent>
       </DropdownMenu>
@@ -176,54 +241,88 @@ export function CanadaNav() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const toItems = (
-    defs: readonly { to: string; key: string; primary?: boolean }[],
+    defs: readonly {
+      to: string;
+      key: string;
+      primary?: boolean;
+      icon?: LucideIcon;
+    }[],
   ): Item[] =>
     defs.map((d) => ({
       to: d.to,
       label: t(`canadaNav.items.${d.key}`),
       primary: d.primary,
+      icon: d.icon,
     }));
-  const discover = toItems(discoverDefs);
   const plan = toItems(planDefs);
   const prepare = toItems(prepareDefs);
   const live = toItems(liveDefs);
 
+  const studyGroups: Group[] = [
+    {
+      title: t("canadaNav.studyGroups.university"),
+      items: [
+        { to: "/canada/programas", label: t("canadaNav.items.programs"), icon: BookOpen },
+        { to: "/canada/instituicoes", label: t("canadaNav.items.institutions"), icon: Building2 },
+        { to: "/canada/pgwp", label: t("canadaNav.items.pgwp"), icon: Briefcase },
+      ],
+    },
+    {
+      title: t("canadaNav.studyGroups.other"),
+      items: [
+        {
+          to: "/canada/ensino-medio",
+          label: t("canadaNav.items.highSchools"),
+          icon: School,
+          badge: { label: t("canadaNav.forParents"), tone: "crimson" },
+        },
+        {
+          to: "/canada/escolas-de-ingles",
+          label: t("canadaNav.items.englishSchools"),
+          icon: Languages,
+          badge: { label: t("canadaNav.newBadge"), tone: "gold" },
+        },
+      ],
+    },
+  ];
+
+  const flatStudy: Item[] = studyGroups.flatMap((g) => g.items);
+
   return (
-    <div className="border-b border-border bg-background sticky top-16 z-40">
-      <div className="container flex items-center gap-6 py-3">
-        <div className="flex items-center gap-2 shrink-0 text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/80">
-          <span className="hidden sm:inline">{t("countries.canadaMenuLabel")}</span>
+    <div className="sticky top-16 z-40 border-b border-[hsl(var(--azul))]/20 bg-gradient-to-r from-background via-[hsl(var(--azul))]/[0.04] to-[hsl(var(--navy))]/[0.05] backdrop-blur-md">
+      <div className="container flex items-center gap-5 py-3">
+        <div className="flex items-center gap-2 shrink-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-navy/70">
+          <span className="hidden sm:inline">{t("canadaNav.canadaMenu")}</span>
         </div>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-7 flex-1">
-          <HoverDropdown label={t("canadaNav.discover")} items={discover} activePath={pathname} />
-          <HoverDropdown label={t("canadaNav.planPhase")} items={plan} activePath={pathname} />
-          <HoverDropdown label={t("canadaNav.preparePhase")} items={prepare} activePath={pathname} />
-          <HoverDropdown label={t("canadaNav.live")} items={live} activePath={pathname} />
-
+        <nav className="hidden md:flex items-center gap-5 flex-1">
           <NavLink
-            to="/canada/ensino-medio"
+            to={primaryTo}
             className={({ isActive }) =>
               cn(
-                "shrink-0 inline-flex items-center gap-1.5 px-1 py-1.5 text-sm font-medium transition-colors text-navy hover:text-[hsl(var(--crimson))]",
-                isActive && "text-[hsl(var(--crimson))]",
+                "shrink-0 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-semibold text-white bg-[hsl(var(--crimson))] shadow-[0_6px_18px_-6px_hsl(var(--crimson)/0.6)] hover:shadow-[0_10px_24px_-6px_hsl(var(--crimson)/0.75)] hover:-translate-y-0.5 transition-all duration-200",
+                isActive && "ring-2 ring-[hsl(var(--crimson))]/40 ring-offset-2 ring-offset-background",
               )
             }
           >
-            {t("canadaNav.highSchoolsFeatured")}
-            <span className="inline-flex items-center rounded-full bg-[hsl(var(--crimson))]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[hsl(var(--crimson))]">
-              {t("canadaNav.forParents")}
-            </span>
+            <Compass className="h-4 w-4" />
+            {t("canadaNav.items.myPath")}
           </NavLink>
+
+          <HoverDropdown label={t("canadaNav.study")} icon={GraduationCap} groups={studyGroups} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.planPhase")} icon={Calculator} items={plan} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.preparePhase")} icon={ClipboardCheck} items={prepare} activePath={pathname} />
+          <HoverDropdown label={t("canadaNav.live")} icon={Home} items={live} activePath={pathname} />
 
           <button
             type="button"
             onClick={() =>
               window.dispatchEvent(new CustomEvent("edpath:open-assistant"))
             }
-            className="shrink-0 ml-auto text-sm text-muted-foreground hover:text-[hsl(var(--azul))] transition-colors"
+            className="shrink-0 ml-auto inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(var(--azul))] hover:text-[hsl(var(--navy))] transition-colors"
           >
+            <MessageCircle className="h-4 w-4" />
             {t("canadaNav.askEdpath")}
           </button>
         </nav>
@@ -235,7 +334,7 @@ export function CanadaNav() {
               <button
                 type="button"
                 aria-label={t("canadaNav.openMenu")}
-                className="inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md border border-border text-foreground hover:bg-muted"
+                className="inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md border border-[hsl(var(--azul))]/30 text-navy hover:bg-[hsl(var(--azul))]/10"
               >
                 <Menu className="h-4 w-4" />
                 {t("canadaNav.menu")}
@@ -248,55 +347,59 @@ export function CanadaNav() {
 
               <div className="mt-6 space-y-4">
                 <NavLink
-                  to="/canada/ensino-medio"
+                  to={primaryTo}
                   onClick={() => setMobileOpen(false)}
-                  className={({ isActive }) =>
-                    cn(
-                      "block px-2 py-3 text-sm rounded-md text-navy font-semibold hover:text-[hsl(var(--crimson))] hover:bg-muted",
-                      isActive && "text-[hsl(var(--crimson))]",
-                    )
-                  }
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--crimson))] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_6px_18px_-6px_hsl(var(--crimson)/0.6)]"
                 >
-                  {t("canadaNav.highSchoolsFeatured")}
-                  <span className="ml-2 inline-flex items-center rounded-full bg-[hsl(var(--crimson))]/10 px-1.5 py-0.5 text-[10px] font-semibold text-[hsl(var(--crimson))]">
-                    {t("canadaNav.forParents")}
-                  </span>
+                  <Compass className="h-4 w-4" />
+                  {t("canadaNav.items.myPath")}
                 </NavLink>
 
                 <Accordion type="multiple" className="w-full">
                   {[
-                    { value: "discover", label: t("canadaNav.discover"), items: discover },
-                    { value: "plan", label: t("canadaNav.planPhase"), items: plan },
-                    { value: "prepare", label: t("canadaNav.preparePhase"), items: prepare },
-                    { value: "live", label: t("canadaNav.live"), items: live },
-                  ].map((section) => (
-                    <AccordionItem key={section.value} value={section.value}>
-                      <AccordionTrigger className="text-sm font-medium">
-                        {section.label}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <ul className="flex flex-col">
-                          {section.items.map((it) => (
-                            <li key={it.to}>
-                              <NavLink
-                                to={it.to}
-                                onClick={() => setMobileOpen(false)}
-                                className={({ isActive }) =>
-                                  cn(
-                                    "block px-2 py-2 text-sm rounded-md text-muted-foreground hover:text-foreground hover:bg-muted",
-                                    isActive && "bg-muted text-foreground font-medium",
-                                    it.primary && "text-[hsl(var(--crimson))] font-semibold",
-                                  )
-                                }
-                              >
-                                {it.label}
-                              </NavLink>
-                            </li>
-                          ))}
-                        </ul>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
+                    { value: "study", label: t("canadaNav.study"), icon: GraduationCap, items: flatStudy },
+                    { value: "plan", label: t("canadaNav.planPhase"), icon: Calculator, items: plan },
+                    { value: "prepare", label: t("canadaNav.preparePhase"), icon: ClipboardCheck, items: prepare },
+                    { value: "live", label: t("canadaNav.live"), icon: Home, items: live },
+                  ].map((section) => {
+                    const SIcon = section.icon;
+                    return (
+                      <AccordionItem key={section.value} value={section.value}>
+                        <AccordionTrigger className="text-sm font-medium">
+                          <span className="inline-flex items-center gap-2">
+                            <SIcon className="h-4 w-4 text-[hsl(var(--azul))]" />
+                            {section.label}
+                          </span>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <ul className="flex flex-col">
+                            {section.items.map((it) => {
+                              const ItIcon = it.icon;
+                              return (
+                                <li key={it.to}>
+                                  <NavLink
+                                    to={it.to}
+                                    onClick={() => setMobileOpen(false)}
+                                    className={({ isActive }) =>
+                                      cn(
+                                        "flex items-center gap-2 px-2 py-2 text-sm rounded-md text-navy/80 hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/10 transition-colors",
+                                        isActive && "bg-[hsl(var(--crimson))]/10 text-[hsl(var(--crimson))] font-semibold",
+                                        it.primary && "text-[hsl(var(--crimson))] font-semibold",
+                                      )
+                                    }
+                                  >
+                                    {ItIcon && <ItIcon className="h-4 w-4 opacity-80" />}
+                                    <span className="truncate">{it.label}</span>
+                                    {it.badge && <BadgePill badge={it.badge} />}
+                                  </NavLink>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </AccordionContent>
+                      </AccordionItem>
+                    );
+                  })}
                 </Accordion>
 
                 <button
@@ -305,8 +408,9 @@ export function CanadaNav() {
                     setMobileOpen(false);
                     window.dispatchEvent(new CustomEvent("edpath:open-assistant"));
                   }}
-                  className="mt-4 block w-full px-2 py-3 text-left text-base font-medium border-t border-border text-foreground hover:text-[hsl(var(--azul))] transition-colors"
+                  className="mt-4 inline-flex items-center gap-2 w-full px-2 py-3 text-left text-base font-medium border-t border-border text-[hsl(var(--azul))] hover:text-[hsl(var(--navy))] transition-colors"
                 >
+                  <MessageCircle className="h-4 w-4" />
                   {t("canadaNav.askEdpath")}
                 </button>
               </div>

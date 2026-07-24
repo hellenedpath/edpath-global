@@ -106,6 +106,12 @@ export const en = {
     askEdpath: "Ask EdPath",
     highSchoolsFeatured: "High school",
     forParents: "For parents",
+    newBadge: "New",
+    study: "Study",
+    studyGroups: {
+      university: "University & college",
+      other: "Other paths",
+    },
     groups: {
       startHere: "Start here",
       chooseSchool: "Choose your school",
