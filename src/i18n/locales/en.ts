@@ -2216,7 +2216,7 @@ export const en = {
     openLabel: "Open EdPath assistant",
     closeLabel: "Close assistant",
     greeting:
-      "Hi there! So glad you're here. I'm the EdPath assistant and I answer using verified data from the platform. How can I help you today?",
+      "Hi! I'm Globbi, EdPath's assistant. I answer using verified data from the platform. How can I help you today?",
     suggestions: [
       "Does my program qualify for PGWP?",
       "How much proof of funds do I need?",
