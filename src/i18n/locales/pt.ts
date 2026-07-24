@@ -130,6 +130,7 @@ export const pt = {
       work: "Trabalho",
       verify: "Verificação",
       refunds: "Regras de reembolso",
+      englishSchools: "Escolas de inglês",
     },
   },
   countries: {

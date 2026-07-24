@@ -34,6 +34,7 @@ const discoverDefs = [
   { to: primaryTo, key: "myPath", primary: true },
   { to: "/canada/programas", key: "programs" },
   { to: "/canada/instituicoes", key: "institutions" },
+  { to: "/canada/escolas-de-ingles", key: "englishSchools" },
   { to: "/canada/pgwp", key: "pgwp" },
 ] as const;
 

@@ -17,6 +17,7 @@ import PathQuiz from "./pages/PathQuiz";
 import Programs from "./pages/Programs";
 import Institutions from "./pages/Institutions";
 import HighSchools from "./pages/HighSchools";
+import EnglishSchools from "./pages/EnglishSchools";
 import Renting from "./pages/Renting";
 import StudyPermit from "./pages/StudyPermit";
 import Health from "./pages/Health";
@@ -49,6 +50,7 @@ const App = () => (
             <Route path="/canada/programas" element={<Programs />} />
             <Route path="/canada/instituicoes" element={<Institutions />} />
             <Route path="/canada/ensino-medio" element={<HighSchools />} />
+            <Route path="/canada/escolas-de-ingles" element={<EnglishSchools />} />
             <Route path="/canada/custos" element={<Costs />} />
             <Route path="/canada/alugar" element={<Renting />} />
             <Route path="/canada/golpes-de-aluguel" element={<Redirect to="/canada/alugar" />} />

@@ -131,6 +131,7 @@ export const en = {
       work: "Work",
       verify: "Verify",
       refunds: "Refund rules",
+      englishSchools: "English schools",
     },
   },
   footer: {
