@@ -106,6 +106,15 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-8px)" },
         },
+        "mascot-bob": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
+        "mascot-wiggle": {
+          "0%, 100%": { transform: "scale(1.08) rotate(0deg)" },
+          "25%": { transform: "scale(1.08) rotate(-6deg)" },
+          "75%": { transform: "scale(1.08) rotate(6deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -114,6 +123,8 @@ export default {
         "soft-pulse": "soft-pulse 2.8s ease-in-out infinite",
         "aurora-drift": "aurora-drift 18s ease-in-out infinite",
         "float-y": "float-y 4s ease-in-out infinite",
+        "mascot-bob": "mascot-bob 3s ease-in-out infinite",
+        "mascot-wiggle": "mascot-wiggle 0.6s ease-in-out",
       },
     },
   },
