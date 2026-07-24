@@ -118,7 +118,7 @@ export default function EnglishSchools() {
         titleAccent: "right",
         titleTail: " English school in Canada.",
         intro:
-          "Compare Languages Canada–accredited schools, real weekly cost and the pathway to college — all in one place.",
+          "Compare Languages Canada accredited schools, real weekly cost and the pathway to college, all in one place.",
         warnTitle: "Important: an English course alone does not grant work rights",
         warnBody:
           "Taking an English course by itself does not give you the right to work in Canada. Work rights only start when you enroll in an eligible post-secondary DLI program.",
@@ -165,7 +165,7 @@ export default function EnglishSchools() {
         titleAccent: "ideal",
         titleTail: " no Canadá.",
         intro:
-          "Compare escolas credenciadas pela Languages Canada, o custo real por semana e o caminho até o college — tudo em um lugar só.",
+          "Compare escolas credenciadas pela Languages Canada, o custo real por semana e o caminho até o college. Tudo em um lugar só.",
         warnTitle:
           "Importante: um curso de inglês, sozinho, não dá direito a trabalhar",
         warnBody:
