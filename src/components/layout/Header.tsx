@@ -46,10 +46,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all duration-300 text-[hsl(var(--navy))] border-b border-border",
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-[0_4px_20px_-12px_rgba(5,21,86,0.18)]"
-          : "bg-[hsl(var(--azul)/0.03)]",
+        "sticky top-0 z-50 transition-all duration-300 text-[hsl(var(--navy))] border-b border-border bg-white",
+        scrolled && "bg-white/95 backdrop-blur-md shadow-[0_4px_20px_-12px_rgba(5,21,86,0.18)]",
       )}
     >
       <div
