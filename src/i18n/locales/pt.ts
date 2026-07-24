@@ -2215,11 +2215,11 @@ export const pt = {
   },
   assistant: {
     title: "EdPath Assistant",
-    subtitle: "Informação verificada. Sem promessas.",
+    subtitle: "Informação de verdade, feita pra te ajudar",
     openLabel: "Abrir assistente EdPath",
     closeLabel: "Fechar assistente",
     greeting:
-      "Olá! Sou o assistente da EdPath. Respondo com base nos dados verificados da plataforma. Como posso ajudar?",
+      "Oi! Que bom te ver por aqui. Sou o assistente da EdPath e respondo com base em dados verificados da plataforma. Como posso te ajudar hoje?",
     suggestions: [
       "Meu programa dá direito a PGWP?",
       "Quanto preciso comprovar de fundos?",
@@ -2227,7 +2227,7 @@ export const pt = {
     ],
     placeholder: "Escreva sua pergunta...",
     send: "Enviar",
-    disclaimer: "Informação educacional, não é aconselhamento de imigração.",
+    disclaimer: "Informação educativa, não é aconselhamento de imigração.",
     errorInline:
       "Desculpe, tive um problema para responder agora. Tente novamente em alguns segundos.",
   },
