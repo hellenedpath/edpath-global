@@ -318,7 +318,7 @@ export default function EnglishSchools() {
                         {L.statSchools}
                       </span>
                     </div>
-                    <div className="grid gap-[22px] md:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
                       {schools.map((s, i) => (
                         <div
                           key={s.id}
@@ -440,17 +440,17 @@ function SchoolCard({
   }
 
   return (
-    <article className="group h-full flex flex-col overflow-hidden rounded-2xl border border-border bg-white p-[26px] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-20px_rgba(4,15,61,0.28)] hover:border-[hsl(var(--azul)/0.45)] [overflow-wrap:anywhere]">
+    <article className="group h-full flex flex-col overflow-hidden rounded-2xl border border-border bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-20px_rgba(4,15,61,0.28)] hover:border-[hsl(var(--azul)/0.45)] [overflow-wrap:anywhere]">
       <div className="flex items-start gap-4">
-        <div className={`${softTile} h-14 w-14 bg-[#e7f0ff] shrink-0`}>
-          <BookOpen className="h-6 w-6 text-[hsl(var(--azul))]" />
+        <div className={`${softTile} h-16 w-16 bg-[#e7f0ff] shrink-0`}>
+          <BookOpen className="h-7 w-7 text-[hsl(var(--azul))]" />
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="font-display text-[18px] md:text-[19px] font-semibold text-[hsl(var(--navy))] leading-snug tracking-tight break-words [overflow-wrap:anywhere]">
+          <h3 className="font-display text-[22px] font-semibold text-[hsl(var(--navy))] leading-snug tracking-tight break-words [overflow-wrap:anywhere]">
             {school.display_name || school.name}
           </h3>
           {location && (
-            <p className="mt-1.5 inline-flex items-center gap-1.5 text-[14px] text-[#5a6488] break-words [overflow-wrap:anywhere]">
+            <p className="mt-2 inline-flex items-center gap-1.5 text-[15px] text-[#5a6488] break-words [overflow-wrap:anywhere]">
               <MapPin className="h-4 w-4 text-[hsl(var(--azul))]" />
               {location}
             </p>
@@ -458,41 +458,41 @@ function SchoolCard({
         </div>
       </div>
 
-      <div className="mt-5 space-y-4">
+      <div className="mt-6 space-y-5">
         <div>
-          <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
+          <div className="text-[12px] font-semibold uppercase tracking-wider text-[#5a6488]">
             {costLabel === L.fromLabel ? L.factCost : L.factCost}
           </div>
-          <div className="mt-1 font-display font-bold text-[22px] leading-tight text-[hsl(var(--crimson))] break-words [overflow-wrap:anywhere]">
+          <div className="mt-1 font-display font-bold text-[28px] leading-tight text-[hsl(var(--crimson))] break-words [overflow-wrap:anywhere]">
             {costDisplay}
           </div>
         </div>
 
         {examList && (
           <div>
-            <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
+            <div className="text-[12px] font-semibold uppercase tracking-wider text-[#5a6488]">
               {L.factExam}
             </div>
-            <div className="mt-1 text-[15px] text-[hsl(var(--navy))] break-words [overflow-wrap:anywhere]">{examList}</div>
+            <div className="mt-1 text-[17px] text-[hsl(var(--navy))] break-words [overflow-wrap:anywhere]">{examList}</div>
           </div>
         )}
 
         {pathwayText && (
           <div>
-            <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
+            <div className="text-[12px] font-semibold uppercase tracking-wider text-[#5a6488]">
               {L.factPathway}
             </div>
-            <div className="mt-1 text-[15px] text-[hsl(var(--navy))] leading-snug break-words [overflow-wrap:anywhere]">{pathwayText}</div>
+            <div className="mt-1 text-[17px] text-[hsl(var(--navy))] leading-snug break-words [overflow-wrap:anywhere]">{pathwayText}</div>
           </div>
         )}
       </div>
 
       {courseChips.length > 0 && (
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-6 flex flex-wrap gap-2">
           {courseChips.map((c) => (
             <span
               key={c}
-              className="inline-flex items-center text-[12.5px] font-semibold rounded-full px-2.5 py-1 max-w-full break-words [overflow-wrap:anywhere]"
+              className="inline-flex items-center text-[13px] font-semibold rounded-full px-3 py-1.5 max-w-full break-words [overflow-wrap:anywhere]"
               style={{ backgroundColor: "rgba(31,95,208,0.09)", color: "hsl(var(--azul))" }}
             >
               {c}
@@ -501,9 +501,9 @@ function SchoolCard({
         </div>
       )}
 
-      <div className="mt-auto pt-4 border-t border-border flex flex-wrap items-center justify-between gap-3">
+      <div className="mt-auto pt-5 border-t border-border flex flex-wrap items-center justify-between gap-3">
         {badge ? (
-          <span className="inline-flex items-center text-[12px] font-semibold rounded-full px-2.5 py-1 bg-[hsl(var(--azul)/0.1)] text-[hsl(var(--azul))] max-w-full break-words [overflow-wrap:anywhere]">
+          <span className="inline-flex items-center text-[15px] font-semibold rounded-full px-3 py-1.5 bg-[hsl(var(--azul)/0.1)] text-[hsl(var(--azul))] max-w-full break-words [overflow-wrap:anywhere]">
             {badge}
           </span>
         ) : (
@@ -514,10 +514,10 @@ function SchoolCard({
             href={linkHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 font-display text-[14px] font-semibold text-[hsl(var(--crimson))] hover:underline"
+            className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-[hsl(var(--crimson))] hover:underline"
           >
             {L.details}
-            <ArrowRight className="h-3.5 w-3.5" />
+            <ArrowRight className="h-4 w-4" />
           </a>
         )}
       </div>
