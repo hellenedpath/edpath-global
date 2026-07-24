@@ -293,42 +293,48 @@ function SchoolCard({
   school: EnglishSchool;
   L: Record<string, string>;
 }) {
-  const cost = !isEmpty(school.cost_per_week) ? (school.cost_per_week as string) : null;
-  const hasNumericFrom = !!cost && /\d/.test(cost);
+  const rawCost = school.cost_per_week?.trim() ?? "";
+  const onRequestPatterns = /(sob\s+or[çc]amento|n[ãa]o\s+publicado|sob\s+consulta|consulte)/i;
+  const isOnRequest = isEmpty(rawCost) || onRequestPatterns.test(rawCost);
+  const costDisplay = isOnRequest ? L.onRequest : rawCost;
+  const hasNumericFrom = !isOnRequest && /\d/.test(rawCost);
   const rawTag = !isEmpty(school.pathway)
     ? (school.pathway as string)
     : !isEmpty(school.exam_prep)
     ? (school.exam_prep as string)
     : null;
+  const hasTag = !!rawTag && !isEmpty(rawTag);
   const shortTag =
-    rawTag && rawTag.length > 42 ? rawTag.slice(0, 40).trim() + "…" : rawTag;
+    hasTag && (rawTag as string).length > 42
+      ? (rawTag as string).slice(0, 40).trim() + "…"
+      : rawTag;
   const linkHref = school.application_url || school.website;
   const location = [school.city, school.province].filter(Boolean).join(" · ");
 
   return (
     <article className="group flex flex-col rounded-2xl border border-border bg-white p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[0_18px_40px_-20px_rgba(4,15,61,0.25)] hover:border-[hsl(var(--azul)/0.35)]">
-      <h3 className="font-display text-[20px] font-bold text-[hsl(var(--navy))] leading-snug tracking-tight break-words">
+      <h3 className="font-display text-[20px] font-semibold text-[hsl(var(--navy))] leading-snug tracking-tight break-words">
         {school.display_name || school.name}
       </h3>
       {location && (
-        <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-[#5a6488]">
+        <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-[#55608a]">
           <MapPin className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
           {location}
         </p>
       )}
 
       <div className="mt-6">
-        <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
+        <div className="text-[11px] font-semibold uppercase tracking-wider text-[#55608a]">
           {hasNumericFrom ? L.fromLabel : L.costLabel}
         </div>
         <div className="mt-1 font-display font-bold text-[24px] leading-tight text-[hsl(var(--crimson))] break-words">
-          {cost ?? L.onRequest}
+          {costDisplay}
         </div>
       </div>
 
       <div className="mt-6 pt-4 border-t border-border flex items-center justify-between gap-3 mt-auto">
-        {shortTag ? (
-          <span className="text-[12px] font-medium text-[#5a6488] rounded-full bg-[hsl(var(--azul)/0.06)] px-2.5 py-1 truncate max-w-[60%]">
+        {hasTag ? (
+          <span className="text-[12px] font-medium text-[#55608a] rounded-full bg-[hsl(var(--azul)/0.06)] px-2.5 py-1 truncate max-w-[60%]">
             {shortTag}
           </span>
         ) : (
