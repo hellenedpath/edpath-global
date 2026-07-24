@@ -398,34 +398,84 @@ export default function EnglishSchools() {
 
 /* ---------- Reusable pieces ---------- */
 
-function FloatChip({
-  icon,
-  label,
-  tint,
-  className,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  tint: "azul" | "crimson" | "navy";
-  className?: string;
-}) {
-  const bg =
-    tint === "azul"
-      ? "bg-[hsl(var(--azul)/0.12)]"
-      : tint === "crimson"
-      ? "bg-[hsl(var(--crimson)/0.12)]"
-      : "bg-navy/10";
+function ProductPreview({ L }: { L: Record<string, string> }) {
   return (
     <div
-      className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 shadow-md",
-        className,
-      )}
+      className="relative w-full max-w-[420px] rounded-[22px] border border-border bg-card p-6 shadow-[0_24px_50px_-30px_rgba(5,21,86,0.35)] transition-transform duration-500 hover:-translate-y-1"
+      style={{ transform: "rotate(1.5deg)" }}
     >
-      <span className={cn("inline-flex h-7 w-7 items-center justify-center rounded-lg", bg)}>
+      <header>
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="font-display text-lg font-bold text-navy leading-tight">
+            ILAC — International Language Academy
+          </h3>
+          <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[hsl(var(--azul)/0.12)] px-2.5 py-1 text-[11px] font-semibold text-[hsl(var(--azul))]">
+            <ShieldCheck className="h-3.5 w-3.5" />
+            Languages Canada
+          </span>
+        </div>
+        <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+          <MapPin className="h-3.5 w-3.5" />
+          Toronto
+        </p>
+      </header>
+
+      <div className="mt-5 space-y-3">
+        <PreviewRow
+          icon={<Coins className="h-4 w-4 text-[hsl(var(--crimson))]" />}
+          bg="bg-[hsl(var(--crimson)/0.1)]"
+          label={L.previewCostLabel}
+          value="$375–430"
+          valueClass="font-bold text-[hsl(var(--crimson))]"
+        />
+        <PreviewRow
+          icon={<FileCheck className="h-4 w-4 text-[hsl(var(--azul))]" />}
+          bg="bg-[hsl(var(--azul)/0.1)]"
+          label={L.previewExamLabel}
+          value="IELTS · Cambridge"
+        />
+        <PreviewRow
+          icon={<ArrowUpRight className="h-4 w-4 text-navy" />}
+          bg="bg-navy/10"
+          label={L.previewPathwayLabel}
+          value={L.previewPathwayValue}
+        />
+      </div>
+
+      <div className="mt-6 pt-4 border-t border-border">
+        <button
+          type="button"
+          className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[hsl(var(--crimson))] px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+        >
+          {L.apply}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function PreviewRow({
+  icon,
+  bg,
+  label,
+  value,
+  valueClass,
+}: {
+  icon: React.ReactNode;
+  bg: string;
+  label: string;
+  value: string;
+  valueClass?: string;
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className={cn("inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg", bg)}>
         {icon}
       </span>
-      <span className="text-sm font-semibold text-navy">{label}</span>
+      <div className="flex flex-1 items-center justify-between gap-2">
+        <span className="text-xs font-medium text-muted-foreground">{label}</span>
+        <span className={cn("text-sm font-bold text-navy", valueClass)}>{value}</span>
+      </div>
     </div>
   );
 }
