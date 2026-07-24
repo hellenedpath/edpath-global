@@ -583,14 +583,14 @@ function SchoolCard({
     : [];
 
   return (
-    <article className="group relative flex flex-col rounded-[20px] border border-border bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--azul)/0.5)] hover:shadow-[0_16px_40px_-16px_hsl(var(--azul)/0.35)]">
+    <article className="group relative flex flex-col rounded-[24px] border border-border bg-white p-7 md:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--azul)/0.5)] hover:shadow-[0_16px_40px_-16px_hsl(var(--azul)/0.35)]">
       <span
         aria-hidden
         className="absolute inset-x-6 top-0 h-[3px] rounded-b-full bg-[hsl(var(--azul))] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
       />
       <header>
         <div className="flex items-start justify-between gap-4">
-          <h3 className="font-display text-[22px] font-bold text-[hsl(var(--navy))] leading-snug tracking-tight">
+          <h3 className="font-display text-[22px] font-bold text-[hsl(var(--azul))] leading-snug tracking-tight break-words">
             {school.display_name || school.name}
           </h3>
           {school.languages_canada && (
@@ -604,7 +604,7 @@ function SchoolCard({
           )}
         </div>
         {school.city && (
-          <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-[#4a5578]">
+          <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-[#55608a]">
             <MapPin className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
             {school.city}
           </p>
@@ -616,7 +616,7 @@ function SchoolCard({
           {tags.map((t, i) => (
             <span
               key={i}
-              className="rounded-full border border-border bg-[hsl(var(--azul)/0.06)] px-2.5 py-0.5 text-[11px] font-medium text-[hsl(var(--navy))]"
+              className="rounded-full border border-border bg-[hsl(var(--azul)/0.06)] px-2.5 py-0.5 text-[11px] font-medium text-[#23347e]"
             >
               {t}
             </span>
@@ -624,7 +624,7 @@ function SchoolCard({
         </div>
       )}
 
-      <div className="mt-6 grid grid-cols-2 gap-x-5 gap-y-5">
+      <div className="mt-6 flex flex-col gap-4">
         {!isEmpty(school.cost_per_week) && (
           <Fact
             icon={<Coins className="h-4 w-4 text-[hsl(var(--crimson))]" />}
@@ -661,12 +661,12 @@ function SchoolCard({
       </div>
 
       {(!isEmpty(notes) || !isEmpty(school.can_work)) && (
-        <div className="mt-5 space-y-2 text-[12.5px] text-[#4a5578] leading-relaxed">
+        <div className="mt-5 space-y-2 text-[13px] text-[#55608a] leading-relaxed">
           {!isEmpty(notes) && (
             <p className="flex gap-2">
               <Info className="h-3.5 w-3.5 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
               <span>
-                <span className="font-semibold text-[hsl(var(--navy))]">{L.notes}:</span> {notes}
+                <span className="font-semibold text-[hsl(var(--azul))]">{L.notes}:</span> {notes}
               </span>
             </p>
           )}
@@ -674,7 +674,7 @@ function SchoolCard({
             <p className="flex gap-2">
               <Info className="h-3.5 w-3.5 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
               <span>
-                <span className="font-semibold text-[hsl(var(--navy))]">{L.canWork}:</span>{" "}
+                <span className="font-semibold text-[hsl(var(--azul))]">{L.canWork}:</span>{" "}
                 {school.can_work}
               </span>
             </p>
@@ -700,7 +700,7 @@ function SchoolCard({
               href={school.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-sm font-semibold text-[hsl(var(--navy))] hover:bg-[hsl(var(--azul)/0.06)]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-sm font-semibold text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul)/0.06)]"
             >
               {L.website}
               <ArrowUpRight className="h-3.5 w-3.5" />
