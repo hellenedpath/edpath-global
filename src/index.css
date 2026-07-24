@@ -19,7 +19,7 @@ All colors MUST be HSL.
     --popover-foreground: 228 49% 18%;
 
     --navy: 228 49% 18%;      /* #051556 */
-    --azul: 218 74% 47%;      /* #1f5fd0 */
+    --azul: 216 90% 57%;      /* #2e7cf4 - azul vivo do mascote */
     --crimson: 358 79% 52%;   /* #e5262b */
     --amber: 38 92% 50%;      /* warning accent */
     --gold: 43 74% 49%;       /* tabernacle gold accent */
@@ -28,7 +28,7 @@ All colors MUST be HSL.
     --primary: 228 49% 18%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 218 74% 47%;
+    --secondary: 216 90% 57%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 20% 94%;
@@ -42,7 +42,7 @@ All colors MUST be HSL.
 
     --border: 220 15% 88%;
     --input: 220 15% 88%;
-    --ring: 218 74% 47%;
+    --ring: 216 90% 57%;
 
     --radius: 0.5rem;
 
