@@ -440,17 +440,17 @@ function SchoolCard({
   }
 
   return (
-    <article className="group h-full flex flex-col rounded-2xl border border-border bg-white p-[26px] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-20px_rgba(4,15,61,0.28)] hover:border-[hsl(var(--azul)/0.45)]">
+    <article className="group h-full flex flex-col overflow-hidden rounded-2xl border border-border bg-white p-[26px] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_44px_-20px_rgba(4,15,61,0.28)] hover:border-[hsl(var(--azul)/0.45)] [overflow-wrap:anywhere]">
       <div className="flex items-start gap-4">
         <div className={`${softTile} h-14 w-14 bg-[#e7f0ff] shrink-0`}>
           <BookOpen className="h-6 w-6 text-[hsl(var(--azul))]" />
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="font-display text-[18px] md:text-[19px] font-semibold text-[hsl(var(--navy))] leading-snug tracking-tight break-words">
+          <h3 className="font-display text-[18px] md:text-[19px] font-semibold text-[hsl(var(--navy))] leading-snug tracking-tight break-words [overflow-wrap:anywhere]">
             {school.display_name || school.name}
           </h3>
           {location && (
-            <p className="mt-1.5 inline-flex items-center gap-1.5 text-[14px] text-[#5a6488]">
+            <p className="mt-1.5 inline-flex items-center gap-1.5 text-[14px] text-[#5a6488] break-words [overflow-wrap:anywhere]">
               <MapPin className="h-4 w-4 text-[hsl(var(--azul))]" />
               {location}
             </p>
@@ -463,7 +463,7 @@ function SchoolCard({
           <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
             {costLabel === L.fromLabel ? L.factCost : L.factCost}
           </div>
-          <div className="mt-1 font-display font-bold text-[22px] leading-tight text-[hsl(var(--crimson))] whitespace-nowrap">
+          <div className="mt-1 font-display font-bold text-[22px] leading-tight text-[hsl(var(--crimson))] break-words [overflow-wrap:anywhere]">
             {costDisplay}
           </div>
         </div>
@@ -473,7 +473,7 @@ function SchoolCard({
             <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
               {L.factExam}
             </div>
-            <div className="mt-1 text-[15px] text-[hsl(var(--navy))] break-words">{examList}</div>
+            <div className="mt-1 text-[15px] text-[hsl(var(--navy))] break-words [overflow-wrap:anywhere]">{examList}</div>
           </div>
         )}
 
@@ -482,7 +482,7 @@ function SchoolCard({
             <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
               {L.factPathway}
             </div>
-            <div className="mt-1 text-[15px] text-[hsl(var(--navy))] leading-snug">{pathwayText}</div>
+            <div className="mt-1 text-[15px] text-[hsl(var(--navy))] leading-snug break-words [overflow-wrap:anywhere]">{pathwayText}</div>
           </div>
         )}
       </div>
@@ -492,7 +492,7 @@ function SchoolCard({
           {courseChips.map((c) => (
             <span
               key={c}
-              className="inline-flex items-center text-[12.5px] font-semibold rounded-full px-2.5 py-1"
+              className="inline-flex items-center text-[12.5px] font-semibold rounded-full px-2.5 py-1 max-w-full break-words [overflow-wrap:anywhere]"
               style={{ backgroundColor: "rgba(31,95,208,0.09)", color: "hsl(var(--azul))" }}
             >
               {c}
@@ -501,9 +501,9 @@ function SchoolCard({
         </div>
       )}
 
-      <div className="mt-auto pt-4 border-t border-border flex items-center justify-between gap-3">
+      <div className="mt-auto pt-4 border-t border-border flex flex-wrap items-center justify-between gap-3">
         {badge ? (
-          <span className="inline-flex items-center text-[12px] font-semibold rounded-full px-2.5 py-1 bg-[hsl(var(--azul)/0.1)] text-[hsl(var(--azul))]">
+          <span className="inline-flex items-center text-[12px] font-semibold rounded-full px-2.5 py-1 bg-[hsl(var(--azul)/0.1)] text-[hsl(var(--azul))] max-w-full break-words [overflow-wrap:anywhere]">
             {badge}
           </span>
         ) : (
