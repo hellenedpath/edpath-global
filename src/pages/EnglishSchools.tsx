@@ -469,13 +469,15 @@ function Stat({
 }: {
   value: number | string;
   label: string;
-  tone: "navy" | "azul" | "crimson" | "gold";
+  tone: "navy" | "azul" | "crimson" | "gold" | "purple";
 }) {
   const color =
     tone === "azul"
       ? "text-[hsl(var(--azul))]"
       : tone === "crimson"
       ? "text-[hsl(var(--crimson))]"
+      : tone === "purple"
+      ? "text-[hsl(var(--purple))]"
       : tone === "gold"
       ? "text-[hsl(var(--gold))]"
       : "text-[hsl(var(--azul))]";
