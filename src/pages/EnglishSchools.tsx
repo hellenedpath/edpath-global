@@ -71,6 +71,44 @@ function pathwayLabel(raw: string | null | undefined): string | null {
   return "College pathway";
 }
 
+const COURSE_LABELS = [
+  "University Pathway",
+  "High School Prep",
+  "University Preparation",
+  "Business English",
+  "General English",
+  "Exam Prep",
+  "IELTS Prep",
+  "TOEFL",
+  "Cambridge",
+  "Medical English",
+  "Academic Year",
+  "One-to-One",
+  "Online",
+  "Junior/Teen",
+  "TESL",
+  "Co-op",
+  "Power Speaking",
+  "EAP",
+  "Pathway",
+  "Professional",
+  "Flexible",
+];
+
+function extractCourseChips(raw: string | null | undefined): string[] {
+  if (isEmpty(raw)) return [];
+  const hay = (raw as string).toLowerCase();
+  const found: string[] = [];
+  for (const label of COURSE_LABELS) {
+    if (hay.includes(label.toLowerCase())) {
+      if (label === "Pathway" && found.includes("University Pathway")) continue;
+      found.push(label);
+      if (found.length >= 3) break;
+    }
+  }
+  return found;
+}
+
 export default function EnglishSchools() {
   const { i18n } = useTranslation();
   const isEN = i18n.language.startsWith("en");
