@@ -1,28 +1,26 @@
 import { useEffect } from "react";
 
 /**
- * Sets data-reveal="in" on any [data-reveal] element once it enters the viewport.
- * Runs once per mount; respects prefers-reduced-motion via CSS.
+ * Fail-safe reveal: content is always visible (CSS default opacity 1).
+ * This hook simply marks [data-reveal] elements as "in" — immediately,
+ * again after ~100ms, and for any nodes added later (async data, filters).
  */
 export function useReveal() {
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
-    if (!("IntersectionObserver" in window)) {
-      els.forEach((el) => el.setAttribute("data-reveal", "in"));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            (e.target as HTMLElement).setAttribute("data-reveal", "in");
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    const markAll = () => {
+      document
+        .querySelectorAll<HTMLElement>("[data-reveal]:not([data-reveal='in'])")
+        .forEach((el) => el.setAttribute("data-reveal", "in"));
+    };
+    markAll();
+    const t = window.setTimeout(markAll, 100);
+
+    const mo = new MutationObserver(() => markAll());
+    mo.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      window.clearTimeout(t);
+      mo.disconnect();
+    };
   }, []);
 }
