@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { MessageCircle, X, Send } from "lucide-react";
+import { X, Send } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import mascotAsset from "@/assets/edpath-assistant-mascot.png.asset.json";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -70,9 +71,13 @@ export default function EdPathAssistant() {
           type="button"
           onClick={() => setOpen(true)}
           aria-label={t("assistant.openLabel")}
-          className="fixed bottom-5 right-5 z-[100] flex h-14 w-14 items-center justify-center rounded-full bg-navy text-white shadow-lg ring-2 ring-[#E0405B]/60 transition hover:scale-105 hover:bg-navy/90"
+          className="fixed bottom-5 right-5 z-[100] flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-navy shadow-lg ring-2 ring-[hsl(var(--crimson))]/60 transition hover:scale-105 hover:bg-navy/90"
         >
-          <MessageCircle strokeWidth={1.5} className="h-6 w-6" />
+          <img
+            src={mascotAsset.url}
+            alt={t("assistant.title")}
+            className="h-full w-full object-cover"
+          />
         </button>
       )}
 
@@ -85,12 +90,19 @@ export default function EdPathAssistant() {
           )}
         >
           {/* Header */}
-          <div className="flex items-start justify-between gap-3 border-b border-navy/10 bg-navy px-4 py-3 text-white">
-            <div>
-              <h2 className="font-heading text-base font-bold leading-tight">
-                {t("assistant.title")}
-              </h2>
-              <p className="text-xs text-white/70 leading-snug">{t("assistant.subtitle")}</p>
+          <div className="flex items-center justify-between gap-3 border-b border-navy/10 bg-navy px-4 py-3 text-white">
+            <div className="flex items-center gap-3">
+              <img
+                src={mascotAsset.url}
+                alt={t("assistant.title")}
+                className="h-10 w-10 rounded-full object-cover bg-white/10 ring-2 ring-white/20"
+              />
+              <div>
+                <h2 className="font-heading text-base font-bold leading-tight">
+                  {t("assistant.title")}
+                </h2>
+                <p className="text-xs text-white/70 leading-snug">{t("assistant.subtitle")}</p>
+              </div>
             </div>
             <button
               type="button"
@@ -113,7 +125,7 @@ export default function EdPathAssistant() {
                       key={s}
                       type="button"
                       onClick={() => send(s)}
-                      className="text-left text-sm text-navy border border-navy/15 bg-white rounded-lg px-3 py-2 hover:border-[#E0405B] hover:text-[#E0405B] transition"
+                      className="text-left text-sm text-navy border border-navy/15 bg-white rounded-lg px-3 py-2 hover:border-[hsl(var(--crimson))] hover:text-[hsl(var(--crimson))] transition"
                     >
                       {s}
                     </button>
@@ -136,7 +148,7 @@ export default function EdPathAssistant() {
                   )}
                 >
                   {m.role === "assistant" ? (
-                    <div className="prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-a:text-[#E0405B] prose-a:underline">
+                    <div className="prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-a:text-[hsl(var(--crimson))] prose-a:underline">
                       <ReactMarkdown
                         components={{
                           a: ({ node, ...props }) => (
@@ -184,7 +196,7 @@ export default function EdPathAssistant() {
                 onClick={() => send(input)}
                 disabled={loading || !input.trim()}
                 aria-label={t("assistant.send")}
-                className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#E0405B] text-white transition hover:bg-[#c9354e] disabled:opacity-40"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-[hsl(var(--crimson))] text-white transition hover:bg-[hsl(var(--crimson))]/90 disabled:opacity-40"
               >
                 <Send className="h-4 w-4" strokeWidth={1.5} />
               </button>
