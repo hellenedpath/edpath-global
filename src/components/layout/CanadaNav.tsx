@@ -290,7 +290,7 @@ export function CanadaNav() {
   const flatStudy: Item[] = studyGroups.flatMap((g) => g.items);
 
   return (
-    <div className="sticky top-20 md:top-24 z-40 border-b border-border bg-white/95 backdrop-blur-md">
+    <div className="sticky top-20 md:top-24 z-40 border-b border-border backdrop-blur-md bg-gradient-to-r from-[hsl(var(--azul)/0.07)] via-white to-[hsl(var(--crimson)/0.05)]">
       <div className="container flex items-center gap-6 py-4">
         <div className="flex items-center gap-2 shrink-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5a6488]">
           <span className="hidden sm:inline">{t("canadaNav.canadaMenu")}</span>

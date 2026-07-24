@@ -266,7 +266,7 @@ export default function EnglishSchools() {
             <AlertTriangle className="h-5 w-5 text-[hsl(var(--crimson))]" />
           </div>
           <div>
-            <p className="font-semibold text-[17px] text-[hsl(var(--navy))]">{L.warnTitle}</p>
+            <p className="font-semibold text-[17px] text-[#223066]">{L.warnTitle}</p>
             <p className="mt-1.5 text-[15px] md:text-base text-[#5a6488] leading-relaxed">
               {L.warnBody}
             </p>
@@ -282,7 +282,7 @@ export default function EnglishSchools() {
               <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-white animate-pulse border border-border">
                 <SearchX className="h-7 w-7 text-[hsl(var(--azul))]" />
               </div>
-              <p className="mt-4 text-sm text-[#55608a]">{L.loading}</p>
+              <p className="mt-4 text-sm text-[#5a6488]">{L.loading}</p>
             </div>
           ) : grouped.length === 0 ? (
             <div className="py-24 text-center">
@@ -292,7 +292,7 @@ export default function EnglishSchools() {
               <p className="mt-6 font-display text-xl font-bold text-[hsl(var(--navy))]">
                 {L.empty}
               </p>
-              <p className="mt-2 text-sm text-[#55608a]">{L.emptyHint}</p>
+              <p className="mt-2 text-sm text-[#5a6488]">{L.emptyHint}</p>
             </div>
           ) : (
             <div className="space-y-14 md:space-y-16">
@@ -473,7 +473,7 @@ function SchoolCard({
             <div className="text-[12px] font-semibold uppercase tracking-wider text-[#5a6488]">
               {L.factExam}
             </div>
-            <div className="mt-1 text-[17px] text-[hsl(var(--navy))] break-words [overflow-wrap:anywhere]">{examList}</div>
+            <div className="mt-1 text-[17px] text-[#223066] break-words [overflow-wrap:anywhere]">{examList}</div>
           </div>
         )}
 
@@ -482,7 +482,7 @@ function SchoolCard({
             <div className="text-[12px] font-semibold uppercase tracking-wider text-[#5a6488]">
               {L.factPathway}
             </div>
-            <div className="mt-1 text-[17px] text-[hsl(var(--navy))] leading-snug break-words [overflow-wrap:anywhere]">{pathwayText}</div>
+            <div className="mt-1 text-[17px] text-[#223066] leading-snug break-words [overflow-wrap:anywhere]">{pathwayText}</div>
           </div>
         )}
       </div>
