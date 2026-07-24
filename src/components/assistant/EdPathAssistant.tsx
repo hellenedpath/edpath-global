@@ -148,7 +148,7 @@ export default function EdPathAssistant() {
                   )}
                 >
                   {m.role === "assistant" ? (
-                    <div className="prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-a:text-[#E0405B] prose-a:underline">
+                    <div className="prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-a:text-[hsl(var(--crimson))] prose-a:underline">
                       <ReactMarkdown
                         components={{
                           a: ({ node, ...props }) => (
