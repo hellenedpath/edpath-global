@@ -105,8 +105,8 @@ export default function EnglishSchools() {
     () => new Set(items.map((s) => s.province).filter(Boolean)).size,
     [items],
   );
-  const totalAccredited = useMemo(
-    () => items.filter((s) => s.languages_canada).length,
+  const totalCities = useMemo(
+    () => new Set(items.map((s) => s.city).filter(Boolean)).size,
     [items],
   );
 
@@ -117,7 +117,7 @@ export default function EnglishSchools() {
         titleAccent: "right",
         titleTail: " English school in Canada.",
         intro:
-          "Compare Languages Canada accredited schools, real weekly cost and the pathway to college, all in one place.",
+          "Compare English schools, the real weekly cost and the pathway to college. All in one place.",
         warnTitle: "Important: an English course alone does not grant work rights",
         warnBody:
           "Taking an English course by itself does not give you the right to work in Canada. Work rights only start when you enroll in an eligible post-secondary DLI program.",
@@ -134,27 +134,17 @@ export default function EnglishSchools() {
         apply: "How to apply",
         loading: "Loading…",
         empty: "No schools match your filters.",
-        languagesCanada: "Languages Canada",
         statSchools: "schools",
         statProvinces: "provinces",
-        statAccredited: "accredited by Languages Canada",
+        statCities: "cities",
         resultsCount: "schools",
         emptyHint: "Try clearing the filters or searching another city.",
         ctaSee: "See schools",
         ctaHow: "How it works",
-        trust1: "Accredited schools",
+        trust1: "Verified schools",
         trust2: "Official-source data",
         trust3: "Clear, complete guide",
-        chip1: "from $375/wk",
-        chip2: "Languages Canada",
-        chip3: "Bridge to college",
-        previewTitle: "What you compare for every school",
-        previewBadge: "Every school",
-        previewCostLabel: "Cost per week",
-        previewAccredLabel: "Accreditation (Languages Canada)",
-        previewExamLabel: "Exam preparation",
-        previewPathwayLabel: "Pathway to college",
-        statAccreditedShort: "Languages Canada",
+        statCitiesShort: "cities",
         statProvincesShort: "provinces",
         statSchoolsShort: "schools",
       }
@@ -164,7 +154,7 @@ export default function EnglishSchools() {
         titleAccent: "ideal",
         titleTail: " no Canadá.",
         intro:
-          "Compare escolas credenciadas pela Languages Canada, o custo real por semana e o caminho até o college. Tudo em um lugar só.",
+          "Compare escolas de inglês, o custo real por semana e o caminho até o college. Tudo em um lugar só.",
         warnTitle:
           "Importante: um curso de inglês, sozinho, não dá direito a trabalhar",
         warnBody:
@@ -182,27 +172,17 @@ export default function EnglishSchools() {
         apply: "Como aplicar",
         loading: "Carregando…",
         empty: "Nenhuma escola encontrada com esses filtros.",
-        languagesCanada: "Languages Canada",
         statSchools: "escolas",
         statProvinces: "províncias",
-        statAccredited: "credenciadas Languages Canada",
+        statCities: "cidades",
         resultsCount: "escolas",
         emptyHint: "Tente limpar os filtros ou buscar outra cidade.",
         ctaSee: "Ver escolas",
         ctaHow: "Como funciona",
-        trust1: "Escolas credenciadas",
+        trust1: "Escolas verificadas",
         trust2: "Dados de fontes oficiais",
         trust3: "Guia completo e claro",
-        chip1: "a partir de $375/sem",
-        chip2: "Languages Canada",
-        chip3: "Ponte pro college",
-        previewTitle: "O que você compara em cada escola",
-        previewBadge: "Em cada escola",
-        previewCostLabel: "Custo por semana",
-        previewAccredLabel: "Credenciamento (Languages Canada)",
-        previewExamLabel: "Preparação para exames",
-        previewPathwayLabel: "Caminho até o college (pathway)",
-        statAccreditedShort: "Languages Canada",
+        statCitiesShort: "cidades",
         statProvincesShort: "províncias",
         statSchoolsShort: "escolas",
       };
@@ -232,9 +212,9 @@ export default function EnglishSchools() {
                 <MapPin className="h-3.5 w-3.5" />
                 {L.eyebrow}
               </span>
-              <h1 className="mt-5 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(var(--azul))] tracking-tight leading-[1.05]">
+              <h1 className="mt-5 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(var(--navy))] tracking-tight leading-[1.05]">
                 {L.titleLead}
-                <span className="text-[hsl(var(--crimson))]">{L.titleAccent}</span>
+                <span className="text-brand-gradient">{L.titleAccent}</span>
                 {L.titleTail}
               </h1>
               <p className="mt-5 max-w-[560px] text-base md:text-lg text-[#55608a] leading-relaxed">
@@ -277,17 +257,9 @@ export default function EnglishSchools() {
               </ul>
             </div>
 
-            {/* Product preview */}
+            {/* Graphic composition */}
             <div className="relative flex justify-center md:justify-end">
-              <div
-                aria-hidden
-                className="absolute inset-0 -z-10 blur-3xl opacity-90"
-                style={{
-                  background:
-                    "radial-gradient(closest-side, hsl(var(--azul)/0.35), transparent 70%)",
-                }}
-              />
-              <HeroPhoto L={L} />
+              <HeroGraphic />
             </div>
           </div>
         </div>
@@ -297,16 +269,16 @@ export default function EnglishSchools() {
       <section className="border-y border-border bg-white">
         <div className="container max-w-6xl py-8 md:py-10 grid grid-cols-3 gap-6 md:gap-4 text-center">
           <Stat value={totalSchools} label={L.statSchoolsShort} tone="azul" />
-          <Stat value={totalProvinces} label={L.statProvincesShort} tone="gold" />
-          <Stat value={totalAccredited} label={L.statAccreditedShort} tone="crimson" />
+          <Stat value={totalProvinces} label={L.statProvincesShort} tone="purple" />
+          <Stat value={totalCities} label={L.statCitiesShort} tone="crimson" />
         </div>
       </section>
 
       {/* WARN */}
       <section id="warn" className="container max-w-6xl pt-10 md:pt-14">
-        <div className="rounded-2xl border border-border border-l-4 border-l-[hsl(var(--gold))] bg-white p-5 md:p-6 flex gap-4 shadow-sm">
-          <div className="shrink-0 h-10 w-10 rounded-xl bg-[hsl(var(--gold)/0.12)] inline-flex items-center justify-center">
-            <AlertTriangle className="h-5 w-5 text-[hsl(var(--gold))]" />
+        <div className="rounded-2xl border border-border border-l-4 border-l-[hsl(var(--crimson))] bg-white p-5 md:p-6 flex gap-4 shadow-sm">
+          <div className="shrink-0 h-10 w-10 rounded-xl bg-[hsl(var(--crimson)/0.1)] inline-flex items-center justify-center">
+            <AlertTriangle className="h-5 w-5 text-[hsl(var(--crimson))]" />
           </div>
           <div>
             <p className="font-semibold text-[hsl(var(--navy))]">{L.warnTitle}</p>
