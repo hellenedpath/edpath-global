@@ -144,25 +144,19 @@ export default function EnglishSchools() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* HERO — navy */}
-      <header
-        className="relative overflow-hidden text-white"
-        style={{
-          backgroundImage:
-            "radial-gradient(60% 55% at 85% 0%, rgba(57,108,216,0.30) 0%, rgba(57,108,216,0) 60%), linear-gradient(160deg, #071a5e 0%, #051556 60%, #040f3d 100%)",
-        }}
-      >
+      {/* HERO — light */}
+      <header className="relative overflow-hidden bg-background border-b border-border">
         <div className="container max-w-5xl relative py-16 md:py-24 text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/[0.18] px-3 py-1 text-xs font-semibold text-[#dfe6ff]">
-            <MapPin className="h-3.5 w-3.5" />
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--crimson)/0.08)] px-3 py-1 text-xs font-semibold text-[hsl(var(--navy))]">
+            <MapPin className="h-3.5 w-3.5 text-[hsl(var(--crimson))]" />
             {L.eyebrow}
           </span>
-          <h1 className="mt-6 mx-auto max-w-3xl font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.05]">
+          <h1 className="mt-6 mx-auto max-w-3xl font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(var(--navy))] tracking-tight leading-[1.1] md:leading-[1.12]">
             {L.titleLead}
             <span className="text-[hsl(var(--crimson))]">{L.titleAccent}</span>
             {L.titleTail}
           </h1>
-          <p className="mt-5 mx-auto max-w-2xl text-base md:text-lg text-[#c6cef0] leading-relaxed">
+          <p className="mt-5 mx-auto max-w-2xl text-base md:text-lg text-[#55608a] leading-relaxed font-body">
             {L.intro}
           </p>
 
@@ -172,7 +166,7 @@ export default function EnglishSchools() {
               e.preventDefault();
               scrollToList();
             }}
-            className="mt-8 mx-auto max-w-3xl bg-white rounded-2xl shadow-[0_20px_60px_-20px_rgba(4,15,61,0.6)] p-2 flex flex-col md:flex-row items-stretch gap-2 md:gap-0 text-left"
+            className="mt-8 mx-auto max-w-3xl bg-white rounded-2xl border border-border shadow-[0_12px_40px_-18px_rgba(4,15,61,0.18)] p-2 flex flex-col md:flex-row items-stretch gap-2 md:gap-0 text-left"
           >
             <div className="flex items-center gap-3 flex-1 px-4 py-2">
               <Search className="h-5 w-5 text-[hsl(var(--azul))] shrink-0" />
@@ -218,12 +212,12 @@ export default function EnglishSchools() {
             </button>
           </form>
 
-          <div className="mt-6 text-sm text-[#c6cef0]">
-            <span className="font-semibold text-white">{totalSchools}</span> {L.statSchools}
+          <div className="mt-6 text-sm text-[#55608a] font-body">
+            <span className="font-bold text-[hsl(var(--crimson))]">{totalSchools}</span> {L.statSchools}
             {"  ·  "}
-            <span className="font-semibold text-white">{totalProvinces}</span> {L.statProvinces}
+            <span className="font-bold text-[hsl(var(--crimson))]">{totalProvinces}</span> {L.statProvinces}
             {"  ·  "}
-            <span className="font-semibold text-white">{totalCities}</span> {L.statCities}
+            <span className="font-bold text-[hsl(var(--crimson))]">{totalCities}</span> {L.statCities}
           </div>
         </div>
       </header>
