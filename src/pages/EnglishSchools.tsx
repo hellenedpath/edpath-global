@@ -288,7 +288,7 @@ export default function EnglishSchools() {
                     "radial-gradient(closest-side, hsl(var(--azul)/0.35), transparent 70%)",
                 }}
               />
-              <ProductPreview L={L} />
+              <HeroPhoto L={L} />
             </div>
           </div>
         </div>
