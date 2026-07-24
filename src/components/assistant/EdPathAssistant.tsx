@@ -14,6 +14,7 @@ export default function EdPathAssistant() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loading, setLoading] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -35,6 +36,15 @@ export default function EdPathAssistant() {
     window.addEventListener("edpath:open-assistant", handler);
     return () => window.removeEventListener("edpath:open-assistant", handler);
   }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowTooltip(true), 4000);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (open) setShowTooltip(false);
+  }, [open]);
 
   async function send(text: string) {
     const trimmed = text.trim();
@@ -67,18 +77,33 @@ export default function EdPathAssistant() {
   return (
     <>
       {!open && (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          aria-label={t("assistant.openLabel")}
-          className="fixed bottom-5 right-5 z-[100] flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-[hsl(var(--azul))] shadow-lg ring-2 ring-[hsl(var(--crimson))]/60 transition hover:scale-105 hover:bg-[hsl(var(--azul))]/90"
-        >
-          <img
-            src={mascotAsset.url}
-            alt={t("assistant.title")}
-            className="h-full w-full object-cover"
-          />
-        </button>
+        <div className="fixed bottom-5 right-5 z-[100] flex items-end gap-2">
+          {showTooltip && (
+            <div
+              role="tooltip"
+              className="mb-3 hidden sm:flex items-center rounded-full bg-white px-3 py-1.5 text-xs font-medium text-navy shadow-md ring-1 ring-navy/10 animate-fade-in"
+            >
+              {t("assistant.tooltip")}
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label={t("assistant.openLabel")}
+            title={t("assistant.tooltip")}
+            className="group relative flex h-[72px] w-[72px] items-center justify-center rounded-full cursor-pointer motion-safe:animate-mascot-bob motion-safe:hover:animate-mascot-wiggle motion-reduce:transform-none"
+          >
+            <span
+              aria-hidden
+              className="absolute inset-0 rounded-full bg-[hsl(var(--azul))]/25 blur-xl scale-90 group-hover:scale-100 transition-transform"
+            />
+            <img
+              src={mascotAsset.url}
+              alt={t("assistant.title")}
+              className="relative h-full w-full object-contain drop-shadow-[0_6px_12px_rgba(46,124,244,0.35)]"
+            />
+          </button>
+        </div>
       )}
 
       {open && (
@@ -92,11 +117,13 @@ export default function EdPathAssistant() {
           {/* Header */}
           <div className="flex items-center justify-between gap-3 border-b border-navy/10 bg-gradient-to-r from-[hsl(var(--azul))] to-[hsl(216_90%_64%)] px-4 py-3 text-white">
             <div className="flex items-center gap-3">
-              <img
-                src={mascotAsset.url}
-                alt={t("assistant.title")}
-                className="h-10 w-10 rounded-full object-cover bg-white/10 ring-2 ring-white/20"
-              />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white ring-2 ring-white/40 overflow-hidden">
+                <img
+                  src={mascotAsset.url}
+                  alt={t("assistant.title")}
+                  className="h-full w-full object-contain"
+                />
+              </div>
               <div>
                 <h2 className="font-heading text-base font-bold leading-tight">
                   {t("assistant.title")}
