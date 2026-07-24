@@ -196,7 +196,7 @@ export default function EdPathAssistant() {
                 onClick={() => send(input)}
                 disabled={loading || !input.trim()}
                 aria-label={t("assistant.send")}
-                className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#E0405B] text-white transition hover:bg-[#c9354e] disabled:opacity-40"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-[hsl(var(--crimson))] text-white transition hover:bg-[hsl(var(--crimson))]/90 disabled:opacity-40"
               >
                 <Send className="h-4 w-4" strokeWidth={1.5} />
               </button>
