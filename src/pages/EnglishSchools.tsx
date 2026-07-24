@@ -9,7 +9,7 @@ import {
   BookOpen,
   GraduationCap,
   Building2,
-  Globe2,
+  Map as MapIcon,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useReveal } from "@/hooks/use-reveal";
@@ -38,6 +38,26 @@ type EnglishSchool = {
 
 const isEmpty = (v: string | null | undefined) =>
   !v || v.trim() === "" || v.trim() === "-" || v.trim() === "—";
+
+function cleanCost(raw: string | null | undefined, L: Record<string, string>): { label: string; value: string } {
+  const s = (raw ?? "").trim();
+  if (!s || /sob\s+or[çc]amento|n[ãa]o\s+publicado|sob\s+consulta|consulte/i.test(s)) {
+    return { label: L.costLabel, value: L.onRequest };
+  }
+  let out = s
+    .replace(/~/g, "")
+    .replace(/\([^)]*\)/g, "")
+    .split(";")[0]
+    .replace(/^\s*(a partir de|intensivo)\s+/i, "")
+    .replace(/\/\s*semana/gi, "/sem")
+    .replace(/\s+por\s+semana/gi, "/sem")
+    .replace(/\bsemana\b/gi, "/sem")
+    .replace(/\/\s*week/gi, "/wk")
+    .replace(/\s+/g, " ")
+    .trim();
+  const label = /\d/.test(out) ? L.fromLabel : L.costLabel;
+  return { label, value: out };
+}
 
 const softTile =
   "inline-flex items-center justify-center rounded-2xl shadow-[4px_4px_9px_rgba(5,21,86,0.11),-4px_-4px_8px_rgba(255,255,255,0.95)]";
@@ -188,7 +208,7 @@ export default function EnglishSchools() {
 
               <div className="mt-8 grid grid-cols-3 gap-3 md:gap-4 max-w-xl">
                 <StatCard icon={<BookOpen className="h-5 w-5" />} tone="blue" value={totalSchools} label={L.statSchools} />
-                <StatCard icon={<Globe2 className="h-5 w-5" />} tone="red" value={totalProvinces} label={L.statProvinces} />
+                <StatCard icon={<MapIcon className="h-5 w-5" />} tone="red" value={totalProvinces} label={L.statProvinces} />
                 <StatCard icon={<Building2 className="h-5 w-5" />} tone="blue" value={totalCities} label={L.statCities} />
               </div>
             </div>
@@ -356,13 +376,7 @@ function SchoolCard({
   L: Record<string, string>;
   isEN: boolean;
 }) {
-  const rawCost = school.cost_per_week?.trim() ?? "";
-  const onRequestPatterns = /(sob\s+or[çc]amento|n[ãa]o\s+publicado|sob\s+consulta|consulte)/i;
-  const isOnRequest = isEmpty(rawCost) || onRequestPatterns.test(rawCost);
-  const costDisplay = isOnRequest
-    ? L.onRequest
-    : rawCost.replace(/\/\s*semana/gi, "/sem").replace(/\/\s*week/gi, "/wk");
-  const hasNumericFrom = !isOnRequest && /\d/.test(rawCost);
+  const { label: costLabel, value: costDisplay } = cleanCost(school.cost_per_week, L);
 
   const pathwayTag = pathwayLabel(school.pathway, isEN);
   const examList = !isEmpty(school.exam_prep)
@@ -413,9 +427,9 @@ function SchoolCard({
 
       <div className="mt-5">
         <div className="text-[11px] font-semibold uppercase tracking-wider text-[#55608a]">
-          {hasNumericFrom ? L.fromLabel : L.costLabel}
+          {costLabel}
         </div>
-        <div className="mt-1 font-display font-bold text-[24px] leading-tight text-[hsl(var(--crimson))] break-words">
+        <div className="mt-1 font-display font-bold text-[24px] leading-tight text-[hsl(var(--crimson))] whitespace-nowrap">
           {costDisplay}
         </div>
       </div>
