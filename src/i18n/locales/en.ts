@@ -2212,11 +2212,11 @@ export const en = {
   },
   assistant: {
     title: "EdPath Assistant",
-    subtitle: "Verified information. No promises.",
+    subtitle: "Real, verified info, here to help you",
     openLabel: "Open EdPath assistant",
     closeLabel: "Close assistant",
     greeting:
-      "Hi! I'm the EdPath assistant. I answer based on verified data from the platform. How can I help?",
+      "Hi there! So glad you're here. I'm the EdPath assistant and I answer using verified data from the platform. How can I help you today?",
     suggestions: [
       "Does my program qualify for PGWP?",
       "How much proof of funds do I need?",
@@ -2224,7 +2224,7 @@ export const en = {
     ],
     placeholder: "Type your question...",
     send: "Send",
-    disclaimer: "Educational information, not immigration advice.",
+    disclaimer: "Educational info, not immigration advice.",
     errorInline:
       "Sorry, I had trouble answering right now. Please try again in a few seconds.",
   },
