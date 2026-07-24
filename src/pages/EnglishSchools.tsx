@@ -149,10 +149,12 @@ export default function EnglishSchools() {
         chip1: "from $375/wk",
         chip2: "Languages Canada",
         chip3: "Bridge to college",
-        previewCostLabel: "Cost / week",
-        previewExamLabel: "Exam prep",
-        previewPathwayLabel: "Pathway",
-        previewPathwayValue: "No IELTS",
+        previewTitle: "What you compare for every school",
+        previewBadge: "Every school",
+        previewCostLabel: "Cost per week",
+        previewAccredLabel: "Accreditation (Languages Canada)",
+        previewExamLabel: "Exam preparation",
+        previewPathwayLabel: "Pathway to college",
         statAccreditedShort: "Languages Canada",
         statProvincesShort: "provinces",
         statSchoolsShort: "schools",
@@ -195,32 +197,34 @@ export default function EnglishSchools() {
         chip1: "a partir de $375/sem",
         chip2: "Languages Canada",
         chip3: "Ponte pro college",
-        previewCostLabel: "Custo / semana",
-        previewExamLabel: "Preparação p/ exames",
-        previewPathwayLabel: "Pathway",
-        previewPathwayValue: "Sem IELTS",
+        previewTitle: "O que você compara em cada escola",
+        previewBadge: "Em cada escola",
+        previewCostLabel: "Custo por semana",
+        previewAccredLabel: "Credenciamento (Languages Canada)",
+        previewExamLabel: "Preparação para exames",
+        previewPathwayLabel: "Caminho até o college (pathway)",
         statAccreditedShort: "Languages Canada",
         statProvincesShort: "províncias",
         statSchoolsShort: "escolas",
       };
 
   return (
-    <div className="min-h-screen bg-[#f6f8fe]">
+    <div className="min-h-screen bg-white">
       {/* HERO */}
       <header className="relative overflow-hidden">
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-b from-[hsl(var(--azul)/0.09)] via-[#f6f8fe] to-[#f6f8fe]"
+          className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--azul)/0.07)] via-white to-[hsl(var(--crimson)/0.06)]"
         />
         <div
           aria-hidden
-          className="absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-60"
-          style={{ background: "hsl(var(--azul) / 0.18)" }}
+          className="absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-70"
+          style={{ background: "hsl(var(--azul) / 0.16)" }}
         />
         <div
           aria-hidden
-          className="absolute top-40 -right-24 h-[360px] w-[360px] rounded-full blur-3xl opacity-40"
-          style={{ background: "hsl(var(--crimson) / 0.10)" }}
+          className="absolute -top-16 -right-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-70"
+          style={{ background: "hsl(var(--crimson) / 0.12)" }}
         />
         <div className="container max-w-6xl relative py-14 md:py-20">
           <div className="grid gap-10 md:gap-14 md:grid-cols-[1.1fr_1fr] items-center">
@@ -229,12 +233,12 @@ export default function EnglishSchools() {
                 <MapPin className="h-3.5 w-3.5" />
                 {L.eyebrow}
               </span>
-              <h1 className="mt-5 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(var(--navy))] tracking-tight leading-[1.05]">
+              <h1 className="mt-5 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(var(--azul))] tracking-tight leading-[1.05]">
                 {L.titleLead}
-                <span className="text-[hsl(var(--azul))]">{L.titleAccent}</span>
+                <span className="text-[hsl(var(--crimson))]">{L.titleAccent}</span>
                 {L.titleTail}
               </h1>
-              <p className="mt-5 max-w-[560px] text-base md:text-lg text-[#4a5578] leading-relaxed">
+              <p className="mt-5 max-w-[560px] text-base md:text-lg text-[#55608a] leading-relaxed">
                 {L.intro}
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
@@ -252,7 +256,7 @@ export default function EnglishSchools() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="rounded-full px-6 border-[hsl(var(--navy)/0.2)] text-[hsl(var(--navy))] hover:bg-[hsl(var(--navy)/0.05)]"
+                  className="rounded-full px-6 border-[hsl(var(--azul)/0.25)] text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul)/0.06)]"
                   onClick={() =>
                     document
                       .getElementById("warn")
@@ -262,7 +266,7 @@ export default function EnglishSchools() {
                   {L.ctaHow}
                 </Button>
               </div>
-              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#4a5578]">
+              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#55608a]">
                 {[L.trust1, L.trust2, L.trust3].map((t) => (
                   <li key={t} className="inline-flex items-center gap-1.5">
                     <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[hsl(var(--azul)/0.12)]">
@@ -294,7 +298,7 @@ export default function EnglishSchools() {
       <section className="border-y border-border bg-white">
         <div className="container max-w-6xl py-8 md:py-10 grid grid-cols-3 gap-6 md:gap-4 text-center">
           <Stat value={totalSchools} label={L.statSchoolsShort} tone="azul" />
-          <Stat value={totalProvinces} label={L.statProvincesShort} tone="navy" />
+          <Stat value={totalProvinces} label={L.statProvincesShort} tone="azul" />
           <Stat value={totalAccredited} label={L.statAccreditedShort} tone="crimson" />
         </div>
       </section>
@@ -306,8 +310,8 @@ export default function EnglishSchools() {
             <AlertTriangle className="h-5 w-5 text-[hsl(38_92%_35%)]" />
           </div>
           <div>
-            <p className="font-semibold text-[hsl(var(--navy))]">{L.warnTitle}</p>
-            <p className="mt-1 text-sm md:text-base text-[#4a5578] leading-relaxed">
+            <p className="font-semibold text-[hsl(var(--azul))]">{L.warnTitle}</p>
+            <p className="mt-1 text-sm md:text-base text-[#55608a] leading-relaxed">
               {L.warnBody}
             </p>
           </div>
@@ -317,7 +321,7 @@ export default function EnglishSchools() {
       {/* FILTERS */}
       <section
         id="schools-list"
-        className="sticky top-[7.5rem] z-30 mt-10 border-y border-border bg-[#f6f8fe]/95 backdrop-blur supports-[backdrop-filter]:bg-[#f6f8fe]/80"
+        className="sticky top-[7.5rem] z-30 mt-10 border-y border-border bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80"
       >
         <div className="container max-w-6xl py-4 flex flex-col md:flex-row gap-3 md:items-center">
           <div className="flex flex-wrap gap-2 flex-1">
@@ -347,7 +351,7 @@ export default function EnglishSchools() {
                 className="pl-9 rounded-full bg-white border-border"
               />
             </div>
-            <div className="shrink-0 text-sm text-[#4a5578] whitespace-nowrap">
+            <div className="shrink-0 text-sm text-[#55608a] whitespace-nowrap">
               <span className="font-bold text-[hsl(var(--azul))]">{filtered.length}</span>{" "}
               {L.resultsCount}
             </div>
@@ -362,17 +366,17 @@ export default function EnglishSchools() {
             <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted/60 animate-pulse">
               <SearchX className="h-7 w-7 text-[hsl(var(--azul))]" />
             </div>
-            <p className="mt-4 text-sm text-[#4a5578]">{L.loading}</p>
+            <p className="mt-4 text-sm text-[#55608a]">{L.loading}</p>
           </div>
         ) : filtered.length === 0 ? (
           <div className="py-24 text-center">
             <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted/60">
               <SearchX className="h-7 w-7 text-[hsl(var(--azul))]" />
             </div>
-            <p className="mt-6 font-display text-xl font-bold text-[hsl(var(--navy))]">
+            <p className="mt-6 font-display text-xl font-bold text-[hsl(var(--azul))]">
               {L.empty}
             </p>
-            <p className="mt-2 text-sm text-[#4a5578]">{L.emptyHint}</p>
+            <p className="mt-2 text-sm text-[#55608a]">{L.emptyHint}</p>
           </div>
         ) : (
           <div className="space-y-16">
@@ -383,11 +387,11 @@ export default function EnglishSchools() {
                     className="inline-block h-3 w-3 rounded-full"
                     style={{ background: DOT_COLORS[idx % DOT_COLORS.length] }}
                   />
-                  <h2 className="font-display text-2xl md:text-3xl font-bold text-[hsl(var(--navy))] tracking-tight">
+                  <h2 className="font-display text-2xl md:text-3xl font-bold text-[hsl(var(--azul))] tracking-tight">
                     {prov}
                   </h2>
-                  <span className="text-sm text-[#4a5578]">
-                    · <span className="font-bold text-[hsl(var(--azul))]">{schools.length}</span> {L.statSchoolsShort}
+                  <span className="text-sm text-[#55608a]">
+                    · <span className="font-bold text-[hsl(var(--crimson))]">{schools.length}</span> {L.statSchoolsShort}
                   </span>
                 </div>
                 <div className="mt-6 grid gap-6 md:grid-cols-2">
