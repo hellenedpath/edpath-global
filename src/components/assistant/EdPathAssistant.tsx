@@ -90,12 +90,19 @@ export default function EdPathAssistant() {
           )}
         >
           {/* Header */}
-          <div className="flex items-start justify-between gap-3 border-b border-navy/10 bg-navy px-4 py-3 text-white">
-            <div>
-              <h2 className="font-heading text-base font-bold leading-tight">
-                {t("assistant.title")}
-              </h2>
-              <p className="text-xs text-white/70 leading-snug">{t("assistant.subtitle")}</p>
+          <div className="flex items-center justify-between gap-3 border-b border-navy/10 bg-navy px-4 py-3 text-white">
+            <div className="flex items-center gap-3">
+              <img
+                src={mascotAsset.url}
+                alt={t("assistant.title")}
+                className="h-10 w-10 rounded-full object-cover bg-white/10 ring-2 ring-white/20"
+              />
+              <div>
+                <h2 className="font-heading text-base font-bold leading-tight">
+                  {t("assistant.title")}
+                </h2>
+                <p className="text-xs text-white/70 leading-snug">{t("assistant.subtitle")}</p>
+              </div>
             </div>
             <button
               type="button"
