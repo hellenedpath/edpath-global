@@ -28,21 +28,21 @@ All colors MUST be HSL.
     --primary: 228 49% 18%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 221 67% 53%;
+    --secondary: 218 74% 47%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 20% 94%;
     --muted-foreground: 220 15% 40%;
 
-    --accent: 350 72% 57%;
+    --accent: 358 79% 52%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 350 72% 57%;
+    --destructive: 358 79% 52%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 220 15% 88%;
     --input: 220 15% 88%;
-    --ring: 221 67% 53%;
+    --ring: 218 74% 47%;
 
     --radius: 0.5rem;
 
