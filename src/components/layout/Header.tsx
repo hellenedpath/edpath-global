@@ -46,10 +46,10 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all duration-300 text-primary-foreground border-b border-white/10",
+        "sticky top-0 z-50 transition-all duration-300 text-[hsl(var(--navy))] border-b border-border bg-white",
         scrolled
-          ? "bg-navy/95 backdrop-blur-md shadow-[0_4px_24px_-8px_rgba(0,0,0,0.35)]"
-          : "bg-navy",
+          ? "bg-white/95 backdrop-blur-md shadow-[0_4px_20px_-12px_rgba(5,21,86,0.18)]"
+          : "bg-white",
       )}
     >
       <div className="container flex items-center justify-between h-16 gap-6">
@@ -71,31 +71,31 @@ export function Header() {
               onClick={() => setDestOpen((v) => !v)}
               className={cn(
                 "nav-link-underline inline-flex items-center gap-1.5 px-4 py-2.5 text-[15px] font-medium rounded-md transition-colors",
-                "text-white/90 hover:text-white hover:bg-white/10",
+                "text-[hsl(var(--navy))] hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul)/0.06)]",
               )}
             >
               {t("nav.destinations")}
               <ChevronDown className={cn("w-3.5 h-3.5 opacity-70 transition-transform", destOpen && "rotate-180")} />
             </button>
             {destOpen && (
-              <div className="absolute left-0 top-full mt-2 w-60 rounded-lg border border-white/10 bg-navy text-primary-foreground shadow-xl shadow-black/20 overflow-hidden py-1 z-50">
+              <div className="absolute left-0 top-full mt-2 w-60 rounded-lg border border-border bg-white text-[hsl(var(--navy))] shadow-xl shadow-[hsl(var(--navy)/0.15)] overflow-hidden py-1 z-50">
                 {destinations.map((d) =>
                   d.active && d.to ? (
                     <Link
                       key={d.code}
                       to={d.to}
                       onClick={() => setDestOpen(false)}
-                      className="flex items-center justify-between px-3 py-2.5 text-sm hover:bg-white/10 transition-colors"
+                      className="flex items-center justify-between px-3 py-2.5 text-sm hover:bg-[hsl(var(--azul)/0.06)] hover:text-[hsl(var(--azul))] transition-colors"
                     >
                       <span className="font-medium">{t(`home.globeDestinations.${d.code}.label`)}</span>
                     </Link>
                   ) : (
                     <div
                       key={d.code}
-                      className="flex items-center justify-between px-3 py-2.5 text-sm text-white/60"
+                      className="flex items-center justify-between px-3 py-2.5 text-sm text-[#55608a]"
                     >
                       <span>{t(`home.globeDestinations.${d.code}.label`)}</span>
-                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/10 text-white/80">
+                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-muted text-[#55608a]">
                         {t("countries.soon")}
                       </span>
                     </div>
@@ -109,8 +109,8 @@ export function Header() {
             className={({ isActive }) =>
               cn(
                 "nav-link-underline px-4 py-2.5 text-[15px] font-medium rounded-md transition-colors",
-                "text-white/90 hover:text-white hover:bg-white/10",
-                isActive && "bg-white/10 text-white",
+                "text-[hsl(var(--navy))] hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul)/0.06)]",
+                isActive && "bg-[hsl(var(--azul)/0.08)] text-[hsl(var(--azul))]",
               )
             }
           >
@@ -122,7 +122,7 @@ export function Header() {
           <div className="relative">
             <button
               onClick={() => setLangOpen((v) => !v)}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full transition-all text-white/60 hover:text-white hover:bg-white/10"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full transition-all text-[hsl(var(--navy))] hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul)/0.06)]"
               aria-label={t("langs.label")}
             >
               <Globe className="w-4 h-4" />
@@ -130,7 +130,7 @@ export function Header() {
               <ChevronDown className="w-3.5 h-3.5 opacity-70" />
             </button>
             {langOpen && (
-              <div className="absolute right-0 top-full mt-2 w-52 rounded-lg border border-white/10 bg-navy text-primary-foreground shadow-xl shadow-black/20 overflow-hidden py-1">
+              <div className="absolute right-0 top-full mt-2 w-52 rounded-lg border border-border bg-white text-[hsl(var(--navy))] shadow-xl shadow-[hsl(var(--navy)/0.15)] overflow-hidden py-1">
                 {langs.map((l) =>
                   l.active ? (
                     <button
@@ -143,8 +143,8 @@ export function Header() {
                       className={cn(
                         "w-full flex items-center justify-between px-3 py-2.5 text-sm text-left transition-colors",
                         i18n.language === l.code
-                          ? "bg-azul/15 text-white font-medium"
-                          : "hover:bg-white/10 text-white/90",
+                          ? "bg-[hsl(var(--azul)/0.1)] text-[hsl(var(--azul))] font-semibold"
+                          : "hover:bg-[hsl(var(--azul)/0.06)] text-[hsl(var(--navy))]",
                       )}
                     >
                       <span>{t(`langs.${l.code}`)}</span>
@@ -153,10 +153,10 @@ export function Header() {
                   ) : (
                     <div
                       key={l.code}
-                      className="flex items-center justify-between px-3 py-2.5 text-sm text-white/60"
+                      className="flex items-center justify-between px-3 py-2.5 text-sm text-[#55608a]"
                     >
                       <span>{t(`langs.${l.code}`)}</span>
-                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/10 text-white/80">
+                      <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-muted text-[#55608a]">
                         {t("langs.soon")}
                       </span>
                     </div>
@@ -168,13 +168,13 @@ export function Header() {
 
           <Link
             to="/canada/meu-caminho?country=canada"
-            className="hidden md:inline-flex items-center justify-center rounded-full bg-crimson px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-crimson/90 hover:shadow-md hover:-translate-y-0.5 hover:scale-105 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/50"
+            className="hidden md:inline-flex items-center justify-center rounded-full bg-crimson px-5 py-2.5 text-sm font-semibold text-white shadow-[0_6px_18px_-8px_hsl(var(--crimson)/0.6)] hover:bg-crimson/90 hover:shadow-[0_10px_22px_-8px_hsl(var(--crimson)/0.7)] hover:-translate-y-0.5 hover:scale-105 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/50"
           >
             {t("nav.discoverMyPath")}
           </Link>
 
           <button
-            className="lg:hidden p-2 rounded-md text-white/90 hover:bg-white/10 transition-colors"
+            className="lg:hidden p-2 rounded-md text-[hsl(var(--navy))] hover:bg-[hsl(var(--azul)/0.06)] transition-colors"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Menu"
           >
@@ -184,7 +184,7 @@ export function Header() {
       </div>
 
       {mobileOpen && (
-        <nav className="lg:hidden border-t border-white/10 bg-navy">
+        <nav className="lg:hidden border-t border-border bg-white">
           <div className="container flex flex-col py-3">
             <Link
               to="/canada/meu-caminho?country=canada"
@@ -193,7 +193,7 @@ export function Header() {
             >
               {t("nav.discoverMyPath")}
             </Link>
-            <div className="px-3 pt-3 pb-1 text-xs uppercase tracking-wider text-white/60">
+            <div className="px-3 pt-3 pb-1 text-xs uppercase tracking-wider text-[#55608a]">
               {t("nav.destinations")}
             </div>
             {destinations.map((d) =>
@@ -202,17 +202,17 @@ export function Header() {
                   key={d.code}
                   to={d.to}
                   onClick={() => setMobileOpen(false)}
-                  className="px-3 py-2.5 text-sm rounded-md hover:bg-white/10 text-white/90"
+                  className="px-3 py-2.5 text-sm rounded-md hover:bg-[hsl(var(--azul)/0.06)] text-[hsl(var(--navy))]"
                 >
                   {t(`home.globeDestinations.${d.code}.label`)}
                 </NavLink>
               ) : (
                 <div
                   key={d.code}
-                  className="flex items-center justify-between px-3 py-2.5 text-sm text-white/60"
+                  className="flex items-center justify-between px-3 py-2.5 text-sm text-[#55608a]"
                 >
                   <span>{t(`home.globeDestinations.${d.code}.label`)}</span>
-                  <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-white/10">
+                  <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-muted text-[#55608a]">
                     {t("countries.soon")}
                   </span>
                 </div>
@@ -223,8 +223,8 @@ export function Header() {
               onClick={() => setMobileOpen(false)}
               className={({ isActive }) =>
                 cn(
-                  "nav-link-underline px-3 py-3 text-sm rounded-md hover:bg-white/10 mt-2 text-white/90",
-                  isActive && "bg-white/10 text-white",
+                  "nav-link-underline px-3 py-3 text-sm rounded-md hover:bg-[hsl(var(--azul)/0.06)] mt-2 text-[hsl(var(--navy))]",
+                  isActive && "bg-[hsl(var(--azul)/0.08)] text-[hsl(var(--azul))]",
                 )
               }
             >
