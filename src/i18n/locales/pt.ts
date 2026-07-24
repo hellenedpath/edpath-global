@@ -105,6 +105,12 @@ export const pt = {
     askEdpath: "Pergunte à EdPath",
     highSchoolsFeatured: "Ensino médio",
     forParents: "Para pais",
+    newBadge: "Novo",
+    study: "Estudar",
+    studyGroups: {
+      university: "Universidade e college",
+      other: "Outros caminhos",
+    },
     groups: {
       startHere: "Comece aqui",
       chooseSchool: "Escolha sua escola",
