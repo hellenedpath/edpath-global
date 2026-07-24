@@ -376,13 +376,7 @@ function SchoolCard({
   L: Record<string, string>;
   isEN: boolean;
 }) {
-  const rawCost = school.cost_per_week?.trim() ?? "";
-  const onRequestPatterns = /(sob\s+or[çc]amento|n[ãa]o\s+publicado|sob\s+consulta|consulte)/i;
-  const isOnRequest = isEmpty(rawCost) || onRequestPatterns.test(rawCost);
-  const costDisplay = isOnRequest
-    ? L.onRequest
-    : rawCost.replace(/\/\s*semana/gi, "/sem").replace(/\/\s*week/gi, "/wk");
-  const hasNumericFrom = !isOnRequest && /\d/.test(rawCost);
+  const { label: costLabel, value: costDisplay } = cleanCost(school.cost_per_week, L);
 
   const pathwayTag = pathwayLabel(school.pathway, isEN);
   const examList = !isEmpty(school.exam_prep)
@@ -433,9 +427,9 @@ function SchoolCard({
 
       <div className="mt-5">
         <div className="text-[11px] font-semibold uppercase tracking-wider text-[#55608a]">
-          {hasNumericFrom ? L.fromLabel : L.costLabel}
+          {costLabel}
         </div>
-        <div className="mt-1 font-display font-bold text-[24px] leading-tight text-[hsl(var(--crimson))] break-words">
+        <div className="mt-1 font-display font-bold text-[24px] leading-tight text-[hsl(var(--crimson))] whitespace-nowrap">
           {costDisplay}
         </div>
       </div>
