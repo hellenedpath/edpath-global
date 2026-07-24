@@ -46,12 +46,16 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all duration-300 text-[hsl(var(--navy))] border-b border-border bg-white",
+        "sticky top-0 z-50 transition-all duration-300 text-[hsl(var(--navy))] border-b border-border",
         scrolled
           ? "bg-white/95 backdrop-blur-md shadow-[0_4px_20px_-12px_rgba(5,21,86,0.18)]"
-          : "bg-white",
+          : "bg-[hsl(var(--azul)/0.03)]",
       )}
     >
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[hsl(var(--azul))] via-[hsl(var(--azul))] to-[hsl(var(--crimson))]"
+      />
       <div className="container flex items-center justify-between h-20 md:h-24 gap-6">
         <Logo />
 
