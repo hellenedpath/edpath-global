@@ -107,7 +107,7 @@ function DropdownItemRow({
         onSelect();
       }}
       className={cn(
-        "group cursor-pointer rounded-lg px-3 py-2.5 text-sm text-navy/80 transition-colors",
+        "group cursor-pointer rounded-lg px-3 py-2.5 text-[15px] text-navy/80 transition-colors",
         "focus:bg-[hsl(var(--azul))]/10 focus:text-[hsl(var(--azul))]",
         active && "bg-[hsl(var(--azul))]/10 text-[hsl(var(--crimson))] font-semibold",
         item.primary && "text-[hsl(var(--crimson))] font-semibold focus:text-[hsl(var(--crimson))]",
@@ -176,7 +176,7 @@ function HoverDropdown({
           <button
             type="button"
             className={cn(
-              "relative shrink-0 inline-flex items-center gap-1.5 px-2 py-1.5 text-sm font-medium transition-colors text-navy/80 hover:text-[hsl(var(--azul))] focus:outline-none focus-visible:text-[hsl(var(--azul))]",
+              "relative shrink-0 inline-flex items-center gap-1.5 px-2 py-1.5 text-[15px] font-medium transition-colors text-navy/80 hover:text-[hsl(var(--azul))] focus:outline-none focus-visible:text-[hsl(var(--azul))]",
               "after:absolute after:left-2 after:right-2 after:-bottom-0.5 after:h-[2px] after:rounded-full after:bg-[hsl(var(--crimson))] after:origin-left after:scale-x-0 after:transition-transform after:duration-300",
               (isActive || open) && "text-[hsl(var(--crimson))] after:scale-x-100",
             )}
@@ -263,7 +263,8 @@ export function CanadaNav() {
       title: t("canadaNav.studyGroups.university"),
       items: [
         { to: "/canada/programas", label: t("canadaNav.items.programs"), icon: BookOpen },
-        { to: "/canada/instituicoes", label: t("canadaNav.items.institutions"), icon: Building2 },
+        { to: "/canada/instituicoes", label: t("canadaNav.items.collegesPolytechnics"), icon: Building2 },
+        { to: "/canada/instituicoes", label: t("canadaNav.items.universities"), icon: School, badge: { label: t("canadaNav.comingSoon"), tone: "gold" } },
         { to: "/canada/pgwp", label: t("canadaNav.items.pgwp"), icon: Briefcase },
       ],
     },
@@ -301,7 +302,7 @@ export function CanadaNav() {
             to={primaryTo}
             className={({ isActive }) =>
               cn(
-                "shrink-0 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-semibold text-white bg-[hsl(var(--crimson))] shadow-[0_6px_18px_-6px_hsl(var(--crimson)/0.6)] hover:shadow-[0_10px_24px_-6px_hsl(var(--crimson)/0.75)] hover:-translate-y-0.5 transition-all duration-200",
+                "shrink-0 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[15px] font-semibold text-white bg-[hsl(var(--crimson))] shadow-[0_6px_18px_-6px_hsl(var(--crimson)/0.6)] hover:shadow-[0_10px_24px_-6px_hsl(var(--crimson)/0.75)] hover:-translate-y-0.5 transition-all duration-200",
                 isActive && "ring-2 ring-[hsl(var(--crimson))]/40 ring-offset-2 ring-offset-background",
               )
             }
@@ -320,7 +321,7 @@ export function CanadaNav() {
             onClick={() =>
               window.dispatchEvent(new CustomEvent("edpath:open-assistant"))
             }
-            className="shrink-0 ml-auto inline-flex items-center gap-1.5 text-sm font-medium text-[hsl(var(--azul))] hover:text-[hsl(var(--navy))] transition-colors"
+            className="shrink-0 ml-auto inline-flex items-center gap-1.5 text-[15px] font-medium text-[hsl(var(--azul))] hover:text-[hsl(var(--navy))] transition-colors"
           >
             <MessageCircle className="h-4 w-4" />
             {t("canadaNav.askEdpath")}
@@ -334,7 +335,7 @@ export function CanadaNav() {
               <button
                 type="button"
                 aria-label={t("canadaNav.openMenu")}
-                className="inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-md border border-[hsl(var(--azul))]/30 text-navy hover:bg-[hsl(var(--azul))]/10"
+                className="inline-flex items-center gap-2 px-3 py-1.5 text-[15px] rounded-md border border-[hsl(var(--azul))]/30 text-navy hover:bg-[hsl(var(--azul))]/10"
               >
                 <Menu className="h-4 w-4" />
                 {t("canadaNav.menu")}
@@ -349,7 +350,7 @@ export function CanadaNav() {
                 <NavLink
                   to={primaryTo}
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--crimson))] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_6px_18px_-6px_hsl(var(--crimson)/0.6)]"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[hsl(var(--crimson))] px-4 py-2.5 text-[15px] font-semibold text-white shadow-[0_6px_18px_-6px_hsl(var(--crimson)/0.6)]"
                 >
                   <Compass className="h-4 w-4" />
                   {t("canadaNav.items.myPath")}
@@ -365,7 +366,7 @@ export function CanadaNav() {
                     const SIcon = section.icon;
                     return (
                       <AccordionItem key={section.value} value={section.value}>
-                        <AccordionTrigger className="text-sm font-medium">
+                        <AccordionTrigger className="text-[15px] font-medium">
                           <span className="inline-flex items-center gap-2">
                             <SIcon className="h-4 w-4 text-[hsl(var(--azul))]" />
                             {section.label}
@@ -382,7 +383,7 @@ export function CanadaNav() {
                                     onClick={() => setMobileOpen(false)}
                                     className={({ isActive }) =>
                                       cn(
-                                        "flex items-center gap-2 px-2 py-2 text-sm rounded-md text-navy/80 hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/10 transition-colors",
+                                        "flex items-center gap-2 px-2 py-2 text-[15px] rounded-md text-navy/80 hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/10 transition-colors",
                                         isActive && "bg-[hsl(var(--crimson))]/10 text-[hsl(var(--crimson))] font-semibold",
                                         it.primary && "text-[hsl(var(--crimson))] font-semibold",
                                       )
@@ -408,7 +409,7 @@ export function CanadaNav() {
                     setMobileOpen(false);
                     window.dispatchEvent(new CustomEvent("edpath:open-assistant"));
                   }}
-                  className="mt-4 inline-flex items-center gap-2 w-full px-2 py-3 text-left text-base font-medium border-t border-border text-[hsl(var(--azul))] hover:text-[hsl(var(--navy))] transition-colors"
+                  className="mt-4 inline-flex items-center gap-2 w-full px-2 py-3 text-left text-[15px] font-medium border-t border-border text-[hsl(var(--azul))] hover:text-[hsl(var(--navy))] transition-colors"
                 >
                   <MessageCircle className="h-4 w-4" />
                   {t("canadaNav.askEdpath")}
