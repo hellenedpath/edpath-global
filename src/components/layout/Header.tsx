@@ -148,7 +148,7 @@ export function Header() {
                       )}
                     >
                       <span>{t(`langs.${l.code}`)}</span>
-                      {i18n.language === l.code && <Check className="w-4 h-4 text-crimson" />}
+              {i18n.language === l.code && <Check className="w-4 h-4 text-[hsl(var(--azul))]" />}
                     </button>
                   ) : (
                     <div
@@ -168,7 +168,7 @@ export function Header() {
 
           <Link
             to="/canada/meu-caminho?country=canada"
-            className="hidden md:inline-flex items-center justify-center rounded-full bg-crimson px-5 py-2.5 text-sm font-semibold text-white shadow-[0_6px_18px_-8px_hsl(var(--crimson)/0.6)] hover:bg-crimson/90 hover:shadow-[0_10px_22px_-8px_hsl(var(--crimson)/0.7)] hover:-translate-y-0.5 hover:scale-105 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/50"
+            className="hidden md:inline-flex items-center justify-center rounded-full bg-[hsl(var(--crimson))] px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_6px_18px_-8px_hsl(var(--crimson)/0.6)] hover:bg-[hsl(var(--crimson)/0.92)] hover:shadow-[0_10px_22px_-8px_hsl(var(--crimson)/0.7)] hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--crimson)/0.5)]"
           >
             {t("nav.discoverMyPath")}
           </Link>
@@ -189,7 +189,7 @@ export function Header() {
             <Link
               to="/canada/meu-caminho?country=canada"
               onClick={() => setMobileOpen(false)}
-              className="mb-2 px-4 py-3 text-sm font-semibold rounded-full bg-crimson text-white inline-flex items-center justify-center gap-2 shadow-sm hover:bg-crimson/90 transition-colors"
+              className="mb-2 px-4 py-3 text-sm font-semibold rounded-full bg-[hsl(var(--crimson))] text-white inline-flex items-center justify-center gap-2 shadow-sm hover:bg-[hsl(var(--crimson)/0.92)] transition-colors"
             >
               {t("nav.discoverMyPath")}
             </Link>

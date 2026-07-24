@@ -76,7 +76,7 @@ const liveDefs = [
 function BadgePill({ badge }: { badge: Badge }) {
   const tone =
     badge.tone === "gold"
-      ? "bg-[hsl(var(--amber))]/15 text-[hsl(var(--amber))]"
+      ? "bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))]"
       : "bg-[hsl(var(--crimson))]/10 text-[hsl(var(--crimson))]";
   return (
     <span
@@ -109,7 +109,7 @@ function DropdownItemRow({
       className={cn(
         "group cursor-pointer rounded-lg px-3 py-2.5 text-base text-navy/80 transition-colors",
         "focus:bg-[hsl(var(--azul))]/10 focus:text-[hsl(var(--azul))]",
-        active && "bg-[hsl(var(--azul))]/10 text-[hsl(var(--crimson))] font-semibold",
+        active && "bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))] font-semibold",
         item.primary && "text-[hsl(var(--crimson))] font-semibold focus:text-[hsl(var(--crimson))]",
       )}
     >
@@ -117,7 +117,7 @@ function DropdownItemRow({
         <Icon
           className={cn(
             "h-4 w-4 mr-2 shrink-0 text-[hsl(var(--azul))]/70 transition-colors group-hover:text-[hsl(var(--azul))]",
-            active && "text-[hsl(var(--crimson))]",
+            active && "text-[hsl(var(--azul))]",
           )}
         />
       )}
@@ -176,9 +176,9 @@ function HoverDropdown({
           <button
             type="button"
             className={cn(
-              "relative shrink-0 inline-flex items-center gap-1.5 px-2 py-1.5 text-base font-medium transition-colors text-navy/80 hover:text-[hsl(var(--azul))] focus:outline-none focus-visible:text-[hsl(var(--azul))]",
-              "after:absolute after:left-2 after:right-2 after:-bottom-0.5 after:h-[2px] after:rounded-full after:bg-[hsl(var(--crimson))] after:origin-left after:scale-x-0 after:transition-transform after:duration-300",
-              (isActive || open) && "text-[hsl(var(--crimson))] after:scale-x-100",
+              "relative shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-[15px] font-semibold transition-colors text-[hsl(var(--navy))] hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/10 focus:outline-none focus-visible:text-[hsl(var(--azul))]",
+              "after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-[2px] after:rounded-full after:bg-[hsl(var(--azul))] after:origin-left after:scale-x-0 after:transition-transform after:duration-300",
+              (isActive || open) && "text-[hsl(var(--azul))] bg-[hsl(var(--azul))]/10 after:scale-x-100",
             )}
           >
             {Icon && <Icon className="h-4 w-4 opacity-80" />}
@@ -290,19 +290,19 @@ export function CanadaNav() {
   const flatStudy: Item[] = studyGroups.flatMap((g) => g.items);
 
   return (
-    <div className="sticky top-16 z-40 border-b border-[hsl(var(--azul))]/20 bg-gradient-to-r from-background via-[hsl(var(--azul))]/[0.04] to-[hsl(var(--navy))]/[0.05] backdrop-blur-md">
-      <div className="container flex items-center gap-5 py-3">
-        <div className="flex items-center gap-2 shrink-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-navy/70">
+    <div className="sticky top-16 z-40 border-b border-border bg-white/95 backdrop-blur-md">
+      <div className="container flex items-center gap-6 py-3">
+        <div className="flex items-center gap-2 shrink-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5a6488]">
           <span className="hidden sm:inline">{t("canadaNav.canadaMenu")}</span>
         </div>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-5 flex-1">
+        <nav className="hidden md:flex items-center gap-3 flex-1">
           <NavLink
             to={primaryTo}
             className={({ isActive }) =>
               cn(
-                "shrink-0 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-base font-semibold text-white bg-[hsl(var(--crimson))] shadow-[0_6px_18px_-6px_hsl(var(--crimson)/0.6)] hover:shadow-[0_10px_24px_-6px_hsl(var(--crimson)/0.75)] hover:-translate-y-0.5 transition-all duration-200",
+                "shrink-0 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[15px] font-semibold text-white bg-[hsl(var(--crimson))] shadow-[0_6px_18px_-6px_hsl(var(--crimson)/0.6)] hover:bg-[hsl(var(--crimson)/0.92)] hover:shadow-[0_10px_24px_-6px_hsl(var(--crimson)/0.75)] hover:-translate-y-0.5 transition-all duration-200 mr-2",
                 isActive && "ring-2 ring-[hsl(var(--crimson))]/40 ring-offset-2 ring-offset-background",
               )
             }
@@ -321,7 +321,7 @@ export function CanadaNav() {
             onClick={() =>
               window.dispatchEvent(new CustomEvent("edpath:open-assistant"))
             }
-            className="shrink-0 ml-auto inline-flex items-center gap-1.5 text-base font-medium text-[hsl(var(--azul))] hover:text-[hsl(var(--navy))] transition-colors"
+            className="shrink-0 ml-auto inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-[15px] font-semibold text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/10 transition-colors"
           >
             <MessageCircle className="h-4 w-4" />
             {t("canadaNav.askEdpath")}
@@ -384,7 +384,7 @@ export function CanadaNav() {
                                     className={({ isActive }) =>
                                       cn(
                                         "flex items-center gap-2 px-2 py-2 text-base rounded-md text-navy/80 hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/10 transition-colors",
-                                        isActive && "bg-[hsl(var(--crimson))]/10 text-[hsl(var(--crimson))] font-semibold",
+                                        isActive && "bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))] font-semibold",
                                         it.primary && "text-[hsl(var(--crimson))] font-semibold",
                                       )
                                     }
