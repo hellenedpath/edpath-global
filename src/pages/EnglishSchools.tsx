@@ -588,15 +588,6 @@ function SchoolCard({
           <h3 className="font-display text-[22px] font-bold text-[hsl(var(--azul))] leading-snug tracking-tight break-words">
             {school.display_name || school.name}
           </h3>
-          {school.languages_canada && (
-            <span
-              className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[hsl(var(--gold)/0.12)] px-2.5 py-1 text-[11px] font-semibold text-[hsl(38_60%_32%)] ring-1 ring-[hsl(var(--gold)/0.35)]"
-              title={L.languagesCanada}
-            >
-              <ShieldCheck className="h-3.5 w-3.5 text-[hsl(var(--gold))]" />
-              {L.languagesCanada}
-            </span>
-          )}
         </div>
         {school.city && (
           <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-[#55608a]">
