@@ -2219,7 +2219,7 @@ export const pt = {
     openLabel: "Abrir assistente EdPath",
     closeLabel: "Fechar assistente",
     greeting:
-      "Oi! Que bom te ver por aqui. Sou o assistente da EdPath e respondo com base em dados verificados da plataforma. Como posso te ajudar hoje?",
+      "Oi! Eu sou o Globbi, o assistente da EdPath. Respondo com base em dados verificados da plataforma. Como posso te ajudar hoje?",
     suggestions: [
       "Meu programa dá direito a PGWP?",
       "Quanto preciso comprovar de fundos?",
