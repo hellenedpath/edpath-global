@@ -19,8 +19,8 @@ All colors MUST be HSL.
     --popover-foreground: 228 49% 18%;
 
     --navy: 228 49% 18%;      /* #051556 */
-    --azul: 221 67% 53%;      /* #396CD8 */
-    --crimson: 350 72% 57%;   /* #E0405B */
+    --azul: 218 74% 47%;      /* #1f5fd0 */
+    --crimson: 358 79% 52%;   /* #e5262b */
     --amber: 38 92% 50%;      /* warning accent */
     --gold: 43 74% 49%;       /* tabernacle gold accent */
     --purple: 282 62% 45%;    /* argaman purple from logo */
@@ -115,13 +115,13 @@ All colors MUST be HSL.
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', system-ui, sans-serif;
+    font-family: 'Fredoka', system-ui, sans-serif;
     font-weight: 700;
     letter-spacing: -0.01em;
   }
 
   .font-display {
-    font-family: 'Poppins', system-ui, sans-serif;
+    font-family: 'Fredoka', system-ui, sans-serif;
     font-weight: 700;
     letter-spacing: -0.01em;
   }
