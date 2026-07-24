@@ -298,19 +298,19 @@ export default function EnglishSchools() {
       <section className="border-y border-border bg-white">
         <div className="container max-w-6xl py-8 md:py-10 grid grid-cols-3 gap-6 md:gap-4 text-center">
           <Stat value={totalSchools} label={L.statSchoolsShort} tone="azul" />
-          <Stat value={totalProvinces} label={L.statProvincesShort} tone="azul" />
+          <Stat value={totalProvinces} label={L.statProvincesShort} tone="gold" />
           <Stat value={totalAccredited} label={L.statAccreditedShort} tone="crimson" />
         </div>
       </section>
 
       {/* WARN */}
       <section id="warn" className="container max-w-6xl pt-10 md:pt-14">
-        <div className="rounded-2xl border border-[hsl(var(--amber)/0.35)] bg-[hsl(var(--amber)/0.08)] p-5 md:p-6 flex gap-4">
-          <div className="shrink-0 h-10 w-10 rounded-xl bg-[hsl(var(--amber)/0.2)] inline-flex items-center justify-center">
-            <AlertTriangle className="h-5 w-5 text-[hsl(38_92%_35%)]" />
+        <div className="rounded-2xl border border-border border-l-4 border-l-[hsl(var(--gold))] bg-white p-5 md:p-6 flex gap-4 shadow-sm">
+          <div className="shrink-0 h-10 w-10 rounded-xl bg-[hsl(var(--gold)/0.12)] inline-flex items-center justify-center">
+            <AlertTriangle className="h-5 w-5 text-[hsl(var(--gold))]" />
           </div>
           <div>
-            <p className="font-semibold text-[hsl(var(--azul))]">{L.warnTitle}</p>
+            <p className="font-semibold text-[hsl(var(--navy))]">{L.warnTitle}</p>
             <p className="mt-1 text-sm md:text-base text-[#55608a] leading-relaxed">
               {L.warnBody}
             </p>
@@ -421,7 +421,7 @@ function HeroPhoto({ L }: { L: Record<string, string> }) {
           loading="eager"
         />
         <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur px-3 py-1.5 text-[12px] font-semibold text-[hsl(var(--azul))] shadow-sm">
-          <ShieldCheck className="h-3.5 w-3.5" />
+          <ShieldCheck className="h-3.5 w-3.5 text-[hsl(var(--gold))]" />
           {L.languagesCanada}
         </span>
       </div>
@@ -614,10 +614,10 @@ function SchoolCard({
           </h3>
           {school.languages_canada && (
             <span
-              className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[hsl(var(--azul)/0.1)] px-2.5 py-1 text-[11px] font-semibold text-[hsl(var(--azul))]"
+              className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[hsl(var(--gold)/0.12)] px-2.5 py-1 text-[11px] font-semibold text-[hsl(38_60%_32%)] ring-1 ring-[hsl(var(--gold)/0.35)]"
               title={L.languagesCanada}
             >
-              <ShieldCheck className="h-3.5 w-3.5" />
+              <ShieldCheck className="h-3.5 w-3.5 text-[hsl(var(--gold))]" />
               {L.languagesCanada}
             </span>
           )}
