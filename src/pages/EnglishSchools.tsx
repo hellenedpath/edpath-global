@@ -381,82 +381,83 @@ export default function EnglishSchools() {
 
 /* ---------- Reusable pieces ---------- */
 
-function HeroPhoto({ L }: { L: Record<string, string> }) {
+function HeroGraphic() {
   return (
-    <div className="relative w-full max-w-[560px] animate-float-y">
-      <div className="relative overflow-hidden rounded-3xl shadow-[0_30px_60px_-24px_rgba(5,21,86,0.4)] ring-1 ring-black/5">
-        <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-          alt="International students smiling together on campus"
-          className="block w-full h-[420px] md:h-[480px] object-cover"
-          loading="eager"
-        />
-        <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur px-3 py-1.5 text-[12px] font-semibold text-[hsl(var(--azul))] shadow-sm">
-          <ShieldCheck className="h-3.5 w-3.5 text-[hsl(var(--gold))]" />
-          {L.languagesCanada}
-        </span>
-      </div>
-    </div>
-  );
-}
+    <div className="relative w-full max-w-[520px] aspect-square">
+      <span
+        aria-hidden
+        className="aurora-blob"
+        style={{
+          top: "-8%",
+          left: "-6%",
+          width: "60%",
+          height: "60%",
+          background: "hsl(var(--azul) / 0.35)",
+        }}
+      />
+      <span
+        aria-hidden
+        className="aurora-blob"
+        style={{
+          bottom: "-10%",
+          right: "-6%",
+          width: "62%",
+          height: "62%",
+          background: "hsl(var(--purple) / 0.35)",
+        }}
+      />
+      <svg
+        viewBox="0 0 400 400"
+        className="relative w-full h-full animate-float-y"
+        role="img"
+        aria-label="EdPath connection graphic"
+      >
+        <defs>
+          <linearGradient id="brandStroke" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="hsl(var(--azul))" />
+            <stop offset="55%" stopColor="hsl(var(--purple))" />
+            <stop offset="100%" stopColor="hsl(var(--crimson))" />
+          </linearGradient>
+          <radialGradient id="core" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="hsl(var(--purple))" stopOpacity="0.9" />
+            <stop offset="60%" stopColor="hsl(var(--azul))" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="hsl(var(--azul))" stopOpacity="0" />
+          </radialGradient>
+        </defs>
 
-function ProductPreview({ L }: { L: Record<string, string> }) {
-  return (
-    <div
-      className="relative w-full max-w-[460px] rounded-[28px] border border-border bg-white p-7 shadow-[0_28px_60px_-24px_rgba(5,21,86,0.35)] animate-float-y"
-    >
-      <header>
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-[22px] font-bold text-[hsl(var(--azul))] leading-tight">
-            {L.previewTitle}
-          </h3>
-          <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[hsl(var(--azul)/0.12)] px-2.5 py-1 text-[11px] font-semibold text-[hsl(var(--azul))]">
-            {L.previewBadge}
-          </span>
-        </div>
-      </header>
+        {/* Concentric orbits */}
+        <g fill="none" stroke="url(#brandStroke)" strokeWidth="1.5">
+          <ellipse cx="200" cy="200" rx="170" ry="170" opacity="0.35" />
+          <ellipse cx="200" cy="200" rx="140" ry="140" opacity="0.55" />
+          <ellipse cx="200" cy="200" rx="105" ry="105" opacity="0.75" />
+          <ellipse cx="200" cy="200" rx="70" ry="70" opacity="0.9" />
+        </g>
 
-      <div className="mt-6 space-y-3">
-        <PreviewRow
-          icon={<Coins className="h-4 w-4 text-[hsl(var(--crimson))]" />}
-          bg="bg-[hsl(var(--crimson)/0.1)]"
-          label={L.previewCostLabel}
+        {/* Tilted orbit */}
+        <ellipse
+          cx="200"
+          cy="200"
+          rx="175"
+          ry="70"
+          fill="none"
+          stroke="url(#brandStroke)"
+          strokeWidth="1.5"
+          opacity="0.6"
+          transform="rotate(-24 200 200)"
         />
-        <PreviewRow
-          icon={<ShieldCheck className="h-4 w-4 text-[hsl(var(--azul))]" />}
-          bg="bg-[hsl(var(--azul)/0.1)]"
-          label={L.previewAccredLabel}
-        />
-        <PreviewRow
-          icon={<FileCheck className="h-4 w-4 text-[hsl(var(--azul))]" />}
-          bg="bg-[hsl(var(--azul)/0.1)]"
-          label={L.previewExamLabel}
-        />
-        <PreviewRow
-          icon={<Route className="h-4 w-4 text-[hsl(var(--azul))]" />}
-          bg="bg-[hsl(var(--azul)/0.1)]"
-          label={L.previewPathwayLabel}
-        />
-      </div>
-    </div>
-  );
-}
 
-function PreviewRow({
-  icon,
-  bg,
-  label,
-}: {
-  icon: React.ReactNode;
-  bg: string;
-  label: string;
-}) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className={cn("inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg", bg)}>
-        {icon}
-      </span>
-      <span className="flex-1 text-[15px] font-semibold text-[#23347e]">{label}</span>
+        {/* Luminous core */}
+        <circle cx="200" cy="200" r="90" fill="url(#core)" />
+        <circle cx="200" cy="200" r="10" fill="hsl(var(--purple))" />
+
+        {/* Connection nodes */}
+        <g>
+          <circle cx="30" cy="200" r="6" fill="hsl(var(--azul))" />
+          <circle cx="370" cy="200" r="6" fill="hsl(var(--crimson))" />
+          <circle cx="305" cy="95" r="5" fill="hsl(var(--purple))" />
+          <circle cx="120" cy="315" r="5" fill="hsl(var(--azul))" />
+        </g>
+      </svg>
     </div>
   );
 }
