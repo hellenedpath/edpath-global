@@ -39,6 +39,26 @@ type EnglishSchool = {
 const isEmpty = (v: string | null | undefined) =>
   !v || v.trim() === "" || v.trim() === "-" || v.trim() === "—";
 
+function cleanCost(raw: string | null | undefined, L: Record<string, string>): { label: string; value: string } {
+  const s = (raw ?? "").trim();
+  if (!s || /sob\s+or[çc]amento|n[ãa]o\s+publicado|sob\s+consulta|consulte/i.test(s)) {
+    return { label: L.costLabel, value: L.onRequest };
+  }
+  let out = s
+    .replace(/~/g, "")
+    .replace(/\([^)]*\)/g, "")
+    .split(";")[0]
+    .replace(/^\s*(a partir de|intensivo)\s+/i, "")
+    .replace(/\/\s*semana/gi, "/sem")
+    .replace(/\s+por\s+semana/gi, "/sem")
+    .replace(/\bsemana\b/gi, "/sem")
+    .replace(/\/\s*week/gi, "/wk")
+    .replace(/\s+/g, " ")
+    .trim();
+  const label = /\d/.test(out) ? L.fromLabel : L.costLabel;
+  return { label, value: out };
+}
+
 const softTile =
   "inline-flex items-center justify-center rounded-2xl shadow-[4px_4px_9px_rgba(5,21,86,0.11),-4px_-4px_8px_rgba(255,255,255,0.95)]";
 
