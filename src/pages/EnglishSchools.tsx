@@ -7,7 +7,6 @@ import {
   Check,
   ArrowRight,
   ArrowUpRight,
-  ShieldCheck,
   Coins,
   FileCheck,
   Route,
@@ -106,8 +105,8 @@ export default function EnglishSchools() {
     () => new Set(items.map((s) => s.province).filter(Boolean)).size,
     [items],
   );
-  const totalAccredited = useMemo(
-    () => items.filter((s) => s.languages_canada).length,
+  const totalCities = useMemo(
+    () => new Set(items.map((s) => s.city).filter(Boolean)).size,
     [items],
   );
 
@@ -118,7 +117,7 @@ export default function EnglishSchools() {
         titleAccent: "right",
         titleTail: " English school in Canada.",
         intro:
-          "Compare Languages Canada accredited schools, real weekly cost and the pathway to college, all in one place.",
+          "Compare English schools, the real weekly cost and the pathway to college. All in one place.",
         warnTitle: "Important: an English course alone does not grant work rights",
         warnBody:
           "Taking an English course by itself does not give you the right to work in Canada. Work rights only start when you enroll in an eligible post-secondary DLI program.",
@@ -135,27 +134,17 @@ export default function EnglishSchools() {
         apply: "How to apply",
         loading: "Loading…",
         empty: "No schools match your filters.",
-        languagesCanada: "Languages Canada",
         statSchools: "schools",
         statProvinces: "provinces",
-        statAccredited: "accredited by Languages Canada",
+        statCities: "cities",
         resultsCount: "schools",
         emptyHint: "Try clearing the filters or searching another city.",
         ctaSee: "See schools",
         ctaHow: "How it works",
-        trust1: "Accredited schools",
+        trust1: "Verified schools",
         trust2: "Official-source data",
         trust3: "Clear, complete guide",
-        chip1: "from $375/wk",
-        chip2: "Languages Canada",
-        chip3: "Bridge to college",
-        previewTitle: "What you compare for every school",
-        previewBadge: "Every school",
-        previewCostLabel: "Cost per week",
-        previewAccredLabel: "Accreditation (Languages Canada)",
-        previewExamLabel: "Exam preparation",
-        previewPathwayLabel: "Pathway to college",
-        statAccreditedShort: "Languages Canada",
+        statCitiesShort: "cities",
         statProvincesShort: "provinces",
         statSchoolsShort: "schools",
       }
@@ -165,7 +154,7 @@ export default function EnglishSchools() {
         titleAccent: "ideal",
         titleTail: " no Canadá.",
         intro:
-          "Compare escolas credenciadas pela Languages Canada, o custo real por semana e o caminho até o college. Tudo em um lugar só.",
+          "Compare escolas de inglês, o custo real por semana e o caminho até o college. Tudo em um lugar só.",
         warnTitle:
           "Importante: um curso de inglês, sozinho, não dá direito a trabalhar",
         warnBody:
@@ -183,27 +172,17 @@ export default function EnglishSchools() {
         apply: "Como aplicar",
         loading: "Carregando…",
         empty: "Nenhuma escola encontrada com esses filtros.",
-        languagesCanada: "Languages Canada",
         statSchools: "escolas",
         statProvinces: "províncias",
-        statAccredited: "credenciadas Languages Canada",
+        statCities: "cidades",
         resultsCount: "escolas",
         emptyHint: "Tente limpar os filtros ou buscar outra cidade.",
         ctaSee: "Ver escolas",
         ctaHow: "Como funciona",
-        trust1: "Escolas credenciadas",
+        trust1: "Escolas verificadas",
         trust2: "Dados de fontes oficiais",
         trust3: "Guia completo e claro",
-        chip1: "a partir de $375/sem",
-        chip2: "Languages Canada",
-        chip3: "Ponte pro college",
-        previewTitle: "O que você compara em cada escola",
-        previewBadge: "Em cada escola",
-        previewCostLabel: "Custo por semana",
-        previewAccredLabel: "Credenciamento (Languages Canada)",
-        previewExamLabel: "Preparação para exames",
-        previewPathwayLabel: "Caminho até o college (pathway)",
-        statAccreditedShort: "Languages Canada",
+        statCitiesShort: "cidades",
         statProvincesShort: "províncias",
         statSchoolsShort: "escolas",
       };
@@ -233,9 +212,9 @@ export default function EnglishSchools() {
                 <MapPin className="h-3.5 w-3.5" />
                 {L.eyebrow}
               </span>
-              <h1 className="mt-5 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(var(--azul))] tracking-tight leading-[1.05]">
+              <h1 className="mt-5 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(var(--navy))] tracking-tight leading-[1.05]">
                 {L.titleLead}
-                <span className="text-[hsl(var(--crimson))]">{L.titleAccent}</span>
+                <span className="text-brand-gradient">{L.titleAccent}</span>
                 {L.titleTail}
               </h1>
               <p className="mt-5 max-w-[560px] text-base md:text-lg text-[#55608a] leading-relaxed">
@@ -278,17 +257,9 @@ export default function EnglishSchools() {
               </ul>
             </div>
 
-            {/* Product preview */}
+            {/* Graphic composition */}
             <div className="relative flex justify-center md:justify-end">
-              <div
-                aria-hidden
-                className="absolute inset-0 -z-10 blur-3xl opacity-90"
-                style={{
-                  background:
-                    "radial-gradient(closest-side, hsl(var(--azul)/0.35), transparent 70%)",
-                }}
-              />
-              <HeroPhoto L={L} />
+              <HeroGraphic />
             </div>
           </div>
         </div>
@@ -298,16 +269,16 @@ export default function EnglishSchools() {
       <section className="border-y border-border bg-white">
         <div className="container max-w-6xl py-8 md:py-10 grid grid-cols-3 gap-6 md:gap-4 text-center">
           <Stat value={totalSchools} label={L.statSchoolsShort} tone="azul" />
-          <Stat value={totalProvinces} label={L.statProvincesShort} tone="gold" />
-          <Stat value={totalAccredited} label={L.statAccreditedShort} tone="crimson" />
+          <Stat value={totalProvinces} label={L.statProvincesShort} tone="purple" />
+          <Stat value={totalCities} label={L.statCitiesShort} tone="crimson" />
         </div>
       </section>
 
       {/* WARN */}
       <section id="warn" className="container max-w-6xl pt-10 md:pt-14">
-        <div className="rounded-2xl border border-border border-l-4 border-l-[hsl(var(--gold))] bg-white p-5 md:p-6 flex gap-4 shadow-sm">
-          <div className="shrink-0 h-10 w-10 rounded-xl bg-[hsl(var(--gold)/0.12)] inline-flex items-center justify-center">
-            <AlertTriangle className="h-5 w-5 text-[hsl(var(--gold))]" />
+        <div className="rounded-2xl border border-border border-l-4 border-l-[hsl(var(--crimson))] bg-white p-5 md:p-6 flex gap-4 shadow-sm">
+          <div className="shrink-0 h-10 w-10 rounded-xl bg-[hsl(var(--crimson)/0.1)] inline-flex items-center justify-center">
+            <AlertTriangle className="h-5 w-5 text-[hsl(var(--crimson))]" />
           </div>
           <div>
             <p className="font-semibold text-[hsl(var(--navy))]">{L.warnTitle}</p>
@@ -410,82 +381,83 @@ export default function EnglishSchools() {
 
 /* ---------- Reusable pieces ---------- */
 
-function HeroPhoto({ L }: { L: Record<string, string> }) {
+function HeroGraphic() {
   return (
-    <div className="relative w-full max-w-[560px] animate-float-y">
-      <div className="relative overflow-hidden rounded-3xl shadow-[0_30px_60px_-24px_rgba(5,21,86,0.4)] ring-1 ring-black/5">
-        <img
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-          alt="International students smiling together on campus"
-          className="block w-full h-[420px] md:h-[480px] object-cover"
-          loading="eager"
-        />
-        <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur px-3 py-1.5 text-[12px] font-semibold text-[hsl(var(--azul))] shadow-sm">
-          <ShieldCheck className="h-3.5 w-3.5 text-[hsl(var(--gold))]" />
-          {L.languagesCanada}
-        </span>
-      </div>
-    </div>
-  );
-}
+    <div className="relative w-full max-w-[520px] aspect-square">
+      <span
+        aria-hidden
+        className="aurora-blob"
+        style={{
+          top: "-8%",
+          left: "-6%",
+          width: "60%",
+          height: "60%",
+          background: "hsl(var(--azul) / 0.35)",
+        }}
+      />
+      <span
+        aria-hidden
+        className="aurora-blob"
+        style={{
+          bottom: "-10%",
+          right: "-6%",
+          width: "62%",
+          height: "62%",
+          background: "hsl(var(--purple) / 0.35)",
+        }}
+      />
+      <svg
+        viewBox="0 0 400 400"
+        className="relative w-full h-full animate-float-y"
+        role="img"
+        aria-label="EdPath connection graphic"
+      >
+        <defs>
+          <linearGradient id="brandStroke" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="hsl(var(--azul))" />
+            <stop offset="55%" stopColor="hsl(var(--purple))" />
+            <stop offset="100%" stopColor="hsl(var(--crimson))" />
+          </linearGradient>
+          <radialGradient id="core" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="hsl(var(--purple))" stopOpacity="0.9" />
+            <stop offset="60%" stopColor="hsl(var(--azul))" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="hsl(var(--azul))" stopOpacity="0" />
+          </radialGradient>
+        </defs>
 
-function ProductPreview({ L }: { L: Record<string, string> }) {
-  return (
-    <div
-      className="relative w-full max-w-[460px] rounded-[28px] border border-border bg-white p-7 shadow-[0_28px_60px_-24px_rgba(5,21,86,0.35)] animate-float-y"
-    >
-      <header>
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-[22px] font-bold text-[hsl(var(--azul))] leading-tight">
-            {L.previewTitle}
-          </h3>
-          <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[hsl(var(--azul)/0.12)] px-2.5 py-1 text-[11px] font-semibold text-[hsl(var(--azul))]">
-            {L.previewBadge}
-          </span>
-        </div>
-      </header>
+        {/* Concentric orbits */}
+        <g fill="none" stroke="url(#brandStroke)" strokeWidth="1.5">
+          <ellipse cx="200" cy="200" rx="170" ry="170" opacity="0.35" />
+          <ellipse cx="200" cy="200" rx="140" ry="140" opacity="0.55" />
+          <ellipse cx="200" cy="200" rx="105" ry="105" opacity="0.75" />
+          <ellipse cx="200" cy="200" rx="70" ry="70" opacity="0.9" />
+        </g>
 
-      <div className="mt-6 space-y-3">
-        <PreviewRow
-          icon={<Coins className="h-4 w-4 text-[hsl(var(--crimson))]" />}
-          bg="bg-[hsl(var(--crimson)/0.1)]"
-          label={L.previewCostLabel}
+        {/* Tilted orbit */}
+        <ellipse
+          cx="200"
+          cy="200"
+          rx="175"
+          ry="70"
+          fill="none"
+          stroke="url(#brandStroke)"
+          strokeWidth="1.5"
+          opacity="0.6"
+          transform="rotate(-24 200 200)"
         />
-        <PreviewRow
-          icon={<ShieldCheck className="h-4 w-4 text-[hsl(var(--azul))]" />}
-          bg="bg-[hsl(var(--azul)/0.1)]"
-          label={L.previewAccredLabel}
-        />
-        <PreviewRow
-          icon={<FileCheck className="h-4 w-4 text-[hsl(var(--azul))]" />}
-          bg="bg-[hsl(var(--azul)/0.1)]"
-          label={L.previewExamLabel}
-        />
-        <PreviewRow
-          icon={<Route className="h-4 w-4 text-[hsl(var(--azul))]" />}
-          bg="bg-[hsl(var(--azul)/0.1)]"
-          label={L.previewPathwayLabel}
-        />
-      </div>
-    </div>
-  );
-}
 
-function PreviewRow({
-  icon,
-  bg,
-  label,
-}: {
-  icon: React.ReactNode;
-  bg: string;
-  label: string;
-}) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className={cn("inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg", bg)}>
-        {icon}
-      </span>
-      <span className="flex-1 text-[15px] font-semibold text-[#23347e]">{label}</span>
+        {/* Luminous core */}
+        <circle cx="200" cy="200" r="90" fill="url(#core)" />
+        <circle cx="200" cy="200" r="10" fill="hsl(var(--purple))" />
+
+        {/* Connection nodes */}
+        <g>
+          <circle cx="30" cy="200" r="6" fill="hsl(var(--azul))" />
+          <circle cx="370" cy="200" r="6" fill="hsl(var(--crimson))" />
+          <circle cx="305" cy="95" r="5" fill="hsl(var(--purple))" />
+          <circle cx="120" cy="315" r="5" fill="hsl(var(--azul))" />
+        </g>
+      </svg>
     </div>
   );
 }
@@ -497,13 +469,15 @@ function Stat({
 }: {
   value: number | string;
   label: string;
-  tone: "navy" | "azul" | "crimson" | "gold";
+  tone: "navy" | "azul" | "crimson" | "gold" | "purple";
 }) {
   const color =
     tone === "azul"
       ? "text-[hsl(var(--azul))]"
       : tone === "crimson"
       ? "text-[hsl(var(--crimson))]"
+      : tone === "purple"
+      ? "text-[hsl(var(--purple))]"
       : tone === "gold"
       ? "text-[hsl(var(--gold))]"
       : "text-[hsl(var(--azul))]";
@@ -614,15 +588,6 @@ function SchoolCard({
           <h3 className="font-display text-[22px] font-bold text-[hsl(var(--azul))] leading-snug tracking-tight break-words">
             {school.display_name || school.name}
           </h3>
-          {school.languages_canada && (
-            <span
-              className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[hsl(var(--gold)/0.12)] px-2.5 py-1 text-[11px] font-semibold text-[hsl(38_60%_32%)] ring-1 ring-[hsl(var(--gold)/0.35)]"
-              title={L.languagesCanada}
-            >
-              <ShieldCheck className="h-3.5 w-3.5 text-[hsl(var(--gold))]" />
-              {L.languagesCanada}
-            </span>
-          )}
         </div>
         {school.city && (
           <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-[#55608a]">
