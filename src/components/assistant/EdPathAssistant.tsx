@@ -71,9 +71,13 @@ export default function EdPathAssistant() {
           type="button"
           onClick={() => setOpen(true)}
           aria-label={t("assistant.openLabel")}
-          className="fixed bottom-5 right-5 z-[100] flex h-14 w-14 items-center justify-center rounded-full bg-navy text-white shadow-lg ring-2 ring-[#E0405B]/60 transition hover:scale-105 hover:bg-navy/90"
+          className="fixed bottom-5 right-5 z-[100] flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-navy shadow-lg ring-2 ring-[hsl(var(--crimson))]/60 transition hover:scale-105 hover:bg-navy/90"
         >
-          <MessageCircle strokeWidth={1.5} className="h-6 w-6" />
+          <img
+            src={mascotAsset.url}
+            alt={t("assistant.title")}
+            className="h-full w-full object-cover"
+          />
         </button>
       )}
 
