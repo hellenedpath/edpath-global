@@ -26,6 +26,7 @@ export default {
         navy: "hsl(var(--navy))",
         azul: "hsl(var(--azul))",
         crimson: "hsl(var(--crimson))",
+        gold: "hsl(var(--gold))",
         purple: "hsl(var(--purple))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
