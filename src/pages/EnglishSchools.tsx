@@ -51,8 +51,6 @@ const DOT_COLORS = [
   "hsl(var(--azul))",
 ];
 
-// Soft blue-gray for secondary text (never black/near-black)
-const MUTED = "text-[#4a5578]";
 
 export default function EnglishSchools() {
   const { i18n } = useTranslation();
