@@ -116,7 +116,7 @@ function DropdownItemRow({
       {Icon && (
         <Icon
           className={cn(
-            "h-4 w-4 mr-2 shrink-0 text-[hsl(var(--azul))]/70 transition-colors group-hover:text-[hsl(var(--azul))]",
+            "h-5 w-5 mr-2 shrink-0 text-[hsl(var(--azul))]/70 transition-colors group-hover:text-[hsl(var(--azul))]",
             active && "text-[hsl(var(--azul))]",
           )}
         />
@@ -176,12 +176,12 @@ function HoverDropdown({
           <button
             type="button"
             className={cn(
-              "relative shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-[15px] font-semibold transition-colors text-[hsl(var(--navy))] hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/10 focus:outline-none focus-visible:text-[hsl(var(--azul))]",
+              "relative shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-[17px] font-semibold transition-colors text-[hsl(var(--navy))] hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/10 focus:outline-none focus-visible:text-[hsl(var(--azul))]",
               "after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-[2px] after:rounded-full after:bg-[hsl(var(--azul))] after:origin-left after:scale-x-0 after:transition-transform after:duration-300",
               (isActive || open) && "text-[hsl(var(--azul))] bg-[hsl(var(--azul))]/10 after:scale-x-100",
             )}
           >
-            {Icon && <Icon className="h-4 w-4 opacity-80" />}
+            {Icon && <Icon className="h-5 w-5 opacity-80" />}
             {label}
             <ChevronDown
               className={cn(
@@ -290,8 +290,8 @@ export function CanadaNav() {
   const flatStudy: Item[] = studyGroups.flatMap((g) => g.items);
 
   return (
-    <div className="sticky top-16 z-40 border-b border-border bg-white/95 backdrop-blur-md">
-      <div className="container flex items-center gap-6 py-3">
+    <div className="sticky top-20 md:top-24 z-40 border-b border-border bg-white/95 backdrop-blur-md">
+      <div className="container flex items-center gap-6 py-4">
         <div className="flex items-center gap-2 shrink-0 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5a6488]">
           <span className="hidden sm:inline">{t("canadaNav.canadaMenu")}</span>
         </div>
@@ -302,12 +302,12 @@ export function CanadaNav() {
             to={primaryTo}
             className={({ isActive }) =>
               cn(
-                "shrink-0 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[15px] font-semibold text-white bg-[hsl(var(--crimson))] shadow-[0_6px_18px_-6px_hsl(var(--crimson)/0.6)] hover:bg-[hsl(var(--crimson)/0.92)] hover:shadow-[0_10px_24px_-6px_hsl(var(--crimson)/0.75)] hover:-translate-y-0.5 transition-all duration-200 mr-2",
+                "shrink-0 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[16px] font-semibold text-white bg-[hsl(var(--crimson))] shadow-[0_6px_18px_-6px_hsl(var(--crimson)/0.6)] hover:bg-[hsl(var(--crimson)/0.92)] hover:shadow-[0_10px_24px_-6px_hsl(var(--crimson)/0.75)] hover:-translate-y-0.5 transition-all duration-200 mr-2",
                 isActive && "ring-2 ring-[hsl(var(--crimson))]/40 ring-offset-2 ring-offset-background",
               )
             }
           >
-            <Compass className="h-4 w-4" />
+            <Compass className="h-5 w-5" />
             {t("canadaNav.items.myPath")}
           </NavLink>
 
@@ -321,9 +321,9 @@ export function CanadaNav() {
             onClick={() =>
               window.dispatchEvent(new CustomEvent("edpath:open-assistant"))
             }
-            className="shrink-0 ml-auto inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-[15px] font-semibold text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/10 transition-colors"
+            className="shrink-0 ml-auto inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-[17px] font-semibold text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul))]/10 transition-colors"
           >
-            <MessageCircle className="h-4 w-4" />
+            <MessageCircle className="h-5 w-5" />
             {t("canadaNav.askEdpath")}
           </button>
         </nav>

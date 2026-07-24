@@ -52,7 +52,7 @@ export function Header() {
           : "bg-white",
       )}
     >
-      <div className="container flex items-center justify-between h-16 gap-6">
+      <div className="container flex items-center justify-between h-20 md:h-24 gap-6">
         <Logo />
 
         <nav className="hidden lg:flex items-center gap-1">
@@ -70,7 +70,7 @@ export function Header() {
               type="button"
               onClick={() => setDestOpen((v) => !v)}
               className={cn(
-                "nav-link-underline inline-flex items-center gap-1.5 px-4 py-2.5 text-[15px] font-medium rounded-md transition-colors",
+                "nav-link-underline inline-flex items-center gap-1.5 px-4 py-3 text-[17px] font-semibold rounded-md transition-colors",
                 "text-[hsl(var(--navy))] hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul)/0.06)]",
               )}
             >
@@ -108,7 +108,7 @@ export function Header() {
             to="/sobre"
             className={({ isActive }) =>
               cn(
-                "nav-link-underline px-4 py-2.5 text-[15px] font-medium rounded-md transition-colors",
+                "nav-link-underline px-4 py-3 text-[17px] font-semibold rounded-md transition-colors",
                 "text-[hsl(var(--navy))] hover:text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul)/0.06)]",
                 isActive && "bg-[hsl(var(--azul)/0.08)] text-[hsl(var(--azul))]",
               )
@@ -168,7 +168,7 @@ export function Header() {
 
           <Link
             to="/canada/meu-caminho?country=canada"
-            className="hidden md:inline-flex items-center justify-center rounded-full bg-[hsl(var(--crimson))] px-5 py-2.5 text-[15px] font-semibold text-white shadow-[0_6px_18px_-8px_hsl(var(--crimson)/0.6)] hover:bg-[hsl(var(--crimson)/0.92)] hover:shadow-[0_10px_22px_-8px_hsl(var(--crimson)/0.7)] hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--crimson)/0.5)]"
+            className="hidden md:inline-flex items-center justify-center rounded-full bg-[hsl(var(--crimson))] px-6 py-3 text-[16px] font-semibold text-white shadow-[0_6px_18px_-8px_hsl(var(--crimson)/0.6)] hover:bg-[hsl(var(--crimson)/0.92)] hover:shadow-[0_10px_22px_-8px_hsl(var(--crimson)/0.7)] hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--crimson)/0.5)]"
           >
             {t("nav.discoverMyPath")}
           </Link>
