@@ -323,6 +323,7 @@ export default function EnglishSchools() {
                         <div
                           key={s.id}
                           data-reveal
+                          className="h-full"
                           style={{ transitionDelay: `${Math.min(i, 6) * 60}ms` }}
                         >
                           <SchoolCard school={s} L={L} isEN={isEN} />
