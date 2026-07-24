@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Search,
+  SearchX,
   MapPin,
   Check,
   ArrowRight,
@@ -17,7 +18,6 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { GlobeMascot } from "@/components/GlobeMascot";
 import { cn } from "@/lib/utils";
 
 type EnglishSchool = {
