@@ -9,7 +9,7 @@ import {
   BookOpen,
   GraduationCap,
   Building2,
-  Globe2,
+  Map,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useReveal } from "@/hooks/use-reveal";
@@ -188,7 +188,7 @@ export default function EnglishSchools() {
 
               <div className="mt-8 grid grid-cols-3 gap-3 md:gap-4 max-w-xl">
                 <StatCard icon={<BookOpen className="h-5 w-5" />} tone="blue" value={totalSchools} label={L.statSchools} />
-                <StatCard icon={<Globe2 className="h-5 w-5" />} tone="red" value={totalProvinces} label={L.statProvinces} />
+                <StatCard icon={<Map className="h-5 w-5" />} tone="red" value={totalProvinces} label={L.statProvinces} />
                 <StatCard icon={<Building2 className="h-5 w-5" />} tone="blue" value={totalCities} label={L.statCities} />
               </div>
             </div>
