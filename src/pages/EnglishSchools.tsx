@@ -265,36 +265,17 @@ export default function EnglishSchools() {
               </ul>
             </div>
 
-            {/* Mascot */}
+            {/* Product preview */}
             <div className="relative flex justify-center md:justify-end">
               <div
                 aria-hidden
-                className="absolute inset-0 -z-10 blur-3xl opacity-70"
+                className="absolute inset-0 -z-10 blur-3xl opacity-80"
                 style={{
                   background:
-                    "radial-gradient(closest-side, hsl(var(--azul)/0.35), transparent 70%)",
+                    "radial-gradient(closest-side, hsl(var(--azul)/0.30), transparent 70%)",
                 }}
               />
-              <GlobeMascot className="w-[280px] md:w-[360px] h-auto drop-shadow-xl" />
-
-              <FloatChip
-                className="absolute -left-2 top-6 md:left-0"
-                icon={<Coins className="h-4 w-4 text-[hsl(var(--crimson))]" />}
-                tint="crimson"
-                label={L.chip1}
-              />
-              <FloatChip
-                className="absolute -right-2 top-24 md:right-0"
-                icon={<ShieldCheck className="h-4 w-4 text-[hsl(var(--azul))]" />}
-                tint="azul"
-                label={L.chip2}
-              />
-              <FloatChip
-                className="absolute left-4 bottom-2 md:left-6"
-                icon={<ArrowUpRight className="h-4 w-4 text-navy" />}
-                tint="navy"
-                label={L.chip3}
-              />
+              <ProductPreview L={L} />
             </div>
           </div>
         </div>
