@@ -351,12 +351,16 @@ export default function EnglishSchools() {
       <section className="container max-w-6xl py-12 md:py-16">
         {loading ? (
           <div className="py-24 text-center">
-            <GlobeMascot className="mx-auto w-24 h-auto opacity-70 animate-pulse" />
+            <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted/60 animate-pulse">
+              <SearchX className="h-7 w-7 text-muted-foreground" />
+            </div>
             <p className="mt-4 text-sm text-muted-foreground">{L.loading}</p>
           </div>
         ) : filtered.length === 0 ? (
           <div className="py-24 text-center">
-            <GlobeMascot className="mx-auto w-28 h-auto opacity-80" />
+            <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted/60">
+              <SearchX className="h-7 w-7 text-muted-foreground" />
+            </div>
             <p className="mt-6 font-display text-xl font-bold text-navy">
               {L.empty}
             </p>
