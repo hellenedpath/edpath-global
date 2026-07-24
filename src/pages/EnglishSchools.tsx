@@ -1,26 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Search,
-  ExternalLink,
-  AlertTriangle,
-  GraduationCap,
-  MapPin,
-  Coins,
-  FileCheck,
-  Milestone,
-  Users,
-  Info,
-  BadgeCheck,
-  Building2,
-  Globe2,
-  Sparkles,
-  Loader2,
-  SearchX,
-} from "lucide-react";
+import { Search, MapPin, Check, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -115,20 +97,20 @@ export default function EnglishSchools() {
 
   const L = isEN
     ? {
+        eyebrow: "Canada · English schools",
         title: "English schools in Canada",
         intro:
-          "Language schools in Canada — many are accredited by Languages Canada. EdPath shows neutral, honest information so you can compare and decide.",
+          "Language schools in Canada — many accredited by Languages Canada. Neutral, honest information to compare and decide.",
         warnTitle: "Important: an English course alone does not grant work rights",
         warnBody:
           "Taking an English course by itself does not give you the right to work in Canada. Work rights only start when you enroll in an eligible post-secondary DLI program.",
         allProvinces: "All provinces",
         searchPh: "Search by name or city",
-        cityLabel: "City",
         courseTypes: "Courses",
-        costPerWeek: "Cost per week",
-        examPrep: "Exam preparation",
-        pathway: "Pathway / bridge to college",
-        minAge: "Minimum age",
+        costPerWeek: "Cost / week",
+        examPrep: "Exam prep",
+        pathway: "Pathway",
+        minAge: "Min. age",
         canWork: "Work",
         notes: "Notes",
         website: "Official website",
@@ -143,20 +125,20 @@ export default function EnglishSchools() {
         emptyHint: "Try clearing the filters or searching another city.",
       }
     : {
+        eyebrow: "Canadá · Escolas de inglês",
         title: "Escolas de inglês no Canadá",
         intro:
-          "Escolas de idioma no Canadá — muitas são credenciadas pela Languages Canada. A EdPath mostra informação neutra e honesta para você comparar e decidir.",
+          "Escolas de idioma no Canadá — muitas credenciadas pela Languages Canada. Informação neutra e honesta para comparar e decidir.",
         warnTitle:
           "Importante: um curso de inglês, sozinho, não dá direito a trabalhar",
         warnBody:
           "Um curso de inglês, por si só, não dá direito a trabalhar no Canadá. O direito a trabalho surge só ao ingressar em um programa elegível de DLI pós-secundário.",
         allProvinces: "Todas as províncias",
         searchPh: "Buscar por nome ou cidade",
-        cityLabel: "Cidade",
         courseTypes: "Cursos",
-        costPerWeek: "Custo por semana",
-        examPrep: "Preparação para exames",
-        pathway: "Pathway / ponte para college",
+        costPerWeek: "Custo / semana",
+        examPrep: "Preparação p/ exames",
+        pathway: "Pathway",
         minAge: "Idade mínima",
         canWork: "Trabalho",
         notes: "Observação",
@@ -167,81 +149,54 @@ export default function EnglishSchools() {
         languagesCanada: "Languages Canada",
         statSchools: "escolas",
         statProvinces: "províncias",
-        statAccredited: "credenciadas pela Languages Canada",
+        statAccredited: "credenciadas Languages Canada",
         resultsCount: "escolas",
         emptyHint: "Tente limpar os filtros ou buscar outra cidade.",
       };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border">
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10"
-          style={{
-            background:
-              "linear-gradient(160deg, hsl(var(--navy)) 0%, hsl(var(--azul)) 55%, hsl(var(--background)) 100%)",
-          }}
-        />
-        <div aria-hidden className="absolute inset-0 -z-10 opacity-[0.08]" style={{
-          backgroundImage:
-            "radial-gradient(circle at 20% 30%, white 1px, transparent 1.5px), radial-gradient(circle at 70% 60%, white 1px, transparent 1.5px)",
-          backgroundSize: "36px 36px, 52px 52px",
-        }} />
-        <div className="container py-14 md:py-20">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white/90 ring-1 ring-white/25">
-            <GraduationCap className="h-3.5 w-3.5" />
-            Canada
+      {/* Header — editorial */}
+      <header className="border-b border-border">
+        <div className="container max-w-5xl py-14 md:py-20">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            {L.eyebrow}
           </div>
-          <h1 className="mt-4 font-display text-4xl md:text-6xl font-bold text-white leading-[1.05] max-w-4xl">
+          <h1 className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-navy tracking-tight leading-[1.05]">
             {L.title}
           </h1>
-          <p className="mt-5 max-w-3xl text-base md:text-lg text-white/85">
+          <p className="mt-5 max-w-[640px] text-base md:text-lg text-muted-foreground leading-relaxed">
             {L.intro}
           </p>
+          <p className="mt-6 text-sm text-muted-foreground">
+            <span className="font-semibold text-navy">{totalSchools}</span>{" "}
+            {L.statSchools} ·{" "}
+            <span className="font-semibold text-navy">{totalProvinces}</span>{" "}
+            {L.statProvinces} ·{" "}
+            <span className="font-semibold text-navy">{totalAccredited}</span>{" "}
+            {L.statAccredited}
+          </p>
+        </div>
+      </header>
 
-          {/* Stat chips */}
-          <div className="mt-8 flex flex-wrap gap-3">
-            <StatChip
-              icon={<Building2 className="h-4 w-4" />}
-              value={totalSchools}
-              label={L.statSchools}
-              tone="white"
-            />
-            <StatChip
-              icon={<Globe2 className="h-4 w-4" />}
-              value={totalProvinces}
-              label={L.statProvinces}
-              tone="white"
-            />
-            <StatChip
-              icon={<BadgeCheck className="h-4 w-4" />}
-              value={totalAccredited}
-              label={L.statAccredited}
-              tone="gold"
-            />
+      {/* Work warning — hairline rule */}
+      <section className="border-b border-border">
+        <div className="container max-w-5xl py-6">
+          <div className="border-l-2 border-[hsl(var(--crimson))] pl-4">
+            <p className="text-sm font-semibold text-navy">{L.warnTitle}</p>
+            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+              {L.warnBody}
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Warning */}
-      <section className="container -mt-6 md:-mt-8 relative z-10">
-        <div className="flex gap-3 rounded-2xl border-l-4 border-[hsl(var(--crimson))] bg-[hsl(var(--crimson))]/8 backdrop-blur ring-1 ring-[hsl(var(--crimson))]/20 shadow-lg p-4 md:p-5">
-          <AlertTriangle className="h-5 w-5 shrink-0 text-[hsl(var(--crimson))]" />
-          <div>
-            <p className="font-semibold text-navy">{L.warnTitle}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{L.warnBody}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Filters */}
-      <section className="border-b border-border bg-gradient-to-b from-[hsl(var(--azul))]/5 to-background sticky top-[7.5rem] z-30 backdrop-blur mt-8">
-        <div className="container py-4 flex flex-col md:flex-row gap-3 md:items-center">
-          <div className="md:w-64">
+      {/* Filters — sticky, plain */}
+      <section className="sticky top-[7.5rem] z-30 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+        <div className="container max-w-5xl py-3 flex flex-col md:flex-row gap-3 md:items-center">
+          <div className="md:w-56">
             <Select value={province} onValueChange={setProvince}>
-              <SelectTrigger className="bg-background">
+              <SelectTrigger className="bg-background border-border">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -260,55 +215,44 @@ export default function EnglishSchools() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={L.searchPh}
-              className="pl-9 bg-background"
+              className="pl-9 bg-background border-border"
             />
           </div>
-          <div className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-navy/5 px-3 py-1.5 text-xs font-semibold text-navy">
-            <Sparkles className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
-            {filtered.length} {L.resultsCount}
+          <div className="shrink-0 text-sm text-muted-foreground md:ml-2">
+            <span className="font-semibold text-navy">{filtered.length}</span>{" "}
+            {L.resultsCount}
           </div>
         </div>
       </section>
 
       {/* List */}
-      <section className="container py-8 md:py-12">
+      <section className="container max-w-5xl py-12 md:py-16">
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-24 text-muted-foreground">
-            <Loader2 className="h-8 w-8 animate-spin text-[hsl(var(--azul))]" />
-            <p className="mt-3 text-sm">{L.loading}</p>
-          </div>
+          <p className="py-24 text-center text-sm text-muted-foreground">
+            {L.loading}
+          </p>
         ) : filtered.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-24 text-center">
-            <div className="rounded-full bg-muted p-4">
-              <SearchX className="h-8 w-8 text-muted-foreground" />
-            </div>
-            <p className="mt-4 font-display text-lg font-semibold text-navy">{L.empty}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{L.emptyHint}</p>
+          <div className="py-24 text-center">
+            <p className="font-display text-xl font-semibold text-navy">
+              {L.empty}
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">{L.emptyHint}</p>
           </div>
         ) : (
-          <div className="space-y-14">
+          <div className="space-y-20">
             {grouped.map(([prov, schools]) => (
               <div key={prov}>
-                <div className="mb-6 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[hsl(var(--azul))]/10 text-[hsl(var(--azul))]">
-                      <MapPin className="h-5 w-5" />
-                    </div>
-                    <h2 className="font-display text-2xl md:text-3xl font-bold text-navy">
-                      {prov}
-                    </h2>
-                  </div>
-                  <span className="inline-flex items-center rounded-full bg-navy/5 px-3 py-1 text-xs font-semibold text-navy">
-                    {schools.length} {L.resultsCount}
+                <div className="flex items-baseline gap-3 border-b border-border pb-3">
+                  <h2 className="font-display text-2xl md:text-3xl font-bold text-navy tracking-tight">
+                    {prov}
+                  </h2>
+                  <span className="text-sm text-muted-foreground">
+                    {schools.length}
                   </span>
                 </div>
-                <div
-                  aria-hidden
-                  className="mb-6 h-[3px] w-full rounded-full bg-gradient-to-r from-[hsl(var(--azul))]/40 via-[hsl(var(--crimson))]/30 to-transparent"
-                />
-                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                <div className="mt-8 grid gap-8 md:grid-cols-2 md:gap-x-10 md:gap-y-10">
                   {schools.map((s) => (
-                    <SchoolCard key={s.id} school={s} L={L} isEN={isEN} />
+                    <SchoolRow key={s.id} school={s} L={L} isEN={isEN} />
                   ))}
                 </div>
               </div>
@@ -320,65 +264,18 @@ export default function EnglishSchools() {
   );
 }
 
-function StatChip({
-  icon,
-  value,
-  label,
-  tone,
-}: {
-  icon: React.ReactNode;
-  value: number;
-  label: string;
-  tone: "white" | "gold";
-}) {
-  const toneCls =
-    tone === "gold"
-      ? "bg-[hsl(var(--amber))]/15 text-white ring-[hsl(var(--amber))]/50"
-      : "bg-white/12 text-white ring-white/25";
+function Field({ label, value }: { label: string; value: string }) {
   return (
-    <div
-      className={`inline-flex items-center gap-2.5 rounded-2xl px-4 py-2.5 ring-1 backdrop-blur ${toneCls}`}
-    >
-      <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-white/15">
-        {icon}
-      </span>
-      <span className="font-display text-lg font-bold leading-none">{value}</span>
-      <span className="text-xs text-white/85">{label}</span>
-    </div>
-  );
-}
-
-function Chip({
-  icon,
-  label,
-  value,
-  tone = "default",
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-  tone?: "default" | "gold";
-}) {
-  const toneCls =
-    tone === "gold"
-      ? "bg-[hsl(var(--amber))]/12 ring-[hsl(var(--amber))]/30 text-navy"
-      : "bg-muted/60 ring-border text-navy";
-  const iconTone =
-    tone === "gold" ? "text-[hsl(var(--amber))]" : "text-[hsl(var(--azul))]";
-  return (
-    <div className={`flex items-start gap-2.5 rounded-xl ring-1 px-3 py-2 ${toneCls}`}>
-      <span className={`mt-0.5 shrink-0 ${iconTone}`}>{icon}</span>
-      <div className="min-w-0">
-        <div className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
-          {label}
-        </div>
-        <div className="text-sm font-medium leading-snug break-words">{value}</div>
+    <div>
+      <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+        {label}
       </div>
+      <div className="mt-1 text-sm text-navy leading-snug">{value}</div>
     </div>
   );
 }
 
-function SchoolCard({
+function SchoolRow({
   school,
   L,
   isEN,
@@ -392,110 +289,96 @@ function SchoolCard({
     : school.notes_pt ?? school.notes_en;
 
   return (
-    <article className="group flex flex-col rounded-3xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[hsl(var(--azul))]/50">
-      <header className="mb-4">
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-lg font-bold text-navy leading-snug">
+    <article className="group border border-border rounded-sm p-6 transition-colors hover:border-navy/40">
+      <header>
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="font-display text-lg md:text-xl font-bold text-navy leading-snug tracking-tight">
             {school.display_name || school.name}
           </h3>
           {school.languages_canada && (
             <span
-              className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[hsl(var(--amber))]/15 px-2.5 py-1 text-[11px] font-semibold text-[hsl(38_92%_30%)] ring-1 ring-[hsl(var(--amber))]/40"
+              className="shrink-0 inline-flex items-center gap-1 text-[11px] font-medium text-[hsl(38_75%_32%)]"
               title={L.languagesCanada}
             >
-              <BadgeCheck className="h-3.5 w-3.5" />
+              <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
               {L.languagesCanada}
             </span>
           )}
         </div>
         {school.city && (
-          <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-            <MapPin className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
+          <p className="mt-1.5 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+            <MapPin className="h-3.5 w-3.5" />
             {school.city}
           </p>
         )}
       </header>
 
-      <div className="grid grid-cols-1 gap-2">
+      <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-4">
         {!isEmpty(school.cost_per_week) && (
-          <Chip
-            tone="gold"
-            icon={<Coins className="h-4 w-4" />}
-            label={L.costPerWeek}
-            value={school.cost_per_week as string}
-          />
+          <div>
+            <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+              {L.costPerWeek}
+            </div>
+            <div className="mt-1 text-sm font-semibold text-navy leading-snug">
+              {school.cost_per_week}
+            </div>
+          </div>
         )}
         {!isEmpty(school.exam_prep) && (
-          <Chip
-            icon={<FileCheck className="h-4 w-4" />}
-            label={L.examPrep}
-            value={school.exam_prep as string}
-          />
+          <Field label={L.examPrep} value={school.exam_prep as string} />
         )}
         {!isEmpty(school.pathway) && (
-          <Chip
-            icon={<Milestone className="h-4 w-4" />}
-            label={L.pathway}
-            value={school.pathway as string}
-          />
+          <Field label={L.pathway} value={school.pathway as string} />
         )}
         {!isEmpty(school.min_age) && (
-          <Chip
-            icon={<Users className="h-4 w-4" />}
-            label={L.minAge}
-            value={school.min_age as string}
-          />
+          <Field label={L.minAge} value={school.min_age as string} />
         )}
       </div>
 
       {!isEmpty(school.course_types) && (
-        <p className="mt-4 text-xs text-muted-foreground leading-relaxed">
-          <span className="font-semibold text-navy">{L.courseTypes}:</span>{" "}
-          {school.course_types}
+        <p className="mt-5 text-sm text-muted-foreground leading-relaxed">
+          <span className="text-navy">{L.courseTypes}:</span> {school.course_types}
         </p>
       )}
 
-      {!isEmpty(notes) && (
-        <div className="mt-4 rounded-xl bg-muted/50 p-3 text-xs text-muted-foreground leading-relaxed">
-          <span className="font-semibold text-navy">{L.notes}:</span> {notes}
+      {(!isEmpty(notes) || !isEmpty(school.can_work)) && (
+        <div className="mt-4 space-y-1.5 text-xs text-muted-foreground leading-relaxed">
+          {!isEmpty(notes) && (
+            <p>
+              <span className="font-semibold text-navy">{L.notes}:</span> {notes}
+            </p>
+          )}
+          {!isEmpty(school.can_work) && (
+            <p>
+              <span className="font-semibold text-navy">{L.canWork}:</span>{" "}
+              {school.can_work}
+            </p>
+          )}
         </div>
       )}
 
-      {!isEmpty(school.can_work) && (
-        <p className="mt-3 inline-flex items-start gap-1.5 text-xs text-muted-foreground italic">
-          <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[hsl(var(--azul))]" />
-          <span>
-            <span className="font-semibold not-italic text-navy">{L.canWork}:</span>{" "}
-            {school.can_work}
-          </span>
-        </p>
-      )}
-
       {(school.website || school.application_url) && (
-        <div className="mt-5 flex flex-wrap gap-2 pt-4 border-t border-border/70">
-          {school.website && (
-            <Button asChild variant="outline" size="sm" className="gap-1.5">
-              <a href={school.website} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-3.5 w-3.5" />
-                {L.website}
-              </a>
-            </Button>
-          )}
+        <div className="mt-6 pt-5 border-t border-border flex flex-wrap items-center gap-x-6 gap-y-3">
           {school.application_url && (
-            <Button
-              asChild
-              size="sm"
-              className="gap-1.5 bg-[hsl(var(--crimson))] hover:bg-[hsl(var(--crimson))]/90 text-white shadow-[0_6px_18px_-6px_hsl(var(--crimson)/0.6)]"
+            <a
+              href={school.application_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[hsl(var(--crimson))] hover:gap-2.5 transition-all"
             >
-              <a
-                href={school.application_url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Sparkles className="h-3.5 w-3.5" />
-                {L.apply}
-              </a>
-            </Button>
+              {L.apply}
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
+          )}
+          {school.website && (
+            <a
+              href={school.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-navy hover:underline underline-offset-4"
+            >
+              {L.website}
+            </a>
           )}
         </div>
       )}
