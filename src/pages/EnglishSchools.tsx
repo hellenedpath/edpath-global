@@ -7,7 +7,6 @@ import {
   Check,
   ArrowRight,
   ArrowUpRight,
-  ShieldCheck,
   Coins,
   FileCheck,
   Route,
