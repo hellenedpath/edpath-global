@@ -2230,6 +2230,7 @@ export const pt = {
     disclaimer: "Informação educativa, não é aconselhamento de imigração.",
     errorInline:
       "Desculpe, tive um problema para responder agora. Tente novamente em alguns segundos.",
+    tooltip: "Precisa de ajuda?",
   },
   programsPage: {
     coverage: {
