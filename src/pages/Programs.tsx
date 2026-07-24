@@ -871,6 +871,12 @@ export default function Programs() {
                   setProvince("all");
                   setOnlyCoop(false);
                   setQuery("");
+                  if (cipParam) {
+                    const next = new URLSearchParams(searchParams);
+                    next.delete("cip");
+                    setSearchParams(next, { replace: true });
+                  }
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
                 className="inline-flex items-center gap-1 text-navy hover:text-crimson underline-offset-4 hover:underline"
               >
