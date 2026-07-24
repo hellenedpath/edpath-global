@@ -101,6 +101,10 @@ export default {
           "33%": { transform: "translate3d(6%, -4%, 0) scale(1.1)" },
           "66%": { transform: "translate3d(-5%, 5%, 0) scale(0.95)" },
         },
+        "float-y": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -108,6 +112,7 @@ export default {
         "fade-up": "fade-up 0.8s ease-out both",
         "soft-pulse": "soft-pulse 2.8s ease-in-out infinite",
         "aurora-drift": "aurora-drift 18s ease-in-out infinite",
+        "float-y": "float-y 4s ease-in-out infinite",
       },
     },
   },
