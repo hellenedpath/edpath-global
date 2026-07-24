@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
-import edpathIcon from "@/assets/edpath-icon.png.asset.json";
+import edpathLogo from "@/assets/edpath-logo-full.png.asset.json";
 
 export function Logo({ className }: { className?: string }) {
   return (
@@ -13,15 +13,10 @@ export function Logo({ className }: { className?: string }) {
       aria-label="EdPath Global"
     >
       <img
-        src={edpathIcon.url}
-        alt=""
-        aria-hidden="true"
-        className="h-9 md:h-11 w-auto shrink-0 object-contain"
+        src={edpathLogo.url}
+        alt="EdPath Global"
+        className="h-10 md:h-12 w-auto shrink-0 object-contain"
       />
-      <span className="font-display font-bold text-2xl md:text-[26px] tracking-tight leading-none">
-        <span className="text-[hsl(var(--crimson))]">Ed</span>
-        <span className="text-[hsl(var(--azul))]">Path</span>
-      </span>
     </Link>
   );
 }
