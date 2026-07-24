@@ -47,6 +47,78 @@ export type Database = {
         }
         Relationships: []
       }
+      english_schools: {
+        Row: {
+          application_url: string | null
+          can_work: string | null
+          city: string | null
+          cost_per_week: string | null
+          country: string | null
+          course_types: string | null
+          created_at: string | null
+          display_name: string | null
+          email: string | null
+          exam_prep: string | null
+          id: string
+          languages_canada: boolean | null
+          min_age: string | null
+          name: string
+          notes_en: string | null
+          notes_pt: string | null
+          pathway: string | null
+          phone: string | null
+          province: string | null
+          updated_at: string | null
+          website: string | null
+        }
+        Insert: {
+          application_url?: string | null
+          can_work?: string | null
+          city?: string | null
+          cost_per_week?: string | null
+          country?: string | null
+          course_types?: string | null
+          created_at?: string | null
+          display_name?: string | null
+          email?: string | null
+          exam_prep?: string | null
+          id?: string
+          languages_canada?: boolean | null
+          min_age?: string | null
+          name: string
+          notes_en?: string | null
+          notes_pt?: string | null
+          pathway?: string | null
+          phone?: string | null
+          province?: string | null
+          updated_at?: string | null
+          website?: string | null
+        }
+        Update: {
+          application_url?: string | null
+          can_work?: string | null
+          city?: string | null
+          cost_per_week?: string | null
+          country?: string | null
+          course_types?: string | null
+          created_at?: string | null
+          display_name?: string | null
+          email?: string | null
+          exam_prep?: string | null
+          id?: string
+          languages_canada?: boolean | null
+          min_age?: string | null
+          name?: string
+          notes_en?: string | null
+          notes_pt?: string | null
+          pathway?: string | null
+          phone?: string | null
+          province?: string | null
+          updated_at?: string | null
+          website?: string | null
+        }
+        Relationships: []
+      }
       high_schools: {
         Row: {
           application_fee: string | null
