@@ -125,7 +125,7 @@ export default function EdPathAssistant() {
                       key={s}
                       type="button"
                       onClick={() => send(s)}
-                      className="text-left text-sm text-navy border border-navy/15 bg-white rounded-lg px-3 py-2 hover:border-[#E0405B] hover:text-[#E0405B] transition"
+                      className="text-left text-sm text-navy border border-navy/15 bg-white rounded-lg px-3 py-2 hover:border-[hsl(var(--crimson))] hover:text-[hsl(var(--crimson))] transition"
                     >
                       {s}
                     </button>
