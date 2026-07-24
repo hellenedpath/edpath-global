@@ -1,15 +1,24 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Search, MapPin, Check, ArrowRight } from "lucide-react";
+import {
+  Search,
+  MapPin,
+  Check,
+  ArrowRight,
+  ArrowUpRight,
+  ShieldCheck,
+  Coins,
+  FileCheck,
+  Route,
+  UserRound,
+  Info,
+  AlertTriangle,
+} from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { GlobeMascot } from "@/components/GlobeMascot";
+import { cn } from "@/lib/utils";
 
 type EnglishSchool = {
   id: string;
@@ -35,6 +44,12 @@ type EnglishSchool = {
 
 const isEmpty = (v: string | null | undefined) =>
   !v || v.trim() === "" || v.trim() === "—";
+
+const DOT_COLORS = [
+  "hsl(var(--azul))",
+  "hsl(var(--crimson))",
+  "hsl(var(--navy))",
+];
 
 export default function EnglishSchools() {
   const { i18n } = useTranslation();
@@ -98,7 +113,9 @@ export default function EnglishSchools() {
   const L = isEN
     ? {
         eyebrow: "Canada · English schools",
-        title: "English schools in Canada",
+        titleLead: "Learn English in Canada with ",
+        titleAccent: "honest information",
+        titleTail: ".",
         intro:
           "Language schools in Canada — many accredited by Languages Canada. Neutral, honest information to compare and decide.",
         warnTitle: "Important: an English course alone does not grant work rights",
@@ -123,10 +140,24 @@ export default function EnglishSchools() {
         statAccredited: "accredited by Languages Canada",
         resultsCount: "schools",
         emptyHint: "Try clearing the filters or searching another city.",
+        ctaSee: "See schools",
+        ctaHow: "How it works",
+        trust1: "Zero commission",
+        trust2: "Official sources",
+        trust3: "Built by people who lived it",
+        chip1: "from $375/wk",
+        chip2: "Languages Canada",
+        chip3: "Bridge to college",
+        statZero: "commission charged",
+        statAccreditedShort: "Languages Canada",
+        statProvincesShort: "provinces",
+        statSchoolsShort: "schools",
       }
     : {
         eyebrow: "Canadá · Escolas de inglês",
-        title: "Escolas de inglês no Canadá",
+        titleLead: "Aprenda inglês no Canadá com ",
+        titleAccent: "informação honesta",
+        titleTail: ".",
         intro:
           "Escolas de idioma no Canadá — muitas credenciadas pela Languages Canada. Informação neutra e honesta para comparar e decidir.",
         warnTitle:
@@ -152,107 +183,215 @@ export default function EnglishSchools() {
         statAccredited: "credenciadas Languages Canada",
         resultsCount: "escolas",
         emptyHint: "Tente limpar os filtros ou buscar outra cidade.",
+        ctaSee: "Ver escolas",
+        ctaHow: "Como funciona",
+        trust1: "Comissão-zero",
+        trust2: "Fontes oficiais",
+        trust3: "Feito por quem viveu isso",
+        chip1: "a partir de $375/sem",
+        chip2: "Languages Canada",
+        chip3: "Ponte pro college",
+        statZero: "comissão cobrada",
+        statAccreditedShort: "Languages Canada",
+        statProvincesShort: "províncias",
+        statSchoolsShort: "escolas",
       };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header — editorial */}
-      <header className="border-b border-border">
-        <div className="container max-w-5xl py-14 md:py-20">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            {L.eyebrow}
+      {/* HERO */}
+      <header className="relative overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-b from-[hsl(var(--azul)/0.06)] via-background to-background"
+        />
+        <div className="container max-w-6xl relative py-14 md:py-20">
+          <div className="grid gap-10 md:gap-14 md:grid-cols-[1.1fr_1fr] items-center">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--azul)/0.1)] px-3 py-1 text-xs font-semibold text-[hsl(var(--azul))]">
+                <MapPin className="h-3.5 w-3.5" />
+                {L.eyebrow}
+              </span>
+              <h1 className="mt-5 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-navy tracking-tight leading-[1.05]">
+                {L.titleLead}
+                <span className="text-[hsl(var(--crimson))]">{L.titleAccent}</span>
+                {L.titleTail}
+              </h1>
+              <p className="mt-5 max-w-[560px] text-base md:text-lg text-muted-foreground leading-relaxed">
+                {L.intro}
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Button
+                  size="lg"
+                  className="bg-[hsl(var(--azul))] hover:bg-[hsl(var(--azul)/0.9)] text-white rounded-full px-6"
+                  onClick={() =>
+                    document
+                      .getElementById("schools-list")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                >
+                  {L.ctaSee}
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="rounded-full px-6 border-navy/20 text-navy hover:bg-navy/5"
+                  onClick={() =>
+                    document
+                      .getElementById("warn")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                >
+                  {L.ctaHow}
+                </Button>
+              </div>
+              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                {[L.trust1, L.trust2, L.trust3].map((t) => (
+                  <li key={t} className="inline-flex items-center gap-1.5">
+                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[hsl(var(--azul)/0.12)]">
+                      <Check className="h-3 w-3 text-[hsl(var(--azul))]" strokeWidth={3} />
+                    </span>
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Mascot */}
+            <div className="relative flex justify-center md:justify-end">
+              <div
+                aria-hidden
+                className="absolute inset-0 -z-10 blur-3xl opacity-70"
+                style={{
+                  background:
+                    "radial-gradient(closest-side, hsl(var(--azul)/0.35), transparent 70%)",
+                }}
+              />
+              <GlobeMascot className="w-[280px] md:w-[360px] h-auto drop-shadow-xl" />
+
+              <FloatChip
+                className="absolute -left-2 top-6 md:left-0"
+                icon={<Coins className="h-4 w-4 text-[hsl(var(--crimson))]" />}
+                tint="crimson"
+                label={L.chip1}
+              />
+              <FloatChip
+                className="absolute -right-2 top-24 md:right-0"
+                icon={<ShieldCheck className="h-4 w-4 text-[hsl(var(--azul))]" />}
+                tint="azul"
+                label={L.chip2}
+              />
+              <FloatChip
+                className="absolute left-4 bottom-2 md:left-6"
+                icon={<ArrowUpRight className="h-4 w-4 text-navy" />}
+                tint="navy"
+                label={L.chip3}
+              />
+            </div>
           </div>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-navy tracking-tight leading-[1.05]">
-            {L.title}
-          </h1>
-          <p className="mt-5 max-w-[640px] text-base md:text-lg text-muted-foreground leading-relaxed">
-            {L.intro}
-          </p>
-          <p className="mt-6 text-sm text-muted-foreground">
-            <span className="font-semibold text-navy">{totalSchools}</span>{" "}
-            {L.statSchools} ·{" "}
-            <span className="font-semibold text-navy">{totalProvinces}</span>{" "}
-            {L.statProvinces} ·{" "}
-            <span className="font-semibold text-navy">{totalAccredited}</span>{" "}
-            {L.statAccredited}
-          </p>
         </div>
       </header>
 
-      {/* Work warning — hairline rule */}
-      <section className="border-b border-border">
-        <div className="container max-w-5xl py-6">
-          <div className="border-l-2 border-[hsl(var(--crimson))] pl-4">
-            <p className="text-sm font-semibold text-navy">{L.warnTitle}</p>
-            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+      {/* STAT BAND */}
+      <section className="border-y border-border bg-background">
+        <div className="container max-w-6xl py-8 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4">
+          <Stat value={totalSchools} label={L.statSchoolsShort} tone="navy" />
+          <Stat value={totalProvinces} label={L.statProvincesShort} tone="azul" />
+          <Stat value={totalAccredited} label={L.statAccreditedShort} tone="crimson" />
+          <Stat value={0} label={L.statZero} tone="navy" />
+        </div>
+      </section>
+
+      {/* WARN */}
+      <section id="warn" className="container max-w-6xl pt-10 md:pt-14">
+        <div className="rounded-2xl border border-[hsl(var(--amber)/0.35)] bg-[hsl(var(--amber)/0.08)] p-5 md:p-6 flex gap-4">
+          <div className="shrink-0 h-10 w-10 rounded-xl bg-[hsl(var(--amber)/0.2)] inline-flex items-center justify-center">
+            <AlertTriangle className="h-5 w-5 text-[hsl(38_92%_35%)]" />
+          </div>
+          <div>
+            <p className="font-semibold text-navy">{L.warnTitle}</p>
+            <p className="mt-1 text-sm md:text-base text-muted-foreground leading-relaxed">
               {L.warnBody}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Filters — sticky, plain */}
-      <section className="sticky top-[7.5rem] z-30 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-        <div className="container max-w-5xl py-3 flex flex-col md:flex-row gap-3 md:items-center">
-          <div className="md:w-56">
-            <Select value={province} onValueChange={setProvince}>
-              <SelectTrigger className="bg-background border-border">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{L.allProvinces}</SelectItem>
-                {provinces.map((p) => (
-                  <SelectItem key={p} value={p}>
-                    {p}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+      {/* FILTERS */}
+      <section
+        id="schools-list"
+        className="sticky top-[7.5rem] z-30 mt-10 border-y border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+      >
+        <div className="container max-w-6xl py-4 flex flex-col md:flex-row gap-3 md:items-center">
+          <div className="flex flex-wrap gap-2 flex-1">
+            <ProvincePill
+              active={province === "all"}
+              onClick={() => setProvince("all")}
+            >
+              {L.allProvinces}
+            </ProvincePill>
+            {provinces.map((p) => (
+              <ProvincePill
+                key={p}
+                active={province === p}
+                onClick={() => setProvince(p)}
+              >
+                {p}
+              </ProvincePill>
+            ))}
           </div>
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={L.searchPh}
-              className="pl-9 bg-background border-border"
-            />
-          </div>
-          <div className="shrink-0 text-sm text-muted-foreground md:ml-2">
-            <span className="font-semibold text-navy">{filtered.length}</span>{" "}
-            {L.resultsCount}
+          <div className="flex items-center gap-3 md:w-auto">
+            <div className="relative flex-1 md:w-72">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={L.searchPh}
+                className="pl-9 rounded-full bg-background border-border"
+              />
+            </div>
+            <div className="shrink-0 text-sm text-muted-foreground whitespace-nowrap">
+              <span className="font-bold text-navy">{filtered.length}</span>{" "}
+              {L.resultsCount}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* List */}
-      <section className="container max-w-5xl py-12 md:py-16">
+      {/* LIST */}
+      <section className="container max-w-6xl py-12 md:py-16">
         {loading ? (
-          <p className="py-24 text-center text-sm text-muted-foreground">
-            {L.loading}
-          </p>
+          <div className="py-24 text-center">
+            <GlobeMascot className="mx-auto w-24 h-auto opacity-70 animate-pulse" />
+            <p className="mt-4 text-sm text-muted-foreground">{L.loading}</p>
+          </div>
         ) : filtered.length === 0 ? (
           <div className="py-24 text-center">
-            <p className="font-display text-xl font-semibold text-navy">
+            <GlobeMascot className="mx-auto w-28 h-auto opacity-80" />
+            <p className="mt-6 font-display text-xl font-bold text-navy">
               {L.empty}
             </p>
             <p className="mt-2 text-sm text-muted-foreground">{L.emptyHint}</p>
           </div>
         ) : (
-          <div className="space-y-20">
-            {grouped.map(([prov, schools]) => (
+          <div className="space-y-16">
+            {grouped.map(([prov, schools], idx) => (
               <div key={prov}>
-                <div className="flex items-baseline gap-3 border-b border-border pb-3">
+                <div className="flex items-baseline gap-3">
+                  <span
+                    className="inline-block h-3 w-3 rounded-full"
+                    style={{ background: DOT_COLORS[idx % DOT_COLORS.length] }}
+                  />
                   <h2 className="font-display text-2xl md:text-3xl font-bold text-navy tracking-tight">
                     {prov}
                   </h2>
                   <span className="text-sm text-muted-foreground">
-                    {schools.length}
+                    · {schools.length} {L.statSchoolsShort}
                   </span>
                 </div>
-                <div className="mt-8 grid gap-8 md:grid-cols-2 md:gap-x-10 md:gap-y-10">
+                <div className="mt-6 grid gap-6 md:grid-cols-2">
                   {schools.map((s) => (
-                    <SchoolRow key={s.id} school={s} L={L} isEN={isEN} />
+                    <SchoolCard key={s.id} school={s} L={L} isEN={isEN} />
                   ))}
                 </div>
               </div>
@@ -264,18 +403,131 @@ export default function EnglishSchools() {
   );
 }
 
-function Field({ label, value }: { label: string; value: string }) {
+/* ---------- Reusable pieces ---------- */
+
+function FloatChip({
+  icon,
+  label,
+  tint,
+  className,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  tint: "azul" | "crimson" | "navy";
+  className?: string;
+}) {
+  const bg =
+    tint === "azul"
+      ? "bg-[hsl(var(--azul)/0.12)]"
+      : tint === "crimson"
+      ? "bg-[hsl(var(--crimson)/0.12)]"
+      : "bg-navy/10";
   return (
-    <div>
-      <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-        {label}
-      </div>
-      <div className="mt-1 text-sm text-navy leading-snug">{value}</div>
+    <div
+      className={cn(
+        "inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-2 shadow-md",
+        className,
+      )}
+    >
+      <span className={cn("inline-flex h-7 w-7 items-center justify-center rounded-lg", bg)}>
+        {icon}
+      </span>
+      <span className="text-sm font-semibold text-navy">{label}</span>
     </div>
   );
 }
 
-function SchoolRow({
+function Stat({
+  value,
+  label,
+  tone,
+}: {
+  value: number | string;
+  label: string;
+  tone: "navy" | "azul" | "crimson";
+}) {
+  const color =
+    tone === "azul"
+      ? "text-[hsl(var(--azul))]"
+      : tone === "crimson"
+      ? "text-[hsl(var(--crimson))]"
+      : "text-navy";
+  return (
+    <div>
+      <div className={cn("font-display font-bold text-4xl md:text-5xl leading-none", color)}>
+        {value}
+      </div>
+      <div className="mt-2 text-xs md:text-sm text-muted-foreground uppercase tracking-wider">
+        {label}
+      </div>
+    </div>
+  );
+}
+
+function ProvincePill({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors",
+        active
+          ? "bg-navy text-white border-navy"
+          : "bg-background text-navy border-border hover:bg-muted",
+      )}
+    >
+      {children}
+    </button>
+  );
+}
+
+function Fact({
+  icon,
+  tint,
+  label,
+  value,
+  valueClass,
+}: {
+  icon: React.ReactNode;
+  tint: "azul" | "crimson" | "navy" | "muted";
+  label: string;
+  value: string;
+  valueClass?: string;
+}) {
+  const bg =
+    tint === "azul"
+      ? "bg-[hsl(var(--azul)/0.1)]"
+      : tint === "crimson"
+      ? "bg-[hsl(var(--crimson)/0.1)]"
+      : tint === "navy"
+      ? "bg-navy/10"
+      : "bg-muted";
+  return (
+    <div className="flex items-start gap-3">
+      <span className={cn("shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-lg", bg)}>
+        {icon}
+      </span>
+      <div className="min-w-0">
+        <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+          {label}
+        </div>
+        <div className={cn("mt-0.5 text-sm text-navy leading-snug break-words", valueClass)}>
+          {value}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SchoolCard({
   school,
   L,
   isEN,
@@ -288,83 +540,118 @@ function SchoolRow({
     ? school.notes_en ?? school.notes_pt
     : school.notes_pt ?? school.notes_en;
 
+  const tags = !isEmpty(school.course_types)
+    ? (school.course_types as string)
+        .split(/[·,;/|]/)
+        .map((t) => t.trim())
+        .filter(Boolean)
+        .slice(0, 5)
+    : [];
+
   return (
-    <article className="group border border-border rounded-sm p-6 transition-colors hover:border-navy/40">
+    <article className="group flex flex-col rounded-[20px] border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--azul)/0.5)] hover:shadow-[0_16px_40px_-16px_hsl(var(--azul)/0.35)]">
       <header>
         <div className="flex items-start justify-between gap-4">
-          <h3 className="font-display text-lg md:text-xl font-bold text-navy leading-snug tracking-tight">
+          <h3 className="font-display text-[20px] md:text-[21px] font-bold text-navy leading-snug tracking-tight">
             {school.display_name || school.name}
           </h3>
           {school.languages_canada && (
             <span
-              className="shrink-0 inline-flex items-center gap-1 text-[11px] font-medium text-[hsl(38_75%_32%)]"
+              className="shrink-0 inline-flex items-center gap-1 rounded-full bg-[hsl(var(--azul)/0.1)] px-2.5 py-1 text-[11px] font-semibold text-[hsl(var(--azul))]"
               title={L.languagesCanada}
             >
-              <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
+              <ShieldCheck className="h-3.5 w-3.5" />
               {L.languagesCanada}
             </span>
           )}
         </div>
         {school.city && (
-          <p className="mt-1.5 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+          <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
             <MapPin className="h-3.5 w-3.5" />
             {school.city}
           </p>
         )}
       </header>
 
-      <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-4">
+      {tags.length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {tags.map((t, i) => (
+            <span
+              key={i}
+              className="rounded-full border border-border bg-muted/60 px-2.5 py-0.5 text-[11px] font-medium text-navy"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-4">
         {!isEmpty(school.cost_per_week) && (
-          <div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-              {L.costPerWeek}
-            </div>
-            <div className="mt-1 text-sm font-semibold text-navy leading-snug">
-              {school.cost_per_week}
-            </div>
-          </div>
+          <Fact
+            icon={<Coins className="h-4 w-4 text-[hsl(var(--crimson))]" />}
+            tint="crimson"
+            label={L.costPerWeek}
+            value={school.cost_per_week as string}
+            valueClass="font-bold text-[hsl(var(--crimson))]"
+          />
         )}
         {!isEmpty(school.exam_prep) && (
-          <Field label={L.examPrep} value={school.exam_prep as string} />
+          <Fact
+            icon={<FileCheck className="h-4 w-4 text-[hsl(var(--azul))]" />}
+            tint="azul"
+            label={L.examPrep}
+            value={school.exam_prep as string}
+          />
         )}
         {!isEmpty(school.pathway) && (
-          <Field label={L.pathway} value={school.pathway as string} />
+          <Fact
+            icon={<Route className="h-4 w-4 text-navy" />}
+            tint="navy"
+            label={L.pathway}
+            value={school.pathway as string}
+          />
         )}
         {!isEmpty(school.min_age) && (
-          <Field label={L.minAge} value={school.min_age as string} />
+          <Fact
+            icon={<UserRound className="h-4 w-4 text-muted-foreground" />}
+            tint="muted"
+            label={L.minAge}
+            value={school.min_age as string}
+          />
         )}
       </div>
 
-      {!isEmpty(school.course_types) && (
-        <p className="mt-5 text-sm text-muted-foreground leading-relaxed">
-          <span className="text-navy">{L.courseTypes}:</span> {school.course_types}
-        </p>
-      )}
-
       {(!isEmpty(notes) || !isEmpty(school.can_work)) && (
-        <div className="mt-4 space-y-1.5 text-xs text-muted-foreground leading-relaxed">
+        <div className="mt-5 space-y-2 text-xs text-muted-foreground leading-relaxed">
           {!isEmpty(notes) && (
-            <p>
-              <span className="font-semibold text-navy">{L.notes}:</span> {notes}
+            <p className="flex gap-2">
+              <Info className="h-3.5 w-3.5 mt-0.5 shrink-0" />
+              <span>
+                <span className="font-semibold text-navy">{L.notes}:</span> {notes}
+              </span>
             </p>
           )}
           {!isEmpty(school.can_work) && (
-            <p>
-              <span className="font-semibold text-navy">{L.canWork}:</span>{" "}
-              {school.can_work}
+            <p className="flex gap-2">
+              <Info className="h-3.5 w-3.5 mt-0.5 shrink-0" />
+              <span>
+                <span className="font-semibold text-navy">{L.canWork}:</span>{" "}
+                {school.can_work}
+              </span>
             </p>
           )}
         </div>
       )}
 
       {(school.website || school.application_url) && (
-        <div className="mt-6 pt-5 border-t border-border flex flex-wrap items-center gap-x-6 gap-y-3">
+        <div className="mt-6 pt-5 border-t border-border flex flex-wrap items-center gap-3 mt-auto">
           {school.application_url && (
             <a
               href={school.application_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[hsl(var(--crimson))] hover:gap-2.5 transition-all"
+              className="inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--crimson))] px-4 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
             >
               {L.apply}
               <ArrowRight className="h-3.5 w-3.5" />
@@ -375,9 +662,10 @@ function SchoolRow({
               href={school.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-navy hover:underline underline-offset-4"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-sm font-semibold text-navy hover:bg-muted"
             >
               {L.website}
+              <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
           )}
         </div>
