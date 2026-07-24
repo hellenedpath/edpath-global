@@ -1,23 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Search,
-  SearchX,
-  MapPin,
-  Check,
-  ArrowRight,
-  ArrowUpRight,
-  Coins,
-  FileCheck,
-  Route,
-  UserRound,
-  Info,
-  AlertTriangle,
-} from "lucide-react";
+import { Search, SearchX, MapPin, ArrowRight, AlertTriangle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 type EnglishSchool = {
   id: string;
@@ -42,14 +26,7 @@ type EnglishSchool = {
 };
 
 const isEmpty = (v: string | null | undefined) =>
-  !v || v.trim() === "" || v.trim() === "—";
-
-const DOT_COLORS = [
-  "hsl(var(--azul))",
-  "hsl(var(--crimson))",
-  "hsl(var(--azul))",
-];
-
+  !v || v.trim() === "" || v.trim() === "-";
 
 export default function EnglishSchools() {
   const { i18n } = useTranslation();
@@ -85,20 +62,11 @@ export default function EnglishSchools() {
       if (!q) return true;
       return (
         (s.name ?? "").toLowerCase().includes(q) ||
+        (s.display_name ?? "").toLowerCase().includes(q) ||
         (s.city ?? "").toLowerCase().includes(q)
       );
     });
   }, [items, province, query]);
-
-  const grouped = useMemo(() => {
-    const map = new Map<string, EnglishSchool[]>();
-    for (const s of filtered) {
-      const key = s.province ?? "—";
-      if (!map.has(key)) map.set(key, []);
-      map.get(key)!.push(s);
-    }
-    return Array.from(map.entries());
-  }, [filtered]);
 
   const totalSchools = items.length;
   const totalProvinces = useMemo(
@@ -113,169 +81,155 @@ export default function EnglishSchools() {
   const L = isEN
     ? {
         eyebrow: "Canada · English schools",
-        titleLead: "Find the ",
+        titleLead: "The ",
         titleAccent: "right",
-        titleTail: " English school in Canada.",
+        titleTail: " English school for your plan in Canada.",
         intro:
-          "Compare English schools, the real weekly cost and the pathway to college. All in one place.",
+          "Compare schools, the real weekly cost and the pathway to college. All in one place.",
         warnTitle: "Important: an English course alone does not grant work rights",
         warnBody:
           "Taking an English course by itself does not give you the right to work in Canada. Work rights only start when you enroll in an eligible post-secondary DLI program.",
         allProvinces: "All provinces",
-        searchPh: "Search by name or city",
-        courseTypes: "Courses",
-        costPerWeek: "Cost / week",
-        examPrep: "Exam prep",
-        pathway: "Pathway",
-        minAge: "Min. age",
-        canWork: "Work",
-        notes: "Notes",
-        website: "Official website",
-        apply: "How to apply",
+        searchLabel: "School or city",
+        searchPh: "e.g. ILAC, Toronto",
+        provinceLabel: "Province",
+        searchCta: "Search",
+        fromLabel: "From",
+        costLabel: "Cost",
+        onRequest: "On request",
+        details: "See details",
+        featured: "Featured schools",
+        allSchools: "All schools",
         loading: "Loading…",
         empty: "No schools match your filters.",
+        emptyHint: "Try clearing the filters or searching another city.",
         statSchools: "schools",
         statProvinces: "provinces",
         statCities: "cities",
-        resultsCount: "schools",
-        emptyHint: "Try clearing the filters or searching another city.",
-        ctaSee: "See schools",
-        ctaHow: "How it works",
-        trust1: "Verified schools",
-        trust2: "Official-source data",
-        trust3: "Clear, complete guide",
-        statCitiesShort: "cities",
-        statProvincesShort: "provinces",
-        statSchoolsShort: "schools",
       }
     : {
         eyebrow: "Canadá · Escolas de inglês",
-        titleLead: "Encontre a escola de inglês ",
-        titleAccent: "ideal",
-        titleTail: " no Canadá.",
+        titleLead: "A escola de inglês ",
+        titleAccent: "certa",
+        titleTail: " para o seu plano no Canadá.",
         intro:
-          "Compare escolas de inglês, o custo real por semana e o caminho até o college. Tudo em um lugar só.",
+          "Compare escolas, o custo real por semana e o caminho até o college. Tudo em um lugar só.",
         warnTitle:
           "Importante: um curso de inglês, sozinho, não dá direito a trabalhar",
         warnBody:
           "Um curso de inglês, por si só, não dá direito a trabalhar no Canadá. O direito a trabalho surge só ao ingressar em um programa elegível de DLI pós-secundário.",
         allProvinces: "Todas as províncias",
-        searchPh: "Buscar por nome ou cidade",
-        courseTypes: "Cursos",
-        costPerWeek: "Custo / semana",
-        examPrep: "Preparação p/ exames",
-        pathway: "Pathway",
-        minAge: "Idade mínima",
-        canWork: "Trabalho",
-        notes: "Observação",
-        website: "Site oficial",
-        apply: "Como aplicar",
+        searchLabel: "Escola ou cidade",
+        searchPh: "ex.: ILAC, Toronto",
+        provinceLabel: "Província",
+        searchCta: "Buscar",
+        fromLabel: "A partir de",
+        costLabel: "Custo",
+        onRequest: "Sob consulta",
+        details: "Ver detalhes",
+        featured: "Escolas em destaque",
+        allSchools: "Todas as escolas",
         loading: "Carregando…",
         empty: "Nenhuma escola encontrada com esses filtros.",
+        emptyHint: "Tente limpar os filtros ou buscar outra cidade.",
         statSchools: "escolas",
         statProvinces: "províncias",
         statCities: "cidades",
-        resultsCount: "escolas",
-        emptyHint: "Tente limpar os filtros ou buscar outra cidade.",
-        ctaSee: "Ver escolas",
-        ctaHow: "Como funciona",
-        trust1: "Escolas verificadas",
-        trust2: "Dados de fontes oficiais",
-        trust3: "Guia completo e claro",
-        statCitiesShort: "cidades",
-        statProvincesShort: "províncias",
-        statSchoolsShort: "escolas",
       };
+
+  const scrollToList = () =>
+    document.getElementById("schools-list")?.scrollIntoView({ behavior: "smooth" });
+
+  const hasFilters = province !== "all" || query.trim().length > 0;
 
   return (
     <div className="min-h-screen bg-white">
-      {/* HERO */}
-      <header className="relative overflow-hidden">
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--azul)/0.07)] via-white to-[hsl(var(--crimson)/0.06)]"
-        />
-        <div
-          aria-hidden
-          className="absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-70"
-          style={{ background: "hsl(var(--azul) / 0.16)" }}
-        />
-        <div
-          aria-hidden
-          className="absolute -top-16 -right-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-70"
-          style={{ background: "hsl(var(--crimson) / 0.12)" }}
-        />
-        <div className="container max-w-6xl relative py-14 md:py-20">
-          <div className="grid gap-10 md:gap-14 md:grid-cols-[1.1fr_1fr] items-center">
-            <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--azul)/0.1)] px-3 py-1 text-xs font-semibold text-[hsl(var(--azul))]">
-                <MapPin className="h-3.5 w-3.5" />
-                {L.eyebrow}
-              </span>
-              <h1 className="mt-5 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[hsl(var(--navy))] tracking-tight leading-[1.05]">
-                {L.titleLead}
-                <span className="text-brand-gradient">{L.titleAccent}</span>
-                {L.titleTail}
-              </h1>
-              <p className="mt-5 max-w-[560px] text-base md:text-lg text-[#55608a] leading-relaxed">
-                {L.intro}
-              </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Button
-                  size="lg"
-                  className="bg-[hsl(var(--azul))] hover:bg-[hsl(var(--azul)/0.9)] text-white rounded-full px-6"
-                  onClick={() =>
-                    document
-                      .getElementById("schools-list")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                >
-                  {L.ctaSee}
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="rounded-full px-6 border-[hsl(var(--azul)/0.25)] text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul)/0.06)]"
-                  onClick={() =>
-                    document
-                      .getElementById("warn")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                >
-                  {L.ctaHow}
-                </Button>
-              </div>
-              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#55608a]">
-                {[L.trust1, L.trust2, L.trust3].map((t) => (
-                  <li key={t} className="inline-flex items-center gap-1.5">
-                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[hsl(var(--azul)/0.12)]">
-                      <Check className="h-3 w-3 text-[hsl(var(--azul))]" strokeWidth={3} />
-                    </span>
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
+      {/* HERO — navy */}
+      <header
+        className="relative overflow-hidden text-white"
+        style={{
+          backgroundImage:
+            "radial-gradient(60% 55% at 85% 0%, rgba(57,108,216,0.30) 0%, rgba(57,108,216,0) 60%), linear-gradient(160deg, #071a5e 0%, #051556 60%, #040f3d 100%)",
+        }}
+      >
+        <div className="container max-w-5xl relative py-16 md:py-24 text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/[0.18] px-3 py-1 text-xs font-semibold text-[#dfe6ff]">
+            <MapPin className="h-3.5 w-3.5" />
+            {L.eyebrow}
+          </span>
+          <h1 className="mt-6 mx-auto max-w-3xl font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.05]">
+            {L.titleLead}
+            <span className="text-[hsl(var(--crimson))]">{L.titleAccent}</span>
+            {L.titleTail}
+          </h1>
+          <p className="mt-5 mx-auto max-w-2xl text-base md:text-lg text-[#c6cef0] leading-relaxed">
+            {L.intro}
+          </p>
 
-            {/* Graphic composition */}
-            <div className="relative flex justify-center md:justify-end">
-              <HeroGraphic />
+          {/* SEARCH BAR */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              scrollToList();
+            }}
+            className="mt-8 mx-auto max-w-3xl bg-white rounded-2xl shadow-[0_20px_60px_-20px_rgba(4,15,61,0.6)] p-2 flex flex-col md:flex-row items-stretch gap-2 md:gap-0 text-left"
+          >
+            <div className="flex items-center gap-3 flex-1 px-4 py-2">
+              <Search className="h-5 w-5 text-[hsl(var(--azul))] shrink-0" />
+              <div className="flex-1 min-w-0">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#55608a]">
+                  {L.searchLabel}
+                </label>
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder={L.searchPh}
+                  className="w-full bg-transparent outline-none text-[hsl(var(--navy))] placeholder:text-[#8892b8] text-[15px]"
+                />
+              </div>
             </div>
+            <div className="flex items-center gap-3 md:border-l md:border-border flex-1 px-4 py-2">
+              <MapPin className="h-5 w-5 text-[hsl(var(--azul))] shrink-0" />
+              <div className="flex-1 min-w-0">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#55608a]">
+                  {L.provinceLabel}
+                </label>
+                <select
+                  value={province}
+                  onChange={(e) => setProvince(e.target.value)}
+                  className="w-full bg-transparent outline-none text-[hsl(var(--navy))] text-[15px]"
+                >
+                  <option value="all">{L.allProvinces}</option>
+                  {provinces.map((p) => (
+                    <option key={p} value={p}>
+                      {p}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[hsl(var(--crimson))] hover:bg-[hsl(var(--crimson)/0.92)] text-white font-semibold px-6 py-3 transition-colors"
+            >
+              {L.searchCta}
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </form>
+
+          <div className="mt-6 text-sm text-[#c6cef0]">
+            <span className="font-semibold text-white">{totalSchools}</span> {L.statSchools}
+            {"  ·  "}
+            <span className="font-semibold text-white">{totalProvinces}</span> {L.statProvinces}
+            {"  ·  "}
+            <span className="font-semibold text-white">{totalCities}</span> {L.statCities}
           </div>
         </div>
       </header>
 
-      {/* STAT BAND */}
-      <section className="border-y border-border bg-white">
-        <div className="container max-w-6xl py-8 md:py-10 grid grid-cols-3 gap-6 md:gap-4 text-center">
-          <Stat value={totalSchools} label={L.statSchoolsShort} tone="azul" />
-          <Stat value={totalProvinces} label={L.statProvincesShort} tone="purple" />
-          <Stat value={totalCities} label={L.statCitiesShort} tone="crimson" />
-        </div>
-      </section>
-
       {/* WARN */}
-      <section id="warn" className="container max-w-6xl pt-10 md:pt-14">
+      <section className="container max-w-6xl pt-10 md:pt-14">
         <div className="rounded-2xl border border-border border-l-4 border-l-[hsl(var(--crimson))] bg-white p-5 md:p-6 flex gap-4 shadow-sm">
           <div className="shrink-0 h-10 w-10 rounded-xl bg-[hsl(var(--crimson)/0.1)] inline-flex items-center justify-center">
             <AlertTriangle className="h-5 w-5 text-[hsl(var(--crimson))]" />
@@ -289,269 +243,45 @@ export default function EnglishSchools() {
         </div>
       </section>
 
-      {/* FILTERS */}
-      <section
-        id="schools-list"
-        className="sticky top-[7.5rem] z-30 mt-10 border-y border-border bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80"
-      >
-        <div className="container max-w-6xl py-4 flex flex-col md:flex-row gap-3 md:items-center">
-          <div className="flex flex-wrap gap-2 flex-1">
-            <ProvincePill
-              active={province === "all"}
-              onClick={() => setProvince("all")}
-            >
-              {L.allProvinces}
-            </ProvincePill>
-            {provinces.map((p) => (
-              <ProvincePill
-                key={p}
-                active={province === p}
-                onClick={() => setProvince(p)}
-              >
-                {p}
-              </ProvincePill>
-            ))}
-          </div>
-          <div className="flex items-center gap-3 md:w-auto">
-            <div className="relative flex-1 md:w-72">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[hsl(var(--azul))]" />
-              <Input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={L.searchPh}
-                className="pl-9 rounded-full bg-white border-border"
-              />
-            </div>
-            <div className="shrink-0 text-sm text-[#55608a] whitespace-nowrap">
-              <span className="font-bold text-[hsl(var(--azul))]">{filtered.length}</span>{" "}
-              {L.resultsCount}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* LIST */}
-      <section className="container max-w-6xl py-12 md:py-16">
-        {loading ? (
-          <div className="py-24 text-center">
-            <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted/60 animate-pulse">
-              <SearchX className="h-7 w-7 text-[hsl(var(--azul))]" />
-            </div>
-            <p className="mt-4 text-sm text-[#55608a]">{L.loading}</p>
+      <section id="schools-list" className="bg-[#f5f7fc] mt-12 md:mt-16">
+        <div className="container max-w-6xl py-12 md:py-16">
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-[hsl(var(--navy))] tracking-tight">
+              {hasFilters ? L.allSchools : L.featured}
+            </h2>
+            <span className="text-sm text-[#55608a] shrink-0">
+              <span className="font-bold text-[hsl(var(--navy))]">{filtered.length}</span>{" "}
+              {L.statSchools}
+            </span>
           </div>
-        ) : filtered.length === 0 ? (
-          <div className="py-24 text-center">
-            <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-muted/60">
-              <SearchX className="h-7 w-7 text-[hsl(var(--azul))]" />
-            </div>
-            <p className="mt-6 font-display text-xl font-bold text-[hsl(var(--azul))]">
-              {L.empty}
-            </p>
-            <p className="mt-2 text-sm text-[#55608a]">{L.emptyHint}</p>
-          </div>
-        ) : (
-          <div className="space-y-16">
-            {grouped.map(([prov, schools], idx) => (
-              <div key={prov}>
-                <div className="flex items-baseline gap-3">
-                  <span
-                    className="inline-block h-3 w-3 rounded-full"
-                    style={{ background: DOT_COLORS[idx % DOT_COLORS.length] }}
-                  />
-                  <h2 className="font-display text-2xl md:text-3xl font-bold text-[hsl(var(--azul))] tracking-tight">
-                    {prov}
-                  </h2>
-                  <span className="text-sm text-[#55608a]">
-                    · <span className="font-bold text-[hsl(var(--crimson))]">{schools.length}</span> {L.statSchoolsShort}
-                  </span>
-                </div>
-                <div className="mt-6 grid gap-6 md:grid-cols-2">
-                  {schools.map((s) => (
-                    <SchoolCard key={s.id} school={s} L={L} isEN={isEN} />
-                  ))}
-                </div>
+
+          {loading ? (
+            <div className="py-24 text-center">
+              <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-white animate-pulse">
+                <SearchX className="h-7 w-7 text-[hsl(var(--azul))]" />
               </div>
-            ))}
-          </div>
-        )}
+              <p className="mt-4 text-sm text-[#55608a]">{L.loading}</p>
+            </div>
+          ) : filtered.length === 0 ? (
+            <div className="py-24 text-center">
+              <div className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-white">
+                <SearchX className="h-7 w-7 text-[hsl(var(--azul))]" />
+              </div>
+              <p className="mt-6 font-display text-xl font-bold text-[hsl(var(--navy))]">
+                {L.empty}
+              </p>
+              <p className="mt-2 text-sm text-[#55608a]">{L.emptyHint}</p>
+            </div>
+          ) : (
+            <div className="grid gap-6 md:gap-7 md:grid-cols-2 lg:grid-cols-3">
+              {filtered.map((s) => (
+                <SchoolCard key={s.id} school={s} L={L} />
+              ))}
+            </div>
+          )}
+        </div>
       </section>
-    </div>
-  );
-}
-
-/* ---------- Reusable pieces ---------- */
-
-function HeroGraphic() {
-  return (
-    <div className="relative w-full max-w-[520px] aspect-square">
-      <span
-        aria-hidden
-        className="aurora-blob"
-        style={{
-          top: "-8%",
-          left: "-6%",
-          width: "60%",
-          height: "60%",
-          background: "hsl(var(--azul) / 0.35)",
-        }}
-      />
-      <span
-        aria-hidden
-        className="aurora-blob"
-        style={{
-          bottom: "-10%",
-          right: "-6%",
-          width: "62%",
-          height: "62%",
-          background: "hsl(var(--purple) / 0.35)",
-        }}
-      />
-      <svg
-        viewBox="0 0 400 400"
-        className="relative w-full h-full animate-float-y"
-        role="img"
-        aria-label="EdPath connection graphic"
-      >
-        <defs>
-          <linearGradient id="brandStroke" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="hsl(var(--azul))" />
-            <stop offset="55%" stopColor="hsl(var(--purple))" />
-            <stop offset="100%" stopColor="hsl(var(--crimson))" />
-          </linearGradient>
-          <radialGradient id="core" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(var(--purple))" stopOpacity="0.9" />
-            <stop offset="60%" stopColor="hsl(var(--azul))" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="hsl(var(--azul))" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        {/* Concentric orbits */}
-        <g fill="none" stroke="url(#brandStroke)" strokeWidth="1.5">
-          <ellipse cx="200" cy="200" rx="170" ry="170" opacity="0.35" />
-          <ellipse cx="200" cy="200" rx="140" ry="140" opacity="0.55" />
-          <ellipse cx="200" cy="200" rx="105" ry="105" opacity="0.75" />
-          <ellipse cx="200" cy="200" rx="70" ry="70" opacity="0.9" />
-        </g>
-
-        {/* Tilted orbit */}
-        <ellipse
-          cx="200"
-          cy="200"
-          rx="175"
-          ry="70"
-          fill="none"
-          stroke="url(#brandStroke)"
-          strokeWidth="1.5"
-          opacity="0.6"
-          transform="rotate(-24 200 200)"
-        />
-
-        {/* Luminous core */}
-        <circle cx="200" cy="200" r="90" fill="url(#core)" />
-        <circle cx="200" cy="200" r="10" fill="hsl(var(--purple))" />
-
-        {/* Connection nodes */}
-        <g>
-          <circle cx="30" cy="200" r="6" fill="hsl(var(--azul))" />
-          <circle cx="370" cy="200" r="6" fill="hsl(var(--crimson))" />
-          <circle cx="305" cy="95" r="5" fill="hsl(var(--purple))" />
-          <circle cx="120" cy="315" r="5" fill="hsl(var(--azul))" />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Stat({
-  value,
-  label,
-  tone,
-}: {
-  value: number | string;
-  label: string;
-  tone: "navy" | "azul" | "crimson" | "gold" | "purple";
-}) {
-  const color =
-    tone === "azul"
-      ? "text-[hsl(var(--azul))]"
-      : tone === "crimson"
-      ? "text-[hsl(var(--crimson))]"
-      : tone === "purple"
-      ? "text-[hsl(var(--purple))]"
-      : tone === "gold"
-      ? "text-[hsl(var(--gold))]"
-      : "text-[hsl(var(--azul))]";
-  return (
-    <div>
-      <div className={cn("font-display font-bold text-4xl md:text-5xl leading-none", color)}>
-        {value}
-      </div>
-      <div className="mt-2 text-xs md:text-sm text-[#55608a] uppercase tracking-wider">
-        {label}
-      </div>
-    </div>
-  );
-}
-
-function ProvincePill({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors",
-        active
-          ? "bg-[hsl(var(--azul))] text-white border-[hsl(var(--azul))]"
-        : "bg-white text-[#23347e] border-border hover:bg-[hsl(var(--azul)/0.06)]",
-      )}
-    >
-      {children}
-    </button>
-  );
-}
-
-function Fact({
-  icon,
-  tint,
-  label,
-  value,
-  valueClass,
-}: {
-  icon: React.ReactNode;
-  tint: "azul" | "crimson" | "navy" | "muted";
-  label: string;
-  value: string;
-  valueClass?: string;
-}) {
-  const bg =
-    tint === "azul"
-      ? "bg-[hsl(var(--azul)/0.1)]"
-      : tint === "crimson"
-      ? "bg-[hsl(var(--crimson)/0.1)]"
-      : tint === "navy"
-      ? "bg-[hsl(var(--azul)/0.1)]"
-      : "bg-[hsl(var(--azul)/0.08)]";
-  return (
-    <div className="flex items-start gap-3 py-1">
-      <span className={cn("shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-lg", bg)}>
-        {icon}
-      </span>
-      <div className="min-w-0 flex-1">
-        <div className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[#55608a]">
-          {label}
-        </div>
-        <div className={cn("mt-1 text-[16px] font-bold text-[#23347e] leading-snug break-words whitespace-normal", valueClass)}>
-          {value}
-        </div>
-      </div>
     </div>
   );
 }
@@ -559,141 +289,63 @@ function Fact({
 function SchoolCard({
   school,
   L,
-  isEN,
 }: {
   school: EnglishSchool;
   L: Record<string, string>;
-  isEN: boolean;
 }) {
-  const notes = isEN
-    ? school.notes_en ?? school.notes_pt
-    : school.notes_pt ?? school.notes_en;
-
-  const tags = !isEmpty(school.course_types)
-    ? (school.course_types as string)
-        .split(/[·,;/|]/)
-        .map((t) => t.trim())
-        .filter(Boolean)
-        .slice(0, 5)
-    : [];
+  const cost = !isEmpty(school.cost_per_week) ? (school.cost_per_week as string) : null;
+  const hasNumericFrom = !!cost && /\d/.test(cost);
+  const rawTag = !isEmpty(school.pathway)
+    ? (school.pathway as string)
+    : !isEmpty(school.exam_prep)
+    ? (school.exam_prep as string)
+    : null;
+  const shortTag =
+    rawTag && rawTag.length > 42 ? rawTag.slice(0, 40).trim() + "…" : rawTag;
+  const linkHref = school.application_url || school.website;
+  const location = [school.city, school.province].filter(Boolean).join(" · ");
 
   return (
-    <article className="group relative flex flex-col rounded-[24px] border border-border bg-white p-7 md:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--azul)/0.5)] hover:shadow-[0_16px_40px_-16px_hsl(var(--azul)/0.35)]">
-      <span
-        aria-hidden
-        className="absolute inset-x-6 top-0 h-[3px] rounded-b-full bg-[hsl(var(--azul))] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-      />
-      <header>
-        <div className="flex items-start justify-between gap-4">
-          <h3 className="font-display text-[22px] font-bold text-[hsl(var(--azul))] leading-snug tracking-tight break-words">
-            {school.display_name || school.name}
-          </h3>
-        </div>
-        {school.city && (
-          <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-[#55608a]">
-            <MapPin className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
-            {school.city}
-          </p>
-        )}
-      </header>
-
-      {tags.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {tags.map((t, i) => (
-            <span
-              key={i}
-              className="rounded-full border border-border bg-[hsl(var(--azul)/0.06)] px-2.5 py-0.5 text-[11px] font-medium text-[#23347e]"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
+    <article className="group flex flex-col rounded-2xl border border-border bg-white p-6 md:p-7 shadow-sm transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[0_18px_40px_-20px_rgba(4,15,61,0.25)] hover:border-[hsl(var(--azul)/0.35)]">
+      <h3 className="font-display text-[20px] font-bold text-[hsl(var(--navy))] leading-snug tracking-tight break-words">
+        {school.display_name || school.name}
+      </h3>
+      {location && (
+        <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-[#5a6488]">
+          <MapPin className="h-3.5 w-3.5 text-[hsl(var(--azul))]" />
+          {location}
+        </p>
       )}
 
-      <div className="mt-6 flex flex-col gap-4">
-        {!isEmpty(school.cost_per_week) && (
-          <Fact
-            icon={<Coins className="h-4 w-4 text-[hsl(var(--crimson))]" />}
-            tint="crimson"
-            label={L.costPerWeek}
-            value={school.cost_per_week as string}
-            valueClass="text-[hsl(var(--crimson))]"
-          />
-        )}
-        {!isEmpty(school.exam_prep) && (
-          <Fact
-            icon={<FileCheck className="h-4 w-4 text-[hsl(var(--azul))]" />}
-            tint="azul"
-            label={L.examPrep}
-            value={school.exam_prep as string}
-          />
-        )}
-        {!isEmpty(school.pathway) && (
-          <Fact
-            icon={<Route className="h-4 w-4 text-[hsl(var(--azul))]" />}
-            tint="navy"
-            label={L.pathway}
-            value={school.pathway as string}
-          />
-        )}
-        {!isEmpty(school.min_age) && (
-          <Fact
-            icon={<UserRound className="h-4 w-4 text-[hsl(var(--azul))]" />}
-            tint="muted"
-            label={L.minAge}
-            value={school.min_age as string}
-          />
-        )}
+      <div className="mt-6">
+        <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
+          {hasNumericFrom ? L.fromLabel : L.costLabel}
+        </div>
+        <div className="mt-1 font-display font-bold text-[24px] leading-tight text-[hsl(var(--crimson))] break-words">
+          {cost ?? L.onRequest}
+        </div>
       </div>
 
-      {(!isEmpty(notes) || !isEmpty(school.can_work)) && (
-        <div className="mt-5 space-y-2 text-[13px] text-[#55608a] leading-relaxed">
-          {!isEmpty(notes) && (
-            <p className="flex gap-2">
-              <Info className="h-3.5 w-3.5 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
-              <span>
-                <span className="font-semibold text-[hsl(var(--azul))]">{L.notes}:</span> {notes}
-              </span>
-            </p>
-          )}
-          {!isEmpty(school.can_work) && (
-            <p className="flex gap-2">
-              <Info className="h-3.5 w-3.5 mt-0.5 shrink-0 text-[hsl(var(--azul))]" />
-              <span>
-                <span className="font-semibold text-[hsl(var(--azul))]">{L.canWork}:</span>{" "}
-                {school.can_work}
-              </span>
-            </p>
-          )}
-        </div>
-      )}
-
-      {(school.website || school.application_url) && (
-        <div className="mt-6 pt-5 border-t border-border flex flex-wrap items-center gap-3 mt-auto">
-          {school.application_url && (
-            <a
-              href={school.application_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-[hsl(var(--crimson))] px-4 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
-            >
-              {L.apply}
-              <ArrowRight className="h-3.5 w-3.5" />
-            </a>
-          )}
-          {school.website && (
-            <a
-              href={school.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-sm font-semibold text-[hsl(var(--azul))] hover:bg-[hsl(var(--azul)/0.06)]"
-            >
-              {L.website}
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </a>
-          )}
-        </div>
-      )}
+      <div className="mt-6 pt-4 border-t border-border flex items-center justify-between gap-3 mt-auto">
+        {shortTag ? (
+          <span className="text-[12px] font-medium text-[#5a6488] rounded-full bg-[hsl(var(--azul)/0.06)] px-2.5 py-1 truncate max-w-[60%]">
+            {shortTag}
+          </span>
+        ) : (
+          <span />
+        )}
+        {linkHref && (
+          <a
+            href={linkHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--crimson))] hover:underline shrink-0"
+          >
+            {L.details}
+            <ArrowRight className="h-3.5 w-3.5" />
+          </a>
+        )}
+      </div>
     </article>
   );
 }
