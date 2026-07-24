@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { MessageCircle, X, Send } from "lucide-react";
+import { X, Send } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import mascotAsset from "@/assets/edpath-assistant-mascot.png.asset.json";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
