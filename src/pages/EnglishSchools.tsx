@@ -60,11 +60,15 @@ function cleanCost(raw: string | null | undefined, L: Record<string, any>): { la
 const softTile =
   "inline-flex items-center justify-center rounded-2xl shadow-[4px_4px_9px_rgba(5,21,86,0.11),-4px_-4px_8px_rgba(255,255,255,0.95)]";
 
-function truncateSmart(s: string, max: number): string {
-  if (s.length <= max) return s;
-  const slice = s.slice(0, max);
-  const lastSpace = slice.lastIndexOf(" ");
-  return (lastSpace > 40 ? slice.slice(0, lastSpace) : slice).trim() + "…";
+function pathwayLabel(raw: string | null | undefined): string | null {
+  const s = (raw ?? "").trim();
+  if (!s || s === "-" || s === "—") return null;
+  if (/university pathway/i.test(s)) return "University Pathway";
+  if (/entrada direta|admiss[ãa]o incondicional|dispensa o teste|dispensa ielts|satisfaz.*ingl[êe]s|sem ielts|dispensa iels/i.test(s))
+    return "Dispensa IELTS";
+  if (/admiss[ãa]o condicional|condicional/i.test(s)) return "Admissão condicional";
+  if (/eap|english for academic|academic pathways/i.test(s)) return "College EAP";
+  return "College pathway";
 }
 
 export default function EnglishSchools() {
@@ -319,6 +323,7 @@ export default function EnglishSchools() {
                         <div
                           key={s.id}
                           data-reveal
+                          className="h-full"
                           style={{ transitionDelay: `${Math.min(i, 6) * 60}ms` }}
                         >
                           <SchoolCard school={s} L={L} isEN={isEN} />
@@ -412,7 +417,7 @@ function SchoolCard({
         .filter(Boolean)
         .join(" · ")
     : null;
-  const pathwayText = !isEmpty(school.pathway) ? truncateSmart((school.pathway as string).trim(), 70) : null;
+  const pathwayText = pathwayLabel(school.pathway);
   const courseChips = !isEmpty(school.course_types)
     ? (school.course_types as string)
         .split(",")
@@ -441,11 +446,11 @@ function SchoolCard({
           <BookOpen className="h-6 w-6 text-[hsl(var(--azul))]" />
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="font-display text-[20px] font-bold text-[hsl(var(--navy))] leading-snug tracking-tight break-words">
+          <h3 className="font-display text-[18px] md:text-[19px] font-semibold text-[hsl(var(--navy))] leading-snug tracking-tight break-words">
             {school.display_name || school.name}
           </h3>
           {location && (
-            <p className="mt-1.5 inline-flex items-center gap-1.5 text-[15px] text-[#5a6488]">
+            <p className="mt-1.5 inline-flex items-center gap-1.5 text-[14px] text-[#5a6488]">
               <MapPin className="h-4 w-4 text-[hsl(var(--azul))]" />
               {location}
             </p>
@@ -458,7 +463,7 @@ function SchoolCard({
           <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
             {costLabel === L.fromLabel ? L.factCost : L.factCost}
           </div>
-          <div className="mt-1 font-display font-bold text-[23px] leading-tight text-[hsl(var(--crimson))] whitespace-nowrap">
+          <div className="mt-1 font-display font-bold text-[22px] leading-tight text-[hsl(var(--crimson))] whitespace-nowrap">
             {costDisplay}
           </div>
         </div>
@@ -468,7 +473,7 @@ function SchoolCard({
             <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
               {L.factExam}
             </div>
-            <div className="mt-1 text-[16px] text-[hsl(var(--navy))]">{examList}</div>
+            <div className="mt-1 text-[15px] text-[hsl(var(--navy))] break-words">{examList}</div>
           </div>
         )}
 
@@ -477,7 +482,7 @@ function SchoolCard({
             <div className="text-[11px] font-semibold uppercase tracking-wider text-[#5a6488]">
               {L.factPathway}
             </div>
-            <div className="mt-1 text-[16px] text-[hsl(var(--navy))] leading-snug">{pathwayText}</div>
+            <div className="mt-1 text-[15px] text-[hsl(var(--navy))] leading-snug">{pathwayText}</div>
           </div>
         )}
       </div>
@@ -487,7 +492,7 @@ function SchoolCard({
           {courseChips.map((c) => (
             <span
               key={c}
-              className="inline-flex items-center text-[12px] font-semibold rounded-full px-2.5 py-1"
+              className="inline-flex items-center text-[12.5px] font-semibold rounded-full px-2.5 py-1"
               style={{ backgroundColor: "rgba(31,95,208,0.09)", color: "hsl(var(--azul))" }}
             >
               {c}
@@ -496,7 +501,7 @@ function SchoolCard({
         </div>
       )}
 
-      <div className="mt-6 pt-4 border-t border-border flex items-center justify-between gap-3 mt-auto">
+      <div className="mt-auto pt-4 border-t border-border flex items-center justify-between gap-3">
         {badge ? (
           <span className="inline-flex items-center text-[12px] font-semibold rounded-full px-2.5 py-1 bg-[hsl(var(--azul)/0.1)] text-[hsl(var(--azul))]">
             {badge}
