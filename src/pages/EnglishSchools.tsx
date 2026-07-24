@@ -37,7 +37,7 @@ type EnglishSchool = {
 const isEmpty = (v: string | null | undefined) =>
   !v || v.trim() === "" || v.trim() === "-" || v.trim() === "—";
 
-function cleanCost(raw: string | null | undefined, L: Record<string, string>): { label: string; value: string } {
+function cleanCost(raw: string | null | undefined, L: Record<string, any>): { label: string; value: string } {
   const s = (raw ?? "").trim();
   if (!s || /sob\s+or[çc]amento|n[ãa]o\s+publicado|sob\s+consulta|consulte/i.test(s)) {
     return { label: L.costLabel, value: L.onRequest };
@@ -401,7 +401,7 @@ function SchoolCard({
   isEN,
 }: {
   school: EnglishSchool;
-  L: Record<string, string>;
+  L: Record<string, any>;
   isEN: boolean;
 }) {
   const { label: costLabel, value: costDisplay } = cleanCost(school.cost_per_week, L);
