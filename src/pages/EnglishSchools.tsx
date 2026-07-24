@@ -497,13 +497,15 @@ function Stat({
 }: {
   value: number | string;
   label: string;
-  tone: "navy" | "azul" | "crimson";
+  tone: "navy" | "azul" | "crimson" | "gold";
 }) {
   const color =
     tone === "azul"
       ? "text-[hsl(var(--azul))]"
       : tone === "crimson"
       ? "text-[hsl(var(--crimson))]"
+      : tone === "gold"
+      ? "text-[hsl(var(--gold))]"
       : "text-[hsl(var(--azul))]";
   return (
     <div>
