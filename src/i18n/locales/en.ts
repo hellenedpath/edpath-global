@@ -2227,6 +2227,7 @@ export const en = {
     disclaimer: "Educational info, not immigration advice.",
     errorInline:
       "Sorry, I had trouble answering right now. Please try again in a few seconds.",
+    tooltip: "Need help?",
   },
   programsPage: {
     coverage: {
