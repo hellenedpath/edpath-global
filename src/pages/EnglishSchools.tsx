@@ -418,13 +418,7 @@ function SchoolCard({
         .join(" · ")
     : null;
   const pathwayText = pathwayLabel(school.pathway);
-  const courseChips = !isEmpty(school.course_types)
-    ? (school.course_types as string)
-        .split(",")
-        .map((c) => c.trim())
-        .filter(Boolean)
-        .slice(0, 3)
-    : [];
+  const courseChips = extractCourseChips(school.course_types);
 
   const linkHref = school.application_url || school.website;
   const location = [school.city, school.province].filter(Boolean).join(" · ");
@@ -492,8 +486,8 @@ function SchoolCard({
           {courseChips.map((c) => (
             <span
               key={c}
-              className="inline-flex items-center text-[13px] font-semibold rounded-full px-3 py-1.5 max-w-full break-words [overflow-wrap:anywhere]"
-              style={{ backgroundColor: "rgba(31,95,208,0.09)", color: "hsl(var(--azul))" }}
+              className="inline-flex items-center w-fit max-w-full rounded-full px-3 py-1 text-[13px] font-semibold leading-none whitespace-nowrap"
+              style={{ backgroundColor: "rgba(46,124,244,0.10)", color: "hsl(var(--azul))" }}
             >
               {c}
             </span>
@@ -503,7 +497,7 @@ function SchoolCard({
 
       <div className="mt-auto pt-5 border-t border-border flex flex-wrap items-center justify-between gap-3">
         {badge ? (
-          <span className="inline-flex items-center text-[15px] font-semibold rounded-full px-3 py-1.5 bg-[hsl(var(--azul)/0.1)] text-[hsl(var(--azul))] max-w-full break-words [overflow-wrap:anywhere]">
+          <span className="inline-flex items-center w-fit max-w-full whitespace-nowrap text-[14px] font-semibold rounded-full px-3 py-1 bg-[hsl(var(--azul)/0.1)] text-[hsl(var(--azul))]">
             {badge}
           </span>
         ) : (
