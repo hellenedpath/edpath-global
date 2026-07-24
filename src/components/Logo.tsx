@@ -15,7 +15,7 @@ export function Logo({ className }: { className?: string }) {
       <img
         src={edpathLogo.url}
         alt="EdPath Global"
-        className="h-10 md:h-12 w-auto shrink-0 object-contain"
+        className="h-12 md:h-14 w-auto shrink-0 object-contain"
       />
     </Link>
   );
