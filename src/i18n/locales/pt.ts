@@ -106,6 +106,7 @@ export const pt = {
     highSchoolsFeatured: "Ensino médio",
     forParents: "Para pais",
     newBadge: "Novo",
+    comingSoon: "Em breve",
     study: "Estudar",
     studyGroups: {
       university: "Universidade e college",
@@ -122,6 +123,8 @@ export const pt = {
       myPath: "Meu caminho",
       pgwp: "Verificador PGWP",
       institutions: "Instituições",
+      collegesPolytechnics: "Colleges e politécnicos",
+      universities: "Universidades",
       highSchools: "Ensino médio",
       programs: "Explorar programas",
       costsSimulator: "Simulador de custos",

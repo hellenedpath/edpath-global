@@ -107,6 +107,7 @@ export const en = {
     highSchoolsFeatured: "High school",
     forParents: "For parents",
     newBadge: "New",
+    comingSoon: "Coming soon",
     study: "Study",
     studyGroups: {
       university: "University & college",
@@ -123,6 +124,8 @@ export const en = {
       myPath: "My path",
       pgwp: "PGWP checker",
       institutions: "Institutions",
+      collegesPolytechnics: "Colleges & polytechnics",
+      universities: "Universities",
       highSchools: "High school",
       programs: "Explore programs",
       costsSimulator: "Cost simulator",
